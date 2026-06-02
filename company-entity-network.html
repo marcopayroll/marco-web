@@ -1,0 +1,1501 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Entity Network &amp; Operations | Marco</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-main:     #019DE7;
+      --blue-dark:     #003751;
+      --blue-darkest:  #162351;
+      --blue-lighter:  #8DD3F4;
+      --text-main:     #162351;
+      --text-tertiary: #8F98B5;
+      --gradient-light: linear-gradient(to bottom, #f4f4ff 49%, #ffffff 100%);
+      --font: 'Euclid Circular B', 'Inter', sans-serif;
+      --gutter:        clamp(64px, 7.5vw, 108px);
+      --nav-gutter:    clamp(32px, 4.44vw, 64px);
+      --footer-gutter: clamp(40px, 5.56vw, 80px);
+    }
+
+    body {
+      font-family: var(--font);
+      background: #0F1E46;
+      color: var(--text-main);
+      min-width: 960px;
+    }
+
+    .container {
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label .line {
+      width: 16px;
+      height: 2px;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+    .section-label span {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+      background-image: none;
+      transition:
+        background-color 0.25s ease,
+        background-image 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+    .nav.nav-scrolled {
+      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+    .nav-container {
+      width: min(100% - 48px, 1440px);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+    }
+    .nav-tabbar { display: flex; align-items: flex-start; gap: 40px; flex-shrink: 0; }
+    .nav-logo { width: 152px; height: 48px; display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-inner { position: relative; width: 100%; aspect-ratio: 684 / 108; }
+    .nav-logo-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-menu { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
+    .nav-tab {
+      display: flex; flex-direction: column; gap: 14px;
+      padding-top: 16px; align-items: flex-start; flex-shrink: 0; position: relative;
+    }
+    .nav-tab:hover::after {
+      content: '';
+      position: absolute; bottom: -16px; left: 4px; right: 4px;
+      height: 2px; background: #fff; pointer-events: none;
+    }
+    .nav-tab--active::after {
+      content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px;
+      height: 2px; background: var(--blue-main); pointer-events: none;
+    }
+    .nav-tab-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; flex-shrink: 0; }
+    .nav-tab-inner span { font-size: 12px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
+    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-right { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .nav-lang { display: flex; align-items: center; justify-content: space-between; width: 44px; flex-shrink: 0; }
+    .nav-lang-flag { position: relative; width: 20px; height: 20px; border-radius: 50px; border: 1px solid #e5e7eb; overflow: hidden; flex-shrink: 0; }
+    .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
+    .nav-lang span { font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
+    .nav-signin {
+      background: var(--blue-main); color: #fff; font-family: var(--font);
+      font-size: 12px; font-weight: 600; border-radius: 50px;
+      padding: 14px 24px; height: 32px; width: 100px;
+      display: flex; align-items: center; justify-content: center;
+      white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0;
+      text-decoration: none; transition: background 0.18s ease;
+    }
+    .nav-signin:hover { background: #0185C4; }
+
+    /* Services dropdown */
+    .nav-tab-services { position: relative; }
+    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 697px; top: 100%; height: 44px; }
+    .nav-tab-services:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-services-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 697px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22, 35, 81, 0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-services:hover .nav-services-dropdown,
+    .nav-services-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-services-columns { display: flex; gap: 16px; }
+    .nav-services-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-services-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-services-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-services-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-services-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-services-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-services-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-services-item:hover .nav-services-item-title { color: var(--blue-main); }
+    /* Compliance dropdown */
+    .nav-tab-compliance { position: relative; }
+    .nav-tab-compliance::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-compliance:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-compliance-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22, 35, 81, 0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-compliance:hover .nav-compliance-dropdown,
+    .nav-compliance-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* About Us dropdown */
+    .nav-tab-about { position: relative; }
+    .nav-tab-about::before {
+      content: '';
+      position: absolute;
+      left: 0; width: 400px;
+      top: 100%; height: 44px;
+    }
+    .nav-tab-about:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-about-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22, 35, 81, 0.14);
+      opacity: 0; pointer-events: none;
+      transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 200;
+    }
+    .nav-tab-about:hover .nav-about-dropdown,
+    .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-resources { position: relative; }
+    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-resources:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-resources-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-resources:hover .nav-resources-dropdown,
+    .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-hub { position: relative; }
+    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 680px; top: 100%; height: 44px; }
+    .nav-tab-hub:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-hub-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 680px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-hub:hover .nav-hub-dropdown,
+    .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-price { position: relative; }
+    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-price:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-price-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-price:hover .nav-price-dropdown,
+    .nav-price-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-hub-columns { display: flex; gap: 16px; }
+    .nav-hub-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-hub-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-hub-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-hub-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-hub-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-hub-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-hub-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-hub-item:hover .nav-hub-item-title { color: var(--blue-main); }
+    .nav-dropdown-label { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-tertiary); }
+    .nav-dropdown-divider { height: 1px; background: #CDD5E0; }
+    .nav-dropdown-list { display: flex; flex-direction: column; gap: 20px; }
+    .nav-dropdown-item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+    .nav-dropdown-item-title {
+      font-family: var(--font); font-size: 14px; font-weight: 500;
+      line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease;
+    }
+    .nav-dropdown-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-dropdown-item:hover .nav-dropdown-item-title { color: var(--blue-main); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      overflow: hidden;
+      background-image: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+    }
+    .hero-deco {
+      position: absolute;
+      top: 0;
+      right: max(var(--gutter), calc((100% - 1224px) / 2));
+      width: 560px;
+      height: 560px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-deco img { width: 100%; height: 100%; display: block; }
+    .hero > .container { position: relative; z-index: 1; padding-top: 176px; }
+    .hero-content { max-width: 644px; display: flex; flex-direction: column; gap: 12px; }
+    .hero-content .section-label span { color: var(--blue-main); }
+    .hero-title { font-size: 64px; font-weight: 700; line-height: 80px; color: #fff; }
+    .hero-title em { color: var(--blue-main); font-style: normal; }
+    .hero-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #fff; margin-top: 12px; }
+
+    /* ════════════════════════════════════════
+       SERVICE CENTERS
+    ════════════════════════════════════════ */
+    .service-centers {
+      width: 100%;
+      overflow: hidden;
+      background-image: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      padding: 60px 0 123px;
+    }
+    .service-centers .section-label { margin-bottom: 17px; }
+    .service-centers-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 711px) 199px;
+      column-gap: 158px;
+      align-items: center;
+      padding-left: 67px;
+    }
+    .service-centers-map-wrap {
+      width: 100%;
+      min-width: 0;
+    }
+    .world-map {
+      position: relative;
+      width: 100%;
+    }
+    .world-map-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .map-reveal {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .map-reveal.is-visible { opacity: 1; }
+
+    .map-pin {
+      position: absolute;
+      transform: translate(-50%, -100%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .map-pin.is-visible { opacity: 1; }
+    .map-pin:nth-of-type(1) { transition-delay: 0.5s; }
+    .map-pin:nth-of-type(2) { transition-delay: 0.6s; }
+    .map-pin:nth-of-type(3) { transition-delay: 0.7s; }
+    .map-pin:nth-of-type(4) { transition-delay: 0.8s; }
+
+    .map-pin img {
+      display: block;
+      height: 44px;
+      width: auto;
+    }
+
+    .map-pin-float {
+      animation: pinpointFloat 2.8s ease-in-out infinite;
+      animation-play-state: paused;
+    }
+    .map-pin.is-visible .map-pin-float { animation-play-state: running; }
+    .map-pin:nth-of-type(1) .map-pin-float { animation-delay: 0.6s; }
+    .map-pin:nth-of-type(2) .map-pin-float { animation-delay: 0.75s; }
+    .map-pin:nth-of-type(3) .map-pin-float { animation-delay: 0.9s; }
+    .map-pin:nth-of-type(4) .map-pin-float { animation-delay: 1.05s; }
+
+    @keyframes pinpointFloat {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-4px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .map-reveal,
+      .map-pin { opacity: 1; transition: none; }
+      .map-pin-float { animation: none; }
+    }
+    .service-centers-data {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      width: 199px;
+    }
+    .data-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .data-card-number {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 66px;
+      letter-spacing: -1.56px;
+      color: #fff;
+    }
+    .data-card-label {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      letter-spacing: 0;
+      color: var(--blue-main);
+    }
+    @media (max-width: 1024px) {
+      .service-centers-inner { column-gap: 48px; }
+    }
+    @media (max-width: 768px) {
+      .service-centers-inner {
+        grid-template-columns: 1fr;
+        row-gap: 48px;
+      }
+      .service-centers-data {
+        justify-self: start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 32px;
+      }
+    }
+
+    /* ════════════════════════════════════════
+       MARCO ENTITIES
+    ════════════════════════════════════════ */
+    .entities-section {
+      width: 100%;
+      overflow: hidden;
+      background: var(--gradient-light);
+      padding: 80px 0;
+    }
+    .entities-header { margin-bottom: 56px; }
+    .entities-header .section-label .line { background: var(--text-main); }
+    .entities-header .section-label span { color: var(--text-main); }
+    .entities-region {
+      display: grid;
+      grid-template-columns: 208px 1fr;
+      column-gap: 104px;
+      align-items: start;
+      padding: 60px 0;
+      border-top: 1px solid rgba(22,35,81,0.1);
+    }
+    .entities-header + .entities-region { border-top: none; }
+    .entities-region-name {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -2px;
+      color: var(--blue-main);
+    }
+    .entities-region-bar {
+      width: 32px;
+      height: 3px;
+      background: var(--text-main);
+      margin-top: 14px;
+      border-radius: 1px;
+    }
+    .entities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 288px);
+      column-gap: 24px;
+      row-gap: 60px;
+    }
+    .entity-card { display: flex; flex-direction: column; gap: 8px; }
+    .entity-location {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .entity-flag {
+      width: 20px;
+      height: 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 2px;
+      border: 1px solid #E5E7EB;
+      flex-shrink: 0;
+      display: block;
+    }
+    .entity-city {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 0.03em;
+      color: var(--text-tertiary);
+    }
+    .entity-name {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--text-main);
+    }
+    @media (max-width: 1024px) {
+      .entities-region { grid-template-columns: 160px 1fr; column-gap: 48px; }
+      .entities-region-name { font-size: 54px; }
+      .entities-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 20px; }
+    }
+    @media (max-width: 768px) {
+      .entities-region { grid-template-columns: 1fr; gap: 28px; padding: 40px 0; }
+      .entities-grid { grid-template-columns: repeat(2, 1fr); column-gap: 20px; row-gap: 28px; }
+      .entities-region-name { font-size: 48px; }
+    }
+    @media (max-width: 480px) {
+      .entities-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ════════════════════════════════════════
+       WHY IT MATTERS
+    ════════════════════════════════════════ */
+    .why-matters {
+      width: 100%;
+      overflow: hidden;
+      background: linear-gradient(90.59deg, #0F1E46 20.09%, #081557 99.84%);
+      padding: 80px 0;
+    }
+    .why-matters-row {
+      display: grid;
+      grid-template-columns: 421px 1fr;
+      column-gap: 92px;
+      align-items: start;
+    }
+    .why-matters-left {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .why-matters-left .section-label .line { background: var(--blue-main); }
+    .why-matters-left .section-label span { color: var(--blue-main); }
+    .why-matters-heading {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 60px;
+      letter-spacing: -2.4px;
+      color: #fff;
+    }
+    .why-matters-right {
+      padding-top: 25px;
+    }
+    .why-matters-body {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+      letter-spacing: -0.05em;
+      color: var(--text-tertiary);
+      text-align: justify;
+    }
+    .why-matters-body p + p { margin-top: 24px; }
+
+    /* ════════════════════════════════════════
+       CONTINUE / CTA
+    ════════════════════════════════════════ */
+    .continue-section {
+      width: 100%;
+      overflow: hidden;
+      background: var(--gradient-light);
+    }
+    .continue-row {
+      display: flex;
+      align-items: stretch;
+      min-height: 512px;
+    }
+    .continue-text {
+      flex: 0 0 600px;
+      padding: 80px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .continue-text .section-label .line { background: var(--text-main); }
+    .continue-text .section-label span { color: var(--text-main); }
+    .continue-heading {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 60px;
+      letter-spacing: -2.4px;
+      color: var(--blue-main);
+    }
+    .continue-body {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--text-main);
+    }
+    .continue-cta {
+      display: flex;
+      gap: 23px;
+      align-items: center;
+      margin-top: 8px;
+    }
+    /* Image bleeds right to viewport edge */
+    .continue-image {
+      flex: 1;
+      margin-left: 24px;
+      margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
+      position: relative;
+      overflow: hidden;
+      min-height: 512px;
+    }
+    .continue-image img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* ─── CTA BUTTONS ─── */
+    .btn-primary,
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 48px;
+      padding: 4px 24px;
+      border-radius: 50px;
+      font-family: var(--font);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: -0.8px;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: #162351;
+      color: #fff;
+      border: none;
+      transition: background 0.18s ease;
+    }
+    .btn-outline {
+      background: #fff;
+      color: #162351;
+      border: 1px solid #003751;
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+    .btn-primary:hover { background: #0185C4; }
+    .btn-outline:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
+    .btn-outline:hover .btn-arrow { color: #fff; }
+    .btn-arrow { flex-shrink: 0; display: block; }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer {
+      width: 100%; overflow: hidden;
+      background-image: linear-gradient(90.352deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      padding: 60px 0 58px;
+    }
+    .footer > .container { display: flex; flex-direction: column; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
+    .footer-logo { width: 199.5px; flex-shrink: 0; text-decoration: none; }
+    .footer-logo img { width: 100%; height: auto; display: block; }
+    .footer-social { display: flex; align-items: center; justify-content: space-between; width: 80px; flex-shrink: 0; }
+    .footer-social-icon { width: 24px; height: 24px; overflow: hidden; flex-shrink: 0; }
+    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-nav { display: flex; gap: 24px; justify-content: space-between; margin-bottom: 40px; }
+    .footer-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+    .footer-col-header { font-size: 14px; font-weight: 400; line-height: normal; color: var(--text-tertiary); }
+    .footer-col-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-col-links a, .footer-col-links span { font-size: 14px; font-weight: 500; line-height: normal; color: #fff; text-decoration: none; display: block; }
+    .footer-col-links a:hover { text-decoration: underline; }
+    .footer-divider { height: 1px; background: rgba(205,213,224,0.25); margin-bottom: 32px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--text-tertiary); white-space: nowrap; }
+    .footer-legal { display: flex; gap: 40px; align-items: center; }
+    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
+    .footer-legal a:hover { text-decoration: underline; }
+
+    /* ─── FADE-IN REVEAL ─── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; transition: none; }
+    }
+    .wechat-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .wechat-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .wechat-modal img {
+      max-width: 360px;
+      width: 90%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav class="nav">
+  <div class="nav-container">
+  <div class="nav-tabbar">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-inner">
+        <img src="assets/menu-bar-marco-logo.svg" alt="Marco" />
+      </div>
+    </a>
+    <div class="nav-menu">
+      <div class="nav-tab nav-tab-services">
+        <div class="nav-tab-inner">
+          <span>Services</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-services-dropdown">
+          <p class="nav-dropdown-label">Services</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-services-columns">
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-global-payroll.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/global payroll.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Global Payroll</span>
+                  <span class="nav-services-item-desc">End-to-end payroll in 150+ countries</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="service-employer-of-record.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/eor.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Employer of Record (EOR)</span>
+                  <span class="nav-services-item-desc">Hire globally without a local entity</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="service-independent-contractor.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/ic.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Independent Contractor (IC)</span>
+                  <span class="nav-services-item-desc">Compliant contractor engagement</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="#">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/global mobility.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Global Mobility</span>
+                  <span class="nav-services-item-desc">Seamless cross-border movements</span>
+                </div>
+              </a>
+            </div>
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-expense-processing.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/Expense Processing.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Expense Processing</span>
+                  <span class="nav-services-item-desc">Streamlined global expense management</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="service-hr-operations.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/HRO Support.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">HR Operation Support</span>
+                  <span class="nav-services-item-desc">Comprehensive HR administration</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="service-service-delivery-model.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/Service Delivery Model.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Service Delivery Model</span>
+                  <span class="nav-services-item-desc">Our partnership approach</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-compliance">
+        <div class="nav-tab-inner">
+          <span>Compliance</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-compliance-dropdown">
+          <p class="nav-dropdown-label">Compliance</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="compliance-data-protection.html">
+              <span class="nav-dropdown-item-title">Data Protection &amp; Privacy</span>
+              <span class="nav-dropdown-item-desc">Privacy controls for sensitive workforce data</span>
+            </a>
+            <a class="nav-dropdown-item" href="compliance-operational-governance.html">
+              <span class="nav-dropdown-item-title">Operational Governance</span>
+              <span class="nav-dropdown-item-desc">Controls, accountability, and audit trails</span>
+            </a>
+            <a class="nav-dropdown-item" href="compliance-licensing-regulatory.html">
+              <span class="nav-dropdown-item-title">Licensing &amp; Regulatory Compliance</span>
+              <span class="nav-dropdown-item-desc">Local licenses and regulatory authorizations</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-resources">
+        <div class="nav-tab-inner">
+          <span>Resources</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-resources-dropdown">
+          <p class="nav-dropdown-label">Resources</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <span class="nav-dropdown-item-title">Help Center</span>
+              <span class="nav-dropdown-item-desc">Manual guides, FAQs, and product support</span>
+            </a>
+            <a class="nav-dropdown-item" href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <span class="nav-dropdown-item-title">Developer Portal</span>
+              <span class="nav-dropdown-item-desc">API documentation and integration resources</span>
+            </a>
+            <a class="nav-dropdown-item" href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">
+              <span class="nav-dropdown-item-title">Demo Site</span>
+              <span class="nav-dropdown-item-desc">A test environment to explore Marco OS</span>
+            </a>
+            <a class="nav-dropdown-item" href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <span class="nav-dropdown-item-title">Processing &amp; Integration Engines</span>
+              <span class="nav-dropdown-item-desc">Systems that power payroll and data workflows</span>
+            </a>
+            <a class="nav-dropdown-item" href="#">
+              <span class="nav-dropdown-item-title">Marco Copilot (AI Assistant)</span>
+              <span class="nav-dropdown-item-desc">AI support for global workforce operations</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-hub">
+        <div class="nav-tab-inner">
+          <span>HR Knowledge Hub</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-hub-dropdown">
+          <p class="nav-dropdown-label">HR Knowledge Hub</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-hub-columns">
+            <div class="nav-hub-col">
+              <a href="#" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Labor Cost Calculator</span>
+                  <span class="nav-hub-item-desc">Estimate employment costs by country</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-country-guide.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Country Guide.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Country Guide</span>
+                  <span class="nav-hub-item-desc">Country-specific employment and payroll insights</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-visa-guide.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Visa Guide.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Visa Guide</span>
+                  <span class="nav-hub-item-desc">Work visa requirements and application guidance</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-payroll-guide.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Payroll Guide.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Payroll Guide</span>
+                  <span class="nav-hub-item-desc">Payroll rules, cycles, and statutory requirements</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-freelancer-guide.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Freelancer Guide.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Freelancer Guide</span>
+                  <span class="nav-hub-item-desc">Independent contractor rules by country</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-work-schedule.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Work Schedule.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Work Schedule</span>
+                  <span class="nav-hub-item-desc">Working hours, rest days, and schedule rules</span>
+                </div>
+              </a>
+            </div>
+            <div class="nav-hub-col">
+              <a href="https://ph.marcopayroll.com/" target="_blank" rel="noopener noreferrer" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Public Holiday Calendar</span>
+                  <span class="nav-hub-item-desc">Official holidays by country and year</span>
+                </div>
+              </a>
+              <a href="https://leave.marcopayroll.com/" target="_blank" rel="noopener noreferrer" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Leave Policy</span>
+                  <span class="nav-hub-item-desc">Annual leave, sick leave, and statutory time off</span>
+                </div>
+              </a>
+              <a href="#" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Travel &amp; Expense Policy.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Travel &amp; Expense Policy</span>
+                  <span class="nav-hub-item-desc">Business travel and reimbursement guidelines</span>
+                </div>
+              </a>
+              <a href="#" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Benefits Plan.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Benefits Plan</span>
+                  <span class="nav-hub-item-desc">Mandatory and common employee benefits</span>
+                </div>
+              </a>
+              <a href="#" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Vendor List.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Vendor List</span>
+                  <span class="nav-hub-item-desc">Approved vendors and service partners</span>
+                </div>
+              </a>
+              <a href="#" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Memo.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Memo</span>
+                  <span class="nav-hub-item-desc">HR updates, notes, and internal references</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-price">
+        <div class="nav-tab-inner">
+          <span>Price</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-price-dropdown">
+          <p class="nav-dropdown-label">Price</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="#">
+              <span class="nav-dropdown-item-title">Global Workforce Solution</span>
+              <span class="nav-dropdown-item-desc">Service pricing for global workforce administration</span>
+            </a>
+            <a class="nav-dropdown-item" href="#">
+              <span class="nav-dropdown-item-title">Global Managed Payroll Service</span>
+              <span class="nav-dropdown-item-desc">Managed payroll pricing for global teams</span>
+            </a>
+            <a class="nav-dropdown-item" href="#">
+              <span class="nav-dropdown-item-title">Proposal Builder</span>
+              <span class="nav-dropdown-item-desc">Build a tailored service pricing proposal</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-about">
+        <div class="nav-tab-inner">
+          <span>Company</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-about-dropdown">
+          <p class="nav-dropdown-label">Company</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="company-vision-values.html">
+              <span class="nav-dropdown-item-title">Vision &amp; Values</span>
+              <span class="nav-dropdown-item-desc">Our purpose and guiding principles</span>
+            </a>
+            <a class="nav-dropdown-item" href="company-journey.html">
+              <span class="nav-dropdown-item-title">Marco's Journey</span>
+              <span class="nav-dropdown-item-desc">The story behind Marco</span>
+            </a>
+            <a class="nav-dropdown-item" href="company-entity-network.html">
+              <span class="nav-dropdown-item-title">Entity Network</span>
+              <span class="nav-dropdown-item-desc">Global entities and operational service centers</span>
+            </a>
+            <a class="nav-dropdown-item" href="company-organization.html">
+              <span class="nav-dropdown-item-title">Organization</span>
+              <span class="nav-dropdown-item-desc">Leadership and structure</span>
+            </a>
+            <a class="nav-dropdown-item" href="company-contact-us.html">
+              <span class="nav-dropdown-item-title">Contact us</span>
+              <span class="nav-dropdown-item-desc">Get in touch with the Marco team</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-lang">
+      <div class="nav-lang-flag">
+        <img src="assets/flag-en.png" alt="" />
+      </div>
+      <span>EN</span>
+    </div>
+    <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+  </div>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-deco">
+    <img src="assets/Background Assets/abstract line 3.svg" alt="" />
+  </div>
+  <div class="container">
+    <div class="hero-content fade-in">
+      <div class="section-label">
+        <div class="line" style="background:var(--blue-main)"></div>
+        <span>GLOBAL INFRASTRUCTURE</span>
+      </div>
+      <div>
+        <p class="hero-title">Local presence<br><em>Global scale</em></p>
+        <p class="hero-body">21 owned legal entities. 4 service centers. AMER, EMEA, and APAC. Marco's infrastructure is not a partner directory — it is a network we built and operate ourselves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ SERVICE CENTERS ════════════════ -->
+<section class="service-centers">
+  <div class="container fade-in">
+    <div class="section-label" style="margin-bottom:48px">
+      <div class="line" style="background:var(--blue-main)"></div>
+      <span style="color:var(--blue-main)">MARCO SERVICE CENTERS</span>
+    </div>
+    <div class="service-centers-inner">
+      <div class="service-centers-map-wrap">
+        <!-- World map SVG + pin assets -->
+        <div class="world-map">
+          <img class="world-map-img map-reveal" src="assets/Company/entity-network-dotted-world-map.svg" alt="World map showing Marco service centers"/>
+          <!-- LA spike tip: x=98/710.64=13.79%, y=191/400=47.75% -->
+          <div class="map-pin" style="left:13.79%;top:47.75%">
+            <div class="map-pin-float">
+              <img src="assets/Company/entity-network-city-of-industry-pinpoint.svg" alt="City of Industry"/>
+            </div>
+          </div>
+          <!-- Bucharest spike tip: x=390/710.64=54.88%, y=154/400=38.50% -->
+          <div class="map-pin" style="left:54.88%;top:38.50%">
+            <div class="map-pin-float">
+              <img src="assets/Company/entity-network-bucharest-pinpoint.svg" alt="Bucharest"/>
+            </div>
+          </div>
+          <!-- Kuala Lumpur spike tip: x=549.5/710.64=77.32%, y=249/400=62.25% -->
+          <div class="map-pin" style="left:77.32%;top:62.25%">
+            <div class="map-pin-float">
+              <img src="assets/Company/entity-network-kuala-lumpur-pinpoint.svg" alt="Kuala Lumpur"/>
+            </div>
+          </div>
+          <!-- Dalian spike tip: x=582.5/710.64=81.97%, y=160/400=40.00% -->
+          <div class="map-pin" style="left:81.97%;top:40.00%">
+            <div class="map-pin-float">
+              <img src="assets/Company/entity-network-dalian-pin-point.svg" alt="Dalian"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Stats -->
+      <div class="service-centers-data">
+        <div class="data-card">
+          <p class="data-card-number" data-count="21">0</p>
+          <p class="data-card-label">OWNED ENTITIES</p>
+        </div>
+        <div class="data-card">
+          <p class="data-card-number" data-count="4">0</p>
+          <p class="data-card-label">SERVICE CENTERS</p>
+        </div>
+        <div class="data-card">
+          <p class="data-card-number" data-count="80" data-suffix="+">0</p>
+          <p class="data-card-label">COUNTRIES WORK-VISA SUPPORT</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ MARCO ENTITIES ════════════════ -->
+<section class="entities-section">
+  <div class="container">
+    <div class="entities-header fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>MARCO ENTITIES</span>
+      </div>
+    </div>
+
+    <!-- AMER -->
+    <div class="entities-region fade-in">
+      <div class="entities-region-label">
+        <p class="entities-region-name">AMER</p>
+        <div class="entities-region-bar"></div>
+      </div>
+      <div class="entities-grid">
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/us.svg" alt="USA"/>
+            <span class="entity-city">City of Industry, USA</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll, LLC</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/ca.svg" alt="Canada"/>
+            <span class="entity-city">British Columbia, Canada</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll (Canada) Ltd.</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/br.svg" alt="Brazil"/>
+            <span class="entity-city">São Paulo, Brazil</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll Brazil LTDA</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMER -->
+    <div class="entities-region fade-in">
+      <div class="entities-region-label">
+        <p class="entities-region-name">EMER</p>
+        <div class="entities-region-bar"></div>
+      </div>
+      <div class="entities-grid">
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/ro.svg" alt="Romania"/>
+            <span class="entity-city">Bucharest, Romania</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll S.R.L.</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/gb.svg" alt="United Kingdom"/>
+            <span class="entity-city">London, United Kingdom</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll Ltd</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/fr.svg" alt="France"/>
+            <span class="entity-city">Paris, France</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll SARL</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/ie.svg" alt="Ireland"/>
+            <span class="entity-city">Dublin, Ireland</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll (Ireland) Limited</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/es.svg" alt="Spain"/>
+            <span class="entity-city">Madrid, Spain</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll Sociedad Limitada</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/nl.svg" alt="Netherlands"/>
+            <span class="entity-city">Amsterdam, Netherlands</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll Netherlands B.V.</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/ae.svg" alt="UAE"/>
+            <span class="entity-city">Dubai, United Arab Emirates</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll Middle East Payment Services Provider LLC</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- APAC -->
+    <div class="entities-region fade-in">
+      <div class="entities-region-label">
+        <p class="entities-region-name">APAC</p>
+        <div class="entities-region-bar"></div>
+      </div>
+      <div class="entities-grid">
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/cn.svg" alt="China"/>
+            <span class="entity-city">Beijing, China</span>
+          </div>
+          <p class="entity-name">Marco Global HR Services (Beijing) Co, Ltd.</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/cn.svg" alt="China"/>
+            <span class="entity-city">Dalian, China</span>
+          </div>
+          <p class="entity-name">Marco Global HR Services (Beijing) Co., Ltd, Dalian Branch</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/kr.svg" alt="South Korea"/>
+            <span class="entity-city">Seoul, South Korea</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll Korea Co., Ltd.</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/my.svg" alt="Malaysia"/>
+            <span class="entity-city">Kuala Lumpur, Malaysia</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll (Malaysia) Sdn. Bhd</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/id.svg" alt="Indonesia"/>
+            <span class="entity-city">Jakarta, Indonesia</span>
+          </div>
+          <p class="entity-name">PT Marco Global Payroll</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/jp.svg" alt="Japan"/>
+            <span class="entity-city">Tokyo, Japan</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll (Japan) GK LLC</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/vn.svg" alt="Vietnam"/>
+            <span class="entity-city">Ho Chi Minh, Vietnam</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll (Vietnam) Company Limited</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/ph.svg" alt="Philippines"/>
+            <span class="entity-city">Manila, Philippines</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll (Philippines) Services Corp.</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/au.svg" alt="Australia"/>
+            <span class="entity-city">Sydney, Australia</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll (Australia) Pty. Ltd.</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/hk.svg" alt="Hong Kong"/>
+            <span class="entity-city">Hong Kong</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll (Hong Kong) Limited</p>
+        </div>
+        <div class="entity-card">
+          <div class="entity-location">
+            <img class="entity-flag" src="assets/Flags/sg.svg" alt="Singapore"/>
+            <span class="entity-city">Singapore</span>
+          </div>
+          <p class="entity-name">Marco Global Payroll Pte Ltd</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════ WHY IT MATTERS ════════════════ -->
+<section class="why-matters">
+  <div class="container">
+    <div class="why-matters-row fade-in">
+      <div class="why-matters-left">
+        <div class="section-label">
+          <div class="line"></div>
+          <span>WHY IT MATTERS</span>
+        </div>
+        <p class="why-matters-heading">An owned entity is not a detail. It is the <span style="color:var(--blue-main)">difference.</span></p>
+      </div>
+      <div class="why-matters-right">
+        <div class="why-matters-body">
+          <p>When a global payroll provider says they operate in a country, the question worth asking is: how? The most common answer is a third-party partner — a local firm that has agreed to handle compliance, filing, and disbursement on behalf of the provider. There is nothing inherently wrong with that model. But it introduces latency, opacity, and a layer of accountability that the client never gets to verify.</p>
+          <p>Marco's owned entity model is different. Where Marco operates through an owned legal entity, the local team reports directly into Marco's global compliance and operations structure. They use Marco's systems, follow Marco's protocols, and are accountable to Marco's standards. When something goes wrong — and in global payroll, something always eventually does — there is no intermediary. The answer comes directly from Marco.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ CONTINUE / CTA ════════════════ -->
+<section class="continue-section">
+  <div class="container continue-row">
+    <div class="continue-text fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>CONTINUE</span>
+      </div>
+      <p class="continue-heading">Meet the people<br>behind the infrastructure</p>
+      <p class="continue-body">The entities and service centers are the operational foundation. The organization page introduces the teams that run them.</p>
+      <div class="continue-cta">
+        <a href="company-organization.html" class="btn-primary">
+          Organization
+          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="company-journey.html" class="btn-outline">
+          Marco's Journey
+          <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="continue-image">
+      <img src="assets/Company/entity-network-continue-thumbnail.webp" alt="Marco organization" />
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer class="footer">
+  <div class="container">
+  <div class="footer-top">
+    <a class="footer-logo" href="index.html">
+      <img src="assets/footer-marco-logo-en.svg" alt="Marco" />
+    </a>
+    <div class="footer-social">
+      <div class="footer-social-icon">
+        <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/linkedin-icon.svg" alt="LinkedIn" />
+        </a>
+      </div>
+      <div class="footer-social-icon" style="cursor:pointer;" onclick="document.getElementById('wechat-modal').classList.add('active')">
+        <img src="assets/wechat-icon.svg" alt="WeChat" />
+      </div>
+    </div>
+  </div>
+  <div class="footer-nav">
+    <div class="footer-col">
+      <span class="footer-col-header">Services</span>
+      <div class="footer-col-links">
+        <a href="service-global-payroll.html">Global Payroll</a>
+        <a href="service-employer-of-record.html">EOR</a>
+        <a href="service-independent-contractor.html">IC</a>
+        <a href="service-global-mobility.html">Global Mobility</a>
+        <a href="service-expense-processing.html">Expense Processing</a>
+        <a href="service-hr-operations.html">HRO</a>
+        <a href="service-service-delivery-model.html">Service Delivery Model</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Compliance</span>
+      <div class="footer-col-links">
+        <a href="compliance-data-protection.html">Data Protection &amp; Privacy</a>
+        <a href="compliance-operational-governance.html">Operational Governance</a>
+        <a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Resources</span>
+      <div class="footer-col-links">
+        <a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a>
+        <a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a>
+        <a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a>
+        <a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a>
+        <a href="#">Marco Copilot (AI Assistant)</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">HR Knowledge Hub</span>
+      <div class="footer-col-links">
+        <a href="#">Labor Cost Calculator</a>
+        <a href="hr-knowledge-hub-country-guide.html">Country Guide</a>
+        <a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a>
+        <a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a>
+        <a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a>
+        <a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a>
+        <a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a>
+        <a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a>
+        <a href="#">Travel &amp; Expense Policy</a>
+        <a href="#">Benefits Plan</a>
+        <a href="#">Vendor List</a>
+        <a href="#">Memo</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Price</span>
+      <div class="footer-col-links">
+        <a href="#">Global Workforce Solution</a>
+        <a href="#">Global Managed Payroll Service</a>
+        <a href="#">Proposal Builder</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">About</span>
+      <div class="footer-col-links">
+        <a href="company-vision-values.html">Vision &amp; Value</a>
+        <a href="company-journey.html">Marco's Journey</a>
+        <a href="company-entity-network.html">Entity Network</a>
+        <a href="company-organization.html">Organization</a>
+        <a href="company-contact-us.html">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <p>Copyright © 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookies Policy</a>
+    </div>
+  </div>
+  </div>
+</footer>
+
+<div id="wechat-modal" class="wechat-modal">
+  <img src="assets/wechat-card.svg" alt="WeChat QR Code" />
+</div>
+
+<script>
+  document.getElementById('wechat-modal').addEventListener('click', function() {
+    this.classList.remove('active');
+  });
+
+  const revealElements = document.querySelectorAll('.fade-in');
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  revealElements.forEach((el) => revealObserver.observe(el));
+</script>
+
+<script>
+  (function () {
+    const mapImg = document.querySelector('.world-map-img.map-reveal');
+    const mapPins = Array.from(document.querySelectorAll('.service-centers .map-pin'));
+    const prefersReducedMotionMap = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotionMap) {
+      if (mapImg) mapImg.classList.add('is-visible');
+      mapPins.forEach(p => p.classList.add('is-visible'));
+    } else if (mapImg) {
+      const mapObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              mapImg.classList.add('is-visible');
+              mapPins.forEach(p => p.classList.add('is-visible'));
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      mapObserver.observe(mapImg.closest('.service-centers'));
+    }
+  })();
+
+  (function () {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function animateCounter(counter) {
+      const target = Number(counter.dataset.count);
+      const suffix = counter.dataset.suffix || '';
+      const duration = 1800;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        const currentValue = Math.round(target * easedProgress);
+        counter.textContent = `${currentValue}${suffix}`;
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          counter.textContent = `${target}${suffix}`;
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    const serviceCentersSection = document.querySelector('.service-centers');
+    if (!serviceCentersSection) return;
+
+    const counterObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.data-card-number[data-count]').forEach((counter) => {
+              const suffix = counter.dataset.suffix || '';
+              if (prefersReducedMotion) {
+                counter.textContent = `${counter.dataset.count}${suffix}`;
+              } else {
+                animateCounter(counter);
+              }
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    counterObserver.observe(serviceCentersSection);
+  })();
+
+  // ── Scroll-state navbar: transparent over hero, solid after ──
+  const nav  = document.querySelector('.nav');
+  const hero = document.querySelector('.hero');
+  function updateNavState() {
+    if (!nav || !hero) return;
+    const threshold = hero.offsetTop + hero.offsetHeight * 0.25;
+    if (window.scrollY >= threshold) {
+      nav.classList.add('nav-scrolled');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+  }
+  updateNavState();
+  window.addEventListener('scroll', updateNavState, { passive: true });
+  window.addEventListener('resize', updateNavState);
+</script>
+
+
+</body>
+</html>

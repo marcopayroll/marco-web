@@ -1,0 +1,1310 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Independent Contractor | Services | Marco</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-main:      #019DE7;
+      --blue-dark:      #003751;
+      --blue-darkest:   #162351;
+      --text-main:      #162351;
+      --text-secondary: #475072;
+      --text-tertiary:  #8F98B5;
+      --font:           'Euclid Circular B', 'Inter', sans-serif;
+      --gutter:         clamp(64px, 7.5vw, 108px);
+      --footer-gutter:  clamp(40px, 5.56vw, 80px);
+    }
+
+    body { font-family: var(--font); background: #fff; color: var(--text-main); min-width: 960px; }
+
+    .container { width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; }
+
+    .section-label { display: flex; align-items: center; gap: 8px; }
+    .section-label .line { width: 16px; height: 2px; background: currentColor; flex-shrink: 0; }
+    .section-label span { font-size: 14px; font-weight: 500; line-height: 18px; white-space: nowrap; }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background: transparent;
+      transition: background-color 0.25s ease, background-image 0.25s ease, box-shadow 0.25s ease;
+    }
+    .nav.nav-scrolled {
+      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .nav-container {
+      width: min(100% - 48px, 1440px); margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between; padding: 24px 0;
+    }
+    .nav-tabbar { display: flex; align-items: flex-start; gap: 40px; flex-shrink: 0; }
+    .nav-logo { width: 152px; height: 48px; display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-inner { position: relative; width: 100%; aspect-ratio: 684 / 108; }
+    .nav-logo-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-menu { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
+    .nav-tab {
+      display: flex; flex-direction: column; gap: 14px;
+      padding-top: 16px; align-items: flex-start; flex-shrink: 0; position: relative;
+    }
+    .nav-tab:hover::after {
+      content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px;
+      height: 2px; background: #fff; pointer-events: none;
+    }
+    .nav-tab--active::after {
+      content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px;
+      height: 2px; background: var(--blue-main); pointer-events: none;
+    }
+    .nav-tab-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; flex-shrink: 0; }
+    .nav-tab-inner span { font-size: 12px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
+    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-right { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .nav-lang { display: flex; align-items: center; justify-content: space-between; width: 44px; flex-shrink: 0; }
+    .nav-lang-flag { position: relative; width: 20px; height: 20px; border-radius: 50px; border: 1px solid #e5e7eb; overflow: hidden; flex-shrink: 0; }
+    .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
+    .nav-lang span { font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
+    .nav-signin {
+      background: var(--blue-main); color: #fff; font-family: var(--font);
+      font-size: 12px; font-weight: 600; border-radius: 50px;
+      padding: 14px 24px; height: 32px; width: 100px;
+      display: flex; align-items: center; justify-content: center;
+      white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0;
+      text-decoration: none; transition: background 0.18s ease;
+    }
+    .nav-signin:hover { background: #0185C4; }
+    .nav-tab-services { position: relative; }
+    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 697px; top: 100%; height: 44px; }
+    .nav-tab-services:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-services-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 697px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-services:hover .nav-services-dropdown,
+    .nav-services-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-services-columns { display: flex; gap: 16px; }
+    .nav-services-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-services-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-services-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-services-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-services-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-services-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-services-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-services-item:hover .nav-services-item-title { color: var(--blue-main); }
+    .nav-tab-compliance { position: relative; }
+    .nav-tab-compliance::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-compliance:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-compliance-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-compliance:hover .nav-compliance-dropdown,
+    .nav-compliance-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-about { position: relative; }
+    .nav-tab-about::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-about:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-about-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-about:hover .nav-about-dropdown,
+    .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-resources { position: relative; }
+    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-resources:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-resources-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-resources:hover .nav-resources-dropdown,
+    .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-hub { position: relative; }
+    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 680px; top: 100%; height: 44px; }
+    .nav-tab-hub:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-hub-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 680px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-hub:hover .nav-hub-dropdown,
+    .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-price { position: relative; }
+    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-price:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-price-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-price:hover .nav-price-dropdown,
+    .nav-price-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-hub-columns { display: flex; gap: 16px; }
+    .nav-hub-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-hub-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-hub-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-hub-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-hub-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-hub-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-hub-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-hub-item:hover .nav-hub-item-title { color: var(--blue-main); }
+    .nav-dropdown-label { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-tertiary); }
+    .nav-dropdown-divider { height: 1px; background: #CDD5E0; }
+    .nav-dropdown-list { display: flex; flex-direction: column; gap: 20px; }
+    .nav-dropdown-item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+    .nav-dropdown-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-dropdown-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-dropdown-item:hover .nav-dropdown-item-title { color: var(--blue-main); }
+
+    /* ════════════════════════════════════════
+       FADE-IN
+    ════════════════════════════════════════ */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; will-change: opacity, transform; }
+    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .fade-in { opacity: 1; transform: none; transition: none; } }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      position: relative; width: 100%; height: 600px; overflow: hidden;
+      background-image: linear-gradient(90.43deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%);
+    }
+    .hero-bg {
+      position: absolute; right: -24px; top: 0;
+      width: 901px; height: 100%;
+      opacity: 0.5; border-radius: 40px; overflow: clip; pointer-events: none; z-index: 0;
+    }
+    .hero-bg img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .hero > .container { position: relative; z-index: 1; padding-top: 180px; }
+    .hero-content { max-width: 668px; display: flex; flex-direction: column; gap: 12px; }
+    .hero-content .section-label { color: var(--blue-main); }
+    .hero-title { font-size: 64px; font-weight: 700; line-height: 80px; color: #fff; }
+    .hero-title .muted { color: var(--text-tertiary); }
+    .hero-title .accent { color: var(--blue-main); }
+    .hero-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #fff; letter-spacing: -0.8px; margin-top: 12px; }
+
+    /* ════════════════════════════════════════
+       WHAT IS AN IC
+    ════════════════════════════════════════ */
+    .whatic {
+      width: 100%; overflow: hidden;
+      background: linear-gradient(to bottom, #f4f4ff 49.112%, #fff 110.41%);
+      min-height: 512px;
+    }
+    .whatic > .container { display: flex; gap: 48px; align-items: center; padding-top: 80px; padding-bottom: 80px; }
+    .whatic-left {
+      flex: 0 0 624px; display: flex; flex-direction: column; gap: 24px;
+    }
+    .whatic-left .section-label { color: var(--text-main); }
+    .whatic-title {
+      font-size: 48px; font-weight: 700; line-height: 60px;
+      color: var(--text-main); letter-spacing: -2.4px;
+    }
+    .whatic-title .accent { color: var(--blue-main); }
+    .whatic-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); letter-spacing: -0.8px; }
+    .whatic-body p + p { margin-top: 20px; }
+
+    /* IC vs Employee comparison table */
+    .ic-compare { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; }
+    .ic-compare-header { display: flex; }
+    .ic-compare-hcell {
+      flex: 1 1 0; min-width: 0; height: 40px;
+      background: #e4efff; border: 1px solid #cdd5e0;
+      display: flex; align-items: center; padding: 8px 12px;
+      font-size: 12px; font-weight: 500; line-height: 16px;
+    }
+    .ic-compare-hcell:first-child { border-radius: 8px 0 0 0; color: var(--text-main); }
+    .ic-compare-hcell:last-child { border-radius: 0 8px 0 0; border-left: none; color: var(--text-tertiary); }
+    .ic-compare-row { display: flex; }
+    .ic-compare-row:last-child .ic-compare-cell:first-child { border-radius: 0 0 0 8px; }
+    .ic-compare-row:last-child .ic-compare-cell:last-child { border-radius: 0 0 8px 0; }
+    .ic-compare-cell {
+      flex: 1 1 0; min-width: 0; min-height: 52px; height: auto;
+      background: #fff; border: 1px solid #cdd5e0; border-top: none;
+      padding: 8px 12px; display: flex; align-items: center;
+      font-size: 12px; font-weight: 400; line-height: 16px;
+    }
+    .ic-compare-cell:last-child { border-left: none; }
+    .ic-compare-cell .bold { font-weight: 500; }
+    .ic-compare-cell--active { color: var(--text-main); }
+    .ic-compare-cell--muted { color: var(--text-tertiary); }
+
+    /* ════════════════════════════════════════
+       THE COMPLIANCE PROBLEM
+    ════════════════════════════════════════ */
+    .compliance-problem {
+      width: 100%; overflow: hidden;
+      background-image: linear-gradient(90.27deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%);
+      padding: 80px 0;
+    }
+    .compliance-problem .section-label { color: var(--blue-main); }
+    .compliance-header { display: flex; flex-direction: column; gap: 24px; }
+    .compliance-title { font-size: 64px; font-weight: 700; line-height: 80px; color: #fff; }
+    .compliance-title .accent { color: var(--blue-main); }
+    .compliance-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); max-width: 644px; }
+    .compliance-cols { display: flex; gap: 24px; margin-top: 60px; }
+    .compliance-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+
+    /* WHY IT HAPPEN tag */
+    .compliance-tag {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 32px; padding: 8px 12px; border-radius: 6px;
+      font-size: 14px; font-weight: 500; line-height: 18px; white-space: nowrap; align-self: flex-start;
+    }
+    .compliance-tag--why { background: #1d4783; border: 1px solid #8dd3f4; color: #8dd3f4; }
+    .compliance-tag--cost { background: #e9c1c9; border: 1px solid #ff1d1d; color: #ff1d1d; }
+
+    /* Compliance items list */
+    .compliance-items { display: flex; flex-direction: column; gap: 0; }
+    .compliance-item { display: flex; gap: 16px; align-items: flex-start; min-height: 84px; padding: 16px; }
+    .compliance-item-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 0; }
+    .compliance-item-icon {
+      background: #1d4783; border-radius: 8px;
+      width: 36px; height: 36px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .compliance-item-icon img { width: 20px; height: 20px; display: block; }
+    .compliance-item-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #ff1d1d;
+      flex-shrink: 0; margin-top: 5px; margin-left: 6px; margin-right: 6px;
+    }
+    .compliance-item-content { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .compliance-item-title { font-size: 14px; font-weight: 500; line-height: 18px; color: #fff; }
+    .compliance-item-desc { font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); }
+
+    /* Alert box */
+    .compliance-alert {
+      display: flex; gap: 24px; align-items: center;
+      background: #1d4783; border: 1px solid #8dd3f4; border-radius: 8px;
+      padding: 16px 24px; margin-top: 40px;
+    }
+    .compliance-alert-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .compliance-alert-icon img { width: 100%; height: 100%; display: block; }
+    .compliance-alert-text { font-size: 12px; font-weight: 400; line-height: 16px; color: #8dd3f4; flex: 1 1 0; min-width: 0; }
+
+    /* ════════════════════════════════════════
+       SERVICE SCOPE
+    ════════════════════════════════════════ */
+    .scope {
+      width: 100%; overflow: hidden;
+      background-image: linear-gradient(90.22deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%);
+      padding: 80px 0 80px;
+    }
+    .scope .section-label { color: var(--blue-main); }
+    .scope-header { display: flex; flex-direction: column; gap: 24px; }
+    .scope-title { font-size: 64px; font-weight: 700; line-height: 80px; color: #fff; white-space: pre-line; }
+    .scope-title .accent { color: var(--blue-main); }
+    .scope-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #a2b1c1; letter-spacing: -0.8px; max-width: 644px; }
+    .scope-grid { display: flex; flex-direction: column; max-width: 1000px; margin: 68px auto 0; }
+    .scope-row { display: flex; }
+    .scope-box { flex: 0 0 500px; min-height: 380px; padding: 32px; display: flex; flex-direction: column; }
+    .scope-row:not(:last-child) .scope-box { border-bottom: 1px solid #e7e7e7; }
+    .scope-row .scope-box:not(:last-child) { border-right: 1px solid #e7e7e7; }
+    .scope-box-inner { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; opacity: 0; transition: opacity 0.35s ease; }
+    .scope-box-inner.is-visible { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { .scope-box-inner { opacity: 1; transition: none; } }
+    .scope-icon {
+      background: #1d4783; border-radius: 8px;
+      width: 36px; height: 36px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .scope-icon img { width: 20px; height: 20px; display: block; }
+    .scope-box-title {
+      font-size: 20px; font-weight: 600; line-height: 26px;
+      background: linear-gradient(180deg, #ffffff 0%, #2c9bcf 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; color: transparent;
+    }
+    .scope-box-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #fff; letter-spacing: -0.8px; }
+    .scope-box-bullets { font-size: 16px; font-weight: 400; line-height: 20px; color: #fff; letter-spacing: -0.8px; padding-left: 20px; display: flex; flex-direction: column; gap: 0; list-style: disc; }
+
+    /* ════════════════════════════════════════
+       IC ENGAGEMENT LIFECYCLE
+    ════════════════════════════════════════ */
+    .lifecycle {
+      width: 100%; overflow: hidden;
+      background: linear-gradient(to bottom, #f4f4ff 49.112%, #fff 110.41%);
+      padding: 80px 0 100px;
+    }
+    .lifecycle .section-label { color: var(--text-main); }
+    .lifecycle-header { display: flex; flex-direction: column; gap: 24px; max-width: 1224px; }
+    .lifecycle-title { font-size: 52px; font-weight: 700; line-height: 66px; color: var(--text-main); letter-spacing: -1.56px; }
+    .lifecycle-title .accent { color: var(--blue-main); }
+    .lifecycle-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-secondary); }
+    .lifecycle-steps {
+      display: flex; flex-direction: column; gap: 24px;
+      margin-top: 60px; position: relative;
+    }
+    .lifecycle-steps::before {
+      content: ''; position: absolute;
+      left: 20px; top: 20px; bottom: 20px;
+      width: 1px; background: #cdd5e0; z-index: 0;
+    }
+    .lifecycle-step { display: flex; align-items: flex-start; gap: 47px; position: relative; }
+    .lifecycle-step-num {
+      background: var(--text-main); border-radius: 50px;
+      width: 40px; height: 40px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .lifecycle-step-num span { font-size: 14px; font-weight: 500; line-height: 18px; color: #8dd3f4; text-align: center; }
+    .lifecycle-step-card {
+      flex: 1 1 0; min-width: 0;
+      background: linear-gradient(to bottom, #cbdcfa, #ede7f4);
+      border-radius: 8px; padding: 20px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .lifecycle-step-label { font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-secondary); }
+    .lifecycle-step-title {
+      font-size: 20px; font-weight: 600; line-height: 26px;
+      background: linear-gradient(to bottom, #019de7, #0031ae);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; color: transparent;
+    }
+    .lifecycle-step-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-secondary); letter-spacing: -0.8px; }
+    .lifecycle-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .lifecycle-tag {
+      background: #ecf2fb; border: 1px solid #bcc9eb; border-radius: 50px;
+      padding: 6px 12px; font-size: 12px; font-weight: 500; line-height: 16px; color: #1d4783; white-space: nowrap;
+    }
+
+    /* ════════════════════════════════════════
+       THE MARCO DIFFERENCE
+    ════════════════════════════════════════ */
+    .difference {
+      width: 100%; overflow: hidden;
+      background-image: linear-gradient(90.70deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%);
+      padding: 80px 0;
+    }
+    .difference > .container { display: flex; gap: 104px; align-items: flex-start; }
+    .difference .section-label { color: var(--blue-main); }
+    .difference-left { flex: 0 0 520px; display: flex; flex-direction: column; gap: 12px; }
+    .difference-title { font-size: 48px; font-weight: 600; line-height: 60px; color: #fff; letter-spacing: -2.4px; }
+    .difference-title .accent { color: var(--blue-main); }
+    .difference-right { flex: 1 1 auto; min-width: 0; padding-top: 30px; }
+    .difference-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); letter-spacing: -0.8px; }
+    .difference-body p + p { margin-top: 20px; }
+
+    /* ════════════════════════════════════════
+       GET STARTED
+    ════════════════════════════════════════ */
+    .getstarted {
+      width: 100%; overflow: hidden;
+      background: linear-gradient(to bottom, #f4f4ff 49.112%, #fff 110.41%);
+    }
+    .getstarted > .container { display: flex; align-items: stretch; min-height: 512px; }
+    .getstarted-inner { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; padding: 80px 0; }
+    .getstarted .section-label { color: var(--text-main); }
+    .getstarted-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; margin-top: 32px; }
+    .getstarted-title .plain { color: var(--text-main); }
+    .getstarted-title .accent { color: var(--blue-main); }
+    .getstarted-body {
+      font-size: 16px; font-weight: 400; line-height: 20px;
+      color: var(--text-main); letter-spacing: -0.8px;
+      max-width: 600px; margin-top: 32px;
+    }
+    .getstarted-cta { margin-top: 40px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 4px 24px; border-radius: 50px;
+      font-family: var(--font); font-size: 16px; font-weight: 400;
+      line-height: normal; letter-spacing: -0.8px; color: #fff;
+      background: #162351; border: none; cursor: pointer; text-decoration: none;
+      white-space: nowrap; flex-shrink: 0; transition: background 0.18s ease;
+    }
+    .btn-primary:hover { background: #0185C4; }
+    .btn-icon { position: relative; overflow: hidden; flex-shrink: 0; width: 20px; height: 20px; }
+    .btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
+    .btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
+    .getstarted-image {
+      flex: 0 0 49.17vw;
+      margin-left: 24px;
+      margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
+      position: relative; overflow: hidden;
+    }
+    .getstarted-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer {
+      width: 100%; overflow: hidden;
+      background-image: linear-gradient(90.352deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%);
+      padding: 60px 0 58px;
+    }
+    .footer > .container { display: flex; flex-direction: column; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
+    .footer-logo { width: 199.5px; flex-shrink: 0; text-decoration: none; }
+    .footer-logo img { width: 100%; height: auto; display: block; }
+    .footer-social { display: flex; align-items: center; justify-content: space-between; width: 80px; flex-shrink: 0; }
+    .footer-social-icon { width: 24px; height: 24px; overflow: hidden; flex-shrink: 0; }
+    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-nav { display: flex; gap: 24px; justify-content: space-between; margin-bottom: 40px; }
+    .footer-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+    .footer-col-header { font-size: 14px; font-weight: 400; line-height: normal; color: var(--text-tertiary); }
+    .footer-col-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-col-links a, .footer-col-links span { font-size: 14px; font-weight: 500; line-height: normal; color: #fff; text-decoration: none; display: block; }
+    .footer-col-links a:hover { text-decoration: underline; }
+    .footer-divider { height: 1px; background: rgba(205,213,224,0.25); margin-bottom: 32px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--text-tertiary); white-space: nowrap; }
+    .footer-legal { display: flex; gap: 40px; align-items: center; }
+    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
+    .footer-legal a:hover { text-decoration: underline; }
+
+    /* ════════════════════════════════════════
+       WECHAT MODAL
+    ════════════════════════════════════════ */
+    .wechat-modal {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+    }
+    .wechat-modal.active { opacity: 1; pointer-events: auto; }
+    .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav class="nav">
+  <div class="nav-container">
+    <div class="nav-tabbar">
+      <a class="nav-logo" href="index.html">
+        <div class="nav-logo-inner">
+          <img src="assets/menu-bar-marco-logo.svg" alt="Marco" />
+        </div>
+      </a>
+      <div class="nav-menu">
+        <div class="nav-tab nav-tab-services">
+          <div class="nav-tab-inner">
+            <span>Services</span>
+            <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="nav-services-dropdown">
+            <p class="nav-dropdown-label">Services</p>
+            <div class="nav-dropdown-divider"></div>
+            <div class="nav-services-columns">
+              <div class="nav-services-col">
+                <a class="nav-services-item" href="service-global-payroll.html">
+                  <div class="nav-services-item-icon"><img src="assets/Services/drop-down/global payroll.svg" alt="" /></div>
+                  <div class="nav-services-item-text">
+                    <span class="nav-services-item-title">Global Payroll</span>
+                    <span class="nav-services-item-desc">End-to-end payroll in 150+ countries</span>
+                  </div>
+                </a>
+                <a class="nav-services-item" href="service-employer-of-record.html">
+                  <div class="nav-services-item-icon"><img src="assets/Services/drop-down/eor.svg" alt="" /></div>
+                  <div class="nav-services-item-text">
+                    <span class="nav-services-item-title">Employer of Record (EOR)</span>
+                    <span class="nav-services-item-desc">Hire globally without a local entity</span>
+                  </div>
+                </a>
+                <a class="nav-services-item" href="service-independent-contractor.html">
+                  <div class="nav-services-item-icon"><img src="assets/Services/drop-down/ic.svg" alt="" /></div>
+                  <div class="nav-services-item-text">
+                    <span class="nav-services-item-title">Independent Contractor (IC)</span>
+                    <span class="nav-services-item-desc">Compliant contractor engagement</span>
+                  </div>
+                </a>
+                <a class="nav-services-item" href="service-global-mobility.html">
+                  <div class="nav-services-item-icon"><img src="assets/Services/drop-down/global mobility.svg" alt="" /></div>
+                  <div class="nav-services-item-text">
+                    <span class="nav-services-item-title">Global Mobility</span>
+                    <span class="nav-services-item-desc">Seamless cross-border movements</span>
+                  </div>
+                </a>
+              </div>
+              <div class="nav-services-col">
+                <a class="nav-services-item" href="service-expense-processing.html">
+                  <div class="nav-services-item-icon"><img src="assets/Services/drop-down/Expense Processing.svg" alt="" /></div>
+                  <div class="nav-services-item-text">
+                    <span class="nav-services-item-title">Expense Processing</span>
+                    <span class="nav-services-item-desc">Streamlined expense management</span>
+                  </div>
+                </a>
+                <a class="nav-services-item" href="service-hr-operations.html">
+                  <div class="nav-services-item-icon"><img src="assets/Services/drop-down/HRO Support.svg" alt="" /></div>
+                  <div class="nav-services-item-text">
+                    <span class="nav-services-item-title">HRO</span>
+                    <span class="nav-services-item-desc">Outsourced HR operations</span>
+                  </div>
+                </a>
+                <a class="nav-services-item" href="service-service-delivery-model.html">
+                  <div class="nav-services-item-icon"><img src="assets/Services/drop-down/Service Delivery Model.svg" alt="" /></div>
+                  <div class="nav-services-item-text">
+                    <span class="nav-services-item-title">Service Delivery Model</span>
+                    <span class="nav-services-item-desc">How Marco delivers its services</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-tab nav-tab-compliance">
+          <div class="nav-tab-inner">
+            <span>Compliance</span>
+            <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="nav-compliance-dropdown">
+            <p class="nav-dropdown-label">Compliance</p>
+            <div class="nav-dropdown-divider"></div>
+            <div class="nav-dropdown-list">
+              <a class="nav-dropdown-item" href="compliance-data-protection.html">
+                <span class="nav-dropdown-item-title">Data Protection &amp; Privacy</span>
+                <span class="nav-dropdown-item-desc">Privacy controls for sensitive workforce data</span>
+              </a>
+              <a class="nav-dropdown-item" href="compliance-operational-governance.html">
+                <span class="nav-dropdown-item-title">Operational Governance</span>
+                <span class="nav-dropdown-item-desc">Controls, accountability, and audit trails</span>
+              </a>
+              <a class="nav-dropdown-item" href="compliance-licensing-regulatory.html">
+                <span class="nav-dropdown-item-title">Licensing &amp; Regulatory Compliance</span>
+                <span class="nav-dropdown-item-desc">Local licenses and regulatory authorizations</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-tab nav-tab-resources">
+          <div class="nav-tab-inner">
+            <span>Resources</span>
+            <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="nav-resources-dropdown">
+            <p class="nav-dropdown-label">Resources</p>
+            <div class="nav-dropdown-divider"></div>
+            <div class="nav-dropdown-list">
+              <a class="nav-dropdown-item" href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+                <span class="nav-dropdown-item-title">Help Center</span>
+                <span class="nav-dropdown-item-desc">Manual guides, FAQs, and product support</span>
+              </a>
+              <a class="nav-dropdown-item" href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+                <span class="nav-dropdown-item-title">Developer Portal</span>
+                <span class="nav-dropdown-item-desc">API documentation and integration resources</span>
+              </a>
+              <a class="nav-dropdown-item" href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">
+                <span class="nav-dropdown-item-title">Demo Site</span>
+                <span class="nav-dropdown-item-desc">A test environment to explore Marco OS</span>
+              </a>
+              <a class="nav-dropdown-item" href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+                <span class="nav-dropdown-item-title">Processing &amp; Integration Engines</span>
+                <span class="nav-dropdown-item-desc">Systems that power payroll and data workflows</span>
+              </a>
+              <a class="nav-dropdown-item" href="#">
+                <span class="nav-dropdown-item-title">Marco Copilot (AI Assistant)</span>
+                <span class="nav-dropdown-item-desc">AI support for global workforce operations</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-tab nav-tab-hub">
+          <div class="nav-tab-inner">
+            <span>HR Knowledge Hub</span>
+            <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="nav-hub-dropdown">
+            <p class="nav-dropdown-label">HR Knowledge Hub</p>
+            <div class="nav-dropdown-divider"></div>
+            <div class="nav-hub-columns">
+              <div class="nav-hub-col">
+                <a href="#" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Labor Cost Calculator</span>
+                    <span class="nav-hub-item-desc">Estimate employment costs by country</span>
+                  </div>
+                </a>
+                <a href="hr-knowledge-hub-country-guide.html" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Country Guide.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Country Guide</span>
+                    <span class="nav-hub-item-desc">Country-specific employment and payroll insights</span>
+                  </div>
+                </a>
+                <a href="hr-knowledge-hub-visa-guide.html" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Visa Guide.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Visa Guide</span>
+                    <span class="nav-hub-item-desc">Work visa requirements and application guidance</span>
+                  </div>
+                </a>
+                <a href="hr-knowledge-hub-payroll-guide.html" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Payroll Guide.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Payroll Guide</span>
+                    <span class="nav-hub-item-desc">Payroll rules, cycles, and statutory requirements</span>
+                  </div>
+                </a>
+                <a href="hr-knowledge-hub-freelancer-guide.html" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Freelancer Guide.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Freelancer Guide</span>
+                    <span class="nav-hub-item-desc">Independent contractor rules by country</span>
+                  </div>
+                </a>
+                <a href="hr-knowledge-hub-work-schedule.html" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Work Schedule.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Work Schedule</span>
+                    <span class="nav-hub-item-desc">Working hours, rest days, and schedule rules</span>
+                  </div>
+                </a>
+              </div>
+              <div class="nav-hub-col">
+                <a href="https://ph.marcopayroll.com/" target="_blank" rel="noopener noreferrer" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Public Holiday Calendar</span>
+                    <span class="nav-hub-item-desc">Official holidays by country and year</span>
+                  </div>
+                </a>
+                <a href="https://leave.marcopayroll.com/" target="_blank" rel="noopener noreferrer" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Leave Policy</span>
+                    <span class="nav-hub-item-desc">Annual leave, sick leave, and statutory time off</span>
+                  </div>
+                </a>
+                <a href="#" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Travel &amp; Expense Policy.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Travel &amp; Expense Policy</span>
+                    <span class="nav-hub-item-desc">Business travel and reimbursement guidelines</span>
+                  </div>
+                </a>
+                <a href="#" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Benefits Plan.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Benefits Plan</span>
+                    <span class="nav-hub-item-desc">Mandatory and common employee benefits</span>
+                  </div>
+                </a>
+                <a href="#" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Vendor List.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Vendor List</span>
+                    <span class="nav-hub-item-desc">Approved vendors and service partners</span>
+                  </div>
+                </a>
+                <a href="#" class="nav-hub-item">
+                  <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Memo.svg" alt=""></div>
+                  <div class="nav-hub-item-text">
+                    <span class="nav-hub-item-title">Memo</span>
+                    <span class="nav-hub-item-desc">HR updates, notes, and internal references</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-tab nav-tab-price">
+          <div class="nav-tab-inner">
+            <span>Price</span>
+            <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="nav-price-dropdown">
+            <p class="nav-dropdown-label">Price</p>
+            <div class="nav-dropdown-divider"></div>
+            <div class="nav-dropdown-list">
+              <a class="nav-dropdown-item" href="#">
+                <span class="nav-dropdown-item-title">Global Workforce Solution</span>
+                <span class="nav-dropdown-item-desc">Service pricing for global workforce administration</span>
+              </a>
+              <a class="nav-dropdown-item" href="#">
+                <span class="nav-dropdown-item-title">Global Managed Payroll Service</span>
+                <span class="nav-dropdown-item-desc">Managed payroll pricing for global teams</span>
+              </a>
+              <a class="nav-dropdown-item" href="#">
+                <span class="nav-dropdown-item-title">Proposal Builder</span>
+                <span class="nav-dropdown-item-desc">Build a tailored service pricing proposal</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="nav-tab nav-tab-about">
+          <div class="nav-tab-inner">
+            <span>Company</span>
+            <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="nav-about-dropdown">
+            <p class="nav-dropdown-label">Company</p>
+            <div class="nav-dropdown-divider"></div>
+            <div class="nav-dropdown-list">
+              <a class="nav-dropdown-item" href="company-vision-values.html">
+                <span class="nav-dropdown-item-title">Vision &amp; Values</span>
+                <span class="nav-dropdown-item-desc">Our purpose and guiding principles</span>
+              </a>
+              <a class="nav-dropdown-item" href="company-journey.html">
+                <span class="nav-dropdown-item-title">Marco's Journey</span>
+                <span class="nav-dropdown-item-desc">The story behind Marco</span>
+              </a>
+              <a class="nav-dropdown-item" href="company-entity-network.html">
+                <span class="nav-dropdown-item-title">Entity Network</span>
+                <span class="nav-dropdown-item-desc">Global entities and operational service centers</span>
+              </a>
+              <a class="nav-dropdown-item" href="company-organization.html">
+                <span class="nav-dropdown-item-title">Organization</span>
+                <span class="nav-dropdown-item-desc">Leadership and structure</span>
+              </a>
+              <a class="nav-dropdown-item" href="company-contact-us.html">
+                <span class="nav-dropdown-item-title">Contact Us</span>
+                <span class="nav-dropdown-item-desc">Get in touch with the Marco team</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-lang">
+        <div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div>
+        <span>EN</span>
+      </div>
+      <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="assets/Background Assets/swirl bg 1.svg" alt="" />
+  </div>
+  <div class="container">
+    <div class="hero-content fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>SERVICES · INDEPENDENT CONTRACTOR</span>
+      </div>
+      <div>
+        <h1 class="hero-title">Global talent. <span class="muted">Zero</span> <span class="accent">misclassification risk.</span></h1>
+        <p class="hero-body">Engage, contract, and pay independent contractors worldwide. Marco handles compliant classification, contract management, and direct payments across 80+ countries so your business can access the best talent globally without the legal exposure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ WHAT IS AN IC ════════════════ -->
+<section class="whatic">
+  <div class="container">
+    <div class="whatic-left fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>WHAT IS AN IC</span>
+      </div>
+      <div>
+        <h2 class="whatic-title">Self-employed specialists. Engaged on your <span class="accent">terms.</span></h2>
+        <div class="whatic-body" style="margin-top:24px;">
+          <p>An independent contractor is a self-employed individual or registered business that provides paid services on a project or fixed-term basis. Unlike employees, ICs work for multiple companies simultaneously, set their own working methods, and are not bound by the same labor law obligations.</p>
+          <p>For businesses, IC engagement offers speed, flexibility, and access to highly specialized skills without the overhead of permanent headcount. The catch is compliance: misclassifying a worker as an IC when they should be an employee is one of the most common and costly HR legal risks globally.</p>
+        </div>
+      </div>
+    </div>
+    <div class="ic-compare fade-in">
+      <div class="ic-compare-header">
+        <div class="ic-compare-hcell" style="border-radius:8px 0 0 0;">INDEPENDENT CONTRACTOR</div>
+        <div class="ic-compare-hcell" style="border-radius:0 8px 0 0; border-left:none; color:var(--text-tertiary);">INDEPENDENT CONTRACTOR</div>
+      </div>
+      <div class="ic-compare-row">
+        <div class="ic-compare-cell ic-compare-cell--active"><span class="bold">Project or fixed-term&nbsp;</span>engagement</div>
+        <div class="ic-compare-cell ic-compare-cell--muted"><span class="bold">Ongoing employment&nbsp;</span>contract</div>
+      </div>
+      <div class="ic-compare-row">
+        <div class="ic-compare-cell ic-compare-cell--active"><span class="bold">Sets own&nbsp;</span>working methods and hours</div>
+        <div class="ic-compare-cell ic-compare-cell--muted"><span class="bold">Works under&nbsp;</span>employer direction</div>
+      </div>
+      <div class="ic-compare-row">
+        <div class="ic-compare-cell ic-compare-cell--active"><span class="bold">No statutory benefits&nbsp;</span>from client</div>
+        <div class="ic-compare-cell ic-compare-cell--muted"><span class="bold">Full statutory benefits&nbsp;</span>required</div>
+      </div>
+      <div class="ic-compare-row">
+        <div class="ic-compare-cell ic-compare-cell--active"><span class="bold">Multiple clients&nbsp;</span>simultaneously</div>
+        <div class="ic-compare-cell ic-compare-cell--muted"><span class="bold">Typically exclusive&nbsp;</span>to one employer</div>
+      </div>
+      <div class="ic-compare-row">
+        <div class="ic-compare-cell ic-compare-cell--active"><span class="bold">Invoice-based&nbsp;</span>payment</div>
+        <div class="ic-compare-cell ic-compare-cell--muted"><span class="bold">Payroll-based&nbsp;</span>salary</div>
+      </div>
+      <div class="ic-compare-row" style="border-radius:0 0 8px 8px;">
+        <div class="ic-compare-cell ic-compare-cell--active" style="border-radius:0 0 0 8px;"><span class="bold">Responsible for&nbsp;</span>own taxes</div>
+        <div class="ic-compare-cell ic-compare-cell--muted" style="border-radius:0 0 8px 0;"><span class="bold">Employer withholds&nbsp;</span>and remits tax</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ THE COMPLIANCE PROBLEM ════════════════ -->
+<section class="compliance-problem">
+  <div class="container">
+    <div class="compliance-header fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>THE COMPLIANCE PROBLEM</span>
+      </div>
+      <div>
+        <h2 class="compliance-title">Misclassification is a <span class="accent">serious risk</span></h2>
+        <p class="compliance-subtitle" style="margin-top:24px;">Most companies do not misclassify on purpose. The rules are just genuinely hard to get right. The consequences when you do not are significant.</p>
+      </div>
+    </div>
+    <div class="compliance-cols fade-in">
+      <!-- WHY IT HAPPEN -->
+      <div class="compliance-col">
+        <span class="compliance-tag compliance-tag--why">WHY IT HAPPEN</span>
+        <div class="compliance-items">
+          <div class="compliance-item">
+            <div class="compliance-item-icon">
+              <img src="assets/Services/IC/Globe.svg" alt="" />
+            </div>
+            <div class="compliance-item-content">
+              <p class="compliance-item-title">Every country has its own rules</p>
+              <p class="compliance-item-desc">What counts as a contractor in Singapore may be employment in Germany. There is no universal standard.</p>
+            </div>
+          </div>
+          <div class="compliance-item-divider"></div>
+          <div class="compliance-item">
+            <div class="compliance-item-icon">
+              <img src="assets/Services/IC/Activity.svg" alt="" />
+            </div>
+            <div class="compliance-item-content">
+              <p class="compliance-item-title">The rules keep tightening</p>
+              <p class="compliance-item-desc">EU Platform Work Directive (2024), Netherlands enforcement active since Jan 2025, UK IR35, California AB5. Last year's compliant setup may not pass today.</p>
+            </div>
+          </div>
+          <div class="compliance-item-divider"></div>
+          <div class="compliance-item">
+            <div class="compliance-item-icon">
+              <img src="assets/Services/IC/Shield.svg" alt="" />
+            </div>
+            <div class="compliance-item-content">
+              <p class="compliance-item-title">Each country is a separate exposure</p>
+              <p class="compliance-item-desc">One contract template does not work globally. Every market where you have a contractor is its own compliance problem.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- WHAT IT COSTS -->
+      <div class="compliance-col">
+        <span class="compliance-tag compliance-tag--cost">WHAT IT COSTS</span>
+        <div class="compliance-items">
+          <div class="compliance-item">
+            <div class="compliance-item-dot"></div>
+            <div class="compliance-item-content">
+              <p class="compliance-item-title">Back taxes from day one</p>
+              <p class="compliance-item-desc">All unpaid employer taxes and social contributions owed from the first day of the engagement. Not just going forward.</p>
+            </div>
+          </div>
+          <div class="compliance-item-divider"></div>
+          <div class="compliance-item">
+            <div class="compliance-item-dot"></div>
+            <div class="compliance-item-content">
+              <p class="compliance-item-title">Regulatory fines on top</p>
+              <p class="compliance-item-desc">Separate penalties from labor ministries, tax agencies, and social security bodies. Per worker, per jurisdiction.</p>
+            </div>
+          </div>
+          <div class="compliance-item-divider"></div>
+          <div class="compliance-item">
+            <div class="compliance-item-dot"></div>
+            <div class="compliance-item-content">
+              <p class="compliance-item-title">Years of unpaid benefits</p>
+              <p class="compliance-item-desc">Reclassified workers can claim everything they should have received: paid leave, minimum wage top-ups, pension, health coverage.</p>
+            </div>
+          </div>
+          <div class="compliance-item-divider"></div>
+          <div class="compliance-item">
+            <div class="compliance-item-dot"></div>
+            <div class="compliance-item-content">
+              <p class="compliance-item-title">Lawsuits and public proceedings</p>
+              <p class="compliance-item-desc">Individual complaints can become class actions. These are slow, public, and expensive to defend regardless of outcome.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="compliance-alert fade-in">
+      <div class="compliance-alert-icon">
+        <img src="assets/Services/IC/Alert triangle.svg" alt="" />
+      </div>
+      <p class="compliance-alert-text">The consequences apply retroactively. By the time you find out there is a problem, the liability has already been accumulating.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ SERVICE SCOPE ════════════════ -->
+<section class="scope">
+  <div class="container">
+    <div class="scope-header fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>SERVICE SCOPE</span>
+      </div>
+      <div>
+        <h2 class="scope-title">Everything IC management <span class="accent">requires</span></h2>
+        <p class="scope-body" style="margin-top:24px;">Compliant classification, contract management, global payment, and consolidated reporting in one platform.</p>
+      </div>
+    </div>
+  </div>
+  <div class="scope-grid">
+    <div class="scope-row">
+      <div class="scope-box">
+        <div class="scope-box-inner">
+          <div class="scope-icon"><img src="assets/Services/IC/Shield.svg" alt="" /></div>
+          <p class="scope-box-title">Compliant Classification</p>
+          <p class="scope-box-body">Marco applies country-specific classification rules to every IC engagement before the relationship begins. We verify registration status and keep pace with regulatory changes in every market we operate in.</p>
+          <ul class="scope-box-bullets">
+            <li>IC registration and status verification per country</li>
+            <li>Classification assessment against local labor law tests</li>
+            <li>Ongoing regulatory monitoring and alerts</li>
+            <li>Reclassification advisory if circumstances change</li>
+          </ul>
+        </div>
+      </div>
+      <div class="scope-box">
+        <div class="scope-box-inner">
+          <div class="scope-icon"><img src="assets/Services/IC/File text.svg" alt="" /></div>
+          <p class="scope-box-title">Seamless Onboarding</p>
+          <p class="scope-box-body">Standardized, locally compliant contractor agreements drafted and managed through Marco OS. Automated invoice generation and consolidation removes the administrative burden from your finance team.</p>
+          <ul class="scope-box-bullets">
+            <li>Compliant IC service agreements per jurisdiction</li>
+            <li>Automated invoice generation and approval workflow</li>
+            <li>Contract version control and renewal tracking</li>
+            <li>Consolidated view of all active IC engagements</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="scope-row">
+      <div class="scope-box">
+        <div class="scope-box-inner">
+          <div class="scope-icon"><img src="assets/Services/IC/Dollar sign.svg" alt="" /></div>
+          <p class="scope-box-title">Direct Payments Across 80+ Countries</p>
+          <p class="scope-box-body">Pay contractors anywhere in the world in their local currency. Marco handles the payment routing, FX conversion, and tax compliance validation for each transaction so every payment is clean and documented.</p>
+          <ul class="scope-box-bullets">
+            <li>Direct contractor payments across 80+ countries</li>
+            <li>Tax compliance validation per payment</li>
+            <li>FX conversion at competitive rates</li>
+            <li>Full payment audit trail on Marco OS</li>
+          </ul>
+        </div>
+      </div>
+      <div class="scope-box">
+        <div class="scope-box-inner">
+          <div class="scope-icon"><img src="assets/Services/IC/Bar chart-2.svg" alt="" /></div>
+          <p class="scope-box-title">People Management</p>
+          <p class="scope-box-body">Every IC, every contract, every payment, in one dashboard. Comprehensive project and contractor cost reporting gives your HR and finance teams global visibility without spreadsheet consolidation.</p>
+          <ul class="scope-box-bullets">
+            <li>Contractor and project cost breakdown by country</li>
+            <li>Real-time spend tracking across all IC engagements</li>
+            <li>Data visualization for executive reporting</li>
+            <li>Exportable reports for finance and audit teams</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ IC ENGAGEMENT LIFECYCLE ════════════════ -->
+<section class="lifecycle">
+  <div class="container">
+    <div class="lifecycle-header fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>IC ENGAGEMENT LIFECYCLE</span>
+      </div>
+      <div>
+        <h2 class="lifecycle-title">From first engagement <span class="accent">to final payment.</span></h2>
+        <p class="lifecycle-subtitle" style="margin-top:24px;">Marco manages every stage of the IC relationship so your team only needs to focus on the work itself.</p>
+      </div>
+    </div>
+    <div class="lifecycle-steps fade-in">
+      <!-- Step 01 -->
+      <div class="lifecycle-step">
+        <div class="lifecycle-step-num"><span>01</span></div>
+        <div class="lifecycle-step-card">
+          <p class="lifecycle-step-label">ENGAGE</p>
+          <p class="lifecycle-step-title">Classification and Onboarding</p>
+          <p class="lifecycle-step-body">Before any work begins, Marco verifies the contractor's registration status and assesses the engagement against local classification rules. A compliant service agreement is drafted and executed through Marco OS.</p>
+          <div class="lifecycle-tags">
+            <span class="lifecycle-tag">Status verification</span>
+            <span class="lifecycle-tag">Classification assessment</span>
+            <span class="lifecycle-tag">Contract execution</span>
+          </div>
+        </div>
+      </div>
+      <!-- Step 02 -->
+      <div class="lifecycle-step">
+        <div class="lifecycle-step-num"><span>02</span></div>
+        <div class="lifecycle-step-card">
+          <p class="lifecycle-step-label">OPERATE</p>
+          <p class="lifecycle-step-title">Invoice and Payment Management</p>
+          <p class="lifecycle-step-body">The contractor submits work milestones or time records. Marco generates invoices, routes them through your approval workflow, and processes payment in the contractor's local currency with full tax compliance documentation.</p>
+          <div class="lifecycle-tags">
+            <span class="lifecycle-tag">Invoice generation</span>
+            <span class="lifecycle-tag">Approval workflow</span>
+            <span class="lifecycle-tag">Payments across 80+ countries</span>
+            <span class="lifecycle-tag">Tax validation</span>
+          </div>
+        </div>
+      </div>
+      <!-- Step 03 -->
+      <div class="lifecycle-step">
+        <div class="lifecycle-step-num"><span>03</span></div>
+        <div class="lifecycle-step-card">
+          <p class="lifecycle-step-label">MONITOR</p>
+          <p class="lifecycle-step-title">Ongoing Compliance Monitoring</p>
+          <p class="lifecycle-step-body">Marco tracks regulatory changes in every market where you have active IC engagements. If classification rules shift or your engagement structure changes in a way that creates risk, Marco alerts your team and advises on remediation options.</p>
+          <div class="lifecycle-tags">
+            <span class="lifecycle-tag">Regulatory monitoring</span>
+            <span class="lifecycle-tag">Risk alerts</span>
+            <span class="lifecycle-tag">Remediation advisory</span>
+          </div>
+        </div>
+      </div>
+      <!-- Step 04 -->
+      <div class="lifecycle-step">
+        <div class="lifecycle-step-num"><span>04</span></div>
+        <div class="lifecycle-step-card">
+          <p class="lifecycle-step-label">OFFBOARDED</p>
+          <p class="lifecycle-step-title">Contract Closure and Final Settlement</p>
+          <p class="lifecycle-step-body">When the engagement ends, Marco manages final invoice settlement, contract archiving, and any required local notifications or filings. If the contractor is converting to an employee role, Marco can facilitate the EOR or payroll transition directly.</p>
+          <div class="lifecycle-tags">
+            <span class="lifecycle-tag">Final payment settlement</span>
+            <span class="lifecycle-tag">Contract archiving</span>
+            <span class="lifecycle-tag">EOR conversion pathway</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ THE MARCO DIFFERENCE ════════════════ -->
+<section class="difference">
+  <div class="container">
+    <div class="difference-left fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>THE MARCO DIFFERENCE</span>
+      </div>
+      <h2 class="difference-title">Classification risk is not a legal team problem. It is an <span class="accent">operations</span> problem.</h2>
+    </div>
+    <div class="difference-right fade-in">
+      <div class="difference-body">
+        <p>Most IC platforms focus on payment and invoicing. Classification is either left entirely to the client's legal team or handled by a generic questionnaire that does not account for country-specific tests.</p>
+        <p>Marco brings the same owned-entity infrastructure and in-market expertise that powers our payroll and EOR services to IC management. Our teams know how classification is enforced in each country. When the rules change, we update our processes, not just our FAQ page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ GET STARTED ════════════════ -->
+<section class="getstarted">
+  <div class="container">
+    <div class="getstarted-inner fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>GET STARTED</span>
+      </div>
+      <p class="getstarted-title">
+        <span class="plain">Ready to engage contractors </span><span class="accent">compliantly?</span>
+      </p>
+      <p class="getstarted-body">Tell us where your contractors are based and how you currently manage classification and payment. We will show you where the gaps are and how Marco closes them.</p>
+      <div class="getstarted-cta">
+        <a href="company-contact-us.html" class="btn-primary">
+          Contact us
+          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
+        </a>
+      </div>
+    </div>
+    <div class="getstarted-image">
+      <img src="assets/Services/employee 3.jpg" alt="Team" />
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer class="footer">
+  <div class="container">
+  <div class="footer-top">
+    <a class="footer-logo" href="index.html">
+      <img src="assets/footer-marco-logo-en.svg" alt="Marco" />
+    </a>
+    <div class="footer-social">
+      <div class="footer-social-icon">
+        <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/linkedin-icon.svg" alt="LinkedIn" />
+        </a>
+      </div>
+      <div class="footer-social-icon" style="cursor:pointer;" onclick="document.getElementById('wechat-modal').classList.add('active')">
+        <img src="assets/wechat-icon.svg" alt="WeChat" />
+      </div>
+    </div>
+  </div>
+  <div class="footer-nav">
+    <div class="footer-col">
+      <span class="footer-col-header">Services</span>
+      <div class="footer-col-links">
+        <a href="service-global-payroll.html">Global Payroll</a>
+        <a href="service-employer-of-record.html">EOR</a>
+        <a href="service-independent-contractor.html">IC</a>
+        <a href="service-global-mobility.html">Global Mobility</a>
+        <a href="service-expense-processing.html">Expense Processing</a>
+        <a href="service-hr-operations.html">HRO</a>
+        <a href="service-service-delivery-model.html">Service Delivery Model</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Compliance</span>
+      <div class="footer-col-links">
+        <a href="compliance-data-protection.html">Data Protection &amp; Privacy</a>
+        <a href="compliance-operational-governance.html">Operational Governance</a>
+        <a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Resources</span>
+      <div class="footer-col-links">
+        <a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a>
+        <a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a>
+        <a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a>
+        <a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a>
+        <a href="#">Marco Copilot (AI Assistant)</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">HR Knowledge Hub</span>
+      <div class="footer-col-links">
+        <a href="#">Labor Cost Calculator</a>
+        <a href="hr-knowledge-hub-country-guide.html">Country Guide</a>
+        <a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a>
+        <a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a>
+        <a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a>
+        <a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a>
+        <a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a>
+        <a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a>
+        <a href="#">Travel &amp; Expense Policy</a>
+        <a href="#">Benefits Plan</a>
+        <a href="#">Vendor List</a>
+        <a href="#">Memo</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Price</span>
+      <div class="footer-col-links">
+        <a href="#">Global Workforce Solution</a>
+        <a href="#">Global Managed Payroll Service</a>
+        <a href="#">Proposal Builder</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">About</span>
+      <div class="footer-col-links">
+        <a href="company-vision-values.html">Vision &amp; Value</a>
+        <a href="company-journey.html">Marco's Journey</a>
+        <a href="company-entity-network.html">Entity Network</a>
+        <a href="company-organization.html">Organization</a>
+        <a href="company-contact-us.html">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <p>Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookies Policy</a>
+    </div>
+  </div>
+  </div>
+</footer>
+
+<!-- WeChat modal -->
+<div id="wechat-modal" class="wechat-modal">
+  <img src="assets/wechat-card.svg" alt="WeChat QR Code" />
+</div>
+
+<script>
+  document.getElementById('wechat-modal').addEventListener('click', function() {
+    this.classList.remove('active');
+  });
+
+  // Nav scroll behaviour
+  const nav  = document.querySelector('.nav');
+  const hero = document.querySelector('.hero');
+  function updateNavState() {
+    if (!nav || !hero) return;
+    const threshold = hero.offsetTop + hero.offsetHeight * 0.25;
+    if (window.scrollY >= threshold) {
+      nav.classList.add('nav-scrolled');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+  }
+  updateNavState();
+  window.addEventListener('scroll', updateNavState, { passive: true });
+  window.addEventListener('resize', updateNavState);
+
+  // Fade-in on scroll
+  const revealElements = document.querySelectorAll('.fade-in');
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // Service Scope — staggered opacity fade, left→right top→bottom
+  const scopeGrid = document.querySelector('.scope-grid');
+  if (scopeGrid) {
+    const scopeBoxes = Array.from(scopeGrid.querySelectorAll('.scope-box-inner'));
+    const scopeObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          scopeBoxes.forEach((box, i) => {
+            setTimeout(() => box.classList.add('is-visible'), i * 150);
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    scopeObserver.observe(scopeGrid);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# ── OS files ──────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ── Editor / IDE ──────────────────────
+*.tmp
+*.bak
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# ── Claude Code internal files ────────
+.claude/
+
+# ── Temp / download files ─────────────
+*.zip
+*.tar.gz
+C?Users*.txt
+
+# ── Build artefacts (if added later) ──
+node_modules/
+dist/
