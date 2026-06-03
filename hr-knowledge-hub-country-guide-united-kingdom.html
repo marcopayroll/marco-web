@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>United Kingdom — Country Guide | Marco</title>
+  <!-- PDF libraries: html2canvas captures live DOM, jsPDF creates the PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap');
@@ -419,7 +422,44 @@
       font-family: var(--font); font-size: 16px; font-weight: 400;
       color: #475072; line-height: 20px; white-space: nowrap;
     }
-    .uk-sb-country-form img { width: 16px; height: 16px; flex-shrink: 0; }
+    .uk-sb-country-form { cursor: pointer; position: relative; }
+    .uk-sb-country-form img { width: 16px; height: 16px; flex-shrink: 0; transition: transform 0.2s; }
+    .uk-sb-country-form.open img { transform: rotate(180deg); }
+    /* Country dropdown */
+    .uk-sb-country-dropdown {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: #fff;
+      border: 1px solid #CDD5E0;
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(22,35,81,0.12);
+      max-height: 280px;
+      overflow-y: auto;
+      z-index: 50;
+      display: none;
+    }
+    .uk-sb-country-dropdown.open { display: block; }
+    .uk-sb-country-dropdown::-webkit-scrollbar { width: 4px; }
+    .uk-sb-country-dropdown::-webkit-scrollbar-thumb { background: #CDD5E0; border-radius: 2px; }
+    .uk-sb-dropdown-region {
+      font-size: 10px; font-weight: 700; color: #8F98B5;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      padding: 10px 14px 4px; background: #F8FAFC;
+    }
+    .uk-sb-dropdown-item {
+      display: flex; align-items: center;
+      padding: 10px 14px;
+      font-family: 'Euclid Circular B', sans-serif; font-size: 14px; font-weight: 400;
+      color: #475072; line-height: 20px;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.12s;
+      border-bottom: 1px solid #F0F3F7;
+    }
+    .uk-sb-dropdown-item:last-child { border-bottom: none; }
+    .uk-sb-dropdown-item:hover { background: #F4F7FC; }
+    .uk-sb-dropdown-item.selected { background: #ECF2FB; font-weight: 700; color: #162351; }
+    .uk-sb-dropdown-region { font-family: 'Euclid Circular B', sans-serif; }
     /* Download button */
     .uk-sb-download {
       display: flex; align-items: center; justify-content: space-between;
@@ -622,6 +662,81 @@
       width: 100%; height: 100%;
       object-fit: cover; object-position: center;
       display: block;
+    }
+
+    /* ════════════════════════════════════════
+       PRINT / PDF STYLES
+       Browser handles rendering — always works
+    ════════════════════════════════════════ */
+    @media print {
+      /* Hide everything except the main content */
+      .nav, .uk-sidebar, .uk-cta, .footer, #wechat-modal,
+      .uk-sb-download, .uk-sb-country-dropdown { display: none !important; }
+
+      /* Reset page layout */
+      body { background: #fff !important; overflow: visible !important; }
+      .uk-page {
+        display: block !important;
+        padding-top: 0 !important;
+      }
+      .uk-main {
+        width: 100% !important;
+        padding: 0 24px !important;
+      }
+
+      /* Marco logo header on every page */
+      .uk-main::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 40px;
+        background: url('assets/marco-watermark-logo.png') no-repeat right top / 120px auto;
+        margin-bottom: 16px;
+      }
+
+      /* Clean up content for print */
+      .uk-breadcrumb { font-size: 11px; color: #8F98B5; margin-bottom: 6px; }
+      .uk-page-title { font-size: 32px; letter-spacing: -1px; margin-bottom: 2px; }
+      .uk-last-updated { font-size: 11px; color: #8F98B5; margin-bottom: 20px; }
+
+      /* Stat cards — side by side */
+      .uk-stat-cards { display: flex !important; gap: 12px; margin-bottom: 24px; }
+      .uk-stat-card  { flex: 1; padding: 10px !important; }
+      .uk-stat-value { font-size: 26px !important; }
+
+      /* Section headings */
+      .uk-section-heading {
+        font-size: 18px !important;
+        margin-top: 24px !important;
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+      .uk-sub-heading { break-after: avoid; page-break-after: avoid; }
+
+      /* Tables */
+      .uk-table-wrap { overflow: visible !important; }
+      .uk-table      { font-size: 11px !important; page-break-inside: auto; }
+      .uk-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .uk-table tbody tr { page-break-inside: avoid; }
+      .uk-table thead th { padding: 6px 8px !important; }
+      .uk-table tbody td { padding: 6px 8px !important; }
+
+      /* Stat card & reg card backgrounds */
+      .uk-stat-card, .uk-reg-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      /* Regulation cards */
+      .uk-reg-cards { gap: 8px !important; }
+      .uk-reg-card  { page-break-inside: avoid; break-inside: avoid; margin-bottom: 6px !important; }
+
+      /* Sections gap */
+      .uk-sections { gap: 36px !important; }
+      .uk-sections section { page-break-inside: avoid; }
+
+      /* Page breaks */
+      @page {
+        size: A4 portrait;
+        margin: 18mm 14mm 18mm 14mm;
+      }
     }
 
     /* ════════════════════════════════════════
@@ -1073,18 +1188,19 @@
           <img src="assets/country guide/icons/place-marker.svg" alt="" />
           <span>Country/Region</span>
         </div>
-        <div class="uk-sb-country-form">
-          <span>United Kingdom</span>
+        <div class="uk-sb-country-form" id="countryForm" onclick="toggleCountryDropdown()">
+          <span id="countryFormLabel">United Kingdom</span>
           <img src="assets/country guide/icons/country/chevron-down-dark.svg" alt="" />
+          <!-- Dropdown -->
+          <div class="uk-sb-country-dropdown" id="countryDropdown"></div>
         </div>
       </div>
       <!-- Download button -->
-      <a href="#" class="uk-sb-download">
+      <a href="#" class="uk-sb-download" onclick="downloadCountryGuidePDF(event)">
         <div class="uk-sb-download-left">
           <img src="assets/country guide/icons/file.svg" alt="" />
-          <span>Download</span>
+          <span id="downloadBtnText">Download</span>
         </div>
-        <img class="chevron" src="assets/country guide/icons/chevron-down-light.svg" alt="" />
       </a>
     </div>
 
@@ -1107,12 +1223,12 @@
   </aside>
 
   <!-- ── MAIN CONTENT ── -->
-  <main class="uk-main">
+  <main class="uk-main" id="ukMainContent" data-country-name="United Kingdom">
     <!-- Title block -->
     <div class="uk-title-block">
       <div class="uk-breadcrumb"><a href="hr-knowledge-hub-country-guide.html">Country Guide</a> &rsaquo; United Kingdom</div>
       <h1 class="uk-page-title">United Kingdom</h1>
-      <p class="uk-last-updated">Last Updated by, 20 May 2026</p>
+      <p class="uk-last-updated">Last Updated by, 3 June 2026</p>
     </div>
 
     <!-- Stat cards -->
@@ -1490,6 +1606,277 @@
 
 <script>
   /* WeChat modal close */
+  /* ══════════════════════════════════════
+     PDF DOWNLOAD FUNCTION
+  ══════════════════════════════════════ */
+  async function downloadCountryGuidePDF(e) {
+    if (e) e.preventDefault();
+
+    var btn     = document.querySelector('.uk-sb-download');
+    var btnText = document.getElementById('downloadBtnText');
+    btnText.textContent = 'Saving...';
+    btn.style.opacity = '0.7';
+    btn.style.pointerEvents = 'none';
+
+    var countryName = document.getElementById('ukMainContent')?.dataset.countryName || 'Country Guide';
+    var fileName    = 'Marco Country Guide - ' + countryName + '.pdf';
+    var source      = document.getElementById('ukMainContent');
+
+    try {
+      /* Pre-load Marco logo
+         Actual file: 684 × 180 px  →  ratio 3.8 : 1
+         At 24mm wide → height = 24 × (180/684) = 6.32mm  */
+      var logoBase64 = null;
+      var logoWmm    = 24;        /* width in mm  */
+      var logoHmm    = 6.32;      /* height = 24 × (180/684) — exact, no stretch */
+      try {
+        var resp = await fetch('assets/marco-watermark-logo.png');
+        var blob = await resp.blob();
+        logoBase64 = await new Promise(function(res) {
+          var r = new FileReader(); r.onloadend = function() { res(r.result); }; r.readAsDataURL(blob);
+        });
+      } catch (_) {}
+
+      /* Scroll to top, wait for layout */
+      var origScroll = window.scrollY;
+      window.scrollTo(0, 0);
+      await new Promise(function(r) { setTimeout(r, 250); });
+
+      /* ── STEP 1: Collect section break points BEFORE capturing ── */
+      /* Get top Y of every major block relative to source element top */
+      var sourceTop = source.getBoundingClientRect().top;
+      var breakSelectors = [
+        '.uk-title-block',
+        '.uk-stat-cards',
+        '.uk-sections section'
+      ];
+      var sectionCSSY = [0]; /* always include top */
+      breakSelectors.forEach(function(sel) {
+        source.querySelectorAll(sel).forEach(function(el) {
+          var top = el.getBoundingClientRect().top - sourceTop;
+          if (top > 10) sectionCSSY.push(top);
+        });
+      });
+      sectionCSSY.sort(function(a, b) { return a - b; });
+
+      /* ── STEP 2: Capture the live element ── */
+      var canvas = await html2canvas(source, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff',
+        scrollY: -window.scrollY,
+        logging: false,
+        onclone: function(doc) {
+          var d = doc.querySelector('.uk-sb-download');
+          if (d) d.style.display = 'none';
+        }
+      });
+
+      window.scrollTo(0, origScroll);
+
+      /* ── STEP 3: Calculate smart page cuts ── */
+      var SCALE     = 2;
+      var cssW      = canvas.width  / SCALE;
+      var cssH      = canvas.height / SCALE;
+
+      var jsPDFLib  = window.jspdf.jsPDF;
+      var pdf       = new jsPDFLib({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      var pW        = pdf.internal.pageSize.getWidth();
+      var pH        = pdf.internal.pageSize.getHeight();
+      var mT = 18, mB = 14, mL = 14, mR = 14;
+      var usableW   = pW - mL - mR;
+      var usableH   = pH - mT - mB;
+      var ratio     = usableW / cssW;          /* mm per CSS px */
+      var pageCSS   = usableH / ratio;         /* usable CSS px per page */
+
+      /* Build page slices aligned to section boundaries */
+      var slices = [];
+      var startCSS = 0;
+
+      while (startCSS < cssH) {
+        var idealEnd = startCSS + pageCSS;
+
+        if (idealEnd >= cssH) {
+          slices.push({ start: startCSS, end: cssH });
+          break;
+        }
+
+        /* Find nearest section boundary that starts in the LAST 35% of this page
+           — if found, cut just before it so the section starts fresh on next page */
+        var safeZone  = startCSS + pageCSS * 0.65;
+        var bestBreak = null;
+
+        for (var si = 0; si < sectionCSSY.length; si++) {
+          var sy = sectionCSSY[si];
+          if (sy > safeZone && sy < idealEnd) {
+            bestBreak = sy; /* cut before this section */
+            break;
+          }
+        }
+
+        var cutAt = bestBreak !== null ? bestBreak : idealEnd;
+        slices.push({ start: startCSS, end: cutAt });
+        startCSS = cutAt;
+      }
+
+      /* ── STEP 4: Render each slice onto a PDF page ── */
+      for (var pi = 0; pi < slices.length; pi++) {
+        if (pi > 0) pdf.addPage();
+
+        var sl       = slices[pi];
+        var slCSS    = sl.end - sl.start;       /* height in CSS px */
+        var slCanvas = document.createElement('canvas');
+        slCanvas.width  = canvas.width;
+        slCanvas.height = Math.round(slCSS * SCALE);
+        var ctx = slCanvas.getContext('2d');
+        ctx.drawImage(
+          canvas,
+          0, Math.round(sl.start * SCALE),
+          canvas.width, Math.round(slCSS * SCALE),
+          0, 0,
+          canvas.width, Math.round(slCSS * SCALE)
+        );
+
+        var slData  = slCanvas.toDataURL('image/jpeg', 0.95);
+        var slHmm   = slCSS * ratio;
+
+        /* White header band */
+        pdf.setFillColor(255, 255, 255);
+        pdf.rect(0, 0, pW, mT, 'F');
+
+        /* Slice image */
+        pdf.addImage(slData, 'JPEG', mL, mT, usableW, slHmm);
+
+        /* White footer band (covers overflow + gives margin) */
+        pdf.setFillColor(255, 255, 255);
+        pdf.rect(0, pH - mB, pW, mB + 2, 'F');
+
+        /* Marco logo — natural aspect ratio preserved */
+        if (logoBase64) pdf.addImage(logoBase64, 'PNG', pW - mR - logoWmm, 4, logoWmm, logoHmm);
+
+        /* Page number */
+        pdf.setFontSize(8);
+        pdf.setTextColor(180, 180, 180);
+        pdf.text('Page ' + (pi + 1) + ' of ' + slices.length, pW / 2, pH - 4, { align: 'center' });
+      }
+
+      pdf.save(fileName);
+
+    } catch (err) {
+      console.error('PDF generation failed:', err);
+      alert('PDF generation failed: ' + err.message);
+    } finally {
+      btnText.textContent = 'Download';
+      btn.style.opacity = '';
+      btn.style.pointerEvents = '';
+    }
+  }
+
+  /* ── Country dropdown ── */
+  var COUNTRIES = [
+    // Africa
+    { name: 'Algeria',        region: 'Africa',       link: '#' },
+    { name: 'Kenya',          region: 'Africa',       link: '#' },
+    { name: 'Nigeria',        region: 'Africa',       link: '#' },
+    { name: 'South Africa',   region: 'Africa',       link: '#' },
+    // Americas
+    { name: 'Argentina',      region: 'Americas',     link: '#' },
+    { name: 'Brazil',         region: 'Americas',     link: '#' },
+    { name: 'Canada',         region: 'Americas',     link: '#' },
+    { name: 'Chile',          region: 'Americas',     link: '#' },
+    { name: 'Colombia',       region: 'Americas',     link: '#' },
+    { name: 'Mexico',         region: 'Americas',     link: '#' },
+    { name: 'USA',            region: 'Americas',     link: '#' },
+    // Asia Pacific
+    { name: 'Australia',      region: 'Asia Pacific', link: '#' },
+    { name: 'Bangladesh',     region: 'Asia Pacific', link: '#' },
+    { name: 'Brunei',         region: 'Asia Pacific', link: '#' },
+    { name: 'Cambodia',       region: 'Asia Pacific', link: '#' },
+    { name: 'China',          region: 'Asia Pacific', link: '#' },
+    { name: 'Hong Kong',      region: 'Asia Pacific', link: '#' },
+    { name: 'India',          region: 'Asia Pacific', link: '#' },
+    { name: 'Indonesia',      region: 'Asia Pacific', link: '#' },
+    { name: 'Japan',          region: 'Asia Pacific', link: '#' },
+    { name: 'Malaysia',       region: 'Asia Pacific', link: '#' },
+    { name: 'New Zealand',    region: 'Asia Pacific', link: '#' },
+    { name: 'Pakistan',       region: 'Asia Pacific', link: '#' },
+    { name: 'Philippines',    region: 'Asia Pacific', link: '#' },
+    { name: 'Singapore',      region: 'Asia Pacific', link: '#' },
+    { name: 'South Korea',    region: 'Asia Pacific', link: '#' },
+    { name: 'Sri Lanka',      region: 'Asia Pacific', link: '#' },
+    { name: 'Taiwan',         region: 'Asia Pacific', link: '#' },
+    { name: 'Thailand',       region: 'Asia Pacific', link: '#' },
+    { name: 'Vietnam',        region: 'Asia Pacific', link: '#' },
+    // Europe
+    { name: 'Austria',        region: 'Europe',       link: '#' },
+    { name: 'Belgium',        region: 'Europe',       link: '#' },
+    { name: 'Bulgaria',       region: 'Europe',       link: '#' },
+    { name: 'Czech Republic', region: 'Europe',       link: '#' },
+    { name: 'France',         region: 'Europe',       link: '#' },
+    { name: 'Germany',        region: 'Europe',       link: '#' },
+    { name: 'Hungary',        region: 'Europe',       link: '#' },
+    { name: 'Ireland',        region: 'Europe',       link: '#' },
+    { name: 'Italy',          region: 'Europe',       link: '#' },
+    { name: 'Netherlands',    region: 'Europe',       link: '#' },
+    { name: 'Poland',         region: 'Europe',       link: '#' },
+    { name: 'Portugal',       region: 'Europe',       link: '#' },
+    { name: 'Romania',        region: 'Europe',       link: '#' },
+    { name: 'Russia',         region: 'Europe',       link: '#' },
+    { name: 'Spain',          region: 'Europe',       link: '#' },
+    { name: 'Sweden',         region: 'Europe',       link: '#' },
+    { name: 'Switzerland',    region: 'Europe',       link: '#' },
+    { name: 'Turkey',         region: 'Europe',       link: '#' },
+    { name: 'Ukraine',        region: 'Europe',       link: '#' },
+    { name: 'United Kingdom', region: 'Europe',       link: 'hr-knowledge-hub-country-guide-united-kingdom.html' },
+    // Middle East
+    { name: 'Egypt',          region: 'Middle East',  link: '#' },
+    { name: 'Israel',         region: 'Middle East',  link: '#' },
+    { name: 'Saudi Arabia',   region: 'Middle East',  link: '#' },
+    { name: 'UAE',            region: 'Middle East',  link: '#' },
+  ];
+
+  var currentCountry = 'United Kingdom';
+
+  /* Build dropdown HTML grouped by region */
+  (function buildDropdown() {
+    var dropdown = document.getElementById('countryDropdown');
+    var regions = {};
+    COUNTRIES.forEach(function(c) {
+      if (!regions[c.region]) regions[c.region] = [];
+      regions[c.region].push(c);
+    });
+    var html = '';
+    Object.keys(regions).forEach(function(region) {
+      html += '<div class="uk-sb-dropdown-region">' + region + '</div>';
+      regions[region].forEach(function(c) {
+        var isSel = c.name === currentCountry;
+        html += '<a class="uk-sb-dropdown-item' + (isSel ? ' selected' : '') + '" ' +
+                'href="' + c.link + '" data-name="' + c.name + '">' +
+                c.name +
+                '</a>';
+      });
+    });
+    dropdown.innerHTML = html;
+  })();
+
+  function toggleCountryDropdown() {
+    var form = document.getElementById('countryForm');
+    var dropdown = document.getElementById('countryDropdown');
+    var isOpen = dropdown.classList.contains('open');
+    dropdown.classList.toggle('open', !isOpen);
+    form.classList.toggle('open', !isOpen);
+  }
+
+  /* Close dropdown on outside click */
+  document.addEventListener('click', function(e) {
+    var form = document.getElementById('countryForm');
+    if (!form.contains(e.target)) {
+      document.getElementById('countryDropdown').classList.remove('open');
+      form.classList.remove('open');
+    }
+  });
+
   /* ── Smooth scroll for sidebar tabs ──
      Intercepts anchor clicks, scrolls with a slow ease-out curve
      over 800ms, offset by 128px (nav height + breathing room) */

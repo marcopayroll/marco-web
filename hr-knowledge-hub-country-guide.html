@@ -1257,7 +1257,7 @@
     { name: "Sweden",        currency: "SEK", region: "Europe",       img: "" },
     { name: "Switzerland",   currency: "CHF", region: "Europe",       img: "" },
     { name: "Turkey",        currency: "TRY", region: "Europe",       img: "" },
-    { name: "United Kingdom", currency: "GBP", region: "Europe",       img: "assets/Country Guide/thumbnails/united-kingdom.jpg", aliases: ["uk"], link: "hr-knowledge-hub-country-guide-united-kingdom.html" },
+    { name: "United Kingdom", currency: "GBP", region: "Europe",       img: "assets/Country Guide/thumbnails/united-kingdom.jpg", aliases: ["uk"], link: "hr-knowledge-hub-country-guide-united-kingdom.html", date: "3 June 2026" },
     { name: "Ukraine",       currency: "UAH", region: "Europe",       img: "" },
     // Middle East
     { name: "Egypt",         currency: "EGP", region: "Middle East",  img: "" },
@@ -1298,7 +1298,7 @@
           '<span class="cg-card-name">' + c.name + '</span>' +
           '<span class="cg-card-currency">' + c.currency + '</span>' +
         '</div>' +
-        '<span class="cg-card-date">Last Updated by, 20 May 2026</span>' +
+        '<span class="cg-card-date">Last Updated by, ' + (c.date || '20 May 2026') + '</span>' +
       '</div>';
     return a;
   }
