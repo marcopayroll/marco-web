@@ -1206,23 +1206,23 @@
   /* ── Countries data ── */
   const COUNTRIES = [
     // Africa
-    { name: "Algeria",       currency: "DZD", region: "Africa",       img: "assets/Country Guide/algeria.jpg" },
+    { name: "Algeria",       currency: "DZD", region: "Africa",       img: "assets/Country Guide/thumbnails/algeria.jpg" },
     { name: "Kenya",         currency: "KES", region: "Africa",       img: "" },
     { name: "Nigeria",       currency: "NGN", region: "Africa",       img: "" },
     { name: "South Africa",  currency: "ZAR", region: "Africa",       img: "" },
     // Americas
-    { name: "Argentina",     currency: "ARS", region: "Americas",     img: "assets/Country Guide/argentina 2.jpg" },
-    { name: "Brazil",        currency: "BRL", region: "Americas",     img: "assets/Country Guide/brazil.png" },
-    { name: "Canada",        currency: "CAD", region: "Americas",     img: "assets/Country Guide/canada.jpg" },
-    { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/Country Guide/chile.png" },
+    { name: "Argentina",     currency: "ARS", region: "Americas",     img: "assets/Country Guide/thumbnails/argentina 2.jpg" },
+    { name: "Brazil",        currency: "BRL", region: "Americas",     img: "assets/Country Guide/thumbnails/brazil.png" },
+    { name: "Canada",        currency: "CAD", region: "Americas",     img: "assets/Country Guide/thumbnails/canada.jpg" },
+    { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/Country Guide/thumbnails/chile.png" },
     { name: "Colombia",      currency: "COP", region: "Americas",     img: "" },
     { name: "Mexico",        currency: "MXN", region: "Americas",     img: "" },
     { name: "USA",           currency: "USD", region: "Americas",     img: "" },
     // Asia Pacific
-    { name: "Australia",     currency: "AUD", region: "Asia Pacific", img: "assets/Country Guide/australia.jpg" },
-    { name: "Bangladesh",    currency: "BDT", region: "Asia Pacific", img: "assets/Country Guide/bangladesh.jpg" },
-    { name: "Brunei",        currency: "BND", region: "Asia Pacific", img: "assets/Country Guide/brunei.jpg" },
-    { name: "Cambodia",      currency: "KHR", region: "Asia Pacific", img: "assets/Country Guide/cambodia.jpg" },
+    { name: "Australia",     currency: "AUD", region: "Asia Pacific", img: "assets/Country Guide/thumbnails/australia.jpg" },
+    { name: "Bangladesh",    currency: "BDT", region: "Asia Pacific", img: "assets/Country Guide/thumbnails/bangladesh.jpg" },
+    { name: "Brunei",        currency: "BND", region: "Asia Pacific", img: "assets/Country Guide/thumbnails/brunei.jpg" },
+    { name: "Cambodia",      currency: "KHR", region: "Asia Pacific", img: "assets/Country Guide/thumbnails/cambodia.jpg" },
     { name: "China",         currency: "CNY", region: "Asia Pacific", img: "" },
     { name: "Hong Kong",     currency: "HKD", region: "Asia Pacific", img: "" },
     { name: "India",         currency: "INR", region: "Asia Pacific", img: "" },
@@ -1239,9 +1239,9 @@
     { name: "Thailand",      currency: "THB", region: "Asia Pacific", img: "" },
     { name: "Vietnam",       currency: "VND", region: "Asia Pacific", img: "" },
     // Europe
-    { name: "Austria",       currency: "EUR", region: "Europe",       img: "assets/Country Guide/austria.jpg" },
-    { name: "Belgium",       currency: "EUR", region: "Europe",       img: "assets/Country Guide/belgium.jpg" },
-    { name: "Bulgaria",      currency: "BGN", region: "Europe",       img: "assets/Country Guide/bulgaria.jpg" },
+    { name: "Austria",       currency: "EUR", region: "Europe",       img: "assets/Country Guide/thumbnails/austria.jpg" },
+    { name: "Belgium",       currency: "EUR", region: "Europe",       img: "assets/Country Guide/thumbnails/belgium.jpg" },
+    { name: "Bulgaria",      currency: "BGN", region: "Europe",       img: "assets/Country Guide/thumbnails/bulgaria.jpg" },
     { name: "Czech Republic",currency: "CZK", region: "Europe",       img: "" },
     { name: "France",        currency: "EUR", region: "Europe",       img: "" },
     { name: "Germany",       currency: "EUR", region: "Europe",       img: "" },
@@ -1257,7 +1257,7 @@
     { name: "Sweden",        currency: "SEK", region: "Europe",       img: "" },
     { name: "Switzerland",   currency: "CHF", region: "Europe",       img: "" },
     { name: "Turkey",        currency: "TRY", region: "Europe",       img: "" },
-    { name: "UK",            currency: "GBP", region: "Europe",       img: "" },
+    { name: "United Kingdom", currency: "GBP", region: "Europe",       img: "assets/Country Guide/thumbnails/united-kingdom.jpg", aliases: ["uk"], link: "hr-knowledge-hub-country-guide-united-kingdom.html" },
     { name: "Ukraine",       currency: "UAH", region: "Europe",       img: "" },
     // Middle East
     { name: "Egypt",         currency: "EGP", region: "Middle East",  img: "" },
@@ -1276,13 +1276,15 @@
 
   function getFiltered() {
     return COUNTRIES.filter(function(c) {
-      return !activeQuery || c.name.toLowerCase().includes(activeQuery);
+      const matchName = !activeQuery || c.name.toLowerCase().includes(activeQuery);
+      const matchAlias = activeQuery && c.aliases && c.aliases.some(a => a.includes(activeQuery));
+      return matchName || matchAlias;
     });
   }
 
   function buildCard(c) {
     var a = document.createElement('a');
-    a.href = '#';
+    a.href = c.link || '#';
     a.className = 'cg-card';
     a.dataset.name = c.name.toLowerCase();
     a.dataset.region = c.region;
