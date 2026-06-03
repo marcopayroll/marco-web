@@ -385,11 +385,14 @@
       padding-top: 100px; /* clear fixed nav */
       min-height: 100vh;
       background: #fff;
+      width: 100%; /* full viewport — sidebar at left edge */
     }
+
 
     /* ── SIDEBAR ── */
     .uk-sidebar {
-      width: 240px;
+      /* 240px at 1440px → 280px at 1600px → 320px max at 1760px+ */
+      width: clamp(240px, calc(240px + (100vw - 1440px) * 0.25), 320px);
       flex-shrink: 0;
       background: #F6F6F6;
       padding: 24px 12px;
@@ -464,7 +467,7 @@
     .uk-sb-download {
       display: flex; align-items: center; justify-content: space-between;
       background: #019DE7; border-radius: 6px;
-      height: 48px; padding: 4px 16px; width: 216px;
+      height: 48px; padding: 4px 16px; width: 100%;
       cursor: pointer; text-decoration: none;
       transition: background 0.2s;
     }
@@ -479,7 +482,7 @@
     /* Divider */
     .uk-sb-divider {
       height: 1px; background: #CDD5E0;
-      width: 216px; margin: 0 auto; flex-shrink: 0;
+      width: 100%; flex-shrink: 0;
     }
     /* Nav tabs */
     .uk-sb-tabs { display: flex; flex-direction: column; gap: 12px; }
@@ -494,9 +497,13 @@
     .uk-sb-tab:hover { background: #ebebeb; color: #475072; }
     .uk-sb-tab.active { background: #e2e8f0; color: #162351; font-weight: 600; }
 
-    /* ── MAIN CONTENT ── */
+    /* ── MAIN CONTENT ──
+       flex:1 grows to fill space; max-width caps at 1280px;
+       margin-inline:auto centers it when viewport > sidebar+1280px */
     .uk-main {
       flex: 1; min-width: 0;
+      max-width: 1280px;
+      margin-inline: auto;
       padding: 40px 48px 80px;
       background: #fff;
     }
