@@ -1243,7 +1243,7 @@
         </div>
         <div class="uk-sb-country-form" id="countryForm" onclick="toggleCountryDropdown()">
           <span id="countryFormLabel">Japan</span>
-          <img src="assets/Country Guide/icons/country/chevron-down-dark.svg" alt="" />
+          <img src="assets/Country Guide/icons/chevron-down-dark.svg" alt="" />
           <!-- Dropdown -->
           <div class="uk-sb-country-dropdown" id="countryDropdown"></div>
         </div>
@@ -1286,18 +1286,267 @@
       </div>
       <div class="uk-title-inner">
         <h1 class="uk-page-title">Japan</h1>
-        <p class="uk-last-updated">Last Update by, 1 January 2026</p>
+        <p class="uk-last-updated">Last Update by, 4 June 2026</p>
       </div>
     </div>
 
-    
-    
+    <!-- Stat cards -->
+    <div class="uk-stat-cards">
+      <div class="uk-stat-card">
+        <div class="uk-stat-label">Weighted avg. minimum wage</div>
+        <div class="uk-stat-value">JPY 1,121/hr</div>
+        <div class="uk-stat-note">From Oct 2025 +6.3% · varies by prefecture</div>
+      </div>
+      <div class="uk-stat-card">
+        <div class="uk-stat-label">Employer social cost</div>
+        <div class="uk-stat-value">~15-16%</div>
+        <div class="uk-stat-note">Shakai Hoken + labor insurance share</div>
+      </div>
+      <div class="uk-stat-card">
+        <div class="uk-stat-label">Personal income tax</div>
+        <div class="uk-stat-value">5-45%</div>
+        <div class="uk-stat-note">7 brackets + Juminzei ~10%</div>
+      </div>
+    </div>
+
     <!-- All sections -->
     <div class="uk-sections">
-    <section id="overview" style="text-align:center; padding:60px 0; color:#8F98B5; font-family:var(--font); font-size:16px;">
-      Japan Country Guide content coming soon.
-    </section>
-  </div>
+
+      <!-- 1. Cost of Living -->
+      <section id="cost-of-living">
+        <h2 class="uk-section-heading">1. Cost of Living</h2>
+        <h3 class="uk-sub-heading">Urban cost level Tokyo / Osaka</h3>
+        <p class="uk-section-desc">The following public consumption data is for reference only (JPY Japanese Yen · 1 USD ≈ 150 JPY).</p>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Consumption Item</th><th>Reference Price (JPY)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>McDonald's meal</td><td>Approx. JPY 750 - 900</td></tr>
+              <tr><td>Monthly public transport pass (Tokyo Metro)</td><td>Approx. JPY 10,000 - 20,000</td></tr>
+              <tr><td>City-center 1LDK rent / month (Tokyo 23 wards)</td><td>Approx. JPY 120,000 - 200,000</td></tr>
+              <tr><td>Suburban 1LDK rent / month (Osaka / second-tier)</td><td>Approx. JPY 60,000 - 100,000</td></tr>
+              <tr><td>Minimum monthly living cost for one person</td><td>Approx. JPY 150,000 (regional) / JPY 220,000 (Tokyo)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2. Salary Benchmark -->
+      <section id="salary-benchmark">
+        <h2 class="uk-section-heading">2. Salary Benchmark</h2>
+        <h3 class="uk-sub-heading">Statutory minimum wage (from Oct 2025 · by prefecture)</h3>
+        <div class="uk-bullets">
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">National weighted average: JPY 1,121 / hour (+6.3%) · government target: JPY 1,500 by the late 2020s</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Tokyo: JPY 1,226 / hour (highest) · Okinawa: JPY 1,023 / hour (lowest)</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Full-time monthly equivalent: approx. JPY 194,000 (national average · 40h / week)</span></div>
+        </div>
+        <h3 class="uk-sub-heading">Median Salary - by seniority reference</h3>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Level</th><th>Annual Income (JPY, gross)</th><th>Monthly reference</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>University graduate (Shinsotsu)</td><td>JPY 3,500,000 - 4,200,000</td><td>JPY 250,000 - 300,000</td></tr>
+              <tr><td>Mid-level (3 - 5 years)</td><td>JPY 4,500,000 - 6,500,000</td><td>JPY 320,000 - 460,000</td></tr>
+              <tr><td>Senior / Managerial</td><td>JPY 7,000,000 - 10,000,000</td><td>JPY 500,000 - 710,000</td></tr>
+              <tr><td>Department head / executive level</td><td>JPY 12,000,000+</td><td>JPY 850,000+</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">Note: Tokyo salaries are approx. 15-20% above the national average; IT / finance / pharma / semiconductor sectors lead salary levels.</p>
+      </section>
+
+      <!-- 3. Statutory Benefits -->
+      <section id="statutory-benefits">
+        <h2 class="uk-section-heading">3. Statutory Benefits</h2>
+        <h3 class="uk-sub-heading">Shakai Hoken + labor insurance</h3>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Item</th><th>Employer</th><th>Employee</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Health Insurance (Kenpo)</td><td>~4.9%</td><td>~4.9%</td><td>Varies by prefecture · Tokyo total 9.85%; split equally; capped</td></tr>
+              <tr><td>Nursing Care Insurance (Kaigo · age 40+)</td><td>~0.81%</td><td>~0.81%</td><td>2026 national rate 1.62%; split equally</td></tr>
+              <tr><td>Employees' Pension (Kosei Nenkin)</td><td>9.15%</td><td>9.15%</td><td>Fixed 18.30%, split equally; monthly salary cap JPY 635,000</td></tr>
+              <tr><td>Employment Insurance (Koyo Hoken)</td><td>0.95%</td><td>0.60%</td><td>General industries · construction is higher</td></tr>
+              <tr><td>Workers' Accident Insurance (Rosai Hoken)</td><td>0.25-8.8%</td><td>-</td><td>100% employer-paid; varies by industry risk</td></tr>
+              <tr><td>Child allowance contribution</td><td>0.36%</td><td>-</td><td>100% employer-paid; includes new 0.23% from Apr 2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">Employer total approx. 15-16% (Shakai Hoken ~15% + Rosai Hoken 0.25-8.8%); employee total approx. 15.5% (social insurance + Koyo Hoken). From Apr 2026, a new Kosodate Shienkin contribution of 0.23% is added (shared by employer and employee); expected to rise gradually to 0.4%.</p>
+        <div class="uk-reg-card" style="margin-top:16px;">
+          <div class="uk-reg-title">Total employer add-on cost (incl. social insurance + commuting allowance + bonus social insurance, etc.)</div>
+          <div class="uk-reg-body">Approx. 15 - 20% of annual income (incl. social insurance ~15% + commuting cost + bonus social insurance share + retirement accrual)</div>
+        </div>
+        <h3 class="uk-sub-heading">Mandatory / common benefits</h3>
+        <div class="uk-bullets">
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Commuting allowance: commonly fully covered by employer; tax-free up to JPY 150,000 per month</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Shobyo Teatekin: after 3 consecutive absence days, Kenpo pays approx. 2/3 salary from day 4 for up to 18 months</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Shussan Ikuji Ichijikin: JPY 500,000 per birth (paid by Kenpo)</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Retirement benefit schemes (Taishokukin / DC / DB): common but not statutory; approx. 80% of companies provide them</span></div>
+        </div>
+      </section>
+
+      <!-- 4. Income Tax -->
+      <section id="income-tax">
+        <h2 class="uk-section-heading">4. Income Tax</h2>
+        <p class="uk-section-desc">National income tax: 7 progressive brackets (5-45%) + Reconstruction Special Income Tax 2.1% (until 2037). Local resident tax (Juminzei): approx. flat 10%.</p>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Annual taxable income (JPY)</th><th>National Rate</th><th>Deduction</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0 - 1,950,000</td><td>5%</td><td>0</td></tr>
+              <tr><td>1,950,001 - 3,300,000</td><td>10%</td><td>97,500</td></tr>
+              <tr><td>3,300,001 - 6,950,000</td><td>20%</td><td>427,500</td></tr>
+              <tr><td>6,950,001 - 9,000,000</td><td>23%</td><td>636,000</td></tr>
+              <tr><td>9,000,001 - 18,000,000</td><td>33%</td><td>1,536,000</td></tr>
+              <tr><td>18,000,001 - 40,000,000</td><td>40%</td><td>2,796,000</td></tr>
+              <tr><td>40,000,001+</td><td>45%</td><td>4,796,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">Basic deduction: JPY 480,000; employment income deduction decreases as income rises; spouse deduction / dependent deduction are calculated separately.</p>
+      </section>
+
+      <!-- 5. Working Hours -->
+      <section id="working-hours">
+        <h2 class="uk-section-heading">5. Working Hours</h2>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Item</th><th>Legal Rule</th><th>Market Practice</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Statutory weekly hours</td><td>40 hours</td><td>40 hours</td></tr>
+              <tr><td>Statutory daily hours</td><td>8 hours</td><td>8 hours</td></tr>
+              <tr><td>Overtime cap (monthly)</td><td>45 hours (principle)</td><td>-</td></tr>
+              <tr><td>Overtime cap (annual)</td><td>360 hours (principle)</td><td>-</td></tr>
+              <tr><td>36 Kyotei special clause</td><td>Single month 100h / year 720h</td><td>Applies to large companies</td></tr>
+              <tr><td>Weekly rest</td><td>At least 1 day</td><td>Saturday + Sunday (full 2-day weekend)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="uk-sub-heading">Overtime Pay (Warimashi Chingin)</h3>
+        <div class="uk-bullets">
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Statutory overtime: +25% or more; overtime beyond 60h/month: +50%</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Statutory holiday work: +35% or more</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Late-night work (22:00-05:00): +25% (can stack with overtime / holiday premiums)</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Since Apr 2023, SMEs also apply the +50% premium for overtime beyond 60h/month</span></div>
+        </div>
+      </section>
+
+      <!-- 6. Employment Contract -->
+      <section id="employment-contracts">
+        <h2 class="uk-section-heading">6. Employment Contract</h2>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Contract Type</th><th>Probation Period</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Seishain (indefinite-term)</td><td>Usually 3 - 6 months</td><td>Default form; dismissal protection applies</td></tr>
+              <tr><td>Keiyaku Shain (fixed-term)</td><td>Same as above</td><td>Max 3 years (specific cases 5 years); after 5+ years may convert to indefinite term</td></tr>
+              <tr><td>Haken Shain (dispatch worker)</td><td>-</td><td>Regulated by Worker Dispatching Act; same role usually max 3 years</td></tr>
+              <tr><td>Part / Arubaito</td><td>-</td><td>Short-time workers; equal and balanced treatment applies since 2020</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">Working conditions must be notified in writing or electronically; from Apr 2024, fixed-term contracts must clearly state renewal limits.</p>
+        <h3 class="uk-sub-heading">Dismissal protection and compensation</h3>
+        <div class="uk-bullets">
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Dismissal requires an objective, reasonable reason and must be socially appropriate under the abuse-of-dismissal-right doctrine.</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Notice period: at least 30 days advance notice, or payment of 30+ days average wages (Kaiko Yoko Teate).</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Redundancy dismissal must satisfy four requirements: necessity / avoidance efforts / rational selection / proper procedure.</span></div>
+        </div>
+      </section>
+
+      <!-- 7. Leave Entitlements -->
+      <section id="leave-entitlements">
+        <h2 class="uk-section-heading">7. Leave Entitlements</h2>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Leave Type</th><th>Entitlement</th><th>Conditions</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Annual paid leave (Nenji Yukyu Kyuka)</td><td>10 days after 6 months of service; max 20 days after 6.5+ years</td><td>Attendance rate at least 80%; 5 days/year must be taken</td></tr>
+              <tr><td>Sick leave</td><td>No statutory paid sick leave; Kenpo Shobyo Teatekin pays 2/3 salary from day 4</td><td>Payable up to 18 months</td></tr>
+              <tr><td>Maternity leave</td><td>6 weeks before birth + 8 weeks after birth</td><td>Shussan Teatekin approx. 2/3 salary; social insurance exemption</td></tr>
+              <tr><td>Childcare leave (Ikuji Kyugyo)</td><td>Until child turns 1 (extendable to age 2)</td><td>Ikuji Kyugyo Kyufukin: 67% for first 6 months, then 50%</td></tr>
+              <tr><td>Postpartum Papa Ikukyu</td><td>4 weeks within 8 weeks after birth</td><td>Introduced Oct 2022; can be taken in 2 parts</td></tr>
+              <tr><td>Family care leave (Kaigo Kyugyo)</td><td>93 days (can be split)</td><td>Kaigo Kyugyo Kyufukin 67%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 8. Public Holidays 2026 -->
+      <section id="public-holidays">
+        <h2 class="uk-section-heading">8. Public Holidays 2026</h2>
+        <p class="uk-section-desc">Japan has 16 statutory public holidays (Shukujitsu) in 2026; there is no statutory holiday-work premium unless set by work rules or CBA.</p>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Date</th><th>Holiday Name</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>01/01 (Thu)</td><td>元日</td><td></td></tr>
+              <tr><td>01/12 (Mon)</td><td>成人の日</td><td>2nd Monday of January</td></tr>
+              <tr><td>02/11 (Wed)</td><td>建国記念の日</td><td></td></tr>
+              <tr><td>02/23 (Mon)</td><td>天皇誕生日</td><td>Emperor's Birthday</td></tr>
+              <tr><td>03/20 (Fri)</td><td>春分の日</td><td></td></tr>
+              <tr><td>04/29 (Wed)</td><td>昭和の日</td><td></td></tr>
+              <tr><td>05/03 (Sun)</td><td>憲法記念日</td><td>Substitute holiday on 5/4</td></tr>
+              <tr><td>05/04 (Mon)</td><td>みどりの日</td><td></td></tr>
+              <tr><td>05/05 (Tue)</td><td>こどもの日</td><td>Golden Week</td></tr>
+              <tr><td>07/20 (Mon)</td><td>海の日</td><td></td></tr>
+              <tr><td>08/11 (Tue)</td><td>山の日</td><td></td></tr>
+              <tr><td>09/21 (Mon)</td><td>敬老の日</td><td></td></tr>
+              <tr><td>09/23 (Wed)</td><td>秋分の日</td><td></td></tr>
+              <tr><td>10/12 (Mon)</td><td>スポーツの日</td><td></td></tr>
+              <tr><td>11/03 (Tue)</td><td>文化の日</td><td></td></tr>
+              <tr><td>11/23 (Mon)</td><td>勤労感謝の日</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">When a public holiday falls on Sunday, the next day (Monday) becomes a substitute holiday (Furikae Kyujitsu); Golden Week / Obon / year-end and New Year are common long holidays.</p>
+      </section>
+
+      <!-- 9. Key Regulations -->
+      <section id="key-regulations">
+        <h2 class="uk-section-heading">9. Key Regulations</h2>
+        <div class="uk-reg-cards">
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">Labor Standards Act (Rodo Kijunho)</div>
+            <div class="uk-reg-body">Enacted in 1947; regulates core working conditions including hours, overtime, leave, dismissal notice, minimum wage, etc.</div>
+          </div>
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">New 「子育て支援金」 from Apr 2026</div>
+            <div class="uk-reg-body">New social insurance contribution of 0.23% (shared equally by employer and employee) to support child-rearing policies; expected to increase gradually.</div>
+          </div>
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">Muki Tenkan rule (5-year rule)</div>
+            <div class="uk-reg-body">If a fixed-term contract exceeds 5 cumulative years, the worker may request conversion to indefinite employment; since 2024, renewal limits must be stated in the contract.</div>
+          </div>
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">Equal Pay for Equal Work (from 2020)</div>
+            <div class="uk-reg-body">Unreasonable differences in treatment between Seishain and non-regular employees are prohibited; large companies from 2020 and SMEs from 2021.</div>
+          </div>
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">Highly Skilled Professional visa / Specified Skilled Worker</div>
+            <div class="uk-reg-body">Highly skilled talent points system (70+ points) grants preferential treatment; Specified Skilled Worker Type 1 / 2 expands foreign labor intake.</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
   </main>
 
 </div>
@@ -1322,7 +1571,7 @@
   </a>
   <!-- Thumbnail -->
   <div class="uk-cta-thumb">
-    <img src="assets/Country Guide/thumbnails/united-kingdom.jpg" alt="Japan" />
+    <img src="assets/Country Guide/thumbnails/japan.jpg" alt="Japan" />
   </div>
 </section>
 
@@ -1601,85 +1850,82 @@
   var COUNTRIES = [
     // Africa
     { name: 'Algeria',        region: 'Africa',       link: 'hr-knowledge-hub-country-guide-algeria.html' },
-    { name: 'Kenya',          region: 'Africa',       link: '#' },
-    { name: 'Nigeria',        region: 'Africa',       link: '#' },
-    { name: 'South Africa',   region: 'Africa',       link: '#' },
+    { name: 'Kenya',          region: 'Africa',       link: 'hr-knowledge-hub-country-guide-kenya.html' },
+    { name: 'Nigeria',        region: 'Africa',       link: 'hr-knowledge-hub-country-guide-nigeria.html' },
+    { name: 'South Africa',   region: 'Africa',       link: 'hr-knowledge-hub-country-guide-south-africa.html' },
+    { name: 'Tunisia',        region: 'Africa',       link: 'hr-knowledge-hub-country-guide-tunisia.html' },
     // Americas
-    { name: 'Argentina',      region: 'Americas',     link: '#' },
-    { name: 'Brazil',         region: 'Americas',     link: '#' },
-    { name: 'Canada',         region: 'Americas',     link: '#' },
-    { name: 'Chile',          region: 'Americas',     link: '#' },
-    { name: 'Colombia',       region: 'Americas',     link: '#' },
-    { name: 'Mexico',         region: 'Americas',     link: '#' },
-    { name: 'USA',            region: 'Americas',     link: '#' },
+    { name: 'Argentina',      region: 'Americas',     link: 'hr-knowledge-hub-country-guide-argentina.html' },
+    { name: 'Brazil',         region: 'Americas',     link: 'hr-knowledge-hub-country-guide-brazil.html' },
+    { name: 'Canada',         region: 'Americas',     link: 'hr-knowledge-hub-country-guide-canada.html' },
+    { name: 'Chile',          region: 'Americas',     link: 'hr-knowledge-hub-country-guide-chile.html' },
+    { name: 'Colombia',       region: 'Americas',     link: 'hr-knowledge-hub-country-guide-colombia.html' },
+    { name: 'Mexico',         region: 'Americas',     link: 'hr-knowledge-hub-country-guide-mexico.html' },
+    { name: 'Peru',           region: 'Americas',     link: 'hr-knowledge-hub-country-guide-peru.html' },
+    { name: 'USA',            region: 'Americas',     link: 'hr-knowledge-hub-country-guide-usa.html' },
     // Asia Pacific
     { name: 'Australia',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-australia.html' },
-    { name: 'Bangladesh',     region: 'Asia Pacific', link: '#' },
-    { name: 'Brunei',         region: 'Asia Pacific', link: '#' },
-    { name: 'Cambodia',       region: 'Asia Pacific', link: '#' },
-    { name: 'China',          region: 'Asia Pacific', link: '#' },
-    { name: 'Hong Kong',      region: 'Asia Pacific', link: '#' },
-    { name: 'India',          region: 'Asia Pacific', link: '#' },
-    { name: 'Indonesia',      region: 'Asia Pacific', link: '#' },
-    { name: 'Japan',          region: 'Asia Pacific', link: '#' },
-    { name: 'Malaysia',       region: 'Asia Pacific', link: '#' },
-    { name: 'New Zealand',    region: 'Asia Pacific', link: '#' },
-    { name: 'Pakistan',       region: 'Asia Pacific', link: '#' },
-    { name: 'Philippines',    region: 'Asia Pacific', link: '#' },
-    { name: 'Singapore',      region: 'Asia Pacific', link: '#' },
-    { name: 'South Korea',    region: 'Asia Pacific', link: '#' },
-    { name: 'Sri Lanka',      region: 'Asia Pacific', link: '#' },
-    { name: 'Taiwan',         region: 'Asia Pacific', link: '#' },
-    { name: 'Thailand',       region: 'Asia Pacific', link: '#' },
-    { name: 'Vietnam',        region: 'Asia Pacific', link: '#' },
+    { name: 'Bangladesh',     region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-bangladesh.html' },
+    { name: 'Brunei',         region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-brunei.html' },
+    { name: 'Cambodia',       region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-cambodia.html' },
+    { name: 'China',          region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-china.html' },
+    { name: 'Hong Kong',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-hong-kong.html' },
+    { name: 'India',          region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-india.html' },
+    { name: 'Indonesia',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-indonesia.html' },
+    { name: 'Japan',          region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-japan.html' },
+    { name: 'Malaysia',       region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-malaysia.html' },
+    { name: 'New Zealand',    region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-new-zealand.html' },
+    { name: 'Pakistan',       region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-pakistan.html' },
+    { name: 'Philippines',    region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-philippines.html' },
+    { name: 'Singapore',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-singapore.html' },
+    { name: 'South Korea',    region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-south-korea.html' },
+    { name: 'Sri Lanka',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-sri-lanka.html' },
+    { name: 'Taiwan',         region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-taiwan.html' },
+    { name: 'Thailand',       region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-thailand.html' },
+    { name: 'Vietnam',        region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-vietnam.html' },
     // Europe
-    { name: 'Austria',        region: 'Europe',       link: '#' },
-    { name: 'Belgium',        region: 'Europe',       link: '#' },
-    { name: 'Bulgaria',       region: 'Europe',       link: '#' },
-    { name: 'Czech Republic', region: 'Europe',       link: '#' },
-    { name: 'France',         region: 'Europe',       link: '#' },
-    { name: 'Germany',        region: 'Europe',       link: '#' },
-    { name: 'Hungary',        region: 'Europe',       link: '#' },
-    { name: 'Ireland',        region: 'Europe',       link: '#' },
-    { name: 'Italy',          region: 'Europe',       link: '#' },
-    { name: 'Netherlands',    region: 'Europe',       link: '#' },
-    { name: 'Poland',         region: 'Europe',       link: '#' },
-    { name: 'Portugal',       region: 'Europe',       link: '#' },
-    { name: 'Romania',        region: 'Europe',       link: '#' },
-    { name: 'Russia',         region: 'Europe',       link: '#' },
-    { name: 'Spain',          region: 'Europe',       link: '#' },
-    { name: 'Sweden',         region: 'Europe',       link: '#' },
-    { name: 'Switzerland',    region: 'Europe',       link: '#' },
-    { name: 'Turkey',         region: 'Europe',       link: '#' },
+    { name: 'Austria',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-austria.html' },
+    { name: 'Belgium',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-belgium.html' },
+    { name: 'Bulgaria',       region: 'Europe',       link: 'hr-knowledge-hub-country-guide-bulgaria.html' },
+    { name: 'Croatia',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-croatia.html' },
+    { name: 'Czech Republic', region: 'Europe',       link: 'hr-knowledge-hub-country-guide-czech-republic.html' },
+    { name: 'Finland',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-finland.html' },
+    { name: 'France',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-france.html' },
+    { name: 'Germany',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-germany.html' },
+    { name: 'Hungary',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-hungary.html' },
+    { name: 'Ireland',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-ireland.html' },
+    { name: 'Italy',          region: 'Europe',       link: 'hr-knowledge-hub-country-guide-italy.html' },
+    { name: 'Netherlands',    region: 'Europe',       link: 'hr-knowledge-hub-country-guide-netherlands.html' },
+    { name: 'Poland',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-poland.html' },
+    { name: 'Portugal',       region: 'Europe',       link: 'hr-knowledge-hub-country-guide-portugal.html' },
+    { name: 'Romania',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-romania.html' },
+    { name: 'Russia',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-russia.html' },
+    { name: 'Spain',          region: 'Europe',       link: 'hr-knowledge-hub-country-guide-spain.html' },
+    { name: 'Sweden',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-sweden.html' },
+    { name: 'Switzerland',    region: 'Europe',       link: 'hr-knowledge-hub-country-guide-switzerland.html' },
+    { name: 'Turkey',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-turkey.html' },
     { name: 'United Kingdom', region: 'Europe',       link: 'hr-knowledge-hub-country-guide-united-kingdom.html' },
-    { name: 'Ukraine',        region: 'Europe',       link: '#' },
+    { name: 'Ukraine',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-ukraine.html' },
     // Middle East
-    { name: 'Egypt',          region: 'Middle East',  link: '#' },
-    { name: 'Israel',         region: 'Middle East',  link: '#' },
-    { name: 'Saudi Arabia',   region: 'Middle East',  link: '#' },
-    { name: 'UAE',            region: 'Middle East',  link: '#' },
+    { name: 'Egypt',          region: 'Middle East',  link: 'hr-knowledge-hub-country-guide-egypt.html' },
+    { name: 'Israel',         region: 'Middle East',  link: 'hr-knowledge-hub-country-guide-israel.html' },
+    { name: 'Saudi Arabia',   region: 'Middle East',  link: 'hr-knowledge-hub-country-guide-saudi-arabia.html' },
+    { name: 'UAE',            region: 'Middle East',  link: 'hr-knowledge-hub-country-guide-uae.html' },
   ];
 
   var currentCountry = 'Japan';
 
-  /* Build dropdown HTML grouped by region */
+  /* Build dropdown HTML - flat alphabetical list */
   (function buildDropdown() {
     var dropdown = document.getElementById('countryDropdown');
-    var regions = {};
-    COUNTRIES.forEach(function(c) {
-      if (!regions[c.region]) regions[c.region] = [];
-      regions[c.region].push(c);
-    });
+    var sorted = COUNTRIES.slice().sort(function(a, b) { return a.name.localeCompare(b.name); });
     var html = '';
-    Object.keys(regions).forEach(function(region) {
-      html += '<div class="uk-sb-dropdown-region">' + region + '</div>';
-      regions[region].forEach(function(c) {
-        var isSel = c.name === currentCountry;
-        html += '<a class="uk-sb-dropdown-item' + (isSel ? ' selected' : '') + '" ' +
-                'href="' + c.link + '" data-name="' + c.name + '">' +
-                c.name +
-                '</a>';
-      });
+    sorted.forEach(function(c) {
+      var isSel = c.name === currentCountry;
+      html += '<a class="uk-sb-dropdown-item' + (isSel ? ' selected' : '') + '" ' +
+              'href="' + c.link + '" data-name="' + c.name + '">' +
+              c.name +
+              '</a>';
     });
     dropdown.innerHTML = html;
   })();

@@ -207,16 +207,18 @@
     }
 
     /* Gradient shader video — full-cover background */
+    /* Both videos stacked — JS cross-dissolves between them */
     .hero-video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0;
       pointer-events: none;
-      opacity: 0; /* JS fade-loop controls this */
+      opacity: 0;
     }
+    .hero-video-a { z-index: 0; }
+    .hero-video-b { z-index: 1; }
 
     /* Dark overlay for text readability */
     .hero-overlay {
@@ -1596,9 +1598,12 @@
 <!-- ════════════════ HERO ════════════════ -->
 <section class="hero" id="hero">
 
-  <!-- Gradient shader video background -->
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="assets/Background Assets/gradient shader 1.mp4" type="video/mp4" />
+  <!-- Cross-dissolve: two videos stacked, alternating on loop -->
+  <video class="hero-video hero-video-a" id="heroVideoA" autoplay muted playsinline>
+    <source src="assets/Background Assets/gradient shader 2.mp4" type="video/mp4" />
+  </video>
+  <video class="hero-video hero-video-b" id="heroVideoB" muted playsinline>
+    <source src="assets/Background Assets/gradient shader 2.mp4" type="video/mp4" />
   </video>
 
   <!-- Overlay for text readability -->
@@ -2219,27 +2224,79 @@
      the start of every loop iteration.
   ───────────────────────────────────────────── */
   (function initVideoFadeLoop() {
-    const video = document.querySelector('.hero-video');
-    if (!video) return;
+    /* ── Cross-Dissolve video loop ──────────────────────────
+       Two videos stacked. Active one plays; when it's ~DISSOLVE
+       seconds from the end, the inactive one restarts from 0 and
+       fades in on top. At all times one video is fully visible —
+       no black / white intermediate.
+    ──────────────────────────────────────────────────────── */
+    const vidA = document.getElementById('heroVideoA');
+    const vidB = document.getElementById('heroVideoB');
+    if (!vidA || !vidB) return;
 
-    const FADE = 0.9; // seconds to fade in / out
+    const DISSOLVE = 1.5;   // crossfade duration in seconds
+    const FADE_IN  = 1.2;   // initial page-load fade-in duration
+    let active    = vidA;   // currently playing video
+    let inactive  = vidB;   // next video (waiting)
+    let dissolving = false;
+    let pageLoaded = false;
+
+    /* Set initial state */
+    vidA.style.opacity = '0';
+    vidB.style.opacity = '0';
+
+    /* Start active video */
+    vidA.play();
+
+    function easeInOut(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
 
     function tick() {
-      requestAnimationFrame(tick); // 60 fps — smooth
+      requestAnimationFrame(tick);
 
-      const t = video.currentTime;
-      const d = video.duration;
+      const t = active.currentTime;
+      const d = active.duration;
       if (!d || isNaN(d)) return;
 
-      let opacity;
-      if (t < FADE) {
-        opacity = t / FADE;          // fade in  0 → 1
-      } else if (t > d - FADE) {
-        opacity = (d - t) / FADE;    // fade out 1 → 0
-      } else {
-        opacity = 1;
+      /* ── Initial page-load fade-in ── */
+      if (!pageLoaded) {
+        const fadeProgress = Math.min(1, t / FADE_IN);
+        active.style.opacity = easeInOut(fadeProgress);
+        if (fadeProgress >= 1) pageLoaded = true;
+        return;
       }
-      video.style.opacity = Math.max(0, Math.min(1, opacity));
+
+      /* ── Start dissolve when active video nears its end ── */
+      if (!dissolving && t >= d - DISSOLVE) {
+        dissolving = true;
+        inactive.currentTime = 0;
+        inactive.play();
+      }
+
+      /* ── Animate the crossfade ── */
+      if (dissolving) {
+        const remaining = d - t;
+        const progress  = Math.max(0, Math.min(1, 1 - (remaining / DISSOLVE)));
+        const eased     = easeInOut(progress);
+
+        active.style.opacity   = String(1 - eased); // fade out
+        inactive.style.opacity = String(eased);      // fade in
+
+        /* ── Swap when dissolve is complete ── */
+        if (progress >= 1) {
+          active.style.opacity   = '0';
+          inactive.style.opacity = '1';
+          active.pause();
+          /* swap roles */
+          const tmp = active;
+          active   = inactive;
+          inactive = tmp;
+          dissolving = false;
+        }
+      } else {
+        active.style.opacity = '1';
+      }
     }
 
     requestAnimationFrame(tick);

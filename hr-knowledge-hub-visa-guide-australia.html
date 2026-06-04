@@ -1247,7 +1247,7 @@
         </div>
         <div class="uk-sb-country-form" id="countryForm" onclick="toggleCountryDropdown()">
           <span id="countryFormLabel">Australia</span>
-          <img src="assets/Country Guide/icons/country/chevron-down-dark.svg" alt="" />
+          <img src="assets/Country Guide/icons/chevron-down-dark.svg" alt="" />
           <!-- Dropdown -->
           <div class="uk-sb-country-dropdown" id="countryDropdown"></div>
         </div>
@@ -1892,24 +1892,17 @@
 
   var currentCountry = 'Australia';
 
-  /* Build dropdown HTML grouped by region */
+  /* Build dropdown HTML - flat alphabetical list */
   (function buildDropdown() {
     var dropdown = document.getElementById('countryDropdown');
-    var regions = {};
-    COUNTRIES.forEach(function(c) {
-      if (!regions[c.region]) regions[c.region] = [];
-      regions[c.region].push(c);
-    });
+    var sorted = COUNTRIES.slice().sort(function(a, b) { return a.name.localeCompare(b.name); });
     var html = '';
-    Object.keys(regions).forEach(function(region) {
-      html += '<div class="uk-sb-dropdown-region">' + region + '</div>';
-      regions[region].forEach(function(c) {
-        var isSel = c.name === currentCountry;
-        html += '<a class="uk-sb-dropdown-item' + (isSel ? ' selected' : '') + '" ' +
-                'href="' + c.link + '" data-name="' + c.name + '">' +
-                c.name +
-                '</a>';
-      });
+    sorted.forEach(function(c) {
+      var isSel = c.name === currentCountry;
+      html += '<a class="uk-sb-dropdown-item' + (isSel ? ' selected' : '') + '" ' +
+              'href="' + c.link + '" data-name="' + c.name + '">' +
+              c.name +
+              '</a>';
     });
     dropdown.innerHTML = html;
   })();
