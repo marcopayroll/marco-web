@@ -1216,7 +1216,7 @@
     { name: "Mexico",        currency: "MXN", region: "Americas",     img: "" },
     { name: "USA",           currency: "USD", region: "Americas",     img: "" },
     // Asia Pacific
-    { name: "Australia",     currency: "AUD", region: "Asia Pacific", img: "assets/Country Guide/thumbnails/australia.jpg" },
+    { name: "Australia",     currency: "AUD", region: "Asia Pacific", img: "assets/Country Guide/thumbnails/australia.jpg", link: "hr-knowledge-hub-visa-guide-australia.html" },
     { name: "Bangladesh",    currency: "BDT", region: "Asia Pacific", img: "assets/Country Guide/thumbnails/bangladesh.jpg" },
     { name: "Brunei",        currency: "BND", region: "Asia Pacific", img: "assets/Country Guide/thumbnails/brunei.jpg" },
     { name: "Cambodia",      currency: "KHR", region: "Asia Pacific", img: "assets/Country Guide/thumbnails/cambodia.jpg" },
@@ -1281,7 +1281,7 @@
 
   function buildCard(c) {
     var a = document.createElement('a');
-    a.href = '#';
+    a.href = c.link || '#';
     a.className = 'cg-card';
     a.dataset.name = c.name.toLowerCase();
     a.dataset.region = c.region;
