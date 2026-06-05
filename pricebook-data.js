@@ -50,7 +50,7 @@ const PRICEBOOK_DATA = {
       },
       'Asia – Central Asia & Middle East': {
         monthly_fee: 299,
-        countries: ['UAE', 'Saudi Arabia', 'Qatar', 'Turkey', 'Kazakhstan', 'Jordan', 'Israel', 'Egypt', 'Bahrain', 'Kuwait', 'Oman']
+        countries: ['United Arab Emirates', 'Saudi Arabia', 'Qatar', 'Turkey', 'Kazakhstan', 'Jordan', 'Israel', 'Egypt', 'Bahrain', 'Kuwait', 'Oman']
       },
       'Asia – Southeast Asia & South Asia': {
         monthly_fee: 199,
@@ -58,7 +58,7 @@ const PRICEBOOK_DATA = {
       },
       'North America – Canada & United States': {
         monthly_fee: 299,
-        countries: ['Canada', 'USA']
+        countries: ['Canada', 'United States']
       },
       'South America – Latin American countries': {
         monthly_fee: 399,
@@ -129,7 +129,7 @@ const PRICEBOOK_DATA = {
       },
       'Asia – United Arab Emirates': {
         monthly_fee: 499,
-        countries: ['UAE']
+        countries: ['United Arab Emirates']
       },
       'Asia – Japan, Malaysia & South Korea': {
         monthly_fee: 499,
@@ -241,7 +241,7 @@ const PRICEBOOK_DATA = {
       'Qatar':          { fee: 3500, currency: 'USD' },
       'Malaysia':       { fee: 3000, currency: 'USD' },
       'Thailand':       { fee: 3000, currency: 'USD' },
-      'UAE':            { fee: 3000, currency: 'USD' }
+      'United Arab Emirates':            { fee: 3000, currency: 'USD' }
     }
   },
 

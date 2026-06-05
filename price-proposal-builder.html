@@ -546,6 +546,9 @@
       max-height: 220px;
       overflow-y: auto;
     }
+    .pb-dropdown-list::-webkit-scrollbar { width: 4px; }
+    .pb-dropdown-list::-webkit-scrollbar-thumb { background: #bcc9eb; border-radius: 4px; }
+    .pb-dropdown-list::-webkit-scrollbar-track { background: transparent; }
     .pb-dropdown-item {
       padding: 10px 16px;
       font-size: 14px;
@@ -833,6 +836,111 @@
       box-sizing: border-box;
     }
     .pb-date-input::placeholder { color: #8F98B5; }
+
+    /* ── Calendar picker ── */
+    .pb-calendar {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      z-index: 300;
+      background: #fff;
+      border: 1px solid #bcc9eb;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(22,35,81,0.12);
+      padding: 16px;
+      width: 280px;
+      display: none;
+      font-family: 'Euclid Circular B', sans-serif;
+      user-select: none;
+    }
+    .pb-calendar.open { display: block; }
+    .pb-cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .pb-cal-nav {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475072;
+      font-size: 18px;
+      line-height: 1;
+      transition: background 0.15s;
+    }
+    .pb-cal-nav:hover { background: #ecf2fb; color: #019de7; }
+    .pb-cal-month-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #162351;
+    }
+    .pb-cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-bottom: 4px;
+    }
+    .pb-cal-weekday {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: #8f98b5;
+      padding: 4px 0;
+    }
+    .pb-cal-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+    .pb-cal-day {
+      text-align: center;
+      padding: 6px 0;
+      font-size: 13px;
+      font-weight: 400;
+      color: #475072;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .pb-cal-day:hover { background: #ecf2fb; color: #019de7; }
+    .pb-cal-day.empty { cursor: default; pointer-events: none; }
+    .pb-cal-day.today { font-weight: 700; color: #019de7; }
+    .pb-cal-day.selected { background: #019de7; color: #fff !important; font-weight: 600; }
+    .pb-cal-day.selected:hover { background: #0185c4; }
+    .pb-date-icon { cursor: pointer; }
+    .pb-cal-month-label { cursor: pointer; transition: color 0.15s; }
+    .pb-cal-month-label:hover { color: #019de7; }
+    .pb-cal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+    .pb-cal-cell {
+      text-align: center;
+      padding: 8px 4px;
+      font-size: 13px;
+      font-weight: 400;
+      color: #475072;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.12s, color 0.12s;
+    }
+    .pb-cal-cell:hover { background: #ecf2fb; color: #019de7; }
+    .pb-cal-cell.active { background: #019de7; color: #fff !important; font-weight: 600; }
+    .pb-cal-cell.active:hover { background: #0185c4; }
+    .pb-cal-cell.current-month,
+    .pb-cal-cell.current-year { font-weight: 700; color: #019de7; }
+    .pb-cal-cell.current-month.active,
+    .pb-cal-cell.current-year.active { color: #fff !important; }
+
+
     .pb-date-icon {
       position: absolute;
       right: 12px;
@@ -953,6 +1061,12 @@
       color: #475072;
       cursor: pointer;
       font-family: 'Euclid Circular B', sans-serif;
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+    .pb-btn-reset:hover {
+      background: #f4f6f9;
+      border-color: #475072;
+      color: #162351;
     }
 
     /* Summary card */
@@ -1068,8 +1182,8 @@
     /* Assumptions section */
     .pb-assumptions {
       max-width: 1224px;
-      margin: 60px auto 0;
-      padding: 0;
+      margin: 0 auto;
+      padding: 0 0 80px;
     }
     .pb-assump-inner {
       display: flex;
@@ -1177,6 +1291,184 @@
     }
     .wechat-modal.active { opacity: 1; pointer-events: auto; }
     .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
+
+    /* ════════════════════════════════════════
+       PROPOSAL REPORT SECTION
+    ════════════════════════════════════════ */
+    .proposal-report-section {
+      display: none;
+      background: #fff;
+      padding: 80px 0 80px;
+    }
+    .proposal-report-section.visible { display: block; }
+
+    .pr-wrap {
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    /* ── Header row ── */
+    .pr-header-row {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .pr-header-left {
+      width: 600px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .pr-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #162351;
+    }
+    .pr-label-line {
+      width: 16px;
+      height: 2px;
+      background: #162351;
+      flex-shrink: 0;
+    }
+    .pr-title-block { display: flex; flex-direction: column; gap: 24px; }
+    .pr-title {
+      font-size: 48px;
+      font-weight: 600;
+      color: #162351;
+      line-height: 60px;
+      letter-spacing: -2.4px;
+    }
+    .pr-subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      color: #8F98B5;
+      line-height: 20px;
+      letter-spacing: -0.8px;
+    }
+    .pr-download-btn {
+      width: 200px;
+      height: 44px;
+      background: #019de7;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Euclid Circular B', sans-serif;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .pr-download-btn:hover { background: #0185c4; }
+
+    /* ── Info card (right) ── */
+    .pr-info-card {
+      flex: 1;
+      background: #ecf2fb;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pr-info-row {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .pr-info-label {
+      width: 160px;
+      flex-shrink: 0;
+      font-size: 12px;
+      font-weight: 400;
+      color: #8F98B5;
+      line-height: 16px;
+    }
+    .pr-info-value {
+      flex: 1;
+      font-size: 12px;
+      font-weight: 500;
+      color: #162351;
+      line-height: 16px;
+    }
+
+    /* ── 4 Metric cards ── */
+    .pr-metrics-row {
+      display: flex;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .pr-metric-card {
+      flex: 1;
+      background: #ecf2fb;
+      border: 1px solid #e4efff;
+      border-radius: 8px;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+    .pr-metric-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50px;
+      flex-shrink: 0;
+    }
+    .pr-metric-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: #162351;
+      line-height: 40px;
+    }
+    .pr-metric-text { display: flex; flex-direction: column; gap: 4px; }
+    .pr-metric-label { font-size: 12px; font-weight: 400; color: #475072; line-height: 16px; }
+    .pr-metric-note  { font-size: 12px; font-weight: 400; color: #8F98B5;  line-height: 16px; }
+
+    /* ── Table sections ── */
+    .pr-table-section { display: flex; flex-direction: column; gap: 24px; }
+    .pr-section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #162351;
+      line-height: 26px;
+    }
+    .pr-table { display: flex; flex-direction: column; width: 100%; }
+    .pr-table-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    .pr-table-row.header { background: #ecf2fb; border-radius: 12px 12px 0 0; }
+    .pr-table-row.body-row { background: #fff; }
+    .pr-table-row.body-row:nth-child(even) { background: #fafbfe; }
+    .pr-table-row.total-row { background: #e4efff; border-radius: 0 0 12px 12px; }
+    .pr-table-cell {
+      flex: 1;
+      min-width: 0;
+      height: 50px;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: #162351;
+      line-height: 18px;
+    }
+    .pr-table-cell.muted {
+      font-weight: 400;
+      color: #8F98B5;
+    }
+    .pr-table-cell.accent { color: #019de7; }
+    .pr-table-cell.free-cell { color: #6bce20; }
+
   </style>
 </head>
 <body>
@@ -1609,8 +1901,6 @@
                 <div class="pb-currency-item" data-currency="USD">USD</div>
                 <div class="pb-currency-item" data-currency="EUR">EUR</div>
                 <div class="pb-currency-item" data-currency="GBP">GBP</div>
-                <div class="pb-currency-item" data-currency="SGD">SGD</div>
-                <div class="pb-currency-item" data-currency="AUD">AUD</div>
               </div>
             </div>
             <input class="pb-salary-input" id="pb-salary-input" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter amount">
@@ -1752,7 +2042,8 @@
           <label class="pb-field-label">Expected start date</label>
           <div class="pb-date-wrap">
             <input class="pb-date-input" id="pb-date-input" type="text" placeholder="mm/dd/yyyy">
-            <img class="pb-date-icon" src="assets/price/Proposal Builder/calendar-icon.svg" alt="calendar">
+            <img class="pb-date-icon" id="pb-cal-icon" src="assets/price/Proposal Builder/calendar-icon.svg" alt="calendar">
+            <div class="pb-calendar" id="pb-calendar"></div>
           </div>
         </div>
 
@@ -1807,7 +2098,7 @@
             </div>
             <div class="pb-sum-row-value" id="sum-contrib">--</div>
           </div>
-          <div id="sum-services-container"></div>
+          <div id="sum-services-container" style="display:flex; flex-direction:column; gap:24px;"></div>
         </div>
         <div class="pb-sum-divider"></div>
         <div class="pb-sum-totals">
@@ -1826,8 +2117,13 @@
 
     </div><!-- end .pb-body -->
 
+  </div><!-- end proposal-section inner -->
+</section><!-- end proposal-section -->
+    <!-- Divider between CTA and Assumptions -->
+    <div style="height:1px; background:#CDD5E0; width:100%; margin-top:120px;"></div>
+
     <!-- Assumptions & Notes -->
-    <div class="pb-assumptions">
+    <div class="pb-assumptions" style="margin-top:120px;">
       <div class="pb-assump-inner">
         <div class="pb-assump-icon-box">
           <img src="assets/price/Proposal Builder/alert-circle-icon.svg" alt="Note">
@@ -1865,6 +2161,46 @@
     </div>
 
   </div><!-- end .proposal-inner -->
+</section>
+
+<!-- ════════════════ PROPOSAL REPORT (shown after Generate) ════════════════ -->
+<section class="proposal-report-section" id="proposal-report">
+  <div class="pr-wrap">
+
+    <!-- Header row: left content + right info card -->
+    <div class="pr-header-row">
+      <!-- Left -->
+      <div class="pr-header-left">
+        <div class="pr-label">
+          <div class="pr-label-line"></div>
+          YOUR PROPOSAL REPORT
+        </div>
+        <div class="pr-title-block">
+          <h2 class="pr-title">Estimated Cost Breakdown</h2>
+          <p class="pr-subtitle">Review the breakdown below. Download or contact Marco to finalise the quote.</p>
+        </div>
+        <button class="pr-download-btn" id="pr-download-btn" type="button">Download Report</button>
+      </div>
+      <!-- Right: info card -->
+      <div class="pr-info-card" id="pr-info-card"></div>
+    </div>
+
+    <!-- 4 metric cards -->
+    <div class="pr-metrics-row" id="pr-metrics-row"></div>
+
+    <!-- Pay Details table -->
+    <div class="pr-table-section">
+      <h3 class="pr-section-title">Pay Details</h3>
+      <div class="pr-table" id="pr-pay-table"></div>
+    </div>
+
+    <!-- Marco Service Fees table -->
+    <div class="pr-table-section">
+      <h3 class="pr-section-title">Marco Service Fees</h3>
+      <div class="pr-table" id="pr-services-table"></div>
+    </div>
+
+  </div>
 </section>
 
 <!-- ════════════════ FOOTER ════════════════ -->
@@ -1988,7 +2324,7 @@
       currency: 'USD',
       salary: null,
       salaryFreq: 'monthly',
-      services: {},
+      services: { marco_os: true },
       startDate: null,
       bonus: null,
       allowance: null
@@ -2010,7 +2346,7 @@
       'Argentina','Bahamas','Barbados','Belize','Bolivia','Brazil','Canada','Chile',
       'Colombia','Costa Rica','Cuba','Dominican Republic','Ecuador','El Salvador',
       'Guatemala','Guyana','Haiti','Honduras','Jamaica','Mexico','Nicaragua',
-      'Panama','Paraguay','Peru','Suriname','Trinidad and Tobago','Uruguay','USA',
+      'Panama','Paraguay','Peru','Suriname','Trinidad and Tobago','Uruguay','United States',
       'Venezuela',
       // Asia Pacific
       'Afghanistan','Australia','Bangladesh','Bhutan','Brunei','Cambodia','China',
@@ -2030,7 +2366,7 @@
       'Switzerland','Ukraine','United Kingdom',
       // Middle East
       'Bahrain','Iran','Iraq','Israel','Jordan','Kuwait','Lebanon','Oman',
-      'Qatar','Saudi Arabia','Syria','Turkey','UAE','Yemen'
+      'Qatar','Saudi Arabia','Syria','Turkey','United Arab Emirates','Yemen'
     ].sort();
 
     /* ── Eurozone countries (use EUR) ── */
@@ -2048,7 +2384,7 @@
       // Asia – Tier 399
       'Japan':399,'South Korea':399,'Singapore':399,'Taiwan':399,'Hong Kong':399,
       // Asia – Central/Middle East Tier 299
-      'UAE':299,'Saudi Arabia':299,'Qatar':299,'Turkey':299,'Kazakhstan':299,
+      'United Arab Emirates':299,'Saudi Arabia':299,'Qatar':299,'Turkey':299,'Kazakhstan':299,
       'Jordan':299,'Israel':299,'Bahrain':299,'Kuwait':299,'Oman':299,
       'Iraq':299,'Iran':299,'Armenia':299,'Azerbaijan':299,'Georgia':299,
       'Kyrgyzstan':299,'Tajikistan':299,'Turkmenistan':299,'Uzbekistan':299,
@@ -2060,7 +2396,7 @@
       'Myanmar':199,'Laos':199,'Nepal':199,'Bhutan':199,'Maldives':199,
       'Mongolia':199,'Timor-Leste':199,'Afghanistan':199,
       // North America – 299
-      'USA':299,'Canada':299,
+      'United States':299,'Canada':299,
       // South/Latin America – 399
       'Brazil':399,'Argentina':399,'Chile':399,'Colombia':399,'Mexico':399,
       'Peru':399,'Venezuela':399,'Ecuador':399,'Bolivia':399,'Paraguay':399,
@@ -2098,7 +2434,7 @@
 
     /* ── EOR Expat monthly fee by country (null = not available) ── */
     var eorExpatFeeMap = {
-      'UAE':499,
+      'United Arab Emirates':499,
       'Thailand':699,'Kazakhstan':699,'Qatar':699,'Saudi Arabia':699,'Turkey':699,
       'Japan':499,'Malaysia':499,'South Korea':499,
       'Indonesia':499,'Philippines':499,'Vietnam':499,
@@ -2385,6 +2721,16 @@
       });
     });
 
+    /* ── Auto-select companion cards helper ── */
+    function selectCard(svc) {
+      document.querySelectorAll('.pb-service-card').forEach(function(el) {
+        if (el.dataset.svc === svc && el.style.display !== 'none') {
+          pbState.services[svc] = true;
+          el.classList.add('selected');
+        }
+      });
+    }
+
     /* ── Service scope cards ── */
     document.querySelectorAll('.pb-service-card').forEach(function(card) {
       card.addEventListener('click', function() {
@@ -2395,6 +2741,9 @@
         } else {
           pbState.services[svc] = true;
           card.classList.add('selected');
+          // Auto-select companion monthly fee when setup fee is selected
+          if (svc === 'local_setup')  selectCard('local_monthly');
+          if (svc === 'expat_setup')  selectCard('expat_monthly');
         }
         updateSummary();
       });
@@ -2485,9 +2834,41 @@
         container.appendChild(row);
       });
 
+      // Annual Bonus — shown if entered, added as monthly equivalent
+      var bonusMonthly = 0;
+      var bonusVal = parseFloat(pbState.bonus);
+      if (!isNaN(bonusVal) && bonusVal > 0) {
+        bonusMonthly = (bonusVal / 12) * hc;
+        var bonusRow = document.createElement('div');
+        bonusRow.className = 'pb-sum-row';
+        bonusRow.innerHTML =
+          '<div class="pb-sum-row-label">' +
+            '<div class="pb-sum-row-label-main">Annual Bonus</div>' +
+            '<div class="pb-sum-row-label-sub">' + fmtMoney(bonusVal, cur) + ' / year ÷ 12</div>' +
+          '</div>' +
+          '<div class="pb-sum-row-value">' + fmtMoney(bonusMonthly, cur) + '</div>';
+        container.appendChild(bonusRow);
+      }
+
+      // Monthly Allowance — shown if entered, added directly
+      var allowanceMonthly = 0;
+      var allowanceVal = parseFloat(pbState.allowance);
+      if (!isNaN(allowanceVal) && allowanceVal > 0) {
+        allowanceMonthly = allowanceVal * hc;
+        var allowRow = document.createElement('div');
+        allowRow.className = 'pb-sum-row';
+        allowRow.innerHTML =
+          '<div class="pb-sum-row-label">' +
+            '<div class="pb-sum-row-label-main">Monthly Allowance</div>' +
+            '<div class="pb-sum-row-label-sub">' + fmtMoney(allowanceVal, cur) + ' × ' + hc + ' person(s)</div>' +
+          '</div>' +
+          '<div class="pb-sum-row-value">' + fmtMoney(allowanceMonthly, cur) + '</div>';
+        container.appendChild(allowRow);
+      }
+
       // Totals
       if (monthly) {
-        var totalMonth = monthly * hc + totalServices;
+        var totalMonth = monthly * hc + totalServices + bonusMonthly + allowanceMonthly;
         var totalYear  = totalMonth * 12;
         document.getElementById('sum-total-month').textContent = fmtMoney(totalMonth, cur);
         document.getElementById('sum-total-year').textContent  = fmtMoney(totalYear, cur);
@@ -2499,10 +2880,145 @@
 
     /* ── Generate Proposal buttons ── */
     function handleGenerate() {
-      alert('Proposal generation coming soon. Please contact Marco for a full proposal.');
+      var monthly = getMonthlyGross();
+      if (!monthly) {
+        alert('Please enter a monthly salary before generating the proposal.');
+        return;
+      }
+
+      var cur  = pbState.currency;
+      var hc   = pbState.headcount;
+      var today = new Date();
+      var months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+      var genDate = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+
+      // ── Info card ──
+      var empTypeLabels = {
+        local_employee: 'Local Employee', foreigner: 'Foreigner', expat: 'Expat',
+        independent_contractor: 'Independent Contractor', eor_employee: 'EOR Employee'
+      };
+      var selectedSvcNames = Object.keys(pbState.services).map(function(k) {
+        return serviceFees[k] ? serviceFees[k].label : k;
+      }).join(', ') || '—';
+
+      var salaryDisplay = fmtMoney(monthly, cur) + '/ month';
+      var infoRows = [
+        ['Country',         pbState.country || '—'],
+        ['Employment Type', empTypeLabels[pbState.empType] || '—'],
+        ['Employees',       String(hc)],
+        ['Salary',          salaryDisplay],
+        ['Generated',       genDate],
+        ['Services',        selectedSvcNames]
+      ];
+      var infoCard = document.getElementById('pr-info-card');
+      infoCard.innerHTML = infoRows.map(function(r) {
+        return '<div class="pr-info-row"><span class="pr-info-label">' + r[0] + '</span>' +
+               '<span class="pr-info-value">' + r[1] + '</span></div>';
+      }).join('');
+
+      // ── Compute totals ──
+      var totalSvcMonthly = 0;
+      Object.keys(pbState.services).forEach(function(k) {
+        var svc = serviceFees[k];
+        if (!svc || svc.free || svc.oneTime) return;
+        totalSvcMonthly += svc.amount * hc;
+      });
+      var bonusM     = (parseFloat(pbState.bonus)     || 0) / 12;
+      var allowanceM = (parseFloat(pbState.allowance)  || 0);
+      var grossM     = monthly * hc + bonusM * hc + allowanceM * hc;
+      var totalM     = grossM + totalSvcMonthly;
+
+      // ── Metric cards ──
+      var metrics = [
+        { dot: '#1d4783', value: fmtMoney(grossM, cur), label: 'Gross Salary',           note: 'per month' },
+        { dot: '#019de7', value: fmtMoney(0, cur),      label: 'Employer Contributions', note: 'Contact for rates' },
+        { dot: '#ffa245', value: fmtMoney(totalSvcMonthly, cur), label: 'Marco Service Fees', note: 'per month' },
+        { dot: '#6bce20', value: fmtMoney(totalM, cur), label: 'Total Employer Cost',    note: 'per month (excl. contributions)' }
+      ];
+      document.getElementById('pr-metrics-row').innerHTML = metrics.map(function(m) {
+        return '<div class="pr-metric-card">' +
+          '<div class="pr-metric-dot" style="background:' + m.dot + '"></div>' +
+          '<div class="pr-metric-value">' + m.value + '</div>' +
+          '<div class="pr-metric-text">' +
+            '<span class="pr-metric-label">' + m.label + '</span>' +
+            '<span class="pr-metric-note">'  + m.note  + '</span>' +
+          '</div></div>';
+      }).join('');
+
+      // ── Pay Details table ──
+      var payRows = [
+        ['Basic Salary', 'Fixed monthly', fmtMoney(monthly * hc, cur), fmtMoney(monthly * hc * 12, cur)]
+      ];
+      if (bonusM > 0) payRows.push(['Annual Bonus', 'Annual ÷ 12', fmtMoney(bonusM * hc, cur), fmtMoney(bonusM * hc * 12, cur)]);
+      if (allowanceM > 0) payRows.push(['Monthly Allowance', 'Fixed monthly', fmtMoney(allowanceM * hc, cur), fmtMoney(allowanceM * hc * 12, cur)]);
+
+      var payTable = document.getElementById('pr-pay-table');
+      var payHtml = '<div class="pr-table-row header">' +
+        ['Pay Item','Calculation Basis','Monthly Amount','Annual Amount'].map(function(h) {
+          return '<div class="pr-table-cell muted">' + h + '</div>';
+        }).join('') + '</div>';
+      payRows.forEach(function(row) {
+        payHtml += '<div class="pr-table-row body-row">' +
+          ['<span>' + row[0] + '</span>',
+           '<span class="muted" style="color:#8f98b5;font-weight:400">' + row[1] + '</span>',
+           row[2], row[3]].map(function(v, i) {
+            return '<div class="pr-table-cell' + (i > 0 ? '' : '') + '">' + v + '</div>';
+          }).join('') + '</div>';
+      });
+      payHtml += '<div class="pr-table-row total-row">' +
+        '<div class="pr-table-cell">Total Gross</div>' +
+        '<div class="pr-table-cell"></div>' +
+        '<div class="pr-table-cell accent">' + fmtMoney(grossM, cur) + '</div>' +
+        '<div class="pr-table-cell accent">' + fmtMoney(grossM * 12, cur) + '</div>' +
+        '</div>';
+      payTable.innerHTML = payHtml;
+
+      // ── Marco Service Fees table ──
+      var svcKeys = Object.keys(pbState.services);
+      var svcTable = document.getElementById('pr-services-table');
+      var svcHtml = '<div class="pr-table-row header">' +
+        ['Service','Pricing Model','One-time Fee','Monthly Fee'].map(function(h) {
+          return '<div class="pr-table-cell muted">' + h + '</div>';
+        }).join('') + '</div>';
+
+      var totalOneTime = 0, totalMonthlyFee = 0;
+      svcKeys.forEach(function(k) {
+        var svc = serviceFees[k];
+        if (!svc) return;
+        var oneTime = svc.oneTime ? fmtMoney(svc.amount * hc, cur) : '-';
+        var monthly_fee = svc.free ? 'Free' : (!svc.oneTime ? fmtMoney(svc.amount * hc, cur) : '-');
+        var model = svc.free ? 'Included' : (svc.oneTime ? 'One-time per person' : svc.unit);
+        if (svc.oneTime && !svc.free) totalOneTime  += svc.amount * hc;
+        if (!svc.oneTime && !svc.free) totalMonthlyFee += svc.amount * hc;
+        var mClass  = svc.free ? ' free-cell' : '';
+        svcHtml += '<div class="pr-table-row body-row">' +
+          '<div class="pr-table-cell">' + svc.label + '</div>' +
+          '<div class="pr-table-cell muted">' + model + '</div>' +
+          '<div class="pr-table-cell">' + oneTime + '</div>' +
+          '<div class="pr-table-cell' + mClass + '">' + monthly_fee + '</div>' +
+          '</div>';
+      });
+      svcHtml += '<div class="pr-table-row total-row">' +
+        '<div class="pr-table-cell">Calculable Totals</div>' +
+        '<div class="pr-table-cell muted">Variable fees quoted separately</div>' +
+        '<div class="pr-table-cell accent">' + (totalOneTime  ? fmtMoney(totalOneTime,  cur) : '-') + '</div>' +
+        '<div class="pr-table-cell accent">' + (totalMonthlyFee ? fmtMoney(totalMonthlyFee, cur) : '-') + '</div>' +
+        '</div>';
+      svcTable.innerHTML = svcHtml;
+
+      // ── Show section & scroll ──
+      var reportSection = document.getElementById('proposal-report');
+      reportSection.classList.add('visible');
+      setTimeout(function() {
+        reportSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
     }
     document.getElementById('pb-generate-btn').addEventListener('click', handleGenerate);
     document.getElementById('pb-sum-generate-btn').addEventListener('click', handleGenerate);
+    document.getElementById('pr-download-btn').addEventListener('click', function() {
+      window.print();
+    });
 
     /* ── Reset button ── */
     document.getElementById('pb-reset-btn').addEventListener('click', function() {
@@ -2512,7 +3028,7 @@
       pbState.currency  = 'USD';
       pbState.salary    = null;
       pbState.salaryFreq= 'monthly';
-      pbState.services  = {};
+      pbState.services  = { marco_os: true };
       pbState.startDate = null;
       pbState.bonus     = null;
       pbState.allowance = null;
@@ -2529,6 +3045,8 @@
       });
       document.getElementById('pb-monthly-equiv').classList.remove('visible');
       document.querySelectorAll('.pb-service-card').forEach(function(c) { c.classList.remove('selected'); });
+      var marcoOsCard = document.querySelector('.pb-service-card[data-svc="marco_os"]');
+      if (marcoOsCard) marcoOsCard.classList.add('selected');
       updateServiceCards(null);
       document.getElementById('pb-date-input').value = '';
       document.getElementById('pb-bonus-input').value = '';
@@ -2536,12 +3054,25 @@
       document.getElementById('pb-allowance-input').value = '';
       document.getElementById('pb-notes').value = '';
 
+      // Collapse Advanced inputs
+      var advHeader = document.getElementById('pb-advanced-header');
+      var advBody   = document.getElementById('pb-advanced-body');
+      if (advHeader) advHeader.classList.remove('open');
+      if (advBody)   advBody.classList.remove('open');
+
+      // Clear calendar selection
+      var calEl = document.getElementById('pb-calendar');
+      if (calEl) calEl.classList.remove('open');
+
       updateSummary();
     });
 
     /* ── Initial render ── */
     buildCountryList('');
     updateServiceCards(null);   // hide expat cards until country selected
+    // Pre-select Marco OS Access
+    var marcoOsCard = document.querySelector('.pb-service-card[data-svc="marco_os"]');
+    if (marcoOsCard) marcoOsCard.classList.add('selected');
     updateSummary();
 
   })();
@@ -2577,6 +3108,208 @@
     { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
   revealElements.forEach((el) => revealObserver.observe(el));
+
+    /* ── Calendar picker (3-view: days / months / years) ── */
+    (function() {
+      var calEl     = document.getElementById('pb-calendar');
+      var dateInput = document.getElementById('pb-date-input');
+      var calIcon   = document.getElementById('pb-cal-icon');
+
+      // view: 'days' | 'months' | 'years'
+      var calState  = { year: null, month: null, selected: null, view: 'days', yearBase: null };
+
+      var MONTHS_LONG  = ['January','February','March','April','May','June',
+                          'July','August','September','October','November','December'];
+      var MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun',
+                          'Jul','Aug','Sep','Oct','Nov','Dec'];
+      var DAYS = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+      function openCalendar() {
+        var today = new Date();
+        if (calState.year === null) {
+          calState.year     = today.getFullYear();
+          calState.month    = today.getMonth();
+          calState.yearBase = Math.floor(today.getFullYear() / 12) * 12;
+        }
+        calState.view = 'days';
+        render();
+        calEl.classList.add('open');
+      }
+
+      function closeCalendar() { calEl.classList.remove('open'); }
+
+      /* ── master render dispatcher ── */
+      function render() {
+        if (calState.view === 'days')   renderDays();
+        else if (calState.view === 'months') renderMonths();
+        else renderYears();
+      }
+
+      /* ── DAY VIEW ─────────────────────────────────────── */
+      function renderDays() {
+        var today     = new Date();
+        var year      = calState.year;
+        var month     = calState.month;
+        var firstDay  = new Date(year, month, 1).getDay();
+        var daysInMon = new Date(year, month + 1, 0).getDate();
+
+        var html = '<div class="pb-cal-header">';
+        html += '<button class="pb-cal-nav" id="pb-cal-prev">&#8249;</button>';
+        html += '<span class="pb-cal-month-label" id="pb-cal-lbl" title="Click to pick month/year">' + MONTHS_LONG[month] + ' ' + year + '</span>';
+        html += '<button class="pb-cal-nav" id="pb-cal-next">&#8250;</button>';
+        html += '</div>';
+
+        html += '<div class="pb-cal-weekdays">';
+        DAYS.forEach(function(d) { html += '<div class="pb-cal-weekday">' + d + '</div>'; });
+        html += '</div>';
+
+        html += '<div class="pb-cal-days">';
+        for (var i = 0; i < firstDay; i++) html += '<div class="pb-cal-day empty"></div>';
+        for (var d = 1; d <= daysInMon; d++) {
+          var cls = 'pb-cal-day';
+          var isToday = (d === today.getDate() && month === today.getMonth() && year === today.getFullYear());
+          var isSel   = calState.selected && d === calState.selected.d && month === calState.selected.m && year === calState.selected.y;
+          if (isSel) cls += ' selected';
+          else if (isToday) cls += ' today';
+          html += '<div class="' + cls + '" data-d="' + d + '">' + d + '</div>';
+        }
+        html += '</div>';
+        calEl.innerHTML = html;
+
+        document.getElementById('pb-cal-prev').addEventListener('click', function(e) {
+          e.stopPropagation();
+          calState.month--; if (calState.month < 0) { calState.month = 11; calState.year--; }
+          renderDays();
+        });
+        document.getElementById('pb-cal-next').addEventListener('click', function(e) {
+          e.stopPropagation();
+          calState.month++; if (calState.month > 11) { calState.month = 0; calState.year++; }
+          renderDays();
+        });
+        document.getElementById('pb-cal-lbl').addEventListener('click', function(e) {
+          e.stopPropagation();
+          calState.view = 'months';
+          renderMonths();
+        });
+        calEl.querySelectorAll('.pb-cal-day:not(.empty)').forEach(function(el) {
+          el.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var d = parseInt(this.dataset.d, 10);
+            calState.selected = { d: d, m: calState.month, y: calState.year };
+            var mm = String(calState.month + 1).padStart(2, '0');
+            var dd = String(d).padStart(2, '0');
+            dateInput.value = mm + '/' + dd + '/' + calState.year;
+            pbState.startDate = dateInput.value;
+            closeCalendar();
+          });
+        });
+      }
+
+      /* ── MONTH VIEW ───────────────────────────────────── */
+      function renderMonths() {
+        var today = new Date();
+        var year  = calState.year;
+
+        var html = '<div class="pb-cal-header">';
+        html += '<button class="pb-cal-nav" id="pb-cal-prev">&#8249;</button>';
+        html += '<span class="pb-cal-month-label" id="pb-cal-lbl" title="Click to pick year">' + year + '</span>';
+        html += '<button class="pb-cal-nav" id="pb-cal-next">&#8250;</button>';
+        html += '</div>';
+
+        html += '<div class="pb-cal-grid">';
+        MONTHS_SHORT.forEach(function(m, i) {
+          var cls = 'pb-cal-cell';
+          var isCur = (i === today.getMonth() && year === today.getFullYear());
+          var isSel = (i === calState.month && year === calState.year);
+          if (isSel) cls += ' active';
+          else if (isCur) cls += ' current-month';
+          html += '<div class="' + cls + '" data-m="' + i + '">' + m + '</div>';
+        });
+        html += '</div>';
+        calEl.innerHTML = html;
+
+        document.getElementById('pb-cal-prev').addEventListener('click', function(e) {
+          e.stopPropagation(); calState.year--; renderMonths();
+        });
+        document.getElementById('pb-cal-next').addEventListener('click', function(e) {
+          e.stopPropagation(); calState.year++; renderMonths();
+        });
+        document.getElementById('pb-cal-lbl').addEventListener('click', function(e) {
+          e.stopPropagation();
+          calState.yearBase = Math.floor(calState.year / 12) * 12;
+          calState.view = 'years';
+          renderYears();
+        });
+        calEl.querySelectorAll('.pb-cal-cell').forEach(function(el) {
+          el.addEventListener('click', function(e) {
+            e.stopPropagation();
+            calState.month = parseInt(this.dataset.m, 10);
+            calState.view  = 'days';
+            renderDays();
+          });
+        });
+      }
+
+      /* ── YEAR VIEW ────────────────────────────────────── */
+      function renderYears() {
+        var today    = new Date();
+        var base     = calState.yearBase;
+        var endYear  = base + 11;
+
+        var html = '<div class="pb-cal-header">';
+        html += '<button class="pb-cal-nav" id="pb-cal-prev">&#8249;</button>';
+        html += '<span class="pb-cal-month-label">' + base + ' – ' + endYear + '</span>';
+        html += '<button class="pb-cal-nav" id="pb-cal-next">&#8250;</button>';
+        html += '</div>';
+
+        html += '<div class="pb-cal-grid">';
+        for (var y = base; y <= endYear; y++) {
+          var cls = 'pb-cal-cell';
+          var isCur = (y === today.getFullYear());
+          var isSel = (y === calState.year);
+          if (isSel) cls += ' active';
+          else if (isCur) cls += ' current-year';
+          html += '<div class="' + cls + '" data-y="' + y + '">' + y + '</div>';
+        }
+        html += '</div>';
+        calEl.innerHTML = html;
+
+        document.getElementById('pb-cal-prev').addEventListener('click', function(e) {
+          e.stopPropagation(); calState.yearBase -= 12; renderYears();
+        });
+        document.getElementById('pb-cal-next').addEventListener('click', function(e) {
+          e.stopPropagation(); calState.yearBase += 12; renderYears();
+        });
+        calEl.querySelectorAll('.pb-cal-cell').forEach(function(el) {
+          el.addEventListener('click', function(e) {
+            e.stopPropagation();
+            calState.year  = parseInt(this.dataset.y, 10);
+            calState.view  = 'months';
+            renderMonths();
+          });
+        });
+      }
+
+      /* Toggle on icon click */
+      calIcon.addEventListener('click', function(e) {
+        e.stopPropagation();
+        calEl.classList.contains('open') ? closeCalendar() : openCalendar();
+      });
+
+      /* Toggle on input click */
+      dateInput.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (!calEl.classList.contains('open')) openCalendar();
+      });
+
+      /* Close on outside click */
+      document.addEventListener('click', function(e) {
+        if (!calEl.contains(e.target) && e.target !== calIcon && e.target !== dateInput) {
+          closeCalendar();
+        }
+      });
+    })();
+
 </script>
 
 </body>
