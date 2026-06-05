@@ -1674,7 +1674,7 @@
                 <div class="pb-svc-text">
                   <div class="pb-svc-title">IC Management – Contractor Engagement</div>
                   <div class="pb-svc-desc">Full contractor onboarding and engagement management by Marco</div>
-                  <div class="pb-svc-price" data-base-price="99">USD / EUR 99</div>
+                  <div class="pb-svc-price" data-base-price="99">USD 99 / Transaction</div>
                 </div>
               </div>
               <div class="pb-service-card" data-svc="ic_payment">
@@ -1684,7 +1684,7 @@
                 <div class="pb-svc-text">
                   <div class="pb-svc-title">IC Management – Contractor Payment</div>
                   <div class="pb-svc-desc">Payment processing and disbursement for your existing contractors</div>
-                  <div class="pb-svc-price" data-base-price="19.90">USD / EUR 19.90</div>
+                  <div class="pb-svc-price" data-base-price="19.90">USD 19.90 / Transaction</div>
                 </div>
               </div>
             </div>
@@ -1995,23 +1995,123 @@
     };
 
     /* ── Countries list ── */
+    /* ── World countries list (comprehensive) ── */
     var countries = [
-      'Algeria','Argentina','Australia','Austria','Bangladesh','Belgium','Brazil',
-      'Brunei','Bulgaria','Cambodia','Canada','Chile','China','Colombia','Croatia',
-      'Czech Republic','Denmark','Egypt','Finland','France','Germany','Greece',
-      'Hong Kong','Hungary','India','Indonesia','Ireland','Israel','Italy','Japan',
-      'Jordan','Kazakhstan','Kenya','Malaysia','Mexico','Netherlands','New Zealand',
-      'Nigeria','Norway','Pakistan','Peru','Philippines','Poland','Portugal','Qatar',
-      'Romania','Russia','Saudi Arabia','Singapore','Slovenia','South Africa',
-      'South Korea','Spain','Sri Lanka','Sweden','Switzerland','Taiwan','Thailand',
-      'Tunisia','Turkey','UAE','Ukraine','United Kingdom','USA','Vietnam'
+      // Africa
+      'Algeria','Angola','Benin','Botswana','Burkina Faso','Burundi','Cameroon',
+      'Cape Verde','Chad','Comoros','DR Congo','Djibouti','Egypt','Equatorial Guinea',
+      'Eritrea','Eswatini','Ethiopia','Gabon','Gambia','Ghana','Guinea',
+      'Guinea-Bissau','Ivory Coast','Kenya','Lesotho','Liberia','Libya',
+      'Madagascar','Malawi','Mali','Mauritania','Mauritius','Morocco','Mozambique',
+      'Namibia','Niger','Nigeria','Rwanda','Senegal','Seychelles','Sierra Leone',
+      'Somalia','South Africa','South Sudan','Sudan','Tanzania','Togo','Tunisia',
+      'Uganda','Zambia','Zimbabwe',
+      // Americas
+      'Argentina','Bahamas','Barbados','Belize','Bolivia','Brazil','Canada','Chile',
+      'Colombia','Costa Rica','Cuba','Dominican Republic','Ecuador','El Salvador',
+      'Guatemala','Guyana','Haiti','Honduras','Jamaica','Mexico','Nicaragua',
+      'Panama','Paraguay','Peru','Suriname','Trinidad and Tobago','Uruguay','USA',
+      'Venezuela',
+      // Asia Pacific
+      'Afghanistan','Australia','Bangladesh','Bhutan','Brunei','Cambodia','China',
+      'Fiji','Hong Kong','India','Indonesia','Japan','Kazakhstan','Kyrgyzstan',
+      'Laos','Macao','Malaysia','Maldives','Mongolia','Myanmar','Nepal',
+      'New Zealand','Pakistan','Papua New Guinea','Philippines','Singapore',
+      'South Korea','Sri Lanka','Taiwan','Tajikistan','Thailand','Timor-Leste',
+      'Turkmenistan','Uzbekistan','Vietnam',
+      // Europe
+      'Albania','Andorra','Armenia','Austria','Azerbaijan','Belarus','Belgium',
+      'Bosnia and Herzegovina','Bulgaria','Croatia','Cyprus','Czech Republic',
+      'Denmark','Estonia','Finland','France','Georgia','Germany','Greece',
+      'Hungary','Iceland','Ireland','Italy','Kosovo','Latvia','Liechtenstein',
+      'Lithuania','Luxembourg','Malta','Moldova','Monaco','Montenegro',
+      'Netherlands','North Macedonia','Norway','Poland','Portugal','Romania',
+      'Russia','San Marino','Serbia','Slovakia','Slovenia','Spain','Sweden',
+      'Switzerland','Ukraine','United Kingdom',
+      // Middle East
+      'Bahrain','Iran','Iraq','Israel','Jordan','Kuwait','Lebanon','Oman',
+      'Qatar','Saudi Arabia','Syria','Turkey','UAE','Yemen'
+    ].sort();
+
+    /* ── Eurozone countries (use EUR) ── */
+    var eurozoneCountries = [
+      'Austria','Belgium','Croatia','Cyprus','Estonia','Finland','France',
+      'Germany','Greece','Ireland','Italy','Latvia','Lithuania','Luxembourg',
+      'Malta','Netherlands','Portugal','Slovakia','Slovenia','Spain'
     ];
 
-    /* ── Eurozone countries ── */
-    var eurozoneCountries = [
-      'Austria','Belgium','Croatia','Finland','France','Germany','Greece',
-      'Ireland','Italy','Netherlands','Portugal','Slovenia','Spain'
-    ];
+    /* ── GBP countries ── */
+    var gbpCountries = ['United Kingdom'];
+
+    /* ── EOR Local monthly fee by country ── */
+    var eorLocalFeeMap = {
+      // Asia – Tier 399
+      'Japan':399,'South Korea':399,'Singapore':399,'Taiwan':399,'Hong Kong':399,
+      // Asia – Central/Middle East Tier 299
+      'UAE':299,'Saudi Arabia':299,'Qatar':299,'Turkey':299,'Kazakhstan':299,
+      'Jordan':299,'Israel':299,'Bahrain':299,'Kuwait':299,'Oman':299,
+      'Iraq':299,'Iran':299,'Armenia':299,'Azerbaijan':299,'Georgia':299,
+      'Kyrgyzstan':299,'Tajikistan':299,'Turkmenistan':299,'Uzbekistan':299,
+      'Lebanon':299,'Yemen':299,'Syria':299,
+      // Asia – Southeast/South Tier 199
+      'Malaysia':199,'Thailand':199,'Indonesia':199,'Philippines':199,
+      'Vietnam':199,'Cambodia':199,'Bangladesh':199,'Brunei':199,
+      'Sri Lanka':199,'Pakistan':199,'India':199,'China':199,'Macao':199,
+      'Myanmar':199,'Laos':199,'Nepal':199,'Bhutan':199,'Maldives':199,
+      'Mongolia':199,'Timor-Leste':199,'Afghanistan':199,
+      // North America – 299
+      'USA':299,'Canada':299,
+      // South/Latin America – 399
+      'Brazil':399,'Argentina':399,'Chile':399,'Colombia':399,'Mexico':399,
+      'Peru':399,'Venezuela':399,'Ecuador':399,'Bolivia':399,'Paraguay':399,
+      'Uruguay':399,'Guyana':399,'Suriname':399,'Costa Rica':399,'Panama':399,
+      'Guatemala':399,'Honduras':399,'El Salvador':399,'Nicaragua':399,
+      'Cuba':399,'Dominican Republic':399,'Jamaica':399,
+      'Trinidad and Tobago':399,'Belize':399,'Bahamas':399,'Barbados':399,
+      'Haiti':399,
+      // Europe – 399
+      'Austria':399,'Belgium':399,'Bulgaria':399,'Croatia':399,'Cyprus':399,
+      'Czech Republic':399,'Denmark':399,'Estonia':399,'Finland':399,
+      'France':399,'Germany':399,'Greece':399,'Hungary':399,'Ireland':399,
+      'Italy':399,'Latvia':399,'Lithuania':399,'Luxembourg':399,'Malta':399,
+      'Netherlands':399,'Norway':399,'Poland':399,'Portugal':399,'Romania':399,
+      'Russia':399,'Slovakia':399,'Slovenia':399,'Spain':399,'Sweden':399,
+      'Switzerland':399,'Ukraine':399,'United Kingdom':399,'Albania':399,
+      'Belarus':399,'Bosnia and Herzegovina':399,'Iceland':399,'Kosovo':399,
+      'Liechtenstein':399,'Moldova':399,'Monaco':399,'Montenegro':399,
+      'North Macedonia':399,'Serbia':399,'Andorra':399,'San Marino':399,
+      // Africa – 399
+      'Algeria':399,'Angola':399,'Benin':399,'Botswana':399,'Burkina Faso':399,
+      'Burundi':399,'Cameroon':399,'Cape Verde':399,'Chad':399,'Comoros':399,
+      'DR Congo':399,'Djibouti':399,'Egypt':399,'Equatorial Guinea':399,
+      'Eritrea':399,'Eswatini':399,'Ethiopia':399,'Gabon':399,'Gambia':399,
+      'Ghana':399,'Guinea':399,'Guinea-Bissau':399,'Ivory Coast':399,
+      'Kenya':399,'Lesotho':399,'Liberia':399,'Libya':399,'Madagascar':399,
+      'Malawi':399,'Mali':399,'Mauritania':399,'Mauritius':399,'Morocco':399,
+      'Mozambique':399,'Namibia':399,'Niger':399,'Nigeria':399,'Rwanda':399,
+      'Senegal':399,'Seychelles':399,'Sierra Leone':399,'Somalia':399,
+      'South Africa':399,'South Sudan':399,'Sudan':399,'Tanzania':399,
+      'Togo':399,'Tunisia':399,'Uganda':399,'Zambia':399,'Zimbabwe':399,
+      // Oceania – 399
+      'Australia':399,'New Zealand':399,'Fiji':399,'Papua New Guinea':399
+    };
+
+    /* ── EOR Expat monthly fee by country (null = not available) ── */
+    var eorExpatFeeMap = {
+      'UAE':499,
+      'Thailand':699,'Kazakhstan':699,'Qatar':699,'Saudi Arabia':699,'Turkey':699,
+      'Japan':499,'Malaysia':499,'South Korea':499,
+      'Indonesia':499,'Philippines':499,'Vietnam':499,
+      'Ireland':799,'United Kingdom':799,
+      'Austria':799,'Belgium':799,'Bulgaria':799,'Croatia':799,'Cyprus':799,
+      'Czech Republic':799,'Denmark':799,'Estonia':799,'Finland':799,
+      'France':799,'Germany':799,'Greece':799,'Hungary':799,'Italy':799,
+      'Latvia':799,'Lithuania':799,'Luxembourg':799,'Malta':799,
+      'Netherlands':799,'Poland':799,'Portugal':799,'Romania':799,
+      'Slovakia':799,'Slovenia':799,'Spain':799,'Sweden':799,
+      'Brazil':799,'Chile':799,'Mexico':799,'Peru':799,
+      'Australia':799,'New Zealand':799
+    };
 
     /* ── Service fees config ── */
     var serviceFees = {
@@ -2041,10 +2141,99 @@
       return pbState.salaryFreq === 'annual' ? sal / 12 : sal;
     }
 
-    /* ── Get currency for country ── */
+    /* ── Get default currency for country ── */
     function getCurrencyForCountry(country) {
+      if (!country) return 'USD';
+      if (gbpCountries.indexOf(country) !== -1) return 'GBP';
       if (eurozoneCountries.indexOf(country) !== -1) return 'EUR';
       return 'USD';
+    }
+
+    /* ── Get EOR local monthly fee for country ── */
+    function getEorLocalFee(country) {
+      return eorLocalFeeMap[country] || null;
+    }
+
+    /* ── Get EOR expat monthly fee for country (null = not available) ── */
+    function getEorExpatFee(country) {
+      if (!country) return null;
+      return eorExpatFeeMap.hasOwnProperty(country) ? eorExpatFeeMap[country] : null;
+    }
+
+    /* ── Get payroll display currency for country ── */
+    function getPayrollCurrency(country) {
+      if (!country) return 'USD';
+      if (gbpCountries.indexOf(country) !== -1) return 'GBP';
+      if (eurozoneCountries.indexOf(country) !== -1) return 'EUR';
+      return 'USD';
+    }
+
+    /* ── Update service card visibility & prices based on country ── */
+    function updateServiceCards(country) {
+      var localFee   = getEorLocalFee(country);
+      var expatFee   = getEorExpatFee(country);
+      var curr       = pbState.currency;
+      var payrollCurr = country ? getPayrollCurrency(country) : 'USD';
+
+      // EOR Local cards — visible whenever country has a local tier
+      var showLocal = !!localFee;
+      toggleServiceRow('local_setup',  showLocal);
+      toggleServiceRow('local_monthly', showLocal);
+      if (showLocal) {
+        updateCardPrice('local_setup',   curr + ' 99 / Person');
+        updateCardPrice('local_monthly', curr + ' ' + localFee + ' / Person');
+        serviceFees.local_monthly.amount = localFee;
+      }
+
+      // EOR Expat cards — only visible if country is in expat list
+      var showExpat = expatFee !== null;
+      toggleServiceRow('expat_setup',   showExpat);
+      toggleServiceRow('expat_monthly', showExpat);
+      if (showExpat) {
+        updateCardPrice('expat_setup',   curr + ' 99 / Person');
+        updateCardPrice('expat_monthly', curr + ' ' + expatFee + ' / Person');
+        serviceFees.expat_monthly.amount = expatFee;
+      }
+
+      // Hide rows where both cards are hidden
+      updateRowVisibility();
+
+      // Payroll cards — always visible, update currency label only
+      updateCardPrice('payroll_tax_setup',      payrollCurr + ' 799 / Account');
+      updateCardPrice('payroll_entity_transfer', payrollCurr + ' 399 / Entity');
+      updateCardPrice('payroll_small',           payrollCurr + ' 19.90 / Payslip');
+      updateCardPrice('payroll_large',           payrollCurr + ' 9.90 / Payslip');
+
+      // IC Management — currency follows Eurozone rule (EUR or USD)
+      updateCardPrice('ic_engagement', curr + ' 99 / Transaction');
+      updateCardPrice('ic_payment',    curr + ' 19.90 / Transaction');
+    }
+
+    function toggleServiceRow(svc, visible) {
+      var card = document.querySelector('.pb-service-card[data-svc="' + svc + '"]');
+      if (card) {
+        card.style.display = visible ? '' : 'none';
+        // Also deselect hidden cards
+        if (!visible && card.classList.contains('selected')) {
+          card.classList.remove('selected');
+          delete pbState.services[svc];
+        }
+      }
+    }
+
+    function updateCardPrice(svc, text) {
+      var card = document.querySelector('.pb-service-card[data-svc="' + svc + '"] .pb-svc-price');
+      if (card && !card.classList.contains('free')) card.textContent = text;
+    }
+
+    function updateRowVisibility() {
+      document.querySelectorAll('.pb-service-row').forEach(function(row) {
+        var cards = row.querySelectorAll('.pb-service-card');
+        var allHidden = Array.prototype.every.call(cards, function(c) {
+          return c.style.display === 'none';
+        });
+        row.style.display = allHidden ? 'none' : '';
+      });
     }
 
     /* ── Country dropdown ── */
@@ -2068,10 +2257,12 @@
           countryText.textContent = c;
           countryTrigger.classList.add('has-value');
           countryMenu.classList.remove('open');
-          // Auto-set currency
+          // Auto-set default currency (user can override via currency selector)
           var curr = getCurrencyForCountry(c);
           pbState.currency = curr;
           document.getElementById('pb-currency-text').textContent = curr;
+          // Update service card visibility and prices
+          updateServiceCards(c);
           updateSummary();
         });
         countryList.appendChild(item);
@@ -2338,6 +2529,7 @@
       });
       document.getElementById('pb-monthly-equiv').classList.remove('visible');
       document.querySelectorAll('.pb-service-card').forEach(function(c) { c.classList.remove('selected'); });
+      updateServiceCards(null);
       document.getElementById('pb-date-input').value = '';
       document.getElementById('pb-bonus-input').value = '';
       document.getElementById('pb-bonus-hint').textContent = '';
@@ -2349,6 +2541,7 @@
 
     /* ── Initial render ── */
     buildCountryList('');
+    updateServiceCards(null);   // hide expat cards until country selected
     updateSummary();
 
   })();
