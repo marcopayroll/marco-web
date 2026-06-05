@@ -1697,12 +1697,18 @@
       await new Promise(function(r) { setTimeout(r, 250); });
 
       /* ── STEP 1: Collect section break points BEFORE capturing ── */
-      /* Get top Y of every major block relative to source element top */
+      /* Collect every meaningful content boundary — the more granular, the better */
       var sourceTop = source.getBoundingClientRect().top;
       var breakSelectors = [
         '.uk-title-block',
         '.uk-stat-cards',
-        '.uk-sections section'
+        '.uk-sections section',
+        '.uk-sub-heading',
+        '.uk-section-heading',
+        '.uk-table-wrap',
+        '.uk-bullets',
+        '.uk-reg-cards',
+        '.uk-reg-card'
       ];
       var sectionCSSY = [0]; /* always include top */
       breakSelectors.forEach(function(sel) {
@@ -1712,6 +1718,10 @@
         });
       });
       sectionCSSY.sort(function(a, b) { return a - b; });
+      /* Remove duplicates within 4px */
+      sectionCSSY = sectionCSSY.filter(function(v, i) {
+        return i === 0 || v - sectionCSSY[i - 1] > 4;
+      });
 
       /* ── STEP 2: Capture the live element ── */
       var canvas = await html2canvas(source, {
@@ -1744,7 +1754,10 @@
       var ratio     = usableW / cssW;          /* mm per CSS px */
       var pageCSS   = usableH / ratio;         /* usable CSS px per page */
 
-      /* Build page slices aligned to section boundaries */
+      /* Build page slices — always cut AT a section boundary.
+         Strategy: find the LAST boundary before idealEnd that leaves
+         at least 10% content on this page (prevents infinite loops).
+         A gap at the bottom is acceptable; mid-section cuts are not. */
       var slices = [];
       var startCSS = 0;
 
@@ -1756,16 +1769,16 @@
           break;
         }
 
-        /* Find nearest section boundary that starts in the LAST 35% of this page
-           — if found, cut just before it so the section starts fresh on next page */
-        var safeZone  = startCSS + pageCSS * 0.65;
-        var bestBreak = null;
+        /* Minimum content per page: 10% of a page height (anti-infinite-loop) */
+        var minContent = startCSS + pageCSS * 0.10;
+        var bestBreak  = null;
 
+        /* Scan ALL boundaries — take the LAST one before idealEnd
+           that is at least minContent into the page */
         for (var si = 0; si < sectionCSSY.length; si++) {
           var sy = sectionCSSY[si];
-          if (sy > safeZone && sy < idealEnd) {
-            bestBreak = sy; /* cut before this section */
-            break;
+          if (sy > minContent && sy < idealEnd) {
+            bestBreak = sy; /* keep overwriting — we want the LAST one */
           }
         }
 

@@ -477,12 +477,18 @@
       flex-shrink: 0;
       color: #9094a9;
     }
+    .cg-search-row {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #E2E2E2;
+      padding: 8px 10px;
+    }
     .cg-search-field {
       flex: 1;
       border: none;
-      border-bottom: 1px solid #E2E2E2;
       outline: none;
-      padding: 8px 10px;
+      padding: 0;
       font-family: var(--font);
       font-size: 18px;
       font-weight: 400;
@@ -739,6 +745,25 @@
       height: auto;
       display: block;
     }
+
+    /* ── Search clear (x) button ── */
+    .cg-search-clear {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      cursor: pointer;
+      display: none;           /* hidden until input has value */
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: none;
+      background: none;
+      opacity: 0.6;
+      transition: opacity 0.15s;
+    }
+    .cg-search-clear:hover { opacity: 1; }
+    .cg-search-clear img { width: 16px; height: 16px; display: block; }
+    .cg-search-clear.visible { display: flex; }
   </style>
 </head>
 <body>
@@ -1070,7 +1095,12 @@
         <svg class="cg-search-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M27 27L21.65 21.65M25 15C25 20.5228 20.5228 25 15 25C9.47715 25 5 20.5228 5 15C5 9.47715 9.47715 5 15 5C20.5228 5 25 9.47715 25 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <input class="cg-search-field" id="countrySearch" type="text" placeholder="Search Country" oninput="filterCountries()">
+        <div class="cg-search-row">
+          <input class="cg-search-field" id="countrySearch" type="text" placeholder="Search Country" oninput="filterCountries(); toggleClearBtn(this)">
+          <button class="cg-search-clear" id="cgClearBtn" onclick="clearSearch()" type="button" aria-label="Clear search">
+            <img src="assets/Country Guide/icons/x-icon.svg" alt="clear" />
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1257,7 +1287,7 @@
     { name: "Portugal",      currency: "EUR", region: "Europe",       img: "" , link: "hr-knowledge-hub-country-guide-portugal.html" },
     { name: "Romania",       currency: "RON", region: "Europe",       img: "" , link: "hr-knowledge-hub-country-guide-romania.html" },
     { name: "Russia",        currency: "RUB", region: "Europe",       img: "" , link: "hr-knowledge-hub-country-guide-russia.html" },
-    { name: "Spain",         currency: "EUR", region: "Europe",       img: "" , link: "hr-knowledge-hub-country-guide-spain.html" },
+    { name: "Spain",         currency: "EUR", region: "Europe",       img: "assets/Country Guide/thumbnails/spain.jpg" , link: "hr-knowledge-hub-country-guide-spain.html", date: "4 June 2026" },
     { name: "Sweden",        currency: "SEK", region: "Europe",       img: "assets/Country Guide/thumbnails/sweden.jpg" , link: "hr-knowledge-hub-country-guide-sweden.html", date: "4 June 2026" },
     { name: "Switzerland",   currency: "CHF", region: "Europe",       img: "" , link: "hr-knowledge-hub-country-guide-switzerland.html" },
     { name: "Turkey",        currency: "TRY", region: "Europe",       img: "" , link: "hr-knowledge-hub-country-guide-turkey.html" },
@@ -1370,6 +1400,19 @@
   updateNavState();
   window.addEventListener('scroll', updateNavState, { passive: true });
   window.addEventListener('resize', updateNavState);
+
+  function toggleClearBtn(input) {
+    var btn = document.getElementById('cgClearBtn');
+    if (btn) btn.classList.toggle('visible', input.value.length > 0);
+  }
+
+  function clearSearch() {
+    var input = document.getElementById('countrySearch');
+    var btn   = document.getElementById('cgClearBtn');
+    if (input) { input.value = ''; input.focus(); }
+    if (btn)   btn.classList.remove('visible');
+    filterCountries();
+  }
 </script>
 
 </body>
