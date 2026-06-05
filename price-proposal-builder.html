@@ -1476,6 +1476,80 @@
     .pr-table-cell.accent { color: #019de7; }
     .pr-table-cell.free-cell { color: #6bce20; }
 
+
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 4px 24px; border-radius: 50px;
+      font-family: var(--font); font-size: 16px; font-weight: 400;
+      line-height: normal; letter-spacing: -0.8px; color: #fff;
+      background: #162351; border: none; cursor: pointer; text-decoration: none;
+      white-space: nowrap; flex-shrink: 0; transition: background 0.18s ease;
+    }
+    .btn-primary:hover { background: #0185C4; }
+    .btn-icon { position: relative; overflow: hidden; flex-shrink: 0; width: 20px; height: 20px; }
+    .btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
+    .btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
+    /* ════════════════════════════════════════
+       QUESTION? SECTION
+    ════════════════════════════════════════ */
+    /* ════════════════════════════════════
+       QUESTION? SECTION — pixel-perfect
+       Figma 5386-2682 @ 1440px:
+         left content: left=108, top=80, w=520
+         body: top=282  |  cta: top=354
+         thumb: left=732, 708×482px
+    ════════════════════════════════════ */
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 4px 24px; border-radius: 50px;
+      font-family: var(--font); font-size: 16px; font-weight: 400;
+      line-height: normal; letter-spacing: -0.8px; color: #fff;
+      background: #162351; border: none; cursor: pointer; text-decoration: none;
+      white-space: nowrap; flex-shrink: 0; transition: background 0.18s ease;
+    }
+    .btn-primary:hover { background: #0185C4; }
+    .btn-icon { position: relative; overflow: hidden; flex-shrink: 0; width: 20px; height: 20px; }
+    .btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
+    .btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
+    /* ════════════════════════════════════════
+       QUESTION? SECTION
+       Same structure as getstarted in Global Payroll
+    ════════════════════════════════════════ */
+    .qs-section {
+      width: 100%; overflow: hidden;
+      background: linear-gradient(to bottom, #f4f4ff 49.112%, #fff 110.41%);
+    }
+    .qs-section > .container { display: flex; align-items: stretch; min-height: 482px; }
+    .qs-inner {
+      flex: 1 1 auto; min-width: 0;
+      display: flex; flex-direction: column; padding: 80px 0;
+    }
+    .qs-section .section-label { color: var(--text-main); }
+    .qs-title {
+      font-size: 48px; font-weight: 600; line-height: 60px;
+      letter-spacing: -2.4px; margin-top: 32px;
+      color: #019de7;
+      font-family: var(--font);
+    }
+    .qs-body-text {
+      font-size: 16px; font-weight: 400; line-height: 20px;
+      color: var(--text-main); letter-spacing: -0.8px;
+      max-width: 520px; margin-top: 32px;
+      font-family: var(--font);
+    }
+    .qs-cta-wrap { margin-top: 40px; }
+    .qs-image {
+      flex: 0 0 49.17vw;
+      margin-left: 24px;
+      margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
+      position: relative; overflow: hidden;
+    }
+    .qs-image img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
   </style>
 </head>
 <body>
@@ -2211,6 +2285,30 @@
       <div class="pr-table" id="pr-services-table"></div>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ════════════════ QUESTION? SECTION ════════════════ -->
+<section class="qs-section">
+  <div class="container">
+    <div class="qs-inner fade-in">
+      <div class="section-label">
+        <div class="line"></div>
+        <span>QUESTION?</span>
+      </div>
+      <h2 class="qs-title">Need a personalized quote?</h2>
+      <p class="qs-body-text">Our team can review your specific workforce setup and produce a final binding proposal.</p>
+      <div class="qs-cta-wrap">
+        <a href="company-contact-us.html" class="btn-primary">
+          Contact us
+          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
+        </a>
+      </div>
+    </div>
+    <div class="qs-image">
+      <img src="assets/price/Proposal Builder/organization 4.webp" alt="Marco team" />
+    </div>
   </div>
 </section>
 
