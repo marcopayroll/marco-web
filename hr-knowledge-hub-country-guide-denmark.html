@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cambodia — Visa Guide | Marco</title>
+  <title>Denmark — Country Guide | Marco</title>
   <!-- PDF libraries: html2canvas captures live DOM, jsPDF creates the PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -516,14 +516,13 @@
     .uk-main { font-family: 'Euclid Circular B', sans-serif; }
 
     /* Page title block */
-    /* Title block — exact Figma 5414-8533 specs */
+    /* Title block — exact Figma 5399-12196 specs */
     .uk-title-block {
       display: flex;
       flex-direction: column;
-      gap: 24px;          /* gap between breadcrumb row and title+date block */
+      gap: 24px;
       margin-bottom: 20px;
     }
-    /* Breadcrumb: 16px Regular → chevron 16px → 16px Bold, all #162351 */
     .uk-breadcrumb {
       display: flex;
       align-items: center;
@@ -548,13 +547,11 @@
       line-height: 20px;
       white-space: nowrap;
     }
-    /* Title inner: flex-col gap 17px */
     .uk-title-inner {
       display: flex;
       flex-direction: column;
       gap: 17px;
     }
-    /* H1: 48px SemiBold #162351 line-height:60px letter-spacing:-2.4px */
     .uk-page-title {
       font-family: var(--font);
       font-size: 48px;
@@ -564,7 +561,6 @@
       letter-spacing: -2.4px;
       white-space: nowrap;
     }
-    /* Last updated: 16px Regular #8F98B5 */
     .uk-last-updated {
       font-family: var(--font);
       font-size: 16px;
@@ -1246,7 +1242,7 @@
           <span>Country/Region</span>
         </div>
         <div class="uk-sb-country-form" id="countryForm" onclick="toggleCountryDropdown()">
-          <span id="countryFormLabel">Cambodia</span>
+          <span id="countryFormLabel">Denmark</span>
           <img src="assets/Country Guide/icons/chevron-down-dark.svg" alt="" />
           <!-- Dropdown -->
           <div class="uk-sb-country-dropdown" id="countryDropdown"></div>
@@ -1266,42 +1262,294 @@
 
     <!-- Nav tabs -->
     <nav class="uk-sb-tabs">
-      <a href="#work-visas"       class="uk-sb-tab">Types of Work Visas</a>
-      <a href="#requirements"     class="uk-sb-tab">Applicant Requirements</a>
-      <a href="#checklist"        class="uk-sb-tab">Document Checklist</a>
-      <a href="#process"          class="uk-sb-tab">Application Process</a>
-      <a href="#arrival"          class="uk-sb-tab">Arrival Guide</a>
-      <a href="#changing"         class="uk-sb-tab">Changing Employers</a>
-      <a href="#departure"        class="uk-sb-tab">Departure Guide</a>
-      <a href="#policy-changes"   class="uk-sb-tab">Key Policy Changes</a>
+      <a href="#cost-of-living"       class="uk-sb-tab">Cost of Living</a>
+      <a href="#salary-benchmark"     class="uk-sb-tab">Salary Benchmark</a>
+      <a href="#statutory-benefits"   class="uk-sb-tab">Statutory Benefits</a>
+      <a href="#income-tax"           class="uk-sb-tab">Income Tax</a>
+      <a href="#working-hours"        class="uk-sb-tab">Working Hours</a>
+      <a href="#employment-contracts" class="uk-sb-tab">Employment Contracts</a>
+      <a href="#leave-entitlements"   class="uk-sb-tab">Leave Entitlements</a>
+      <a href="#public-holidays"      class="uk-sb-tab">2026 Public Holidays</a>
+      <a href="#key-regulations"      class="uk-sb-tab">Key Regulations</a>
     </nav>
 
   </aside>
 
   <!-- ── MAIN CONTENT ── -->
-  <main class="uk-main" id="ukMainContent" data-country-name="Cambodia">
+  <main class="uk-main" id="ukMainContent" data-country-name="Denmark">
     <!-- Title block -->
     <div class="uk-title-block">
-      <!-- Breadcrumb: Regular → chevron → Bold -->
       <div class="uk-breadcrumb">
-        <a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a>
+        <a href="hr-knowledge-hub-country-guide.html">Country Guide</a>
         <img src="assets/Country Guide/icons/chevron-right.svg" alt="" />
-        <strong>Cambodia</strong>
+        <strong>Denmark</strong>
       </div>
-      <!-- Title + last updated with 17px gap -->
       <div class="uk-title-inner">
-        <h1 class="uk-page-title">Cambodia</h1>
-        <p class="uk-last-updated">Last Update by, 1 January 2026</p>
+        <h1 class="uk-page-title">Denmark</h1>
+        <p class="uk-last-updated">Last Update by, 5 June 2026</p>
       </div>
     </div>
 
+    <!-- Stat cards -->
+    <div class="uk-stat-cards">
+      <div class="uk-stat-card">
+        <div class="uk-stat-label">CBA minimum hourly wage reference</div>
+        <div class="uk-stat-value">~DKK 130/hr</div>
+        <div class="uk-stat-note">No statutory minimum wage · set by collective agreements</div>
+      </div>
+      <div class="uk-stat-card">
+        <div class="uk-stat-label">Employer social security cost</div>
+        <div class="uk-stat-value">~DKK 10-15K/yr</div>
+        <div class="uk-stat-note">Fixed amount / year · not a wage percentage</div>
+      </div>
+      <div class="uk-stat-card">
+        <div class="uk-stat-label">Top marginal tax rate</div>
+        <div class="uk-stat-value">~60.5%</div>
+        <div class="uk-stat-note">Including 8% AM tax (one of the highest in the EU)</div>
+      </div>
+    </div>
 
     <!-- All sections -->
     <div class="uk-sections">
-    <section id="overview" style="text-align:center; padding:60px 0; color:#8F98B5; font-family:var(--font); font-size:16px;">
-      Cambodia Visa Guide content coming soon.
-    </section>
-  </div>
+
+      <!-- 1. Cost of Living -->
+      <section id="cost-of-living">
+        <h2 class="uk-section-heading">1. Cost of Living</h2>
+        <h3 class="uk-sub-heading">City cost level: Copenhagen / Aarhus</h3>
+        <p class="uk-section-desc">The following public cost data is for reference only (DKK Danish krone · 1 EUR ~ DKK 7.46).</p>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Expense item</th><th>Reference price (DKK)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>McDonald's meal</td><td>DKK 80 - 100</td></tr>
+              <tr><td>Monthly public transport pass (Copenhagen Rejsekort)</td><td>DKK 400 - 700</td></tr>
+              <tr><td>Two-bedroom rent in city center / month (Copenhagen)</td><td>DKK 12,000 - 18,000</td></tr>
+              <tr><td>Two-bedroom rent in suburbs / month (Aarhus / second-tier)</td><td>DKK 8,000 - 12,000</td></tr>
+              <tr><td>Minimum monthly living cost for one person</td><td>DKK 10,000 (outside Copenhagen) / DKK 14,000 (Copenhagen)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2. Salary Benchmark -->
+      <section id="salary-benchmark">
+        <h2 class="uk-section-heading">2. Salary Benchmark</h2>
+        <h3 class="uk-sub-heading">Wage system - no statutory minimum wage</h3>
+        <div class="uk-bullets">
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Denmark has no statutory minimum wage; wages are set by industry collective agreements (Overenskomst).</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">CBA average minimum hourly wage is ~DKK 130 / hour (~€17.4); covers ~80% of the workforce.</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Foreign worker salary threshold scheme (Pay Limit Scheme): annual salary must reach DKK 514,000 (2026).</span></div>
+        </div>
+        <h3 class="uk-sub-heading">Median Salary - by seniority level</h3>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Level</th><th>Monthly salary (DKK, gross)</th><th>~EUR reference</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>University graduate</td><td>DKK 32,000 - 38,000</td><td>€4,290 - 5,090</td></tr>
+              <tr><td>Mid-level (3 - 5 years)</td><td>DKK 40,000 - 55,000</td><td>€5,360 - 7,370</td></tr>
+              <tr><td>Senior / middle management</td><td>DKK 60,000 - 85,000</td><td>€8,040 - 11,390</td></tr>
+              <tr><td>Director / executive (Direktør+)</td><td>DKK 100,000+</td><td>€13,400+</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">Note: Copenhagen salaries are ~10–15% above the national average; IT / pharmaceutical / energy / finance sectors lead compensation.</p>
+      </section>
+
+      <!-- 3. Statutory Benefits -->
+      <section id="statutory-benefits">
+        <h2 class="uk-section-heading">3. Statutory Benefits</h2>
+        <h3 class="uk-sub-heading">Employer social security contributions (fixed amount system · not a wage percentage)</h3>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Item</th><th>Employer annual contribution (DKK)</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ATP supplementary pension</td><td>DKK 2,673</td><td>Fixed amount · employee also contributes DKK 1,188</td></tr>
+              <tr><td>AUB apprenticeship training fund</td><td>DKK 2,821</td><td>Funds vocational training</td></tr>
+              <tr><td>AES occupational injury insurance</td><td>DKK 215 - 5,157</td><td>Varies by industry risk</td></tr>
+              <tr><td>FIB sick leave / maternity financing</td><td>DKK 328</td><td></td></tr>
+              <tr><td>Barsel maternity fund</td><td>DKK 2,200</td><td>Mandatory employer maternity fund contribution</td></tr>
+              <tr><td>Work injury liability insurance (private insurance)</td><td>DKK 1,176 - 24,441</td><td>By industry / headcount · private insurer</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="uk-bullets" style="margin-top:12px;">
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Employer social security total is ~DKK 10,000 - 15,000 / year (very low · social security is mainly tax-funded).</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Employees only contribute ATP DKK 1,188 / year + 8% AM tax (labour market contribution).</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Employer additional total cost (including social security + holiday pay + pension): ~15–20% of gross wage (fixed social contributions ~2% + holiday pay 12.5% + CBA pension ~8–15%).</span></div>
+        </div>
+        <h3 class="uk-sub-heading">Mandatory benefits / common benefits</h3>
+        <div class="uk-bullets">
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Holiday pay (Feriepenge): 12.5% of gross pay (blue-collar) or normal salary + 1% holiday supplement (white-collar).</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Sick leave: employer pays 100% salary for the first 30 days; then municipal reimbursement (Sygedagpenge max DKK 4,865 / week).</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Pension: set by CBA (usually employer 8–12% + employee 4–6%); not statutory but nearly universal.</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Lunch subsidy / fitness / transport: common benefits; some are tax-exempt.</span></div>
+        </div>
+      </section>
+
+      <!-- 4. Personal Income Tax -->
+      <section id="income-tax">
+        <h2 class="uk-section-heading">4. Personal Income Tax</h2>
+        <p class="uk-section-desc">Progressive system: bottom tax 12.01% + middle tax 7.5% + top tax 7.5% + top-top tax 5% + municipal tax ~25%. AM tax (Arbejdsmarkedsbidrag): 8% of gross salary (deducted before all other taxes).</p>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Tax type</th><th>Rate (2026)</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>AM tax (Arbejdsmarkedsbidrag)</td><td>8%</td><td>Labour market contribution · deducted first</td></tr>
+              <tr><td>Bottom tax (Bundskat)</td><td>12.01%</td><td>All personal income</td></tr>
+              <tr><td>Middle tax (Mellemskat)</td><td>7.5%</td><td>On income above DKK 696,956</td></tr>
+              <tr><td>Top tax (Topskat)</td><td>7.5%</td><td>On income above DKK 845,543</td></tr>
+              <tr><td>Top-top tax (Top-topskat)</td><td>5%</td><td>On income above DKK 2,818,152</td></tr>
+              <tr><td>Municipal tax (Kommuneskat)</td><td>~25% (average)</td><td>Depends on municipality of residence</td></tr>
+              <tr><td>Church tax (Kirkeskat)</td><td>~0.7% (optional)</td><td>Can opt out</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">Overall top marginal tax rate is ~60.5% (including AM tax); personal allowance DKK 54,100 / year; employment allowance max DKK 63,300.</p>
+      </section>
+
+      <!-- 5. Working Hours -->
+      <section id="working-hours">
+        <h2 class="uk-section-heading">5. Working Hours</h2>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Item</th><th>Statutory rule</th><th>Market practice</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Standard weekly hours</td><td>37 hours (CBA standard)</td><td>37 hours</td></tr>
+              <tr><td>Daily working-hour cap</td><td>No statutory cap</td><td>7.4 hours</td></tr>
+              <tr><td>Maximum weekly hours</td><td>48 hours (4-month average)</td><td>37 hours</td></tr>
+              <tr><td>Daily rest</td><td>At least 11 consecutive hours</td><td>-</td></tr>
+              <tr><td>Weekly rest</td><td>At least 24 hours in every 7 days</td><td>Saturday + Sunday</td></tr>
+              <tr><td>Lunch break</td><td>Set by CBA</td><td>Usually 30 minutes</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="uk-sub-heading">Overtime pay</h3>
+        <div class="uk-bullets">
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Overtime pay is set by CBA or employment contract (law does not prescribe a uniform rate).</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Common CBA standard: first 3 hours +50%; afterwards +100%; weekends / holidays +100%.</span></div>
+          <div class="uk-bullet"><div class="uk-bullet-dot"></div><span class="uk-bullet-text">Management employees (Funktionær) usually have no overtime pay, as it is included in salary.</span></div>
+        </div>
+      </section>
+
+      <!-- 6. Employment Contract -->
+      <section id="employment-contracts">
+        <h2 class="uk-section-heading">6. Employment Contract</h2>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Contract type</th><th>Probation period</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>White-collar (Funktionær)</td><td>Maximum 3 months</td><td>Protected by the Salaried Employees Act; notice period increases with seniority</td></tr>
+              <tr><td>Blue-collar (Timelønnet)</td><td>By CBA</td><td>Protected by collective agreement</td></tr>
+              <tr><td>Fixed-term</td><td>Maximum 3 months</td><td>Must have an objective reason</td></tr>
+              <tr><td>Temporary / zero-hour</td><td>-</td><td>On-demand work; minimum guarantee</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">Contracts must be signed in writing (Danish or English); must be signed within 1 month after starting work; all key terms must be listed.</p>
+        <h3 class="uk-sub-heading">Dismissal protection and severance</h3>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Seniority (white-collar Funktionær)</th><th>Notice period</th><th>Severance pay</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0 – 5 months</td><td>1 month</td><td>None</td></tr>
+              <tr><td>6 months – 2 years 9 months</td><td>3 months</td><td>None</td></tr>
+              <tr><td>2 years 9 months – 5 years 8 months</td><td>4 months</td><td>None</td></tr>
+              <tr><td>5 years 8 months – 8 years 7 months</td><td>5 months</td><td>1 month gross salary</td></tr>
+              <tr><td>8 years 7 months+</td><td>6 months</td><td>3 months gross salary</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">Blue-collar notice periods are set by CBA (usually 14 days to 2 months); dismissal must have reasonable grounds.</p>
+      </section>
+
+      <!-- 7. Leave Entitlements -->
+      <section id="leave-entitlements">
+        <h2 class="uk-section-heading">7. Leave Entitlements</h2>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Leave type</th><th>Entitlement</th><th>Conditions</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Annual leave (Ferie)</td><td>25 days (5 weeks)</td><td>Accrues 2.08 days per month; holiday year 9/1 – 8/31</td></tr>
+              <tr><td>Holiday pay</td><td>12.5% (blue-collar)<br>Normal salary + 1% (white-collar)</td><td>Paid into FerieKonto or by employer</td></tr>
+              <tr><td>Sick leave (Sygefravær)</td><td>Employer pays 100% for first 30 days<br>Then municipal reimbursement</td><td>Must have 240h / 6 months; 120 consecutive sick days may allow dismissal</td></tr>
+              <tr><td>Maternity leave (Barsel)</td><td>Mother 18 weeks (4 before birth + 14 after birth)</td><td>Employer pays first 30 days; then Barsel fund pays</td></tr>
+              <tr><td>Paternity leave (Fædreorlov)</td><td>2 mandatory weeks + 22 shared weeks</td><td>Can be extended until child turns 1</td></tr>
+              <tr><td>Parental leave (Forældreorlov)</td><td>32 weeks total (shared by parents)</td><td>Flexible arrangement until child turns 9</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 8. Public Holidays 2026 -->
+      <section id="public-holidays">
+        <h2 class="uk-section-heading">8. Public Holidays 2026</h2>
+        <p class="uk-section-desc">Denmark has 9 statutory public holidays (not mandatory paid by law; set by CBA · most CBAs provide paid holidays).</p>
+        <div class="uk-table-wrap">
+          <table class="uk-table">
+            <thead>
+              <tr><th>Date</th><th>Holiday name</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>01/01 (Thu)</td><td>Nytårsdag (New Year's Day)</td><td></td></tr>
+              <tr><td>04/02 (Thu)</td><td>Skærtorsdag (Maundy Thursday)</td><td></td></tr>
+              <tr><td>04/03 (Fri)</td><td>Langfredag (Good Friday)</td><td></td></tr>
+              <tr><td>04/05 (Sun)</td><td>Påskedag (Easter Sunday)</td><td></td></tr>
+              <tr><td>04/06 (Mon)</td><td>2. Påskedag (Easter Monday)</td><td></td></tr>
+              <tr><td>05/14 (Thu)</td><td>Kr. Himmelfartsdag (Ascension Day)</td><td>Often bridges Friday</td></tr>
+              <tr><td>05/24 (Sun)</td><td>Pinsedag (Whit Sunday)</td><td></td></tr>
+              <tr><td>05/25 (Mon)</td><td>2. Pinsedag (Whit Monday)</td><td></td></tr>
+              <tr><td>12/25 (Thu)</td><td>Juledag (Christmas Day)</td><td></td></tr>
+              <tr><td>12/26 (Fri)</td><td>2. Juledag (Second Day of Christmas)</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="uk-table-note">Store Bededag (Great Prayer Day) was abolished from 2024; Grundlovsdag (6/5 Constitution Day) is a half-day holiday under some CBAs.</p>
+      </section>
+
+      <!-- 9. Key Regulations -->
+      <section id="key-regulations">
+        <h2 class="uk-section-heading">9. Key Regulations</h2>
+        <div class="uk-reg-cards">
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">Salaried Employees Act (Funktionærloven)</div>
+            <div class="uk-reg-body">Enacted in 1938; covers white-collar employees; regulates notice periods, sickness absence, non-compete clauses and more; one of Denmark's core employment laws.</div>
+          </div>
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">Collective agreement system (Overenskomst)</div>
+            <div class="uk-reg-body">Trade unions and employer associations negotiate every 2–3 years; covers ~80% of the workforce; sets practical standards for wages / working hours / benefits, etc.</div>
+          </div>
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">Flexicurity model</div>
+            <div class="uk-reg-body">Denmark's unique model: flexible dismissal + generous unemployment benefits + active labour-market policies; a global labour-market benchmark.</div>
+          </div>
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">Holiday Act (Ferieloven · 2020 reform)</div>
+            <div class="uk-reg-body">Concurrent holiday system (Samtidighedsferie); leave can be used as it is accrued; 12.5% holiday pay is deposited into FerieKonto.</div>
+          </div>
+          <div class="uk-reg-card">
+            <div class="uk-reg-title">EU member state + foreign work permits</div>
+            <div class="uk-reg-body">EU / EEA citizens may work freely; third-country nationals must apply for work and residence permits (Pay Limit / Positivlisten, etc.).</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
     </main>
 
 </div>
@@ -1316,7 +1564,7 @@
     </div>
     <h2 class="uk-cta-title">
       Ready to Expand in
-      <span class="accent">Cambodia?</span>
+      <span class="accent">Denmark?</span>
     </h2>
   </div>
   <p class="uk-cta-subtitle">Have any questions? We&rsquo;d love to hear from you</p>
@@ -1326,7 +1574,7 @@
   </a>
   <!-- Thumbnail -->
   <div class="uk-cta-thumb">
-    <img src="assets/Visa Guide/thumbnails/cambodia.jpg" alt="Cambodia" />
+    <img src="assets/Country Guide/thumbnails/denmark.webp" alt="Denmark" />
   </div>
 </section>
 
@@ -1446,8 +1694,8 @@
     btn.style.opacity = '0.7';
     btn.style.pointerEvents = 'none';
 
-    var countryName = document.getElementById('ukMainContent')?.dataset.countryName || 'Visa Guide';
-    var fileName    = 'Marco Visa Guide - ' + countryName + '.pdf';
+    var countryName = document.getElementById('ukMainContent')?.dataset.countryName || 'Country Guide';
+    var fileName    = 'Marco Country Guide - ' + countryName + '.pdf';
     var source      = document.getElementById('ukMainContent');
 
     try {
@@ -1471,18 +1719,12 @@
       await new Promise(function(r) { setTimeout(r, 250); });
 
       /* ── STEP 1: Collect section break points BEFORE capturing ── */
-      /* Collect every meaningful content boundary — the more granular, the better */
+      /* Get top Y of every major block relative to source element top */
       var sourceTop = source.getBoundingClientRect().top;
       var breakSelectors = [
         '.uk-title-block',
         '.uk-stat-cards',
-        '.uk-sections section',
-        '.uk-sub-heading',
-        '.uk-section-heading',
-        '.uk-table-wrap',
-        '.uk-bullets',
-        '.uk-reg-cards',
-        '.uk-reg-card'
+        '.uk-sections section'
       ];
       var sectionCSSY = [0]; /* always include top */
       breakSelectors.forEach(function(sel) {
@@ -1492,10 +1734,6 @@
         });
       });
       sectionCSSY.sort(function(a, b) { return a - b; });
-      /* Remove duplicates within 4px */
-      sectionCSSY = sectionCSSY.filter(function(v, i) {
-        return i === 0 || v - sectionCSSY[i - 1] > 4;
-      });
 
       /* ── STEP 2: Capture the live element ── */
       var canvas = await html2canvas(source, {
@@ -1528,11 +1766,7 @@
       var ratio     = usableW / cssW;          /* mm per CSS px */
       var pageCSS   = usableH / ratio;         /* usable CSS px per page */
 
-      /* Build page slices — same proven algorithm as Country Guide.
-         Safe zone = last 35% of the page. Find the FIRST boundary
-         in that zone and cut there so the section starts fresh on
-         the next page. A gap at the bottom is fine; mid-section
-         cuts are not. */
+      /* Build page slices aligned to section boundaries */
       var slices = [];
       var startCSS = 0;
 
@@ -1544,17 +1778,16 @@
           break;
         }
 
-        /* Safe zone: last 90% of page (min 10% content per page).
-           Take the LAST boundary before idealEnd — maximises content
-           per page while never mid-cutting a section.
-           A gap at the bottom of the page is acceptable. */
-        var minContent = startCSS + pageCSS * 0.10;
-        var bestBreak  = null;
+        /* Find nearest section boundary that starts in the LAST 35% of this page
+           — if found, cut just before it so the section starts fresh on next page */
+        var safeZone  = startCSS + pageCSS * 0.65;
+        var bestBreak = null;
 
         for (var si = 0; si < sectionCSSY.length; si++) {
           var sy = sectionCSSY[si];
-          if (sy > minContent && sy < idealEnd) {
-            bestBreak = sy; /* keep overwriting — want the LAST one */
+          if (sy > safeZone && sy < idealEnd) {
+            bestBreak = sy; /* cut before this section */
+            break;
           }
         }
 
@@ -1619,70 +1852,72 @@
   /* ── Country dropdown ── */
   var COUNTRIES = [
     // Africa
-    { name: 'Algeria',        region: 'Africa',       link: 'hr-knowledge-hub-visa-guide-algeria.html' },
-    { name: 'Kenya',          region: 'Africa',       link: 'hr-knowledge-hub-visa-guide-kenya.html' },
-    { name: 'Nigeria',        region: 'Africa',       link: 'hr-knowledge-hub-visa-guide-nigeria.html' },
-    { name: 'South Africa',   region: 'Africa',       link: 'hr-knowledge-hub-visa-guide-south-africa.html' },
-    { name: 'Tunisia',        region: 'Africa',       link: 'hr-knowledge-hub-visa-guide-tunisia.html' },
+    { name: 'Algeria',        region: 'Africa',       link: 'hr-knowledge-hub-country-guide-algeria.html' },
+    { name: 'Kenya',          region: 'Africa',       link: 'hr-knowledge-hub-country-guide-kenya.html' },
+    { name: 'Nigeria',        region: 'Africa',       link: 'hr-knowledge-hub-country-guide-nigeria.html' },
+    { name: 'South Africa',   region: 'Africa',       link: 'hr-knowledge-hub-country-guide-south-africa.html' },
+    { name: 'Tunisia',        region: 'Africa',       link: 'hr-knowledge-hub-country-guide-tunisia.html' },
     // Americas
-    { name: 'Argentina',      region: 'Americas',     link: 'hr-knowledge-hub-visa-guide-argentina.html' },
-    { name: 'Brazil',         region: 'Americas',     link: 'hr-knowledge-hub-visa-guide-brazil.html' },
-    { name: 'Canada',         region: 'Americas',     link: 'hr-knowledge-hub-visa-guide-canada.html' },
-    { name: 'Chile',          region: 'Americas',     link: 'hr-knowledge-hub-visa-guide-chile.html' },
-    { name: 'Colombia',       region: 'Americas',     link: 'hr-knowledge-hub-visa-guide-colombia.html' },
-    { name: 'Mexico',         region: 'Americas',     link: 'hr-knowledge-hub-visa-guide-mexico.html' },
-    { name: 'Peru',           region: 'Americas',     link: 'hr-knowledge-hub-visa-guide-peru.html' },
-    { name: 'USA',            region: 'Americas',     link: 'hr-knowledge-hub-visa-guide-usa.html' },
+    { name: 'Argentina',      region: 'Americas',     link: 'hr-knowledge-hub-country-guide-argentina.html' },
+    { name: 'Brazil',         region: 'Americas',     link: 'hr-knowledge-hub-country-guide-brazil.html' },
+    { name: 'Canada',         region: 'Americas',     link: 'hr-knowledge-hub-country-guide-canada.html' },
+    { name: 'Chile',          region: 'Americas',     link: 'hr-knowledge-hub-country-guide-chile.html' },
+    { name: 'Colombia',       region: 'Americas',     link: 'hr-knowledge-hub-country-guide-colombia.html' },
+    { name: 'Mexico',         region: 'Americas',     link: 'hr-knowledge-hub-country-guide-mexico.html' },
+    { name: 'Peru',           region: 'Americas',     link: 'hr-knowledge-hub-country-guide-peru.html' },
+    { name: 'USA',            region: 'Americas',     link: 'hr-knowledge-hub-country-guide-usa.html' },
     // Asia Pacific
-    { name: 'Australia',      region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-australia.html' },
-    { name: 'Bangladesh',     region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-bangladesh.html' },
-    { name: 'Brunei',         region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-brunei.html' },
-    { name: 'Cambodia',       region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-cambodia.html' },
-    { name: 'China',          region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-china.html' },
-    { name: 'Hong Kong',      region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-hong-kong.html' },
-    { name: 'India',          region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-india.html' },
-    { name: 'Indonesia',      region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-indonesia.html' },
-    { name: 'Japan',          region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-japan.html' },
-    { name: 'Malaysia',       region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-malaysia.html' },
-    { name: 'New Zealand',    region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-new-zealand.html' },
-    { name: 'Pakistan',       region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-pakistan.html' },
-    { name: 'Philippines',    region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-philippines.html' },
-    { name: 'Singapore',      region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-singapore.html' },
-    { name: 'South Korea',    region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-south-korea.html' },
-    { name: 'Sri Lanka',      region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-sri-lanka.html' },
-    { name: 'Taiwan',         region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-taiwan.html' },
-    { name: 'Thailand',       region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-thailand.html' },
-    { name: 'Vietnam',        region: 'Asia Pacific', link: 'hr-knowledge-hub-visa-guide-vietnam.html' },
+    { name: 'Australia',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-australia.html' },
+    { name: 'Bangladesh',     region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-bangladesh.html' },
+    { name: 'Brunei',         region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-brunei.html' },
+    { name: 'Cambodia',       region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-cambodia.html' },
+    { name: 'China',          region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-china.html' },
+    { name: 'Hong Kong',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-hong-kong.html' },
+    { name: 'India',          region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-india.html' },
+    { name: 'Indonesia',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-indonesia.html' },
+    { name: 'Japan',          region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-japan.html' },
+    { name: 'Malaysia',       region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-malaysia.html' },
+    { name: 'New Zealand',    region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-new-zealand.html' },
+    { name: 'Pakistan',       region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-pakistan.html' },
+    { name: 'Philippines',    region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-philippines.html' },
+    { name: 'Singapore',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-singapore.html' },
+    { name: 'South Korea',    region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-south-korea.html' },
+    { name: 'Sri Lanka',      region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-sri-lanka.html' },
+    { name: 'Taiwan',         region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-taiwan.html' },
+    { name: 'Thailand',       region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-thailand.html' },
+    { name: 'Vietnam',        region: 'Asia Pacific', link: 'hr-knowledge-hub-country-guide-vietnam.html' },
     // Europe
-    { name: 'Austria',        region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-austria.html' },
-    { name: 'Belgium',        region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-belgium.html' },
-    { name: 'Bulgaria',       region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-bulgaria.html' },
-    { name: 'Czech Republic', region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-czech-republic.html' },
-    { name: 'Denmark',        region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-denmark.html' },
-    { name: 'Finland',        region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-finland.html' },
-    { name: 'France',         region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-france.html' },
-    { name: 'Germany',        region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-germany.html' },
-    { name: 'Hungary',        region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-hungary.html' },
-    { name: 'Ireland',        region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-ireland.html' },
-    { name: 'Italy',          region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-italy.html' },
-    { name: 'Netherlands',    region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-netherlands.html' },
-    { name: 'Poland',         region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-poland.html' },
-    { name: 'Portugal',       region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-portugal.html' },
-    { name: 'Romania',        region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-romania.html' },
-    { name: 'Russia',         region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-russia.html' },
-    { name: 'Spain',          region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-spain.html' },
-    { name: 'Sweden',         region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-sweden.html' },
-    { name: 'Switzerland',    region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-switzerland.html' },
-    { name: 'Turkey',         region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-turkey.html' },
-    { name: 'Ukraine',        region: 'Europe',       link: 'hr-knowledge-hub-visa-guide-ukraine.html' },
+    { name: 'Austria',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-austria.html' },
+    { name: 'Belgium',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-belgium.html' },
+    { name: 'Bulgaria',       region: 'Europe',       link: 'hr-knowledge-hub-country-guide-bulgaria.html' },
+    { name: 'Croatia',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-croatia.html' },
+    { name: 'Czech Republic', region: 'Europe',       link: 'hr-knowledge-hub-country-guide-czech-republic.html' },
+    { name: 'Denmark',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-denmark.html' },
+    { name: 'Finland',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-finland.html' },
+    { name: 'France',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-france.html' },
+    { name: 'Germany',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-germany.html' },
+    { name: 'Hungary',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-hungary.html' },
+    { name: 'Ireland',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-ireland.html' },
+    { name: 'Italy',          region: 'Europe',       link: 'hr-knowledge-hub-country-guide-italy.html' },
+    { name: 'Netherlands',    region: 'Europe',       link: 'hr-knowledge-hub-country-guide-netherlands.html' },
+    { name: 'Poland',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-poland.html' },
+    { name: 'Portugal',       region: 'Europe',       link: 'hr-knowledge-hub-country-guide-portugal.html' },
+    { name: 'Romania',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-romania.html' },
+    { name: 'Russia',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-russia.html' },
+    { name: 'Spain',          region: 'Europe',       link: 'hr-knowledge-hub-country-guide-spain.html' },
+    { name: 'Sweden',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-sweden.html' },
+    { name: 'Switzerland',    region: 'Europe',       link: 'hr-knowledge-hub-country-guide-switzerland.html' },
+    { name: 'Turkey',         region: 'Europe',       link: 'hr-knowledge-hub-country-guide-turkey.html' },
+    { name: 'United Kingdom', region: 'Europe',       link: 'hr-knowledge-hub-country-guide-united-kingdom.html' },
+    { name: 'Ukraine',        region: 'Europe',       link: 'hr-knowledge-hub-country-guide-ukraine.html' },
     // Middle East
-    { name: 'Egypt',          region: 'Middle East',  link: 'hr-knowledge-hub-visa-guide-egypt.html' },
-    { name: 'Israel',         region: 'Middle East',  link: 'hr-knowledge-hub-visa-guide-israel.html' },
-    { name: 'Saudi Arabia',   region: 'Middle East',  link: 'hr-knowledge-hub-visa-guide-saudi-arabia.html' },
-    { name: 'UAE',            region: 'Middle East',  link: 'hr-knowledge-hub-visa-guide-uae.html' },
+    { name: 'Egypt',          region: 'Middle East',  link: 'hr-knowledge-hub-country-guide-egypt.html' },
+    { name: 'Israel',         region: 'Middle East',  link: 'hr-knowledge-hub-country-guide-israel.html' },
+    { name: 'Saudi Arabia',   region: 'Middle East',  link: 'hr-knowledge-hub-country-guide-saudi-arabia.html' },
+    { name: 'UAE',            region: 'Middle East',  link: 'hr-knowledge-hub-country-guide-uae.html' },
   ];
 
-  var currentCountry = 'Cambodia';
+  var currentCountry = 'Denmark';
 
   /* Build dropdown HTML - flat alphabetical list */
   (function buildDropdown() {
