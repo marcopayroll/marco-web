@@ -1617,7 +1617,7 @@
           Scale your global workforce <span class="accent">today</span>
         </h1>
         <div class="hero-ctas">
-          <a href="service-global-payroll.html" class="btn-light">
+          <a href="#marco-services" class="btn-light" id="hero-explore-services-btn">
             Explore Services
             <div class="btn-icon">
               <div class="btn-icon-inner">
@@ -1775,7 +1775,7 @@
 </section>
 
 <!-- ════════════════ SERVICES ════════════════ -->
-<section class="services">
+<section class="services" id="marco-services">
   <div class="container">
 
     <div class="services-header fade-in">
@@ -2094,11 +2094,11 @@
         </div>
         <p class="cta-desc">Tell us where you want to hire. We&#8217;ll show you exactly how Marco operates in those markets &#8212; the entities, the compliance posture, the team behind it.</p>
         <div class="cta-buttons">
-          <a href="contact.html" class="cta-btn cta-btn--primary">
+          <a href="company-contact-us.html" class="cta-btn cta-btn--primary">
             Contact us
             <svg class="cta-btn-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a href="services.html" class="cta-btn cta-btn--secondary">
+          <a href="#marco-services" class="cta-btn cta-btn--secondary" id="explore-services-btn">
             Explore Services
             <svg class="cta-btn-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -2392,6 +2392,20 @@
       techVisuals.forEach(v => v.classList.toggle('is-active', v.dataset.panel === panel));
     });
   });
+</script>
+
+<script>
+  /* ── Explore Services smooth scroll with nav offset (shared) ── */
+  function scrollToServices(e) {
+    e.preventDefault();
+    var target = document.getElementById('marco-services');
+    if (!target) return;
+    var navHeight = document.getElementById('main-nav').offsetHeight;
+    var top       = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+  document.getElementById('explore-services-btn').addEventListener('click', scrollToServices);
+  document.getElementById('hero-explore-services-btn').addEventListener('click', scrollToServices);
 </script>
 
 </body>
