@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vendor List | Marco</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-main:      #019DE7;
+      --navy:           #0a1628;
+      --text-main:      #162351;
+      --text-secondary: #475072;
+      --text-tertiary:  #8F98B5;
+      --font: 'Euclid Circular B', 'Inter', sans-serif;
+      --gutter: clamp(64px, 7.5vw, 108px);
+    }
+
+    body {
+      font-family: var(--font);
+      background: #fff;
+      color: var(--text-main);
+      min-width: 960px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+    }
+
+    /* ════════════════════════════════════════
+       NAV — fixed, transparent over hero, solid on scroll
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+      background-image: none;
+      transition:
+        background-color 0.25s ease,
+        background-image 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+    .nav.nav-scrolled {
+      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+    .nav-container {
+      width: min(100% - 48px, 1440px);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+    }
+    .nav-tabbar { display: flex; align-items: flex-start; gap: 40px; flex-shrink: 0; }
+    .nav-logo { width: 152px; height: 48px; display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-inner { position: relative; width: 100%; aspect-ratio: 684 / 108; }
+    .nav-logo-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-menu { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
+    .nav-tab { display: flex; flex-direction: column; gap: 14px; padding-top: 16px; align-items: flex-start; flex-shrink: 0; position: relative; }
+    .nav-tab:hover::after { content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px; height: 2px; background: #fff; pointer-events: none; }
+    .nav-tab--active::after { content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px; height: 2px; background: var(--blue-main); pointer-events: none; }
+    .nav-tab-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; flex-shrink: 0; }
+    .nav-tab-inner span { font-size: 12px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
+    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-right { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .nav-lang { display: flex; align-items: center; justify-content: space-between; width: 44px; flex-shrink: 0; }
+    .nav-lang-flag { position: relative; width: 20px; height: 20px; border-radius: 50px; border: 1px solid #e5e7eb; overflow: hidden; flex-shrink: 0; }
+    .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
+    .nav-lang span { font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
+    .nav-signin { background: var(--blue-main); color: #fff; font-family: var(--font); font-size: 12px; font-weight: 600; border-radius: 50px; padding: 14px 24px; height: 32px; width: 100px; display: flex; align-items: center; justify-content: center; white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0; text-decoration: none; transition: background 0.18s ease; }
+    .nav-signin:hover { background: #0185C4; }
+
+    /* Dropdown shared */
+    .nav-dropdown-label { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-tertiary); }
+    .nav-dropdown-divider { height: 1px; background: #CDD5E0; }
+    .nav-dropdown-list { display: flex; flex-direction: column; gap: 20px; }
+    .nav-dropdown-item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+    .nav-dropdown-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-dropdown-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-dropdown-item:hover .nav-dropdown-item-title { color: var(--blue-main); }
+
+    /* Services dropdown */
+    .nav-tab-services { position: relative; }
+    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 697px; top: 100%; height: 44px; }
+    .nav-services-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 697px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-services:hover .nav-services-dropdown, .nav-services-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-services-columns { display: flex; gap: 16px; }
+    .nav-services-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-services-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-services-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-services-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-services-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-services-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-services-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-services-item:hover .nav-services-item-title { color: var(--blue-main); }
+
+    /* Compliance dropdown */
+    .nav-tab-compliance { position: relative; }
+    .nav-tab-compliance::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-compliance-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-compliance:hover .nav-compliance-dropdown, .nav-compliance-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* Resources dropdown */
+    .nav-tab-resources { position: relative; }
+    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-resources-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-resources:hover .nav-resources-dropdown, .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* HR Knowledge Hub dropdown */
+    .nav-tab-hub { position: relative; }
+    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 680px; top: 100%; height: 44px; }
+    .nav-hub-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 680px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-hub:hover .nav-hub-dropdown, .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-hub-columns { display: flex; gap: 16px; }
+    .nav-hub-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-hub-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-hub-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-hub-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-hub-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-hub-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-hub-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-hub-item:hover .nav-hub-item-title { color: var(--blue-main); }
+
+    /* Price dropdown */
+    .nav-tab-price { position: relative; }
+    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-price-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-price:hover .nav-price-dropdown, .nav-price-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* Company dropdown */
+    .nav-tab-about { position: relative; }
+    .nav-tab-about::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-about-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-about:hover .nav-about-dropdown, .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      height: 600px;
+      background: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+    }
+
+    /* Background asset — anchored to right edge */
+    .hero-bg-pattern {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-bg-pattern img {
+      height: 100%;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      object-position: right center;
+    }
+
+    /* Hero content — pushed below transparent nav */
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 180px;
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 704px;
+      margin-left: var(--gutter);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hero-body {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .hero-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-label-line {
+      width: 16px;
+      height: 2px;
+      background: var(--blue-main);
+      flex-shrink: 0;
+    }
+    .hero-label span {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      color: var(--blue-main);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-title {
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 80px;
+      letter-spacing: 0;
+    }
+    .hero-title-white { color: #ffffff; }
+    .hero-title-blue  { color: var(--blue-main); }
+    .hero-title-grey  { color: #8f98b5; display: block; }
+
+    .hero-subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #ffffff;
+      width: 100%;
+    }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer {
+      width: 100%;
+      overflow: hidden;
+      background-image: linear-gradient(90.352deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      padding: 60px 0 58px;
+    }
+    .footer > .container { display: flex; flex-direction: column; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
+    .footer-logo { width: 199.5px; flex-shrink: 0; text-decoration: none; }
+    .footer-logo img { width: 100%; height: auto; display: block; }
+    .footer-social { display: flex; align-items: center; justify-content: space-between; width: 80px; flex-shrink: 0; }
+    .footer-social-icon { width: 24px; height: 24px; overflow: hidden; flex-shrink: 0; }
+    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-nav { display: flex; gap: 24px; justify-content: space-between; margin-bottom: 40px; }
+    .footer-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+    .footer-col-header { font-size: 14px; font-weight: 400; line-height: normal; color: var(--text-tertiary); }
+    .footer-col-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-col-links a, .footer-col-links span { font-size: 14px; font-weight: 500; line-height: normal; color: #fff; text-decoration: none; display: block; }
+    .footer-col-links a:hover { text-decoration: underline; }
+    .footer-divider { height: 1px; background: rgba(205,213,224,0.25); margin-bottom: 20px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--text-tertiary); white-space: nowrap; }
+    .footer-legal { display: flex; gap: 40px; align-items: center; }
+    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
+    .footer-legal a:hover { text-decoration: underline; }
+
+    /* ─── WECHAT MODAL ─── */
+    .wechat-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+    .wechat-modal.active { opacity: 1; pointer-events: auto; }
+    .wechat-modal-box { background: #fff; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 320px; width: 90%; }
+    .wechat-modal-box img { width: 200px; height: 200px; object-fit: contain; }
+    .wechat-modal-box p { font-family: var(--font); font-size: 14px; color: var(--text-secondary); text-align: center; line-height: 20px; }
+    .wechat-modal-close { background: var(--text-main); color: #fff; border: none; border-radius: 50px; padding: 8px 24px; font-family: var(--font); font-size: 14px; cursor: pointer; }
+
+    /* ════════════════════════════════════════
+       VENDOR DIRECTORY
+    ════════════════════════════════════════ */
+    .vd-section {
+      background: #ecf2fb;
+      padding: 80px 0 120px;
+    }
+    .vd-layout {
+      display: flex; gap: 32px;
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+      align-items: flex-start;
+    }
+    .vd-filter {
+      width: 289px; flex-shrink: 0;
+      background: #fff; border-radius: 16px;
+      display: flex; flex-direction: column;
+      position: sticky; top: 120px;
+      max-height: calc(100vh - 136px);
+      overflow: hidden;
+    }
+    /* Fixed top section — search bar + divider, never scrolls */
+    .vd-filter-top {
+      flex-shrink: 0;
+      padding: 16px 16px 0;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    /* Scroll wrapper — clips the native scrollbar, anchors the custom one */
+    .vd-filter-scroll-wrap {
+      flex: 1; min-height: 0;
+      position: relative;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Scrollable body — native scrollbar fully hidden */
+    .vd-filter-body {
+      flex: 1; min-height: 0;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding: 16px 22px 32px 16px;
+      display: flex; flex-direction: column; gap: 24px;
+      /* Hide native scrollbar — Firefox */
+      scrollbar-width: none;
+      /* Hide native scrollbar — IE/Edge legacy */
+      -ms-overflow-style: none;
+    }
+    /* Hide native scrollbar — Chrome / Safari / Edge */
+    .vd-filter-body::-webkit-scrollbar { display: none; width: 0; }
+    /* Custom scrollbar track */
+    .vd-custom-track {
+      position: absolute;
+      right: 5px;
+      top: 8px;
+      bottom: 8px;
+      width: 6px;
+      pointer-events: none;
+    }
+    /* Custom scrollbar thumb */
+    .vd-custom-thumb {
+      position: absolute;
+      left: 0;
+      width: 6px;
+      background-color: #3B3F4A;
+      border-radius: 999px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+      min-height: 32px;
+    }
+    .vd-custom-thumb.visible { opacity: 1; }
+    .vd-search {
+      display: flex; align-items: center; gap: 12px;
+      background: #ecf2fb; border: 1px solid #bcc9eb;
+      border-radius: 12px; padding: 10px 12px;
+    }
+    .vd-search-icon { width: 16px; height: 16px; flex-shrink: 0; }
+    .vd-search input {
+      border: none; background: transparent; outline: none;
+      font-family: var(--font); font-size: 14px; font-weight: 400;
+      line-height: 20px; color: var(--text-main); width: 100%;
+    }
+    .vd-search input::placeholder { color: #8f98b5; }
+    .vd-divider { height: 1px; background: #e5e7eb; flex-shrink: 0; }
+    .vd-filter-section { display: flex; flex-direction: column; gap: 8px; }
+    .vd-filter-header {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      cursor: pointer; padding: 4px 0;
+    }
+    .vd-filter-header-label {
+      font-size: 16px; font-weight: 500;
+      line-height: 20px; color: #162351;
+    }
+    .vd-filter-chevron { width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .vd-filter-section.collapsed .vd-filter-chevron { transform: scaleY(-1); }
+    .vd-filter-list {
+      display: flex; flex-direction: column; gap: 2px;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+    .vd-filter-section.collapsed .vd-filter-list { max-height: 0 !important; }
+    .vd-filter-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 6px 8px; border-radius: 8px;
+      cursor: pointer; transition: background 0.12s ease;
+    }
+    .vd-filter-item:hover { background: #f4f8ff; }
+    .vd-filter-item.active { background: #f0f7ff; }
+    .vd-checkbox {
+      width: 18px; height: 18px; flex-shrink: 0;
+      background: #fff; border: 1px solid #bcc9eb;
+      border-radius: 4px; display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .vd-filter-item.active .vd-checkbox { background: #019de7; border-color: #019de7; }
+    .vd-checkbox svg { display: none; }
+    .vd-filter-item.active .vd-checkbox svg { display: block; }
+    .vd-filter-label { flex: 1; font-size: 12px; font-weight: 400; line-height: 16px; color: #475072; }
+    .vd-filter-count {
+      min-width: 24px; height: 20px; padding: 0 5px;
+      background: #e5e7eb; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 500; color: #475072; flex-shrink: 0;
+    }
+    .vd-filter-item.active .vd-filter-count { background: #e0f0fd; color: #019de7; }
+    .vd-active-bar {
+      display: none; align-items: center; justify-content: space-between;
+      height: 20px;
+    }
+    .vd-active-bar.visible { display: flex; }
+    .vd-active-label {
+      font-size: 12px; font-weight: 400; line-height: 16px; color: #475072;
+    }
+    .vd-clear-btn {
+      font-size: 12px; font-weight: 500; line-height: 16px; color: #019de7;
+      background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .vd-clear-btn:hover { text-decoration: underline; }
+    .vd-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+    .vd-toolbar { display: flex; align-items: center; justify-content: space-between; }
+    .vd-title-group { display: flex; flex-direction: column; gap: 4px; }
+    .vd-count { font-size: 16px; font-weight: 500; line-height: 20px; color: #162351; }
+    .vd-showing { font-size: 12px; font-weight: 400; line-height: 16px; color: #8f98b5; }
+    .vd-toolbar-right { display: flex; align-items: center; gap: 32px; }
+    /* Pagination */
+    .vd-pagination { display: flex; align-items: center; justify-content: space-between; padding-top: 4px; }
+    .vd-page-info { font-size: 12px; font-weight: 400; line-height: 16px; color: #8f98b5; white-space: nowrap; }
+    .vd-page-nav { display: flex; align-items: center; gap: 16px; }
+    .vd-page-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #fff; border: 1px solid #bcc9eb; border-radius: 8px;
+      padding: 6px 12px; cursor: pointer; font-family: var(--font);
+      font-size: 12px; font-weight: 500; color: #162351; line-height: 16px; white-space: nowrap;
+    }
+    .vd-page-btn img { width: 16px; height: 16px; flex-shrink: 0; }
+    .vd-page-btn { transition: border-color 0.15s, color 0.15s; }
+    .vd-page-btn:hover:not(:disabled) { background: #fff; border-color: #019de7; color: #019de7; }
+    .vd-page-btn:hover:not(:disabled) svg path { stroke: #019de7; }
+    .vd-page-btn:disabled { opacity: 0.38; cursor: default; }
+    .vd-page-numbers { display: flex; align-items: center; gap: 4px; }
+    .vd-page-num {
+      width: 28px; height: 28px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff; border: 1px solid #bcc9eb; border-radius: 8px;
+      cursor: pointer; font-family: var(--font);
+      font-size: 12px; font-weight: 500; color: #162351; line-height: 16px;
+    }
+    .vd-page-num { transition: border-color 0.15s, color 0.15s; }
+    .vd-page-num:hover:not(.active):not(.ellipsis) { background: #fff; border-color: #019de7; color: #019de7; }
+    .vd-page-num.active { background: #019de7; border-color: #019de7; color: #fff; cursor: default; }
+    .vd-page-num.ellipsis { border: none; background: none; cursor: default; color: #8f98b5; width: auto; padding: 0 2px; }
+    .vd-sort { display: flex; align-items: center; }
+    .vd-sort-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #ffffff; border: 1px solid #bcc9eb; border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer; font-family: var(--font);
+      font-size: 12px; font-weight: 500; color: #162351; line-height: 16px;
+      white-space: nowrap;
+    }
+    .vd-sort-btn { transition: border-color 0.15s, color 0.15s; }
+    .vd-sort-btn:hover { background: #fff; border-color: #019de7; color: #019de7; }
+    .vd-sort-btn img { width: 16px; height: 16px; flex-shrink: 0; transition: filter 0.15s; }
+    .vd-sort-btn:hover img { filter: invert(46%) sepia(93%) saturate(491%) hue-rotate(168deg) brightness(97%) contrast(104%); }
+    .vd-view-toggle { display: flex; }
+    .vd-view-btn {
+      background: #fff; border: 1px solid #bcc9eb;
+      padding: 5px 8px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .vd-view-btn:first-child { border-radius: 8px 0 0 8px; border-right: none; }
+    .vd-view-btn:last-child  { border-radius: 0 8px 8px 0; }
+    .vd-view-btn--active { background: #019de7; border-color: #019de7; }
+    .vd-view-btn img { width: 16px; height: 16px; }
+    .vd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .vd-grid.list-view { grid-template-columns: 1fr; }
+    .vd-card {
+      background: #fff; border: 1px solid #bcc9eb;
+      border-radius: 12px; padding: 16px;
+      display: flex; flex-direction: column; gap: 16px;
+      min-height: 320px;
+    }
+    .vd-grid.list-view .vd-card { flex-direction: row; min-height: unset; }
+    .vd-card-logo {
+      width: 80px; height: 80px; flex-shrink: 0;
+      border: 1px solid #bcc9eb; border-radius: 8px;
+      overflow: hidden; background: #f8f9fc;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .vd-card-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .vd-logo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: #f0f2f7;
+      font-size: 22px; font-weight: 700; color: #bcc9eb;
+      font-family: var(--font);
+    }
+    .vd-card-body { display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0; }
+    .vd-card-name { font-size: 18px; font-weight: 600; line-height: 24px; color: #475072; }
+    .vd-card-tags { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+    .vd-card-desc {
+      font-size: 12px; font-weight: 400; line-height: 18px; color: #8f98b5;
+      display: -webkit-box; -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .vd-card-services { display: flex; flex-direction: column; gap: 4px; margin-top: auto; }
+    .vd-card-service { display: flex; align-items: flex-start; gap: 8px; }
+    .vd-service-dot {
+      width: 6px; height: 6px; background: #019de7;
+      border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+    }
+    .vd-service-text { font-size: 12px; font-weight: 400; line-height: 16px; color: #475072; }
+    .vd-tag {
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50px; padding: 4px 10px; white-space: nowrap;
+      font-family: var(--font); font-size: 10px; font-weight: 500; line-height: 14px;
+    }
+    .vd-region-APAC        { background:#deffa2; border:1px solid #83d066; color:#52a612; }
+    .vd-region-EMEA        { background:#9fbafb; border:1px solid #7a89d0; color:#18367d; }
+    .vd-region-Americas    { background:#ffc3c3; border:1px solid #fb9e9e; color:#c02323; }
+    .vd-region-Middle-East { background:#fbd59f; border:1px solid #c5aa84; color:#9f7017; }
+    .vd-region-Global      { background:#9fe7fb; border:1px solid #8ac1d9; color:#195d7b; }
+    .vd-cat-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      border-radius: 50px; padding: 4px 10px; white-space: nowrap;
+      background: #fff; border: 1px solid #bcc9eb;
+      font-family: var(--font); font-size: 10px; font-weight: 500;
+      line-height: 14px; color: #475072;
+    }
+    .vd-cat-dot { width: 6px; height: 6px; background: #019de7; border-radius: 50%; flex-shrink: 0; }
+    .vd-empty {
+      grid-column: 1/-1; text-align: center;
+      padding: 80px 0; font-size: 16px; color: #8f98b5;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV (fixed, always solid) ══════════════════ -->
+<nav class="nav">
+  <div class="nav-container">
+  <div class="nav-tabbar">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-inner">
+        <img src="assets/menu-bar-marco-logo.svg" alt="Marco" />
+      </div>
+    </a>
+    <div class="nav-menu">
+      <div class="nav-tab nav-tab-services">
+        <div class="nav-tab-inner">
+          <span>Services</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-services-dropdown">
+          <p class="nav-dropdown-label">Services</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-services-columns">
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-global-payroll.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/global payroll.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Global Payroll</span>
+                  <span class="nav-services-item-desc">End-to-end payroll in 150+ countries</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="service-employer-of-record.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/eor.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Employer of Record (EOR)</span>
+                  <span class="nav-services-item-desc">Hire globally without a local entity</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="service-independent-contractor.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/ic.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Independent Contractor (IC)</span>
+                  <span class="nav-services-item-desc">Compliant contractor engagement</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="service-global-mobility.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/global mobility.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Global Mobility</span>
+                  <span class="nav-services-item-desc">Seamless cross-border movements</span>
+                </div>
+              </a>
+            </div>
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-expense-processing.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/Expense Processing.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Expense Processing</span>
+                  <span class="nav-services-item-desc">Streamlined global expense management</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="service-hr-operations.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/HRO Support.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">HR Operation Support</span>
+                  <span class="nav-services-item-desc">Comprehensive HR administration</span>
+                </div>
+              </a>
+              <a class="nav-services-item" href="service-service-delivery-model.html">
+                <div class="nav-services-item-icon"><img src="assets/Services/drop-down/Service Delivery Model.svg" alt="" /></div>
+                <div class="nav-services-item-text">
+                  <span class="nav-services-item-title">Service Delivery Model</span>
+                  <span class="nav-services-item-desc">Our partnership approach</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-compliance">
+        <div class="nav-tab-inner">
+          <span>Compliance</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-compliance-dropdown">
+          <p class="nav-dropdown-label">Compliance</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="compliance-data-protection.html">
+              <span class="nav-dropdown-item-title">Data Protection &amp; Privacy</span>
+              <span class="nav-dropdown-item-desc">Privacy controls for sensitive workforce data</span>
+            </a>
+            <a class="nav-dropdown-item" href="compliance-operational-governance.html">
+              <span class="nav-dropdown-item-title">Operational Governance</span>
+              <span class="nav-dropdown-item-desc">Controls, accountability, and audit trails</span>
+            </a>
+            <a class="nav-dropdown-item" href="compliance-licensing-regulatory.html">
+              <span class="nav-dropdown-item-title">Licensing &amp; Regulatory Compliance</span>
+              <span class="nav-dropdown-item-desc">Local licenses and regulatory authorizations</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-resources">
+        <div class="nav-tab-inner">
+          <span>Resources</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-resources-dropdown">
+          <p class="nav-dropdown-label">Resources</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <span class="nav-dropdown-item-title">Help Center</span>
+              <span class="nav-dropdown-item-desc">Manual guides, FAQs, and product support</span>
+            </a>
+            <a class="nav-dropdown-item" href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <span class="nav-dropdown-item-title">Developer Portal</span>
+              <span class="nav-dropdown-item-desc">API documentation and integration resources</span>
+            </a>
+            <a class="nav-dropdown-item" href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">
+              <span class="nav-dropdown-item-title">Demo Site</span>
+              <span class="nav-dropdown-item-desc">A test environment to explore Marco OS</span>
+            </a>
+            <a class="nav-dropdown-item" href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <span class="nav-dropdown-item-title">Processing &amp; Integration Engines</span>
+              <span class="nav-dropdown-item-desc">Systems that power payroll and data workflows</span>
+            </a>
+            <a class="nav-dropdown-item" href="#">
+              <span class="nav-dropdown-item-title">Marco Copilot (AI Assistant)</span>
+              <span class="nav-dropdown-item-desc">AI support for global workforce operations</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-hub">
+        <div class="nav-tab-inner">
+          <span>HR Knowledge Hub</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-hub-dropdown">
+          <p class="nav-dropdown-label">HR Knowledge Hub</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-hub-columns">
+            <div class="nav-hub-col">
+              <a href="#" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Labor Cost Calculator</span>
+                  <span class="nav-hub-item-desc">Estimate employment costs by country</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-country-guide.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Country Guide.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Country Guide</span>
+                  <span class="nav-hub-item-desc">Country-specific employment and payroll insights</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-visa-guide.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Visa Guide.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Visa Guide</span>
+                  <span class="nav-hub-item-desc">Work visa requirements and application guidance</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-payroll-guide.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Payroll Guide.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Payroll Guide</span>
+                  <span class="nav-hub-item-desc">Payroll rules, cycles, and statutory requirements</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-freelancer-guide.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Freelancer Guide.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Freelancer Guide</span>
+                  <span class="nav-hub-item-desc">Independent contractor rules by country</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-work-schedule.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Work Schedule.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Work Schedule</span>
+                  <span class="nav-hub-item-desc">Working hours, rest days, and schedule rules</span>
+                </div>
+              </a>
+            </div>
+            <div class="nav-hub-col">
+              <a href="hr-knowledge-hub-public-holiday-calendar-2026.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Public Holiday Calendar</span>
+                  <span class="nav-hub-item-desc">Official holidays by country and year</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-leave-policy.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Leave Policy</span>
+                  <span class="nav-hub-item-desc">Annual leave, sick leave, and statutory time off</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-travel-expense-policy.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Travel &amp; Expense Policy.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Travel &amp; Expense Policy</span>
+                  <span class="nav-hub-item-desc">Business travel and reimbursement guidelines</span>
+                </div>
+              </a>
+              <a href="#" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Benefits Plan.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Benefits Plan</span>
+                  <span class="nav-hub-item-desc">Mandatory and common employee benefits</span>
+                </div>
+              </a>
+              <a href="hr-knowledge-hub-vendor-list.html" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Vendor List.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Vendor List</span>
+                  <span class="nav-hub-item-desc">Approved vendors and service partners</span>
+                </div>
+              </a>
+              <a href="#" class="nav-hub-item">
+                <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Memo.svg" alt=""></div>
+                <div class="nav-hub-item-text">
+                  <span class="nav-hub-item-title">Memo</span>
+                  <span class="nav-hub-item-desc">HR updates, notes, and internal references</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-price">
+        <div class="nav-tab-inner">
+          <span>Price</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-price-dropdown">
+          <p class="nav-dropdown-label">Price</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="price-global-workforce-solution.html">
+              <span class="nav-dropdown-item-title">Global Workforce Solution</span>
+              <span class="nav-dropdown-item-desc">Service pricing for global workforce administration</span>
+            </a>
+            <a class="nav-dropdown-item" href="price-global-managed-payroll-service.html">
+              <span class="nav-dropdown-item-title">Global Managed Payroll Service</span>
+              <span class="nav-dropdown-item-desc">Managed payroll pricing for global teams</span>
+            </a>
+            <a class="nav-dropdown-item" href="price-proposal-builder.html">
+              <span class="nav-dropdown-item-title">Proposal Builder</span>
+              <span class="nav-dropdown-item-desc">Build a tailored service pricing proposal</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-about">
+        <div class="nav-tab-inner">
+          <span>Company</span>
+          <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="nav-about-dropdown">
+          <p class="nav-dropdown-label">Company</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="company-vision-values.html">
+              <span class="nav-dropdown-item-title">Vision &amp; Values</span>
+              <span class="nav-dropdown-item-desc">Our purpose and guiding principles</span>
+            </a>
+            <a class="nav-dropdown-item" href="company-journey.html">
+              <span class="nav-dropdown-item-title">Marco's Journey</span>
+              <span class="nav-dropdown-item-desc">The story behind Marco</span>
+            </a>
+            <a class="nav-dropdown-item" href="company-entity-network.html">
+              <span class="nav-dropdown-item-title">Entity Network</span>
+              <span class="nav-dropdown-item-desc">Global entities and operational service centers</span>
+            </a>
+            <a class="nav-dropdown-item" href="company-organization.html">
+              <span class="nav-dropdown-item-title">Organization</span>
+              <span class="nav-dropdown-item-desc">Leadership and structure</span>
+            </a>
+            <a class="nav-dropdown-item" href="company-contact-us.html">
+              <span class="nav-dropdown-item-title">Contact us</span>
+              <span class="nav-dropdown-item-desc">Get in touch with the Marco team</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-lang">
+      <div class="nav-lang-flag">
+        <img src="assets/flag-en.png" alt="" />
+      </div>
+      <span>EN</span>
+    </div>
+    <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+  </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <!-- Background asset (same as Vision & Values) -->
+  <div class="hero-bg-pattern">
+    <img src="assets/Background Assets/abstract line 2.svg" alt="" />
+  </div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <div class="hero-label">
+      <div class="hero-label-line"></div>
+      <span>VENDOR LIST</span>
+    </div>
+    <div class="hero-body">
+      <h1 class="hero-title">
+        <span class="hero-title-white">Approved </span><span class="hero-title-blue">Vendor</span>
+        <span class="hero-title-grey">Directory</span>
+      </h1>
+      <p class="hero-subtitle">Marco's curated network of approved partners across HRIS, banking, legal, technology, and benefits — each assessed for security, compliance, and global capability.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ VENDOR DIRECTORY ============ -->
+<section class="vd-section">
+  <div class="vd-layout">
+
+    <!-- Filter Panel -->
+    <aside class="vd-filter">
+      <!-- Fixed: search bar + divider -->
+      <div class="vd-filter-top">
+        <div class="vd-search">
+          <img class="vd-search-icon" src="assets/HR Knowledge Hub/search-icon.svg" alt="" />
+          <input type="text" id="vd-search" placeholder="Search vendors" oninput="vdOnSearch(this.value)" />
+        </div>
+        <div class="vd-divider"></div>
+      </div>
+      <!-- Scrollable: active bar + category + region (native scrollbar hidden, custom thumb overlaid) -->
+      <div class="vd-filter-scroll-wrap">
+      <div class="vd-filter-body" id="vd-filter-scroll">
+      <div class="vd-active-bar" id="vd-active-bar">
+        <span class="vd-active-label" id="vd-active-label">0 filter active</span>
+        <button class="vd-clear-btn" onclick="vdClearFilters()">Clear all</button>
+      </div>
+      <div class="vd-filter-section" id="fs-cat">
+        <div class="vd-filter-header" onclick="vdToggleSection('fs-cat')">
+          <span class="vd-filter-header-label">Category</span>
+          <img class="vd-filter-chevron" src="assets/HR Knowledge Hub/chevron-down-icon.svg" alt="" />
+        </div>
+        <div class="vd-filter-list" id="fl-cat">
+          <div class="vd-filter-item" data-type="cat" data-value="EOR & PEO" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">EOR & PEO</span><span class="vd-filter-count" id="cnt-cat-EOR___PEO">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Payroll & HR Operations" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Payroll & HR Operations</span><span class="vd-filter-count" id="cnt-cat-Payroll___HR_Operations">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Immigration & Global Mobility" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Immigration & Global Mobility</span><span class="vd-filter-count" id="cnt-cat-Immigration___Global_Mobility">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Legal, Compliance & Incorporation" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Legal, Compliance & Incorporation</span><span class="vd-filter-count" id="cnt-cat-Legal__Compliance___Incorporation">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Accounting, Tax & Audit" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Accounting, Tax & Audit</span><span class="vd-filter-count" id="cnt-cat-Accounting__Tax___Audit">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Recruitment & Staffing" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Recruitment & Staffing</span><span class="vd-filter-count" id="cnt-cat-Recruitment___Staffing">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Banking, Payments & Treasury" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Banking, Payments & Treasury</span><span class="vd-filter-count" id="cnt-cat-Banking__Payments___Treasury">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Technology & Platform Partners" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Technology & Platform Partners</span><span class="vd-filter-count" id="cnt-cat-Technology___Platform_Partners">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Benefits & Insurance" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Benefits & Insurance</span><span class="vd-filter-count" id="cnt-cat-Benefits___Insurance">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Workspace & Local Business Services" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Workspace & Local Business Services</span><span class="vd-filter-count" id="cnt-cat-Workspace___Local_Business_Services">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Channel & Strategic Partners" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Channel & Strategic Partners</span><span class="vd-filter-count" id="cnt-cat-Channel___Strategic_Partners">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Specialized Consulting & Industry Services" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Specialized Consulting & Industry Services</span><span class="vd-filter-count" id="cnt-cat-Specialized_Consulting___Industry_Services">0</span></div>
+        </div>
+      </div>
+      <div class="vd-divider"></div>
+      <div class="vd-filter-section" id="fs-reg">
+        <div class="vd-filter-header" onclick="vdToggleSection('fs-reg')">
+          <span class="vd-filter-header-label">Region</span>
+          <img class="vd-filter-chevron" src="assets/HR Knowledge Hub/chevron-down-icon.svg" alt="" />
+        </div>
+        <div class="vd-filter-list" id="fl-reg">
+          <div class="vd-filter-item" data-type="reg" data-value="Global" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Global</span><span class="vd-filter-count" id="cnt-reg-Global">0</span></div>
+          <div class="vd-filter-item" data-type="reg" data-value="APAC" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">APAC</span><span class="vd-filter-count" id="cnt-reg-APAC">0</span></div>
+          <div class="vd-filter-item" data-type="reg" data-value="EMEA" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">EMEA</span><span class="vd-filter-count" id="cnt-reg-EMEA">0</span></div>
+          <div class="vd-filter-item" data-type="reg" data-value="Americas" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Americas</span><span class="vd-filter-count" id="cnt-reg-Americas">0</span></div>
+          <div class="vd-filter-item" data-type="reg" data-value="Middle East" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Middle East</span><span class="vd-filter-count" id="cnt-reg-Middle-East">0</span></div>
+        </div>
+      </div>
+      </div><!-- end vd-filter-body -->
+      <!-- Custom scrollbar thumb -->
+      <div class="vd-custom-track" id="vd-custom-track">
+        <div class="vd-custom-thumb" id="vd-custom-thumb"></div>
+      </div>
+      </div><!-- end vd-filter-scroll-wrap -->
+    </aside>
+
+    <!-- Main Content -->
+    <main class="vd-main">
+      <div class="vd-toolbar">
+        <div class="vd-title-group">
+          <span class="vd-count" id="vd-count">213 Vendors</span>
+          <span class="vd-showing" id="vd-showing">Showing 1–20 of 213</span>
+        </div>
+        <div class="vd-toolbar-right">
+          <div class="vd-sort">
+            <button class="vd-sort-btn" id="vd-sort-btn" onclick="vdToggleSort()">
+              <img src="assets/HR Knowledge Hub/sort-icon.svg" alt="" />
+              <span id="vd-sort-label">Sort: Name A - Z</span>
+            </button>
+          </div>
+          <div class="vd-view-toggle">
+            <button class="vd-view-btn" id="vd-list-btn" onclick="vdSetView('list')" title="List view">
+              <img src="assets/HR Knowledge Hub/list-icon-dark.svg" alt="List" />
+            </button>
+            <button class="vd-view-btn vd-view-btn--active" id="vd-grid-btn" onclick="vdSetView('grid')" title="Grid view">
+              <img src="assets/HR Knowledge Hub/grid-icon-light.svg" alt="Grid" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="vd-grid" id="vd-grid"></div>
+
+      <!-- Pagination -->
+      <div class="vd-pagination" id="vd-pagination">
+        <span class="vd-page-info" id="vd-page-info">Page 1 of 11 · 213 vendors total</span>
+        <div class="vd-page-nav">
+          <button class="vd-page-btn" id="vd-prev-btn" onclick="vdGoPage(vdState.page - 1)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Prev</span>
+          </button>
+          <div class="vd-page-numbers" id="vd-page-numbers"></div>
+          <button class="vd-page-btn" id="vd-next-btn" onclick="vdGoPage(vdState.page + 1)">
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </main>
+
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <div class="container">
+  <div class="footer-top">
+    <a class="footer-logo" href="index.html">
+      <img src="assets/footer-marco-logo-en.svg" alt="Marco" />
+    </a>
+    <div class="footer-social">
+      <div class="footer-social-icon">
+        <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/linkedin-icon.svg" alt="LinkedIn" />
+        </a>
+      </div>
+      <div class="footer-social-icon" style="cursor:pointer;" onclick="document.getElementById('wechat-modal').classList.add('active')">
+        <img src="assets/wechat-icon.svg" alt="WeChat" />
+      </div>
+    </div>
+  </div>
+  <div class="footer-nav">
+    <div class="footer-col">
+      <span class="footer-col-header">Services</span>
+      <div class="footer-col-links">
+        <a href="service-global-payroll.html">Global Payroll</a>
+        <a href="service-employer-of-record.html">EOR</a>
+        <a href="service-independent-contractor.html">IC</a>
+        <a href="service-global-mobility.html">Global Mobility</a>
+        <a href="service-expense-processing.html">Expense Processing</a>
+        <a href="service-hr-operations.html">HRO</a>
+        <a href="service-service-delivery-model.html">Service Delivery Model</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Compliance</span>
+      <div class="footer-col-links">
+        <a href="compliance-data-protection.html">Data Protection &amp; Privacy</a>
+        <a href="compliance-operational-governance.html">Operational Governance</a>
+        <a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Resources</span>
+      <div class="footer-col-links">
+        <a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a>
+        <a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a>
+        <a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a>
+        <a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a>
+        <a href="#">Marco Copilot (AI Assistant)</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">HR Knowledge Hub</span>
+      <div class="footer-col-links">
+        <a href="#">Labor Cost Calculator</a>
+        <a href="hr-knowledge-hub-country-guide.html">Country Guide</a>
+        <a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a>
+        <a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a>
+        <a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a>
+        <a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a>
+        <a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a>
+        <a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a>
+        <a href="hr-knowledge-hub-travel-expense-policy.html">Travel &amp; Expense Policy</a>
+        <a href="#">Benefits Plan</a>
+        <a href="hr-knowledge-hub-vendor-list.html">Vendor List</a>
+        <a href="#">Memo</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Price</span>
+      <div class="footer-col-links">
+        <a href="price-global-workforce-solution.html">Global Workforce Solution</a>
+        <a href="price-global-managed-payroll-service.html">Global Managed Payroll Service</a>
+        <a href="price-proposal-builder.html">Proposal Builder</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">About</span>
+      <div class="footer-col-links">
+        <a href="company-vision-values.html">Vision &amp; Value</a>
+        <a href="company-journey.html">Marco's Journey</a>
+        <a href="company-entity-network.html">Entity Network</a>
+        <a href="company-organization.html">Organization</a>
+        <a href="company-contact-us.html">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <p>Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookies Policy</a>
+    </div>
+  </div>
+  </div>
+</footer>
+
+<!-- WeChat Modal -->
+<div class="wechat-modal" id="wechat-modal" onclick="if(event.target===this)this.classList.remove('active')">
+  <div class="wechat-modal-box">
+    <img src="assets/wechat-qr.png" alt="WeChat QR Code" onerror="this.style.display='none'" />
+    <p>Scan to follow Marco on WeChat</p>
+    <button class="wechat-modal-close" onclick="document.getElementById('wechat-modal').classList.remove('active')">Close</button>
+  </div>
+</div>
+
+<script>
+  // ── Scroll-state navbar: transparent over hero, solid after ──
+  const nav  = document.querySelector('.nav');
+  const hero = document.querySelector('.hero');
+  function updateNavState() {
+    if (!nav || !hero) return;
+    const threshold = hero.offsetTop + hero.offsetHeight * 0.25;
+    if (window.scrollY >= threshold) {
+      nav.classList.add('nav-scrolled');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+  }
+  updateNavState();
+  window.addEventListener('scroll', updateNavState, { passive: true });
+  window.addEventListener('resize', updateNavState);
+
+  // ── Custom filter panel scrollbar ──────────────────────────────────────────
+  (function() {
+    var scrollEl = document.getElementById('vd-filter-scroll');
+    var track    = document.getElementById('vd-custom-track');
+    var thumb    = document.getElementById('vd-custom-thumb');
+    if (!scrollEl || !track || !thumb) return;
+
+    var hideTimer = null;
+
+    function updateThumb() {
+      var scrollH  = scrollEl.scrollHeight;
+      var clientH  = scrollEl.clientHeight;
+      if (scrollH <= clientH) { thumb.classList.remove('visible'); return; }
+
+      var trackH      = track.offsetHeight;
+      var ratio       = clientH / scrollH;
+      var thumbH      = Math.max(32, ratio * trackH);
+      var maxScroll   = scrollH - clientH;
+      var maxThumbTop = trackH - thumbH;
+      var thumbTop    = (scrollEl.scrollTop / maxScroll) * maxThumbTop;
+
+      thumb.style.height = thumbH + 'px';
+      thumb.style.top    = thumbTop + 'px';
+      thumb.classList.add('visible');
+
+      // Auto-hide after 1.2 s of no scrolling
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(function() { thumb.classList.remove('visible'); }, 1200);
+    }
+
+    scrollEl.addEventListener('scroll', updateThumb, { passive: true });
+    window.addEventListener('resize', updateThumb);
+    // Show on hover
+    scrollEl.addEventListener('mouseenter', function() { updateThumb(); });
+    // Initial render (after layout settles)
+    setTimeout(updateThumb, 200);
+  })();
+</script>
+
+<script>
+(function() {
+  var VENDORS = [{"name":"3P Professional","categories":"EOR & PEO; Payroll & HR Operations","region":"APAC","description":"3P Professional provides employer-of-record and PEO services in Thailand. Services include local employer-of-record support, expat employer-of-record support, PEO support, and payroll services.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Professional employer organization support","logo":"assets/HR Knowledge Hub/Vendor Logo/3p-professional-logo.jfif"},{"name":"ABC Portage","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"ABC Portage provides employer-of-record and PEO services in France. Services include local employer-of-record support, payroll services, and legal services.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- Legal and compliance support","logo":"assets/HR Knowledge Hub/Vendor Logo/abc-portage-logo.png"},{"name":"Access Financial (Luxembourg)","categories":"EOR & PEO; Payroll & HR Operations","region":"EMEA","description":"Access Financial (Luxembourg) provides employer-of-record and PEO services in Luxembourg. Services include local employer-of-record support, expat employer-of-record support, and payroll services.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":"assets/HR Knowledge Hub/Vendor Logo/access_financial_logo.jpg"},{"name":"Access Financial (Malaysia)","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"Access Financial (Malaysia) provides employer-of-record and PEO services in Malaysia. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":"assets/HR Knowledge Hub/Vendor Logo/access_financial_logo.jpg"},{"name":"Acclime","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation; Accounting, Tax & Audit; Technology & Platform Partners","region":"APAC","description":"Acclime provides payroll and HR operations in Australia. Services include payroll services, HR outsourcing, company incorporation support, audit support, and platform partnership.","services":"- Payroll administration and processing\n- HR outsourcing and employee administration\n- Company incorporation support","logo":"assets/HR Knowledge Hub/Vendor Logo/acclime-logo.png"},{"name":"Accurity","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"Accurity provides employer-of-record and PEO services in Switzerland. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":"assets/HR Knowledge Hub/Vendor Logo/accurity-logo.png"},{"name":"Adecco (Republic of Korea)","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"Adecco (Republic of Korea) provides employer-of-record and PEO services in Republic of Korea. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":"assets/HR Knowledge Hub/Vendor Logo/adecco_logo.png"},{"name":"Adecco (Thailand)","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"Adecco (Thailand) provides employer-of-record and PEO services in Thailand. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":"assets/HR Knowledge Hub/Vendor Logo/adecco_logo.png"},{"name":"Africa Deployment","categories":"EOR & PEO; Payroll & HR Operations","region":"EMEA","description":"Africa Deployment provides employer-of-record and PEO services in Mauritius. Services include employer-of-record services, payroll services, and HR outsourcing.","services":"- Employer-of-record services\n- Payroll administration and processing\n- HR outsourcing and employee administration","logo":"assets/HR Knowledge Hub/Vendor Logo/africa-deployment-logo.webp"},{"name":"Aizoon","categories":"EOR & PEO","region":"APAC","description":"Aizoon provides employer-of-record and PEO services in Australia. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Australia\n- Regional coverage: APAC","logo":"assets/HR Knowledge Hub/Vendor Logo/aizoon-logo.jpg"},{"name":"Alliance & Company","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"APAC","description":"Alliance & Company provides employer-of-record and PEO services in Republic of Korea. Services include local employer-of-record support, expat employer-of-record support, payroll services, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":"assets/HR Knowledge Hub/Vendor Logo/alliance-and-company-logo.png"},{"name":"Ambacia","categories":"EOR & PEO","region":"EMEA","description":"Ambacia provides employer-of-record and PEO services in Croatia. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Croatia\n- Regional coverage: EMEA","logo":"assets/HR Knowledge Hub/Vendor Logo/ambacia-logo.png"},{"name":"Anywr","categories":"Immigration & Global Mobility","region":"EMEA","description":"Anywr provides immigration and global mobility support in Spain. Services include immigration support.","services":"- Immigration and work-permit support\n- Local coverage in Spain\n- Regional coverage: EMEA","logo":"assets/HR Knowledge Hub/Vendor Logo/anywr-logo.jpg"},{"name":"Aspirock","categories":"EOR & PEO; Payroll & HR Operations","region":"EMEA","description":"Aspirock provides employer-of-record and PEO services in Ireland. Services include local employer-of-record support, payroll services, and HR outsourcing.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- HR outsourcing and employee administration","logo":"assets/HR Knowledge Hub/Vendor Logo/aspirock-logo.png"},{"name":"Aster Lion","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"Aster Lion provides employer-of-record and PEO services in Thailand. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":"assets/HR Knowledge Hub/Vendor Logo/aster-lion-logo.png"},{"name":"Atama","categories":"EOR & PEO","region":"EMEA","description":"Atama provides employer-of-record and PEO services in Slovenia. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Slovenia\n- Regional coverage: EMEA","logo":"assets/HR Knowledge Hub/Vendor Logo/atama-logo.jpg"},{"name":"Australia PEO","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"APAC","description":"Australia PEO provides employer-of-record and PEO services in Australia. Services include local employer-of-record support, expat employer-of-record support, payroll services, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":"assets/HR Knowledge Hub/Vendor Logo/australia-peo-logo.png"},{"name":"Azkan Group","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"Azkan Group provides employer-of-record and PEO services in Turkey. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":"assets/HR Knowledge Hub/Vendor Logo/azkan-group-logo.png"},{"name":"Bangladesh Consultant","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"APAC","description":"Bangladesh Consultant provides employer-of-record and PEO services in Bangladesh. Services include local employer-of-record support, expat employer-of-record support, HR outsourcing, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- HR outsourcing and employee administration","logo":"assets/HR Knowledge Hub/Vendor Logo/bangladesh-consultant-logo.png"},{"name":"Binks Overseas","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"Binks Overseas provides employer-of-record and PEO services in Italy. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":"assets/HR Knowledge Hub/Vendor Logo/binks-overseas-logo.png"},{"name":"BQ Accounting","categories":"Accounting, Tax & Audit; Payroll & HR Operations","region":"EMEA","description":"BQ Accounting / BQ Redovisning is a Stockholm-based accounting and bookkeeping partner supporting companies with bookkeeping, financial reporting, payroll administration, declarations, taxes, and business advisory.","services":"• Bookkeeping and financial reporting\n• Payroll calculation and authority reporting\n• Tax declarations and business advisory","logo":"assets/HR Knowledge Hub/Vendor Logo/bq-accounting-logo.png"},{"name":"BrandBuddy","categories":"Channel & Strategic Partners; Specialized Consulting & Industry Services","region":"EMEA","description":"BrandBuddy Group is a Finland-based brand sales, distribution and marketing partner operating across the Nordics. It supports brands with product distribution, events, sales activation, marketing and digital content execution.","services":"- Brand sales and product distribution support\n- Event, sales activation and marketing execution\n- Digital content design and implementation","logo":"assets/HR Knowledge Hub/Vendor Logo/brand-buddy-logo.png"},{"name":"Bridgein","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility; Legal, Compliance & Incorporation","region":"EMEA","description":"Bridgein provides employer-of-record and PEO services in Portugal. Services include local employer-of-record support, expat employer-of-record support, payroll services, immigration support, and company incorporation support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":"assets/HR Knowledge Hub/Vendor Logo/bridgein-logo.jpg"},{"name":"Bromo Consulting","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"APAC","description":"Bromo Consulting provides employer-of-record and PEO services in Indonesia. Services include local employer-of-record support, expat employer-of-record support, payroll services, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":"assets/HR Knowledge Hub/Vendor Logo/bromo-consulting-logo.png"},{"name":"BTR Group","categories":"EOR & PEO; Payroll & HR Operations; Accounting, Tax & Audit; Legal, Compliance & Incorporation","region":"EMEA","description":"BTR Group is a Nordic workforce and business services provider offering EOR, PEO, payroll, HR administration, compliance and accounting support for companies hiring or operating across Sweden, Denmark and Finland.","services":"- Nordic EOR and PEO employment support\n- Payroll, HR administration and local compliance\n- Accounting and business support across Nordic markets","logo":"assets/HR Knowledge Hub/Vendor Logo/btr-group-logo.png"},{"name":"Canton","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"Canton provides employer-of-record and PEO services in Romania. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":"assets/HR Knowledge Hub/Vendor Logo/canton-logo.png"},{"name":"Capital Auditors","categories":"Payroll & HR Operations","region":"EMEA","description":"Capital Auditors provides payroll and HR operations in Spain. Services include payroll services and HR outsourcing.","services":"- Payroll administration and processing\n- HR outsourcing and employee administration\n- Local coverage in Spain","logo":"assets/HR Knowledge Hub/Vendor Logo/capital-auditors-logo.png"},{"name":"Career International","categories":"EOR & PEO; Channel & Strategic Partners","region":"APAC","description":"Career International provides employer-of-record and PEO services in China and Hong Kong. Services include local employer-of-record support and channel partnership.","services":"- Local employer-of-record support\n- Channel partnership support\n- Local coverage in China and Hong Kong","logo":"assets/HR Knowledge Hub/Vendor Logo/career-international-logo.png"},{"name":"CDP Group","categories":"EOR & PEO; Immigration & Global Mobility; Accounting, Tax & Audit","region":"APAC","description":"CDP Group provides employer-of-record and PEO services in Hong Kong. Services include local employer-of-record support, expat employer-of-record support, immigration support, and audit support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":"assets/HR Knowledge Hub/Vendor Logo/cdp-group-logo.png"},{"name":"CKAY Law Firm","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"CKAY Law Firm is an Istanbul-based Turkish law firm that also supports payroll outsourcing in Turkey. It helps employers manage Turkish payroll, employment compliance and related legal requirements.","services":"- Payroll outsourcing in Turkey\n- Employment law and compliance guidance\n- Legal support from a Turkish law firm","logo":"assets/HR Knowledge Hub/Vendor Logo/ckay-law-firm-logo.png"},{"name":"Clock On","categories":"Payroll & HR Operations; Technology & Platform Partners","region":"APAC","description":"ClockOn is an Australian HR, rostering, timesheet and payroll software provider for small and medium businesses. Its platform helps employers schedule staff, capture attendance and process payroll in one integrated system.","services":"- Payroll processing software\n- Rostering, timesheet and attendance management\n- Integrated HR workforce management for SMBs","logo":"assets/HR Knowledge Hub/Vendor Logo/clock-on-logo.webp"},{"name":"Cloudpayroll","categories":"Payroll & HR Operations","region":"APAC","description":"Cloudpayroll provides payroll and HR operations in Australia. Services include payroll services.","services":"- Payroll administration and processing\n- Local coverage in Australia\n- Regional coverage: APAC","logo":"assets/HR Knowledge Hub/Vendor Logo/cloud-payroll-logo.jpg"},{"name":"Clyde & Co","categories":"Legal, Compliance & Incorporation; Technology & Platform Partners","region":"APAC","description":"Clyde & Co provides legal, compliance, and incorporation support in Singapore. Services include legal services, company incorporation support, and platform partnership.","services":"- Legal and compliance support\n- Company incorporation support\n- Platform partnership support","logo":"assets/HR Knowledge Hub/Vendor Logo/clyde-&-co.png"},{"name":"Coactum","categories":"Channel & Strategic Partners","region":"EMEA","description":"Coactum provides channel and strategic partnership support in Poland. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Poland\n- Regional coverage: EMEA","logo":"assets/HR Knowledge Hub/Vendor Logo/coactum-logo.png"},{"name":"Connect  Business","categories":"Payroll & HR Operations; Immigration & Global Mobility","region":"Middle East","description":"Connect  Business provides payroll and HR operations in United Arab Emirates. Services include payroll services and immigration support.","services":"- Payroll administration and processing\n- Immigration and work-permit support\n- Local coverage in United Arab Emirates","logo":"assets/HR Knowledge Hub/Vendor Logo/connect-business-logo.jpg"},{"name":"Connect Resources","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"Middle East","description":"Connect Resources provides employer-of-record and PEO services in United Arab Emirates. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":"assets/HR Knowledge Hub/Vendor Logo/connect-resources-logo.png"},{"name":"CottGroup (Turkey)","categories":"EOR & PEO; Payroll & HR Operations","region":"EMEA","description":"CottGroup (Turkey) provides employer-of-record and PEO services in Turkey. Services include local employer-of-record support, expat employer-of-record support, and payroll services.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":"assets/HR Knowledge Hub/Vendor Logo/cottgroup-turkey-logo.png"},{"name":"Creative Zone","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation; Technology & Platform Partners","region":"Middle East","description":"Creative Zone provides payroll and HR operations in United Arab Emirates. Services include HR outsourcing, company incorporation support, and platform partnership.","services":"- HR outsourcing and employee administration\n- Company incorporation support\n- Platform partnership support","logo":"assets/HR Knowledge Hub/Vendor Logo/creative-zone-logo.jpg"},{"name":"D.B.I","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"D.B.I provides payroll and HR operations in Netherlands. Services include HR outsourcing and company incorporation support.","services":"- HR outsourcing and employee administration\n- Company incorporation support\n- Local coverage in Netherlands","logo":""},{"name":"De Ridder","categories":"Technology & Platform Partners; Benefits & Insurance","region":"EMEA","description":"De Ridder provides technology and platform partnership support in Netherlands. Services include pension consultancy and platform partnership.","services":"- Pension and benefits advisory\n- Platform partnership support\n- Local coverage in Netherlands","logo":""},{"name":"Desenvolver","categories":"Channel & Strategic Partners","region":"Americas","description":"Desenvolver provides channel and strategic partnership support in Brazil. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Brazil\n- Regional coverage: Americas","logo":""},{"name":"DHV Power","categories":"Channel & Strategic Partners","region":"APAC","description":"DHV Power provides channel and strategic partnership support in Vietnam. Services include sales partnership.","services":"- Sales partnership support\n- Local coverage in Vietnam\n- Regional coverage: APAC","logo":""},{"name":"Dicon","categories":"Payroll & HR Operations; Accounting, Tax & Audit","region":"Americas","description":"Dicon provides payroll and HR operations in Brazil. Services include HR outsourcing and audit support.","services":"- HR outsourcing and employee administration\n- Audit support\n- Local coverage in Brazil","logo":""},{"name":"Didaxis","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"Didaxis is a French portage salarial provider supporting freelancers, consultants and international companies with compliant employment hosting, contracts, administration and payroll under the French wage-portage model.","services":"- Portage salarial and EOR-style employment in France\n- Contract, administrative and legal handling\n- Payroll and salary administration for consultants","logo":""},{"name":"DLP","categories":"Payroll & HR Operations","region":"APAC","description":"DLP provides payroll and HR operations in Indonesia. Services include payroll services.","services":"- Payroll administration and processing\n- Local coverage in Indonesia\n- Regional coverage: APAC","logo":""},{"name":"DMK Outsource","categories":"EOR & PEO; Payroll & HR Operations","region":"EMEA","description":"DMK Outsource provides employer-of-record and PEO services in Serbia. Services include local employer-of-record support, payroll services, and HR outsourcing.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- HR outsourcing and employee administration","logo":""},{"name":"DNA EOR","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"DNA EOR provides employer-of-record and PEO services in South Africa. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"Dominika Wesolowska SENEM","categories":"EOR & PEO","region":"EMEA","description":"Dominika Wesolowska SENEM provides employer-of-record and PEO services in Poland. Services include employer-of-record services.","services":"- Employer-of-record services\n- Local coverage in Poland\n- Regional coverage: EMEA","logo":""},{"name":"Dong-A & Song-Kang Accounting Corp","categories":"Accounting, Tax & Audit","region":"APAC","description":"Dong-A & Song-Kang Accounting Corp provides accounting, tax, and audit support in Republic of Korea. Services include tax consulting and audit support.","services":"- Tax consulting\n- Audit support\n- Local coverage in Republic of Korea","logo":""},{"name":"DRiV Automotive","categories":"Specialized Consulting & Industry Services","region":"Global","description":"DRiV Automotive is a global automotive aftermarket supplier providing light and commercial vehicle parts, brands, and product support focused on vehicle performance, reliability, and service needs.","services":"• Automotive aftermarket parts and brands\n• Light and commercial vehicle products\n• Product and technical support","logo":""},{"name":"EasyEOR","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"EMEA","description":"EasyEOR provides employer-of-record and PEO services in Poland. Services include local employer-of-record support, expat employer-of-record support, payroll services, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"Ecovis","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation; Accounting, Tax & Audit","region":"EMEA","description":"Ecovis provides payroll and HR operations in Morocco. Services include payroll services, HR outsourcing, legal services, and audit support.","services":"- Payroll administration and processing\n- HR outsourcing and employee administration\n- Legal and compliance support","logo":""},{"name":"Elite Solarlab","categories":"Channel & Strategic Partners","region":"APAC","description":"Elite Solarlab provides channel and strategic partnership support in Pakistan. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Pakistan\n- Regional coverage: APAC","logo":""},{"name":"EMDOC","categories":"Immigration & Global Mobility","region":"Americas","description":"EMDOC provides immigration and global mobility support in Brazil and United States. Services include immigration support.","services":"- Immigration and work-permit support\n- Local coverage in Brazil and United States\n- Regional coverage: Americas","logo":""},{"name":"Emerald Technology","categories":"EOR & PEO; Payroll & HR Operations","region":"EMEA","description":"Emerald Technology provides employer-of-record and PEO services in United Kingdom. Services include local employer-of-record support, expat employer-of-record support, and payroll services.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"Energineering Tfm","categories":"Channel & Strategic Partners","region":"EMEA","description":"Energineering Tfm provides channel and strategic partnership support in Greece. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Greece\n- Regional coverage: EMEA","logo":""},{"name":"Eternaconta","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation; Technology & Platform Partners","region":"Americas","description":"Eternaconta provides payroll and HR operations in Chile. Services include payroll services, legal services, and platform partnership.","services":"- Payroll administration and processing\n- Legal and compliance support\n- Platform partnership support","logo":""},{"name":"Etisalat UAE","categories":"Technology & Platform Partners","region":"Middle East","description":"Etisalat UAE provides technology and platform partnership support in United Arab Emirates. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in United Arab Emirates\n- Regional coverage: Middle East","logo":""},{"name":"Eurofast","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"EMEA","description":"Eurofast provides employer-of-record and PEO services in Cyprus. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"European Solar","categories":"Channel & Strategic Partners","region":"EMEA","description":"European Solar provides channel and strategic partnership support in Netherlands. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Netherlands\n- Regional coverage: EMEA","logo":""},{"name":"Europortage","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"Americas","description":"Europortage provides portage salarial and payroll management solutions for companies developing activities in Latin America. It supports local workforce administration through regional partners, entities and in-country assistance.","services":"- Portage salarial solutions in Latin America\n- Payroll management and employment administration\n- Local partners, entities and regional assistance","logo":""},{"name":"Faisal","categories":"Payroll & HR Operations; Technology & Platform Partners","region":"APAC","description":"Faisal provides payroll and HR operations in Malaysia. Services include HR outsourcing and platform partnership.","services":"- HR outsourcing and employee administration\n- Platform partnership support\n- Local coverage in Malaysia","logo":""},{"name":"Faro Outsourcing","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"Faro Outsourcing provides employer-of-record and PEO services in Vietnam. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"FChain","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"FChain provides employer-of-record and PEO services in Kyrgyzstan and Kazakhstan. Services include local employer-of-record support, expat employer-of-record support, payroll services, and legal services.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"FESCO","categories":"Payroll & HR Operations","region":"APAC","description":"FESCO provides payroll and HR operations in Hong Kong. Services include payroll services and HR outsourcing.","services":"- Payroll administration and processing\n- HR outsourcing and employee administration\n- Local coverage in Hong Kong","logo":""},{"name":"Firmansyah","categories":"Accounting, Tax & Audit; Specialized Consulting & Industry Services","region":"APAC","description":"Firmansyah is linked to Firman & Co, an Indonesia-based professional accounting and corporate advisory practice supporting clients with accounting, assurance, and business advisory needs.","services":"• Accounting and financial reporting\n• Assurance and advisory services\n• Corporate advisory support","logo":""},{"name":"Floraison","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"APAC","description":"Floraison provides employer-of-record and PEO services in India. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, and legal services.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"FNRCO Group","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"Middle East","description":"FNRCO Group provides employer-of-record and PEO services in Saudi Arabia. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"Future Direct","categories":"Immigration & Global Mobility","region":"EMEA","description":"Future Direct provides immigration and global mobility support in Ireland. Services include immigration support.","services":"- Immigration and work-permit support\n- Local coverage in Ireland\n- Regional coverage: EMEA","logo":""},{"name":"Fuzhen Corporate Services","categories":"Channel & Strategic Partners","region":"APAC","description":"Fuzhen Corporate Services provides channel and strategic partnership support in Hong Kong. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Hong Kong\n- Regional coverage: APAC","logo":""},{"name":"Geronimo Law","categories":"Legal, Compliance & Incorporation; Technology & Platform Partners","region":"APAC","description":"Geronimo Law provides legal, compliance, and incorporation support in Philippines. Services include legal services, company incorporation support, and platform partnership.","services":"- Legal and compliance support\n- Company incorporation support\n- Platform partnership support","logo":""},{"name":"Global HR Korea","categories":"EOR & PEO; Payroll & HR Operations","region":"APAC","description":"Global HR Korea provides employer-of-record and PEO services in Republic of Korea. Services include local employer-of-record support and payroll services.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- Local coverage in Republic of Korea","logo":""},{"name":"GP Outsourcing Asia","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"APAC","description":"GP Outsourcing Asia provides employer-of-record and PEO services in Malaysia. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, and company incorporation support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"Great Pyramid","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"APAC","description":"Great Pyramid provides employer-of-record and PEO services in Malaysia. Services include local employer-of-record support, expat employer-of-record support, HR outsourcing, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- HR outsourcing and employee administration","logo":""},{"name":"HAI","categories":"EOR & PEO; Payroll & HR Operations","region":"APAC","description":"HAI provides employer-of-record and PEO services in Indonesia. Services include local employer-of-record support and payroll services.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- Local coverage in Indonesia","logo":""},{"name":"Hande HR","categories":"Payroll & HR Operations; Recruitment & Staffing; EOR & PEO","region":"APAC","description":"Hande HR Group is a China-based HR outsourcing group supporting personnel agency, talent dispatch, business outsourcing, and one-stop global employment solutions for companies expanding overseas.","services":"• HR outsourcing and personnel agency\n• Talent dispatch and workforce outsourcing\n• Global employment support","logo":""},{"name":"Hexamatics","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"Hexamatics provides employer-of-record and PEO services in Malaysia. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"Hightekers","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"EMEA","description":"Hightekers provides employer-of-record and PEO services in United Kingdom. Services include local employer-of-record support, expat employer-of-record support, payroll services, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"HM&P Law Firm","categories":"Legal, Compliance & Incorporation; Technology & Platform Partners","region":"APAC","description":"HM&P Law Firm provides legal, compliance, and incorporation support in Vietnam. Services include company incorporation support and platform partnership.","services":"- Company incorporation support\n- Platform partnership support\n- Local coverage in Vietnam","logo":""},{"name":"Horváth Solar","categories":"Channel & Strategic Partners","region":"EMEA","description":"Horváth Solar provides channel and strategic partnership support in Hungary. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Hungary\n- Regional coverage: EMEA","logo":""},{"name":"HR Buddy","categories":"EOR & PEO; Payroll & HR Operations","region":"EMEA","description":"HR Buddy provides employer-of-record and PEO services in Ireland. Services include local employer-of-record support, expat employer-of-record support, and payroll services.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"HRBS","categories":"EOR & PEO; Payroll & HR Operations","region":"APAC","description":"HRBS provides employer-of-record and PEO services in Pakistan. Services include local employer-of-record support and payroll services.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- Local coverage in Pakistan","logo":""},{"name":"HRC Baku","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"EMEA","description":"HRC Baku provides employer-of-record and PEO services in Azerbaijan. Services include local employer-of-record support, expat employer-of-record support, HR outsourcing, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- HR outsourcing and employee administration","logo":""},{"name":"HRI Indonesia","categories":"EOR & PEO","region":"APAC","description":"HRI Indonesia provides employer-of-record and PEO services in Indonesia. Services include local employer-of-record support and expat employer-of-record support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Local coverage in Indonesia","logo":""},{"name":"Human Resources Mexico","categories":"EOR & PEO; Immigration & Global Mobility","region":"Americas","description":"Human Resources Mexico provides employer-of-record and PEO services in Mexico. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"IEST Group","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"Americas","description":"IEST Group provides employer-of-record and PEO services in Brazil. Services include local employer-of-record support, expat employer-of-record support, HR outsourcing, and company incorporation support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- HR outsourcing and employee administration","logo":""},{"name":"InCorp","categories":"EOR & PEO","region":"APAC","description":"InCorp provides employer-of-record and PEO services in Vietnam. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Vietnam\n- Regional coverage: APAC","logo":""},{"name":"Inter Expo","categories":"Channel & Strategic Partners","region":"EMEA","description":"Inter Expo provides channel and strategic partnership support in Poland. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Poland\n- Regional coverage: EMEA","logo":""},{"name":"IRIS","categories":"Payroll & HR Operations","region":"EMEA","description":"IRIS provides payroll and HR operations in United Kingdom. Services include payroll services.","services":"- Payroll administration and processing\n- Local coverage in United Kingdom\n- Regional coverage: EMEA","logo":""},{"name":"ITOS","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"Americas","description":"ITOS provides employer-of-record and PEO services in United States. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"J&J Korea","categories":"Payroll & HR Operations; Accounting, Tax & Audit","region":"APAC","description":"J&J Korea provides payroll services in South Korea, supporting salary processing, tax filing, social security administration, and payroll compliance for business clients.","services":"• Salary processing\n• Tax filing and payroll deductions\n• Social security and compliance support","logo":""},{"name":"JGT","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation; Accounting, Tax & Audit; Specialized Consulting & Industry Services","region":"EMEA","description":"JGT provides payroll and HR operations in Spain. Services include payroll services, legal services, tax and accounting support, and business consulting.","services":"- Payroll administration and processing\n- Legal and compliance support\n- Tax and accounting support","logo":""},{"name":"JMI","categories":"EOR & PEO; Payroll & HR Operations","region":"APAC","description":"JMI provides employer-of-record and PEO services in Philippines. Services include local employer-of-record support and payroll services.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- Local coverage in Philippines","logo":""},{"name":"JobTech","categories":"EOR & PEO","region":"EMEA","description":"JobTech provides employer-of-record and PEO services in Italy. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Italy\n- Regional coverage: EMEA","logo":""},{"name":"JOCHRO","categories":"Recruitment & Staffing; Payroll & HR Operations","region":"APAC","description":"JOCHRO (Shanghai Zhuochuan Human Resources) is a China-based HR services provider supporting enterprise talent needs through human resource management, talent services, and HR service systems.","services":"• Human resource management services\n• Talent service and staffing support\n• HR service platform and support systems","logo":""},{"name":"JP Tech Bay","categories":"Technology & Platform Partners; EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"JP Tech Bay Sdn. Bhd. is a Malaysia-based company publicly registered for software solutions, software integration, customization, maintenance, support and SaaS-related services. Its listed partner services include EOR and global mobility support.","services":"- Software solution development and integration\n- Software maintenance, support and SaaS-related services\n- Marco master record indicates EOR and global mobility support","logo":""},{"name":"JV France","categories":"EOR & PEO; Channel & Strategic Partners","region":"EMEA","description":"JV France provides employer-of-record and PEO services in France. Services include local employer-of-record support and channel partnership.","services":"- Local employer-of-record support\n- Channel partnership support\n- Local coverage in France","logo":""},{"name":"Kaizen","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility; Legal, Compliance & Incorporation","region":"Middle East","description":"Kaizen provides employer-of-record and global hiring support across GCC/MENA and other markets, helping companies hire and manage employees without setting up a local entity.","services":"• Employer-of-record hiring support\n• Visa processing and onboarding\n• Payroll and compliance management","logo":""},{"name":"KBHT","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"KBHT provides payroll and HR operations in Germany. Services include payroll services, HR outsourcing, and legal services.","services":"- Payroll administration and processing\n- HR outsourcing and employee administration\n- Legal and compliance support","logo":""},{"name":"KEYS","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"Middle East","description":"KEYS provides employer-of-record and PEO services in Egypt. Services include local employer-of-record support, expat employer-of-record support, payroll services, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"KM Investment","categories":"EOR & PEO","region":"APAC","description":"KM Investment provides employer-of-record and PEO services in Laos. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Laos\n- Regional coverage: APAC","logo":""},{"name":"KMC","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"KMC provides employer-of-record and PEO services in Philippines. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"KSN","categories":"EOR & PEO","region":"EMEA","description":"KSN provides employer-of-record and PEO services in Finland. Services include employer-of-record services.","services":"- Employer-of-record services\n- Local coverage in Finland\n- Regional coverage: EMEA","logo":""},{"name":"LDP Payroll","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"LDP Payroll provides payroll and HR operations in Italy. Services include payroll services and legal services.","services":"- Payroll administration and processing\n- Legal and compliance support\n- Local coverage in Italy","logo":""},{"name":"Leap 29","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"EMEA","description":"Leap 29 provides employer-of-record and PEO services in United Kingdom and Netherlands. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"Lexia","categories":"Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"Lexia provides payroll and HR operations in Italy. Services include payroll services, HR outsourcing, legal services, and company incorporation support.","services":"- Payroll administration and processing\n- HR outsourcing and employee administration\n- Legal and compliance support","logo":""},{"name":"Lider Saude","categories":"Benefits & Insurance; Specialized Consulting & Industry Services","region":"Americas","description":"Lider Saúde is a Brazil-based occupational health provider supporting companies with occupational medical programs, employee health exams, laboratory exams, hearing-conservation programs, and prevention campaigns.","services":"• Occupational health programs (PCMSO)\n• Medical and laboratory exams\n• Workplace health prevention campaigns","logo":""},{"name":"Link Compliance","categories":"EOR & PEO; Payroll & HR Operations","region":"APAC","description":"Link Compliance provides employer-of-record and PEO services in Hong Kong and Japan. Services include local employer-of-record support and HR outsourcing.","services":"- Local employer-of-record support\n- HR outsourcing and employee administration\n- Local coverage in Hong Kong and Japan","logo":""},{"name":"LTA Azerbaijan","categories":"EOR & PEO","region":"EMEA","description":"LTA Azerbaijan provides employer-of-record and PEO services in Azerbaijan. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Azerbaijan\n- Regional coverage: EMEA","logo":""},{"name":"Luiz Gonzaga Bertelli Junior","categories":"Channel & Strategic Partners","region":"Americas","description":"Luiz Gonzaga Bertelli Junior provides channel and strategic partnership support in Brazil. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Brazil\n- Regional coverage: Americas","logo":""},{"name":"MAM Corporate Solutions","categories":"EOR & PEO; Immigration & Global Mobility; Accounting, Tax & Audit","region":"APAC","description":"MAM Corporate Solutions provides employer-of-record and PEO services in Indonesia. Services include local employer-of-record support, expat employer-of-record support, immigration support, and audit support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"Manpower (Singapore)","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"APAC","description":"Manpower (Singapore) provides employer-of-record and PEO services in Singapore. Services include local employer-of-record support, expat employer-of-record support, payroll services, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"Marchitelli Elena","categories":"EOR & PEO","region":"EMEA","description":"Marchitelli Elena provides employer-of-record and PEO services in Italy. Services include employer-of-record services.","services":"- Employer-of-record services\n- Local coverage in Italy\n- Regional coverage: EMEA","logo":""},{"name":"Marcury","categories":"Channel & Strategic Partners","region":"EMEA","description":"Marcury provides channel and strategic partnership support in United Kingdom. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in United Kingdom\n- Regional coverage: EMEA","logo":""},{"name":"Masdar","categories":"EOR & PEO; Immigration & Global Mobility","region":"Middle East","description":"Masdar provides employer-of-record and PEO services in Kuwait and Saudi Arabia. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"Mellon","categories":"EOR & PEO","region":"EMEA","description":"Mellon provides employer-of-record and PEO services in Poland. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Poland\n- Regional coverage: EMEA","logo":""},{"name":"Metasource","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility; Legal, Compliance & Incorporation","region":"APAC","description":"Metasource provides employer-of-record and PEO services in Vietnam. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, immigration support, and additional partner services.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"Minnovation International","categories":"Technology & Platform Partners","region":"EMEA","description":"Minnovation International provides technology and platform partnership support in Sweden. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in Sweden\n- Regional coverage: EMEA","logo":""},{"name":"MITA ICT","categories":"Channel & Strategic Partners","region":"EMEA","description":"MITA ICT provides channel and strategic partnership support in Sweden. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Sweden\n- Regional coverage: EMEA","logo":""},{"name":"Mondo Conta","categories":"Payroll & HR Operations; Accounting, Tax & Audit","region":"EMEA","description":"Mondo Conta provides payroll and HR operations in Romania. Services include payroll services and audit support.","services":"- Payroll administration and processing\n- Audit support\n- Local coverage in Romania","logo":""},{"name":"MSE Personal Service","categories":"EOR & PEO","region":"EMEA","description":"MSE Personal Service provides employer-of-record and PEO services in Switzerland. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Switzerland\n- Regional coverage: EMEA","logo":""},{"name":"Mueen","categories":"EOR & PEO","region":"Middle East","description":"Mueen provides employer-of-record and PEO services in Saudi Arabia. Services include local employer-of-record support and expat employer-of-record support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Local coverage in Saudi Arabia","logo":""},{"name":"MXD Czech","categories":"EOR & PEO","region":"EMEA","description":"MXD Czech provides employer-of-record and PEO services in Czech Republic. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Czech Republic\n- Regional coverage: EMEA","logo":""},{"name":"N2S","categories":"EOR & PEO; Payroll & HR Operations","region":"Americas","description":"N2S provides employer-of-record and PEO services in Brazil. Services include local employer-of-record support and payroll services.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- Local coverage in Brazil","logo":""},{"name":"NC Green Tech","categories":"Channel & Strategic Partners","region":"EMEA","description":"NC Green Tech provides channel and strategic partnership support in Romania. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Romania\n- Regional coverage: EMEA","logo":""},{"name":"NET2SOURCE","categories":"EOR & PEO","region":"Americas","description":"NET2SOURCE provides employer-of-record and PEO services in Brazil. Services include employer-of-record services.","services":"- Employer-of-record services\n- Local coverage in Brazil\n- Regional coverage: Americas","logo":""},{"name":"New Tandem","categories":"EOR & PEO","region":"EMEA","description":"New Tandem provides employer-of-record and PEO services in Spain. Services include local employer-of-record support and expat employer-of-record support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Local coverage in Spain","logo":""},{"name":"NH Consulting","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"NH Consulting provides employer-of-record and PEO services in Kazakhstan. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"Northern Partners","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"Northern Partners is a Nordic Employer of Record and international workforce management provider. It supports compliant employment, contracts, payroll administration, taxes and local compliance across Denmark, Sweden, Norway and Finland.","services":"- Nordic Employer of Record support\n- Contracts, payroll administration and taxes\n- Local compliance across Denmark, Sweden, Norway and Finland","logo":""},{"name":"NP Abogados","categories":"Immigration & Global Mobility; Legal, Compliance & Incorporation","region":"Americas","description":"NP Abogados provides immigration and global mobility support in Argentina. Services include mobility support and legal services.","services":"- Mobility support\n- Legal and compliance support\n- Local coverage in Argentina","logo":""},{"name":"Oancea & Asociatii","categories":"Legal, Compliance & Incorporation; Technology & Platform Partners","region":"EMEA","description":"Oancea & Asociatii provides legal, compliance, and incorporation support in Romania. Services include legal services and platform partnership.","services":"- Legal and compliance support\n- Platform partnership support\n- Local coverage in Romania","logo":""},{"name":"Open Work","categories":"EOR & PEO","region":"EMEA","description":"Open Work provides employer-of-record and PEO services in Belgium. Services include local employer-of-record support and expat employer-of-record support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Local coverage in Belgium","logo":""},{"name":"Opsource","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"Opsource provides employer-of-record and PEO services in Philippines. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"Optimum Solutions","categories":"EOR & PEO","region":"Middle East","description":"Optimum Solutions provides employer-of-record and PEO services in Saudi Arabia. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Saudi Arabia\n- Regional coverage: Middle East","logo":""},{"name":"OSDE","categories":"Benefits & Insurance","region":"Americas","description":"OSDE is an Argentine health insurance and prepaid medical services provider offering health plans, medical provider directories and online member services for individuals, families and corporate members in Argentina.","services":"- Health insurance and prepaid medical coverage\n- Medical provider network and plan access\n- Online health-plan administration and member services","logo":""},{"name":"Oui Immigration","categories":"Immigration & Global Mobility; Technology & Platform Partners","region":"EMEA","description":"Oui Immigration provides immigration and global mobility support in France. Services include immigration support and platform partnership.","services":"- Immigration and work-permit support\n- Platform partnership support\n- Local coverage in France","logo":""},{"name":"PamGro","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"PamGro provides employer-of-record and PEO services in United Kingdom. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"Papalois & Associates","categories":"Technology & Platform Partners","region":"EMEA","description":"Papalois & Associates provides technology and platform partnership support in Greece. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in Greece\n- Regional coverage: EMEA","logo":""},{"name":"Papaya Global","categories":"Payroll & HR Operations; EOR & PEO; Banking, Payments & Treasury; Technology & Platform Partners","region":"Global","description":"Papaya Global is a global payroll and workforce payments platform helping enterprises centralize payroll, payments, EOR, and contingent workforce operations with compliance and visibility.","services":"• Global payroll management\n• Workforce and contractor payments\n• EOR and workforce compliance workflows","logo":""},{"name":"Parakar","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"Parakar provides employer-of-record and PEO services in Belgium, Germany, Spain, France, United Kingdom, Ireland, Italy, and Netherlands. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"PayNext","categories":"EOR & PEO","region":"Americas","description":"PayNext provides employer-of-record and PEO services in Colombia. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Colombia\n- Regional coverage: Americas","logo":""},{"name":"Payroll & Outsourcing","categories":"EOR & PEO; Payroll & HR Operations; Recruitment & Staffing; Immigration & Global Mobility; Legal, Compliance & Incorporation","region":"APAC","description":"Payroll & Outsourcing (P&O) provides PEO/EOR, payroll management, HR compliance, recruitment, visa and immigration support across Southeast Asian markets including Cambodia, Laos and Myanmar.","services":"- PEO/EOR and payroll management\n- HR compliance and workforce administration\n- Recruitment, visa and immigration support","logo":""},{"name":"PB Services","categories":"Payroll & HR Operations; Immigration & Global Mobility; Legal, Compliance & Incorporation; Accounting, Tax & Audit","region":"EMEA","description":"PB Services provides payroll and HR operations in Georgia. Services include payroll services, HR outsourcing, immigration support, legal services, and accounting services.","services":"- Payroll administration and processing\n- HR outsourcing and employee administration\n- Immigration and work-permit support","logo":""},{"name":"PC Image","categories":"Technology & Platform Partners","region":"APAC","description":"PC Image provides technology and platform partnership support in Malaysia. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in Malaysia\n- Regional coverage: APAC","logo":""},{"name":"People2.0","categories":"EOR & PEO; Immigration & Global Mobility","region":"Global","description":"People2.0 provides employer-of-record and PEO services in Germany, Finland, United Kingdom, Sweden, and United States. Services include local employer-of-record support and immigration support.","services":"- Local employer-of-record support\n- Immigration and work-permit support\n- Local coverage in Germany, Finland, United Kingdom, Sweden, and United States","logo":""},{"name":"PermitIndo","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation; Accounting, Tax & Audit","region":"APAC","description":"PermitIndo provides employer-of-record and PEO services in Indonesia. Services include employer-of-record services, PEO support, legal services, company registration support, and payroll, tax, and accounting support.","services":"- Employer-of-record services\n- Professional employer organization support\n- Legal and compliance support","logo":""},{"name":"Perrys Accountant","categories":"Accounting, Tax & Audit","region":"EMEA","description":"Perrys Accountant provides accounting, tax, and audit support in United Kingdom. Services include accounting services.","services":"- Accounting services\n- Local coverage in United Kingdom\n- Regional coverage: EMEA","logo":""},{"name":"PORTEGO","categories":"EOR & PEO; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"EMEA","description":"PORTEGO is a Germany-based co-employer and Employer of Record provider. Its model formally employs selected workers, manages administrative tasks and supports legally compliant workforce leasing under the German AÜG framework.","services":"- Co-employer and Employer of Record support in Germany\n- Formal employment and administrative handling\n- Payroll and legally compliant employee leasing support","logo":""},{"name":"Premium HR","categories":"EOR & PEO; Payroll & HR Operations","region":"APAC","description":"Premium HR provides employer-of-record and PEO services in Cambodia. Services include local employer-of-record support and payroll services.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- Local coverage in Cambodia","logo":""},{"name":"Prime Solutions","categories":"Immigration & Global Mobility; Legal, Compliance & Incorporation","region":"Americas","description":"Prime Solutions provides immigration and global mobility support in Panama. Services include mobility support and legal services.","services":"- Mobility support\n- Legal and compliance support\n- Local coverage in Panama","logo":""},{"name":"PrimeBridge Global","categories":"Payroll & HR Operations; Accounting, Tax & Audit","region":"EMEA","description":"PrimeBridge Global provides payroll and HR operations in Netherlands. Services include payroll services and tax and accounting support.","services":"- Payroll administration and processing\n- Tax and accounting support\n- Local coverage in Netherlands","logo":""},{"name":"Principle HR","categories":"EOR & PEO; Recruitment & Staffing","region":"EMEA","description":"Principle HR provides employer-of-record and PEO services in Ireland. Services include local employer-of-record support, expat employer-of-record support, recruitment services, and managed service provider support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Recruitment services","logo":""},{"name":"Profit Tantra Financial Services","categories":"Accounting, Tax & Audit; Banking, Payments & Treasury; Specialized Consulting & Industry Services","region":"APAC","description":"Profit Tantra Financial Services provides Indian financial advisory support spanning trading advice, equities and mutual funds, portfolio management, insurance, real estate, and financial and tax planning.","services":"• Financial and tax planning\n• Investment and portfolio advisory\n• Insurance and real estate advisory","logo":""},{"name":"Pryor Consulting Chile S.A","categories":"Accounting, Tax & Audit; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"Americas","description":"Pryor Consulting Chile is a Chile-based consulting services firm specializing in accounting, financial, tax, labor, and human-resources services for local and foreign companies.","services":"• Accounting outsourcing\n• Payroll / remuneration processing\n• Tax and labor advisory","logo":""},{"name":"PT Human Assist Indonesia","categories":"Recruitment & Staffing; Payroll & HR Operations","region":"APAC","description":"PT Human Assist Indonesia (HAI) is an Indonesia-based HR services partner with expertise in executive search, recruitment process outsourcing (RPO), end-to-end talent acquisition, and workforce outsourcing projects.","services":"• Executive search\n• Recruitment process outsourcing\n• Talent acquisition and outsourcing support","logo":""},{"name":"REC Taiwan","categories":"EOR & PEO","region":"APAC","description":"REC Taiwan provides employer-of-record and PEO services in Taiwan. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Taiwan\n- Regional coverage: APAC","logo":""},{"name":"Rent A Recruiter","categories":"EOR & PEO","region":"EMEA","description":"Rent A Recruiter provides employer-of-record and PEO services in Ireland. Services include local employer-of-record support and expat employer-of-record support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Local coverage in Ireland","logo":""},{"name":"RLC","categories":"Specialized Consulting & Industry Services","region":"EMEA","description":"RLC provides specialized consulting and industry services in Sweden. Services include renewable-energy sector support.","services":"- Renewable-energy sector support\n- Local coverage in Sweden\n- Regional coverage: EMEA","logo":""},{"name":"Roots","categories":"EOR & PEO","region":"Americas","description":"Roots provides employer-of-record and PEO services in Mexico. Services include local employer-of-record support and expat employer-of-record support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Local coverage in Mexico","logo":""},{"name":"RSM Stone Forest","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility; Legal, Compliance & Incorporation; Accounting, Tax & Audit","region":"APAC","description":"RSM Stone Forest provides employer-of-record and PEO services in Singapore. Services include local employer-of-record support, payroll services, HR outsourcing, immigration support, company incorporation support, and additional partner services.","services":"- Local employer-of-record support\n- Payroll administration and processing\n- HR outsourcing and employee administration","logo":""},{"name":"Russell Bedford","categories":"Accounting, Tax & Audit; Payroll & HR Operations; Legal, Compliance & Incorporation","region":"Global","description":"Russell Bedford International is a global network of independent professional services firms providing accounting, audit, tax and consulting services. Member firms also support payroll, HR, BPO and business advisory needs in local markets.","services":"- Accounting, audit, tax and consulting services\n- Payroll, HR and BPO support through member firms\n- Local professional advice through a global network","logo":""},{"name":"Sasha Terra","categories":"Channel & Strategic Partners","region":"EMEA","description":"Sasha Terra provides channel and strategic partnership support in Spain. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Spain\n- Regional coverage: EMEA","logo":""},{"name":"SBA Stone Forest","categories":"Payroll & HR Operations","region":"APAC","description":"SBA Stone Forest provides payroll and HR operations in China. Services include payroll services and HR outsourcing.","services":"- Payroll administration and processing\n- HR outsourcing and employee administration\n- Local coverage in China","logo":""},{"name":"Serafino","categories":"Channel & Strategic Partners","region":"EMEA","description":"Serafino provides channel and strategic partnership support in Italy. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Italy\n- Regional coverage: EMEA","logo":""},{"name":"Serviap","categories":"EOR & PEO; Immigration & Global Mobility","region":"Americas","description":"Serviap provides employer-of-record and PEO services in Mexico and United States. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"SGET","categories":"Channel & Strategic Partners","region":"APAC","description":"SGET provides channel and strategic partnership support in Hong Kong. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Hong Kong\n- Regional coverage: APAC","logo":""},{"name":"Sofestar","categories":"Payroll & HR Operations","region":"APAC","description":"Sofestar provides payroll and HR operations in China. Services include HR outsourcing.","services":"- HR outsourcing and employee administration\n- Local coverage in China\n- Regional coverage: APAC","logo":""},{"name":"Solutions & Payroll","categories":"Payroll & HR Operations; EOR & PEO; Recruitment & Staffing; Legal, Compliance & Incorporation","region":"Americas","description":"Solutions & Payroll is a Colombia-based outsourcing provider offering payroll outsourcing, talent management, EOR, recruitment and treasury support for local, regional and multinational companies.","services":"- Payroll outsourcing and administration\n- EOR, employment outsourcing and personnel management\n- Recruitment, treasury and HR compliance support","logo":""},{"name":"Source of Asia","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"Source of Asia provides employer-of-record and PEO services in Vietnam. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"SOURCEitHR","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility","region":"Middle East","description":"SOURCEitHR provides employer-of-record and PEO services in Jordan. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"South China Accounting & Corporate Services","categories":"Technology & Platform Partners","region":"APAC","description":"South China Accounting & Corporate Services provides technology and platform partnership support in Hong Kong. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in Hong Kong\n- Regional coverage: APAC","logo":""},{"name":"STA Portage (Belgium)","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"STA Portage (Belgium) provides employer-of-record and PEO services in Belgium. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"STA Portage (France)","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"STA Portage (France) provides employer-of-record and PEO services in France. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"Stafimy","categories":"EOR & PEO; Immigration & Global Mobility","region":"EMEA","description":"Stafimy provides employer-of-record and PEO services in Turkey. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"State Revenue Office","categories":"Payroll & HR Operations; Technology & Platform Partners","region":"APAC","description":"State Revenue Office provides payroll and HR operations in Australia. Services include HR outsourcing and platform partnership.","services":"- HR outsourcing and employee administration\n- Platform partnership support\n- Local coverage in Australia","logo":""},{"name":"Sundus","categories":"EOR & PEO","region":"Middle East","description":"Sundus provides employer-of-record and PEO services in Saudi Arabia. Services include employer-of-record services.","services":"- Employer-of-record services\n- Local coverage in Saudi Arabia\n- Regional coverage: Middle East","logo":""},{"name":"Sunrate","categories":"Banking, Payments & Treasury","region":"APAC","description":"Sunrate provides banking, payments, and treasury services in Singapore. Services include global payment and collection services, trading and hedging support, and treasury platform support.","services":"- Global payment and collection services\n- Trading and hedging support\n- Treasury platform support","logo":""},{"name":"Suntribe","categories":"Specialized Consulting & Industry Services","region":"EMEA","description":"Suntribe is a South Africa-registered entity categorized as a specialized local partner for South Africa, with public registry information confirming its corporate presence.","services":"• South Africa local entity coverage\n• Specialized local partner support\n• Local business and operational coordination","logo":""},{"name":"Synergie","categories":"EOR & PEO","region":"EMEA","description":"Synergie provides employer-of-record and PEO services in Slovakia. Services include PEO support.","services":"- Professional employer organization support\n- Local coverage in Slovakia\n- Regional coverage: EMEA","logo":""},{"name":"SZFESCO","categories":"EOR & PEO; Payroll & HR Operations","region":"APAC","description":"SZFESCO provides employer-of-record and PEO services in China. Services include local employer-of-record support, expat employer-of-record support, payroll services, and HR outsourcing.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"T&D RENEWABLE ENERGY","categories":"Specialized Consulting & Industry Services","region":"Americas","description":"T&D Renewable Energy Ltda is a Brazil-based engineering-services company in the renewable-energy sector, registered in Campinas, São Paulo, and categorized as a specialized energy-sector partner.","services":"• Engineering services\n• Renewable-energy sector support\n• Brazil local partner coverage","logo":""},{"name":"Talenox","categories":"Payroll & HR Operations","region":"APAC","description":"Talenox provides payroll and HR operations in Singapore. Services include payroll services.","services":"- Payroll administration and processing\n- Local coverage in Singapore\n- Regional coverage: APAC","logo":""},{"name":"The Executive Centre","categories":"Technology & Platform Partners; Workspace & Local Business Services","region":"APAC","description":"The Executive Centre provides technology and platform partnership support in China. Services include platform partnership and property and workspace support.","services":"- Platform partnership support\n- Property and workspace support\n- Local coverage in China","logo":""},{"name":"The GMP Group","categories":"EOR & PEO; Immigration & Global Mobility","region":"APAC","description":"The GMP Group provides employer-of-record and PEO services in Singapore. Services include employer-of-record services and mobility support.","services":"- Employer-of-record services\n- Mobility support\n- Local coverage in Singapore","logo":""},{"name":"ThisWorks","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility; Legal, Compliance & Incorporation","region":"EMEA","description":"ThisWorks is an international Employer of Record provider with a strong presence in the Netherlands and Germany. It helps companies hire abroad without setting up a local entity while managing payroll, contracts, compliance, HR and work-permit support.","services":"- Employer of Record hiring without a local entity\n- Payroll, contracts, HR and compliance management\n- Work permits, entity setup and HR support services","logo":""},{"name":"Thredd","categories":"Technology & Platform Partners","region":"EMEA","description":"Thredd provides technology and platform partnership support in United Kingdom. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in United Kingdom\n- Regional coverage: EMEA","logo":""},{"name":"Tilea HR","categories":"EOR & PEO; Payroll & HR Operations; Accounting, Tax & Audit; Legal, Compliance & Incorporation; Immigration & Global Mobility","region":"EMEA","description":"TILEA HR and Financial Services provides EOR, PEO and workforce-management services with related tax, accounting, payroll, HR and compliance support. Its Hungary-based team supports companies managing local and international employment needs.","services":"- EOR and PEO workforce management\n- Payroll, HR administration and compliance\n- Tax, accounting and international employment support","logo":""},{"name":"Tisch","categories":"Technology & Platform Partners","region":"APAC","description":"Tisch provides technology and platform partnership support in Singapore. Services include Microsoft subscription support.","services":"- Microsoft subscription support\n- Local coverage in Singapore\n- Regional coverage: APAC","logo":""},{"name":"TN Online","categories":"Payroll & HR Operations; Accounting, Tax & Audit","region":"APAC","description":"Tn Online Payroll Pte Ltd is a Singapore payroll outsourcing provider supporting companies with payroll administration, employee self-service, tax-service related payroll support, compliance, and payroll operations.","services":"• Payroll outsourcing in Singapore\n• Payroll administration and employee self-service\n• Compliance and tax-related payroll support","logo":""},{"name":"Tokyo Sanno Law Office","categories":"Legal, Compliance & Incorporation","region":"APAC","description":"Tokyo Sanno Law Office provides legal, compliance, and incorporation support in Japan. Services include legal services.","services":"- Legal and compliance support\n- Local coverage in Japan\n- Regional coverage: APAC","logo":""},{"name":"Topsource","categories":"EOR & PEO; Payroll & HR Operations; Immigration & Global Mobility; Legal, Compliance & Incorporation","region":"EMEA","description":"Topsource provides employer-of-record and PEO services in United Kingdom. Services include local employer-of-record support, expat employer-of-record support, payroll services, HR outsourcing, immigration support, and additional partner services.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Payroll administration and processing","logo":""},{"name":"Toro Group","categories":"EOR & PEO; Payroll & HR Operations","region":"EMEA","description":"Toro Group provides employer-of-record and PEO services in Bulgaria. Services include local employer-of-record support and HR outsourcing.","services":"- Local employer-of-record support\n- HR outsourcing and employee administration\n- Local coverage in Bulgaria","logo":""},{"name":"Trenkwalder","categories":"EOR & PEO","region":"EMEA","description":"Trenkwalder provides employer-of-record and PEO services in Austria, Hungary, and Poland. Services include local employer-of-record support and expat employer-of-record support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Local coverage in Austria, Hungary, and Poland","logo":""},{"name":"Trimeria","categories":"Specialized Consulting & Industry Services","region":"EMEA","description":"Trimeria provides specialized consulting and industry services in Greece. Services include management support.","services":"- Management support\n- Local coverage in Greece\n- Regional coverage: EMEA","logo":""},{"name":"TXM","categories":"EOR & PEO","region":"Middle East","description":"TXM provides employer-of-record and PEO services in United Arab Emirates. Services include employer-of-record services.","services":"- Employer-of-record services\n- Local coverage in United Arab Emirates\n- Regional coverage: Middle East","logo":""},{"name":"Varynia","categories":"EOR & PEO","region":"EMEA","description":"Varynia provides employer-of-record and PEO services in France and Luxembourg. Services include employer-of-record services.","services":"- Employer-of-record services\n- Local coverage in France and Luxembourg\n- Regional coverage: EMEA","logo":""},{"name":"VE Hotel & Residence","categories":"Technology & Platform Partners; Workspace & Local Business Services","region":"APAC","description":"VE Hotel & Residence provides technology and platform partnership support in Malaysia. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in Malaysia\n- Regional coverage: APAC","logo":""},{"name":"VISA","categories":"Banking, Payments & Treasury; Technology & Platform Partners","region":"APAC","description":"VISA provides banking, payments, and treasury services in Singapore. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in Singapore\n- Regional coverage: APAC","logo":""},{"name":"VodeHR","categories":"Channel & Strategic Partners","region":"APAC","description":"VodeHR provides channel and strategic partnership support in Hong Kong. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Hong Kong\n- Regional coverage: APAC","logo":""},{"name":"Wang Huiru","categories":"Channel & Strategic Partners","region":"EMEA","description":"Wang Huiru provides channel and strategic partnership support in France. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in France\n- Regional coverage: EMEA","logo":""},{"name":"White Idea","categories":"Channel & Strategic Partners","region":"EMEA","description":"White Idea provides channel and strategic partnership support in Czech Republic. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in Czech Republic\n- Regional coverage: EMEA","logo":""},{"name":"Wide Brazil","categories":"EOR & PEO; Immigration & Global Mobility","region":"Americas","description":"Wide Brazil provides employer-of-record and PEO services in Brazil. Services include local employer-of-record support, expat employer-of-record support, and immigration support.","services":"- Local employer-of-record support\n- Expat employer-of-record support\n- Immigration and work-permit support","logo":""},{"name":"WMP Consulting Services S de RL de CV","categories":"Accounting, Tax & Audit; Legal, Compliance & Incorporation; Payroll & HR Operations; Specialized Consulting & Industry Services","region":"Americas","description":"WMP Mexico Advisors / WMP Consulting Services is a Mexico-focused consulting group specializing in tax, accounting, legal, payroll, company formation, immigration, market-entry, and business-partner search support.","services":"• Tax, accounting, and payroll services\n• Legal compliance and company formation\n• Market-entry and business-partner search","logo":""},{"name":"Working day","categories":"EOR & PEO","region":"EMEA","description":"Working day provides employer-of-record and PEO services in Latvia. Services include employer-of-record services.","services":"- Employer-of-record services\n- Local coverage in Latvia\n- Regional coverage: EMEA","logo":""},{"name":"World Link","categories":"EOR & PEO","region":"APAC","description":"World Link provides employer-of-record and PEO services in Japan. Services include local employer-of-record support.","services":"- Local employer-of-record support\n- Local coverage in Japan\n- Regional coverage: APAC","logo":""},{"name":"xano","categories":"Technology & Platform Partners","region":"Americas","description":"xano provides technology and platform partnership support in United States. Services include cloud support.","services":"- Cloud support\n- Local coverage in United States\n- Regional coverage: Americas","logo":""},{"name":"Xueyan Lei","categories":"Channel & Strategic Partners","region":"EMEA","description":"Xueyan Lei provides channel and strategic partnership support in France. Services include channel partnership.","services":"- Channel partnership support\n- Local coverage in France\n- Regional coverage: EMEA","logo":""},{"name":"Yunsheng Group","categories":"EOR & PEO; Channel & Strategic Partners","region":"APAC","description":"Yunsheng Group provides employer-of-record and PEO services in China. Services include local employer-of-record support and channel partnership.","services":"- Local employer-of-record support\n- Channel partnership support\n- Local coverage in China","logo":""},{"name":"京鼎财","categories":"Payroll & HR Operations; Accounting, Tax & Audit","region":"APAC","description":"京鼎财 provides payroll and HR operations in China. Services include HR outsourcing and accounting services.","services":"- HR outsourcing and employee administration\n- Accounting services\n- Local coverage in China","logo":""},{"name":"大连双贺装饰装修工程有限公司 (DL Reno)","categories":"Technology & Platform Partners","region":"APAC","description":"大连双贺装饰装修工程有限公司 (DL Reno) provides technology and platform partnership support in China. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in China\n- Regional coverage: APAC","logo":""},{"name":"深圳慧通商务有限公司","categories":"Technology & Platform Partners","region":"APAC","description":"深圳慧通商务有限公司 provides technology and platform partnership support in China. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in China\n- Regional coverage: APAC","logo":""},{"name":"湖北省博文翻译有限公司","categories":"Technology & Platform Partners","region":"APAC","description":"湖北省博文翻译有限公司 provides technology and platform partnership support in China. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in China\n- Regional coverage: APAC","logo":""},{"name":"湖北译佳翻译有限公司","categories":"Technology & Platform Partners","region":"APAC","description":"湖北译佳翻译有限公司 provides technology and platform partnership support in China. Services include platform partnership.","services":"- Platform partnership support\n- Local coverage in China\n- Regional coverage: APAC","logo":""}];
+
+  var vdState = { search: "", cats: new Set(), regs: new Set(), sort: "asc", view: "grid", page: 1 };
+  window.vdState = vdState; // expose for inline onclick handlers
+  var VD_PER_PAGE = 20;
+
+  var catCount = {}, regCount = {};
+  VENDORS.forEach(function(v) {
+    v.categories.split(";").forEach(function(c) {
+      c = c.trim(); catCount[c] = (catCount[c]||0) + 1;
+    });
+    regCount[v.region] = (regCount[v.region]||0) + 1;
+  });
+
+  function esc(s) {
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  function mkCatId(c) { return "cnt-cat-" + c.replace(/[^a-zA-Z0-9]/g, "_"); }
+  function mkRegId(r) { return "cnt-reg-" + r.replace(/\s+/g, "-"); }
+
+  function getFiltered() {
+    var d = VENDORS.slice();
+    if (vdState.search) {
+      var q = vdState.search.toLowerCase();
+      d = d.filter(function(v) { return v.name.toLowerCase().indexOf(q) >= 0; });
+    }
+    if (vdState.cats.size > 0) {
+      d = d.filter(function(v) {
+        return v.categories.split(";").some(function(c) { return vdState.cats.has(c.trim()); });
+      });
+    }
+    if (vdState.regs.size > 0) {
+      d = d.filter(function(v) { return vdState.regs.has(v.region); });
+    }
+    d.sort(function(a, b) {
+      return vdState.sort === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+    });
+    return d;
+  }
+
+  function renderCard(v) {
+    var logoHtml;
+    if (v.logo) {
+      var fc = esc(v.name.charAt(0));
+      logoHtml = "<img src=\"" + esc(v.logo) + "\" alt=\"" + esc(v.name) + "\" onerror=\"this.parentElement.innerHTML='<div class=vd-logo-placeholder>" + fc + "</div>'\"/>";
+    } else {
+      logoHtml = "<div class=\"vd-logo-placeholder\">" + esc(v.name.charAt(0)) + "</div>";
+    }
+    var rCls = "vd-region-" + v.region.replace(/\s+/g, "-");
+    var regionTag = "<span class=\"vd-tag " + rCls + "\">" + esc(v.region) + "</span>";
+    var catTags = v.categories.split(";").map(function(c) {
+      c = c.trim();
+      return "<span class=\"vd-cat-tag\"><span class=\"vd-cat-dot\"></span>" + esc(c) + "</span>";
+    }).join("");
+    var svcLines = v.services.split("\n")
+      .map(function(s) { return s.replace(/^[-\u2022\*]\s*/, "").trim(); })
+      .filter(function(s) { return s.length > 0; })
+      .slice(0, 3)
+      .map(function(s) {
+        return "<div class=\"vd-card-service\"><div class=\"vd-service-dot\"></div><span class=\"vd-service-text\">" + esc(s) + "</span></div>";
+      }).join("");
+    return "<div class=\"vd-card\">"
+      + "<div class=\"vd-card-logo\">" + logoHtml + "</div>"
+      + "<div class=\"vd-card-body\">"
+      + "<div class=\"vd-card-name\">" + esc(v.name) + "</div>"
+      + "<div class=\"vd-card-tags\">" + regionTag + catTags + "</div>"
+      + "<div class=\"vd-card-desc\">" + esc(v.description) + "</div>"
+      + "<div class=\"vd-card-services\">" + svcLines + "</div>"
+      + "</div></div>";
+  }
+
+  function vdRender() {
+    var filtered = getFiltered();
+    var total    = filtered.length;
+    var totalPages = Math.max(1, Math.ceil(total / VD_PER_PAGE));
+    // Clamp current page
+    if (vdState.page > totalPages) vdState.page = totalPages;
+    if (vdState.page < 1) vdState.page = 1;
+
+    var start = (vdState.page - 1) * VD_PER_PAGE;
+    var end   = Math.min(start + VD_PER_PAGE, total);
+    var pageItems = filtered.slice(start, end);
+
+    // Grid
+    var grid = document.getElementById("vd-grid");
+    if (grid) {
+      grid.innerHTML = total === 0
+        ? "<div class=\"vd-empty\">No vendors match your filters.</div>"
+        : pageItems.map(renderCard).join("");
+    }
+
+    // Toolbar count + showing
+    var countEl   = document.getElementById("vd-count");
+    var showingEl = document.getElementById("vd-showing");
+    if (countEl)   countEl.textContent = total + " Vendor" + (total !== 1 ? "s" : "");
+    if (showingEl) showingEl.textContent = total === 0
+      ? "No results"
+      : "Showing " + (start + 1) + "–" + end + " of " + total;
+
+    // Pagination bar
+    var pageInfo  = document.getElementById("vd-page-info");
+    var pageNums  = document.getElementById("vd-page-numbers");
+    var prevBtn   = document.getElementById("vd-prev-btn");
+    var nextBtn   = document.getElementById("vd-next-btn");
+    if (pageInfo) pageInfo.textContent = "Page " + vdState.page + " of " + totalPages + " · " + total + " vendor" + (total !== 1 ? "s" : "") + " total";
+    if (prevBtn)  prevBtn.disabled = vdState.page <= 1;
+    if (nextBtn)  nextBtn.disabled = vdState.page >= totalPages;
+    if (pageNums) {
+      // Build page number list: show up to 5 pages with ellipsis
+      var pages = [];
+      if (totalPages <= 5) {
+        for (var i = 1; i <= totalPages; i++) pages.push(i);
+      } else {
+        pages.push(1);
+        if (vdState.page > 3) pages.push("…");
+        var lo = Math.max(2, vdState.page - 1);
+        var hi = Math.min(totalPages - 1, vdState.page + 1);
+        for (var j = lo; j <= hi; j++) pages.push(j);
+        if (vdState.page < totalPages - 2) pages.push("…");
+        pages.push(totalPages);
+      }
+      pageNums.innerHTML = pages.map(function(p) {
+        if (p === "…") return "<span class=\"vd-page-num ellipsis\">…</span>";
+        var active = p === vdState.page ? " active" : "";
+        return "<button class=\"vd-page-num" + active + "\" onclick=\"vdGoPage(" + p + ")\">" + p + "</button>";
+      }).join("");
+    }
+
+    // Filter counts
+    Object.keys(catCount).forEach(function(c) {
+      var el = document.getElementById(mkCatId(c)); if (el) el.textContent = catCount[c];
+    });
+    Object.keys(regCount).forEach(function(r) {
+      var el = document.getElementById(mkRegId(r)); if (el) el.textContent = regCount[r];
+    });
+
+    // Active filter bar
+    var activeCount = vdState.cats.size + vdState.regs.size + (vdState.search ? 1 : 0);
+    var bar = document.getElementById("vd-active-bar");
+    var lbl = document.getElementById("vd-active-label");
+    if (bar) bar.classList.toggle("visible", activeCount > 0);
+    if (lbl) lbl.textContent = activeCount + " filter" + (activeCount !== 1 ? "s" : "") + " active";
+  }
+
+  window.vdGoPage = function(p) {
+    vdState.page = p;
+    vdRender();
+    // Scroll to top of vendor section, offset by sticky nav height
+    var section = document.querySelector(".vd-section");
+    if (section) {
+      var navH = (document.querySelector(".nav") || {}).offsetHeight || 88;
+      var top = section.getBoundingClientRect().top + window.pageYOffset - navH - 16;
+      window.scrollTo({ top: top, behavior: "smooth" });
+    }
+  };
+
+  function initListHeights() {
+    ["fl-cat","fl-reg"].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.style.maxHeight = el.scrollHeight + "px";
+    });
+  }
+
+  window.toggleFilter = function(el) {
+    var type = el.dataset.type, val = el.dataset.value;
+    var set = type === "cat" ? vdState.cats : vdState.regs;
+    if (set.has(val)) { set.delete(val); el.classList.remove("active"); }
+    else { set.add(val); el.classList.add("active"); }
+    vdState.page = 1;
+    vdRender();
+  };
+  window.vdToggleSection = function(id) {
+    var sec = document.getElementById(id); if (sec) sec.classList.toggle("collapsed");
+  };
+  var vdSearchTimer;
+  window.vdOnSearch = function(val) {
+    clearTimeout(vdSearchTimer);
+    vdSearchTimer = setTimeout(function() { vdState.search = val.trim(); vdState.page = 1; vdRender(); }, 200);
+  };
+  window.vdToggleSort = function() {
+    vdState.sort = vdState.sort === "asc" ? "desc" : "asc";
+    vdState.page = 1;
+    var btn = document.getElementById("vd-sort-btn");
+    var lbl = document.getElementById("vd-sort-label");
+    if (btn) btn.classList.toggle("desc", vdState.sort === "desc");
+    if (lbl) lbl.textContent = vdState.sort === "asc" ? "Sort: Name A - Z" : "Sort: Name Z - A";
+    vdRender();
+  };
+  window.vdSetView = function(v) {
+    vdState.view = v;
+    var grid = document.getElementById("vd-grid");
+    var lb = document.getElementById("vd-list-btn");
+    var gb = document.getElementById("vd-grid-btn");
+    if (v === "list") {
+      if (grid) grid.classList.add("list-view");
+      if (lb) { lb.classList.add("vd-view-btn--active"); lb.querySelector("img").src = "assets/HR Knowledge Hub/list-icon-light.svg"; }
+      if (gb) { gb.classList.remove("vd-view-btn--active"); gb.querySelector("img").src = "assets/HR Knowledge Hub/grid-icon-dark.svg"; }
+    } else {
+      if (grid) grid.classList.remove("list-view");
+      if (gb) { gb.classList.add("vd-view-btn--active"); gb.querySelector("img").src = "assets/HR Knowledge Hub/grid-icon-light.svg"; }
+      if (lb) { lb.classList.remove("vd-view-btn--active"); lb.querySelector("img").src = "assets/HR Knowledge Hub/list-icon-dark.svg"; }
+    }
+  };
+  window.vdClearFilters = function() {
+    vdState.cats.clear(); vdState.regs.clear(); vdState.search = ""; vdState.page = 1;
+    var si = document.getElementById("vd-search"); if (si) si.value = "";
+    document.querySelectorAll(".vd-filter-item.active").forEach(function(el) { el.classList.remove("active"); });
+    var bar = document.getElementById("vd-active-bar"); if (bar) bar.classList.remove("visible");
+    vdRender();
+  };
+
+  document.addEventListener("DOMContentLoaded", function() { initListHeights(); vdRender(); });
+})();
+</script>
+</body>
+</html>
