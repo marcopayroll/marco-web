@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Marco</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-main:     #019DE7;
+      --blue-darkest:  #162351;
+      --text-main:     #162351;
+      --text-tertiary: #8F98B5;
+      --font: 'Euclid Circular B', 'Inter', sans-serif;
+      --gutter:        clamp(64px, 7.5vw, 108px);
+    }
+
+    body {
+      font-family: var(--font);
+      background: #fff;
+      color: var(--text-main);
+      min-width: 960px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+      background-image: none;
+      transition: background-color 0.25s ease, background-image 0.25s ease, box-shadow 0.25s ease;
+    }
+    .nav.nav-scrolled {
+      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .nav-container {
+      width: min(100% - 48px, 1440px);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+    }
+    .nav-tabbar { display: flex; align-items: flex-start; gap: 40px; flex-shrink: 0; }
+    .nav-logo { width: 152px; height: 48px; display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-inner { position: relative; width: 100%; aspect-ratio: 684 / 108; }
+    .nav-logo-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-menu { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
+    .nav-tab { display: flex; flex-direction: column; gap: 14px; padding-top: 16px; align-items: flex-start; flex-shrink: 0; position: relative; }
+    .nav-tab:hover::after { content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px; height: 2px; background: #fff; pointer-events: none; }
+    .nav-tab-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; flex-shrink: 0; }
+    .nav-tab-inner span { font-size: 12px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
+    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-right { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .nav-lang { display: flex; align-items: center; justify-content: space-between; width: 44px; flex-shrink: 0; }
+    .nav-lang-flag { position: relative; width: 20px; height: 20px; border-radius: 50px; border: 1px solid #e5e7eb; overflow: hidden; flex-shrink: 0; }
+    .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
+    .nav-lang span { font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
+    .nav-signin { background: var(--blue-main); color: #fff; font-family: var(--font); font-size: 12px; font-weight: 600; border-radius: 50px; padding: 14px 24px; height: 32px; width: 100px; display: flex; align-items: center; justify-content: center; white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0; text-decoration: none; transition: background 0.18s ease; }
+    .nav-signin:hover { background: #0185C4; }
+
+    /* Dropdowns */
+    .nav-tab-services { position: relative; }
+    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 697px; top: 100%; height: 44px; }
+    .nav-tab-services:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-services-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 697px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-services:hover .nav-services-dropdown, .nav-services-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-services-columns { display: flex; gap: 16px; }
+    .nav-services-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-services-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-services-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-services-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-services-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-services-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-services-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-services-item:hover .nav-services-item-title { color: var(--blue-main); }
+
+    .nav-tab-compliance { position: relative; }
+    .nav-tab-compliance::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-compliance-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-compliance:hover .nav-compliance-dropdown, .nav-compliance-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    .nav-tab-about { position: relative; }
+    .nav-tab-about::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-about:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-about-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-about:hover .nav-about-dropdown, .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    .nav-tab-resources { position: relative; }
+    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-resources:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-resources-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-resources:hover .nav-resources-dropdown, .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    .nav-tab-hub { position: relative; }
+    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 680px; top: 100%; height: 44px; }
+    .nav-tab-hub:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-hub-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 680px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-hub:hover .nav-hub-dropdown, .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    .nav-tab-price { position: relative; }
+    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-price:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-price-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-price:hover .nav-price-dropdown, .nav-price-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    .nav-hub-columns { display: flex; gap: 16px; }
+    .nav-hub-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-hub-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-hub-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-hub-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-hub-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-hub-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-hub-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-hub-item:hover .nav-hub-item-title { color: var(--blue-main); }
+
+    .nav-dropdown-label { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-tertiary); }
+    .nav-dropdown-divider { height: 1px; background: #CDD5E0; }
+    .nav-dropdown-list { display: flex; flex-direction: column; gap: 20px; }
+    .nav-dropdown-item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+    .nav-dropdown-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-dropdown-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-dropdown-item:hover .nav-dropdown-item-title { color: var(--blue-main); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .tou-hero {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      background-image: linear-gradient(90.651deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+    }
+    .tou-hero-bg { position: absolute; top: 0; right: 0; height: 100%; z-index: 0; pointer-events: none; }
+    .tou-hero-bg img { height: 100%; width: auto; display: block; object-fit: contain; object-position: right center; }
+    .tou-hero > .container { position: relative; z-index: 1; padding-top: 180px; }
+    .tou-hero-content { max-width: 808px; margin-inline: auto; }
+    .tou-hero-title { font-size: 48px; font-weight: 600; line-height: 1.3; color: #f8f8fa; letter-spacing: -1px; }
+
+    /* ════════════════════════════════════════
+       CONTENT SECTION
+    ════════════════════════════════════════ */
+    .tou-section {
+      background-image: linear-gradient(to bottom, #f4f4ff 49%, #ffffff 100%);
+      padding: 80px 0 120px;
+    }
+    .tou-section-inner {
+      max-width: 808px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+    .tou-last-updated { font-size: 16px; font-weight: 400; line-height: 20px; color: #8f98b5; }
+
+    .tou-block { display: flex; flex-direction: column; gap: 32px; }
+    .tou-block-heading { font-size: 20px; font-weight: 600; line-height: 26px; color: #162351; }
+    .tou-block-body {
+      font-size: 16px; font-weight: 400; line-height: 24px; color: #8f98b5;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .tou-block-body p { margin: 0; }
+    .tou-block-body strong { font-weight: 700; color: #8f98b5; }
+    .tou-block-body a { color: #8f98b5; text-decoration: underline; }
+    .tou-block-body a:hover { color: var(--text-main); }
+
+    /* Unordered bullets */
+    .tou-block-body ul { list-style: disc; padding-left: 24px; display: flex; flex-direction: column; gap: 8px; }
+    .tou-block-body ul li { line-height: 24px; }
+
+    /* Ordered list */
+    .tou-block-body ol { padding-left: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .tou-block-body ol li { line-height: 24px; }
+
+    /* Appendix divider */
+    .pp-divider { height: 1px; background: #CDD5E0; }
+    .pp-appendix-heading { font-size: 20px; font-weight: 600; line-height: 26px; color: #162351; text-align: center; }
+    .pp-appendix-sub { font-size: 20px; font-weight: 600; line-height: 26px; color: #162351; text-align: center; }
+
+    /* Tables */
+    .pp-table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 24px; color: #8f98b5; }
+    .pp-table th {
+      background: #f0f0ff;
+      color: #162351;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 18px;
+      padding: 12px 16px;
+      text-align: left;
+      border: 1px solid #CDD5E0;
+      white-space: nowrap;
+    }
+    .pp-table td { padding: 16px; border: 1px solid #CDD5E0; vertical-align: top; }
+    .pp-table td p { margin: 0 0 8px; }
+    .pp-table td p:last-child { margin-bottom: 0; }
+    .pp-table td ul { list-style: disc; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .pp-table td ul li { line-height: 22px; }
+    .pp-table td ol { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+    .pp-table td ol li { line-height: 22px; }
+    .pp-table td strong { font-weight: 700; color: #8f98b5; }
+    .pp-table td a { color: #8f98b5; text-decoration: underline; }
+    .pp-table .col-right { width: 32%; }
+    .pp-table .col-meaning { width: 68%; }
+
+    /* Lawful Basis Table — Figma exact (single continuous block, no row gaps) */
+    .pp-lawful-table { display: flex; flex-direction: column; width: 100%; }
+    .pp-lawful-row { display: flex; align-items: stretch; width: 100%; }
+    .pp-lawful-cell { flex: 1 0 0; min-width: 0; font-family: var(--font); font-size: 14px; line-height: 18px; color: #162351; font-weight: 400; }
+    /* Header: rounded top corners only */
+    .pp-lawful-row-header .pp-lawful-cell-left { border-radius: 8px 0 0 0; }
+    .pp-lawful-row-header .pp-lawful-cell-right { border-radius: 0 8px 0 0; }
+    /* Last data row: rounded bottom corners only */
+    .pp-lawful-row:last-child .pp-lawful-cell-left { border-radius: 0 0 0 8px; }
+    .pp-lawful-row:last-child .pp-lawful-cell-right { border-radius: 0 0 8px 0; }
+    /* Header cells */
+    .pp-lawful-row-header .pp-lawful-cell {
+      background: #019DE7;
+      display: flex; align-items: center; justify-content: center;
+      padding: 8px 16px;
+    }
+    .pp-lawful-row-header .pp-lawful-cell p { font-size: 16px; line-height: 20px; font-weight: 700; color: #fff; white-space: nowrap; }
+    /* Data rows */
+    .pp-lawful-row-data .pp-lawful-cell-left { display: flex; flex-direction: column; gap: 24px; padding: 16px; }
+    .pp-lawful-row-data .pp-lawful-cell-right { padding: 16px; }
+    /* Blue alternating rows */
+    .pp-lawful-row-blue .pp-lawful-cell { background: #E4EFFF; }
+    /* White alternating rows */
+    .pp-lawful-row-white .pp-lawful-cell { background: #fff; }
+    /* Sub-item indentation */
+    .pp-lawful-subtext { padding-left: 24px; width: 100%; }
+    .pp-lawful-subtext p { font-size: 14px; line-height: 18px; color: #162351; font-weight: 400; }
+    .pp-lawful-cell-right p { font-size: 14px; line-height: 18px; color: #162351; font-weight: 400; }
+    .pp-lawful-cell strong { font-weight: 700; color: #162351; }
+
+    /* Rights Table — 240px fixed left column */
+    .pp-rights-table { display: flex; flex-direction: column; width: 100%; }
+    .pp-rights-row { display: flex; align-items: stretch; width: 100%; }
+    .pp-rights-cell-left { width: 240px; flex-shrink: 0; padding: 16px; font-family: var(--font); font-size: 14px; line-height: 18px; color: #162351; font-weight: 400; }
+    .pp-rights-cell-right { flex: 1 0 0; min-width: 0; padding: 16px; font-family: var(--font); font-size: 14px; line-height: 18px; color: #162351; font-weight: 400; }
+    /* Header */
+    .pp-rights-row-header .pp-rights-cell-left { background: #019DE7; display: flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: 8px 0 0 0; }
+    .pp-rights-row-header .pp-rights-cell-right { background: #019DE7; display: flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: 0 8px 0 0; }
+    /* Alternating rows */
+    .pp-rights-row-blue .pp-rights-cell-left,
+    .pp-rights-row-blue .pp-rights-cell-right { background: #E4EFFF; }
+    .pp-rights-row-white .pp-rights-cell-left,
+    .pp-rights-row-white .pp-rights-cell-right { background: #fff; }
+    /* Last row rounded bottom corners */
+    .pp-rights-row:last-child .pp-rights-cell-left { border-radius: 0 0 0 8px; }
+    .pp-rights-row:last-child .pp-rights-cell-right { border-radius: 0 0 8px 0; }
+    /* Data row text */
+    .pp-rights-cell-left p, .pp-rights-cell-right p { font-size: 14px; line-height: 18px; color: #162351; font-weight: 400; }
+    /* Header text — higher specificity (0,2,1) to override data row rule above */
+    .pp-rights-row-header .pp-rights-cell-left p,
+    .pp-rights-row-header .pp-rights-cell-right p { font-size: 16px; line-height: 20px; font-weight: 700; color: #fff; white-space: nowrap; }
+
+    /* ─── FADE-IN REVEAL ─── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; will-change: opacity, transform; }
+    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .fade-in { opacity: 1; transform: none; transition: none; } }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer { width: 100%; overflow: hidden; background-image: linear-gradient(90.352deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%); padding: 60px 0 58px; }
+    .footer > .container { display: flex; flex-direction: column; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
+    .footer-logo { width: 199.5px; flex-shrink: 0; text-decoration: none; }
+    .footer-logo img { width: 100%; height: auto; display: block; }
+    .footer-social { display: flex; align-items: center; justify-content: space-between; width: 80px; flex-shrink: 0; }
+    .footer-social-icon { width: 24px; height: 24px; overflow: hidden; flex-shrink: 0; }
+    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-nav { display: flex; gap: 24px; justify-content: space-between; margin-bottom: 40px; }
+    .footer-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+    .footer-col-header { font-size: 14px; font-weight: 400; line-height: normal; color: var(--text-tertiary); }
+    .footer-col-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-col-links a, .footer-col-links span { font-size: 14px; font-weight: 500; line-height: normal; color: #fff; text-decoration: none; display: block; }
+    .footer-col-links a:hover { text-decoration: underline; }
+    .footer-divider { height: 1px; background: rgba(205,213,224,0.25); margin-bottom: 20px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--text-tertiary); white-space: nowrap; }
+    .footer-legal { display: flex; gap: 40px; align-items: center; }
+    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
+    .footer-legal a:hover { text-decoration: underline; }
+
+    /* WeChat Modal */
+    .wechat-modal { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.55); align-items: center; justify-content: center; }
+    .wechat-modal.active { display: flex; }
+    .wechat-modal img { width: 280px; height: auto; border-radius: 12px; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav class="nav">
+  <div class="nav-container">
+  <div class="nav-tabbar">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-inner"><img src="assets/menu-bar-marco-logo.svg" alt="Marco" /></div>
+    </a>
+    <div class="nav-menu">
+      <div class="nav-tab nav-tab-services">
+        <div class="nav-tab-inner"><span>Services</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-services-dropdown">
+          <p class="nav-dropdown-label">Services</p>
+          <div class="nav-dropdown-divider"></div>
+          <div class="nav-services-columns">
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-global-payroll.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/global payroll.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Global Payroll</span><span class="nav-services-item-desc">End-to-end payroll in 150+ countries</span></div></a>
+              <a class="nav-services-item" href="service-employer-of-record.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/eor.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Employer of Record (EOR)</span><span class="nav-services-item-desc">Hire globally without a local entity</span></div></a>
+              <a class="nav-services-item" href="service-independent-contractor.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/ic.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Independent Contractor (IC)</span><span class="nav-services-item-desc">Compliant contractor engagement</span></div></a>
+              <a class="nav-services-item" href="service-global-mobility.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/global mobility.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Global Mobility</span><span class="nav-services-item-desc">Seamless cross-border movements</span></div></a>
+            </div>
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-expense-processing.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/Expense Processing.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Expense Processing</span><span class="nav-services-item-desc">Streamlined global expense management</span></div></a>
+              <a class="nav-services-item" href="service-hr-operations.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/HRO Support.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">HR Operation Support</span><span class="nav-services-item-desc">Comprehensive HR administration</span></div></a>
+              <a class="nav-services-item" href="service-service-delivery-model.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/Service Delivery Model.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Service Delivery Model</span><span class="nav-services-item-desc">Our partnership approach</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-compliance">
+        <div class="nav-tab-inner"><span>Compliance</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-compliance-dropdown">
+          <p class="nav-dropdown-label">Compliance</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="compliance-data-protection.html"><span class="nav-dropdown-item-title">Data Protection &amp; Privacy</span><span class="nav-dropdown-item-desc">Privacy controls for sensitive workforce data</span></a>
+            <a class="nav-dropdown-item" href="compliance-operational-governance.html"><span class="nav-dropdown-item-title">Operational Governance</span><span class="nav-dropdown-item-desc">Controls, accountability, and audit trails</span></a>
+            <a class="nav-dropdown-item" href="compliance-licensing-regulatory.html"><span class="nav-dropdown-item-title">Licensing &amp; Regulatory Compliance</span><span class="nav-dropdown-item-desc">Local licenses and regulatory authorizations</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-resources">
+        <div class="nav-tab-inner"><span>Resources</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-resources-dropdown">
+          <p class="nav-dropdown-label">Resources</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer"><span class="nav-dropdown-item-title">Help Center</span><span class="nav-dropdown-item-desc">Manual guides, FAQs, and product support</span></a>
+            <a class="nav-dropdown-item" href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer"><span class="nav-dropdown-item-title">Developer Portal</span><span class="nav-dropdown-item-desc">API documentation and integration resources</span></a>
+            <a class="nav-dropdown-item" href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer"><span class="nav-dropdown-item-title">Demo Site</span><span class="nav-dropdown-item-desc">A test environment to explore Marco OS</span></a>
+            <a class="nav-dropdown-item" href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer"><span class="nav-dropdown-item-title">Processing &amp; Integration Engines</span><span class="nav-dropdown-item-desc">Systems that power payroll and data workflows</span></a>
+            <a class="nav-dropdown-item" href="#"><span class="nav-dropdown-item-title">Marco Copilot (AI Assistant)</span><span class="nav-dropdown-item-desc">AI support for global workforce operations</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-hub">
+        <div class="nav-tab-inner"><span>HR Knowledge Hub</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-hub-dropdown">
+          <p class="nav-dropdown-label">HR Knowledge Hub</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-hub-columns">
+            <div class="nav-hub-col">
+              <a href="#" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Labor Cost Calculator</span><span class="nav-hub-item-desc">Estimate employment costs by country</span></div></a>
+              <a href="hr-knowledge-hub-country-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Country Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Country Guide</span><span class="nav-hub-item-desc">Country-specific employment and payroll insights</span></div></a>
+              <a href="hr-knowledge-hub-visa-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Visa Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Visa Guide</span><span class="nav-hub-item-desc">Work visa requirements and application guidance</span></div></a>
+              <a href="hr-knowledge-hub-payroll-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Payroll Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Payroll Guide</span><span class="nav-hub-item-desc">Payroll rules, cycles, and statutory requirements</span></div></a>
+              <a href="hr-knowledge-hub-freelancer-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Freelancer Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Freelancer Guide</span><span class="nav-hub-item-desc">Independent contractor rules by country</span></div></a>
+              <a href="hr-knowledge-hub-work-schedule.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Work Schedule.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Work Schedule</span><span class="nav-hub-item-desc">Working hours, rest days, and schedule rules</span></div></a>
+            </div>
+            <div class="nav-hub-col">
+              <a href="#" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Public Holiday Calendar</span><span class="nav-hub-item-desc">Official holidays by country and year</span></div></a>
+              <a href="#" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Leave Policy</span><span class="nav-hub-item-desc">Annual leave, sick leave, and statutory time off</span></div></a>
+              <a href="hr-knowledge-hub-travel-expense-policy.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Travel &amp; Expense Policy.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Travel &amp; Expense Policy</span><span class="nav-hub-item-desc">Business travel and reimbursement guidelines</span></div></a>
+              <a href="#" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Benefits Plan.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Benefits Plan</span><span class="nav-hub-item-desc">Mandatory and common employee benefits</span></div></a>
+              <a href="hr-knowledge-hub-vendor-list.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Vendor List.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Vendor List</span><span class="nav-hub-item-desc">Approved vendors and service partners</span></div></a>
+              <a href="#" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Memo.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Memo</span><span class="nav-hub-item-desc">HR updates, notes, and internal references</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-price">
+        <div class="nav-tab-inner"><span>Price</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-price-dropdown">
+          <p class="nav-dropdown-label">Price</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="price-global-workforce-solution.html"><span class="nav-dropdown-item-title">Global Workforce Solution</span><span class="nav-dropdown-item-desc">Service pricing for global workforce administration</span></a>
+            <a class="nav-dropdown-item" href="price-global-managed-payroll-service.html"><span class="nav-dropdown-item-title">Global Managed Payroll Service</span><span class="nav-dropdown-item-desc">Managed payroll pricing for global teams</span></a>
+            <a class="nav-dropdown-item" href="price-proposal-builder.html"><span class="nav-dropdown-item-title">Proposal Builder</span><span class="nav-dropdown-item-desc">Build a tailored service pricing proposal</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-about">
+        <div class="nav-tab-inner"><span>Company</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-about-dropdown">
+          <p class="nav-dropdown-label">Company</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="company-vision-values.html"><span class="nav-dropdown-item-title">Vision &amp; Values</span><span class="nav-dropdown-item-desc">Our purpose and guiding principles</span></a>
+            <a class="nav-dropdown-item" href="company-journey.html"><span class="nav-dropdown-item-title">Marco's Journey</span><span class="nav-dropdown-item-desc">The story behind Marco</span></a>
+            <a class="nav-dropdown-item" href="company-entity-network.html"><span class="nav-dropdown-item-title">Entity Network</span><span class="nav-dropdown-item-desc">Global entities and operational service centers</span></a>
+            <a class="nav-dropdown-item" href="company-organization.html"><span class="nav-dropdown-item-title">Organization</span><span class="nav-dropdown-item-desc">Leadership and structure</span></a>
+            <a class="nav-dropdown-item" href="company-contact-us.html"><span class="nav-dropdown-item-title">Contact us</span><span class="nav-dropdown-item-desc">Get in touch with the Marco team</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-lang">
+      <div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div>
+      <span>EN</span>
+    </div>
+    <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+  </div>
+  </div>
+</nav>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="tou-hero">
+  <div class="tou-hero-bg">
+    <img src="assets/Background Assets/abstract line 4.svg" alt="" />
+  </div>
+  <div class="container">
+    <div class="tou-hero-content fade-in">
+      <h1 class="tou-hero-title">Privacy Policy</h1>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ CONTENT ════════════════ -->
+<section class="tou-section">
+  <div class="container">
+    <div class="tou-section-inner">
+
+      <p class="tou-last-updated">Last Updated: 10 June 2026</p>
+
+      <!-- Introduction -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Introduction</p>
+        <div class="tou-block-body">
+          <p>Protection of your personal data is important to us. This Privacy Policy outlines how we manage the personal data that we hold. Marco Global Payroll Pte. Ltd. (referred to as "<strong>Marco</strong>", "<strong>we</strong>", "<strong>us</strong>", or "<strong>our</strong>") respects the confidentiality of personal data and privacy of individuals and are committed to complying with the Singapore Personal Data Protection Act 2012 ("<strong>PDPA</strong>") and other applicable data protection laws, including the European Union ("<strong>EU</strong>") General Data Protection Regulation ("<strong>GDPR</strong>"), where applicable.</p>
+          <p>BY ACCESSING THIS SITE, UTILISING THE WEB OFFERING OR REQUESTING INFORMATION THROUGH OUR SITE, YOU AFFIRM THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THIS PRIVACY POLICY, INCLUDING OUR TERMS OF SERVICE AT "<a href="company-terms-of-use.html">Terms-of-Use</a>". IF YOU DO NOT AGREE TO OUR PRIVACY POLICY, PLEASE DISCONTINUE YOUR USE IMMEDIATELY. YOUR CONTINUED USE OF THIS SITE (WHETHER NOW OR IN FUTURE) MEANS THAT YOU HAVE AGREED TO OUR PRIVACY POLICY.</p>
+          <p>Please read this Privacy Policy so that you know and understand the purposes for which we collect, use and disclose your personal data.</p>
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div class="tou-block">
+        <p class="tou-block-heading">QUESTIONS ABOUT THIS PRIVACY POLICY</p>
+        <div class="tou-block-body">
+          <p>If, at any time, you have any queries on this Privacy Policy or any other queries in relation to how we manage, protect and/or process your personal data, please do not hesitate to contact us and you may find our contact information at the end of this Privacy Policy. Please indicate in the subject header what the nature of your query is (e.g. if it is relating to an access request, you may insert the words "Data Subject Access Request" in the subject header).</p>
+        </div>
+      </div>
+
+      <!-- What data -->
+      <div class="tou-block">
+        <p class="tou-block-heading">WHAT PERSONAL DATA DOES MARCO COLLECT ABOUT YOU?</p>
+        <div class="tou-block-body">
+          <p>Personal data is any data, whether true or not, about an individual who can be identified from that data; or from that data and other information to which we have or is likely to have access.</p>
+          <p>Examples of such personal data which you may provide us include (depending on the nature of your interaction with us) your name, national identification number, passport number or other identification number, driver's license, telephone number, mailing address, email address, IP address, photograph, curriculum vitae, and any other information relating to you which you have provided us in any form you may have submitted to us, or in other forms of interaction with you.</p>
+        </div>
+      </div>
+
+      <!-- How collected -->
+      <div class="tou-block">
+        <p class="tou-block-heading">HOW DOES MARCO COLLECT YOUR PERSONAL DATA</p>
+        <div class="tou-block-body">
+          <p>Generally, we collect your personal data in the following ways:</p>
+          <ul>
+            <li>When you submit forms relating to our services, or otherwise contact us in relation to our services;</li>
+            <li>When you register for or use any of our services on websites, platforms and apps owned or operated by us or when you register on any of our websites, platforms, and apps owned or operated by us;</li>
+            <li>When you use or purchase our services;</li>
+            <li>When you establish any online account with us;</li>
+            <li>When you request that we contact you;</li>
+            <li>When you respond to our request for additional personal data;</li>
+            <li>When you ask to be included in an email or other mailing list;</li>
+            <li>When you respond to our promotions or other initiatives;</li>
+            <li>When you submit a job application;</li>
+            <li>When we receive references from business partners and third parties, for example, where you have been referred by them;</li>
+            <li>When you submit your personal data to us for any other reason;</li>
+            <li>When you browse our websites.</li>
+          </ul>
+          <p>We may monitor or record phone calls and customer-facing interactions for quality assurance, employee training and performance evaluation, and identity verification purposes, and while receiving feedback, responding to your queries, requests and complaints and other related purposes. Such monitoring or recording will be done in accordance with the applicable law.</p>
+          <p>Your personal data may also be collected, used and/or disclosed if we have assessed that to do so would be in our legitimate interests and/or for business improvement purposes. Legitimate interests include protecting against physical and cyber security risks, and ensuring business continuity, and business improvement purposes include improvement or enhancement of any goods or services, or methods or processes for operations and for learning about and understanding customers' behavior and preferences. Before doing so, we will take steps to ensure that any adverse effects that might arise for you have already been identified and eliminated, reduced or mitigated.</p>
+          <p>We may receive personal data about you from other sources (for example, when you authorize a third party service to interact direct with our websites, platforms, apps or services to provide or receive personalized information about you).</p>
+          <p>When you visit our Website, our servers automatically record information that your browser typically sends whenever you visit any other website. This information may include your Internet Protocol address, browser type, the web page you were visiting before you came to our website and information you search for on our website. Like many websites, we also use "cookies" and other technologies to collect information. You can instruct your browser, by changing its options, to stop accepting cookies or to prompt you before accepting a cookie from the websites you visit. If you do not accept cookies, however, you may not be able to use all portions of our website or all functionality of our Services. For more information about our use of cookies and other technologies, see "<a href="company-cookies-policy.html">Cookies Policy</a>".</p>
+          <p>Marco does not knowingly collect or solicit personal information from anyone under the age of 16. Children under 16 years old are not the target audience for our Website. If you are under 16, please do not give us any Personal Information. We encourage parents and legal guardians to monitor their children's internet usage.</p>
+        </div>
+      </div>
+
+      <!-- What used for -->
+      <div class="tou-block">
+        <p class="tou-block-heading">WHAT DOES MARCO USE YOUR PERSONAL DATA FOR?</p>
+        <div class="tou-block-body">
+          <p>We may collect, use and/or disclose your personal data, where permitted by applicable data protection laws, for the following purposes:</p>
+          <ol>
+            <li><strong><u>Provision of our products and services</u></strong> — which includes managing our relationship with you or your business, communicating with you about our products and services, registering to become a user of our websites, mobile applications or platforms, applying for a job; and contacting us for partnership, supplier, or other business opportunities.</li>
+            <li><strong><u>Marketing and events-related communications</u></strong> — which includes communicating with you through any means (including by email, telephone, text message, social media, post or in person) news and analysis that we believe may be of interest to you, subject always to obtaining your prior opt-in consent to the extent required under applicable law, informing you about changes to our services, websites, platforms and apps, and their functionality, providing you with information about other products and services we offer, keeping you informed about industry developments, maintaining and updating your contact information where appropriate, and inviting you to participate in events or surveys, or otherwise communicating with you for marketing purposes with the consent or other legal requirements of applicable data protection laws.</li>
+            <li><strong><u>Improving our business</u></strong> — including improving our business including testing new products and services and developing new ways to meet our users' needs, identifying issues with our products, services, websites, platforms and apps, and conducting research and planning improvements to our products, services, websites, platforms and apps, and creating new products, services, websites, platforms and apps.</li>
+            <li><strong><u>Managing our operations</u></strong> — including the provision of information of employment or independent contractor/freelancing opportunities, onboarding of prospective employees or independent contractors/freelancers, management of employees after having commenced employment, questionnaires and other such measures, to improve recruitment activities of Marco, vendors, and their clients in general, business execution including entering into of agreements with customers, suppliers and managing relationship with such parties, making and managing payments on behalf of customers, employees or independent contractors/freelancers, managing fees (if any) and charges due (if any) on user accounts, provision of information to related companies and/or affiliates of Marco, communicating to our customers, investors, prospective and existing employees; and for any purpose connected with your agreement(s) with us, including the maintenance of a central database of customers.</li>
+            <li><strong><u>Compliance checks</u></strong> — including fulfilling our regulatory compliance obligations, "Know Your Client" checks, confirming and verifying your identity, use of credit reference agencies, and screening against government and/or law enforcement agency sanctions lists and other legal restrictions.</li>
+            <li><strong><u>Management of IT systems</u></strong> — including management and operation of our communications, IT and security systems, audits (including security audits) and monitoring of such systems.</li>
+            <li><strong><u>Health and safety</u></strong> — which includes health and safety assessments and record keeping, providing a safe and secure environment at our premises, and compliance with related legal obligations.</li>
+            <li><strong><u>Security</u></strong> — which includes physical security of our premises (including records of visits to our premises), and CCTV recordings; and electronic security (including login records and access details).</li>
+            <li><strong><u>Financial Management</u></strong> — which includes sales; finance; corporate audit; and vendor management, and handling customer and vendor orders and billing.</li>
+            <li><strong><u>Investigations</u></strong> — which includes detecting, investigating and preventing breaches of policy, and criminal offences, in accordance with applicable law.</li>
+            <li><strong><u>Legal Proceedings</u></strong> — which includes establishing, exercising and defending legal rights.</li>
+            <li><strong><u>Legal Compliance</u></strong> — such as compliance with our legal and regulatory obligations under applicable law.</li>
+            <li><strong><u>Fraud Prevention</u></strong> — such as detecting, preventing and investigating fraud.</li>
+          </ol>
+          <p>(collectively, the "<strong>Purposes</strong>")</p>
+          <p>We do so to provide you with the service you requested, and where appropriate with your consent or based on our legitimate interest to carry out our business operations.</p>
+          <p>As the purpose for which we may/will collect, use, disclose or process your personal data depend on the circumstances at hand, such purpose may not appear above. However, we will notify you of such other purpose at the time of obtaining your consent, unless processing of your personal data without your consent is permitted by applicable laws.</p>
+          <p>In order to conduct our business operations more smoothly, we may also be disclosing the personal data you have provided to us to our third party service providers, agents and/or our affiliates or related corporations, and/or other third parties whether sited in Singapore or outside of Singapore, for one or more of the above-stated Purposes. Such third party service providers, agents, and/or affiliates or related corporations and/or other third parties would be processing your personal data either on our behalf or otherwise, for one or more of the above-stated Purposes.</p>
+        </div>
+      </div>
+
+      <!-- Who shared with -->
+      <div class="tou-block">
+        <p class="tou-block-heading">WHO DOES MARCO SHARE YOUR PERSONAL DATA WITH?</p>
+        <div class="tou-block-body">
+          <p>For us to offer our products and services to you, we may have to disclose your personal data to third parties in order for them to process it on our behalf. This may include the following categories of recipients:</p>
+          <ol>
+            <li>Our <strong>service providers</strong> — for example, service providers in charge of storing and analyzing data, providing customer service, advertising, and payment processing;</li>
+            <li>Our <strong>agents</strong> — who may be delivering parts of our products and services on our behalf;</li>
+            <li>Our <strong>related companies</strong> — who may be delivering parts of our products or services on our behalf;</li>
+            <li>Other <strong>third-party service providers</strong> — whose services or applications we may make available for your use on our products and services.</li>
+          </ol>
+          <p>Marco may also share your personal information with other participants in our sales and marketing chain such as integrators, order fulfillers, sales agents and channel partners, for the limited purposes of selling, marketing or providing support for Marco products and services.</p>
+          <p>Marco may analyze anonymous and aggregate information in order to operate, maintain, manage, and improve the website, and/or related products and services. This aggregate information does not identify you personally. We may share this aggregate data to our subsidiaries, affiliates, agents, business partners and other third parties. We may also disclose aggregated user statistics in order to describe the services and other products to current and prospective business partners and to other third parties for other lawful purposes.</p>
+          <p>As we continue to develop our business, we might sell or buy other businesses or assets which include any business asset transactions. "<strong>Business Asset Transaction</strong>" means the purchase, sale, lease, merger or amalgamation or any other acquisition, disposal or financing of an organization or a portion of an organization or of any of the business or assets of an organization. In such transactions, we may disclose your personal data to a third party without first obtaining your consent under applicable data protection laws.</p>
+          <p>We may disclose any of the personal data we collect to respond to subpoenas, court orders, legal process, law enforcement requests, legal claims, or government inquiries, and to protect and defend the rights, interests, safety, and security to Marco, our affiliates, users, or the public. We may also share any of the personal data we collect to enforce any terms applicable to the use of our products and/or services, to exercise or defend any legal claims, and comply with any applicable law.</p>
+          <p>Where we are required to transfer your personal data outside of Singapore, we shall take such steps to ensure that the receiving organization is bound by legally enforceable obligations such as:</p>
+          <ol>
+            <li>Where the receiving party is an associated or affiliated organization or related organization, a set of binding corporate rules;</li>
+            <li>Where the receiving party is an unrelated third party; a contract or written agreement.</li>
+          </ol>
+          <p>To provide a standard of protection to the personal data so transferred that is comparable to the standard of protection afforded under the PDPA or applicable data protection laws.</p>
+          <p>We respect the confidentiality of the personal data you have provided to us. In that regard, we will only disclose your personal data to third parties where we are allowed to do so under applicable data protection laws. More specifically, we will not disclose your personal data to any third parties without your prior consent to do so, unless such disclosure is sanctioned under the PDPA exemptions.</p>
+          <p>When sharing your personal data with third parties, we will employ our best efforts to ensure that appropriate safeguards are in place to protect the security and confidentiality of your personal data when in the hands of such third parties.</p>
+        </div>
+      </div>
+
+      <!-- Access / Correction -->
+      <div class="tou-block">
+        <p class="tou-block-heading">REQUESTS FOR ACCESS, CORRECTION AND/OR PORTING OF PERSONAL DATA</p>
+        <div class="tou-block-body">
+          <p>You may request to access, correct and/or port the personal data currently in our possession, or object to the collection, use and/or disclosure of your personal data in our possession or under our control, at any time by submitting your request to our Data Protection Officer.</p>
+          <p>For a request to access personal data, we will provide you with a copy of the relevant personal data within a reasonable amount of time from when the request is made.</p>
+          <p>For a request to correct personal data, we will process your request as soon as practicable after the request has been made. Such correction may involve necessary verification, which may include sending the corrected personal data to other organizations to which the personal data was disclosed by Marco within a year before the date the correction was made (unless that other organization does not need the corrected personal data for any legal or business purpose), or if you so consent, only to specific organizations to which the personal data was disclosed by us within a year before the date the correction was made.</p>
+          <p>For a request to port personal data, once we have sufficient information from you to deal with the request, we will seek to port your personal data within 30 calendar days. Where we are unable to do so within the said 30 calendar days, we will notify you of the soonest practicable time within which we can carry out the data porting.</p>
+          <p>You will not have to pay a fee to access your Personal Information (or to exercise any of the other rights). However, we may charge a reasonable fee for the handling and processing of your requests to access, correct and/or port your personal data if your request is unfounded or excessive. You will be notified in advance of such costs. Alternatively, we may refuse to comply with such unfounded or excessive requests under such circumstances.</p>
+          <p>For a request to object to the processing of your personal data by us, we will process your request within a reasonable time from when the request is made. Such requests may adversely impact your relationship with us or the quality of the services we deliver to you. We will notify you in advance of such impacts.</p>
+        </div>
+      </div>
+
+      <!-- How protected -->
+      <div class="tou-block">
+        <p class="tou-block-heading">HOW DOES MARCO PROTECT YOUR PERSONAL DATA?</p>
+        <div class="tou-block-body">
+          <p>We will take precautions and preventive measures to ensure that your personal data is adequately protected and secured in accordance with data protection laws. Appropriate security arrangements will be made to prevent any unauthorized access, collection, use, disclosure, copying, modification, leakage, loss, damage and/or alteration to or of your personal data.</p>
+          <p>We will also make reasonable efforts to ensure that the personal data in our possession or under our control is destroyed and/or anonymized as soon as it is reasonable to assume that (a) the purpose for which that personal data was collected is no longer being served by the retention of such personal data; and (b) retention is no longer necessary for any other legal or business purposes.</p>
+        </div>
+      </div>
+
+      <!-- EEA/UK -->
+      <div class="tou-block">
+        <p class="tou-block-heading">PERSON LOCATED INSIDE THE EUROPEAN ECONOMIC AREA ("EEA") AND THE UK</p>
+        <div class="tou-block-body">
+          <p>If you are located inside the EEA or the UK, the provisions set out in Appendix 1 will also apply to your personal data.</p>
+        </div>
+      </div>
+
+      <!-- Updates -->
+      <div class="tou-block">
+        <p class="tou-block-heading">UPDATES TO THIS PRIVACY POLICY</p>
+        <div class="tou-block-body">
+          <p>As part of our efforts to ensure that we properly manage, protect and process your personal data, we will be reviewing our policies, procedures and processes from time to time.</p>
+          <p>We may amend the terms of this Privacy Policy at our absolute discretion. Any amended policy will be posted on our website or platforms, and once posted the amended policy shall be effective immediately. We will notify you if we make any significant changes to this Privacy Policy where required to do so under applicable laws. However, you are advised to visit this page regularly for the latest information on our privacy practices.</p>
+        </div>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Contact Information</p>
+        <div class="tou-block-body">
+          <p>Marco Payroll Global Pte. Ltd</p>
+          <p>Attn: Legal Department<br>8 Marina Boulevard<br>MBFC Tower 1, #11-01<br>Singapore 018981</p>
+          <p><a href="mailto:privacy@marcopayroll.com">privacy@marcopayroll.com</a></p>
+        </div>
+      </div>
+
+      <!-- ── APPENDIX DIVIDER ── -->
+      <div class="pp-divider"></div>
+
+      <!-- APPENDIX 1 heading -->
+      <div class="tou-block">
+        <p class="pp-appendix-heading">APPENDIX 1</p>
+        <p class="pp-appendix-sub">(Additional provisions applicable to individuals located inside the European Economic Area and the UK)</p>
+        <div class="tou-block-body">
+          <p>The following provisions apply to your personal data if you are located inside the European Economic Area ("EEA") and the UK. These apply in addition to the rest of this Privacy Policy.</p>
+          <p>In the event of any conflict between this Appendix 1 and the rest of this Privacy Policy, the provisions contained in this Appendix 1 will prevail.</p>
+        </div>
+      </div>
+
+      <!-- Lawful Basis -->
+      <div class="tou-block">
+        <p class="tou-block-heading">WHAT IS MARCO LAWFUL BASIS FOR PROCESSING YOUR PERSONAL DATA?</p>
+        <div class="tou-block-body">
+          <p>We will always process your personal data in accordance with data protection laws, and will only process it where it has a legal justification to do so. The table below provides some details of the lawful bases we rely on to collect and use your personal data.</p>
+          <div class="pp-lawful-table">
+            <!-- Header -->
+            <div class="pp-lawful-row pp-lawful-row-header">
+              <div class="pp-lawful-cell pp-lawful-cell-left"><p>PURPOSES</p></div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>LEGAL BASIS FOR PROCESSING</p></div>
+            </div>
+            <!-- (a) blue -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(a) Provision of our products and services</p>
+                <div class="pp-lawful-subtext"><p>(i) Managing our relationship with you or your business;<br><br>(ii) Communicating with you about our products and services;<br><br>(iii) Registering to become a user of our websites, mobile applications or platforms;<br><br>(iv) Applying for a job;<br><br>(v) Contacting us for partnership, supplier, or other business opportunities.</p></div>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is <strong>necessary in connection with any contract</strong> that you have entered into with us, or to take steps prior to entering into a contract with us;<br><br>• We have a <strong>legitimate interest</strong> in carrying out the processing for the purpose of providing our products and services;<br><br>• We have obtained <strong>your prior consent</strong> to the processing (this legal basis is only used in relation to processing that is entirely voluntary – it is not used for processing that is necessary or obligatory in any way).</p></div>
+            </div>
+            <!-- (b) white -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(b) Marketing and events-related communications</p>
+                <div class="pp-lawful-subtext"><p>(i) Communicating with you through any means (including by email, telephone, text message, social media, post or in person) news and analysis that we believe may be of interest to you, subject always to obtaining your prior opt-in consent to the extent required under applicable law;<br><br>(ii) Informing you about changes to our services, websites, platforms and apps, and their functionality;<br><br>(iii) Providing you with information about other products and services we offer;<br><br>(iv) Keeping you informed about industry developments;<br><br>(v) Maintaining and updating your contact information where appropriate;<br><br>(vi) Inviting you to participate in events or surveys, or otherwise communicating with you for marketing purposes with the consent or other legal requirements of applicable data protection laws.</p></div>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is <strong>necessary in connection with any contract</strong> that you have entered into with us, or to take steps prior to entering into a contract with us;<br><br>• We have a <strong>legitimate interest</strong> in carrying out the processing for the purpose of contacting you, subject always to compliance with applicable law;<br><br>• We have obtained <strong>your prior consent</strong> to the processing (this legal basis is only used in relation to processing that is entirely voluntary – it is not used for processing that is necessary or obligatory in any way).</p></div>
+            </div>
+            <!-- (c) blue -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(c) Improving our business</p>
+                <div class="pp-lawful-subtext"><p>(i) Improving our business including testing new products and services and developing new ways to meet our users' needs;<br><br>(ii) Identifying issues with our products, services, websites, platforms and apps.<br><br>(iii) Conducting research and planning improvements to our products, services, websites, platforms and apps, and creating new products, services, websites, platforms and apps.</p></div>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• We have a <strong>legitimate interest</strong> in carrying out the processing for the purpose of providing our products and services;<br><br>• We have obtained <strong>your prior consent</strong> to the processing (this legal basis is only used in relation to the processing that is entirely voluntary – it is not used for processing that is necessary or obligatory in any way).</p></div>
+            </div>
+            <!-- (d) white -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(d) Managing our operations</p>
+                <div class="pp-lawful-subtext"><p>(i) Provision of information of employment or independent contractor/freelancing opportunities;<br><br>(ii) Onboarding of prospective employees or independent contractors/freelancers;<br><br>(iii) Management of employees after having commenced employment;<br><br>(iv) Questionnaires and other such measures, to improve recruitment activities of Marco, vendors, and their clients in general;<br><br>(v) Business execution including entering into of agreements with customers, suppliers and managing relationship with such parties;<br><br>(vi) Making and managing payments on behalf of customers, employees or independent contractors/freelancers;<br><br>(vii) Managing fees (if any) and charges due (if any) on user accounts;<br><br>(viii) Provision of information to related companies and/or affiliates of Marco;<br><br>(ix) Communicating to our customers, investors, prospective and existing employees;<br><br>(x) For any purpose connected with your agreement(s) with us, including the maintenance of a central database of customers.</p></div>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is <strong>necessary in connection with any contract</strong> that you have entered into with us, or to take steps prior to entering into a contract with us;<br><br>• We have a <strong>legitimate interest</strong> in carrying out the processing for the purpose of contacting you, subject always to compliance with applicable law;<br><br>• We have obtained <strong>your prior consent</strong> to the processing (this legal basis is only used in relation to processing that is entirely voluntary – it is not used for processing that is necessary or obligatory in any way).</p></div>
+            </div>
+            <!-- (e) blue -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(e) Compliance checks</p>
+                <div class="pp-lawful-subtext"><p>(i) Fulfilling our regulatory compliance obligations;<br><br>(ii) 'Know Your Client' checks;<br><br>(iii) Confirming and verifying your identity;<br><br>(iv) Use of credit reference agencies;<br><br>(v) Screening against government and/or law enforcement agency sanctions lists and other legal restrictions.</p></div>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is necessary for <strong>compliance with a legal obligation</strong>;<br><br>• The processing is <strong>necessary in connection with any contract</strong> that you have entered into with us, or to take steps prior to entering into a contract with us;<br><br>• We have a <strong>legitimate interest</strong> in carrying out the processing for the purpose of fulfilling our regulatory and compliance obligations.</p></div>
+            </div>
+            <!-- (f) white -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(f) Management of IT systems</p>
+                <div class="pp-lawful-subtext"><p>(i) management and operation of our communications, IT and security systems;<br><br>(ii) audits (including security audits) and monitoring of such systems.</p></div>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is necessary for <strong>compliance with a legal obligation</strong>;<br><br>• We have a <strong>legitimate interest</strong> in carrying out the processing for the purpose of managing and maintaining our communications and IT systems.</p></div>
+            </div>
+            <!-- (g) blue -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(g) Health and safety</p>
+                <div class="pp-lawful-subtext"><p>(i) health and safety assessments and record keeping;<br><br>(ii) providing a safe and secure environment at our premises;<br><br>(iii) compliance with related legal obligations.</p></div>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is necessary for <strong>compliance with a legal obligation</strong>;<br><br>• The processing is necessary to protect the <strong>vital interests</strong> of any individual.</p></div>
+            </div>
+            <!-- (h) white -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(h) Security</p>
+                <div class="pp-lawful-subtext"><p>(i) physical security of our premises (including records of visits to our premises);<br><br>(ii) CCTV recordings; and electronic security (including login records and access details).</p></div>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is necessary for <strong>compliance with a legal obligation</strong>;<br><br>• We have <strong>a legitimate interest</strong> in carrying out the processing for the purpose of ensuring the physical and electronic security of our business and our premises.</p></div>
+            </div>
+            <!-- (i) blue -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(i) Financial Management</p>
+                <div class="pp-lawful-subtext"><p>(i) sales; finance; corporate audit; and vendor management;<br><br>(ii) handling customer and vendor orders and billing.</p></div>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• We have <strong>a legitimate interest</strong> in carrying out the processing for the purpose of managing and operating the financial affairs of our business;<br><br>• We have obtained <strong>your prior consent</strong> to the processing (this legal basis is only used in relation to the processing that is entirely voluntary – it is not used for processing that is necessary or obligatory in any way).</p></div>
+            </div>
+            <!-- (j) white -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(j) Investigations</p>
+                <p>Detecting, investigating and preventing breaches of policy, and criminal offences, in accordance with applicable law.</p>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is necessary for <strong>compliance with a legal obligation</strong>;<br><br>• We have <strong>a legitimate interest</strong> in carrying out the processing for the purpose of detecting, and protecting against, breaches of our policies and applicable laws.</p></div>
+            </div>
+            <!-- (k) blue -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(k) Legal Proceedings</p>
+                <p>Establishing, exercising and defending legal rights.</p>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is necessary for <strong>compliance with a legal obligation</strong>;<br><br>• We have <strong>a legitimate interest</strong> in carrying out the processing for the purpose of establishing, exercising or defending our legal rights.</p></div>
+            </div>
+            <!-- (l) white -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(l) Legal Compliance</p>
+                <p>Compliance with our legal and regulatory obligations under applicable law.</p>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is <strong>necessary for compliance with a legal obligation.</strong></p></div>
+            </div>
+            <!-- (m) blue -->
+            <div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue">
+              <div class="pp-lawful-cell pp-lawful-cell-left">
+                <p>(m) Fraud Prevention</p>
+                <p>Detecting, preventing and investigating fraud.</p>
+              </div>
+              <div class="pp-lawful-cell pp-lawful-cell-right"><p>• The processing is necessary for <strong>compliance with a legal obligation</strong> (especially in respect of applicable employment law);<br><br>• We have a <strong>legitimate interest</strong> in carrying out the processing for the purpose of detecting and protecting against fraud.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transfer outside EEA -->
+      <div class="tou-block">
+        <p class="tou-block-heading">WILL YOUR PERSONAL DATA BE TRANSFERRED OUTSIDE OF THE EEA OR THE UK?</p>
+        <div class="tou-block-body">
+          <p>As Marco is located in Singapore, your personal data will be transferred and processed outside of the EEA or the UK as the case may be.</p>
+          <p>Where we transfer your personal data from within the EEA or the UK as the case may be to a country outside the EEA or the UK as the case may be, we ensure that adequate safeguards are in place to offer equivalent protection as your personal data would receive within the EEA or the UK as the case may be and in compliance with applicable data protection laws.</p>
+          <p>You may contact us to find out more about the safeguards we have in place for transfers outside the EEA or the UK as the case may be.</p>
+        </div>
+      </div>
+
+      <!-- Retention -->
+      <div class="tou-block">
+        <p class="tou-block-heading">HOW LONG DOES MARCO KEEP YOUR PERSONAL DATA FOR?</p>
+        <div class="tou-block-body">
+          <p>Personal data that we collect will be retained only for as long as is necessary in connection with the purposes refer to in Section 1 of this appendix or with the purposes described in this Privacy Policy, and in accordance with Marco's retention policies, or to comply with our legal obligations with applicable laws and regulations.</p>
+          <p>When determining the relevant retention periods for your personal data, we will take a number of factors into account, including our contractual obligations and rights in relation to the personal data involved, our legal obligations under applicable laws to retain data for a certain period of time, our legitimate interests, statute of limitations under applicable laws, potential disputes, and guidelines issued by relevant data protection authorities. Otherwise, we will securely erase or anonymize your personal data where we do not have a legitimate reason for keeping it.</p>
+        </div>
+      </div>
+
+      <!-- Rights -->
+      <div class="tou-block">
+        <p class="tou-block-heading">WHAT ARE YOUR RIGHTS IN RESPECT OF YOUR PERSONAL DATA?</p>
+        <div class="tou-block-body">
+          <p>In addition to the rights listed in this Privacy Policy, you have a number of rights (subject to certain conditions) when it comes to your personal data, as detailed in the table below:</p>
+          <p>You can exercise any of these rights by contacting our data protection officer.</p>
+          <p>Please consider your request responsibly before submitting it. We will respond as soon as we are able to.</p>
+          <div class="pp-rights-table">
+            <!-- Header -->
+            <div class="pp-rights-row pp-rights-row-header">
+              <div class="pp-rights-cell-left"><p>RIGHTS</p></div>
+              <div class="pp-rights-cell-right"><p>WHAT DOES THIS MEAN?</p></div>
+            </div>
+            <!-- (a) blue -->
+            <div class="pp-rights-row pp-rights-row-blue">
+              <div class="pp-rights-cell-left"><p>(a) The right to be informed</p></div>
+              <div class="pp-rights-cell-right"><p>You have the right to be provided with clear, transparent and easily understandable information about how we use your personal data and your rights. This is why we are providing you with the information in this Privacy Policy.</p></div>
+            </div>
+            <!-- (b) white -->
+            <div class="pp-rights-row pp-rights-row-white">
+              <div class="pp-rights-cell-left"><p>(b) The right of access</p></div>
+              <div class="pp-rights-cell-right"><p>You have the right to obtain a copy of your personal data (if we are processing it), and certain other information (similar to that provided in this Privacy Policy) about how it is used. This is so you are aware and can check that we are using your information in accordance with data protection law. We can refuse to provide information where to do so may reveal personal data about another person or would otherwise negatively impact another person's rights.</p></div>
+            </div>
+            <!-- (c) blue -->
+            <div class="pp-rights-row pp-rights-row-blue">
+              <div class="pp-rights-cell-left"><p>(c) The right to rectification</p></div>
+              <div class="pp-rights-cell-right"><p>You can ask us to take reasonable measures to correct your personal data if it is inaccurate or incomplete. E.g., if we have a wrong name or address of you.</p></div>
+            </div>
+            <!-- (d) white -->
+            <div class="pp-rights-row pp-rights-row-white">
+              <div class="pp-rights-cell-left"><p>(d) The right to erasure</p></div>
+              <div class="pp-rights-cell-right"><p>This is also known as 'the right to be forgotten' and, in simple terms, enables you to request the deletion or removal of your personal data where there's no compelling reason for us to keep using it or its use is unlawful. This is not a general right to erasure; there are exceptions, e.g., where we need to use your personal data in defense of a legal claim.</p></div>
+            </div>
+            <!-- (e) blue -->
+            <div class="pp-rights-row pp-rights-row-blue">
+              <div class="pp-rights-cell-left"><p>(e) Compliance checks</p></div>
+              <div class="pp-rights-cell-right"><p>You have rights to 'block' or suppress further use of your personal data when we are assessing a request for rectification or as an alternative to erasure. When processing is restricted, we can still store your personal data, but may not use it further. We keep lists of people who have asked for further use of their personal data to be 'blocked' to make sure the restriction is respected in future.</p></div>
+            </div>
+            <!-- (f) white -->
+            <div class="pp-rights-row pp-rights-row-white">
+              <div class="pp-rights-cell-left"><p>(f) Management of IT systems</p></div>
+              <div class="pp-rights-cell-right"><p>You have rights to obtain and reuse certain personal data for your own purposes across different organizations.</p></div>
+            </div>
+            <!-- (g) blue — last row gets bottom rounded corners via :last-child -->
+            <div class="pp-rights-row pp-rights-row-blue">
+              <div class="pp-rights-cell-left"><p>(g) Health and safety</p></div>
+              <div class="pp-rights-cell-right"><p>You have the right to object to certain types of processing, on grounds relating to your particular situation, at any time insofar as that processing takes place for the purposes of legitimate interests pursued by us or by a third party. We will be allowed to continue to process your personal data if we can demonstrate "compelling legitimate grounds for the processing which override your interests, rights and freedoms" or we need this for the establishment, exercise or defense of legal claims.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ FOOTER ════════════════ -->
+<footer class="footer">
+  <div class="container">
+  <div class="footer-top">
+    <a class="footer-logo" href="index.html"><img src="assets/footer-marco-logo-en.svg" alt="Marco" /></a>
+    <div class="footer-social">
+      <div class="footer-social-icon"><a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedin-icon.svg" alt="LinkedIn" /></a></div>
+      <div class="footer-social-icon" style="cursor:pointer;" onclick="document.getElementById('wechat-modal').classList.add('active')"><img src="assets/wechat-icon.svg" alt="WeChat" /></div>
+    </div>
+  </div>
+  <div class="footer-nav">
+    <div class="footer-col">
+      <span class="footer-col-header">Services</span>
+      <div class="footer-col-links">
+        <a href="service-global-payroll.html">Global Payroll</a>
+        <a href="service-employer-of-record.html">EOR</a>
+        <a href="service-independent-contractor.html">IC</a>
+        <a href="service-global-mobility.html">Global Mobility</a>
+        <a href="service-expense-processing.html">Expense Processing</a>
+        <a href="service-hr-operations.html">HRO</a>
+        <a href="service-service-delivery-model.html">Service Delivery Model</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Compliance</span>
+      <div class="footer-col-links">
+        <a href="compliance-data-protection.html">Data Protection &amp; Privacy</a>
+        <a href="compliance-operational-governance.html">Operational Governance</a>
+        <a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Resources</span>
+      <div class="footer-col-links">
+        <a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a>
+        <a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a>
+        <a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a>
+        <a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a>
+        <a href="#">Marco Copilot (AI Assistant)</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">HR Knowledge Hub</span>
+      <div class="footer-col-links">
+        <a href="#">Labor Cost Calculator</a>
+        <a href="hr-knowledge-hub-country-guide.html">Country Guide</a>
+        <a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a>
+        <a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a>
+        <a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a>
+        <a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a>
+        <a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a>
+        <a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a>
+        <a href="hr-knowledge-hub-travel-expense-policy.html">Travel &amp; Expense Policy</a>
+        <a href="#">Benefits Plan</a>
+        <a href="hr-knowledge-hub-vendor-list.html">Vendor List</a>
+        <a href="#">Memo</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">Price</span>
+      <div class="footer-col-links">
+        <a href="price-global-workforce-solution.html">Global Workforce Solution</a>
+        <a href="price-global-managed-payroll-service.html">Global Managed Payroll Service</a>
+        <a href="price-proposal-builder.html">Proposal Builder</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-header">About</span>
+      <div class="footer-col-links">
+        <a href="company-vision-values.html">Vision &amp; Value</a>
+        <a href="company-journey.html">Marco's Journey</a>
+        <a href="company-entity-network.html">Entity Network</a>
+        <a href="company-organization.html">Organization</a>
+        <a href="company-contact-us.html">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <p>Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="company-terms-of-use.html">Terms of Use</a>
+      <a href="company-privacy-policy.html">Privacy Policy</a>
+      <a href="company-cookies-policy.html">Cookies Policy</a>
+    </div>
+  </div>
+  </div>
+</footer>
+
+<!-- WeChat Modal -->
+<div id="wechat-modal" class="wechat-modal">
+  <img src="assets/wechat-card.svg" alt="WeChat QR Code" />
+</div>
+
+<script>
+  document.getElementById('wechat-modal').addEventListener('click', function() {
+    this.classList.remove('active');
+  });
+
+  /* Fade-in reveal */
+  const revealElements = document.querySelectorAll('.fade-in');
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  revealElements.forEach((el) => revealObserver.observe(el));
+
+  /* Nav: transparent → solid on scroll */
+  var nav = document.querySelector('.nav');
+  var hero = document.querySelector('.tou-hero');
+  function updateNavState() {
+    if (!nav || !hero) return;
+    var threshold = hero.offsetTop + hero.offsetHeight * 0.25;
+    if (window.scrollY >= threshold) {
+      nav.classList.add('nav-scrolled');
+    } else {
+      nav.classList.remove('nav-scrolled');
+    }
+  }
+  updateNavState();
+  window.addEventListener('scroll', updateNavState, { passive: true });
+  window.addEventListener('resize', updateNavState);
+</script>
+
+</body>
+</html>

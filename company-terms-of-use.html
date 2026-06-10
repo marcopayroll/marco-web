@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us — Marco's Journey | Marco</title>
+  <title>Terms of Use | Marco</title>
   <style>
     @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
 
@@ -13,14 +13,11 @@
       --blue-main:     #019DE7;
       --blue-dark:     #003751;
       --blue-darkest:  #162351;
-      --blue-lighter:  #8DD3F4;
       --text-main:     #162351;
+      --text-secondary:#475072;
       --text-tertiary: #8F98B5;
-      --gradient-light: linear-gradient(to bottom, #f4f4ff 49%, #ffffff 100%);
       --font: 'Euclid Circular B', 'Inter', sans-serif;
       --gutter:        clamp(64px, 7.5vw, 108px);
-      --nav-gutter:    clamp(32px, 4.44vw, 64px);
-      --footer-gutter: clamp(40px, 5.56vw, 80px);
     }
 
     body {
@@ -28,6 +25,7 @@
       background: #fff;
       color: var(--text-main);
       min-width: 960px;
+      overflow-x: hidden;
     }
 
     .container {
@@ -36,25 +34,8 @@
       margin-inline: auto;
     }
 
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .section-label .line {
-      width: 16px;
-      height: 2px;
-      background: currentColor;
-      flex-shrink: 0;
-    }
-    .section-label span {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 18px;
-    }
-
     /* ════════════════════════════════════════
-       NAV
+       NAV — fixed, always solid dark navy
     ════════════════════════════════════════ */
     .nav {
       position: fixed;
@@ -126,14 +107,11 @@
       content: '';
       position: absolute;
       bottom: -16px;
-      left: 4px; right: 4px;
+      left: 4px;
+      right: 4px;
       height: 2px;
       background: #fff;
       pointer-events: none;
-    }
-    .nav-tab--active::after {
-      content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px;
-      height: 2px; background: var(--blue-main); pointer-events: none;
     }
     .nav-tab-inner {
       display: flex;
@@ -233,10 +211,10 @@
     .nav-services-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
     .nav-services-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
     .nav-services-item:hover .nav-services-item-title { color: var(--blue-main); }
+
     /* Compliance dropdown */
     .nav-tab-compliance { position: relative; }
     .nav-tab-compliance::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
-    .nav-tab-compliance:hover .nav-chevron svg { transform: scaleY(-1); }
     .nav-compliance-dropdown {
       position: absolute; top: calc(100% + 44px); left: 0;
       width: 400px; background: #fff; border-radius: 8px;
@@ -248,36 +226,22 @@
     .nav-tab-compliance:hover .nav-compliance-dropdown,
     .nav-compliance-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
-    /* About Us dropdown */
+    /* About dropdown */
     .nav-tab-about { position: relative; }
-    .nav-tab-about::before {
-      content: '';
-      position: absolute;
-      left: 0; width: 400px;
-      top: 100%;
-      height: 44px;
-    }
+    .nav-tab-about::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
     .nav-tab-about:hover .nav-chevron svg { transform: scaleY(-1); }
     .nav-about-dropdown {
-      position: absolute;
-      top: calc(100% + 44px);
-      left: 0;
-      width: 400px;
-      background: #fff;
-      border-radius: 8px;
-      padding: 16px 24px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
       box-shadow: 0 8px 32px rgba(22, 35, 81, 0.14);
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-6px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      z-index: 200;
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
     }
     .nav-tab-about:hover .nav-about-dropdown,
     .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* Resources dropdown */
     .nav-tab-resources { position: relative; }
     .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
     .nav-tab-resources:hover .nav-chevron svg { transform: scaleY(-1); }
@@ -291,6 +255,8 @@
     }
     .nav-tab-resources:hover .nav-resources-dropdown,
     .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* HR Knowledge Hub dropdown */
     .nav-tab-hub { position: relative; }
     .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 680px; top: 100%; height: 44px; }
     .nav-tab-hub:hover .nav-chevron svg { transform: scaleY(-1); }
@@ -304,6 +270,8 @@
     }
     .nav-tab-hub:hover .nav-hub-dropdown,
     .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* Price dropdown */
     .nav-tab-price { position: relative; }
     .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
     .nav-tab-price:hover .nav-chevron svg { transform: scaleY(-1); }
@@ -317,6 +285,7 @@
     }
     .nav-tab-price:hover .nav-price-dropdown,
     .nav-price-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
     .nav-hub-columns { display: flex; gap: 16px; }
     .nav-hub-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
     .nav-hub-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
@@ -326,511 +295,118 @@
     .nav-hub-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
     .nav-hub-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
     .nav-hub-item:hover .nav-hub-item-title { color: var(--blue-main); }
+
+    /* Dropdown shared */
     .nav-dropdown-label {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 18px;
-      color: var(--text-tertiary);
+      font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-tertiary);
     }
     .nav-dropdown-divider { height: 1px; background: #CDD5E0; }
     .nav-dropdown-list { display: flex; flex-direction: column; gap: 20px; }
     .nav-dropdown-item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
-    .nav-dropdown-item-title {
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 18px;
-      color: var(--text-main);
-      display: block;
-      transition: color 0.12s ease;
-    }
-    .nav-dropdown-item-desc {
-      font-family: var(--font);
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 16px;
-      color: var(--text-tertiary);
-      display: block;
-    }
+    .nav-dropdown-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-dropdown-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
     .nav-dropdown-item:hover .nav-dropdown-item-title { color: var(--blue-main); }
 
     /* ════════════════════════════════════════
-       HERO
+       TOU HERO
     ════════════════════════════════════════ */
-    .hero-section {
+    .tou-hero {
       position: relative;
       width: 100%;
-      height: 600px;
+      height: 400px;
       overflow: hidden;
-      background-image: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      background-image: linear-gradient(90.651deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
     }
-    .hero-wave {
+    .tou-hero-bg {
       position: absolute;
-      left: 0;
       top: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-wave img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-    .hero-section .container {
-      position: relative;
-      z-index: 2;
-      padding-top: 176px;
-    }
-    .hero-content {
-      max-width: 644px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .hero-content .section-label span { color: var(--blue-main); }
-    .hero-title {
-      font-size: 64px;
-      font-weight: 700;
-      line-height: 80px;
-      color: #fff;
-    }
-    .hero-title em { color: var(--blue-main); font-style: normal; }
-    .hero-body {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: #fff;
-      margin-top: 12px;
-    }
-    .hero-body strong { font-weight: 700; }
-
-    /* ════════════════════════════════════════
-       WHERE WE STAND TODAY
-    ════════════════════════════════════════ */
-    .impact-section {
-      width: 100%;
-      background-image: var(--gradient-light);
-      padding: 80px 0 127px;
-    }
-    .impact-grid {
-      display: grid;
-      grid-template-columns: 644px 1fr;
-      gap: 108px;
-      align-items: start;
-    }
-    .impact-copy {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-width: 620px;
-    }
-    .impact-copy .section-label span { color: var(--text-main); }
-    .impact-copy h2 {
-      font-size: 52px;
-      font-weight: 700;
-      line-height: 66px;
-      letter-spacing: -1.56px;
-      color: var(--text-main);
-      margin: 0 0 24px;
-    }
-    .impact-copy h2 em { color: var(--blue-main); font-style: normal; }
-    .impact-copy p {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: var(--text-tertiary);
-      max-width: 60ch;
-      margin: 0;
-    }
-    .impact-stats {
-      display: grid;
-      grid-template-columns: 240px 200px;
-      gap: 39px 32px;
-      padding-top: 22px;
-    }
-    .stat-card {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .stat-number {
-      font-size: 52px;
-      font-weight: 600;
-      line-height: 66px;
-      letter-spacing: -1.56px;
-      color: var(--blue-main);
-    }
-    .stat-label {
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 20px;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-    }
-    @media (max-width: 1024px) {
-      .impact-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-      .impact-copy { max-width: 680px; }
-      .impact-stats { max-width: 680px; }
-    }
-
-    /* ════════════════════════════════════════
-       Marco's Journey TIMELINE
-    ════════════════════════════════════════ */
-    .journey-section {
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      background-image: linear-gradient(90.372deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
-      padding-top: 60px;
-      padding-bottom: 80px;
-    }
-    .journey-section .section-label span { color: var(--blue-main); }
-    .journey-scroll-wrapper {
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      overscroll-behavior-x: contain;
-      scroll-snap-type: x mandatory;
-      margin-top: 55px;
-    }
-    .journey-scroll-wrapper::-webkit-scrollbar { display: none; }
-    .journey-scroll-track {
-      display: flex;
-      width: max-content;
-    }
-    .journey-panel {
-      width: 100vw;
-      flex-shrink: 0;
-      position: relative;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-    .timeline-line-p1 {
-      position: absolute;
-      top: 114px;
-      left: max(24px, calc((100vw - 1224px) / 2));
       right: 0;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.55);
+      height: 100%;
       z-index: 0;
+      pointer-events: none;
     }
-    .timeline-line-p2 {
-      position: absolute;
-      top: 114px;
-      left: 0;
-      right: max(24px, calc((100vw - 1224px) / 2));
-      height: 2px;
-      background: rgba(255, 255, 255, 0.55);
-      z-index: 0;
+    .tou-hero-bg img {
+      height: 100%;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      object-position: right center;
     }
-    .journey-cards {
-      display: flex;
+    .tou-hero > .container {
       position: relative;
       z-index: 1;
-      gap: 80px;
-      padding: 0 52px;
+      padding-top: 180px;
     }
-    .journey-nav {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 36px;
-    }
-    .journey-nav-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      flex-shrink: 0;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-    .journey-nav-dot.active {
-      background: var(--blue-main);
-      transform: scale(1.35);
-    }
-
-    /* ─── JOURNEY TIMELINE ANIMATION ─── */
-    /* Line stretches left→right via scaleX */
-    .timeline-line-p1 {
-      transform: scaleX(0);
-      transform-origin: left center;
-      transition: transform 1.2s ease;
-    }
-    .journey-section.is-visible .timeline-line-p1 {
-      transform: scaleX(1);
-    }
-
-    /* Panel 1 cards: opacity-only fade, no movement */
-    .journey-panel:first-child .journey-card {
-      opacity: 0;
-      transition: opacity 0.7s ease;
-    }
-    .journey-section.is-visible .journey-panel:first-child .journey-card:nth-child(1) {
-      opacity: 1;
-      transition-delay: 0.4s;
-    }
-    .journey-section.is-visible .journey-panel:first-child .journey-card:nth-child(2) {
-      opacity: 1;
-      transition-delay: 0.8s;
-    }
-    .journey-section.is-visible .journey-panel:first-child .journey-card:nth-child(3) {
-      opacity: 1;
-      transition-delay: 1.2s;
-    }
-
-    /* Reduced motion: show everything immediately */
-    @media (prefers-reduced-motion: reduce) {
-      .timeline-line-p1 { transform: none !important; transition: none !important; }
-      .journey-panel:first-child .journey-card { opacity: 1 !important; transition: none !important; }
-    }
-
-    .journey-card {
-      flex: 1;
-      min-width: 0;
+    .tou-hero-content {
+      max-width: 808px;
+      margin-inline: auto;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 18px;
+      gap: 16px;
     }
-    .journey-year {
-      font-size: 64px;
-      font-weight: 700;
-      line-height: 80px;
-      color: #fff;
-      text-align: center;
+    .tou-hero-title {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #f8f8fa;
+      letter-spacing: -1px;
     }
-    .journey-dot {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px;
-      background: var(--blue-main);
-      border-radius: 50px;
-      box-shadow: 0 16px 32px -8px rgba(12,12,13,0.4);
-      flex-shrink: 0;
-      position: relative;
-      z-index: 2;
+
+    /* ════════════════════════════════════════
+       TOU CONTENT SECTION
+    ════════════════════════════════════════ */
+    .tou-section {
+      background-image: linear-gradient(to bottom, #f4f4ff 49%, #ffffff 100%);
+      padding: 80px 0 120px;
     }
-    .journey-dot-inner {
-      width: 16px;
-      height: 16px;
-      background: #fff;
-      border: 2px solid #9199a6;
-      border-radius: 50px;
-    }
-    .journey-content {
+    .tou-section-inner {
+      max-width: 808px;
+      margin-inline: auto;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 60px;
+    }
+    .tou-last-updated {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #8f98b5;
+    }
+    .tou-block {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .tou-block-heading {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 26px;
+      color: #162351;
+    }
+    .tou-block-body {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #8f98b5;
+      display: flex;
+      flex-direction: column;
       gap: 24px;
-      width: 100%;
     }
-    .journey-phase {
+    .tou-block-body p { margin: 0; }
+    .tou-block-body strong { font-weight: 700; color: #8f98b5; }
+    .tou-block-body u { text-decoration: underline; }
+    .tou-block-body ol {
+      padding-left: 24px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 6px;
+      gap: 24px;
     }
-    .journey-phase-name {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #8dd3f4;
-      text-align: center;
-      white-space: nowrap;
+    .tou-block-body ol li { line-height: 24px; }
+    .tou-block-body a {
+      color: #8f98b5;
+      text-decoration: underline;
     }
-    .journey-phase-line {
-      width: 40px;
-      height: 4px;
-      background-color: #8dd3f4;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    .journey-bullets {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-    }
-    .journey-bullet {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-    }
-    .journey-bullet-point {
-      display: flex;
-      align-items: center;
-      padding: 8px;
-      flex-shrink: 0;
-    }
-    .journey-bullet-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--blue-main);
-      border-radius: 8px;
-      flex-shrink: 0;
-    }
-    .journey-bullet p {
-      flex: 1;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: #fff;
-      letter-spacing: -0.8px;
-    }
-
-    /* ════════════════════════════════════════
-       THE PLATFORM — MARCO OS
-    ════════════════════════════════════════ */
-    .platform {
-      width: 100%;
-      background-image: var(--gradient-light);
-      overflow: hidden;
-      padding: 60px 0;
-    }
-    .platform-row {
-      display: flex;
-      align-items: flex-start;
-    }
-    .platform-text {
-      flex: 0 0 624px;
-      padding-top: 20px;
-      display: flex;
-      flex-direction: column;
-    }
-    .platform-text .section-label { margin-bottom: 32px; }
-    .platform-text .section-label span { color: var(--text-main); }
-    .platform-heading {
-      font-size: 48px;
-      font-weight: 600;
-      line-height: 60px;
-      letter-spacing: -2.4px;
-      color: var(--blue-main);
-      margin-bottom: 33px;
-    }
-    .platform-body {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: var(--text-main);
-      max-width: 600px;
-      margin-bottom: 60px;
-    }
-    .platform-cta {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-    .platform-images {
-      flex: 0 0 600px;
-    }
-    .platform-images img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ════════════════════════════════════════
-       WHAT COMES NEXT
-    ════════════════════════════════════════ */
-    .whatnext {
-      width: 100%;
-      background: linear-gradient(180deg, #019AE7 0%, #77A5EB 100%);
-      padding: 80px 0 127px;
-    }
-    .whatnext-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 92px;
-    }
-    .whatnext-left {
-      flex: 0 0 58.1%;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-    .whatnext-heading {
-      font-size: 48px;
-      font-weight: 600;
-      line-height: 60px;
-      letter-spacing: -2.4px;
-      color: #fff;
-    }
-    .whatnext-heading .dark { color: #162351; font-style: normal; }
-    .whatnext-right {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      margin-top: 73px;
-    }
-    .whatnext-body {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: #fff;
-      text-align: right;
-    }
-    .whatnext-cta { display: flex; gap: 16px; align-items: center; justify-content: flex-end; }
-
-    /* ════════════════════════════════════════
-       CTA BUTTONS
-    ════════════════════════════════════════ */
-    .btn-primary,
-    .btn-outline {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      height: 48px;
-      padding: 4px 24px;
-      border-radius: 50px;
-      font-family: var(--font);
-      font-size: 16px;
-      font-weight: 400;
-      line-height: normal;
-      letter-spacing: -0.8px;
-      white-space: nowrap;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .btn-primary { background: #162351; color: #fff; border: none; transition: background 0.18s ease; text-decoration: none; }
-    .btn-outline  { background: #fff; color: #162351; border: 1px solid #003751; transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease; text-decoration: none; }
-    .btn-primary:hover { background: #0185C4; }
-    .btn-outline:hover  { background: #76CAF2; border-color: #76CAF2; color: #fff; }
-    .btn-outline:hover .btn-icon-img { filter: brightness(0) invert(1); }
-    .btn-icon {
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-    }
-    .btn-icon-inner {
-      position: absolute;
-      top: 25%; bottom: 25%;
-      left: 37.5%; right: 37.5%;
-    }
-    .btn-icon-img {
-      position: absolute;
-      top: -10%; bottom: -10%;
-      left: -20%; right: -20%;
-      width: 140%;
-      height: 120%;
-      display: block;
-      max-width: none;
-      transition: filter 0.18s ease;
-    }
+    .tou-block-body a:hover { color: var(--text-main); }
 
     /* ════════════════════════════════════════
        FOOTER
@@ -848,7 +424,11 @@
       justify-content: space-between;
       margin-bottom: 56px;
     }
-    .footer-logo { width: 199.5px; flex-shrink: 0; text-decoration: none; }
+    .footer-logo {
+      width: 199.5px;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
     .footer-logo img { width: 100%; height: auto; display: block; }
     .footer-social {
       display: flex;
@@ -865,35 +445,16 @@
       justify-content: space-between;
       margin-bottom: 40px;
     }
-    .footer-col {
-      flex: 1 1 0;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .footer-col-header {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: normal;
-      color: var(--text-tertiary);
-    }
+    .footer-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+    .footer-col-header { font-size: 14px; font-weight: 400; line-height: normal; color: var(--text-tertiary); }
     .footer-col-links { display: flex; flex-direction: column; gap: 16px; }
     .footer-col-links a,
     .footer-col-links span {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: normal;
-      color: #fff;
-      text-decoration: none;
-      display: block;
+      font-size: 14px; font-weight: 500; line-height: normal;
+      color: #fff; text-decoration: none; display: block;
     }
     .footer-col-links a:hover { text-decoration: underline; }
-    .footer-divider {
-      height: 1px;
-      background: rgba(205,213,224,0.25);
-      margin-bottom: 32px;
-    }
+    .footer-divider { height: 1px; background: rgba(205,213,224,0.25); margin-bottom: 20px; }
     .footer-bottom {
       display: flex;
       align-items: center;
@@ -914,37 +475,32 @@
       transition: opacity 0.8s ease, transform 0.8s ease;
       will-change: opacity, transform;
     }
-    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+    .fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     @media (prefers-reduced-motion: reduce) {
       .fade-in { opacity: 1; transform: none; transition: none; }
     }
+
+    /* WeChat Modal */
     .wechat-modal {
+      display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-      display: flex;
+      z-index: 9999;
+      background: rgba(0,0,0,0.55);
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
     }
-    .wechat-modal.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .wechat-modal img {
-      max-width: 360px;
-      width: 90%;
-      height: auto;
-      display: block;
-    }
+    .wechat-modal.active { display: flex; }
+    .wechat-modal img { width: 280px; height: auto; border-radius: 12px; }
+    .wechat-modal:active { display: none; }
   </style>
 </head>
 <body>
 
-<!-- ════════════════ NAV ════════════════ -->
+<!-- ════════════════ NAV (fixed, always solid) ════════════════ -->
 <nav class="nav">
   <div class="nav-container">
   <div class="nav-tabbar">
@@ -1129,14 +685,14 @@
               </a>
             </div>
             <div class="nav-hub-col">
-              <a href="https://ph.marcopayroll.com/" target="_blank" rel="noopener noreferrer" class="nav-hub-item">
+              <a href="#" class="nav-hub-item">
                 <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div>
                 <div class="nav-hub-item-text">
                   <span class="nav-hub-item-title">Public Holiday Calendar</span>
                   <span class="nav-hub-item-desc">Official holidays by country and year</span>
                 </div>
               </a>
-              <a href="https://leave.marcopayroll.com/" target="_blank" rel="noopener noreferrer" class="nav-hub-item">
+              <a href="#" class="nav-hub-item">
                 <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div>
                 <div class="nav-hub-item-text">
                   <span class="nav-hub-item-title">Leave Policy</span>
@@ -1246,256 +802,115 @@
 </nav>
 
 <!-- ════════════════ HERO ════════════════ -->
-<section class="hero-section">
-  <div class="hero-wave">
-    <img src="assets/Background Assets/abstract line 1.svg" alt="" />
+<section class="tou-hero">
+  <div class="tou-hero-bg">
+    <img src="assets/Background Assets/abstract line 4.svg" alt="" />
   </div>
   <div class="container">
-    <div class="hero-content fade-in">
-      <div class="section-label">
-        <div class="line" style="background:var(--blue-main)"></div>
-        <span>MARCO'S JOURNEY</span>
-      </div>
-      <div>
-        <p class="hero-title">How <em>Marco</em><br>was built</p>
-        <p class="hero-body">Marco didn't start with a roadshow or a funding announcement. It started in Beijing in 2020 with <strong>one EOR employee, one client, and one problem worth solving.</strong></p>
-      </div>
+    <div class="tou-hero-content fade-in">
+      <h1 class="tou-hero-title">Terms of Use</h1>
     </div>
   </div>
 </section>
 
-<!-- ════════════════ WHERE WE STAND TODAY ════════════════ -->
-<section class="impact-section">
-  <div class="container impact-grid">
-    <div class="impact-copy fade-in">
-      <div class="section-label">
-        <div class="line" style="background:var(--text-main)"></div>
-        <span>WHERE WE STAND TODAY</span>
-      </div>
-      <h2>From the first EOR onboarding to a <em>Global Workforce Infrastructure</em></h2>
-      <p>Since 2020, Marco onboarded over 5,000 staff across 21 owned entities, opened 4 service centers across three continents, and processed over USD 150M in workforce payments, without compromising on the values that started it all.</p>
-    </div>
-    <div class="impact-stats fade-in">
-      <div class="stat-card">
-        <p class="stat-number" data-count="21">0</p>
-        <p class="stat-label">Owned Entities</p>
-      </div>
-      <div class="stat-card">
-        <p class="stat-number" data-count="100" data-prefix="$" data-suffix="M+">0</p>
-        <p class="stat-label">Annual Cash Flow</p>
-      </div>
-      <div class="stat-card">
-        <p class="stat-number" data-count="4">0</p>
-        <p class="stat-label">Service Center Globally</p>
-      </div>
-      <div class="stat-card">
-        <p class="stat-number" data-count="5000" data-suffix="+">0</p>
-        <p class="stat-label">Onboarded Staff</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════ Marco's Journey TIMELINE ════════════════ -->
-<section class="journey-section">
+<!-- ════════════════ CONTENT ════════════════ -->
+<section class="tou-section">
   <div class="container">
-    <div class="section-label fade-in">
-      <div class="line" style="background:var(--blue-main)"></div>
-      <span style="color:var(--blue-main)">Marco's Journey</span>
-    </div>
-  </div>
+    <div class="tou-section-inner">
 
-  <div class="journey-scroll-wrapper">
-  <div class="journey-scroll-track">
+      <p class="tou-last-updated">Last Updated: 10 June 2026</p>
 
-    <!-- ── Panel 1: 2020 · 2022 · 2023 ── -->
-    <div class="journey-panel">
-      <div class="timeline-line-p1"></div>
-      <div class="container journey-cards">
-
-        <!-- 2020 LAUNCH -->
-        <div class="journey-card">
-          <p class="journey-year">2020</p>
-          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
-          <div class="journey-content">
-            <div class="journey-phase">
-              <p class="journey-phase-name">LAUNCH</p>
-              <div class="journey-phase-line"></div>
-            </div>
-            <div class="journey-bullets">
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Founded in Beijing</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>First EOR employee placed</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>First work visa secured: Vietnam</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>First European work visa: Netherlands</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>First global client signed</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Marco OS 1.0 released</p></div>
-            </div>
-          </div>
+      <!-- 1. Introduction -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Introduction</p>
+        <div class="tou-block-body">
+          <p>BY ACCESSING THIS SITE, UTILISING THE WEB OFFERING OR REQUESTING INFORMATION THROUGH OUR SITE, YOU AFFIRM THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS OF SERVICE, INCLUDING OUR PRIVACY POLICY AT "<a href="company-privacy-policy.html">Privacy-Policy</a>". IF YOU DO NOT AGREE TO THESE TERMS, PLEASE DISCONTINUE YOUR USE IMMEDIATELY. YOUR CONTINUED USE OF THIS SITE (WHETHER NOW OR IN FUTURE) MEANS THAT YOU HAVE AGREED TO THE TERMS.</p>
+          <p>These Terms may be amended from time to time. All amendments will be posted on this page and shall be effective immediately upon posting to this Website and without any prior notice to you. Your use of the Website after such changes have been posted will constitute your agreement to the modified Terms and all of the changes. You should therefore read this page carefully each time you visit the Website.</p>
         </div>
+      </div>
 
-        <!-- 2022 OPERATE -->
-        <div class="journey-card">
-          <p class="journey-year">2022</p>
-          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
-          <div class="journey-content">
-            <div class="journey-phase">
-              <p class="journey-phase-name">OPERATE</p>
-              <div class="journey-phase-line"></div>
-            </div>
-            <div class="journey-bullets">
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Overseas headcount structure redesigned</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Cross-border entity transfers standardized</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Reimbursement &amp; leave management built into platform</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Marco OS 2.0 released</p></div>
-            </div>
-          </div>
+      <!-- 2. Proprietary Rights -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Proprietary Rights</p>
+        <div class="tou-block-body">
+          <p>The Website is owned and operated by Marco Global Payroll Pte. Ltd. (also referred to herein as "Marco", "<strong>we</strong>", "<strong>us</strong>" or "<strong>our</strong>", as applicable). The materials and information located on the Website including text, graphics, data, hyperlinks, reports, forms and any software programs, database systems, or portals made available or enabled on the Website (the "<strong>Contents</strong>") are protected by copyright, trademark and other forms of proprietary rights. All rights, title and interest in the Contents are owned by, licensed to or controlled by Marco unless otherwise indicated. Visitors to the Website may not reproduce, download, copy, hyperlink to, re-transmit, disseminate, sell, distribute, publish, broadcast, circulate or commercially exploit the Contents in any manner without the prior written consent of Marco, or use the Contents for any unlawful or unauthorized purpose. Nothing on the Website should be construed as granting, by implication, estoppel, or otherwise, any license or right to use the Contents, without our prior written permission specific for each such use.</p>
+          <p>You are granted a limited, non-sublicensable license (revocable at any time) to access and use the Website and the Contents for your internal use only. Such license is subject to these Terms and does not allow the use of any data gathering, harvesting or extraction methods whether automatic or manual. No framing of the Website or creation of any hypertext links or deep links between the Website and any other website is allowed except with Marco's prior written consent. We reserve the right, without notice and in our sole discretion, to terminate your license to use the Website, and to block or prevent your future access to the Website.</p>
+          <p>Where information or materials is reproduced from elsewhere, copyright in respect of these works remain with their respective owners.</p>
         </div>
+      </div>
 
-        <!-- 2023 UPGRADE -->
-        <div class="journey-card">
-          <p class="journey-year">2023</p>
-          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
-          <div class="journey-content">
-            <div class="journey-phase">
-              <p class="journey-phase-name">UPGRADE</p>
-              <div class="journey-phase-line"></div>
-            </div>
-            <div class="journey-bullets">
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>30+ active clients reached</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Dalian service center opened</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Singapore established as global HQ</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Work-visa support expanded to 50+ countries</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>First UK payroll go-live</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Marco OS 3.0 released</p></div>
-            </div>
-          </div>
+      <!-- 3. Acceptable Use -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Acceptable Use</p>
+        <div class="tou-block-body">
+          <p>You agree:</p>
+          <ol>
+            <li>not to upload or distribute in any way files which you know or have reason to suspect contain viruses, worms, bugs, Trojan horses or other code, corrupted files or any other similar software, programs, macros or files that may detrimentally interfere with the operation of the Website, or to do anything which would create or impose an unreasonable or disproportionate large burden or load on the Website, or gain unauthorized access to restricted parts of the Website or its systems;</li>
+            <li>not to gather and use the information and/or particulars posted or transmitted through the Website for unsolicited advertising or other unauthorized purposes;</li>
+            <li>not to disassemble, decompile, reverse-engineer, reverse-assemble, attempt to derive the source code of, conduct load testing, penetration tests, port scans, vulnerability assessments or other security testing, communicate, republish, upload, post, transmit, edit, re-use, adapt, modify, rent, lease, loan, sell, assign, transfer, distribute, perform, display, license, sub-license or create derivative works based on the whole or any part of the Website;</li>
+            <li>not to use the Website and/or the Contents for illegal purposes;</li>
+            <li>not to pose, promote, upload, or transmit information through the Website which may infringe the rights of any third party, whether in statute or common law, including but not limited to any third party's copyright, patent, trademark, trade secret or other proprietary rights or rights of publicity or privacy;</li>
+            <li>not to post, promote, upload or transmit through the Website any unlawful, harassing, libelous, defamatory, harmful, vulgar, obscene, or otherwise objectionable material of any kind or nature;</li>
+            <li>that you will not impersonate another user or entity or falsely state or otherwise misrepresent your affiliation with a person or entity;</li>
+            <li>to indemnify and hold harmless Marco, and its affiliates, and their respective directors, officers, managers, employees, shareholders, agents, and licensors, from and against all claims, demands, disputes, losses, expenses, damages, and costs, including reasonable legal fees, arising out of or in relation to your breach of these Terms or your misuse of this Website or Content;</li>
+            <li>not to use any automated process or service to access and/or use the Website and/or the Contents (such as a bot, a spider, periodic caching of information stored by us, or "meta-searching"); and</li>
+            <li>to abide by all applicable laws and regulations in your use of the Website.</li>
+          </ol>
+          <p>You shall be responsible for obtaining and using the necessary web browser and/or other software and/or equipment necessary to obtain access to the Website at your own risk and expense. If new or different versions of the web browser and/or other software and/or hardware and/or equipment necessary for the use of the Website become available, we reserve the right not to support any prior version of the web browser or other software. If you fail to upgrade the relevant software and/or web browser or to use the enhanced version of software and/or web browser as required by us, you may not be able to obtain access to the Website, and we shall not be held liable as a result thereof.</p>
         </div>
-
       </div>
-    </div>
 
-    <!-- ── Panel 2: 2024 · 2025 · 2026 ── -->
-    <div class="journey-panel">
-      <div class="timeline-line-p2"></div>
-      <div class="container journey-cards">
-
-        <!-- 2024 GROW -->
-        <div class="journey-card">
-          <p class="journey-year">2024</p>
-          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
-          <div class="journey-content">
-            <div class="journey-phase">
-              <p class="journey-phase-name">GROW</p>
-              <div class="journey-phase-line"></div>
-            </div>
-            <div class="journey-bullets">
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>45+ active clients reached</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Customer success structure upgraded</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Kuala Lumpur service center opened</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Marco OS 4.0 released</p></div>
-            </div>
-          </div>
+      <!-- 4. Disclaimer -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Disclaimer of Warranties and Exclusion of Liability</p>
+        <div class="tou-block-body">
+          <p>The Contents are provided on an "as is" and "as available" basis without warranties of any kind. To the fullest extent permitted by law, Marco does not warrant and hereby disclaims any warranty (whether express or implied) as to the accuracy, correctness, reliability, currentness, validity, timeliness, non-infringement, title, merchantability, functionality or fitness for any particular purpose of the Contents; or that the Contents of any functions associated with the Website will be uninterrupted or error-free, or that defects will be corrected or that the Website and the server is and will be free of all viruses and/or harmful elements.</p>
+          <p>Marco shall not be liable for any damage or loss of any kind, howsoever and whatsoever caused as a result (whether directly or indirectly) of the use of the Website, including but not limited to any damage or loss suffered as a result of reliance on the Contents.</p>
+          <p>The Contents are provided for information purposes only and are not intended as financial, regulatory, legal or other professional advice. If financial, regulatory, legal or other professional advice is required, services of a competent professional should be sought.</p>
+          <p>Marco strives to provide the most accurate calculations and outputs based on the information that you enter on the Website. However, such calculations and outputs are provided for estimation purposes only and should not be considered as 100% accurate. For more accurate details, please reach out to us and our staff will contact you.</p>
+          <p>Your use of the Website is entirely at your own risk.</p>
         </div>
+      </div>
 
-        <!-- 2025 RENEW -->
-        <div class="journey-card">
-          <p class="journey-year">2025</p>
-          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
-          <div class="journey-content">
-            <div class="journey-phase">
-              <p class="journey-phase-name">RENEW</p>
-              <div class="journey-phase-line"></div>
-            </div>
-            <div class="journey-bullets">
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>70+ active clients reached</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>21 owned entities across AMER, EMEA, APAC</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Los Angeles service centre opened</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Marco MasterCard launched</p></div>
-            </div>
-          </div>
+      <!-- 5. Right of Access -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Right of Access</p>
+        <div class="tou-block-body">
+          <p>Marco reserves the right at any time to require visitors, users and/or subscribers to pay a fee for continued access to the Website or any part(s) thereof or require subscribers to pay such other fees, charges, or disbursements as it may require in connection with the Website from time to time upon one (1) month's notice of the commencement of the charging of such fees, charges or disbursements.</p>
+          <p>Marco reserves the right to update or modify the Website from time to time. Marco further reserves all rights to deny or restrict access to the Website or any part(s) thereof to any particular person (whether such person is a visitor, user, subscriber or otherwise), or to block access from a particular Internet address to the Website, at any time, for any reason whatsoever and without ascribing any reasons whatsoever.</p>
         </div>
+      </div>
 
-        <!-- 2026 TRANSFORM -->
-        <div class="journey-card">
-          <p class="journey-year">2026</p>
-          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
-          <div class="journey-content">
-            <div class="journey-phase">
-              <p class="journey-phase-name">TRANSFORM</p>
-              <div class="journey-phase-line"></div>
-            </div>
-            <div class="journey-bullets">
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Marco Copilot AI launched</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Marco Engine introduced — a unified processing layer powering payroll, expenses, leave, billing, and financial reporting across all markets</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Registered as a Money Services Business in Canada</p></div>
-              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p>Marco OS 6.0 released</p></div>
-            </div>
-          </div>
+      <!-- 6. Hyperlinks -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Hyperlinks from the Website to other websites</p>
+        <div class="tou-block-body">
+          <p>The Website contains hyperlinks to websites which are not owned or maintained by Marco. Marco is not responsible for the contents of those websites and shall not be liable for any damages or loss arising from access to those websites. Your access or use of the hyperlinks and such linked websites are entirely at your own risk. Marco does not censor or edit the content of any third-party websites. By using this Website, you expressly release Marco from any and all liability arising from your use of those third-party website. You further agree that your access or use of the hyperlinks and such linked websites is also subject to and further conditioned on your accepting and abiding by the separate terms of use, privacy policies, and other policies posted on such websites.</p>
+          <p>All hyperlinks to other websites are provided as a convenience to you as a user of the Website. In no circumstances shall Marco be considered to be endorsing or associated or affiliated in whatever manner with any trade or service marks, logos, insignia or other devices used or appearing on websites to which the Website is linked.</p>
+          <p>Caching and hyperlinks to, and the framing of the Website or any part(s) thereof or any of the Contents are prohibited.</p>
+          <p>In no circumstances shall Marco be considered to be endorsing or associated or affiliated in whatever manner with any trade or service marks, logos, insignia or other devices used or appearing on websites that link to the Website or any part(s) thereof or any of the Contents.</p>
+          <p>Marco reserves the right to disable any unauthorized hyperlinks or frames and disclaims any responsibility for the content available on any other websites reached by hyperlinks to or from the Website or any of the Contents.</p>
         </div>
-
       </div>
-    </div>
 
-  </div>
-  </div><!-- /.journey-scroll-wrapper -->
-
-  <!-- Pagination dots -->
-  <div class="journey-nav">
-    <button class="journey-nav-dot active" aria-label="2020–2023"></button>
-    <button class="journey-nav-dot" aria-label="2024–2026"></button>
-  </div>
-
-</section>
-
-<!-- ════════════════ THE PLATFORM — MARCO OS ════════════════ -->
-<section class="platform">
-  <div class="container platform-row">
-    <div class="platform-text fade-in">
-      <div class="section-label">
-        <div class="line" style="background:var(--text-main)"></div>
-        <span style="color:var(--text-main)">THE PLATFORM</span>
+      <!-- 7. Governing Law -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Governing Law and Jurisdiction</p>
+        <div class="tou-block-body">
+          <p>The Terms shall be governed by and construed in accordance with the laws of the Republic of Singapore. All disputes relating to or in connection with the Terms shall be submitted to the exclusive jurisdiction of the Singapore courts.</p>
+        </div>
       </div>
-      <p class="platform-heading">Marco OS</p>
-      <p class="platform-body">Marco OS is the single platform behind every service Marco delivers — handling payroll calculation, people management, expense processing, and global mobility in one connected system. It integrates with the tools businesses already use, feeds real-time workforce data back to the teams that need it, and keeps every country's compliance rules built in, so clients don't have to manage them separately.</p>
-      <div class="platform-cta">
-        <button class="btn-primary">
-          Explore Marco OS
-          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
-        </button>
-        <button class="btn-outline">
-          Contact Us
-          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
-        </button>
-      </div>
-    </div>
-    <div class="platform-images fade-in">
-      <img src="assets/Company/journey-marco-os-screens-png.png" alt="Marco OS Screens" />
-    </div>
-  </div>
-</section>
 
-<!-- ════════════════ WHAT COMES NEXT ════════════════ -->
-<section class="whatnext">
-  <div class="container whatnext-row fade-in">
-    <div class="whatnext-left">
-      <div class="section-label">
-        <div class="line" style="background:#fff"></div>
-        <span style="color:#fff">WHAT COMES NEXT</span>
+      <!-- 8. Contact Information -->
+      <div class="tou-block">
+        <p class="tou-block-heading">Contact Information</p>
+        <div class="tou-block-body">
+          <p>Marco Payroll Global Pte. Ltd</p>
+          <p>Attn: Legal Department<br>8 Marina Boulevard<br>MBFC Tower 1, #11-01<br>Singapore 018981</p>
+          <p><a href="mailto:privacy@marcopayroll.com">privacy@marcopayroll.com</a></p>
+        </div>
       </div>
-      <p class="whatnext-heading">The next chapter of <em class="dark">Marco's journey</em> has not been written yet. But the <em class="dark">foundations</em> are in place</p>
-    </div>
-    <div class="whatnext-right">
-      <p class="whatnext-body">These three values are not aspirational. They are operational. They define the decisions we make when there is no script, no precedent, and no easy answer. They are what Marco stands for, in every country, every currency, every conversation.</p>
-      <div class="whatnext-cta">
-        <a href="company-entity-network.html" class="btn-outline">
-          Explore Our Network
-          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
-        </a>
-        <a href="company-vision-values.html" class="btn-outline">
-          Our Values
-          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
-        </a>
-      </div>
+
     </div>
   </div>
 </section>
@@ -1597,15 +1012,18 @@
   </div>
 </footer>
 
+<!-- WeChat Modal -->
 <div id="wechat-modal" class="wechat-modal">
   <img src="assets/wechat-card.svg" alt="WeChat QR Code" />
 </div>
 
 <script>
+  /* Close WeChat modal on click */
   document.getElementById('wechat-modal').addEventListener('click', function() {
     this.classList.remove('active');
   });
 
+  /* Fade-in reveal */
   const revealElements = document.querySelectorAll('.fade-in');
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
@@ -1616,125 +1034,16 @@
         }
       });
     },
-    {
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px'
-    }
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
   revealElements.forEach((el) => revealObserver.observe(el));
 
-  // Journey timeline: line stretch + staggered card fade (runs once, no replay)
-  const journeySection = document.querySelector('.journey-section');
-  if (journeySection) {
-    const journeyObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            journeySection.classList.add('is-visible');
-            observer.unobserve(journeySection);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    journeyObserver.observe(journeySection);
-  }
-</script>
-
-<script>
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function animateCounter(counter) {
-    const target = Number(counter.dataset.count);
-    const prefix = counter.dataset.prefix || '';
-    const suffix = counter.dataset.suffix || '';
-    const duration = 1800;
-    const startTime = performance.now();
-
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
-      const currentValue = Math.round(target * easedProgress);
-      counter.textContent = `${prefix}${currentValue}${suffix}`;
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        counter.textContent = `${prefix}${target}${suffix}`;
-      }
-    }
-
-    requestAnimationFrame(update);
-  }
-
-  const counterObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.stat-number[data-count]').forEach((counter) => {
-            const prefix = counter.dataset.prefix || '';
-            const suffix = counter.dataset.suffix || '';
-            if (prefersReducedMotion) {
-              counter.textContent = `${prefix}${counter.dataset.count}${suffix}`;
-            } else {
-              animateCounter(counter);
-            }
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.35 }
-  );
-
-  const statsSection = document.querySelector('.impact-stats');
-  if (statsSection) counterObserver.observe(statsSection);
-</script>
-
-<script>
-  (function () {
-    const wrapper = document.querySelector('.journey-scroll-wrapper');
-    const navDots = document.querySelectorAll('.journey-nav-dot');
-    const panels  = wrapper ? Array.from(wrapper.querySelectorAll('.journey-panel')) : [];
-    if (!wrapper || !navDots.length || !panels.length) return;
-
-    let currentIndex = 0;
-
-    function goToSlide(index) {
-      currentIndex = Math.max(0, Math.min(index, panels.length - 1));
-      wrapper.scrollTo({ left: currentIndex * wrapper.clientWidth, behavior: 'smooth' });
-      syncDots(currentIndex);
-    }
-
-    function syncDots(index) {
-      navDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-    }
-
-    // ── Nav dot clicks ──────────────────────────────────────────
-    navDots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
-
-    // ── Sync dots on scroll (CSS snap handles trackpad/touch) ───
-    wrapper.addEventListener('scroll', () => {
-      const nearest = Math.round(wrapper.scrollLeft / wrapper.clientWidth);
-      if (nearest !== currentIndex) {
-        currentIndex = nearest;
-        syncDots(nearest);
-      }
-    }, { passive: true });
-
-    // ── Keyboard arrows ─────────────────────────────────────────
-    document.querySelector('.journey-section').addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
-      if (e.key === 'ArrowLeft')  goToSlide(currentIndex - 1);
-    });
-  })();
-
-  // ── Scroll-state navbar: transparent over hero, solid after ──
-  const nav  = document.querySelector('.nav');
-  const hero = document.querySelector('.hero-section');
+  /* Nav: transparent over hero → solid on scroll */
+  var nav = document.querySelector('.nav');
+  var hero = document.querySelector('.tou-hero');
   function updateNavState() {
     if (!nav || !hero) return;
-    const threshold = hero.offsetTop + hero.offsetHeight * 0.25;
+    var threshold = hero.offsetTop + hero.offsetHeight * 0.25;
     if (window.scrollY >= threshold) {
       nav.classList.add('nav-scrolled');
     } else {
