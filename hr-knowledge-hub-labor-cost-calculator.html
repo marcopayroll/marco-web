@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Labor Cost Calculator | Marco</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-main:      #019DE7;
+      --navy:           #0a1628;
+      --text-main:      #162351;
+      --text-secondary: #475072;
+      --text-tertiary:  #8F98B5;
+      --font: 'Euclid Circular B', 'Inter', sans-serif;
+      --gutter: clamp(64px, 7.5vw, 108px);
+    }
+
+    body {
+      font-family: var(--font);
+      background: #fff;
+      color: var(--text-main);
+      min-width: 960px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background: transparent; background-image: none;
+      transition: background-color 0.25s ease, background-image 0.25s ease, box-shadow 0.25s ease;
+    }
+    .nav.nav-scrolled {
+      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+    .nav-container { width: min(100% - 48px, 1440px); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
+    .nav-tabbar { display: flex; align-items: flex-start; gap: 40px; flex-shrink: 0; }
+    .nav-logo { width: 152px; height: 48px; display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-inner { position: relative; width: 100%; aspect-ratio: 684 / 108; }
+    .nav-logo-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-menu { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
+    .nav-tab { display: flex; flex-direction: column; gap: 14px; padding-top: 16px; align-items: flex-start; flex-shrink: 0; position: relative; }
+    .nav-tab:hover::after { content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px; height: 2px; background: #fff; pointer-events: none; }
+    .nav-tab-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; flex-shrink: 0; }
+    .nav-tab-inner span { font-size: 12px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
+    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-right { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .nav-lang { display: flex; align-items: center; justify-content: space-between; width: 44px; flex-shrink: 0; }
+    .nav-lang-flag { position: relative; width: 20px; height: 20px; border-radius: 50px; border: 1px solid #e5e7eb; overflow: hidden; flex-shrink: 0; }
+    .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
+    .nav-lang span { font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
+    .nav-signin { background: var(--blue-main); color: #fff; font-family: var(--font); font-size: 12px; font-weight: 600; border-radius: 50px; padding: 14px 24px; height: 32px; width: 100px; display: flex; align-items: center; justify-content: center; white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0; text-decoration: none; transition: background 0.18s ease; }
+    .nav-signin:hover { background: #0185C4; }
+    .nav-dropdown-label { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-tertiary); }
+    .nav-dropdown-divider { height: 1px; background: #CDD5E0; }
+    .nav-dropdown-list { display: flex; flex-direction: column; gap: 20px; }
+    .nav-dropdown-item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+    .nav-dropdown-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-dropdown-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-dropdown-item:hover .nav-dropdown-item-title { color: var(--blue-main); }
+    .nav-tab-services { position: relative; }
+    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 697px; top: 100%; height: 44px; }
+    .nav-services-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 697px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-services:hover .nav-services-dropdown, .nav-services-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-services-columns { display: flex; gap: 16px; }
+    .nav-services-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-services-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-services-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-services-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-services-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-services-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-services-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-services-item:hover .nav-services-item-title { color: var(--blue-main); }
+    .nav-tab-compliance { position: relative; }
+    .nav-tab-compliance::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-compliance-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-compliance:hover .nav-compliance-dropdown, .nav-compliance-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-resources { position: relative; }
+    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-resources-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-resources:hover .nav-resources-dropdown, .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-hub { position: relative; }
+    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 680px; top: 100%; height: 44px; }
+    .nav-hub-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 680px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-hub:hover .nav-hub-dropdown, .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-hub-columns { display: flex; gap: 16px; }
+    .nav-hub-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-hub-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-hub-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-hub-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-hub-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-hub-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-hub-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-hub-item:hover .nav-hub-item-title { color: var(--blue-main); }
+    .nav-tab-price { position: relative; }
+    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-price-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-price:hover .nav-price-dropdown, .nav-price-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-about { position: relative; }
+    .nav-tab-about::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-about-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-about:hover .nav-about-dropdown, .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero { position: relative; overflow: hidden; height: 600px; background: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); }
+    .hero-bg-pattern { position: absolute; top: 0; right: 0; height: 100%; z-index: 0; pointer-events: none; }
+    .hero-bg-pattern img { height: 100%; width: auto; display: block; object-fit: contain; object-position: right center; }
+    .hero-content { position: relative; z-index: 1; padding-top: 180px; width: calc(100% - 2 * var(--gutter)); max-width: 704px; margin-left: var(--gutter); display: flex; flex-direction: column; gap: 12px; }
+    .hero-body { display: flex; flex-direction: column; gap: 24px; width: 100%; }
+    .hero-label { display: flex; align-items: center; gap: 8px; }
+    .hero-label-line { width: 16px; height: 2px; background: var(--blue-main); flex-shrink: 0; }
+    .hero-label span { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--blue-main); letter-spacing: 0.04em; }
+    .hero-title { font-size: 64px; font-weight: 700; line-height: 80px; letter-spacing: 0; }
+    .hero-title-white { color: #ffffff; }
+    .hero-title-blue  { color: var(--blue-main); }
+    .hero-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; color: #ffffff; max-width: 644px; }
+
+    /* ════════════════════════════════════════
+       LCC SECTION
+    ════════════════════════════════════════ */
+    .lcc-section {
+      background: linear-gradient(to bottom, #f4f4ff 0%, #ffffff 55%);
+      padding: 80px 0 120px;
+    }
+    .lcc-outer {
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .lcc-title-block { display: flex; flex-direction: column; gap: 12px; }
+    .lcc-section-label { display: flex; align-items: center; gap: 8px; }
+    .lcc-section-label .lcc-label-line { width: 16px; height: 2px; background: var(--text-main); flex-shrink: 0; }
+    .lcc-section-label span { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
+    .lcc-title-h1 { font-size: 64px; font-weight: 700; line-height: 80px; color: var(--text-main); }
+    .lcc-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); letter-spacing: -0.05em; }
+
+    /* Body layout */
+    .lcc-body {
+      display: flex;
+      align-items: flex-start;
+      gap: 128px;
+    }
+    .lcc-input-panel {
+      width: 392px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .lcc-form-rows { display: flex; flex-direction: column; gap: 40px; }
+
+    /* Row */
+    .lcc-row { display: flex; flex-direction: column; gap: 20px; }
+    .lcc-row-label { font-size: 16px; font-weight: 500; line-height: 20px; color: var(--text-main); }
+
+    /* Country dropdown */
+    .lcc-dropdown-wrap { position: relative; }
+    .lcc-dropdown-trigger {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 40px; padding: 8px 16px;
+      background: #ecf2fb; border: 1px solid #bcc9eb; border-radius: 8px;
+      cursor: pointer; user-select: none;
+    }
+    .lcc-dropdown-trigger.open { border-color: var(--blue-main); }
+    .lcc-trigger-left { display: flex; align-items: center; gap: 16px; overflow: hidden; }
+    .lcc-flag-wrap { display: none; width: 37px; height: 24px; border: 1.6px solid #e5e7eb; border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+    .lcc-flag-wrap.visible { display: block; }
+    .lcc-flag-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lcc-country-label { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lcc-country-label.placeholder { color: var(--text-tertiary); }
+    .lcc-drop-chevron { width: 16px; height: 16px; flex-shrink: 0; transition: transform 0.2s; }
+    .lcc-dropdown-trigger.open .lcc-drop-chevron { transform: scaleY(-1); }
+    .lcc-dropdown-menu {
+      display: none; position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+      background: #fff; border: 1px solid #bcc9eb; border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(22,35,81,0.12); z-index: 50; overflow: hidden;
+    }
+    .lcc-dropdown-menu.open { display: block; }
+    .lcc-dropdown-search { padding: 10px 12px; border-bottom: 1px solid #e5e7eb; }
+    .lcc-dropdown-search input { width: 100%; border: none; outline: none; font-family: var(--font); font-size: 14px; color: var(--text-main); background: transparent; }
+    .lcc-dropdown-search input::placeholder { color: var(--text-tertiary); }
+    .lcc-country-list { max-height: 240px; overflow-y: auto; padding: 4px 0; }
+    .lcc-country-item { display: flex; align-items: center; gap: 12px; padding: 8px 12px; cursor: pointer; font-size: 14px; color: var(--text-main); }
+    .lcc-country-item:hover { background: #f4f8ff; }
+    .lcc-country-item .lcc-flag-wrap { display: block; flex-shrink: 0; }
+
+    /* Worker type */
+    .lcc-worker-cards { display: flex; gap: 16px; }
+    .lcc-worker-card {
+      flex: 1; display: flex; flex-direction: column; gap: 8px;
+      height: 100px; padding: 16px 12px; border-radius: 8px;
+      border: 1px solid #bcc9eb; background: #ecf2fb;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    }
+    .lcc-worker-card:hover { border-color: #019de7; box-shadow: 0 2px 8px rgba(1,157,231,0.15); }
+    .lcc-worker-card.active { border-color: var(--blue-main); background: #e4efff; }
+    .lcc-worker-card.active:hover { box-shadow: 0 2px 8px rgba(1,157,231,0.2); }
+    .lcc-wt-title { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
+    .lcc-wt-desc { font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); }
+
+    /* Salary */
+    .lcc-radio-row { display: flex; gap: 32px; align-items: center; }
+    .lcc-radio-option { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    .lcc-radio-dot-wrap { width: 20px; height: 20px; border: 1px solid #bcc9eb; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .lcc-radio-dot { width: 12px; height: 12px; border-radius: 50%; background: #9199a6; }
+    .lcc-radio-option.active .lcc-radio-dot-wrap { border-color: var(--blue-main); }
+    .lcc-radio-option.active .lcc-radio-dot { background: var(--blue-main); }
+    .lcc-radio-label { font-size: 14px; font-weight: 500; line-height: 18px; color: #475072; }
+    .lcc-radio-option.active .lcc-radio-label { color: var(--blue-main); }
+    .lcc-salary-input-row { display: flex; gap: 16px; }
+    .lcc-currency-box {
+      width: 100px; height: 40px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #ecf2fb; border: 1px solid #bcc9eb; border-radius: 8px;
+      font-size: 14px; font-weight: 500; color: var(--text-main);
+    }
+    .lcc-amount-input {
+      flex: 1; height: 40px; padding: 8px 16px;
+      background: #ecf2fb; border: 1px solid #bcc9eb; border-radius: 8px;
+      font-family: var(--font); font-size: 14px; font-weight: 500; color: var(--text-main);
+      outline: none;
+    }
+    .lcc-amount-input::placeholder { color: var(--text-tertiary); font-weight: 400; }
+    .lcc-amount-input:focus { border-color: var(--blue-main); }
+    .lcc-hint-block { display: flex; flex-direction: column; gap: 6px; min-height: 16px; }
+    .lcc-hint-monthly { font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); }
+    .lcc-hint-fx { font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-main); }
+    .lcc-hint-fx--muted { color: var(--text-tertiary) !important; font-style: italic; }
+    .lcc-hint-disclaimer { font-size: 11px; font-weight: 400; line-height: 15px; color: var(--text-tertiary); font-style: italic; }
+
+    /* Divider + buttons */
+    .lcc-divider { height: 1px; background: #e5e7eb; }
+    .lcc-buttons { display: flex; gap: 16px; }
+    .lcc-btn-primary { flex: 1; height: 44px; background: var(--blue-main); color: #fff; border: none; border-radius: 8px; font-family: var(--font); font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.18s; }
+    .lcc-btn-primary:hover { background: #0185c4; }
+    .lcc-btn-secondary { flex: 1; height: 44px; background: #fff; color: #475072; border: 1px solid #9199a6; border-radius: 8px; font-family: var(--font); font-size: 16px; font-weight: 400; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .lcc-btn-secondary:hover { border-color: #475072; }
+
+    /* Result card */
+    .lcc-result-card {
+      flex: 1; background: #162351; border-radius: 12px; padding: 32px;
+      box-shadow: 0 4px 5px rgba(0,0,0,0.10), 0 4px 15px rgba(0,0,0,0.15);
+      min-height: 460px; display: flex; flex-direction: column;
+    }
+    /* Empty state */
+    .lcc-empty-state { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; }
+    .lcc-empty-icon { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; }
+    .lcc-empty-icon svg { display: block; }
+    .lcc-empty-title { font-size: 16px; font-weight: 500; color: #e5e7eb; line-height: 20px; }
+    .lcc-empty-desc { font-size: 14px; font-weight: 400; color: #8f98b5; line-height: 18px; max-width: 260px; }
+
+    /* Result content */
+    .lcc-result-content { display: flex; flex-direction: column; gap: 30px; flex: 1; }
+    .lcc-result-header { display: flex; align-items: flex-start; justify-content: space-between; }
+    .lcc-result-total-label { font-size: 16px; font-weight: 500; line-height: 20px; color: #8f98b5; margin-bottom: 4px; }
+    .lcc-result-total-row { display: flex; align-items: baseline; gap: 8px; }
+    .lcc-result-total-amount { font-size: 48px; font-weight: 600; line-height: 60px; color: #e5e7eb; letter-spacing: -0.05em; }
+    .lcc-result-total-per { font-size: 16px; font-weight: 400; color: #8f98b5; }
+    .lcc-result-meta { text-align: right; display: flex; flex-direction: column; gap: 4px; }
+    .lcc-result-meta-country { font-size: 14px; font-weight: 400; color: #8f98b5; line-height: 18px; }
+    .lcc-result-meta-rate { font-size: 32px; font-weight: 700; color: var(--blue-main); line-height: 40px; }
+    .lcc-result-meta-desc { font-size: 14px; font-weight: 400; color: #8f98b5; line-height: 18px; }
+    /* Bars */
+    .lcc-bars { display: flex; flex-direction: column; gap: 16px; }
+    .lcc-bar-row { display: flex; flex-direction: column; gap: 16px; }
+    .lcc-bar-label-row { display: flex; align-items: center; justify-content: space-between; }
+    .lcc-bar-label-text { font-size: 16px; font-weight: 400; color: #8f98b5; }
+    .lcc-bar-amount { font-size: 16px; font-weight: 700; color: #fff; white-space: nowrap; }
+    .lcc-bar-track { height: 12px; background: #3d577e; border-radius: 8px; overflow: hidden; }
+    .lcc-bar-fill { height: 100%; border-radius: 8px; transition: width 0.5s cubic-bezier(.4,0,.2,1); min-width: 4px; }
+    .lcc-bar-fill--base { background: #019de7; }
+    .lcc-bar-fill--stat { background: #37e0cd; }
+    .lcc-bar-fill--ben  { background: #b231d3; }
+    /* Summary */
+    .lcc-result-divider { height: 1px; background: rgba(205,213,224,0.25); }
+    .lcc-summary { display: flex; gap: 16px; }
+    .lcc-summary-card { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .lcc-summary-value { font-size: 20px; font-weight: 600; line-height: 26px; color: #fff; }
+    .lcc-summary-label { font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; }
+
+    /* ════════════════════════════════════════
+       LABOR COST REPORT SECTION
+    ════════════════════════════════════════ */
+    .lcc-report-section { background: #fff; padding: 80px 0 60px; }
+    .lcc-report-inner { max-width: 1440px; padding: 0 108px; margin: 0 auto; }
+    /* Header */
+    .lcc-rpt-hdr { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
+    .lcc-rpt-title-block { display: flex; flex-direction: column; gap: 12px; max-width: 600px; }
+    .lcc-rpt-h2 { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; color: #162351; }
+    .lcc-rpt-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; letter-spacing: -0.8px; color: #8f98b5; white-space: pre-wrap; }
+    .lcc-rpt-download-btn { background: #019de7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 700; line-height: 20px; height: 44px; padding: 0 12px; width: 200px; border: none; border-radius: 8px; cursor: pointer; flex-shrink: 0; }
+    .lcc-rpt-download-btn:hover { background: #0180c0; }
+    /* Summary cards */
+    .lcc-rpt-cards { display: flex; gap: 16px; margin-bottom: 40px; }
+    .lcc-rpt-card { flex: 1 0 0; min-width: 0; background: #ecf2fb; border: 1px solid #e4efff; border-radius: 8px; padding: 16px 12px; display: flex; flex-direction: column; gap: 8px; }
+    .lcc-rpt-card-dot-wrap { display: flex; align-items: center; padding: 4px; }
+    .lcc-rpt-card-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .lcc-rpt-card-value { font-size: 20px; font-weight: 600; line-height: 26px; color: #162351; }
+    .lcc-rpt-card-meta { display: flex; flex-direction: column; gap: 4px; }
+    .lcc-rpt-card-label { font-size: 12px; font-weight: 400; line-height: 16px; color: #475072; }
+    .lcc-rpt-card-sublabel { font-size: 12px; font-weight: 400; line-height: 16px; color: #8f98b5; }
+    /* Tables */
+    .lcc-rpt-tables { display: flex; flex-direction: column; gap: 40px; margin-bottom: 40px; }
+    .lcc-rpt-table-title { font-size: 20px; font-weight: 700; line-height: 26px; color: #162351; margin-bottom: 24px; }
+    .lcc-rpt-table-wrap { border-radius: 12px; overflow: hidden; }
+    .lcc-rpt-trow { display: flex; align-items: stretch; }
+    .lcc-rpt-trow--hdr { background: #ecf2fb; }
+    .lcc-rpt-trow--body { background: #fff; }
+    .lcc-rpt-trow--total { background: #e4efff; }
+    .lcc-rpt-tcell { padding: 8px 20px; min-height: 50px; display: flex; flex-direction: column; justify-content: center; }
+    .lcc-rpt-tcell--name { flex: 1 0 0; min-width: 0; }
+    .lcc-rpt-tcell--rate, .lcc-rpt-tcell--mo, .lcc-rpt-tcell--yr { width: 240px; flex-shrink: 0; }
+    .lcc-rpt-th { font-size: 14px; font-weight: 500; line-height: 18px; color: #8f98b5; }
+    .lcc-rpt-td-name { font-size: 14px; font-weight: 500; line-height: 18px; color: #162351; }
+    .lcc-rpt-td-note { font-size: 10px; font-weight: 400; line-height: 14px; color: #8f98b5; margin-top: 1px; }
+    .lcc-rpt-td-val { font-size: 14px; font-weight: 500; line-height: 18px; color: #162351; }
+    .lcc-rpt-td-yr { font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; }
+    .lcc-rpt-td-total { font-size: 14px; font-weight: 500; line-height: 18px; color: #019de7; }
+    /* Divider */
+    .lcc-rpt-divider { height: 1px; background: #cdd5e0; margin-bottom: 26px; }
+    /* Notes */
+    .lcc-rpt-notes-wrap { display: flex; flex-direction: column; gap: 26px; margin-bottom: 40px; }
+    .lcc-rpt-notes-hdr { display: flex; align-items: center; gap: 16px; }
+    .lcc-rpt-notes-icon { width: 24px; height: 24px; flex-shrink: 0; color: #ffa245; }
+    .lcc-rpt-notes-title { font-size: 20px; font-weight: 700; line-height: 26px; color: #162351; }
+    .lcc-rpt-notes-list { display: flex; flex-direction: column; gap: 8px; }
+    .lcc-rpt-note-item { display: flex; gap: 6px; align-items: flex-start; }
+    .lcc-rpt-note-bullet { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .lcc-rpt-note-dot { width: 8px; height: 8px; border-radius: 8px; background: #ffa245; flex-shrink: 0; }
+    .lcc-rpt-note-text { flex: 1; font-size: 16px; font-weight: 400; line-height: 20px; color: #475072; }
+    /* Disclaimer */
+    .lcc-rpt-disclaimer { font-size: 10px; font-weight: 400; line-height: 14px; color: #8f98b5; }
+    .error-highlight { outline: 2px solid #ff4d4d !important; transition: outline 0.2s; }
+    /* Print styles */
+    @media print { .nav, .hero, .lcc-section, .footer, .lcc-rpt-download-btn { display: none !important; } .lcc-report-section { display: block !important; padding: 20px 0; } }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer { width: 100%; overflow: hidden; background-image: linear-gradient(90.352deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); padding: 60px 0 58px; }
+    .footer > .container { display: flex; flex-direction: column; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
+    .footer-logo { width: 199.5px; flex-shrink: 0; text-decoration: none; }
+    .footer-logo img { width: 100%; height: auto; display: block; }
+    .footer-social { display: flex; align-items: center; justify-content: space-between; width: 80px; flex-shrink: 0; }
+    .footer-social-icon { width: 24px; height: 24px; overflow: hidden; flex-shrink: 0; }
+    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-nav { display: flex; gap: 24px; justify-content: space-between; margin-bottom: 40px; }
+    .footer-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+    .footer-col-header { font-size: 14px; font-weight: 400; line-height: normal; color: var(--text-tertiary); }
+    .footer-col-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-col-links a, .footer-col-links span { font-size: 14px; font-weight: 500; line-height: normal; color: #fff; text-decoration: none; display: block; }
+    .footer-col-links a:hover { text-decoration: underline; }
+    .footer-divider { height: 1px; background: rgba(205,213,224,0.25); margin-bottom: 20px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--text-tertiary); white-space: nowrap; }
+    .footer-legal { display: flex; gap: 40px; align-items: center; }
+    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
+    .footer-legal a:hover { text-decoration: underline; }
+    .wechat-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+    .wechat-modal.active { opacity: 1; pointer-events: auto; }
+    .wechat-modal-box { background: #fff; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 320px; width: 90%; }
+    .wechat-modal-box img { width: 200px; height: 200px; object-fit: contain; }
+    .wechat-modal-box p { font-family: var(--font); font-size: 14px; color: var(--text-secondary); text-align: center; line-height: 20px; }
+    .wechat-modal-close { background: var(--text-main); color: #fff; border: none; border-radius: 50px; padding: 8px 24px; font-family: var(--font); font-size: 14px; cursor: pointer; }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav class="nav">
+  <div class="nav-container">
+  <div class="nav-tabbar">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-inner"><img src="assets/menu-bar-marco-logo.svg" alt="Marco" /></div>
+    </a>
+    <div class="nav-menu">
+      <div class="nav-tab nav-tab-services">
+        <div class="nav-tab-inner"><span>Services</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-services-dropdown">
+          <p class="nav-dropdown-label">Services</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-services-columns">
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-global-payroll.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/global payroll.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Global Payroll</span><span class="nav-services-item-desc">End-to-end payroll in 150+ countries</span></div></a>
+              <a class="nav-services-item" href="service-employer-of-record.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/eor.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Employer of Record (EOR)</span><span class="nav-services-item-desc">Hire globally without a local entity</span></div></a>
+              <a class="nav-services-item" href="service-independent-contractor.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/ic.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Independent Contractor (IC)</span><span class="nav-services-item-desc">Compliant contractor engagement</span></div></a>
+              <a class="nav-services-item" href="service-global-mobility.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/global mobility.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Global Mobility</span><span class="nav-services-item-desc">Seamless cross-border movements</span></div></a>
+            </div>
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-expense-processing.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/Expense Processing.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Expense Processing</span><span class="nav-services-item-desc">Streamlined global expense management</span></div></a>
+              <a class="nav-services-item" href="service-hr-operations.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/HRO Support.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">HR Operation Support</span><span class="nav-services-item-desc">Comprehensive HR administration</span></div></a>
+              <a class="nav-services-item" href="service-service-delivery-model.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/Service Delivery Model.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Service Delivery Model</span><span class="nav-services-item-desc">Our partnership approach</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-compliance">
+        <div class="nav-tab-inner"><span>Compliance</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-compliance-dropdown">
+          <p class="nav-dropdown-label">Compliance</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="compliance-data-protection.html"><span class="nav-dropdown-item-title">Data Protection &amp; Privacy</span><span class="nav-dropdown-item-desc">Privacy controls for sensitive workforce data</span></a>
+            <a class="nav-dropdown-item" href="compliance-operational-governance.html"><span class="nav-dropdown-item-title">Operational Governance</span><span class="nav-dropdown-item-desc">Controls, accountability, and audit trails</span></a>
+            <a class="nav-dropdown-item" href="compliance-licensing-regulatory.html"><span class="nav-dropdown-item-title">Licensing &amp; Regulatory Compliance</span><span class="nav-dropdown-item-desc">Local licenses and regulatory authorizations</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-resources">
+        <div class="nav-tab-inner"><span>Resources</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-resources-dropdown">
+          <p class="nav-dropdown-label">Resources</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer"><span class="nav-dropdown-item-title">Help Center</span><span class="nav-dropdown-item-desc">Manual guides, FAQs, and product support</span></a>
+            <a class="nav-dropdown-item" href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer"><span class="nav-dropdown-item-title">Developer Portal</span><span class="nav-dropdown-item-desc">API documentation and integration resources</span></a>
+            <a class="nav-dropdown-item" href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer"><span class="nav-dropdown-item-title">Demo Site</span><span class="nav-dropdown-item-desc">A test environment to explore Marco OS</span></a>
+            <a class="nav-dropdown-item" href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer"><span class="nav-dropdown-item-title">Processing &amp; Integration Engines</span><span class="nav-dropdown-item-desc">Systems that power payroll and data workflows</span></a>
+            <a class="nav-dropdown-item" href="#"><span class="nav-dropdown-item-title">Marco Copilot (AI Assistant)</span><span class="nav-dropdown-item-desc">AI support for global workforce operations</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-hub">
+        <div class="nav-tab-inner"><span>HR Knowledge Hub</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-hub-dropdown">
+          <p class="nav-dropdown-label">HR Knowledge Hub</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-hub-columns">
+            <div class="nav-hub-col">
+              <a href="hr-knowledge-hub-labor-cost-calculator.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Labor Cost Calculator</span><span class="nav-hub-item-desc">Estimate employment costs by country</span></div></a>
+              <a href="hr-knowledge-hub-country-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Country Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Country Guide</span><span class="nav-hub-item-desc">Country-specific employment and payroll insights</span></div></a>
+              <a href="hr-knowledge-hub-visa-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Visa Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Visa Guide</span><span class="nav-hub-item-desc">Work visa requirements and application guidance</span></div></a>
+              <a href="hr-knowledge-hub-payroll-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Payroll Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Payroll Guide</span><span class="nav-hub-item-desc">Payroll rules, cycles, and statutory requirements</span></div></a>
+              <a href="hr-knowledge-hub-freelancer-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Freelancer Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Freelancer Guide</span><span class="nav-hub-item-desc">Independent contractor rules by country</span></div></a>
+              <a href="hr-knowledge-hub-work-schedule.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Work Schedule.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Work Schedule</span><span class="nav-hub-item-desc">Working hours, rest days, and schedule rules</span></div></a>
+            </div>
+            <div class="nav-hub-col">
+              <a href="hr-knowledge-hub-public-holiday-calendar-2026.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Public Holiday Calendar</span><span class="nav-hub-item-desc">Official holidays by country and year</span></div></a>
+              <a href="hr-knowledge-hub-leave-policy.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Leave Policy</span><span class="nav-hub-item-desc">Annual leave, sick leave, and statutory time off</span></div></a>
+              <a href="hr-knowledge-hub-travel-expense-policy.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Travel &amp; Expense Policy.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Travel &amp; Expense Policy</span><span class="nav-hub-item-desc">Business travel and reimbursement guidelines</span></div></a>
+              <a href="#" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Benefits Plan.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Benefits Plan</span><span class="nav-hub-item-desc">Mandatory and common employee benefits</span></div></a>
+              <a href="hr-knowledge-hub-vendor-list.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Vendor List.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Vendor List</span><span class="nav-hub-item-desc">Approved vendors and service partners</span></div></a>
+              <a href="#" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Memo.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Memo</span><span class="nav-hub-item-desc">HR updates, notes, and internal references</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-price">
+        <div class="nav-tab-inner"><span>Price</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-price-dropdown">
+          <p class="nav-dropdown-label">Price</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="price-global-workforce-solution.html"><span class="nav-dropdown-item-title">Global Workforce Solution</span><span class="nav-dropdown-item-desc">Service pricing for global workforce administration</span></a>
+            <a class="nav-dropdown-item" href="price-global-managed-payroll-service.html"><span class="nav-dropdown-item-title">Global Managed Payroll Service</span><span class="nav-dropdown-item-desc">Managed payroll pricing for global teams</span></a>
+            <a class="nav-dropdown-item" href="price-proposal-builder.html"><span class="nav-dropdown-item-title">Proposal Builder</span><span class="nav-dropdown-item-desc">Build a tailored service pricing proposal</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-about">
+        <div class="nav-tab-inner"><span>Company</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-about-dropdown">
+          <p class="nav-dropdown-label">Company</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="company-vision-values.html"><span class="nav-dropdown-item-title">Vision &amp; Values</span><span class="nav-dropdown-item-desc">Our purpose and guiding principles</span></a>
+            <a class="nav-dropdown-item" href="company-journey.html"><span class="nav-dropdown-item-title">Marco's Journey</span><span class="nav-dropdown-item-desc">The story behind Marco</span></a>
+            <a class="nav-dropdown-item" href="company-entity-network.html"><span class="nav-dropdown-item-title">Entity Network</span><span class="nav-dropdown-item-desc">Global entities and operational service centers</span></a>
+            <a class="nav-dropdown-item" href="company-organization.html"><span class="nav-dropdown-item-title">Organization</span><span class="nav-dropdown-item-desc">Leadership and structure</span></a>
+            <a class="nav-dropdown-item" href="company-contact-us.html"><span class="nav-dropdown-item-title">Contact us</span><span class="nav-dropdown-item-desc">Get in touch with the Marco team</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-lang"><div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div><span>EN</span></div>
+    <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+  </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <div class="hero-bg-pattern"><img src="assets/Background Assets/abstract line 4.svg" alt="" /></div>
+  <div class="hero-content">
+    <div class="hero-label"><div class="hero-label-line"></div><span>LABOR COST CALCULATOR</span></div>
+    <div class="hero-body">
+      <h1 class="hero-title">
+        <span class="hero-title-white">Calculate the </span><span class="hero-title-blue">True Cost </span><span class="hero-title-white">of Hiring</span>
+      </h1>
+      <p class="hero-subtitle">Estimate total employer cost by combining salary, statutory contributions, and other required employment obligations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CALCULATOR SECTION ══════════════════ -->
+<section class="lcc-section">
+  <div class="lcc-outer">
+
+    <!-- Title -->
+    <div class="lcc-title-block">
+      <div class="lcc-section-label"><div class="lcc-label-line"></div><span>Labor Cost Calculator</span></div>
+      <h2 class="lcc-title-h1">Where would you like to hire?</h2>
+      <p class="lcc-subtitle">Enter the basic hiring details below to generate an estimated proposal.</p>
+    </div>
+
+    <!-- Body -->
+    <div class="lcc-body">
+
+      <!-- LEFT: Input Panel -->
+      <div class="lcc-input-panel">
+        <div class="lcc-form-rows">
+
+          <!-- Country -->
+          <div class="lcc-row">
+            <p class="lcc-row-label">Where would you like to hire?</p>
+            <div class="lcc-dropdown-wrap">
+              <div class="lcc-dropdown-trigger" id="lcc-country-trigger" tabindex="0">
+                <div class="lcc-trigger-left">
+                  <div class="lcc-flag-wrap" id="lcc-flag-wrap">
+                    <img id="lcc-flag-img" src="" alt="" class="lcc-flag-img">
+                  </div>
+                  <span class="lcc-country-label placeholder" id="lcc-country-label">Select a country</span>
+                </div>
+                <svg class="lcc-drop-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#8F98B5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="lcc-dropdown-menu" id="lcc-country-menu">
+                <div class="lcc-dropdown-search">
+                  <input type="text" id="lcc-country-search" placeholder="Search country…" autocomplete="off">
+                </div>
+                <div class="lcc-country-list" id="lcc-country-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Worker Type -->
+          <div class="lcc-row">
+            <p class="lcc-row-label">Worker Type</p>
+            <div class="lcc-worker-cards">
+              <div class="lcc-worker-card" id="lcc-wt-local" onclick="lccSetWorkerType('local')">
+                <span class="lcc-wt-title">Local/ PR</span>
+                <span class="lcc-wt-desc">Citizen or permanent resident</span>
+              </div>
+              <div class="lcc-worker-card" id="lcc-wt-foreign" onclick="lccSetWorkerType('foreign')">
+                <span class="lcc-wt-title">Foreign National</span>
+                <span class="lcc-wt-desc">Valid work pass or visa holder</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Salary -->
+          <div class="lcc-row">
+            <p class="lcc-row-label">Salary</p>
+            <div class="lcc-radio-row">
+              <div class="lcc-radio-option active" id="lcc-radio-monthly" onclick="lccSetFreq('monthly')">
+                <div class="lcc-radio-dot-wrap"><div class="lcc-radio-dot"></div></div>
+                <span class="lcc-radio-label">Monthly</span>
+              </div>
+              <div class="lcc-radio-option" id="lcc-radio-annual" onclick="lccSetFreq('annual')">
+                <div class="lcc-radio-dot-wrap"><div class="lcc-radio-dot"></div></div>
+                <span class="lcc-radio-label">Annual</span>
+              </div>
+            </div>
+            <div class="lcc-salary-input-row">
+              <div class="lcc-currency-box">USD</div>
+              <input type="text" class="lcc-amount-input" id="lcc-salary-input" placeholder="Enter amount" inputmode="numeric" autocomplete="off">
+            </div>
+            <div class="lcc-hint-block">
+              <p id="lcc-monthly-hint" class="lcc-hint-monthly"></p>
+              <p id="lcc-fx-hint" class="lcc-hint-fx"></p>
+              <p id="lcc-fx-disclaimer" class="lcc-hint-disclaimer" style="display:none"></p>
+            </div>
+          </div>
+
+        </div><!-- /form-rows -->
+
+        <div class="lcc-divider"></div>
+
+        <div class="lcc-buttons">
+          <button class="lcc-btn-primary" onclick="lccCalculate()">View Report</button>
+          <button class="lcc-btn-secondary" onclick="lccReset()">Reset</button>
+        </div>
+      </div><!-- /input-panel -->
+
+      <!-- RIGHT: Result Card -->
+      <div class="lcc-result-card" id="lcc-result-card">
+        <div class="lcc-result-content" id="lcc-result-content"></div>
+      </div>
+
+    </div><!-- /body -->
+  </div><!-- /outer -->
+</section>
+
+<!-- ══════════════════ LABOR COST REPORT ══════════════════ -->
+<section class="lcc-report-section" id="lcc-report-section" style="display:none;">
+  <div class="lcc-report-inner">
+
+    <!-- Header -->
+    <div class="lcc-rpt-hdr">
+      <div class="lcc-rpt-title-block">
+        <div class="lcc-section-label"><div class="lcc-label-line"></div><span>LABOR COST REPORT</span></div>
+        <h2 id="rpt-country" class="lcc-rpt-h2"></h2>
+        <p id="rpt-subtitle" class="lcc-rpt-subtitle"></p>
+      </div>
+      <button class="lcc-rpt-download-btn" onclick="window.print()">Download Report</button>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="lcc-rpt-cards" id="rpt-cards"></div>
+
+    <!-- Statutory table -->
+    <div class="lcc-rpt-tables">
+      <div>
+        <h3 class="lcc-rpt-table-title">Statutory Contribution Breakdown</h3>
+        <div class="lcc-rpt-table-wrap" id="rpt-stat-table"></div>
+      </div>
+      <!-- Benefits table -->
+      <div>
+        <h3 class="lcc-rpt-table-title">Benefits &amp; Estimated Costs</h3>
+        <div class="lcc-rpt-table-wrap" id="rpt-ben-table"></div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="lcc-rpt-divider"></div>
+
+    <!-- Notes -->
+    <div class="lcc-rpt-notes-wrap" id="rpt-notes"></div>
+
+    <!-- Disclaimer -->
+    <p class="lcc-rpt-disclaimer">* Rates are based on publicly available statutory regulations and are for estimation purposes only. Actual employer costs vary based on local regulations, salary thresholds, employee age, industry classification, and applicable bilateral Social Security Agreements. Rates are periodically updated by governments — always verify with Marco's local payroll specialists before making employment decisions.</p>
+
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <div class="container">
+  <div class="footer-top">
+    <a class="footer-logo" href="index.html"><img src="assets/footer-marco-logo-en.svg" alt="Marco" /></a>
+    <div class="footer-social">
+      <div class="footer-social-icon"><a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedin-icon.svg" alt="LinkedIn" /></a></div>
+      <div class="footer-social-icon" style="cursor:pointer;" onclick="document.getElementById('wechat-modal').classList.add('active')"><img src="assets/wechat-icon.svg" alt="WeChat" /></div>
+    </div>
+  </div>
+  <div class="footer-nav">
+    <div class="footer-col"><span class="footer-col-header">Services</span><div class="footer-col-links"><a href="service-global-payroll.html">Global Payroll</a><a href="service-employer-of-record.html">EOR</a><a href="service-independent-contractor.html">IC</a><a href="service-global-mobility.html">Global Mobility</a><a href="service-expense-processing.html">Expense Processing</a><a href="service-hr-operations.html">HRO</a><a href="service-service-delivery-model.html">Service Delivery Model</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">Compliance</span><div class="footer-col-links"><a href="compliance-data-protection.html">Data Protection &amp; Privacy</a><a href="compliance-operational-governance.html">Operational Governance</a><a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">Resources</span><div class="footer-col-links"><a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a><a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a><a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a><a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a><a href="#">Marco Copilot (AI Assistant)</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">HR Knowledge Hub</span><div class="footer-col-links"><a href="hr-knowledge-hub-labor-cost-calculator.html">Labor Cost Calculator</a><a href="hr-knowledge-hub-country-guide.html">Country Guide</a><a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a><a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a><a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a><a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a><a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a><a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a><a href="hr-knowledge-hub-travel-expense-policy.html">Travel &amp; Expense Policy</a><a href="#">Benefits Plan</a><a href="hr-knowledge-hub-vendor-list.html">Vendor List</a><a href="#">Memo</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">Price</span><div class="footer-col-links"><a href="price-global-workforce-solution.html">Global Workforce Solution</a><a href="price-global-managed-payroll-service.html">Global Managed Payroll Service</a><a href="price-proposal-builder.html">Proposal Builder</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">About</span><div class="footer-col-links"><a href="company-vision-values.html">Vision &amp; Value</a><a href="company-journey.html">Marco's Journey</a><a href="company-entity-network.html">Entity Network</a><a href="company-organization.html">Organization</a><a href="company-contact-us.html">Contact Us</a></div></div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <p>Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+    <div class="footer-legal"><a href="company-terms-of-use.html">Terms of Use</a><a href="company-privacy-policy.html">Privacy Policy</a><a href="company-cookies-policy.html">Cookies Policy</a></div>
+  </div>
+  </div>
+</footer>
+
+<!-- WeChat Modal -->
+<div class="wechat-modal" id="wechat-modal" onclick="if(event.target===this)this.classList.remove('active')">
+  <div class="wechat-modal-box">
+    <img src="assets/wechat-qr.png" alt="WeChat QR Code" onerror="this.style.display='none'" />
+    <p>Scan to follow Marco on WeChat</p>
+    <button class="wechat-modal-close" onclick="document.getElementById('wechat-modal').classList.remove('active')">Close</button>
+  </div>
+</div>
+
+<script>
+  // ── Nav scroll ──
+  const nav  = document.querySelector('.nav');
+  const hero = document.querySelector('.hero');
+  function updateNavState() {
+    if (!nav || !hero) return;
+    const threshold = hero.offsetTop + hero.offsetHeight * 0.25;
+    nav.classList.toggle('nav-scrolled', window.scrollY >= threshold);
+  }
+  updateNavState();
+  window.addEventListener('scroll', updateNavState, { passive: true });
+  window.addEventListener('resize', updateNavState);
+
+  // ══════════════════════════════════════════════════════
+  //  LABOR COST CALCULATOR
+  // ══════════════════════════════════════════════════════
+
+  var lccState = {
+    country: '',
+    workerType: '',
+    salaryFreq: 'monthly',
+    salary: ''
+  };
+
+  var BENEFITS_RATE = 18; // estimated % of base salary
+
+  // Country → local currency code (ISO 4217)
+  var countryCurrencyMap = {
+    'Algeria':'DZD','Argentina':'ARS','Australia':'AUD','Austria':'EUR',
+    'Bangladesh':'BDT','Belgium':'EUR','Brazil':'BRL','Brunei':'BND',
+    'Bulgaria':'BGN','Cambodia':'KHR','Canada':'CAD','Chile':'CLP',
+    'China':'CNY','Colombia':'COP','Costa Rica':'CRC','Croatia':'EUR',
+    'Czech Republic':'CZK','Democratic Republic of the Congo':'CDF',
+    'Denmark':'DKK','Egypt':'EGP','Estonia':'EUR','Finland':'EUR',
+    'France':'EUR','Georgia':'GEL','Germany':'EUR','Greece':'EUR',
+    'Hong Kong':'HKD','Hungary':'HUF','Iceland':'ISK','India':'INR',
+    'Indonesia':'IDR','Iraq':'IQD','Ireland':'EUR','Israel':'ILS',
+    'Italy':'EUR','Japan':'JPY','Jordan':'JOD','Kenya':'KES',
+    'Kyrgyzstan':'KGS','Laos':'LAK','Latvia':'EUR','Lithuania':'EUR',
+    'Luxembourg':'EUR','Malaysia':'MYR','Mexico':'MXN','Mongolia':'MNT',
+    'Morocco':'MAD','Myanmar':'MMK','Netherlands':'EUR','North Macedonia':'MKD',
+    'Norway':'NOK','Pakistan':'PKR','Panama':'USD','Peru':'PEN',
+    'Philippines':'PHP','Poland':'PLN','Portugal':'EUR','Qatar':'QAR',
+    'Romania':'RON','Saudi Arabia':'SAR','Serbia':'RSD','Singapore':'SGD',
+    'Slovakia':'EUR','Slovenia':'EUR','South Africa':'ZAR','South Korea':'KRW',
+    'Spain':'EUR','Sweden':'SEK','Switzerland':'CHF','Taiwan':'TWD',
+    'Thailand':'THB','Tunisia':'TND','Turkey':'TRY','Uganda':'UGX',
+    'Ukraine':'UAH','United Arab Emirates':'AED','United Kingdom':'GBP',
+    'United States of America':'USD','Vietnam':'VND'
+  };
+
+  // Country ISO codes (for flags)
+  var COUNTRY_ISO = {
+    'Algeria':'dz','Argentina':'ar','Australia':'au','Austria':'at',
+    'Bangladesh':'bd','Belgium':'be','Brazil':'br','Brunei':'bn',
+    'Bulgaria':'bg','Cambodia':'kh','Canada':'ca','Chile':'cl',
+    'China':'cn','Colombia':'co','Costa Rica':'cr','Croatia':'hr',
+    'Czech Republic':'cz','Democratic Republic of the Congo':'cd',
+    'Denmark':'dk','Egypt':'eg','Estonia':'ee','Finland':'fi',
+    'France':'fr','Georgia':'ge','Germany':'de','Greece':'gr',
+    'Hong Kong':'hk','Hungary':'hu','Iceland':'is','India':'in',
+    'Indonesia':'id','Iraq':'iq','Ireland':'ie','Israel':'il',
+    'Italy':'it','Japan':'jp','Jordan':'jo','Kenya':'ke',
+    'Kyrgyzstan':'kg','Laos':'la','Latvia':'lv','Lithuania':'lt',
+    'Luxembourg':'lu','Malaysia':'my','Mexico':'mx','Mongolia':'mn',
+    'Morocco':'ma','Myanmar':'mm','Netherlands':'nl','North Macedonia':'mk',
+    'Norway':'no','Pakistan':'pk','Panama':'pa','Peru':'pe',
+    'Philippines':'ph','Poland':'pl','Portugal':'pt','Qatar':'qa',
+    'Romania':'ro','Saudi Arabia':'sa','Serbia':'rs','Singapore':'sg',
+    'Slovakia':'sk','Slovenia':'si','South Africa':'za','South Korea':'kr',
+    'Spain':'es','Sweden':'se','Switzerland':'ch','Taiwan':'tw',
+    'Thailand':'th','Tunisia':'tn','Turkey':'tr','Uganda':'ug',
+    'Ukraine':'ua','United Arab Emirates':'ae','United Kingdom':'gb',
+    'United States of America':'us','Vietnam':'vn'
+  };
+
+  // Employer statutory contribution rates (%) — local / foreign national
+  // Source: Marco Labor Cost Matrix (Excel research, 2025)
+  var COUNTRY_RATES = {
+    'Algeria':      {'local':25.0, 'foreign':25.0},
+    'Argentina':    {'local':25.5, 'foreign':25.5},
+    'Australia':    {'local':12.0, 'foreign':12.0},
+    'Austria':      {'local':22.5, 'foreign':22.5},
+    'Bangladesh':   {'local':0.0,  'foreign':0.0 },
+    'Belgium':      {'local':25.0, 'foreign':25.0},
+    'Brazil':       {'local':28.0, 'foreign':28.0},
+    'Brunei':       {'local':9.5,  'foreign':0.0 },
+    'Bulgaria':     {'local':18.92,'foreign':18.92},
+    'Cambodia':     {'local':5.4,  'foreign':5.4 },
+    'Canada':       {'local':8.0,  'foreign':8.0 },
+    'Chile':        {'local':4.3,  'foreign':4.3 },
+    'China':        {'local':26.0, 'foreign':26.0},
+    'Colombia':     {'local':29.5, 'foreign':29.5},
+    'Costa Rica':   {'local':26.67,'foreign':26.67},
+    'Croatia':      {'local':16.5, 'foreign':16.5},
+    'Czech Republic':{'local':33.8,'foreign':33.8},
+    'Democratic Republic of the Congo':{'local':13.5,'foreign':13.5},
+    'Denmark':      {'local':1.5,  'foreign':1.5 },
+    'Egypt':        {'local':18.75,'foreign':18.75},
+    'Estonia':      {'local':33.8, 'foreign':33.8},
+    'Finland':      {'local':19.32,'foreign':19.32},
+    'France':       {'local':40.0, 'foreign':40.0},
+    'Georgia':      {'local':2.0,  'foreign':2.0 },
+    'Germany':      {'local':21.3, 'foreign':21.3},
+    'Greece':       {'local':21.79,'foreign':21.79},
+    'Hong Kong':    {'local':5.0,  'foreign':5.0 },
+    'Hungary':      {'local':13.0, 'foreign':13.0},
+    'Iceland':      {'local':14.35,'foreign':14.35},
+    'India':        {'local':13.0, 'foreign':13.0},
+    'Indonesia':    {'local':10.0, 'foreign':10.0},
+    'Iraq':         {'local':12.0, 'foreign':20.0},
+    'Ireland':      {'local':11.25,'foreign':11.25},
+    'Israel':       {'local':14.0, 'foreign':14.0},
+    'Italy':        {'local':29.0, 'foreign':29.0},
+    'Japan':        {'local':15.5, 'foreign':15.5},
+    'Jordan':       {'local':14.25,'foreign':14.25},
+    'Kenya':        {'local':7.5,  'foreign':7.5 },
+    'Kyrgyzstan':   {'local':17.25,'foreign':17.25},
+    'Laos':         {'local':6.0,  'foreign':6.0 },
+    'Latvia':       {'local':23.59,'foreign':23.59},
+    'Lithuania':    {'local':1.77, 'foreign':1.77},
+    'Luxembourg':   {'local':12.34,'foreign':12.34},
+    'Malaysia':     {'local':14.95,'foreign':3.25},
+    'Mexico':       {'local':28.0, 'foreign':28.0},
+    'Mongolia':     {'local':10.0, 'foreign':10.0},
+    'Morocco':      {'local':21.09,'foreign':21.09},
+    'Myanmar':      {'local':3.0,  'foreign':0.0 },
+    'Netherlands':  {'local':15.61,'foreign':15.61},
+    'North Macedonia':{'local':0.0,'foreign':0.0 },
+    'Norway':       {'local':16.1, 'foreign':16.1},
+    'Pakistan':     {'local':5.0,  'foreign':5.0 },
+    'Panama':       {'local':14.75,'foreign':14.75},
+    'Peru':         {'local':9.0,  'foreign':9.0 },
+    'Philippines':  {'local':10.5, 'foreign':10.5},
+    'Poland':       {'local':20.5, 'foreign':20.5},
+    'Portugal':     {'local':23.75,'foreign':23.75},
+    'Qatar':        {'local':14.0, 'foreign':0.0 },
+    'Romania':      {'local':2.25, 'foreign':2.25},
+    'Saudi Arabia': {'local':11.75,'foreign':2.0 },
+    'Serbia':       {'local':15.15,'foreign':15.15},
+    'Singapore':    {'local':17.25,'foreign':0.25},
+    'Slovakia':     {'local':35.2, 'foreign':35.2},
+    'Slovenia':     {'local':16.1, 'foreign':16.1},
+    'South Africa': {'local':2.0,  'foreign':2.0 },
+    'South Korea':  {'local':10.0, 'foreign':10.0},
+    'Spain':        {'local':30.65,'foreign':30.65},
+    'Sweden':       {'local':31.42,'foreign':31.42},
+    'Switzerland':  {'local':6.4,  'foreign':6.4 },
+    'Taiwan':       {'local':17.85,'foreign':17.85},
+    'Thailand':     {'local':5.0,  'foreign':5.0 },
+    'Tunisia':      {'local':16.57,'foreign':16.57},
+    'Turkey':       {'local':23.75,'foreign':23.75},
+    'Uganda':       {'local':10.0, 'foreign':10.0},
+    'Ukraine':      {'local':22.0, 'foreign':22.0},
+    'United Arab Emirates':{'local':15.0,'foreign':0.0 },
+    'United Kingdom':{'local':15.0,'foreign':15.0},
+    'United States of America':{'local':8.25, 'foreign':8.25},
+    'Vietnam':      {'local':21.5, 'foreign':20.0}
+  };
+
+  // Countries list (79 countries, alphabetically sorted)
+  var lccCountries = [
+    'Algeria','Argentina','Australia','Austria','Bangladesh','Belgium','Brazil','Brunei',
+    'Bulgaria','Cambodia','Canada','Chile','China','Colombia','Costa Rica','Croatia',
+    'Czech Republic','Democratic Republic of the Congo','Denmark','Egypt','Estonia',
+    'Finland','France','Georgia','Germany','Greece','Hong Kong','Hungary','Iceland',
+    'India','Indonesia','Iraq','Ireland','Israel','Italy','Japan','Jordan','Kenya',
+    'Kyrgyzstan','Laos','Latvia','Lithuania','Luxembourg','Malaysia','Mexico','Mongolia',
+    'Morocco','Myanmar','Netherlands','North Macedonia','Norway','Pakistan','Panama',
+    'Peru','Philippines','Poland','Portugal','Qatar','Romania','Saudi Arabia','Serbia',
+    'Singapore','Slovakia','Slovenia','South Africa','South Korea','Spain','Sweden',
+    'Switzerland','Taiwan','Thailand','Tunisia','Turkey','Uganda','Ukraine',
+    'United Arab Emirates','United Kingdom','United States of America','Vietnam'
+  ];
+
+  function fmtNum(n) {
+    return Math.round(n).toLocaleString('en-US');
+  }
+
+  // ── Exchange rate (Frankfurter API, localStorage cache) ──
+  var _fxReqId = 0; // cancel stale async responses
+
+  async function getExchangeRate(toCurrency) {
+    if (toCurrency === 'USD') {
+      return { rate: 1, date: new Date().toISOString().slice(0, 10) };
+    }
+    var today = new Date().toISOString().slice(0, 10);
+    var cacheKey = 'fx_USD_' + toCurrency + '_' + today;
+    var cached = localStorage.getItem(cacheKey);
+    if (cached) return JSON.parse(cached);
+    var res = await fetch('https://api.frankfurter.dev/v1/latest?base=USD&symbols=' + toCurrency);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    var data = await res.json();
+    if (!data.rates || !data.rates[toCurrency]) throw new Error('Rate unavailable');
+    var result = { rate: data.rates[toCurrency], date: data.date };
+    localStorage.setItem(cacheKey, JSON.stringify(result));
+    return result;
+  }
+
+  function lccUpdateFxHint() {
+    var fxEl   = document.getElementById('lcc-fx-hint');
+    var discEl = document.getElementById('lcc-fx-disclaimer');
+
+    var clear = function() {
+      fxEl.textContent = '';
+      fxEl.className = 'lcc-hint-fx';
+      discEl.style.display = 'none';
+    };
+
+    if (!lccState.country) { clear(); return; }
+
+    var localCcy = countryCurrencyMap[lccState.country];
+    if (!localCcy) { clear(); return; }
+
+    if (localCcy === 'USD') {
+      fxEl.textContent = 'USD is used as the calculation currency';
+      fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
+      discEl.style.display = 'none';
+      return;
+    }
+
+    var raw = lccState.salary.replace(/,/g, '');
+    var usdAmt = parseFloat(raw);
+    if (isNaN(usdAmt) || usdAmt <= 0) { clear(); return; }
+
+    var reqId = ++_fxReqId;
+    fxEl.textContent = 'Fetching exchange rate…';
+    fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
+    discEl.style.display = 'none';
+
+    getExchangeRate(localCcy).then(function(result) {
+      if (reqId !== _fxReqId) return; // stale
+      var localAmt = usdAmt * result.rate;
+      var localFmt = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 2, maximumFractionDigits: 2
+      }).format(localAmt);
+      fxEl.textContent = '≈ ' + localCcy + ' ' + localFmt +
+        ' based on exchange rate dated ' + result.date;
+      fxEl.className = 'lcc-hint-fx';
+      discEl.textContent = 'Exchange rate is for reference only. Final payroll funding may vary by bank rate and processing date.';
+      discEl.style.display = '';
+    }).catch(function() {
+      if (reqId !== _fxReqId) return;
+      fxEl.textContent = 'Exchange rate unavailable';
+      fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
+      discEl.style.display = 'none';
+    });
+  }
+
+  function getStatRate() {
+    var rates = COUNTRY_RATES[lccState.country];
+    if (!rates) return 10;
+    return lccState.workerType === 'local' ? rates.local : rates.foreign;
+  }
+
+  function getMonthlyBase() {
+    var raw = lccState.salary.replace(/,/g, '');
+    var n = parseFloat(raw);
+    if (isNaN(n) || n <= 0) return null;
+    return lccState.salaryFreq === 'annual' ? n / 12 : n;
+  }
+
+  // ── Country dropdown ──
+  var countryTrigger = document.getElementById('lcc-country-trigger');
+  var countryMenu    = document.getElementById('lcc-country-menu');
+  var countrySearch  = document.getElementById('lcc-country-search');
+  var countryList    = document.getElementById('lcc-country-list');
+  var countryLabel   = document.getElementById('lcc-country-label');
+  var flagWrap       = document.getElementById('lcc-flag-wrap');
+  var flagImg        = document.getElementById('lcc-flag-img');
+
+  function buildCountryList(filter) {
+    countryList.innerHTML = '';
+    var filtered = lccCountries.filter(function(c) {
+      return !filter || c.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+    });
+    filtered.forEach(function(c) {
+      var item = document.createElement('div');
+      item.className = 'lcc-country-item';
+      var iso = COUNTRY_ISO[c] || '';
+      item.innerHTML = iso
+        ? '<div class="lcc-flag-wrap visible"><img src="assets/Flags/' + iso + '.svg" alt="" class="lcc-flag-img"></div><span>' + c + '</span>'
+        : '<span>' + c + '</span>';
+      item.addEventListener('click', function() {
+        lccSelectCountry(c);
+      });
+      countryList.appendChild(item);
+    });
+  }
+
+  function lccSelectCountry(c) {
+    lccState.country = c;
+    var iso = COUNTRY_ISO[c] || '';
+    if (iso) {
+      flagImg.src = 'assets/Flags/' + iso + '.svg';
+      flagWrap.classList.add('visible');
+    } else {
+      flagWrap.classList.remove('visible');
+    }
+    countryLabel.textContent = c;
+    countryLabel.classList.remove('placeholder');
+    // Close dropdown
+    countryTrigger.classList.remove('open');
+    countryMenu.classList.remove('open');
+    countrySearch.value = '';
+    buildCountryList('');
+    // Recalculate + update FX hint
+    lccAutoCalc();
+    lccUpdateHint();
+    lccUpdateFxHint();
+  }
+
+  countryTrigger.addEventListener('click', function(e) {
+    var isOpen = countryMenu.classList.contains('open');
+    if (isOpen) {
+      countryTrigger.classList.remove('open');
+      countryMenu.classList.remove('open');
+    } else {
+      countryTrigger.classList.add('open');
+      countryMenu.classList.add('open');
+      countrySearch.focus();
+    }
+  });
+
+  countrySearch.addEventListener('input', function() {
+    buildCountryList(this.value);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!countryTrigger.closest('.lcc-dropdown-wrap').contains(e.target)) {
+      countryTrigger.classList.remove('open');
+      countryMenu.classList.remove('open');
+    }
+  });
+
+  // ── Worker type ──
+  function lccSetWorkerType(type) {
+    lccState.workerType = type;
+    document.getElementById('lcc-wt-local').classList.toggle('active', type === 'local');
+    document.getElementById('lcc-wt-foreign').classList.toggle('active', type === 'foreign');
+    lccAutoCalc();
+  }
+
+  // ── Salary freq ──
+  function lccSetFreq(freq) {
+    lccState.salaryFreq = freq;
+    document.getElementById('lcc-radio-monthly').classList.toggle('active', freq === 'monthly');
+    document.getElementById('lcc-radio-annual').classList.toggle('active', freq === 'annual');
+    lccUpdateHint();
+    lccUpdateFxHint();
+    lccAutoCalc();
+  }
+
+  // ── Salary input ──
+  var salaryInput = document.getElementById('lcc-salary-input');
+  salaryInput.addEventListener('input', function() {
+    var raw = this.value.replace(/[^0-9]/g, '');
+    lccState.salary = raw;
+    if (raw) {
+      this.value = parseInt(raw, 10).toLocaleString('en-US');
+    }
+    lccUpdateHint();
+    lccUpdateFxHint();
+    lccAutoCalc();
+  });
+
+  function lccUpdateHint() {
+    var hint = document.getElementById('lcc-monthly-hint');
+    var raw = lccState.salary.replace(/,/g, '');
+    var n = parseFloat(raw);
+    if (lccState.salaryFreq === 'monthly' && n > 0) {
+      hint.textContent = 'Annual equivalent: USD ' + fmtNum(n * 12);
+    } else if (lccState.salaryFreq === 'annual' && n > 0) {
+      hint.textContent = 'Monthly equivalent: USD ' + fmtNum(n / 12);
+    } else {
+      hint.textContent = '';
+    }
+  }
+
+  // ── Calculate ──
+  function lccAutoCalc() {
+    var base = getMonthlyBase();
+    if (!base || !lccState.country || !lccState.workerType) {
+      showEmptyState();
+      return;
+    }
+    renderResult(base);
+  }
+
+  function lccReset() {
+    lccState.country = '';
+    lccState.workerType = '';
+    lccState.salaryFreq = 'monthly';
+    lccState.salary = '';
+    // Reset UI
+    countryLabel.textContent = 'Select a country';
+    countryLabel.classList.add('placeholder');
+    flagWrap.classList.remove('visible');
+    flagImg.src = '';
+    document.getElementById('lcc-wt-local').classList.remove('active');
+    document.getElementById('lcc-wt-foreign').classList.remove('active');
+    document.getElementById('lcc-radio-monthly').classList.add('active');
+    document.getElementById('lcc-radio-annual').classList.remove('active');
+    salaryInput.value = '';
+    document.getElementById('lcc-monthly-hint').textContent = '';
+    var fxEl = document.getElementById('lcc-fx-hint');
+    fxEl.textContent = ''; fxEl.className = 'lcc-hint-fx';
+    document.getElementById('lcc-fx-disclaimer').style.display = 'none';
+    ++_fxReqId; // cancel any pending fetch
+    showEmptyState();
+  }
+
+  function showEmptyState() {
+    var html =
+      '<div class="lcc-result-header">' +
+        '<div>' +
+          '<p class="lcc-result-total-label">TOTAL EMPLOYMENT COST</p>' +
+          '<div class="lcc-result-total-row">' +
+            '<span class="lcc-result-total-amount">--</span>' +
+            '<span class="lcc-result-total-per">/mo</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="lcc-result-meta">' +
+          '<p class="lcc-result-meta-country">--</p>' +
+          '<p class="lcc-result-meta-rate">--</p>' +
+          '<p class="lcc-result-meta-desc">employer contributions rate</p>' +
+        '</div>' +
+      '</div>' +
+      '<div class="lcc-bars">' +
+        lccBarRow('Base Salary', '-- / mo', null, 'base') +
+        lccBarRow('Statutory Contributions', '-- / mo', null, 'stat') +
+        lccBarRow('Benefits &amp; Other Costs', '-- / mo', null, 'ben') +
+      '</div>' +
+      '<div class="lcc-result-divider"></div>' +
+      '<div class="lcc-summary">' +
+        lccSummaryCard('--', 'Monthly Cost') +
+        lccSummaryCard('--', 'Annual Cost') +
+        lccSummaryCard('--', 'M Ratio') +
+        lccSummaryCard('--', 'Statutory Rate') +
+      '</div>';
+    document.getElementById('lcc-result-content').innerHTML = html;
+  }
+
+  function renderResult(base) {
+    var statRate    = getStatRate();
+    var statutory   = base * statRate / 100;
+    var benefits    = base * BENEFITS_RATE / 100;
+    var total       = base + statutory + benefits;
+    var overheadRate = ((total - base) / base * 100);
+    var mRatio      = total / base;
+    var annualTotal = total * 12;
+
+    // Bar widths as % of total cost
+    var basePct = (base / total * 100).toFixed(1);
+    var statPct = (statutory / total * 100).toFixed(1);
+    var benPct  = (benefits / total * 100).toFixed(1);
+
+    var sym = '$';
+    var workerLabel = lccState.workerType === 'local' ? 'Local / PR' : 'Foreign National';
+    var statRateDisplay = statRate % 1 === 0 ? statRate + '%' : statRate.toFixed(2).replace(/\.?0+$/, '') + '%';
+    var overheadDisplay = overheadRate % 1 === 0 ? '+' + overheadRate + '%' : '+' + overheadRate.toFixed(1) + '%';
+
+    var html =
+      '<div class="lcc-result-header">' +
+        '<div>' +
+          '<p class="lcc-result-total-label">TOTAL EMPLOYMENT COST</p>' +
+          '<div class="lcc-result-total-row">' +
+            '<span class="lcc-result-total-amount">' + sym + fmtNum(total) + '</span>' +
+            '<span class="lcc-result-total-per">/mo</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="lcc-result-meta">' +
+          '<p class="lcc-result-meta-country">' + lccState.country + ' · ' + workerLabel + '</p>' +
+          '<p class="lcc-result-meta-rate">' + overheadDisplay + '</p>' +
+          '<p class="lcc-result-meta-desc">employer contributions rate</p>' +
+        '</div>' +
+      '</div>' +
+      '<div class="lcc-bars">' +
+        lccBarRow('Base Salary', sym + fmtNum(base) + '/ mo', basePct, 'base') +
+        lccBarRow('Statutory Contributions (' + statRateDisplay + ')', sym + fmtNum(statutory) + '/ mo', statPct, 'stat') +
+        lccBarRow('Benefits &amp; Other Costs (est. 18%)', sym + fmtNum(benefits) + '/ mo', benPct, 'ben') +
+      '</div>' +
+      '<div class="lcc-result-divider"></div>' +
+      '<div class="lcc-summary">' +
+        lccSummaryCard(sym + fmtNum(total), 'Monthly Cost') +
+        lccSummaryCard(sym + fmtNum(annualTotal), 'Annual Cost') +
+        lccSummaryCard(mRatio.toFixed(2) + 'x', 'M Ratio') +
+        lccSummaryCard(statRateDisplay, 'Statutory Rate') +
+      '</div>';
+
+    var content = document.getElementById('lcc-result-content');
+    content.innerHTML = html;
+
+    // Animate bars after DOM paint
+    requestAnimationFrame(function() {
+      var fills = content.querySelectorAll('.lcc-bar-fill');
+      fills.forEach(function(f) {
+        f.style.width = f.dataset.w + '%';
+      });
+    });
+  }
+
+  function lccBarRow(label, amount, pct, type) {
+    var fill = pct !== null
+      ? '<div class="lcc-bar-fill lcc-bar-fill--' + type + '" data-w="' + pct + '" style="width:0%"></div>'
+      : '';
+    return '<div class="lcc-bar-row">' +
+      '<div class="lcc-bar-label-row">' +
+        '<span class="lcc-bar-label-text">' + label + '</span>' +
+        '<span class="lcc-bar-amount">' + amount + '</span>' +
+      '</div>' +
+      '<div class="lcc-bar-track">' + fill + '</div>' +
+    '</div>';
+  }
+
+  function lccSummaryCard(value, label) {
+    return '<div class="lcc-summary-card">' +
+      '<p class="lcc-summary-value">' + value + '</p>' +
+      '<p class="lcc-summary-label">' + label + '</p>' +
+    '</div>';
+  }
+
+  // ══════════════════════════════════════════════════════
+  //  REPORT DATA
+  //  Statutory items: [name, note, local_rate, foreign_rate(null=same)]
+  //  Source: Marco Labor Cost Matrix Excel research 2025
+  // ══════════════════════════════════════════════════════
+  var STAT_ITEMS = {
+    'Algeria':[['CNAS Social Insurance','Covers pensions, work injury, sickness & maternity',25.0,null]],
+    'Argentina':[['SUSS – Pension & Social Contributions','National Social Security system (SIJP + others)',19.5,null],['Obra Social – Health Insurance','Mandatory employer health fund contribution',6.0,null]],
+    'Australia':[['Superannuation Guarantee','Mandatory employer super contribution to registered fund',12.0,null]],
+    'Austria':[['Pension Insurance (ASVG)','Old-age, disability & survivors pension',12.55,null],['Health Insurance (ASVG)','Statutory health insurance contribution',3.78,null],['Accident Insurance','Work injury insurance',1.2,null],['Unemployment Insurance (ALVG)','Federal unemployment contribution',3.0,null],['Insolvency Fund & BV','Severance provision fund (BV) + insolvency levy',1.97,null]],
+    'Bangladesh':[],
+    'Belgium':[['ONSS / RSZ – National Social Security','Comprehensive social security covering all branches',25.0,null]],
+    'Brazil':[['INSS – Social Security','Covers pension, disability, sickness & family benefits',20.0,null],['FGTS – Severance Indemnity Fund','Mandatory severance savings fund for employees',8.0,null]],
+    'Brunei':[['SPK Supplementary Contributory Pension','For citizens & PRs; rate varies 8.5%–9.5% by salary tier',9.5,0.0]],
+    'Bulgaria':[['Pension Fund (DZO)','State pension & disability fund',14.12,null],['Health Insurance (NZOK)','Mandatory national health insurance',4.8,null]],
+    'Cambodia':[['NSSF Occupational Risk','Work accident & occupational disease benefit',0.8,null],['NSSF Health Care','Mandatory health care contribution (Prakas 449)',2.6,null],['NSSF Pension','Pension scheme contribution',2.0,null]],
+    'Canada':[['CPP – Canada Pension Plan','On eligible earnings; employer matches employee contribution',5.95,null],['EI – Employment Insurance','1.63% × 1.4 employer factor on insurable earnings',2.05,null]],
+    'Chile':[['AFP Pension Fund','Employer pension contribution to accredited AFP',1.0,null],['Unemployment Insurance (Seguro Cesantía)','Open-ended contract rate',2.4,null],['Work Accident Insurance (ACHS/ISL)','Mutual society accident premium',0.9,null]],
+    'China':[['Pension (养老保险)','Basic urban employee pension fund',16.0,null],['Medical Insurance (医疗保险)','Basic medical insurance contribution',9.0,null],['Unemployment (失业保险)','Unemployment insurance fund',0.5,null],['Work Injury (工伤保险)','Work injury insurance (national baseline rate)',0.5,null]],
+    'Colombia':[['AFP – Pension Fund','Mandatory individual savings pension account',12.0,null],['EPS – Health Insurance','Mandatory health entity contribution',8.5,null],['SENA – Training Fund','National training authority levy',2.0,null],['ICBF – Family Welfare','Colombian Institute for Family Welfare levy',3.0,null],['ARL – Work Risk Insurance','Occupational risk insurance (premium varies by risk level)',4.0,null]],
+    'Costa Rica':[['CCSS – Health Insurance','Caja Costarricense de Seguro Social – sickness & maternity',9.25,null],['IVM – Pension (CCSS)','Old-age, disability & death insurance',5.25,null],['FODESAF – Social Development','Social development & family allowances fund',5.0,null],['INS – Work Injury','National Insurance Institute – work accidents',3.25,null],['Other Mandatory Funds','INA, IMAS, ASFA, BCR, Banco Popular contributions',3.92,null]],
+    'Croatia':[['Health Insurance (HZZO)','Mandatory employer health insurance contribution',16.5,null]],
+    'Czech Republic':[['Social Insurance (OSSZ)','Pension, sickness & state employment policy',24.8,null],['Health Insurance (VZP/others)','Mandatory health insurance to registered insurer',9.0,null]],
+    'Democratic Republic of the Congo':[['INSS – National Social Security','Pension, work accident & family benefits',13.5,null]],
+    'Denmark':[['ATP – Labour Market Pension','Fixed DKK 198/month employer contribution',0.8,null],['AUB / Barsel / Other Levies','Various fixed-amount employer labour market levies',0.7,null]],
+    'Egypt':[['NOSI – Social Insurance','On variable and basic wage components (capped)',18.75,null]],
+    'Estonia':[['Social Tax (sotsiaalmaks)','Covers state pension and health insurance (33%)',33.0,null],['Unemployment Insurance (TKindlustus)','Employer unemployment insurance contribution',0.8,null]],
+    'Finland':[['TyEL – Earnings-related Pension','Mandatory occupational pension',17.39,null],['Unemployment Insurance','Employer share of unemployment fund',1.09,null],['Accident & Occupational Disease','Workers\' compensation premium',0.57,null],['Sickness & Group Life','Group life and daily sickness allowance',0.27,null]],
+    'France':[['Old-Age Pension (CNAV)','Régime général pension contribution',10.66,null],['Sickness & Maternity (CNAM)','Health, maternity, disability insurance',7.0,null],['Family Benefits (CAF)','Caisse d\'allocations familiales levy',3.45,null],['Unemployment Insurance (Unédic)','Employer unemployment contribution',4.0,null],['Complementary Pension (Agirc-Arrco)','Mandatory complementary retirement scheme',6.01,null],['AT/MP – Work Accident','Work accident & occupational disease insurance',2.0,null],['Other Levies (FNAL, CSA, AGS, etc.)','Housing fund, solidarity, wage guarantee & others',6.88,null]],
+    'Georgia':[['Funded Pension','Mandatory pension savings (employer match)',2.0,null]],
+    'Germany':[['Pension Insurance (Deutsche RV)','State pension – old-age, disability & survivors',9.3,null],['Health Insurance (GKV)','Statutory health insurance + avg Zusatzbeitrag',8.2,null],['Unemployment Insurance (BA)','Federal Employment Agency contribution',1.3,null],['Long-term Care (Pflegeversicherung)','Statutory long-term care insurance',1.8,null],['Work Accident & Insolvency','Berufsgenossenschaft + UAG insolvency levy',0.7,null]],
+    'Greece':[['Main Pension (e-EFKA)','Principal pension insurance fund',13.33,null],['Health Insurance (EOPYY)','National health services organisation',4.55,null],['Unemployment (OAED)','Manpower employment organisation',3.17,null],['Other Levies','Housing fund & solidarity contributions',0.74,null]],
+    'Hong Kong':[['MPF – Mandatory Provident Fund','Employer contribution; capped at HKD 1,500/month',5.0,null]],
+    'Hungary':[['SZOCHO – Social Contribution Tax','Consolidated employer social contribution',13.0,null]],
+    'Iceland':[['Payroll Tax (Tryggingagjald)','National insurance & municipal payroll levy',6.35,null],['Mandatory Occupational Pension','Minimum employer pension contribution',8.0,null]],
+    'India':[['EPF – Employee Provident Fund','Mandatory provident fund contribution',12.0,null],['EDLI – Deposit Linked Insurance','Group life insurance linked to EPF',0.5,null],['ESI – Employee State Insurance','For employees earning ≤ INR 21,000/month',0.5,null]],
+    'Indonesia':[['BPJS Ketenagakerjaan JHT','Old-age savings benefit',3.7,null],['BPJS Ketenagakerjaan JKM','Death benefit',0.3,null],['BPJS Ketenagakerjaan JP','Pension benefit',2.0,null],['BPJS Kesehatan','National health insurance',4.0,null]],
+    'Iraq':[['Social Security Fund','Pension, disability, sickness & maternity',12.0,20.0]],
+    'Ireland':[['PRSI – Class A','Pay-related social insurance employer contribution',11.25,null]],
+    'Israel':[['National Insurance (Bituach Leumi)','Old-age, disability, survivors – tiered rate',7.5,null],['Mandatory Pension (Keren Pensia)','Mandatory occupational pension contribution',6.5,null]],
+    'Italy':[['INPS – Social Security','Pension, sickness, maternity & disability (sector-variable)',28.0,null],['INAIL – Work Accident Insurance','Mandatory work injury coverage (industry-dependent)',1.0,null]],
+    'Japan':[['EPI – Employees\' Pension Insurance','Kosei nenkin – old-age pension',9.15,null],['Health Insurance (Kenpo)','Kyokai Kenpo rate; varies by prefecture',5.1,null],['Employment Insurance','Unemployment and career development',0.85,null],['Work Accident Insurance','Rodo-sha saigai hoken; variable by industry',0.4,null]],
+    'Jordan':[['SSC – Social Security Corporation','Pension, injury & maternity contributions',14.25,null]],
+    'Kenya':[['NSSF – National Social Security Fund','Provident & pension contributions',6.0,null],['AHL – Affordable Housing Levy','Government housing fund levy',1.5,null]],
+    'Kyrgyzstan':[['Social Fund','Pension, disability & maternity contributions',17.25,null]],
+    'Laos':[['LSSO – Social Security','National Social Security Organisation contribution',6.0,null]],
+    'Latvia':[['VSAOI – State Social Insurance','Comprehensive social insurance contribution',23.59,null]],
+    'Lithuania':[['SoDra – Social Insurance','Social insurance contribution (employer portion)',1.77,null]],
+    'Luxembourg':[['Pension Insurance (CNAP)','National pension insurance fund',8.5,null],['Health Insurance (CNS)','National health fund',2.8,null],['Accident, Cash Benefits & Others','Accident insurance, maternity, occupational health',1.04,null]],
+    'Malaysia':[['EPF – Employee Provident Fund','Mandatory retirement savings; 13% for wages ≤ RM 5,000',13.0,2.0],['SOCSO – Social Security','Work injury & invalidity scheme (employer + employee)',1.75,1.25],['EIS – Employment Insurance','Short-term unemployment benefit scheme',0.2,0.0]],
+    'Mexico':[['IMSS – Social Security (IDSE)','Health, disability, pension & other benefits',19.0,null],['INFONAVIT – Housing Fund','Worker housing credit fund',5.0,null],['SAR – Retirement Savings','Government-controlled retirement savings account',2.0,null],['ISN – State Payroll Tax','Impuesto sobre Nóminas (rate varies by state, avg ~2%)',2.0,null]],
+    'Mongolia':[['Social Insurance Fund','Pension, health & work accident contributions',10.0,null]],
+    'Morocco':[['CNSS – Social Security','Family, pension & occupational risk contributions',6.4,null],['AMO – Mandatory Medical Insurance','Mandatory medical insurance (assurance maladie)',4.11,null],['CIMR – Complementary Pension','Supplementary pension scheme (widely adopted)',7.93,null],['Professional Training Tax (TFP)','Vocational training levy',1.6,null],['Other Levies','OFPPT, solidarity & other contributions',1.05,null]],
+    'Myanmar':[['SSB – Social Security Board','Health & life insurance contributions',3.0,0.0]],
+    'Netherlands':[['AWf – Unemployment (WW)','Work & Income Act unemployment fund',2.74,null],['Aof – Disability (uniform rate)','Work & Income for Work Capacity Act',6.27,null],['Wko – Disability surcharge','Employer-specific WGA surcharge',0.5,null],['Zvw – Health Insurance','Care Insurance Act employer levy',6.1,null]],
+    'North Macedonia':[],
+    'Norway':[['AGA – National Insurance Contribution','Arbeidsgiveravgift; standard rate (regional rates vary)',14.1,null],['OTP – Mandatory Occupational Pension','Minimum pension savings contribution',2.0,null]],
+    'Pakistan':[['EOBI – Employees\' Old-Age Benefits','Fixed contribution on minimum wage basis',5.0,null]],
+    'Panama':[['CSS – Social Security','Comprehensive social security fund',13.25,null],['Seguro Educativo','Education insurance fund levy',1.5,null]],
+    'Peru':[['EsSalud – Health Insurance','National health insurance employer contribution',9.0,null]],
+    'Philippines':[['SSS – Social Security System','Pension, disability & death benefit contributions',6.0,null],['PhilHealth','National health insurance program',2.5,null],['Pag-IBIG Fund (HDMF)','Housing development & savings fund',2.0,null]],
+    'Poland':[['Pension Insurance (FUS)','Fundusz Ubezpieczeń Społecznych – retirement',9.76,null],['Disability Insurance (FUS)','Disability & survivors insurance',6.5,null],['Accident Insurance (ZUS)','Work accident insurance (avg ~1.67%)',1.67,null],['Labour Fund (FP)','Unemployment & active labour market programmes',2.45,null],['FGSP / FEP','Guaranteed Employee Benefits Fund & Bridging Pension',0.12,null]],
+    'Portugal':[['Social Security (Segurança Social)','Pension, unemployment, work accident & sickness',23.75,null]],
+    'Qatar':[['GPSSA – Social Insurance','Pension for Qatari nationals; mandatory employer share',14.0,0.0]],
+    'Romania':[['CAM – Work Accident Contribution','Mandatory accident & occupational disease insurance',2.25,null]],
+    'Saudi Arabia':[['GOSI – Annuity (Saudi nationals)','Old-age, disability & death insurance',9.75,0.0],['GOSI – Occupational Hazards','Work accident & occupational disease insurance',2.0,null]],
+    'Serbia':[['PIO – Pension & Disability Insurance','State pension and disability fund',10.0,null],['Health Insurance','Mandatory health insurance contribution',5.15,null]],
+    'Singapore':[['CPF – Central Provident Fund','Retirement, housing & healthcare (age ≤55 standard rate)',17.0,0.0],['SDL – Skills Development Levy','Skills training levy on all employees',0.25,null]],
+    'Slovakia':[['Pension Insurance','Old-age and disability pension funds',14.0,null],['Health Insurance','Mandatory health insurance (VŠZP + others)',10.0,null],['Sickness Insurance','Short-term sickness and maternity benefit',1.4,null],['Accident Insurance','Mandatory work accident contribution',0.8,null],['Other Funds','Unemployment, guarantee, reserve, insolvency',9.0,null]],
+    'Slovenia':[['Pension & Disability Insurance (ZPIZ)','Compulsory pension and disability fund',8.85,null],['Health Insurance (ZZZS)','Compulsory health insurance',6.56,null],['Other Contributions','Unemployment, parental & work injury',0.69,null]],
+    'South Africa':[['UIF – Unemployment Insurance','Unemployment Insurance Fund employer contribution',1.0,null],['SDL – Skills Development Levy','Mandatory training levy (threshold applies)',1.0,null]],
+    'South Korea':[['NPS – National Pension','National pension scheme employer contribution',4.5,null],['NHI – National Health Insurance','Health insurance employer share',3.545,null],['LTCI – Long-term Care','Long-term care insurance (linked to NHI)',0.472,null],['Employment Insurance','Unemployment & workforce development',0.9,null],['Industrial Accident Insurance','KCOMWEL work accident coverage (variable)',0.583,null]],
+    'Spain':[['Social Security (Contingencias Comunes)','Pension, sickness, maternity & disability',23.6,null],['Unemployment (SEPE)','State Public Employment Service levy',5.5,null],['FOGASA','Wage Guarantee Fund',0.2,null],['Professional Training Fund','Fundación Estatal para la Formación en el Empleo',0.6,null],['Work Accident (AT) Surcharge','Occupational contingencies contribution',0.75,null]],
+    'Sweden':[['Arbetsgivaravgifter','Consolidated employer social contributions (all branches)',31.42,null]],
+    'Switzerland':[['AHV/IV/EO','Old-age, disability & survivors + maternity insurance',5.3,null],['ALV – Unemployment','Federal unemployment insurance contribution',1.1,null]],
+    'Taiwan':[['Labour Insurance (BLI)','Work accident, disability & pension; 70% employer-paid',8.75,null],['Labour Pension (LC)','Individual account pension contribution',6.0,null],['National Health Insurance (NHI)','Employer share of health insurance premium',3.1,null]],
+    'Thailand':[['SSF – Social Security Fund','Covers health, accident, disability & pension',5.0,null]],
+    'Tunisia':[['CNSS – Social Security','Comprehensive social security contributions',16.57,null]],
+    'Turkey':[['SGK Long-term Insurance','Old-age, disability & survivors pension',11.0,null],['SGK Health Insurance','General health insurance contribution',7.5,null],['SGK Short-term Insurance','Work accident & occupational disease',2.0,null],['Unemployment Insurance (İŞKUR)','Turkish Employment Organisation fund',2.0,null],['Other Contributions','Stamp duty equivalent & solidarity fund',1.25,null]],
+    'Uganda':[['NSSF – National Social Security Fund','Retirement savings fund employer contribution',10.0,null]],
+    'Ukraine':[['USC – Unified Social Contribution','Single consolidated social contribution',22.0,null]],
+    'United Arab Emirates':[['GPSSA – Social Security (UAE Nationals)','Pension, disability & survivors for GCC nationals',15.0,0.0]],
+    'United Kingdom':[['Employer NIC – Class 1','National Insurance above Secondary Threshold (£9,100/yr)',15.0,null]],
+    'United States of America':[['Social Security (OASDI)','On wages up to USD 168,600 (2024 wage base)',6.2,null],['Medicare (HI)','No wage cap; additional 0.9% on wages > USD 200K is employee-only',1.45,null],['FUTA – Federal Unemployment','Effective rate after state credit; first USD 7,000 of wages',0.6,null]],
+    'Vietnam':[['Social Insurance (BHXH)','Pension, sick leave, maternity & work accident',17.5,17.0],['Health Insurance (BHYT)','National health insurance employer contribution',3.0,null],['Unemployment Insurance (BHTN)','Unemployment insurance fund',1.0,0.0]]
+  };
+
+  // ── Benefit Templates by region ──
+  var BEN_TEMPLATES = {
+    'na': [
+      ['Health Insurance (Employer Share)','Major medical; costs vary by plan & coverage tier',10.0],
+      ['Retirement Plan Match (401k/RRSP)','Typical employer 3–6% match programme',4.0],
+      ["Workers' Compensation Insurance",'State/province-mandated; industry-dependent premium',1.5],
+      ['Dental & Vision Insurance','Supplementary dental and optical coverage',1.0],
+      ['Life & Disability Insurance','Group life and STD/LTD insurance cover',0.5],
+      ['Other (commuter, wellness, EAP)','Variable programmes based on company policy',1.0]
+    ],
+    'eu': [
+      ['Supplementary Private Pension','Beyond statutory contributions; varies by plan',5.0],
+      ['Private Health Insurance Top-up','Supplement to statutory health coverage',4.0],
+      ['Meal Vouchers / Food Allowance','Common fringe benefit across European markets',3.0],
+      ['Commuter / Travel Allowance','Public transport or distance-based commuting support',2.0],
+      ['Professional Training & Development','Mandatory or employer-discretionary training investment',2.0],
+      ['Life & Risk Benefits','Group life, critical illness and disability',2.0]
+    ],
+    'apac': [
+      ['Private / Group Medical Insurance','Employer-funded medical plan beyond statutory',6.0],
+      ['Annual Bonus / 13th Month Provision','Market-standard discretionary or contractual bonus',4.0],
+      ['Group Term Life Insurance','Life coverage provided to all employees',2.0],
+      ['Dental & Optical Benefits','Supplementary dental and vision care',2.0],
+      ['Staff Welfare & Training','L&D budget and welfare fund contributions',2.0],
+      ['Other (transport, flexible, EAP)','Commuting support, flexible benefits & counselling',2.0]
+    ],
+    'gcc': [
+      ['End of Service Gratuity Accrual','21 days/year for first 5 years, 30 days/year thereafter',8.0],
+      ['Medical Insurance (Mandatory)','Employer-provided health coverage per local mandate',5.0],
+      ['Transport Allowance','Monthly transport or housing-linked allowance',2.0],
+      ['Life & Disability Insurance','Group life and critical illness coverage',1.5],
+      ['Training & Development','Skills investment and professional certifications',1.0],
+      ['Other Benefits','Annual flight allowance, mobile, flexible benefits',0.5]
+    ],
+    'latam': [
+      ['13th Month Salary (Aguinaldo) Provision','Mandatory in most countries; accrued monthly',8.33],
+      ['Private Health Insurance Top-up','Supplementary coverage beyond mandatory schemes',4.0],
+      ['Meal / Food Benefits','Meal vouchers, food basket or restaurant allowance',2.0],
+      ['Life Insurance','Mandatory or employer-provided group life cover',1.67],
+      ['Transportation Subsidy','Commuting cost reimbursement or vale transporte',1.0],
+      ['Training & Other Benefits','Professional development and discretionary benefits',1.0]
+    ],
+    'africa': [
+      ['Private / Group Medical Insurance','Employer-funded medical plan for employees',6.0],
+      ['Transport Allowance','Monthly commuting support or fuel allowance',3.0],
+      ['Group Life Insurance','Life and accidental death cover',3.0],
+      ['Annual Leave Pay Provision','Accrual for statutory leave encashment obligations',2.0],
+      ['Staff Welfare & Training','Skills development, canteen, and welfare programmes',2.0],
+      ['Other Benefits','Housing, mobile, flexible benefits or risk allowances',2.0]
+    ],
+    'eeu': [
+      ['Supplementary Pension Contribution','Beyond statutory minimum; voluntary pillar',4.0],
+      ['Private Health Insurance','Supplementary cover for private clinic access',4.5],
+      ['Meal / Transport Allowance','Meal vouchers and commute reimbursement',3.5],
+      ['Life & Disability Cover','Group life and income protection',2.5],
+      ['Training & Development','Annual L&D budget and certification support',2.0],
+      ['Other Benefits','Flexible benefits, sports, wellbeing allowances',1.5]
+    ],
+    'sea': [
+      ['Group Medical Insurance','Comprehensive inpatient & outpatient medical',7.0],
+      ['Annual Bonus / Performance Pay','Market-standard discretionary performance bonus',4.0],
+      ['Group Term Life Insurance','Life and AD&D coverage for all staff',2.0],
+      ['Dental & Vision Benefits','Supplementary dental and optical care',1.5],
+      ['Staff Training & Development','Professional development and upskilling budget',1.5],
+      ['Other (transport, EAP, flexi)','Commuting support and employee assistance',2.0]
+    ]
+  };
+
+  // ── Country → benefit region ──
+  var COUNTRY_REGION = {
+    'Algeria':'africa','Argentina':'latam','Australia':'apac','Austria':'eu',
+    'Bangladesh':'sea','Belgium':'eu','Brazil':'latam','Brunei':'sea',
+    'Bulgaria':'eeu','Cambodia':'sea','Canada':'na','Chile':'latam',
+    'China':'apac','Colombia':'latam','Costa Rica':'latam','Croatia':'eu',
+    'Czech Republic':'eeu','Democratic Republic of the Congo':'africa',
+    'Denmark':'eu','Egypt':'africa','Estonia':'eeu','Finland':'eu',
+    'France':'eu','Georgia':'eeu','Germany':'eu','Greece':'eu',
+    'Hong Kong':'apac','Hungary':'eeu','Iceland':'eu','India':'apac',
+    'Indonesia':'sea','Iraq':'gcc','Ireland':'eu','Israel':'eu',
+    'Italy':'eu','Japan':'apac','Jordan':'gcc','Kenya':'africa',
+    'Kyrgyzstan':'eeu','Laos':'sea','Latvia':'eeu','Lithuania':'eeu',
+    'Luxembourg':'eu','Malaysia':'sea','Mexico':'latam','Mongolia':'apac',
+    'Morocco':'africa','Myanmar':'sea','Netherlands':'eu','North Macedonia':'eeu',
+    'Norway':'eu','Pakistan':'sea','Panama':'latam','Peru':'latam',
+    'Philippines':'sea','Poland':'eeu','Portugal':'eu','Qatar':'gcc',
+    'Romania':'eeu','Saudi Arabia':'gcc','Serbia':'eeu','Singapore':'sea',
+    'Slovakia':'eeu','Slovenia':'eu','South Africa':'africa','South Korea':'apac',
+    'Spain':'eu','Sweden':'eu','Switzerland':'eu','Taiwan':'apac',
+    'Thailand':'sea','Tunisia':'africa','Turkey':'eeu','Uganda':'africa',
+    'Ukraine':'eeu','United Arab Emirates':'gcc','United Kingdom':'eu',
+    'United States of America':'na','Vietnam':'sea'
+  };
+
+  // ── Country notes [local_notes, foreign_notes] ──
+  var COUNTRY_NOTES = {
+    'Algeria':{l:['CNAS registration is mandatory for all employers from day one of hiring.','Work injury coverage is included in the CNAS contribution — no separate premium.','Private health top-ups are common for expatriate and senior employee packages.','Estimate total employment burden at approximately 43% above base salary.'],f:['Foreign nationals working in Algeria are subject to the same CNAS rates of 25%.','Additional work permit and visa costs apply for foreign employees.','Bilateral social security agreements with France, Spain and other countries may reduce duplicate contributions.','Private medical insurance is strongly recommended to supplement public coverage.']},
+    'Argentina':{l:['SUSS includes pension (10.77%), survivors (2.7%), family allowances (7.5%), INSSJP (1.5%) and other branches.','Obra Social contribution funds the mandatory prepaga health plan chosen by the employee.','ART (Work Risk Insurance) premiums vary by industry; employers must contract a licensed ART insurer.','High inflation may affect nominal contribution bases — caps are adjusted periodically.'],f:['Foreign nationals on valid work permits are subject to the same contribution rates as Argentine nationals.','Bilateral social security agreements with Spain, Italy, and others may provide exemptions.','Work permits must be in place before formal payroll registration can occur.','Currency controls may affect salary remittance planning.']},
+    'Australia':{l:['Superannuation rate increases progressively to 12% in 2025 and 12.5% thereafter.','Super contributions must be paid to a registered fund (MySuper compliant) on a quarterly basis.','Single Touch Payroll (STP) reporting is mandatory for all employers.','Wages in certain sectors are governed by Modern Awards which may increase total cost.'],f:['Temporary residents (working holiday, 457, 482 visa holders) are also entitled to superannuation.','Departing Australia Superannuation Payments (DASP) are available to foreign workers on departure.','Same super rate applies regardless of residency or visa type.','Payroll tax (state-level, threshold-based) may add an additional 4.85%–6.85% depending on state.']},
+    'Austria':{l:['BV contribution (1.53%) funds the occupational change severance fund (Abfertigungs-Neu).','Employer contributions vary slightly depending on industry collective agreement.','Accident insurance is administered by AUVA — a single premium covers all branches.','Municipal tax (Kommunalsteuer) of 3% of gross payroll is an additional local cost.'],f:['EU/EEA workers are typically covered under Austrian social security on the same terms.','Non-EU workers may be subject to A1 certificate requirements from their home country.','A1 certificates exempt from Austrian contributions if the worker remains in their home country\'s system for up to 24 months.','Permanent establishment risk exists for extended assignments without proper setup.']},
+    'Bangladesh':{l:['No mandatory employer social security contributions exist beyond the conditional WPPF.','The Workers\' Profit Participation Fund (WPPF) requires 5% of net profit (not salary-based).','Gratuity is payable after 5 years of service — a significant accrual obligation.','Group insurance is strongly recommended as statutory coverage is minimal.'],f:['Foreign workers are generally exempt from most local statutory schemes.','Work permit fees and quota requirements add upfront costs for foreign hires.','No bilateral social security agreements currently in place for most nationalities.','Private health and life insurance are essential for foreign employee packages.']},
+    'Belgium':{l:['The 25% ONSS rate covers all social security branches; a reduced rate (24.09%) applies for first hire.','A flat-rate reduction (forfaitaire vermindering) may apply for certain hourly workers.','Holiday pay (double holiday pay of ~15.38% equivalent) is an additional employer obligation.','Social Secretariat fees typically add EUR 30–100 per employee per month in administrative costs.'],f:['EU/EEA workers with A1 forms from their home country may be exempt from Belgian contributions.','Non-EU foreign workers are covered by Belgian social security on the same terms as nationals.','Belgium has extensive social security treaties — verify status before onboarding.','Bonus (13th month, year-end) obligations may be mandated by sector-level collective agreements.']},
+    'Brazil':{l:['INSS rate of 20% applies to companies under the Standard Regime; Simples Nacional companies pay differently.','FGTS must be deposited monthly into a workers\' individual FGTS account — payable on all salaries.','Additional mandatory costs include: vacation bonus (+1/3 of monthly salary), 13th month salary, and PIS/PASEP.','Total employment burden in Brazil typically reaches 60–80% above base due to multiple obligations.'],f:['Foreign workers in Brazil on valid work permits are subject to the same INSS and FGTS obligations.','Brazil has social security agreements with several countries — check for potential credits.','CPF (tax ID) and CTPS (work card) are required before payroll registration.','Foreign nationals on short-term assignments may be eligible for reduced contribution periods.']},
+    'Brunei':{l:['SPK (Supplementary Contributory Pension) applies only to Brunei citizens and permanent residents.','Rate structure: ≤BND 500 = fixed BND 57.50; ≤BND 1,500 = max(10.5%, BND 57.50); ≤BND 2,800 = 9.5%; above = 8.5%.','Employer must register with the TAP/AMBD (Autoriti Monetari Brunei Darussalam) within 7 days of hiring.','No income tax in Brunei — a significant cost advantage compared to other jurisdictions.'],f:['Foreign workers in Brunei (work permit holders) are exempt from SPK contributions.','No statutory social security contributions are required for foreign employees.','Work permit levy of BND 300–450 per year per foreign worker applies by industry category.','Private medical insurance is mandatory for foreign workers and must be maintained throughout employment.']},
+    'Bulgaria':{l:['Total contribution of 18.92% covers state pension, supplementary pension, and health insurance.','The base for contributions is capped at BGN 3,400/month (2024); maximum contribution per employee is fixed.','No social security is payable on benefits in kind above a certain threshold.','Supplementary voluntary pension and health funds attract tax incentives.'],f:['EU/EEA workers with A1 certificates from their home country may be exempt from Bulgarian contributions.','Non-EU foreign workers are subject to the same contribution rates as Bulgarian nationals.','Bulgaria has bilateral social security agreements with several non-EU countries.','Work permit and visa costs apply for non-EU hires.']},
+    'Cambodia':{l:['NSSF contributions cover three branches: occupational risk (0.8%), health care (2.6%), and pension (2.0%).','NSSF registration is mandatory for all employers with one or more employees.','The pension branch was introduced in 2022 and is being phased in; future rates may increase.','A separate National Training Fund contribution may apply depending on industry.'],f:['Foreign workers on valid work permits are subject to the same NSSF contributions.','Health Care branch entitles both local and foreign workers to NSSF-covered medical treatment.','Work permit fees and foreign employee quotas add upfront costs.','Private medical insurance is recommended as NSSF healthcare has limited facility coverage.']},
+    'Canada':{l:['CPP2 (additional CPP tier) applies on earnings between CAD 68,500–73,200 at 4% employer rate.','EI premium is on insurable earnings up to CAD 63,200; employer pays 1.4× the employee rate.','Employer Health Tax (EHT) applies in Ontario (1.95%), Manitoba, Quebec and BC — provincial-level add-on.','Group benefits (health, dental, disability) are common and typically add 10–15% to total cost.'],f:['Temporary foreign workers on valid permits are subject to CPP and EI on the same basis as Canadians.','International Social Security Agreements (with 60+ countries) may allow continued home-country coverage.','Quebec runs its own QPP and QPIP schemes — separate rates apply for Quebec-based employees.','LMIA (Labour Market Impact Assessment) costs and processing times add to foreign hire timelines.']},
+    'Chile':{l:['AFP pension: employee selects accredited AFP fund; employer contribution is separate from employee\'s 10%.','SIS (Workers\' Protection Insurance) is employer-funded at 1.87% on top of AFP contribution.','Mutual society accident premium is paid entirely by the employer; rate varies by industry classification.','Statutory severance (indemnización por años de servicio) is an additional accrual not included in contributions.'],f:['Foreign workers on valid visas are subject to Chilean social security contributions on the same basis.','Workers from countries with bilateral agreements (Spain, Germany, others) may be exempted.','A work permit (visa sujeta a contrato) must be in place before contributions can be registered.','Private health insurance (ISAPRE) is an alternative to the public FONASA system.']},
+    'China':{l:['Five Social Insurances + Housing Fund (五险一金): pension 16%, medical 9%, unemployment 0.5%, work injury ~0.5%, maternity 0.5%; housing fund ~5–12% on top.','Rates shown are national baseline; provincial rates in Shanghai, Beijing and others may differ.','Housing Provident Fund (住房公积金) is an additional mandatory contribution of 5–12% depending on city — not included in statutory rate above.','The contribution base is capped at 3× local average wage (varies by city).'],f:['Foreign nationals with a valid work permit are now required to participate in China\'s social insurance system.','Bilateral social security agreements exist with Germany, South Korea, Japan, France, and others.','Housing fund is often not required for foreign employees, but verify locally.','Contribution base caps and exemptions are periodically adjusted — quarterly reconciliation recommended.']},
+    'Colombia':{l:['ARL (Occupational Risk Insurance) premium varies significantly by risk level (Class I = 0.522% to Class V = 6.96%); estimate used is ~4%.','Monthly payroll base (IBC) minimum is 1 SMLMV; certain transport allowances are excluded from the base.','SENA and ICBF contributions apply when payroll exceeds 10 SMLMV; these are parafiscales, not employee benefits.','Total on-cost in Colombia typically reaches 50–60% above base salary including parafiscales.'],f:['Foreign nationals with work permits (cédula de extranjería) are subject to the same contribution rates.','A1-equivalent certificates from bilateral agreement countries (Spain, Chile) may allow exemption.','Colombia does not levy SENA/ICBF parafiscales on foreign workers paid under special immigration categories — verify case by case.','Minimum salary requirements apply regardless of worker nationality.']},
+    'Costa Rica':{l:['The CCSS contribution covers health insurance, maternity, disability and pension across multiple branches.','INA (National Training Institute) contribution is 1.5%; IMAS (Social Assistance) is 0.5%.','INS work injury premium is paid to the state insurer — rate varies by risk classification.','Mandatory severance (auxilio de cesantía) adds approximately 8.33% per month to total cost.'],f:['Foreign workers legally employed in Costa Rica are subject to the same social security contributions.','CCSS registration is required within the first day of employment regardless of worker type.','Bilateral social security agreements with limited countries allow A1-type exemptions.','Private health supplementary insurance is strongly recommended for foreign employees.']},
+    'Croatia':{l:['Croatia joined the eurozone in January 2023; contributions are EUR-denominated.','Health insurance contribution covers the HZZO (Croatian Institute for Health Insurance).','No separate employer pension contribution above the income tax — pension is employee-side only.','Supplementary voluntary pension (pillar III) and group health insurance are common voluntary benefits.'],f:['EU/EEA workers with A1 certificates can remain in their home-country social system.','Non-EU workers must enroll in Croatian social security on the same terms as nationals.','Work permit costs and procedures add upfront administrative effort for non-EU hires.','Corporate income tax is 18% (10% for SMEs) — favorable corporate tax environment.']},
+    'Czech Republic':{l:['Social insurance (24.8%) covers pension, sickness, and state employment policy contributions.','Health insurance (9%) is paid to a registered health insurance fund (VZP or others).','Salary base for contributions: maximum cap of CZK 2,110,416 per year applies to social insurance.','Meal voucher contribution (up to CZK 107/day) is tax-advantaged for the employer.'],f:['EU/EEA workers with A1 certificates may stay in their home-country social system.','Non-EU workers are subject to Czech contributions on the same basis as nationals.','Czech bilateral social security agreements cover ~25 countries outside the EU.','Work permit + trade license are prerequisites for non-EU foreign hires.']},
+    'Democratic Republic of the Congo':{l:['INSS contributions are employer-paid at 13.5% of gross salary across all branches.','Contributions cover old-age pension, work injury, family benefits, and medical services.','INSS registration is mandatory within 30 days of hiring any employee.','Private medical insurance is strongly recommended as INSS healthcare capacity is limited.'],f:['Foreign workers are subject to the same INSS contribution rates as Congolese nationals.','Work permits must be obtained before employment; administrative timelines can be lengthy.','Bilateral social security agreements are limited — verify applicable treaties by nationality.','Foreign currency remittance may be subject to central bank controls.']},
+    'Denmark':{l:['ATP and other levies are fixed DKK amounts per week/month, not percentages of salary — making the effective rate lower for higher earners.','Employers must also pay to holiday pay fund (FerieKonto): 12.5% of hourly wages (salaried workers accrue directly).','Labour market supplementary pension (ATP) is the primary statutory contribution; private occupational pension schemes are negotiated via collective agreements.','Denmark has very high gross wage levels compensating for the relatively low statutory rate.'],f:['EU/EEA workers with A1 certificates may remain in their home social security system.','Non-EU workers are subject to Danish social security rules on arrival.','Denmark has bilateral agreements with several non-EU countries (USA, Canada, India, etc.).','Work permit (green card or corporate scheme) is required for non-EU nationals.']},
+    'Egypt':{l:['NOSI contribution base is split: variable wage (26% employer) and basic wage (18.75% employer) — simplified rate shown is the basic wage component.','Maximum contribution base for basic wages is EGP 10,680/month; variable up to EGP 5,870.','Egypt Social Insurance Law no. 148/2019 introduced updated rules effective January 2020.','In practice, total employer contributions may be 18.75%–26% depending on wage structure.'],f:['Foreign workers legally employed in Egypt are subject to the same social insurance rates.','Some bilateral agreements (e.g., with EU countries) may allow continued home-country coverage.','Work permit and residency procedures are required before social security registration.','Private health insurance is essential as public health facilities have limited capacity.']},
+    'Estonia':{l:['Social tax of 33% is entirely employer-paid and covers both state pension (20%) and national health insurance (13%).','Employer also pays 0.8% unemployment insurance; employee pays a separate 1.6%.','Social tax minimum obligation applies even for part-time workers: calculated on minimum wage.','E-Residency and digital-first economy; payroll via EMTA electronic systems is mandatory.'],f:['EU/EEA workers with A1 certificates can remain in their home-country social system.','Non-EU foreign workers are subject to Estonian social tax on the same terms.','Estonia has bilateral social security agreements with multiple non-EU countries.','A digital nomad visa (temporary residence for remote workers) was introduced — different tax implications apply.']},
+    'Finland':{l:['TyEL pension contribution rate varies slightly by year; the employer rate shown (~17.39%) is the 2024 estimate.','Work accident insurance must be taken out by the employer before the employee starts work.','The employer may take out a group life insurance policy (TyEL) at a low premium (~0.07%).','Finnish collective agreements (TES) may specify higher minimums for benefits and working conditions.'],f:['EU/EEA workers with A1 certificates can remain in their home-country pension and social system.','Non-EU workers are integrated into the Finnish system on arrival.','Finland has extensive bilateral social security agreements outside the EU.','Work permit processing times should be factored into onboarding timelines.']},
+    'France':{l:['Employer social charges in France are among the highest in Europe, typically 40–45% of gross salary.','SMIC (minimum wage) for 2024 is EUR 11.65/hour gross; certain charges apply differently near SMIC.','Réduction Générale (fillon reduction) can reduce contributions significantly for wages near SMIC — not applicable for higher salaries.','Agirc-Arrco complementary pension applies above PMSS (EUR 3,864/month 2024); split into two tranches.'],f:['EU/EEA workers with A1 certificates may remain in their home-country social system (up to 24 months).','Non-EU workers must enroll in the French régime général from day one.','France has bilateral conventions with ~35 non-EU countries allowing exemptions.','Posted worker rules (directive 96/71/EC) require registration with French labour authorities for intra-EU postings.']},
+    'Georgia':{l:['The 2% funded pension contribution applies to employees who are eligible participants in the pension scheme (employees up to age 60 at the scheme launch date).','Employee also contributes 2% + government supplements 2% = total 6% going into the fund.','Pension scheme was introduced in 2019; participation is now mandatory for new entrants.','Flat income tax of 20% makes Georgia one of the most competitive tax jurisdictions in the region.'],f:['Foreign nationals are also required to participate in the Georgian funded pension scheme if employed by a Georgian legal entity.','Contributions are made to the Pension Agency (SSPF) — accounts are individual and portable.','Some bilateral tax treaties exist; verify with a local adviser for cross-border exemptions.','Short-term business visits (under 30 days/year) may not trigger full employment registration.']},
+    'Germany':{l:['Health insurance rate varies: GKV general rate 14.6% (employee 50% + employer 50%) plus insurer-specific Zusatzbeitrag averaging ~1.8% in 2024.','Long-term care insurance: childless employees pay additional 0.6% surcharge (employee only).','Work accident insurance (Berufsgenossenschaft) rate varies significantly by industry (0.5%–15%).','Employer may also offer betriebliche Altersversorgung (bAV) occupational pension — cost varies.'],f:['EU/EEA workers with A1 certificates can remain in their home-country social security.','Non-EU workers are integrated into German social security on the same terms.','Germany has bilateral social security agreements with ~40 countries outside the EU.','Immigration prerequisites include Anerkennungsberatung (recognition of qualifications) for regulated professions.']},
+    'Greece':{l:['e-EFKA unified fund consolidates multiple prior funds (IKA, OAEE, ETAA etc.) since 2020.','Special OAED contribution (3.17%) covers unemployment insurance and the PK&E housing fund.','Minimum wage (2024) is EUR 830/month gross; employer contributions are calculated on full gross salary.','Supplementary private pension and health insurance are becoming standard for competitive packages.'],f:['EU/EEA workers with A1 certificates may remain in their home-country social system.','Non-EU workers must enroll in Greek social security from employment commencement.','Greece has bilateral social security agreements with the USA, Canada, Australia, and others.','Work permit requirements for non-EU nationals add administrative lead time.']},
+    'Hong Kong':{l:['MPF employer contribution is 5% of relevant income, capped at HKD 1,500/month (on income up to HKD 30,000).','Employers must enroll employees in a registered MPF scheme within 60 days of employment.','No payroll taxes, stamp duty, or employer-level income tax — one of the lowest-cost developed jurisdictions.','Group medical insurance (hospitalisation + outpatient) is the primary additional benefit and typically ranges from 5–10% of salary.'],f:['Non-permanent residents are entitled to the same MPF benefits after 30 days of employment.','Overseas employees on secondment with continued home-country pension schemes may apply for MPF exemption.','Employment visa is required; BUD Fund and IANG visas are common entry routes.','Hong Kong has no social security bilateral agreements — each hire is assessed independently.']},
+    'Hungary':{l:['SZOCHO (Social Contribution Tax) is employer-only at 13% of gross; employees pay separately (18.5% combined contribution).','Certain government programmes (apprenticeships, returners) attract reduced SZOCHO rates.','Cafeteria fringe benefits (Széchenyi Recreation Card etc.) are taxed at a lower rate and are widely used.','Minimum wage 2024: HUF 266,800/month; minimum for skilled workers: HUF 326,000/month.'],f:['EU/EEA workers with A1 certificates may remain in their home-country social system.','Non-EU workers are subject to SZOCHO on the same basis as Hungarian nationals.','Hungary has bilateral social security agreements with around 15 non-EU countries.','Work permit quotas may affect the ability to hire in certain sectors.']},
+    'Iceland':{l:['Payroll tax (tryggingagjald) of 6.35% covers national insurance, accident insurance and other levies.','Mandatory occupational pension contribution is a minimum of 8% employer; collective agreements often set higher rates (11–11.5% in many sectors).','Annual inflation adjustments apply to the pension base — a significant planning consideration in Iceland\'s high-inflation environment.','No separate employer health or unemployment insurance premium — these are embedded in the payroll tax.'],f:['EEA workers with A1 certificates may remain in their home-country pension system.','Non-EEA workers must enroll in Icelandic social security and pension schemes.','Work permits are required for non-EEA nationals; quotas apply by industry.','Iceland is not an EU member but participates in the EEA and has separate bilateral agreements.']},
+    'India':{l:['EPF applies to establishments with 20 or more employees; employees earning above INR 15,000 may opt out (employer still contributes on the INR 15,000 cap basis typically).','EDLI is payable on the PF wage base (capped at INR 15,000) — premium is 0.5% on INR 15,000 = INR 75/month maximum.','ESI applies only to employees earning ≤ INR 21,000/month (≤ INR 25,000 for those with disability).','Gratuity accrual (4.81% of basic salary) begins from the first day — a significant long-term obligation payable after 5 years.'],f:['Foreign nationals working in India on valid employment visas may be required to contribute to EPF if their employer falls under the scheme.','India has Social Security Agreements (SSAs) with ~22 countries — nationals of these countries can remain in their home country\'s social system.','Foreign employees earning above INR 21,000/month are typically exempt from ESI.','Certificate of Coverage (CoC) from the home country is required to claim SSA exemption.']},
+    'Indonesia':{l:['BPJS Ketenagakerjaan covers JHT (3.7%), JKM (0.3%), JP (2.0%), plus JKK which varies by risk (0.24%–1.74%).','BPJS Kesehatan (4%) employer contribution is on salary capped at IDR 12 million/month.','Mandatory annual bonus (THR – Tunjangan Hari Raya) of 1 month\'s salary payable before Eid — an additional 8.33% monthly accrual.','Religious holiday allowances (THR) and other allowances may be partially subject to contributions depending on wage structure.'],f:['Foreign workers on KITAS (limited stay permit) are required to register with BPJS Ketenagakerjaan.','BPJS Kesehatan participation for foreign workers is now also mandatory.','Limited bilateral social security agreements exist — Indonesia\'s system applies universally to employed foreign workers.','Work permit (RPTKA + KITAS) is required before any employment and BPJS registration.']},
+    'Iraq':{l:['Social Security Fund contributions are mandatory for Iraqi nationals employed in private sector.','Employee base contribution: 5% + employer 12% = 17% total.','Work injury and maternity benefits are also funded through the SSF system.','Employers in oil & gas sector may face additional obligations or higher accident insurance rates.'],f:['Foreign workers may be subject to a higher total contribution rate (reported at up to 20% employer-side) depending on interpretation of SSF Law.','Many multinationals structure foreign worker packages to minimise Iraqi SSF exposure through double-taxing treaty positions.','Work permits (MOFA + Ministry of Labour) are complex and time-consuming; start 2–3 months in advance.','Private medical and life insurance are essential for foreign workers given limited healthcare infrastructure.']},
+    'Ireland':{l:['Class A PRSI applies to employees earning over EUR 352/week; lower rates apply to lower-paid workers.','PRSI covers pension, illness, maternity, unemployment, and other social welfare benefits.','A Training Levy of 0.1% is embedded in the PRSI contribution for employers.','Employers must also submit payroll data via Revenue\'s PAYE Modernisation (real-time payroll reporting).'],f:['EU/EEA workers with A1 certificates can remain in their home-country social system.','Non-EU workers are integrated into Irish PRSI from day one of employment.','Ireland has bilateral social security agreements with the USA, Canada, Australia, and ~12 other non-EU countries.','Stamp 1 visa is the typical work permit route; Critical Skills Employment Permit has priority processing.']},
+    'Israel':{l:['National Insurance (Bituach Leumi) applies at tiered rates: 3.55% on income up to IL 7,522, then 7.6% above — effective rate shown is approx. 7.5% for mid-high salaries.','Mandatory pension: 6.5% employer + 6% employee minimum; many employers exceed the minimum.','Severance pay (pitzuyim) accrual: 8.33% per year of service — commonly integrated into the pension contribution structure.','Convalescence pay (dmei havra\'ah) is an additional mandatory payment: 2.5 days/year at a fixed daily rate.'],f:['Foreign workers on valid visas are subject to National Insurance contributions at the same rates.','Israel does not have a broad network of bilateral social security agreements.','Group 5 work permits are the most common for skilled foreign workers.','Health insurance must be arranged privately for foreign workers not covered by Israeli national health.']},
+    'Italy':{l:['INPS contribution rates vary significantly by sector (industry, commerce, crafts) and by company size — 28% is a representative average for medium/large private sector.','INAIL premium (work accident insurance) is separately calculated by INAIL based on company risk classification (PAT code).','TFR (trattamento di fine rapporto) — mandatory severance accrual of 6.91% of annual salary — is an additional employer obligation not included in the statutory rate above.','Collective National Agreements (CCNL) are sector-specific and determine minimum wages and benefit entitlements.'],f:['EU/EEA workers with A1 certificates may remain in their home-country social system.','Non-EU workers must enroll in Italian INPS from the first day of employment.','Italy has bilateral social security agreements with ~25 non-EU countries.','Work permit quotas (decreto flussi) limit non-EU hiring; applications are competitive and time-bound.']},
+    'Japan':{l:['Health insurance rate shown (~5.1%) is the employer\'s 50% share of the Kyokai Kenpo rate; actual rate varies slightly by prefecture.','Employment insurance: employer pays 0.85% (general industry); employee pays 0.5%.','Work accident insurance is 100% employer-funded; rate varies by industry code (0.2%–8.8%).','Employer is also responsible for social insurance enrollment and payroll deduction processing through MY Number system.'],f:['Foreign nationals with valid work visas are enrolled in Japan\'s social insurance system (pension + health) from the first month of employment.','Japan has Social Security Agreements with ~21 countries including USA, UK, Germany, France, Korea, Australia, and China.','Certificate of Coverage from the home country is required to claim bilateral agreement exemption.','Work visas (Engineer/Specialist, Highly-Skilled Professional) require employer sponsorship.']},
+    'Jordan':{l:['SSC employer contribution of 14.25% covers old-age, disability, death and work injury.','Employees contribute 7.5%; total fund rate is 21.75%.','Recent amendments have expanded coverage — verify current thresholds with Jordan SSC.','Private health insurance is commonly offered on top of SSC as basic state healthcare has limitations.'],f:['Foreign workers who are nationals of countries without bilateral agreements must contribute to SSC at the same rates.','Jordan has bilateral agreements with select Arab League countries — nationals may maintain home-country coverage.','Work permit fees and residency permits add to the cost of foreign hires.','GOSI-style end-of-service gratuity is a separate contractual obligation not included in SSC.']},
+    'Kenya':{l:['NSSF contributions changed significantly under the 2024 NSSF Act — upper limit tier now applies to income above KES 18,000 (Tier II).','Affordable Housing Levy (AHL) of 1.5% each employer + employee was introduced in 2023; currently subject to legal challenge but being collected.','National Health Insurance Fund (NHIF) is being replaced by Social Health Authority (SHA) — verify current employer rates.','Employment-at-will with procedural termination requirements — redundancy costs are a planning factor.'],f:['Foreign workers on valid permits are subject to NSSF contributions at the same rates.','AHL applies to all employees regardless of nationality.','Work permits (Class G, Intra-Company Transfer) are required for foreign hires; quota considerations apply.','Private medical insurance is strongly recommended given transitions in public health scheme.']},
+    'Kyrgyzstan':{l:['Social Fund contributions of 17.25% cover pension (15%), occupational injury (1.5%), and other social guarantees (0.75%).','Employer contributions are calculated on total remuneration including allowances and in-kind benefits.','Foreign workers may be subject to reduced rates depending on bilateral agreements.','Supplementary private medical insurance is common practice given limited public healthcare capacity.'],f:['Foreign nationals may face different contribution rules depending on residency status and bilateral agreements.','Kyrgyzstan has agreements with other CIS countries (Russia, Kazakhstan, Belarus) under Eurasian Economic Union rules.','Work permit from the State Migration Service is required before employment can begin.','Employer must also deduct and remit income tax (10% flat rate) from foreign worker salaries.']},
+    'Laos':{l:['LSSO contributions cover five branches: occupational disease, maternity, sickness, old-age pension, and work injury.','Employer and employee each contribute 6%; total contribution is 12% to LSSO.','LSSO registration is mandatory for all employers with one or more employees.','The system is still maturing — appeals processes and benefit delivery are evolving.'],f:['Foreign workers on valid Laos work permits are subject to LSSO contributions at the same rates.','Work permits require Labour Department approval and are renewed annually.','No significant bilateral social security agreements currently in place.','Private health insurance is essential for foreign workers given limited LSSO-covered facility network.']},
+    'Latvia':{l:['VSAOI rate of 23.59% covers pension (old-age), disability, survivors, unemployment, parental, and sickness benefits.','Maximum contribution base applies (EUR 78,100 in 2024); contributions cease once the cap is reached.','Mandatory occupational health and safety obligations add indirect costs for certain industries.','Supplementary voluntary pension (3rd pillar) and group medical plans are common employer offerings.'],f:['EU/EEA workers with A1 certificates may remain in their home-country social system.','Non-EU workers are subject to Latvian VSAOI on the same basis as nationals.','Latvia has bilateral social security agreements with ~15 non-EU countries.','EU Blue Card and ICT permits are the primary routes for non-EU skilled foreign workers.']},
+    'Lithuania':{l:['The 1.77% employer-side SoDra contribution is a consolidated rate; the majority of social insurance contributions are employee-borne in Lithuania\'s structure.','Long-term care insurance (0.16%) is included in the total.','Self-employed have different contribution rules; only employer-employee relationships are covered here.','Group health insurance and life cover are common voluntary benefits to supplement the system.'],f:['EU/EEA workers with A1 certificates remain in their home-country social system.','Non-EU workers are integrated into Lithuanian social insurance on commencement of work.','Lithuania has bilateral agreements with several non-EU countries.','EU Blue Card and national work permit routes are available for non-EU nationals.']},
+    'Luxembourg':{l:['Luxembourg employer contributions are among the most moderate in Western Europe relative to take-home pay.','Pension (CNaP) 8.5% covers old-age, disability and survivors.','Health insurance contributions to CNS cover in-patient, out-patient, and maternity.','Salary indexation (automatic cost-of-living adjustment) is a significant total cost factor — triggered by a 2.5% inflation threshold.'],f:['EU/EEA workers with A1 certificates may remain in their home-country social system; cross-border workers from France, Belgium, Germany are common.','Non-EU workers are integrated into Luxembourg social security from day one.','Luxembourg has bilateral agreements with the USA, Canada, Switzerland, and others.','Premium benefits packages are standard in Luxembourg\'s highly competitive financial services sector.']},
+    'Malaysia':{l:['EPF: 13% for salaries ≤ RM 5,000/month; 12% for salaries > RM 5,000/month. Employer may choose to contribute at 13% regardless.','SOCSO (PERKESO): covers work injury and invalidity — employer pays 1.75%, employee pays 0.5% (capped at RM 5,000/month salary for both).','EIS (SIP): unemployment insurance since 2018 — employer 0.2%, employee 0.2% (capped at RM 4,000/month salary).','Total employment cost in Malaysia is relatively competitive within ASEAN for professional roles.'],f:['Foreign workers are subject to reduced EPF at a fixed employer rate of RM 5 per month (or 2% if salary-based election is made).','SOCSO: Second Schedule (Category II) — employers pay 1.25% for foreign workers (work injury only; no invalidity coverage).','EIS: Foreign workers are generally NOT covered by the Employment Insurance System.','Levy payments to the government are required for certain categories of foreign workers — these are not included in the contribution rates above.']},
+    'Mexico':{l:['IMSS contributions are complex — structured across multiple branches with varying bases (SBC, SMA, fixed quotas).','INFONAVIT (5%) is calculated on the SBC (Salario Base de Cotización); must be remitted bi-monthly to INFONAVIT account.','ISN (State Payroll Tax) varies by state: Ciudad de México 3%, Nuevo León 2.5%, Jalisco 2% — a significant variable cost.','Mexico mandates PTU (profit-sharing) at 10% of pre-tax profits distributed among employees — an annual obligation.'],f:['Foreign nationals on FM3 or FMM visas with IMSS-registered employment are subject to the same IMSS and INFONAVIT rates.','A bilateral social security agreement with the USA does not exist; contributions are duplicated.','Mexico has agreements with Spain, Canada, and ~10 others — verify status by nationality.','Work permit (LUFT + INM immigration permit) is required before payroll registration.']},
+    'Mongolia':{l:['Social insurance contributions cover pension, health, occupational hazard, unemployment, and maternity.','Contribution base is gross salary; there is no cap for most branches.','Mongolia\'s economy is heavily mining-driven; additional sector-specific obligations may apply for extractive industry employers.','Private health insurance is a common supplement to the state system.'],f:['Foreign workers on valid work permits are subject to Mongolian social insurance contributions.','Mongolia has limited bilateral social security agreements — most foreign workers contribute in full.','Work permits require Labour Ministry and Immigration Agency approval.','Dual-status reporting requirements may apply for workers seconded from treaty-partner countries.']},
+    'Morocco':{l:['CNSS covers family, long-term disability, work accident, and old-age pension branches.','AMO is mandatory medical coverage introduced in 2005; employer contributes 4.11%.','CIMR supplementary pension is not strictly statutory but is virtually universal among formal employers.','Total employer burden in Morocco is higher than many African peers due to the comprehensive social system.'],f:['Foreign workers legally employed in Morocco are subject to the same contribution rates.','Morocco has bilateral social security agreements with France, Spain, Italy, Belgium, Netherlands, and Germany.','Residence card and work authorisation are required before payroll registration.','Private supplementary health insurance is standard for expatriate packages.']},
+    'Myanmar':{l:['Social Security Board (SSB) contributions apply to private sector employers.','Employer: 3% (health & life); employee: 2% — total 5% funded to SSB.','SSB coverage provides basic health, maternity, disability, and death benefits.','The SSB system has limited capacity — private medical insurance is strongly recommended.'],f:['Foreign employees (work permit holders) in Myanmar are generally exempt from SSB contributions.','No statutory contributions apply for foreign workers — employer cost is effectively 0% statutory.','Formal work permit from MIC or Ministry of Labour is required for all foreign employees.','Given the current operating environment in Myanmar, legal and compliance risk assessment is advised before engagement.']},
+    'Netherlands':{l:['WGA (differentiated/UFO) surcharge is employer-specific and based on sick pay history — can vary significantly from the 0.5% shown.','AWf (WW) rate shown is the standard rate (2.74%); low rate (0.77%) applies for fixed-term contracts and certain other categories.','Zvw (healthcare) levy of 6.10% is employer-paid on salary up to EUR 71,628/year (2024).','Transitional arrangement (WNT / Wet DBA) affects classification of freelance vs employment relationships.'],f:['EU/EEA workers with A1 certificates may remain in their home-country social security system.','Non-EU workers are subject to Dutch contributions from first day of employment.','Netherlands has bilateral agreements with ~20 non-EU countries.','30% ruling (tax facility for recruited foreign workers) may reduce gross salary basis but not social security obligations.']},
+    'North Macedonia':{l:['North Macedonia uses a net wage payment model — the employer\'s statutory on-costs are built into the gross/net conversion at income tax level.','No additional percentage-based employer social contribution applies on top of gross salary.','Flat income tax rate of 10% (10% PIT on gross income); employer handles withholding.','Employers should budget for contractual benefits, market-rate bonuses, and minimum wage compliance.'],f:['Foreign workers in North Macedonia follow the same net-wage structure — no separate employer social contribution.','Work permits and labour market tests are required for non-EU nationals.','Social security coordination applies for EU nationals per the Stabilisation and Association Agreement.','Private health insurance is strongly recommended as the national system has capacity constraints.']},
+    'Norway':{l:['AGA rate varies by geographic zone: Zone 1 (Oslo, most urban) = 14.1%; Zone 2 = 10.6%; Zone 3 = 6.4%; Zone 4 = 5.1%; Zone 5 = 0% (Finnmark).','OTP (mandatory occupational pension) minimum is 2% of salary between 1 G and 12 G (G = National Insurance Base Amount ~NOK 124,028 in 2024).','Norwegian collective agreements (tariffavtaler) are widespread and may mandate higher pension contributions and benefits.','No employer-side health insurance contribution — public healthcare is tax-funded.'],f:['EEA workers with A1 certificates can remain in their home-country social system.','Non-EEA workers must enroll in Norwegian National Insurance (Trygd) from the first month of employment.','Norway has bilateral agreements with the USA, Canada, India, Australia, and others.','Work permit processing is managed by UDI; employer letter of offer is required.']},
+    'Pakistan':{l:['EOBI employer contribution (5%) is calculated on the minimum wage (PKR 37,000/month for 2024–25), not on the employee\'s actual salary — so effective rate on higher salaries is much lower.','Provincial SESSI/PESSI/ESSI/EOBI rates apply depending on the province of employment.','Gratuity: payable after 5 years at 30 days\' wages per year of service — a significant accrual obligation.','End of service obligations and EOBI together represent a meaningful long-term liability.'],f:['Foreign workers on valid Pakistan work permits are generally exempt from EOBI as contributions are linked to national identity.','Provincial Social Security schemes do not commonly apply to foreign employees.','Work permits from Board of Investment (BOI) or Ministry of Interior are required.','Private health and life insurance are essential for foreign employee packages.']},
+    'Panama':{l:['CSS (Caja del Seguro Social) covers pension (5.75%), disability (0.5%), occupational risks (0.5%), maternity (0.25%), health (6%), and unemployment reserve (0.25%) — totalling 13.25%.','Seguro Educativo of 1.5% funds the National Education Insurance Fund.','13th month salary (decimotercer mes) accrues at 1/12 per month — an additional 8.33% monthly obligation.','Panama uses USD as its currency — no exchange rate risk.'],f:['Foreign workers legally employed in Panama are subject to the same CSS and Seguro Educativo rates.','Panama does not have bilateral social security agreements with most countries.','Work permit (carné de trabajo) is required; quota rules limit the proportion of foreign employees (max 10% general, 15% technical).','Foreign workers in free trade zones may have different administrative treatment.']},
+    'Peru':{l:['EsSalud contribution of 9% covers comprehensive health insurance for the employee and their family.','SCTR (complementary work risk insurance) is an additional employer cost for hazardous activities — variable premium.','AFP pension contribution is entirely employee-funded (10% + commission) — no employer pension contribution.','Statutory bonuses: two annual bonuses of 1 month\'s salary each (July and December) are mandatory — effectively +16.67% annual obligation.'],f:['Foreign workers on valid carné de extranjería are subject to EsSalud at the same 9% rate.','Peru has bilateral agreements with Spain, Argentina, Chile, Ecuador and Bolivia for social security.','Work permit through MIGRACIONES is required before payroll can be established.','Severance (CTS — Compensación por Tiempo de Servicios) is an additional monthly accrual of ~8.33% of salary.']},
+    'Philippines':{l:['SSS contributions: based on the Monthly Salary Credit (MSC) table — employer share varies from ~6–8% depending on salary bracket; estimate used is 6%.','PhilHealth: 5% total (employee 2.5%, employer 2.5%) on monthly basic salary capped at PHP 100,000.','Pag-IBIG (HDMF): PHP 200/month employer contribution maximum — effective rate declines sharply for higher salaries.','13th month pay is mandatory (1/12 of annual basic salary per month) — an additional 8.33% monthly accrual.'],f:['Foreign nationals on valid Alien Employment Permit (AEP) are subject to SSS, PhilHealth, and Pag-IBIG contributions.','Philippines has bilateral labor agreements with many countries but limited social security totalization agreements.','Alien Employment Permit (AEP) from DOLE is required before employment; includes online endorsement from relevant agencies.','Expat packages typically include private medical insurance on top of PhilHealth enrollment.']},
+    'Poland':{l:['Accident insurance rate (1.67%) is an industry-average estimate; actual rate set by ZUS based on company risk profile.','Labour Fund (FP) also covers active labour market programmes; FEP (Bridging Pension Fund) applies to qualifying hazardous occupations.','Polish employers must provide PPK (Employee Capital Plans) — minimum 1.5% employer contribution to employee pension savings.','Minimum wage 2024: PLN 4,242/month (January) rising to PLN 4,300/month (July).'],f:['EU/EEA workers with A1 certificates remain in their home-country social system.','Non-EU workers (including Ukrainian nationals) are integrated into ZUS from day one.','Poland has bilateral social security agreements with ~30 non-EU countries.','Work permits (zezwolenie) and seasonal worker permits are different — choose correct category.']},
+    'Portugal':{l:['Social Security of 23.75% is one of the higher rates in Southern Europe.','Employee contributes an additional 11% — total employee+employer rate is 34.75%.','SIADAP performance framework and subsídio de alimentação (meal allowance) are common local norms.','Portugal is a competitive destination for remote workers; NHR (Non-Habitual Resident) regime may reduce personal tax for foreign-origin workers.'],f:['EU/EEA workers with A1 certificates can remain in their home social security system.','Non-EU workers must enroll in Portuguese Social Security from day one.','Portugal has bilateral agreements with PALOP countries (Angola, Mozambique etc.) and others.','Work permit (Autorização de Residência / Visto D) is required for non-EU nationals.']},
+    'Qatar':{l:['GPSSA employer contribution of 14% applies exclusively to Qatari nationals employed in the private sector.','Employee (Qatari) contributes 5%; government adds 3% — total 22% to GPSSA.','Employer must pay monthly contributions by the 10th of the following month.','End of Service Gratuity (3 weeks per year for the first 5 years, 4 weeks thereafter) is a separate contractual obligation for all employees.'],f:['Foreign workers (expatriates) are NOT required to contribute to GPSSA.','No employer social security contribution applies for foreign national employees.','Qatar has shifted to a contractual End of Service Benefit (ESG) model — accrual is the main employer obligation for foreign workers.','Medical insurance for employees and their dependants is mandatory under the Employer Sponsorship (Kafala) system.']},
+    'Romania':{l:['CAM (Work Accident Contribution) at 2.25% is the only employer-side social contribution — one of the lowest in the EU.','Employee-borne contributions are significantly higher: CAS 25% (pension) + CASS 10% (health) + CAM 2.25% = 37.25% total.','Romania\'s Pillar II pension system is semi-mandatory; employers must facilitate enrollment.','Meal tickets (tichete de masă) are widely offered — up to RON 40/day is tax-advantaged.'],f:['EU/EEA workers with A1 certificates can remain in their home-country social system.','Non-EU workers are subject to Romanian social security on the same basis as nationals.','Romania has bilateral agreements with ~15 non-EU countries.','Work permit processing can be lengthy — plan at least 3 months lead time for non-EU hires.']},
+    'Saudi Arabia':{l:['GOSI employer contributions for Saudi nationals: Annuity (9.75%) + Occupational Hazards (2%) = 11.75%.','Employee (Saudi) contributes 10% to GOSI — employers must deduct and remit this monthly.','Saudisation (Nitaqat) compliance requires maintaining minimum percentages of Saudi employees by sector and company size.','Employers failing Saudisation targets face restrictions on government services and new work visa issuance.'],f:['Foreign workers are only subject to GOSI Occupational Hazards contribution of 2% (employer only).','No annuity (pension) contribution is required for non-Saudi employees.','End of Service Award (1/3 month per year for years 1–5, 2/3 month per year for years 5–10, 1 month per year thereafter) is a mandatory contractual obligation.','Iqama (residency permit) and work permit through MHRSD and MOFA are required; employer acts as sponsor.']},
+    'Serbia':{l:['Pension and disability insurance (PIO): employer pays 11.5% but displayed as 10% in our model due to rounding and relief deductions.','Health insurance: employer contributes 5.15% to RFZO (Republic Fund for Health Insurance).','Gross wage contracts in Serbia: total social charges (employee + employer) on the gross salary are significant — effective total labour cost is well above gross.','Minimum net salary 2024: RSD 43,193/month.'],f:['Foreign workers on valid work permits are subject to Serbian social insurance on the same basis as nationals.','EU nationals have limited bilateral agreement protections in Serbia pre-accession.','Serbia has bilateral agreements with Russia, Albania, North Macedonia, and several others.','Work permit application through NSZ (National Employment Service) is required for non-EU nationals.']},
+    'Singapore':{l:['CPF rates shown are for employees ≤55 years old. Rates reduce progressively: 55–60 = 14.5% employer; 60–65 = 11%; 65–70 = 8.5%; 70+ = 7.5%.','SDL (0.25%) applies on all employees earning > SGD 800/month and is paid to SkillsFuture Singapore.','CPF contributions are applicable to all Singapore Citizens and Permanent Residents.','From 2025, CPF Ordinary Wage (OW) ceiling will increase to SGD 7,400/month.'],f:['Foreign workers on Employment Pass (EP), S Pass, or Work Permit are NOT required to contribute to CPF.','SDL of 0.25% applies to all employees including foreign workers earning above SGD 800/month.','Foreign Worker Levy (FWL) applies to certain work permit holders — this is additional to SDL and varies by skill tier and sector.','Foreign workers are strongly recommended to have private medical insurance; some pass holders require it as a visa condition.']},
+    'Slovakia':{l:['Total employer contribution rate of 35.2% is among the highest in the EU.','Health insurance (10%) is paid to one of the registered health insurance companies.','Reserve Fund (4.75%) is a solidarity buffer for pension system sustainability.','No separate work accident insurance — covered within the comprehensive social insurance contribution.'],f:['EU/EEA workers with A1 certificates can remain in their home-country social system.','Non-EU workers must enroll in Slovak social insurance from the first day of employment.','Slovakia has bilateral agreements with ~15 non-EU countries.','Work permit (single permit) must be obtained before employment begins.']},
+    'Slovenia':{l:['Contributions are split across multiple agencies: ZPIZ (pension), ZZZS (health), ZRSZ (unemployment), and ZPIZ again for parental.','Slovenia\'s total employer contribution is moderate compared to regional peers; total employee+employer is ~38%.','Meal and commute allowances are partially tax-exempt and widely provided.','Notice periods and severance entitlements under the Labour Code are substantive — factor these into total cost models.'],f:['EU/EEA workers with A1 certificates may remain in their home social security system.','Non-EU workers must enroll in Slovenian social security from commencement.','Bilateral agreements exist with several non-EU countries.','EU Blue Card route is available for highly-skilled non-EU nationals.']},
+    'South Africa':{l:['UIF: 1% each employer and employee, capped at ZAR 17,712/month (ZAR 212,544 annually) per 2024 adjustment.','SDL: 1% of total payroll — applies only to employers with annual payroll above ZAR 500,000; remitted to SARS.','COIDA (Compensation for Occupational Injuries and Diseases) assessment fees are an additional obligation billed annually by the Department of Labour.','Minimum wage 2024: ZAR 27.58 per hour (ZAR ~4,800/month for 40-hr week).'],f:['Foreign nationals on valid work visas are subject to UIF and SDL on the same basis as South African nationals.','South Africa has social security bilateral agreements with Lesotho, Swaziland (eSwatini), and a limited number of others.','Critical Skills, General Work, and Intra-Company Transfer visas are the primary routes for foreign workers.','South Africa\'s employment equity legislation may affect staffing ratios in larger organisations.']},
+    'South Korea':{l:['NPS pension cap: income above KRW 5,900,000/month is still subject to the full rate (no cap).','NHI: 7.09% total (employee 3.545% + employer 3.545%); rates are adjusted annually.','LTCI rate is 12.81% of NHI premium for both employer and employee; calculated as a sub-component of NHI.','Employment Insurance: employer 0.9% + employee 0.9% for standard firms; additional employer levy for workforce stability programmes.'],f:['Foreign workers on E-series visas (E-1 through E-7) are subject to NPS, NHI, and EI contributions on the same basis.','South Korea has social security agreements with the USA, Canada, Germany, UK, France, Australia, and ~30 others.','Certificate of Coverage from the home country allows exemption from Korean NPS and/or EI.','Industrial Accident Compensation Insurance (산재보험) is 100% employer-funded and must be maintained from first day.']},
+    'Spain':{l:['Common contingencies (23.6%) includes pension, permanent disability, survivors, sickness, and maternity.','FOGASA (0.2%) guarantees unpaid wages in the event of employer insolvency.','AT (work accident) contribution rate varies significantly by industry — 0.75% is a general benchmark.','Mutual societies (Mutuas Colaboradoras) must manage sick leave and occupational contingencies.'],f:['EU/EEA workers with A1 certificates may remain in their home-country social system.','Non-EU workers must enroll in the Tesorería General de la Seguridad Social (TGSS) from day one.','Spain has bilateral social security agreements with ~20 non-EU countries.','Work permit (tarjeta de residencia y trabajo) is required; fast-track routes exist for intra-company transfers.']},
+    'Sweden':{l:['Arbetsgivaravgifter (31.42%) is a consolidated rate covering all social insurance branches: retirement (10.21%), health (3.55%), work injury (0.2%), parental leave (2.6%), survivors (0.7%), unemployment (2.64%), work environment (0.1%), other (11.42%).','A reduced rate (10.21%) applies to employees born between 1958–1980 on pension component — total rate effectively lower for older workforce.','Swedish collective agreements (kollektivavtal) are widespread and may mandate additional pension top-ups and benefits.','Holiday pay (12% of total remuneration in some sectors) is an additional employer obligation.'],f:['EU/EEA workers with A1 certificates can remain in their home-country social system.','Non-EU workers must enroll in Swedish social insurance from first day.','Sweden has bilateral agreements with many non-EU countries.','Work permit (EU Blue Card or national permit) requires employer approval from the Swedish Migration Agency (Migrationsverket).']},
+    'Switzerland':{l:['AHV/IV/EO (5.3%) is the first-pillar contribution covering old-age, disability, and survivors.','ALV (1.1%) covers unemployment insurance up to earnings of CHF 148,200/year; above that, a solidarity contribution of 0.5% applies.','BVG (mandatory occupational pension) is an additional significant cost — minimum employer contribution of ~6.5–9% depending on age band; not included in the 6.4% rate above.','Total Swiss employer cost including BVG is typically 10–20% depending on age and plan.'],f:['EU/EEA workers with A1 certificates may remain in their home-country social system (Switzerland is not EU but has bilateral agreement with EU).','Non-EU workers are integrated into Swiss social security on commencement of work.','Switzerland has bilateral social security agreements with the USA, Canada, Australia, Japan, and others.','Work permit categories (L, B, C permits) and the annual quota for non-EU nationals significantly affect hiring flexibility.']},
+    'Taiwan':{l:['Labour Insurance premium rate is 12.5% on the insured wage; employer pays 70% = 8.75% of insured salary.','Labour Pension (6% employer minimum) is deposited into individual employee accounts under the 2005 Labour Pension Act.','NHI: employer contribution is based on a ratio of 2.35 × employee premium (employee pays 30% of total NHI premium, employer pays 70%).','13th month salary or year-end bonus is expected by market convention even if not legally mandated in all sectors.'],f:['Foreign nationals with valid Alien Resident Certificates (ARC) are subject to NHI and Labour Insurance.','Labour Pension Act applies to foreign workers with contracts of one year or more.','Work permit (Employment Gold Card or standard work permit from MOL) is required for non-ROC citizens.','Taiwan has limited social security agreements — contribution obligations are generally universal for employed foreign workers.']},
+    'Thailand':{l:['SSF contribution of 5% applies on salary capped at THB 15,000/month (THB 750 maximum per month employer contribution).','The fund covers sickness, maternity, disability, death, child allowance, old-age pension, and unemployment.','Employer must register with the Social Security Office within 30 days of hiring the first employee.','Provident fund (PVD) — not included above — is a voluntary supplementary pension plan commonly offered (2–15% employer contribution).'],f:['Foreign workers on valid non-immigrant B visas with work permits are subject to SSF contributions.','Same cap and rate applies to foreign workers (5% on up to THB 15,000/month).','Work permit from the Department of Employment is required; must be in place before social security registration.','No bilateral social security agreements — SSF contributions cannot be transferred on departure.']},
+    'Tunisia':{l:['CNSS total rate is 16.57% employer + 9.18% employee; employer portion covers family, old-age, work injury, and housing fund.','Work accident declarations must be filed with CNSS within 24 hours; CNSS insures directly.','Minimum wage (SMIG) is adjusted annually; contributions are calculated on total gross remuneration.','Private health insurance top-ups are standard practice among multinational employers.'],f:['Foreign workers legally employed in Tunisia are subject to the same CNSS contribution rates.','Tunisia has bilateral social security agreements with France, Italy, Germany, Austria, Belgium, Luxembourg, and Netherlands.','Work permit from Ministry of Employment is required; must be renewed annually.','Libyan and some North African nationals have facilitated permit processes.']},
+    'Turkey':{l:['SGK employer total is 22.5% (long-term 11% + health 7.5% + short-term 2%) with a 5% Treasury subsidy effectively reducing employer\'s share — net employer rate varies.','Unemployment insurance: employer 2%, employee 1%, state 2% = total 5% to IŞKUR.','Minimum wage 2024: TRY 17,002 gross/month (approximately USD 530 at current rate) — significantly lower than EU peers.','Mandatory private pension (BES) contributions: employers must contribute 3% to employees\' pension fund on top of SGK.'],f:['Foreign workers on valid çalışma izni (work permit) are subject to SGK contributions on the same terms.','Turkey has bilateral social security agreements with Germany, Austria, Netherlands, Belgium, France, Switzerland, UK, and others — verify by nationality.','Work permit from the Ministry of Labour and Social Security is required; employer must be a Turkish legal entity.','Residence permit linked to work permit is also required.']},
+    'Uganda':{l:['NSSF employer contribution is 10%; employee contributes 5% — total 15% into the fund.','NSSF is the single mandatory pension and social security scheme in Uganda.','Mandatory severance pay (under the Employment Act) adds to total cost for longer-term employees.','Private health and life insurance are standard benefits among formal sector employers.'],f:['Foreign nationals legally employed in Uganda are required to contribute to NSSF on the same basis.','Work permits from the Directorate of Citizenship and Immigration Control are required.','Uganda does not have significant bilateral social security agreements — universal application to all employed workers.','Private comprehensive insurance is strongly recommended as NSSF benefit coverage is limited.']},
+    'Ukraine':{l:['USC (Unified Social Contribution) of 22% is the single employer-side contribution covering pension, disability, work accident, and maternity.','Applies on the full gross salary; no cap on the contribution base.','USC applies from the first employee; sole proprietors have different rates.','Private pension funds and supplementary medical insurance are increasingly offered by competitive employers.'],f:['Foreign workers legally employed by a Ukrainian legal entity are subject to the same 22% USC rate.','Ukraine has social security agreements with several countries; bilateral agreements may provide exemptions.','Work permit processes have been significantly affected by the ongoing conflict — verify current regulatory requirements.','Compliance with labour law and payroll registration requirements remains essential for employer standing.']},
+    'United Arab Emirates':{l:['GPSSA (General Pension and Social Security Authority) contributions apply only to UAE nationals and GCC national employees.','Employer: 12.5% + government: 2.5% + employee: 5% = 20% total for GPSSA-covered nationals.','Emiratisation (Nafis) programme requires private sector employers to maintain target percentages of UAE nationals — non-compliance penalties apply.','End of Service Gratuity for all employees (21 days\' wage per year for first 5 years; 30 days thereafter) applies to both national and foreign workers.'],f:['No statutory social security contributions are required for foreign (expatriate) employees in the UAE.','End of Service Gratuity is the primary employer obligation: 21 days\' basic per year (years 1–5); 30 days\' basic/year thereafter; capped at 2 years\' total salary.','Medical insurance for employees and family is mandatory in Abu Dhabi, Dubai, and increasingly in other emirates.','Work permit (labour card + residency visa) is required; employer is the sponsor (kafeel).']},
+    'United Kingdom':{l:['Employer NIC rate increased from 13.8% to 15% from April 2025; Secondary Threshold reduced to £5,000/year.','Employment Allowance (up to £10,500/year from April 2025) available for eligible smaller employers.','Mandatory auto-enrolment workplace pension: minimum 3% employer contribution on qualifying earnings.','Apprenticeship Levy (0.5% on annual payroll above £3m) is an additional obligation for larger employers.'],f:['EU nationals working in the UK post-Brexit are subject to the same NIC rates as UK nationals.','Workers from countries with bilateral social security agreements (USA, Canada, Japan, Israel, etc.) may maintain home-country coverage for up to 5 years.','Skilled Worker visa requires employer sponsorship license; Certificate of Sponsorship (CoS) is issued per hire.','Right to work checks are mandatory for all employees regardless of nationality.']},
+    'United States of America':{l:['OASDI applies on wages up to USD 168,600 (2024 wage base, adjusted annually).','FUTA: effective rate is 0.6% after 5.4% credit against the statutory 6% rate, on first USD 7,000 of wages per employee.','SUTA (State Unemployment Insurance) varies by state (0.06%–10.2%) — not included in the statutory rate above; add approx. 2% depending on state.','Many states impose additional payroll taxes (CA SDI, NJ FLI, NY DBL, WA PFML) — budget for state-specific obligations.'],f:['Foreign nationals on valid US work visas (H-1B, L-1, O-1, TN etc.) are subject to FICA (OASDI + Medicare) on the same basis as US nationals.','F-1 and J-1 visa holders may be exempt from FICA for the first 5 years (students) or 2 years (exchange visitors) under the non-resident alien rules.','USA does not have FUTA or SUTA exemptions for foreign workers — all employed individuals are covered.','The USA has Social Security Totalization Agreements with ~30 countries — workers with A1/CoC from a treaty country may be exempt from FICA for up to 5 years.']},
+    'Vietnam':{l:['Social Insurance (BHXH): employer 17.5% + employee 8% = 25.5% total. Employer covers: sickness (3%), maternity (included), work accident/occupational disease (0.5%), pension & death (14%).','Health Insurance (BHYT): employer 3% + employee 1.5% = 4.5% total; contribution based on contractual salary.','Unemployment Insurance (BHTN): employer 1% + employee 1% = 2%; capped at 20× minimum wage per month.','13th month salary is market practice (not statute) but widely expected and should be budgeted.'],f:['Foreign workers under labour contracts of ≥ 1 month are now required to participate in Vietnamese Social Insurance.','SI employer contribution for foreigners: 17.5% (sickness 3% + work accident 0.5% + pension 14%).','Unemployment Insurance does NOT apply to foreign workers.','Health Insurance applies at the same 3% employer rate for foreign workers.']},
+    'default':{l:['Statutory contribution rates are as sourced from publicly available government regulations.','Total employer cost includes base salary, statutory contributions, and estimated benefits.','Rates may vary based on salary thresholds, employee age, and industry classification.','Consult Marco\'s local payroll specialists to confirm rates applicable to your specific situation.'],f:['Foreign national contribution obligations may differ from those applicable to local employees.','Bilateral social security agreements may reduce contribution obligations — verify by nationality.','Work permit and immigration costs are not included in the contribution rates above.','Consult Marco\'s local payroll specialists to confirm rates applicable to your specific situation.']}
+  };
+
+  // ── renderReport() ──
+  function lccCalculate() {
+    var base = getMonthlyBase();
+    if (!base || !lccState.country || !lccState.workerType) {
+      // highlight missing fields
+      if (!lccState.country) document.getElementById('lcc-country-trigger').classList.add('error-highlight');
+      if (!lccState.workerType) { document.getElementById('lcc-wt-local').classList.add('error-highlight'); document.getElementById('lcc-wt-foreign').classList.add('error-highlight'); }
+      if (!base) document.getElementById('lcc-salary-input').classList.add('error-highlight');
+      setTimeout(function(){ document.querySelectorAll('.error-highlight').forEach(function(el){ el.classList.remove('error-highlight'); }); }, 1500);
+      return;
+    }
+    lccAutoCalc();
+    renderReport(base);
+  }
+
+  function renderReport(base) {
+    var country   = lccState.country;
+    var wt        = lccState.workerType; // 'local' | 'foreign'
+    var statRate  = getStatRate();
+    var statutory = base * statRate / 100;
+    var benefits  = base * BENEFITS_RATE / 100;
+    var total     = base + statutory + benefits;
+    var mRatio    = total / base;
+    var sym       = 'USD ';
+    var workerLabel = wt === 'local' ? 'Local / PR' : 'Foreign National';
+    var freqLabel   = lccState.salaryFreq === 'monthly' ? '/mo base salary' : '/mo base salary (from annual)';
+
+    // Header
+    document.getElementById('rpt-country').textContent = country;
+    document.getElementById('rpt-subtitle').textContent = workerLabel + '  ·  ' + sym + fmtNum(base) + freqLabel + '  ·  USD';
+
+    // Cards
+    var statMo   = sym + fmtNum(statutory);
+    var statYr   = sym + fmtNum(statutory * 12);
+    var totalMo  = sym + fmtNum(total);
+    var totalYr  = sym + fmtNum(total * 12);
+    var benPct   = '~ ' + BENEFITS_RATE + '%';
+    var mRatFmt  = mRatio.toFixed(2) + 'x';
+    document.getElementById('rpt-cards').innerHTML =
+      rptCard('#1d4783', totalMo,  'Monthly Total Cost',   'per month') +
+      rptCard('#019de7', totalYr,  'Annual Total Cost',    'per year') +
+      rptCard('#1d4783', statMo,   'Monthly Statutory',    'contributions') +
+      rptCard('#019de7', statYr,   'Annual Statutory',     'contributions') +
+      rptCard('#ca45ff', benPct,   'Benefits (Est.)',       'of base salary') +
+      rptCard('#ff1d1d', mRatFmt,  'M Ratio',              'cost multiplier');
+
+    // Statutory table
+    var items = STAT_ITEMS[country] || [];
+    var isLocal = (wt === 'local');
+    document.getElementById('rpt-stat-table').innerHTML = buildTable(items, base, sym, isLocal, 'Total Statutory Contributions', statRate);
+
+    // Benefits table
+    var region = COUNTRY_REGION[country] || 'apac';
+    var benItems = BEN_TEMPLATES[region] || BEN_TEMPLATES['apac'];
+    document.getElementById('rpt-ben-table').innerHTML = buildBenTable(benItems, base, sym);
+
+    // Notes
+    var notesData = COUNTRY_NOTES[country] || COUNTRY_NOTES['default'];
+    var notesList = isLocal ? (notesData.l || notesData) : (notesData.f || notesData.l || notesData);
+    document.getElementById('rpt-notes').innerHTML =
+      '<div class="lcc-rpt-notes-hdr">' +
+        '<svg class="lcc-rpt-notes-icon" viewBox="0 0 24 24" fill="none" stroke="#ffa245" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
+        '<p class="lcc-rpt-notes-title">' + country + ' — ' + workerLabel + '</p>' +
+      '</div>' +
+      '<div class="lcc-rpt-notes-list">' +
+        notesList.map(function(n){ return '<div class="lcc-rpt-note-item"><div class="lcc-rpt-note-bullet"><div class="lcc-rpt-note-dot"></div></div><p class="lcc-rpt-note-text">' + n + '</p></div>'; }).join('') +
+      '</div>';
+
+    // Show section and scroll
+    var sec = document.getElementById('lcc-report-section');
+    sec.style.display = 'block';
+    setTimeout(function(){ sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+  }
+
+  function rptCard(dotColor, value, label, sublabel) {
+    return '<div class="lcc-rpt-card">' +
+      '<div class="lcc-rpt-card-dot-wrap"><div class="lcc-rpt-card-dot" style="background:' + dotColor + '"></div></div>' +
+      '<p class="lcc-rpt-card-value">' + value + '</p>' +
+      '<div class="lcc-rpt-card-meta"><p class="lcc-rpt-card-label">' + label + '</p><p class="lcc-rpt-card-sublabel">' + sublabel + '</p></div>' +
+    '</div>';
+  }
+
+  function buildTable(items, base, sym, isLocal, totalLabel, totalRate) {
+    var totalMo = base * totalRate / 100;
+    var html = '<div class="lcc-rpt-trow lcc-rpt-trow--hdr">' +
+      tCell('name','th','Contribution Item') + tCell('rate','th','Rate') + tCell('mo','th','Monthly Amount') + tCell('yr','th','Annual Amount') +
+      '</div>';
+
+    if (items.length === 0) {
+      html += '<div class="lcc-rpt-trow lcc-rpt-trow--body">' +
+        '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">No mandatory employer statutory contributions</p><p class="lcc-rpt-td-note">Contribution obligations are minimal or conditional for this country</p></div>' +
+        tCell('rate','td','0%') + tCell('mo','td',sym+'0') + tCell('yr','td',sym+'0','yr') + '</div>';
+    } else {
+      items.forEach(function(it) {
+        var rate = isLocal ? it[2] : (it[3] !== null ? it[3] : it[2]);
+        var mo   = base * rate / 100;
+        var yr   = mo * 12;
+        var rStr = rate % 1 === 0 ? rate + '%' : rate + '%';
+        html += '<div class="lcc-rpt-trow lcc-rpt-trow--body">' +
+          '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">' + it[0] + '</p>' + (it[1] ? '<p class="lcc-rpt-td-note">' + it[1] + '</p>' : '') + '</div>' +
+          tCell('rate','td',rStr) + tCell('mo','td',sym+fmtNum(mo)) + tCell('yr','td',sym+fmtNum(yr),'yr') + '</div>';
+      });
+    }
+
+    var trStr = totalRate % 1 === 0 ? totalRate + '%' : totalRate.toFixed(2).replace(/\.?0+$/, '') + '%';
+    html += '<div class="lcc-rpt-trow lcc-rpt-trow--total">' +
+      '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">' + totalLabel + '</p></div>' +
+      tCell('rate','td',trStr) +
+      '<div class="lcc-rpt-tcell lcc-rpt-tcell--mo"><p class="lcc-rpt-td-total">' + sym + fmtNum(totalMo) + '</p></div>' +
+      '<div class="lcc-rpt-tcell lcc-rpt-tcell--yr"><p class="lcc-rpt-td-total">' + sym + fmtNum(totalMo*12) + '</p></div>' +
+      '</div>';
+    return html;
+  }
+
+  function buildBenTable(items, base, sym) {
+    var totalRate = 0; items.forEach(function(it){ totalRate += it[2]; });
+    var totalMo = base * totalRate / 100;
+    var html = '<div class="lcc-rpt-trow lcc-rpt-trow--hdr">' +
+      tCell('name','th','Contribution Item') + tCell('rate','th','Rate') + tCell('mo','th','Monthly Amount') + tCell('yr','th','Annual Amount') +
+      '</div>';
+    items.forEach(function(it) {
+      var mo = base * it[2] / 100;
+      html += '<div class="lcc-rpt-trow lcc-rpt-trow--body">' +
+        '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">' + it[0] + '</p>' + (it[1] ? '<p class="lcc-rpt-td-note">' + it[1] + '</p>' : '') + '</div>' +
+        tCell('rate','td','~'+it[2]+'%') + tCell('mo','td',sym+fmtNum(mo)) + tCell('yr','td',sym+fmtNum(mo*12),'yr') + '</div>';
+    });
+    var trStr = '~ ' + Math.round(totalRate) + '%';
+    html += '<div class="lcc-rpt-trow lcc-rpt-trow--total">' +
+      '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">Total Benefits (Est.)</p></div>' +
+      tCell('rate','td',trStr) +
+      '<div class="lcc-rpt-tcell lcc-rpt-tcell--mo"><p class="lcc-rpt-td-total">' + sym + fmtNum(totalMo) + '</p></div>' +
+      '<div class="lcc-rpt-tcell lcc-rpt-tcell--yr"><p class="lcc-rpt-td-total">' + sym + fmtNum(totalMo*12) + '</p></div>' +
+      '</div>';
+    return html;
+  }
+
+  function tCell(type, kind, text, variant) {
+    var cls = 'lcc-rpt-tcell lcc-rpt-tcell--' + type;
+    var inner;
+    if (kind === 'th') inner = '<p class="lcc-rpt-th">' + text + '</p>';
+    else if (variant === 'yr') inner = '<p class="lcc-rpt-td-yr">' + text + '</p>';
+    else inner = '<p class="lcc-rpt-td-val">' + text + '</p>';
+    return '<div class="' + cls + '">' + inner + '</div>';
+  }
+
+  // Init
+  buildCountryList('');
+  showEmptyState();
+
+</script>
+
+</body>
+</html>

@@ -514,10 +514,33 @@
       color: #162351;
       font-weight: 500;
     }
-    .pb-dropdown-trigger img {
+    .pb-dropdown-trigger > img {
       width: 16px;
       height: 16px;
       flex-shrink: 0;
+    }
+    .pb-trigger-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .pb-flag-wrap {
+      display: none;
+      width: 37px;
+      height: 24px;
+      flex-shrink: 0;
+      border: 1.6px solid #E5E7EB;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .pb-flag-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .pb-dropdown-trigger.has-value .pb-flag-wrap {
+      display: block;
     }
     .pb-dropdown-menu {
       display: none;
@@ -552,12 +575,19 @@
     .pb-dropdown-list::-webkit-scrollbar-thumb { background: #bcc9eb; border-radius: 4px; }
     .pb-dropdown-list::-webkit-scrollbar-track { background: transparent; }
     .pb-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
       padding: 10px 16px;
       font-size: 14px;
       color: #162351;
       cursor: pointer;
     }
     .pb-dropdown-item:hover { background: #ecf2fb; }
+    .pb-dropdown-item .pb-flag-wrap {
+      display: block;
+      flex-shrink: 0;
+    }
 
     /* Headcount */
     .pb-headcount {
@@ -1695,7 +1725,7 @@
           <div class="nav-dropdown-divider"></div>
           <div class="nav-hub-columns">
             <div class="nav-hub-col">
-              <a href="#" class="nav-hub-item">
+              <a href="hr-knowledge-hub-labor-cost-calculator.html" class="nav-hub-item">
                 <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div>
                 <div class="nav-hub-item-text">
                   <span class="nav-hub-item-title">Labor Cost Calculator</span>
@@ -1903,7 +1933,12 @@
           <label class="pb-field-label">Where would you like to hire?</label>
           <div class="pb-dropdown-wrap">
             <div class="pb-dropdown-trigger" id="pb-country-trigger" tabindex="0">
-              <span id="pb-country-text">Select a country</span>
+              <div class="pb-trigger-left">
+                <div class="pb-flag-wrap" id="pb-country-flag-wrap">
+                  <img id="pb-country-flag" src="" alt="" class="pb-flag-img">
+                </div>
+                <span id="pb-country-text">Select a country</span>
+              </div>
               <img src="assets/Price/Proposal%20Builder/chevron-down.svg" alt="open" id="pb-country-chevron">
             </div>
             <div class="pb-dropdown-menu" id="pb-country-menu">
@@ -2364,7 +2399,7 @@
     <div class="footer-col">
       <span class="footer-col-header">HR Knowledge Hub</span>
       <div class="footer-col-links">
-        <a href="#">Labor Cost Calculator</a>
+        <a href="hr-knowledge-hub-labor-cost-calculator.html">Labor Cost Calculator</a>
         <a href="hr-knowledge-hub-country-guide.html">Country Guide</a>
         <a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a>
         <a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a>
@@ -2455,7 +2490,7 @@
       'Argentina','Bahamas','Barbados','Belize','Bolivia','Brazil','Canada','Chile',
       'Colombia','Costa Rica','Cuba','Dominican Republic','Ecuador','El Salvador',
       'Guatemala','Guyana','Haiti','Honduras','Jamaica','Mexico','Nicaragua',
-      'Panama','Paraguay','Peru','Suriname','Trinidad and Tobago','Uruguay','United States',
+      'Panama','Paraguay','Peru','Suriname','Trinidad and Tobago','Uruguay','United States of America',
       'Venezuela',
       // Asia Pacific
       'Afghanistan','Australia','Bangladesh','Bhutan','Brunei','Cambodia','China',
@@ -2505,7 +2540,7 @@
       'Myanmar':199,'Laos':199,'Nepal':199,'Bhutan':199,'Maldives':199,
       'Mongolia':199,'Timor-Leste':199,'Afghanistan':199,
       // North America – 299
-      'United States':299,'Canada':299,
+      'United States of America':299,'Canada':299,
       // South/Latin America – 399
       'Brazil':399,'Argentina':399,'Chile':399,'Colombia':399,'Mexico':399,
       'Peru':399,'Venezuela':399,'Ecuador':399,'Bolivia':399,'Paraguay':399,
@@ -2687,6 +2722,45 @@
     var countrySearch  = document.getElementById('pb-country-search');
     var countryList    = document.getElementById('pb-country-list');
     var countryText    = document.getElementById('pb-country-text');
+    var countryFlagImg = document.getElementById('pb-country-flag');
+    var COUNTRY_ISO = {
+      'Algeria':'dz','Angola':'ao','Benin':'bj','Botswana':'bw','Burkina Faso':'bf',
+      'Burundi':'bi','Cameroon':'cm','Cape Verde':'cv','Chad':'td','Comoros':'km',
+      'DR Congo':'cd','Djibouti':'dj','Egypt':'eg','Equatorial Guinea':'gq','Eritrea':'er',
+      'Eswatini':'sz','Ethiopia':'et','Gabon':'ga','Gambia':'gm','Ghana':'gh',
+      'Guinea':'gn','Guinea-Bissau':'gw','Ivory Coast':'ci','Kenya':'ke','Lesotho':'ls',
+      'Liberia':'lr','Libya':'ly','Madagascar':'mg','Malawi':'mw','Mali':'ml',
+      'Mauritania':'mr','Mauritius':'mu','Morocco':'ma','Mozambique':'mz','Namibia':'na',
+      'Niger':'ne','Nigeria':'ng','Rwanda':'rw','Senegal':'sn','Seychelles':'sc',
+      'Sierra Leone':'sl','Somalia':'so','South Africa':'za','South Sudan':'ss','Sudan':'sd',
+      'Tanzania':'tz','Togo':'tg','Tunisia':'tn','Uganda':'ug','Zambia':'zm','Zimbabwe':'zw',
+      'Argentina':'ar','Bahamas':'bs','Barbados':'bb','Belize':'bz','Bolivia':'bo',
+      'Brazil':'br','Canada':'ca','Chile':'cl','Colombia':'co','Costa Rica':'cr',
+      'Cuba':'cu','Dominican Republic':'do','Ecuador':'ec','El Salvador':'sv','Guatemala':'gt',
+      'Guyana':'gy','Haiti':'ht','Honduras':'hn','Jamaica':'jm','Mexico':'mx',
+      'Nicaragua':'ni','Panama':'pa','Paraguay':'py','Peru':'pe','Suriname':'sr',
+      'Trinidad and Tobago':'tt','Uruguay':'uy','United States of America':'us','Venezuela':'ve',
+      'Afghanistan':'af','Australia':'au','Bangladesh':'bd','Bhutan':'bt','Brunei':'bn',
+      'Cambodia':'kh','China':'cn','Fiji':'fj','Hong Kong':'hk','India':'in',
+      'Indonesia':'id','Japan':'jp','Kazakhstan':'kz','Kyrgyzstan':'kg','Laos':'la',
+      'Macao':'mo','Malaysia':'my','Maldives':'mv','Mongolia':'mn','Myanmar':'mm',
+      'Nepal':'np','New Zealand':'nz','Pakistan':'pk','Papua New Guinea':'pg','Philippines':'ph',
+      'Singapore':'sg','South Korea':'kr','Sri Lanka':'lk','Taiwan':'tw','Tajikistan':'tj',
+      'Thailand':'th','Timor-Leste':'tl','Turkmenistan':'tm','Uzbekistan':'uz','Vietnam':'vn',
+      'Albania':'al','Andorra':'ad','Armenia':'am','Austria':'at','Azerbaijan':'az',
+      'Belarus':'by','Belgium':'be','Bosnia and Herzegovina':'ba','Bulgaria':'bg','Croatia':'hr',
+      'Cyprus':'cy','Czech Republic':'cz','Denmark':'dk','Estonia':'ee','Finland':'fi',
+      'France':'fr','Georgia':'ge','Germany':'de','Greece':'gr','Hungary':'hu',
+      'Iceland':'is','Ireland':'ie','Italy':'it','Kosovo':'xk','Latvia':'lv',
+      'Liechtenstein':'li','Lithuania':'lt','Luxembourg':'lu','Malta':'mt','Moldova':'md',
+      'Monaco':'mc','Montenegro':'me','Netherlands':'nl','North Macedonia':'mk','Norway':'no',
+      'Poland':'pl','Portugal':'pt','Romania':'ro','Russia':'ru','San Marino':'sm',
+      'Serbia':'rs','Slovakia':'sk','Slovenia':'si','Spain':'es','Sweden':'se',
+      'Switzerland':'ch','Ukraine':'ua','United Kingdom':'gb',
+      'Bahrain':'bh','Iran':'ir','Iraq':'iq','Israel':'il','Jordan':'jo',
+      'Kuwait':'kw','Lebanon':'lb','Oman':'om','Qatar':'qa','Saudi Arabia':'sa',
+      'Syria':'sy','Turkey':'tr','United Arab Emirates':'ae','Yemen':'ye'
+    };
 
     function buildCountryList(filter) {
       countryList.innerHTML = '';
@@ -2696,10 +2770,15 @@
       filtered.forEach(function(c) {
         var item = document.createElement('div');
         item.className = 'pb-dropdown-item';
-        item.textContent = c;
+        var iso = COUNTRY_ISO[c] || '';
+        item.innerHTML = iso
+          ? '<div class="pb-flag-wrap"><img src="assets/Flags/' + iso + '.svg" alt="" class="pb-flag-img"></div><span>' + c + '</span>'
+          : '<span>' + c + '</span>';
         item.addEventListener('click', function() {
           pbState.country = c;
           countryText.textContent = c;
+          var iso = COUNTRY_ISO[c] || '';
+          if (iso) { countryFlagImg.src = 'assets/Flags/' + iso + '.svg'; }
           countryTrigger.classList.add('has-value');
           countryMenu.classList.remove('open');
           // Auto-set default currency (user can override via currency selector)
