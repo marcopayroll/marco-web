@@ -404,6 +404,8 @@
     .wechat-modal-close { background: var(--text-main); color: #fff; border: none; border-radius: 50px; padding: 8px 24px; font-family: var(--font); font-size: 14px; cursor: pointer; }
 
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -716,7 +718,8 @@
         <h2 id="rpt-country" class="lcc-rpt-h2"></h2>
         <p id="rpt-subtitle" class="lcc-rpt-subtitle"></p>
       </div>
-      <button class="lcc-rpt-download-btn" onclick="window.print()">Download Report</button>
+      <button class="lcc-rpt-download-btn" id="lcc-download-btn">Download Report</button>
+      <img id="lcc-rpt-logo" src="assets/marco-watermark-logo.png" alt="Marco" style="display:none; height:48px; width:auto; object-fit:contain; flex-shrink:0;">
     </div>
 
     <!-- Summary cards -->
@@ -729,7 +732,7 @@
         <div class="lcc-rpt-table-wrap" id="rpt-stat-table"></div>
       </div>
       <!-- Benefits table -->
-      <div>
+      <div id="rpt-ben-wrap">
         <h3 class="lcc-rpt-table-title">Benefits &amp; Estimated Costs</h3>
         <div class="lcc-rpt-table-wrap" id="rpt-ben-table"></div>
       </div>
@@ -806,7 +809,14 @@
     salary: ''
   };
 
-  var BENEFITS_RATE = 18; // estimated % of base salary
+  function getCountryBenRate(country, isLocal) {
+    var items = BEN_DATA[country] || [];
+    var total = 0;
+    items.forEach(function(it) {
+      if (isLocal || it[3] !== false) total += it[2];
+    });
+    return total;
+  }
 
   // Country → local currency code (ISO 4217)
   var countryCurrencyMap = {
@@ -1228,7 +1238,8 @@
   function renderResult(base) {
     var statRate    = getStatRate();
     var statutory   = base * statRate / 100;
-    var benefits    = base * BENEFITS_RATE / 100;
+    var benRate     = getCountryBenRate(lccState.country, lccState.workerType === 'local');
+    var benefits    = base * benRate / 100;
     var total       = base + statutory + benefits;
     var overheadRate = ((total - base) / base * 100);
     var mRatio      = total / base;
@@ -1262,7 +1273,7 @@
       '<div class="lcc-bars">' +
         lccBarRow('Base Salary', sym + fmtNum(base) + '/ mo', basePct, 'base') +
         lccBarRow('Statutory Contributions (' + statRateDisplay + ')', sym + fmtNum(statutory) + '/ mo', statPct, 'stat') +
-        lccBarRow('Benefits &amp; Other Costs (est. 18%)', sym + fmtNum(benefits) + '/ mo', benPct, 'ben') +
+        lccBarRow(benRate > 0 ? 'Benefits &amp; Other Costs (est. ' + benRate.toFixed(2).replace(/\.?0+$/, '') + '%)' : 'Benefits &amp; Other Costs', benRate > 0 ? sym + fmtNum(benefits) + '/ mo' : 'Not applicable for this country', benRate > 0 ? benPct : null, 'ben') +
       '</div>' +
       '<div class="lcc-result-divider"></div>' +
       '<div class="lcc-summary">' +
@@ -1391,97 +1402,96 @@
     'Vietnam':[['Social Insurance (BHXH)','Pension, sick leave, maternity & work accident',17.5,17.0],['Health Insurance (BHYT)','National health insurance employer contribution',3.0,null],['Unemployment Insurance (BHTN)','Unemployment insurance fund',1.0,0.0]]
   };
 
-  // ── Benefit Templates by region ──
-  var BEN_TEMPLATES = {
-    'na': [
-      ['Health Insurance (Employer Share)','Major medical; costs vary by plan & coverage tier',10.0],
-      ['Retirement Plan Match (401k/RRSP)','Typical employer 3–6% match programme',4.0],
-      ["Workers' Compensation Insurance",'State/province-mandated; industry-dependent premium',1.5],
-      ['Dental & Vision Insurance','Supplementary dental and optical coverage',1.0],
-      ['Life & Disability Insurance','Group life and STD/LTD insurance cover',0.5],
-      ['Other (commuter, wellness, EAP)','Variable programmes based on company policy',1.0]
+  // ── Per-country mandatory / quantifiable benefit items ──
+  // Format: [name, note, rate_as_pct_of_monthly_base]
+  // Only includes ongoing % costs that can be reliably calculated monthly.
+  // Event-triggered costs (severance on termination, sick pay, overtime) are excluded.
+  var BEN_DATA = {
+    'Argentina': [
+      ['SAC / Aguinaldo (13th Salary)', 'Mandatory 13th salary; half paid in June, half in December', 8.33]
     ],
-    'eu': [
-      ['Supplementary Private Pension','Beyond statutory contributions; varies by plan',5.0],
-      ['Private Health Insurance Top-up','Supplement to statutory health coverage',4.0],
-      ['Meal Vouchers / Food Allowance','Common fringe benefit across European markets',3.0],
-      ['Commuter / Travel Allowance','Public transport or distance-based commuting support',2.0],
-      ['Professional Training & Development','Mandatory or employer-discretionary training investment',2.0],
-      ['Life & Risk Benefits','Group life, critical illness and disability',2.0]
+    'Belgium': [
+      ['Double Holiday Pay', '92% of one monthly salary paid around the main holiday period', 7.67]
     ],
-    'apac': [
-      ['Private / Group Medical Insurance','Employer-funded medical plan beyond statutory',6.0],
-      ['Annual Bonus / 13th Month Provision','Market-standard discretionary or contractual bonus',4.0],
-      ['Group Term Life Insurance','Life coverage provided to all employees',2.0],
-      ['Dental & Optical Benefits','Supplementary dental and vision care',2.0],
-      ['Staff Welfare & Training','L&D budget and welfare fund contributions',2.0],
-      ['Other (transport, flexible, EAP)','Commuting support, flexible benefits & counselling',2.0]
+    'Brazil': [
+      ['13th Salary (Christmas Bonus)', 'One full monthly salary paid annually; accrues at 1/12 per month worked', 8.33],
+      ['Constitutional Vacation Bonus', 'Additional 1/3 of vacation pay; approx. 2.78% monthly accrual', 2.78]
     ],
-    'gcc': [
-      ['End of Service Gratuity Accrual','21 days/year for first 5 years, 30 days/year thereafter',8.0],
-      ['Medical Insurance (Mandatory)','Employer-provided health coverage per local mandate',5.0],
-      ['Transport Allowance','Monthly transport or housing-linked allowance',2.0],
-      ['Life & Disability Insurance','Group life and critical illness coverage',1.5],
-      ['Training & Development','Skills investment and professional certifications',1.0],
-      ['Other Benefits','Annual flight allowance, mobile, flexible benefits',0.5]
+    'Colombia': [
+      ['Prima de Servicios', 'Mandatory 13th salary; two payments of 15 days each in June and December', 8.33],
+      ['Cesantías (Severance Fund Deposit)', 'One month salary per year deposited to employee severance fund annually', 8.33],
+      ['Interest on Cesantías', '12% annual interest on the cesantías balance; approx. 1% of monthly salary', 1.0]
     ],
-    'latam': [
-      ['13th Month Salary (Aguinaldo) Provision','Mandatory in most countries; accrued monthly',8.33],
-      ['Private Health Insurance Top-up','Supplementary coverage beyond mandatory schemes',4.0],
-      ['Meal / Food Benefits','Meal vouchers, food basket or restaurant allowance',2.0],
-      ['Life Insurance','Mandatory or employer-provided group life cover',1.67],
-      ['Transportation Subsidy','Commuting cost reimbursement or vale transporte',1.0],
-      ['Training & Other Benefits','Professional development and discretionary benefits',1.0]
+    'Costa Rica': [
+      ['Aguinaldo (13th Salary)', 'Mandatory statutory bonus equal to wages earned Dec–Nov divided by 12', 8.33]
     ],
-    'africa': [
-      ['Private / Group Medical Insurance','Employer-funded medical plan for employees',6.0],
-      ['Transport Allowance','Monthly commuting support or fuel allowance',3.0],
-      ['Group Life Insurance','Life and accidental death cover',3.0],
-      ['Annual Leave Pay Provision','Accrual for statutory leave encashment obligations',2.0],
-      ['Staff Welfare & Training','Skills development, canteen, and welfare programmes',2.0],
-      ['Other Benefits','Housing, mobile, flexible benefits or risk allowances',2.0]
+    'Denmark': [
+      ['Holiday Supplement', '1% of salary; applies where not already included in the salary package', 1.0]
     ],
-    'eeu': [
-      ['Supplementary Pension Contribution','Beyond statutory minimum; voluntary pillar',4.0],
-      ['Private Health Insurance','Supplementary cover for private clinic access',4.5],
-      ['Meal / Transport Allowance','Meal vouchers and commute reimbursement',3.5],
-      ['Life & Disability Cover','Group life and income protection',2.5],
-      ['Training & Development','Annual L&D budget and certification support',2.0],
-      ['Other Benefits','Flexible benefits, sports, wellbeing allowances',1.5]
+    'Greece': [
+      ['Christmas Bonus', 'One full monthly salary paid in December', 8.33],
+      ['Easter Bonus', 'Half monthly salary paid before Easter', 4.17]
     ],
-    'sea': [
-      ['Group Medical Insurance','Comprehensive inpatient & outpatient medical',7.0],
-      ['Annual Bonus / Performance Pay','Market-standard discretionary performance bonus',4.0],
-      ['Group Term Life Insurance','Life and AD&D coverage for all staff',2.0],
-      ['Dental & Vision Benefits','Supplementary dental and optical care',1.5],
-      ['Staff Training & Development','Professional development and upskilling budget',1.5],
-      ['Other (transport, EAP, flexi)','Commuting support and employee assistance',2.0]
+    'Iceland': [
+      ['Holiday Allowance', 'Minimum 10.17% of total wages; applies where salary excludes holiday pay', 10.17]
+    ],
+    'Indonesia': [
+      ['THR – Religious Holiday Allowance', 'One month salary for 12+ months service; paid before Eid al-Fitr', 8.33]
+    ],
+    'Israel': [
+      ['Mandatory Pension (Employer Contribution)', 'Minimum 6.5% employer pension contribution per month; many employers contribute more', 6.5]
+    ],
+    'Italy': [
+      ['TFR – Trattamento di Fine Rapporto', 'Mandatory accrual at 1/13.5 of annual remuneration (≈7.41% monthly); paid on termination or pension', 7.41]
+    ],
+    'Mexico': [
+      ['Aguinaldo (Christmas Bonus)', 'Minimum 15 days salary per year; payable before 20 December; approx. 4.11% monthly accrual', 4.11],
+      ['Prima Vacacional (Vacation Premium)', 'Minimum 25% premium on vacation days; approx. 1% monthly accrual', 1.0]
+    ],
+    'Netherlands': [
+      ['Holiday Allowance (Vakantiegeld)', 'Minimum 8% of annual wages; typically paid in May or spread monthly', 8.0]
+    ],
+    'Norway': [
+      ['Mandatory Occupational Pension (OTP)', 'Minimum 2% of salary per payroll period into occupational pension savings', 2.0]
+    ],
+    'Panama': [
+      ['Décimo Tercer Mes (13th Month)', 'Mandatory; one day salary per 11 days worked; paid in three statutory instalments', 8.33]
+    ],
+    'Peru': [
+      ['Gratificaciones (Legal Bonuses)', 'Two bonus payments of one monthly salary each in July and December', 16.67],
+      ['CTS – Compensación por Tiempo de Servicios', 'Approx. one month salary per year deposited semi-annually into the employee’s CTS account', 8.33]
+    ],
+    'Philippines': [
+      ['13th Month Pay', 'Mandatory; minimum 1/12 of annual basic salary; paid by 24 December', 8.33]
+    ],
+    'Poland': [
+      ['PPK – Employee Capital Plans (Employer)', 'Basic employer contribution of 1.5% to employee pension savings; mandatory enrolment', 1.5]
+    ],
+    'Portugal': [
+      ['Holiday Allowance (Subsídio de Férias)', 'One additional month salary paid before the annual holiday period', 8.33],
+      ['Christmas Allowance (Subsídio de Natal)', 'One additional month salary paid by statutory deadline in December', 8.33]
+    ],
+    'Saudi Arabia': [
+      ['End-of-Service Award', 'Half-month wage per year for first 5 years; one month per year thereafter; approx. 4.17% monthly accrual', 4.17]
+    ],
+    'Slovakia': [
+      ['Mandatory Social Fund', 'Employer must fund employee social fund; statutory minimum 0.6% of payroll costs', 0.6]
+    ],
+    'Slovenia': [
+      ['Holiday Allowance (Regres)', 'Mandatory annual payment; minimum tied to the statutory minimum wage; approx. 8.33% monthly accrual', 8.33]
+    ],
+    'Taiwan': [
+      ['Labour Pension (Employer Contribution)', 'Minimum 6% of monthly wages deposited into the employee’s individual pension account', 6.0]
+    ],
+    'United Arab Emirates': [
+      ['End-of-Service Gratuity', '21 calendar days’ basic wage per year for first 5 years; 30 days per year thereafter; approx. 5.75% monthly accrual', 5.75]
+    ],
+    'United Kingdom': [
+      ['Workplace Pension (Auto-Enrolment)', 'Minimum 3% employer contribution on qualifying earnings for auto-enrolled workers', 3.0]
+    ],
+    'United States of America': [
+      ['401(k) Employer Match (Market-Standard)', 'Typical employer match 3–6%; not legally required but near-universal in competitive packages', 3.0, false]
     ]
-  };
-
-  // ── Country → benefit region ──
-  var COUNTRY_REGION = {
-    'Algeria':'africa','Argentina':'latam','Australia':'apac','Austria':'eu',
-    'Bangladesh':'sea','Belgium':'eu','Brazil':'latam','Brunei':'sea',
-    'Bulgaria':'eeu','Cambodia':'sea','Canada':'na','Chile':'latam',
-    'China':'apac','Colombia':'latam','Costa Rica':'latam','Croatia':'eu',
-    'Czech Republic':'eeu','Democratic Republic of the Congo':'africa',
-    'Denmark':'eu','Egypt':'africa','Estonia':'eeu','Finland':'eu',
-    'France':'eu','Georgia':'eeu','Germany':'eu','Greece':'eu',
-    'Hong Kong':'apac','Hungary':'eeu','Iceland':'eu','India':'apac',
-    'Indonesia':'sea','Iraq':'gcc','Ireland':'eu','Israel':'eu',
-    'Italy':'eu','Japan':'apac','Jordan':'gcc','Kenya':'africa',
-    'Kyrgyzstan':'eeu','Laos':'sea','Latvia':'eeu','Lithuania':'eeu',
-    'Luxembourg':'eu','Malaysia':'sea','Mexico':'latam','Mongolia':'apac',
-    'Morocco':'africa','Myanmar':'sea','Netherlands':'eu','North Macedonia':'eeu',
-    'Norway':'eu','Pakistan':'sea','Panama':'latam','Peru':'latam',
-    'Philippines':'sea','Poland':'eeu','Portugal':'eu','Qatar':'gcc',
-    'Romania':'eeu','Saudi Arabia':'gcc','Serbia':'eeu','Singapore':'sea',
-    'Slovakia':'eeu','Slovenia':'eu','South Africa':'africa','South Korea':'apac',
-    'Spain':'eu','Sweden':'eu','Switzerland':'eu','Taiwan':'apac',
-    'Thailand':'sea','Tunisia':'africa','Turkey':'eeu','Uganda':'africa',
-    'Ukraine':'eeu','United Arab Emirates':'gcc','United Kingdom':'eu',
-    'United States of America':'na','Vietnam':'sea'
   };
 
   // ── Country notes [local_notes, foreign_notes] ──
@@ -1588,7 +1598,8 @@
     var wt        = lccState.workerType; // 'local' | 'foreign'
     var statRate  = getStatRate();
     var statutory = base * statRate / 100;
-    var benefits  = base * BENEFITS_RATE / 100;
+    var benRate   = getCountryBenRate(country, isLocal);
+    var benefits  = base * benRate / 100;
     var total     = base + statutory + benefits;
     var mRatio    = total / base;
     var sym       = 'USD ';
@@ -1604,25 +1615,35 @@
     var statYr   = sym + fmtNum(statutory * 12);
     var totalMo  = sym + fmtNum(total);
     var totalYr  = sym + fmtNum(total * 12);
-    var benPct   = '~ ' + BENEFITS_RATE + '%';
+    var benRateFmt = benRate > 0 ? '~ ' + benRate.toFixed(2).replace(/\.?0+$/, '') + '%' : '—';
     var mRatFmt  = mRatio.toFixed(2) + 'x';
-    document.getElementById('rpt-cards').innerHTML =
+    var cardsHtml =
       rptCard('#1d4783', totalMo,  'Monthly Total Cost',   'per month') +
       rptCard('#019de7', totalYr,  'Annual Total Cost',    'per year') +
       rptCard('#1d4783', statMo,   'Monthly Statutory',    'contributions') +
       rptCard('#019de7', statYr,   'Annual Statutory',     'contributions') +
-      rptCard('#ca45ff', benPct,   'Benefits (Est.)',       'of base salary') +
       rptCard('#ff1d1d', mRatFmt,  'M Ratio',              'cost multiplier');
+    if (benRate > 0) {
+      cardsHtml += rptCard('#ca45ff', benRateFmt, 'Benefits (Est.)', 'of base salary');
+    }
+    document.getElementById('rpt-cards').innerHTML = cardsHtml;
 
     // Statutory table
     var items = STAT_ITEMS[country] || [];
     var isLocal = (wt === 'local');
     document.getElementById('rpt-stat-table').innerHTML = buildTable(items, base, sym, isLocal, 'Total Statutory Contributions', statRate);
 
-    // Benefits table
-    var region = COUNTRY_REGION[country] || 'apac';
-    var benItems = BEN_TEMPLATES[region] || BEN_TEMPLATES['apac'];
-    document.getElementById('rpt-ben-table').innerHTML = buildBenTable(benItems, base, sym);
+    // Benefits table — show only when country has quantifiable benefit items for this worker type
+    var benItems = (BEN_DATA[country] || []).filter(function(it) {
+      return isLocal || it[3] !== false;
+    });
+    var benWrap = document.getElementById('rpt-ben-wrap');
+    if (benItems.length > 0) {
+      benWrap.style.display = '';
+      document.getElementById('rpt-ben-table').innerHTML = buildBenTable(BEN_DATA[country] || [], base, sym, isLocal);
+    } else {
+      benWrap.style.display = 'none';
+    }
 
     // Notes
     var notesData = COUNTRY_NOTES[country] || COUNTRY_NOTES['default'];
@@ -1682,13 +1703,17 @@
     return html;
   }
 
-  function buildBenTable(items, base, sym) {
-    var totalRate = 0; items.forEach(function(it){ totalRate += it[2]; });
+  function buildBenTable(items, base, sym, isLocal) {
+    // Filter items: if 4th element is false, exclude for foreign workers
+    var filtered = items.filter(function(it) {
+      return isLocal || it[3] !== false;
+    });
+    var totalRate = 0; filtered.forEach(function(it){ totalRate += it[2]; });
     var totalMo = base * totalRate / 100;
     var html = '<div class="lcc-rpt-trow lcc-rpt-trow--hdr">' +
       tCell('name','th','Contribution Item') + tCell('rate','th','Rate') + tCell('mo','th','Monthly Amount') + tCell('yr','th','Annual Amount') +
       '</div>';
-    items.forEach(function(it) {
+    filtered.forEach(function(it) {
       var mo = base * it[2] / 100;
       html += '<div class="lcc-rpt-trow lcc-rpt-trow--body">' +
         '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">' + it[0] + '</p>' + (it[1] ? '<p class="lcc-rpt-td-note">' + it[1] + '</p>' : '') + '</div>' +
@@ -1716,6 +1741,112 @@
   // Init
   buildCountryList('');
   showEmptyState();
+
+  // ── PDF Download ──
+  document.getElementById('lcc-download-btn').addEventListener('click', async function() {
+    var btn      = document.getElementById('lcc-download-btn');
+    var origText = btn.textContent;
+    btn.textContent = 'Generating . . .';
+    btn.disabled    = true;
+    btn.style.opacity = '0.8';
+
+    var source   = document.querySelector('.lcc-report-inner');
+    var country  = (lccState.country || 'Report').replace(/[^a-zA-Z0-9 \-]/g, '');
+    var fileName = 'Marco Labor Cost Report - ' + country + '.pdf';
+
+    try {
+      await new Promise(function(r) { requestAnimationFrame(function() { requestAnimationFrame(r); }); });
+
+      btn.style.display = 'none';
+      var logoEl = document.getElementById('lcc-rpt-logo');
+      if (logoEl) logoEl.style.display = 'block';
+
+      /* Collect section break points */
+      var sourceAbsTop = source.getBoundingClientRect().top + window.scrollY;
+      var breakSelectors = ['.lcc-rpt-cards', '.lcc-rpt-tables', '.lcc-rpt-notes-wrap', '.lcc-rpt-disclaimer'];
+      var sectionCSSY = [0];
+      breakSelectors.forEach(function(sel) {
+        source.querySelectorAll(sel).forEach(function(el) {
+          var top = el.getBoundingClientRect().top + window.scrollY - sourceAbsTop;
+          if (top > 10) sectionCSSY.push(top);
+        });
+      });
+      sectionCSSY.sort(function(a, b) { return a - b; });
+
+      var canvas = await html2canvas(source, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff',
+        logging: false
+      });
+
+      var SCALE    = 2;
+      var cssW     = canvas.width  / SCALE;
+      var cssH     = canvas.height / SCALE;
+      var jsPDFLib = window.jspdf.jsPDF;
+      var pdf      = new jsPDFLib({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      var pW       = pdf.internal.pageSize.getWidth();
+      var pH       = pdf.internal.pageSize.getHeight();
+      var mT = 18, mB = 14, mL = 14, mR = 14;
+      var usableW  = pW - mL - mR;
+      var usableH  = pH - mT - mB;
+      var ratio    = usableW / cssW;
+      var pageCSS  = usableH / ratio;
+
+      /* Smart page slices */
+      var slices = [];
+      var startCSS = 0;
+      while (startCSS < cssH) {
+        var idealEnd = startCSS + pageCSS;
+        if (idealEnd >= cssH) { slices.push({ start: startCSS, end: cssH }); break; }
+        var safeZone  = startCSS + pageCSS * 0.65;
+        var bestBreak = null;
+        for (var si = 0; si < sectionCSSY.length; si++) {
+          var sy = sectionCSSY[si];
+          if (sy > safeZone && sy < idealEnd) { bestBreak = sy; break; }
+        }
+        var cutAt = bestBreak !== null ? bestBreak : idealEnd;
+        slices.push({ start: startCSS, end: cutAt });
+        startCSS = cutAt;
+      }
+
+      /* Render each slice onto a PDF page */
+      for (var pi = 0; pi < slices.length; pi++) {
+        if (pi > 0) pdf.addPage();
+        var sl       = slices[pi];
+        var slCSS    = sl.end - sl.start;
+        var slCanvas = document.createElement('canvas');
+        slCanvas.width  = canvas.width;
+        slCanvas.height = Math.round(slCSS * SCALE);
+        var ctx = slCanvas.getContext('2d');
+        ctx.drawImage(canvas, 0, Math.round(sl.start * SCALE), canvas.width, Math.round(slCSS * SCALE), 0, 0, canvas.width, Math.round(slCSS * SCALE));
+        var slData = slCanvas.toDataURL('image/jpeg', 0.95);
+        var slHmm  = slCSS * ratio;
+        pdf.setFillColor(255, 255, 255);
+        pdf.rect(0, 0, pW, mT, 'F');
+        pdf.addImage(slData, 'JPEG', mL, mT, usableW, slHmm);
+        pdf.setFillColor(255, 255, 255);
+        pdf.rect(0, pH - mB, pW, mB + 2, 'F');
+        pdf.setFontSize(8);
+        pdf.setTextColor(180, 180, 180);
+        pdf.text('Page ' + (pi + 1) + ' of ' + slices.length, pW / 2, pH - 4, { align: 'center' });
+      }
+
+      pdf.save(fileName);
+
+    } catch (err) {
+      console.error('PDF generation failed:', err);
+      alert('PDF generation failed: ' + err.message);
+    } finally {
+      var logoEl = document.getElementById('lcc-rpt-logo');
+      if (logoEl) logoEl.style.display = 'none';
+      btn.style.display = '';
+      btn.textContent   = origText;
+      btn.disabled      = false;
+      btn.style.opacity = '';
+    }
+  });
 
 </script>
 
