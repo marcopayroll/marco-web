@@ -375,6 +375,44 @@
     @media print { .nav, .hero, .lcc-section, .footer, .lcc-rpt-download-btn { display: none !important; } .lcc-report-section { display: block !important; padding: 20px 0; } }
 
     /* ════════════════════════════════════════
+       CTA SECTION
+    ════════════════════════════════════════ */
+    .lcc-cta-section { position: relative; overflow: hidden; background: linear-gradient(180deg, #f4f4ff 49.11%, #ffffff 110.41%); }
+    .lcc-cta-split { display: flex; align-items: stretch; min-height: 582px; }
+    .lcc-cta-left { flex: 0 0 auto; width: calc(var(--gutter) + 624px); padding: 80px 0 80px var(--gutter); display: flex; flex-direction: column; gap: 32px; }
+    .lcc-cta-right { flex: 1 1 0; min-width: 0; position: relative; overflow: hidden; }
+    .lcc-cta-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .lcc-cta-label { display: flex; align-items: center; gap: 8px; }
+    .lcc-cta-label-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
+    .lcc-cta-label span { font-size: 14px; font-weight: 500; line-height: 18px; color: #162351; }
+    .lcc-cta-heading { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; max-width: 496px; }
+    .lcc-cta-heading-dark { color: #162351; }
+    .lcc-cta-heading-blue { color: #019de7; }
+    .lcc-cta-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #162351; max-width: 496px; }
+    @media (max-width: 1100px) {
+      .lcc-cta-left { width: calc(var(--gutter) + 480px); }
+      .lcc-cta-heading { font-size: 40px; line-height: 50px; letter-spacing: -2px; max-width: 100%; }
+      .lcc-cta-body { max-width: 100%; }
+    }
+    @media (max-width: 860px) {
+      .lcc-cta-split { flex-direction: column-reverse; min-height: auto; }
+      .lcc-cta-left { width: 100%; padding: 60px var(--gutter) 64px; }
+      .lcc-cta-right { flex: none; height: 320px; }
+      .lcc-cta-heading { font-size: 36px; line-height: 44px; letter-spacing: -1.8px; max-width: 100%; }
+      .lcc-cta-body { max-width: 100%; }
+    }
+    @media (max-width: 560px) {
+      .lcc-cta-left { padding: 48px var(--gutter) 56px; gap: 24px; }
+      .lcc-cta-heading { font-size: 28px; line-height: 36px; letter-spacing: -1.4px; }
+      .lcc-cta-right { height: 220px; }
+    }
+    .lcc-cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 4px 24px; border-radius: 50px; font-family: var(--font); font-size: 16px; font-weight: 400; line-height: normal; letter-spacing: -0.8px; color: #fff; background: #162351; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background 0.18s ease; }
+    .lcc-cta-btn:hover { background: #0185C4; }
+    .lcc-cta-btn .btn-icon { position: relative; overflow: hidden; flex-shrink: 0; width: 20px; height: 20px; }
+    .lcc-cta-btn .btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
+    .lcc-cta-btn .btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
+
+    /* ════════════════════════════════════════
        FOOTER
     ════════════════════════════════════════ */
     .footer { width: 100%; overflow: hidden; background-image: linear-gradient(90.352deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); padding: 60px 0 58px; }
@@ -750,6 +788,32 @@
   </div>
 </section>
 
+<!-- ══════════════════ CTA SECTION ══════════════════ -->
+<section class="lcc-cta-section">
+  <div class="lcc-cta-split">
+    <div class="lcc-cta-left">
+      <div class="lcc-cta-label">
+        <div class="lcc-cta-label-line"></div>
+        <span>NEED MORE CLARITY?</span>
+      </div>
+      <h2 class="lcc-cta-heading">
+        <span class="lcc-cta-heading-dark">Numbers are a start.</span><br>
+        <span class="lcc-cta-heading-blue">Let's talk through the details.</span>
+      </h2>
+      <p class="lcc-cta-body">Statutory rates only tell part of the story. Thresholds, bilateral agreements, visa classifications, and collective bargaining rules all affect your real cost. Our payroll specialists can walk you through an accurate, country-specific breakdown for your team.</p>
+      <div>
+        <a href="company-contact-us.html" class="lcc-cta-btn">
+          Contact Us
+          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
+        </a>
+      </div>
+    </div>
+    <div class="lcc-cta-right">
+      <img src="assets/HR Knowledge Hub/Labor Cost Calculator/calculation 1.jpg" alt="Labor cost calculation">
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════ FOOTER ══════════════════ -->
 <footer class="footer">
   <div class="container">
@@ -971,24 +1035,110 @@
     return Math.round(n).toLocaleString('en-US');
   }
 
-  // ── Exchange rate (Frankfurter API, localStorage cache) ──
+  // ── Exchange rate service (multi-provider, localStorage cache) ──
+  // Primary: Frankfurter v2  |  Fallback: ExchangeRate-API
+  // Set your ExchangeRate-API free key at https://www.exchangerate-api.com
+  // Leave empty to skip that fallback gracefully.
+  var EXCHANGERATE_API_KEY = '';
+
   var _fxReqId = 0; // cancel stale async responses
 
-  async function getExchangeRate(toCurrency) {
-    if (toCurrency === 'USD') {
-      return { rate: 1, date: new Date().toISOString().slice(0, 10) };
-    }
+  function _isValidCurrencyCode(code) {
+    return typeof code === 'string' && /^[A-Z]{3}$/.test(code);
+  }
+
+  function _fxFetchWithTimeout(url, ms) {
+    var ctrl = new AbortController();
+    var timer = setTimeout(function() { ctrl.abort(); }, ms || 8000);
+    return fetch(url, { signal: ctrl.signal }).finally(function() { clearTimeout(timer); });
+  }
+
+  function getCachedExchangeRate(base, target) {
     var today = new Date().toISOString().slice(0, 10);
-    var cacheKey = 'fx_USD_' + toCurrency + '_' + today;
-    var cached = localStorage.getItem(cacheKey);
-    if (cached) return JSON.parse(cached);
-    var res = await fetch('https://api.frankfurter.dev/v1/latest?base=USD&symbols=' + toCurrency);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
+    var key = 'exchange_rate_' + base + '_' + target + '_' + today;
+    try {
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : null;
+    } catch(e) { return null; }
+  }
+
+  function _setCachedExchangeRate(base, target, rate, source) {
+    var today = new Date().toISOString().slice(0, 10);
+    var key = 'exchange_rate_' + base + '_' + target + '_' + today;
+    try {
+      localStorage.setItem(key, JSON.stringify({
+        base: base, target: target, rate: rate,
+        source: source, date: today, fetchedAt: Date.now()
+      }));
+    } catch(e) {}
+  }
+
+  async function fetchFromFrankfurter(base, target) {
+    var url = 'https://api.frankfurter.dev/v2/rate/' + base + '/' + target;
+    var res = await _fxFetchWithTimeout(url, 8000);
+    if (!res.ok) throw new Error('Frankfurter HTTP ' + res.status);
     var data = await res.json();
-    if (!data.rates || !data.rates[toCurrency]) throw new Error('Rate unavailable');
-    var result = { rate: data.rates[toCurrency], date: data.date };
-    localStorage.setItem(cacheKey, JSON.stringify(result));
-    return result;
+    if (typeof data.rate !== 'number') throw new Error('Frankfurter: rate field missing');
+    return {
+      rate: data.rate,
+      date: data.date || new Date().toISOString().slice(0, 10),
+      source: 'frankfurter'
+    };
+  }
+
+  async function fetchFromExchangeRateApi(base, target) {
+    if (!EXCHANGERATE_API_KEY) throw new Error('ExchangeRate-API key not configured');
+    var url = 'https://v6.exchangerate-api.com/v6/' + EXCHANGERATE_API_KEY + '/pair/' + base + '/' + target;
+    var res = await _fxFetchWithTimeout(url, 8000);
+    if (!res.ok) throw new Error('ExchangeRate-API HTTP ' + res.status);
+    var data = await res.json();
+    if (data.result !== 'success' || typeof data.conversion_rate !== 'number') {
+      throw new Error('ExchangeRate-API: ' + (data['error-type'] || 'invalid response'));
+    }
+    return {
+      rate: data.conversion_rate,
+      date: new Date().toISOString().slice(0, 10),
+      source: 'exchangerate-api'
+    };
+  }
+
+  async function getExchangeRate(baseCurrency, targetCurrency) {
+    var base   = (baseCurrency   || 'USD').toString().toUpperCase().trim();
+    var target = (targetCurrency || 'USD').toString().toUpperCase().trim();
+
+    if (!_isValidCurrencyCode(base) || !_isValidCurrencyCode(target)) {
+      return { error: true, message: 'Invalid currency code' };
+    }
+    if (base === target) {
+      return { rate: 1, date: new Date().toISOString().slice(0, 10), source: 'same-currency' };
+    }
+
+    var cached = getCachedExchangeRate(base, target);
+    if (cached) return cached;
+
+    // Primary: Frankfurter v2
+    try {
+      var r1 = await fetchFromFrankfurter(base, target);
+      _setCachedExchangeRate(base, target, r1.rate, r1.source);
+      return r1;
+    } catch(e) {
+      console.warn('[FX] Frankfurter v2 failed for ' + base + '/' + target + ':', e.message);
+    }
+
+    // Fallback: ExchangeRate-API
+    try {
+      var r2 = await fetchFromExchangeRateApi(base, target);
+      _setCachedExchangeRate(base, target, r2.rate, r2.source);
+      return r2;
+    } catch(e) {
+      console.warn('[FX] ExchangeRate-API failed for ' + base + '/' + target + ':', e.message);
+    }
+
+    // All providers exhausted
+    return {
+      error: true,
+      message: 'Exchange rate unavailable for ' + base + '/' + target + '. Please try again later.'
+    };
   }
 
   function lccUpdateFxHint() {
@@ -1022,8 +1172,14 @@
     fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
     discEl.style.display = 'none';
 
-    getExchangeRate(localCcy).then(function(result) {
+    getExchangeRate('USD', localCcy).then(function(result) {
       if (reqId !== _fxReqId) return; // stale
+      if (result.error) {
+        fxEl.textContent = 'Exchange rate unavailable for this currency. Please try again later.';
+        fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
+        discEl.style.display = 'none';
+        return;
+      }
       var localAmt = usdAmt * result.rate;
       var localFmt = new Intl.NumberFormat('en-US', {
         minimumFractionDigits: 2, maximumFractionDigits: 2
@@ -1033,9 +1189,10 @@
       fxEl.className = 'lcc-hint-fx';
       discEl.textContent = 'Exchange rate is for reference only. Final payroll funding may vary by bank rate and processing date.';
       discEl.style.display = '';
-    }).catch(function() {
+    }).catch(function(err) {
       if (reqId !== _fxReqId) return;
-      fxEl.textContent = 'Exchange rate unavailable';
+      console.warn('[FX] Unexpected error in lccUpdateFxHint:', err);
+      fxEl.textContent = 'Exchange rate unavailable. Please try again later.';
       fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
       discEl.style.display = 'none';
     });
