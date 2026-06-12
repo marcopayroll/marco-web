@@ -142,7 +142,8 @@
     .hero { position: relative; overflow: hidden; height: 600px; background: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); }
     .hero-bg-pattern { position: absolute; top: 0; right: 0; height: 100%; z-index: 0; pointer-events: none; }
     .hero-bg-pattern img { height: 100%; width: auto; display: block; object-fit: contain; object-position: right center; }
-    .hero-content { position: relative; z-index: 1; padding-top: 180px; width: calc(100% - 2 * var(--gutter)); max-width: 704px; margin-left: var(--gutter); display: flex; flex-direction: column; gap: 12px; }
+    .hero-inner { position: relative; z-index: 1; width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; height: 100%; }
+    .hero-content { padding-top: 180px; max-width: 704px; display: flex; flex-direction: column; gap: 12px; }
     .hero-body { display: flex; flex-direction: column; gap: 24px; width: 100%; }
     .hero-label { display: flex; align-items: center; gap: 8px; }
     .hero-label-line { width: 16px; height: 2px; background: var(--blue-main); flex-shrink: 0; }
@@ -636,13 +637,15 @@
 <!-- ══════════════════ HERO ══════════════════ -->
 <section class="hero">
   <div class="hero-bg-pattern"><img src="assets/Background Assets/abstract line 4.svg" alt="" /></div>
-  <div class="hero-content">
-    <div class="hero-label"><div class="hero-label-line"></div><span>LABOR COST CALCULATOR</span></div>
-    <div class="hero-body">
-      <h1 class="hero-title">
-        <span class="hero-title-white">Calculate the </span><span class="hero-title-blue">True Cost </span><span class="hero-title-white">of Hiring</span>
-      </h1>
-      <p class="hero-subtitle">Estimate total employer cost by combining salary, statutory contributions, and other required employment obligations.</p>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label"><div class="hero-label-line"></div><span>LABOR COST CALCULATOR</span></div>
+      <div class="hero-body">
+        <h1 class="hero-title">
+          <span class="hero-title-white">Calculate the </span><span class="hero-title-blue">True Cost </span><span class="hero-title-white">of Hiring</span>
+        </h1>
+        <p class="hero-subtitle">Estimate total employer cost by combining salary, statutory contributions, and other required employment obligations.</p>
+      </div>
     </div>
   </div>
 </section>
