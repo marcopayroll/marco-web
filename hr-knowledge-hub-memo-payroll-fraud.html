@@ -259,7 +259,7 @@
     /* ════════════════════════════════════════
        MORE FROM MARCO
     ════════════════════════════════════════ */
-    .more-section { background: #DAF3FF; padding: 80px 0; }
+    .more-section { background: #DAF3FF; padding: 80px 0; overflow-x: clip; }
     .more-header { display: flex; flex-direction: column; gap: 16px; }
     .more-eyebrow { display: flex; align-items: center; gap: 8px; }
     .more-eyebrow-line { width: 16px; height: 2px; background: var(--text-main); flex-shrink: 0; }
@@ -271,8 +271,8 @@
     .more-chevron-btn:not(:disabled):hover { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25)); }
     .more-chevron-btn:disabled { cursor: default; }
     .more-chevron-btn img { width: 50px; height: 50px; display: block; }
-    .more-viewport { overflow-x: clip; width: calc(100% + var(--gutter) + 80px); margin-left: -40px; padding: 20px 40px 20px 40px; margin-top: calc(60px - 20px); margin-bottom: -20px; }
-    .more-track { display: flex; gap: 40px; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .more-viewport { width: 100%; padding: 20px 0; margin-top: calc(60px - 20px); margin-bottom: -20px; }
+    .more-track { display: flex; gap: 40px; padding-left: max(var(--gutter), calc((100% - 1224px) / 2)); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
     .more-card { flex: 0 0 380px; width: 380px; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px 0 rgba(0,0,0,0.10); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; text-decoration: none; position: relative; }
     .more-card-overlay { position: absolute; inset: 0; z-index: 0; cursor: pointer; }
     .more-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14), 0 8px 12px rgba(0,0,0,0.12); }
@@ -772,8 +772,9 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="more-viewport" id="moreViewport">
+  <div class="more-viewport" id="moreViewport">
       <div class="more-track" id="moreTrack">
 
         <div class="more-card">
@@ -801,14 +802,14 @@
         </div>
 
         <div class="more-card">
-          <a href="#" class="more-card-overlay" aria-label="The Italian Severance Payment (TFR) Explained"></a>
+          <a href="hr-knowledge-hub-memo-italian-severance-payment-tfr.html" class="more-card-overlay" aria-label="The Italian Severance Payment (TFR) Explained"></a>
           <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-7.jpg" alt="The Italian Severance Payment (TFR) Explained" /></div>
           <div class="more-card-body">
             <div class="more-card-meta">
               <span class="more-card-read-time">7 min read</span>
               <p class="more-card-title">The Italian Severance Payment (TFR) Explained</p>
             </div>
-            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <a href="hr-knowledge-hub-memo-italian-severance-payment-tfr.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
         </div>
 
@@ -921,8 +922,9 @@
         </div>
 
       </div>
-    </div>
+  </div>
 
+  <div class="container">
     <div class="more-scroll-track">
       <div class="more-scroll-thumb" id="moreScrollThumb"></div>
     </div>
