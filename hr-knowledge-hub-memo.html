@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memo | Marco</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-main:      #019DE7;
+      --navy:           #0a1628;
+      --text-main:      #162351;
+      --text-secondary: #475072;
+      --text-tertiary:  #8F98B5;
+      --font: 'Euclid Circular B', 'Inter', sans-serif;
+      --gutter: clamp(64px, 7.5vw, 108px);
+    }
+
+    body {
+      font-family: var(--font);
+      background: #fff;
+      color: var(--text-main);
+      min-width: 960px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background: transparent; background-image: none;
+      transition: background-color 0.25s ease, background-image 0.25s ease, box-shadow 0.25s ease;
+    }
+    .nav.nav-scrolled {
+      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+    .nav-container { width: min(100% - 48px, 1440px); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
+    .nav-tabbar { display: flex; align-items: flex-start; gap: 40px; flex-shrink: 0; }
+    .nav-logo { width: 152px; height: 48px; display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-inner { position: relative; width: 100%; aspect-ratio: 684 / 108; }
+    .nav-logo-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-menu { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
+    .nav-tab { display: flex; flex-direction: column; gap: 14px; padding-top: 16px; align-items: flex-start; flex-shrink: 0; position: relative; }
+    .nav-tab:hover::after { content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px; height: 2px; background: #fff; pointer-events: none; }
+    .nav-tab-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; flex-shrink: 0; }
+    .nav-tab-inner span { font-size: 12px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
+    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-right { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .nav-lang { display: flex; align-items: center; justify-content: space-between; width: 44px; flex-shrink: 0; }
+    .nav-lang-flag { position: relative; width: 20px; height: 20px; border-radius: 50px; border: 1px solid #e5e7eb; overflow: hidden; flex-shrink: 0; }
+    .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
+    .nav-lang span { font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
+    .nav-signin { background: var(--blue-main); color: #fff; font-family: var(--font); font-size: 12px; font-weight: 600; border-radius: 50px; padding: 14px 24px; height: 32px; width: 100px; display: flex; align-items: center; justify-content: center; white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0; text-decoration: none; transition: background 0.18s ease; }
+    .nav-signin:hover { background: #0185C4; }
+    .nav-dropdown-label { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-tertiary); }
+    .nav-dropdown-divider { height: 1px; background: #CDD5E0; }
+    .nav-dropdown-list { display: flex; flex-direction: column; gap: 20px; }
+    .nav-dropdown-item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+    .nav-dropdown-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-dropdown-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-dropdown-item:hover .nav-dropdown-item-title { color: var(--blue-main); }
+    .nav-tab-services { position: relative; }
+    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 697px; top: 100%; height: 44px; }
+    .nav-services-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 697px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-services:hover .nav-services-dropdown, .nav-services-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-services-columns { display: flex; gap: 16px; }
+    .nav-services-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-services-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-services-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-services-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-services-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-services-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-services-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-services-item:hover .nav-services-item-title { color: var(--blue-main); }
+    .nav-tab-compliance { position: relative; }
+    .nav-tab-compliance::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-compliance-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-compliance:hover .nav-compliance-dropdown, .nav-compliance-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-resources { position: relative; }
+    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-resources-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-resources:hover .nav-resources-dropdown, .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-hub { position: relative; }
+    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 680px; top: 100%; height: 44px; }
+    .nav-hub-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 680px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-hub:hover .nav-hub-dropdown, .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-hub-columns { display: flex; gap: 16px; }
+    .nav-hub-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-hub-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-hub-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-hub-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-hub-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-hub-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-hub-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-hub-item:hover .nav-hub-item-title { color: var(--blue-main); }
+    .nav-about-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-about-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-about-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-about-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-about-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-about-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-about-item:hover .nav-about-item-title { color: var(--blue-main); }
+    .nav-compliance-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-compliance-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-compliance-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-compliance-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-compliance-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-compliance-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-compliance-item:hover .nav-compliance-item-title { color: var(--blue-main); }
+    .nav-resources-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-resources-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-resources-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-resources-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-resources-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-resources-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-resources-item:hover .nav-resources-item-title { color: var(--blue-main); }
+    .nav-tab-price { position: relative; }
+    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-price-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-price:hover .nav-price-dropdown, .nav-price-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-about { position: relative; }
+    .nav-tab-about::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-about-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-about:hover .nav-about-dropdown, .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero { position: relative; overflow: hidden; height: 480px; background: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); }
+    .hero-bg-pattern { position: absolute; top: 0; right: 0; height: 100%; z-index: 0; pointer-events: none; }
+    .hero-bg-pattern img { height: 100%; width: auto; display: block; object-fit: contain; object-position: right center; }
+    .hero-inner { position: relative; z-index: 1; width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; height: 100%; }
+    .hero-content { padding-top: 180px; max-width: 704px; display: flex; flex-direction: column; gap: 12px; }
+    .hero-body { display: flex; flex-direction: column; gap: 24px; width: 100%; }
+    .hero-label { display: flex; align-items: center; gap: 8px; }
+    .hero-label-line { width: 16px; height: 2px; background: var(--blue-main); flex-shrink: 0; }
+    .hero-label span { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--blue-main); letter-spacing: 0.04em; }
+    .hero-title { font-size: 64px; font-weight: 700; line-height: 80px; letter-spacing: 0; color: #ffffff; }
+    .hero-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; color: #ffffff; width: 100%; }
+
+    /* ════════════════════════════════════════
+       CONTENT SECTION
+    ════════════════════════════════════════ */
+    .memo-content { background: linear-gradient(to bottom, #f4f4ff 0%, #ffffff 55%); padding: 80px 0 100px; }
+    .memo-grid { width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; display: flex; flex-direction: column; }
+    .memo-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 42px; }
+    .memo-row + .memo-row { margin-top: 32px; }
+    .memo-card { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.10), 0 4px 5px rgba(0,0,0,0.15); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .memo-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14), 0 8px 12px rgba(0,0,0,0.12); }
+    .memo-card-thumb { height: 320px; flex-shrink: 0; overflow: hidden; }
+    .memo-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .memo-card-body { background: #fff; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; min-height: 148px; flex-shrink: 0; }
+    .memo-card-meta { display: flex; flex-direction: column; gap: 8px; }
+    .memo-card-read-time { font-size: 12px; font-weight: 400; line-height: 16px; color: #8f98b5; }
+    .memo-card-title { font-size: 16px; font-weight: 700; line-height: 20px; color: #162351; }
+    .memo-read-more { display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 4px 16px; background: #fff; border: 1px solid #003751; border-radius: 50px; font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: #162351; text-decoration: none; white-space: nowrap; cursor: pointer; flex-shrink: 0; align-self: flex-start; margin-top: 12px; }
+    .memo-row-center { justify-content: center; }
+    .memo-card-fixed { flex: 0 0 380px; max-width: 380px; }
+    .memo-row[data-hidden] { display: none; }
+    @keyframes memoFadeIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .memo-row-reveal { animation: memoFadeIn 0.5s ease forwards; }
+    .memo-view-more-wrap { display: flex; justify-content: center; margin-top: 48px; }
+    .memo-view-more { display: flex; align-items: center; gap: 16px; background: #fff; border: none; border-radius: 50px; padding: 20px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.10); font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--blue-main); cursor: pointer; transition: box-shadow 0.2s, transform 0.15s; }
+    .memo-view-more:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.14); transform: translateY(-1px); }
+    .memo-view-more svg { flex-shrink: 0; }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer { width: 100%; overflow: hidden; background-image: linear-gradient(90.352deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); padding: 60px 0 58px; }
+    .footer > .container { display: flex; flex-direction: column; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
+    .footer-logo { width: 199.5px; flex-shrink: 0; text-decoration: none; }
+    .footer-logo img { width: 100%; height: auto; display: block; }
+    .footer-social { display: flex; align-items: center; justify-content: space-between; width: 80px; flex-shrink: 0; }
+    .footer-social-icon { width: 24px; height: 24px; overflow: hidden; flex-shrink: 0; }
+    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-nav { display: flex; gap: 24px; justify-content: space-between; margin-bottom: 40px; }
+    .footer-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+    .footer-col-header { font-size: 14px; font-weight: 400; line-height: normal; color: var(--text-tertiary); }
+    .footer-col-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-col-links a, .footer-col-links span { font-size: 14px; font-weight: 500; line-height: normal; color: #fff; text-decoration: none; display: block; }
+    .footer-col-links a:hover { text-decoration: underline; }
+    .footer-divider { height: 1px; background: rgba(205,213,224,0.25); margin-bottom: 20px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--text-tertiary); white-space: nowrap; }
+    .footer-legal { display: flex; gap: 40px; align-items: center; }
+    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
+    .footer-legal a:hover { text-decoration: underline; }
+    .wechat-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+    .wechat-modal.active { opacity: 1; pointer-events: auto; }
+    .wechat-modal-box { background: #fff; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 320px; width: 90%; }
+    .wechat-modal-box img { width: 200px; height: 200px; object-fit: contain; }
+    .wechat-modal-box p { font-family: var(--font); font-size: 14px; color: var(--text-secondary); text-align: center; line-height: 20px; }
+    .wechat-modal-close { background: var(--text-main); color: #fff; border: none; border-radius: 50px; padding: 8px 24px; font-family: var(--font); font-size: 14px; cursor: pointer; }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav class="nav">
+  <div class="nav-container">
+  <div class="nav-tabbar">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-inner"><img src="assets/menu-bar-marco-logo.svg" alt="Marco" /></div>
+    </a>
+    <div class="nav-menu">
+      <div class="nav-tab nav-tab-services">
+        <div class="nav-tab-inner"><span>Services</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-services-dropdown">
+          <p class="nav-dropdown-label">Services</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-services-columns">
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-global-payroll.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/global payroll.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Global Payroll</span><span class="nav-services-item-desc">End-to-end payroll in 150+ countries</span></div></a>
+              <a class="nav-services-item" href="service-employer-of-record.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/eor.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Employer of Record (EOR)</span><span class="nav-services-item-desc">Hire globally without a local entity</span></div></a>
+              <a class="nav-services-item" href="service-independent-contractor.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/ic.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Independent Contractor (IC)</span><span class="nav-services-item-desc">Compliant contractor engagement</span></div></a>
+              <a class="nav-services-item" href="service-global-mobility.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/global mobility.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Global Mobility</span><span class="nav-services-item-desc">Seamless cross-border movements</span></div></a>
+            </div>
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-expense-processing.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/Expense Processing.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Expense Processing</span><span class="nav-services-item-desc">Streamlined global expense management</span></div></a>
+              <a class="nav-services-item" href="service-hr-operations.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/HRO Support.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">HR Operation Support</span><span class="nav-services-item-desc">Comprehensive HR administration</span></div></a>
+              <a class="nav-services-item" href="service-service-delivery-model.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/Service Delivery Model.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Service Delivery Model</span><span class="nav-services-item-desc">Our partnership approach</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-compliance">
+        <div class="nav-tab-inner"><span>Compliance</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-compliance-dropdown">
+          <p class="nav-dropdown-label">Compliance</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-compliance-item" href="compliance-data-protection.html">
+              <div class="nav-compliance-item-icon"><img src="assets/Compliance/data-protection-privacy-icon.svg" alt=""></div>
+              <div class="nav-compliance-item-text">
+                <span class="nav-compliance-item-title">Data Protection &amp; Privacy</span>
+                <span class="nav-compliance-item-desc">Privacy controls for sensitive workforce data</span>
+              </div>
+            </a>
+            <a class="nav-compliance-item" href="compliance-operational-governance.html">
+              <div class="nav-compliance-item-icon"><img src="assets/Compliance/operational-governance-icon.svg" alt=""></div>
+              <div class="nav-compliance-item-text">
+                <span class="nav-compliance-item-title">Operational Governance</span>
+                <span class="nav-compliance-item-desc">Controls, accountability, and audit trails</span>
+              </div>
+            </a>
+            <a class="nav-compliance-item" href="compliance-licensing-regulatory.html">
+              <div class="nav-compliance-item-icon"><img src="assets/Compliance/licensing-regulatory-compliance-icon.svg" alt=""></div>
+              <div class="nav-compliance-item-text">
+                <span class="nav-compliance-item-title">Licensing &amp; Regulatory Compliance</span>
+                <span class="nav-compliance-item-desc">Local licenses and regulatory authorizations</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-resources">
+        <div class="nav-tab-inner"><span>Resources</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-resources-dropdown">
+          <p class="nav-dropdown-label">Resources</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-resources-item" href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/help-center-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Help Center</span>
+                <span class="nav-resources-item-desc">Manual guides, FAQs, and product support</span>
+              </div>
+            </a>
+            <a class="nav-resources-item" href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/developer-portal-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Developer Portal</span>
+                <span class="nav-resources-item-desc">API documentation and integration resources</span>
+              </div>
+            </a>
+            <a class="nav-resources-item" href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/demo-site-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Demo Site</span>
+                <span class="nav-resources-item-desc">A test environment to explore Marco OS</span>
+              </div>
+            </a>
+            <a class="nav-resources-item" href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/processing-integration-engines-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Processing &amp; Integration Engines</span>
+                <span class="nav-resources-item-desc">Systems that power payroll and data workflows</span>
+              </div>
+            </a>
+            <a class="nav-resources-item" href="#">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/marco-copilot-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Marco Copilot (AI Assistant)</span>
+                <span class="nav-resources-item-desc">AI support for global workforce operations</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-hub">
+        <div class="nav-tab-inner"><span>HR Knowledge Hub</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-hub-dropdown">
+          <p class="nav-dropdown-label">HR Knowledge Hub</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-hub-columns">
+            <div class="nav-hub-col">
+              <a href="hr-knowledge-hub-labor-cost-calculator.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Labor Cost Calculator</span><span class="nav-hub-item-desc">Estimate employment costs by country</span></div></a>
+              <a href="hr-knowledge-hub-country-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Country Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Country Guide</span><span class="nav-hub-item-desc">Country-specific employment and payroll insights</span></div></a>
+              <a href="hr-knowledge-hub-visa-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Visa Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Visa Guide</span><span class="nav-hub-item-desc">Work visa requirements and application guidance</span></div></a>
+              <a href="hr-knowledge-hub-payroll-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Payroll Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Payroll Guide</span><span class="nav-hub-item-desc">Payroll rules, cycles, and statutory requirements</span></div></a>
+              <a href="hr-knowledge-hub-freelancer-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Freelancer Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Freelancer Guide</span><span class="nav-hub-item-desc">Independent contractor rules by country</span></div></a>
+              <a href="hr-knowledge-hub-work-schedule.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Work Schedule.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Work Schedule</span><span class="nav-hub-item-desc">Working hours, rest days, and schedule rules</span></div></a>
+            </div>
+            <div class="nav-hub-col">
+              <a href="hr-knowledge-hub-public-holiday-calendar-2026.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Public Holiday Calendar</span><span class="nav-hub-item-desc">Official holidays by country and year</span></div></a>
+              <a href="hr-knowledge-hub-leave-policy.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Leave Policy</span><span class="nav-hub-item-desc">Annual leave, sick leave, and statutory time off</span></div></a>
+              <a href="hr-knowledge-hub-travel-expense-policy.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Travel &amp; Expense Policy.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Travel &amp; Expense Policy</span><span class="nav-hub-item-desc">Business travel and reimbursement guidelines</span></div></a>
+              <a href="hr-knowledge-hub-benefits-plan.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Benefits Plan.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Benefits Plan</span><span class="nav-hub-item-desc">Mandatory and common employee benefits</span></div></a>
+              <a href="hr-knowledge-hub-vendor-list.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Vendor List.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Vendor List</span><span class="nav-hub-item-desc">Approved vendors and service partners</span></div></a>
+              <a href="hr-knowledge-hub-memo.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Memo.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Memo</span><span class="nav-hub-item-desc">HR updates, notes, and internal references</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-price">
+        <div class="nav-tab-inner"><span>Price</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-price-dropdown">
+          <p class="nav-dropdown-label">Price</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="price-global-workforce-solution.html"><span class="nav-dropdown-item-title">Global Workforce Solution</span><span class="nav-dropdown-item-desc">Service pricing for global workforce administration</span></a>
+            <a class="nav-dropdown-item" href="price-global-managed-payroll-service.html"><span class="nav-dropdown-item-title">Global Managed Payroll Service</span><span class="nav-dropdown-item-desc">Managed payroll pricing for global teams</span></a>
+            <a class="nav-dropdown-item" href="price-proposal-builder.html"><span class="nav-dropdown-item-title">Proposal Builder</span><span class="nav-dropdown-item-desc">Build a tailored service pricing proposal</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-about">
+        <div class="nav-tab-inner"><span>Company</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-about-dropdown">
+          <p class="nav-dropdown-label">Company</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-about-item" href="company-vision-values.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/vision-&-values-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Vision &amp; Values</span>
+                <span class="nav-about-item-desc">Our purpose and guiding principles</span>
+              </div>
+            </a>
+            <a class="nav-about-item" href="company-journey.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/our-journey-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Marco's Journey</span>
+                <span class="nav-about-item-desc">The story behind Marco</span>
+              </div>
+            </a>
+            <a class="nav-about-item" href="company-entity-network.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/entity-network-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Entity Network</span>
+                <span class="nav-about-item-desc">Global entities and operational service centers</span>
+              </div>
+            </a>
+            <a class="nav-about-item" href="company-organization.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/organization-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Organization</span>
+                <span class="nav-about-item-desc">Leadership and structure</span>
+              </div>
+            </a>
+            <a class="nav-about-item" href="company-contact-us.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/contact-us-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Contact Us</span>
+                <span class="nav-about-item-desc">Get in touch with the Marco team</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-lang"><div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div><span>EN</span></div>
+    <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+  </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <div class="hero-bg-pattern"><img src="assets/Background Assets/swirl bg 2.svg" alt="" /></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label"><div class="hero-label-line"></div><span>MEMO</span></div>
+      <div class="hero-body">
+        <h1 class="hero-title">Global Work Insights</h1>
+        <p class="hero-subtitle">Read Marco's latest insights on employment, payroll, compliance, and people operations. Designed for teams navigating global growth, local regulations, and everyday HR decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CONTENT ══════════════════ -->
+<section class="memo-content">
+  <div class="memo-grid">
+
+    <!-- Row 1 -->
+    <div class="memo-row">
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-5.webp" alt="Payroll Fraud: A Global Threat" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">4 min read</span>
+            <p class="memo-card-title">Payroll Fraud: A Global Threat</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-19.jpg" alt="Over $3.1m awarded to finance veteran for wrongful dismissal" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">3 min read</span>
+            <p class="memo-card-title">Over $3.1m awarded to finance veteran for wrongful dismissal</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-10.png" alt="Poland's Employee Capital Plan" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">4 min read</span>
+            <p class="memo-card-title">Poland's Employee Capital Plan</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="memo-row">
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-7.jpg" alt="The Italian Severance Payment (TFR) Explained" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">7 min read</span>
+            <p class="memo-card-title">The Italian Severance Payment (TFR) Explained</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-11.webp" alt="30% Ruling in the Netherlands" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">5 min read</span>
+            <p class="memo-card-title">30% Ruling in the Netherlands</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-4.jpg" alt="Catch the Unsuspecting: Scammers Go Back to Basics" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">2 min read</span>
+            <p class="memo-card-title">Catch the Unsuspecting: Scammers Go Back to Basics</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="memo-row" data-hidden>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-1.jpg" alt="Professional Employer Organisations & its Origin" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">3 min read</span>
+            <p class="memo-card-title">Professional Employer Organisations &amp; its Origin</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-14.avif" alt="Employment Without Entity in Poland" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">2 min read</span>
+            <p class="memo-card-title">Employment Without Entity in Poland</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-21.jpg" alt="World's First AI Law is Right on HR's Doorstep" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">4 min read</span>
+            <p class="memo-card-title">World's First AI Law is Right on HR's Doorstep</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="memo-row" data-hidden>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-20.jpg" alt="RSU vs ESOP Taxation: What are the Differences and Which One is Better?" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">4 min read</span>
+            <p class="memo-card-title">RSU vs ESOP Taxation: What are the Differences and Which One is Better?</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-18.jpg" alt="General Data Protection Regulation (GDPR)" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">4 min read</span>
+            <p class="memo-card-title">General Data Protection Regulation (GDPR)</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+      <div class="memo-card">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-15.jpg" alt="Are You Certain Your Staff Are Employed "At-Will" in the US?" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">4 min read</span>
+            <p class="memo-card-title">Are You Certain Your Staff Are Employed "At-Will" in the US?</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 5 — single card centred -->
+    <div class="memo-row memo-row-center" data-hidden>
+      <div class="memo-card memo-card-fixed">
+        <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-13.jpg" alt="Comparing Singapore's Employment Pass, S-Pass and Work Permits" /></div>
+        <div class="memo-card-body">
+          <div class="memo-card-meta">
+            <span class="memo-card-read-time">2 min read</span>
+            <p class="memo-card-title">Comparing Singapore's Employment Pass, S-Pass and Work Permits</p>
+          </div>
+          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- View More -->
+  <div class="memo-view-more-wrap" id="memoViewMoreWrap">
+    <button class="memo-view-more" onclick="memoViewMore()">
+      View More
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 7.5L10 12.5L15 7.5" stroke="#019DE7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<script>
+  function memoViewMore() {
+    var hidden = document.querySelectorAll('.memo-row[data-hidden]');
+    var toShow = Array.prototype.slice.call(hidden, 0, 2);
+    toShow.forEach(function(row) {
+      row.removeAttribute('data-hidden');
+      row.classList.remove('memo-row-reveal');
+      void row.offsetWidth; // force reflow so animation restarts cleanly
+      row.classList.add('memo-row-reveal');
+    });
+    if (document.querySelectorAll('.memo-row[data-hidden]').length === 0) {
+      document.getElementById('memoViewMoreWrap').style.display = 'none';
+    }
+  }
+</script>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <div class="container">
+  <div class="footer-top">
+    <a class="footer-logo" href="index.html"><img src="assets/footer-marco-logo-en.svg" alt="Marco" /></a>
+    <div class="footer-social">
+      <div class="footer-social-icon"><a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedin-icon.svg" alt="LinkedIn" /></a></div>
+      <div class="footer-social-icon" style="cursor:pointer;" onclick="document.getElementById('wechat-modal').classList.add('active')"><img src="assets/wechat-icon.svg" alt="WeChat" /></div>
+    </div>
+  </div>
+  <div class="footer-nav">
+    <div class="footer-col"><span class="footer-col-header">Services</span><div class="footer-col-links"><a href="service-global-payroll.html">Global Payroll</a><a href="service-employer-of-record.html">EOR</a><a href="service-independent-contractor.html">IC</a><a href="service-global-mobility.html">Global Mobility</a><a href="service-expense-processing.html">Expense Processing</a><a href="service-hr-operations.html">HRO</a><a href="service-service-delivery-model.html">Service Delivery Model</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">Compliance</span><div class="footer-col-links"><a href="compliance-data-protection.html">Data Protection &amp; Privacy</a><a href="compliance-operational-governance.html">Operational Governance</a><a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">Resources</span><div class="footer-col-links"><a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a><a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a><a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a><a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a><a href="#">Marco Copilot (AI Assistant)</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">HR Knowledge Hub</span><div class="footer-col-links"><a href="hr-knowledge-hub-labor-cost-calculator.html">Labor Cost Calculator</a><a href="hr-knowledge-hub-country-guide.html">Country Guide</a><a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a><a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a><a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a><a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a><a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a><a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a><a href="hr-knowledge-hub-travel-expense-policy.html">Travel &amp; Expense Policy</a><a href="hr-knowledge-hub-benefits-plan.html">Benefits Plan</a><a href="hr-knowledge-hub-vendor-list.html">Vendor List</a><a href="hr-knowledge-hub-memo.html">Memo</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">Price</span><div class="footer-col-links"><a href="price-global-workforce-solution.html">Global Workforce Solution</a><a href="price-global-managed-payroll-service.html">Global Managed Payroll Service</a><a href="price-proposal-builder.html">Proposal Builder</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">About</span><div class="footer-col-links"><a href="company-vision-values.html">Vision &amp; Value</a><a href="company-journey.html">Marco's Journey</a><a href="company-entity-network.html">Entity Network</a><a href="company-organization.html">Organization</a><a href="company-contact-us.html">Contact Us</a></div></div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <p>Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+    <div class="footer-legal"><a href="company-terms-of-use.html">Terms of Use</a><a href="company-privacy-policy.html">Privacy Policy</a><a href="company-cookies-policy.html">Cookies Policy</a></div>
+  </div>
+  </div>
+</footer>
+
+<!-- WeChat Modal -->
+<div class="wechat-modal" id="wechat-modal" onclick="if(event.target===this)this.classList.remove('active')">
+  <div class="wechat-modal-box">
+    <img src="assets/wechat-qr.png" alt="WeChat QR Code" onerror="this.style.display='none'" />
+    <p>Scan to follow Marco on WeChat</p>
+    <button class="wechat-modal-close" onclick="document.getElementById('wechat-modal').classList.remove('active')">Close</button>
+  </div>
+</div>
+
+<script>
+  const nav  = document.querySelector('.nav');
+  const hero = document.querySelector('.hero');
+  function updateNavState() {
+    if (!nav || !hero) return;
+    const threshold = hero.offsetTop + hero.offsetHeight * 0.25;
+    nav.classList.toggle('nav-scrolled', window.scrollY >= threshold);
+  }
+  updateNavState();
+  window.addEventListener('scroll', updateNavState, { passive: true });
+  window.addEventListener('resize', updateNavState);
+</script>
+</body>
+</html>
