@@ -158,8 +158,10 @@
     .memo-grid { width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; display: flex; flex-direction: column; }
     .memo-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 42px; }
     .memo-row + .memo-row { margin-top: 32px; }
-    .memo-card { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.10), 0 4px 5px rgba(0,0,0,0.15); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .memo-card { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.10), 0 4px 5px rgba(0,0,0,0.15); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative; }
     .memo-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14), 0 8px 12px rgba(0,0,0,0.12); }
+    .memo-card-overlay { position: absolute; inset: 0; z-index: 0; cursor: pointer; }
+    .memo-read-more { position: relative; z-index: 1; }
     .memo-card-thumb { height: 320px; flex-shrink: 0; overflow: hidden; }
     .memo-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .memo-card-body { background: #fff; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; min-height: 148px; flex-shrink: 0; }
@@ -201,10 +203,7 @@
     .footer-legal a:hover { text-decoration: underline; }
     .wechat-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
     .wechat-modal.active { opacity: 1; pointer-events: auto; }
-    .wechat-modal-box { background: #fff; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 320px; width: 90%; }
-    .wechat-modal-box img { width: 200px; height: 200px; object-fit: contain; }
-    .wechat-modal-box p { font-family: var(--font); font-size: 14px; color: var(--text-secondary); text-align: center; line-height: 20px; }
-    .wechat-modal-close { background: var(--text-main); color: #fff; border: none; border-radius: 50px; padding: 8px 24px; font-family: var(--font); font-size: 14px; cursor: pointer; }
+    .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
 
   </style>
 </head>
@@ -417,13 +416,14 @@
     <!-- Row 1 -->
     <div class="memo-row">
       <div class="memo-card">
+        <a href="hr-knowledge-hub-memo-payroll-fraud.html" class="memo-card-overlay" aria-label="Payroll Fraud: A Global Threat"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-5.webp" alt="Payroll Fraud: A Global Threat" /></div>
         <div class="memo-card-body">
           <div class="memo-card-meta">
             <span class="memo-card-read-time">4 min read</span>
             <p class="memo-card-title">Payroll Fraud: A Global Threat</p>
           </div>
-          <a href="#" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="hr-knowledge-hub-memo-payroll-fraud.html" class="memo-read-more">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
       <div class="memo-card">
@@ -620,15 +620,15 @@
 </footer>
 
 <!-- WeChat Modal -->
-<div class="wechat-modal" id="wechat-modal" onclick="if(event.target===this)this.classList.remove('active')">
-  <div class="wechat-modal-box">
-    <img src="assets/wechat-qr.png" alt="WeChat QR Code" onerror="this.style.display='none'" />
-    <p>Scan to follow Marco on WeChat</p>
-    <button class="wechat-modal-close" onclick="document.getElementById('wechat-modal').classList.remove('active')">Close</button>
-  </div>
+<div id="wechat-modal" class="wechat-modal">
+  <img src="assets/wechat-card.svg" alt="WeChat QR Code" />
 </div>
 
 <script>
+  document.getElementById('wechat-modal').addEventListener('click', function () {
+    this.classList.remove('active');
+  });
+
   const nav  = document.querySelector('.nav');
   const hero = document.querySelector('.hero');
   function updateNavState() {

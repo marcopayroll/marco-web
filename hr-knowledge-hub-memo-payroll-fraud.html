@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payroll Fraud: A Global Threat | Marco</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-main:      #019DE7;
+      --navy:           #0a1628;
+      --text-main:      #162351;
+      --text-secondary: #475072;
+      --text-tertiary:  #8F98B5;
+      --font: 'Euclid Circular B', 'Inter', sans-serif;
+      --gutter: clamp(64px, 7.5vw, 108px);
+    }
+
+    body {
+      font-family: var(--font);
+      background: #fff;
+      color: var(--text-main);
+      min-width: 960px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+    .nav-container { width: min(100% - 48px, 1440px); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
+    .nav-tabbar { display: flex; align-items: flex-start; gap: 40px; flex-shrink: 0; }
+    .nav-logo { width: 152px; height: 48px; display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-inner { position: relative; width: 100%; aspect-ratio: 684 / 108; }
+    .nav-logo-inner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .nav-menu { display: flex; gap: 24px; align-items: flex-start; flex-shrink: 0; }
+    .nav-tab { display: flex; flex-direction: column; gap: 14px; padding-top: 16px; align-items: flex-start; flex-shrink: 0; position: relative; }
+    .nav-tab:hover::after { content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px; height: 2px; background: #fff; pointer-events: none; }
+    .nav-tab-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; flex-shrink: 0; }
+    .nav-tab-inner span { font-size: 12px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
+    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-right { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .nav-lang { display: flex; align-items: center; justify-content: space-between; width: 44px; flex-shrink: 0; }
+    .nav-lang-flag { position: relative; width: 20px; height: 20px; border-radius: 50px; border: 1px solid #e5e7eb; overflow: hidden; flex-shrink: 0; }
+    .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
+    .nav-lang span { font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
+    .nav-signin { background: var(--blue-main); color: #fff; font-family: var(--font); font-size: 12px; font-weight: 600; border-radius: 50px; padding: 14px 24px; height: 32px; width: 100px; display: flex; align-items: center; justify-content: center; white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0; text-decoration: none; transition: background 0.18s ease; }
+    .nav-signin:hover { background: #0185C4; }
+    .nav-dropdown-label { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-tertiary); }
+    .nav-dropdown-divider { height: 1px; background: #CDD5E0; }
+    .nav-dropdown-list { display: flex; flex-direction: column; gap: 20px; }
+    .nav-dropdown-item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+    .nav-dropdown-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-dropdown-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-dropdown-item:hover .nav-dropdown-item-title { color: var(--blue-main); }
+    .nav-tab-services { position: relative; }
+    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 697px; top: 100%; height: 44px; }
+    .nav-services-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 697px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-services:hover .nav-services-dropdown, .nav-services-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-services-columns { display: flex; gap: 16px; }
+    .nav-services-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-services-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-services-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-services-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-services-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-services-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-services-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-services-item:hover .nav-services-item-title { color: var(--blue-main); }
+    .nav-tab-compliance { position: relative; }
+    .nav-tab-compliance::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-compliance-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-compliance:hover .nav-compliance-dropdown, .nav-compliance-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-resources { position: relative; }
+    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-resources-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-resources:hover .nav-resources-dropdown, .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-hub { position: relative; }
+    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 680px; top: 100%; height: 44px; }
+    .nav-hub-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 680px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-hub:hover .nav-hub-dropdown, .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-hub-columns { display: flex; gap: 16px; }
+    .nav-hub-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-hub-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-hub-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-hub-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-hub-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-hub-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-hub-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-hub-item:hover .nav-hub-item-title { color: var(--blue-main); }
+    .nav-about-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-about-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-about-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-about-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-about-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-about-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-about-item:hover .nav-about-item-title { color: var(--blue-main); }
+    .nav-compliance-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-compliance-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-compliance-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-compliance-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-compliance-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-compliance-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-compliance-item:hover .nav-compliance-item-title { color: var(--blue-main); }
+    .nav-resources-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-resources-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-resources-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-resources-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-resources-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-resources-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-resources-item:hover .nav-resources-item-title { color: var(--blue-main); }
+    .nav-tab-price { position: relative; }
+    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-price-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-price:hover .nav-price-dropdown, .nav-price-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-about { position: relative; }
+    .nav-tab-about::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-about-dropdown { position: absolute; top: calc(100% + 44px); left: 0; width: 400px; background: #fff; border-radius: 8px; padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 32px rgba(22,35,81,0.14); opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200; }
+    .nav-tab-about:hover .nav-about-dropdown, .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* ════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      height: 600px;
+      background: #DAF3FF;
+      overflow: hidden;
+    }
+    .hero-container {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0; right: 0;
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+    }
+    .hero-left {
+      position: absolute;
+      left: 0;
+      top: 180px;
+      width: calc(100% - 628px + var(--gutter) - 104px);
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hero-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .hero-back img {
+      width: 16px;
+      height: 16px;
+      display: block;
+      flex-shrink: 0;
+    }
+    .hero-back span {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      color: var(--blue-main);
+    }
+    .hero-back:hover span { text-decoration: underline; }
+    .hero-title {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 60px;
+      letter-spacing: -0.05em;
+      color: var(--text-main);
+    }
+    .hero-desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--text-secondary);
+    }
+    .hero-meta {
+      position: absolute;
+      left: 0;
+      top: 504px;
+      width: calc(100% - 628px + var(--gutter) - 104px);
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .hero-divider {
+      height: 1px;
+      background: #CDD5E0;
+      width: 100%;
+    }
+    .hero-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #1D4783;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 14px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .hero-author-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-author-label {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: var(--text-tertiary);
+    }
+    .hero-author-name {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: var(--text-main);
+    }
+    .hero-image {
+      position: absolute;
+      right: 0;
+      top: 96px;
+      left: min(calc(100vw - 628px), calc(50vw + 92px));
+      height: calc(100% - 96px);
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ════════════════════════════════════════
+       MORE FROM MARCO
+    ════════════════════════════════════════ */
+    .more-section { background: #DAF3FF; padding: 80px 0; }
+    .more-header { display: flex; flex-direction: column; gap: 16px; }
+    .more-eyebrow { display: flex; align-items: center; gap: 8px; }
+    .more-eyebrow-line { width: 16px; height: 2px; background: var(--text-main); flex-shrink: 0; }
+    .more-eyebrow-label { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
+    .more-title-row { display: flex; align-items: center; justify-content: space-between; }
+    .more-title { font-family: var(--font); font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; color: var(--text-main); margin: 0; }
+    .more-chevrons { display: flex; gap: 24px; align-items: center; flex-shrink: 0; }
+    .more-chevron-btn { width: 50px; height: 50px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; transition: filter 0.2s ease; }
+    .more-chevron-btn:not(:disabled):hover { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25)); }
+    .more-chevron-btn:disabled { cursor: default; }
+    .more-chevron-btn img { width: 50px; height: 50px; display: block; }
+    .more-viewport { overflow-x: clip; width: calc(100% + var(--gutter) + 40px); margin-left: -40px; padding: 20px 0 20px 40px; margin-top: calc(60px - 20px); margin-bottom: -20px; }
+    .more-track { display: flex; gap: 40px; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .more-card { flex: 0 0 380px; width: 380px; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px 0 rgba(0,0,0,0.10); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; text-decoration: none; }
+    .more-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14), 0 8px 12px rgba(0,0,0,0.12); }
+    .more-card-thumb { height: 320px; flex-shrink: 0; overflow: hidden; }
+    .more-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .more-card-body { background: #fff; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; height: 148px; flex-shrink: 0; box-sizing: border-box; }
+    .more-card-meta { display: flex; flex-direction: column; gap: 8px; }
+    .more-card-read-time { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: #8F98B5; }
+    .more-card-title { font-family: var(--font); font-size: 16px; font-weight: 700; line-height: 20px; color: var(--text-main); margin: 0; }
+    .more-card-cta { display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 4px 16px; background: #fff; border: 1px solid #003751; border-radius: 50px; font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-main); text-decoration: none; white-space: nowrap; flex-shrink: 0; align-self: flex-start; }
+    .more-scroll-track { height: 6px; background: #CDD5E0; border-radius: 10px; margin-top: 60px; position: relative; overflow: hidden; }
+    .more-scroll-thumb { height: 6px; background: #3D4148; border-radius: 10px; position: absolute; left: 0; top: 0; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer { width: 100%; overflow: hidden; background-image: linear-gradient(90.352deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); padding: 60px 0 58px; }
+    .footer > .container { display: flex; flex-direction: column; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
+    .footer-logo { width: 199.5px; flex-shrink: 0; text-decoration: none; }
+    .footer-logo img { width: 100%; height: auto; display: block; }
+    .footer-social { display: flex; align-items: center; justify-content: space-between; width: 80px; flex-shrink: 0; }
+    .footer-social-icon { width: 24px; height: 24px; overflow: hidden; flex-shrink: 0; }
+    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-nav { display: flex; gap: 24px; justify-content: space-between; margin-bottom: 40px; }
+    .footer-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+    .footer-col-header { font-size: 14px; font-weight: 400; line-height: normal; color: var(--text-tertiary); }
+    .footer-col-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-col-links a, .footer-col-links span { font-size: 14px; font-weight: 500; line-height: normal; color: #fff; text-decoration: none; display: block; }
+    .footer-col-links a:hover { text-decoration: underline; }
+    .footer-divider { height: 1px; background: rgba(205,213,224,0.25); margin-bottom: 20px; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 500; color: var(--text-tertiary); white-space: nowrap; }
+    .footer-legal { display: flex; gap: 40px; align-items: center; }
+    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
+    .footer-legal a:hover { text-decoration: underline; }
+    .wechat-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+    .wechat-modal.active { opacity: 1; pointer-events: auto; }
+    .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
+
+    /* ════════════════════════════════════════
+       ARTICLE SECTION
+    ════════════════════════════════════════ */
+    .article-section { background: #fff; padding: 80px 0 120px; }
+    .article-layout { display: flex; align-items: flex-start; }
+
+    /* TOC */
+    .article-toc { width: 280px; flex-shrink: 0; margin-right: 112px; position: sticky; top: 176px; }
+    .toc-card { background: #fff; border-radius: 8px; padding: 16px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.10); display: flex; flex-direction: column; gap: 40px; }
+    .toc-title { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
+    .toc-list { display: flex; flex-direction: column; gap: 24px; }
+    .toc-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .toc-dot-wrap { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .toc-dot { width: 8px; height: 8px; border-radius: 50%; background: #9199A6; flex-shrink: 0; transition: background 0.2s ease; }
+    .toc-dot.toc-active { background: var(--blue-main); }
+    .toc-text { flex: 1; font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); transition: color 0.2s ease, font-size 0.2s ease, font-weight 0.2s ease; }
+    .toc-text.toc-active { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
+    .toc-divider-line { height: 1px; background: #CDD5E0; width: 100%; }
+
+    /* Article content */
+    .article-content { flex: 1; min-width: 0; max-width: 647px; margin-right: 145px; display: flex; flex-direction: column; gap: 40px; }
+    .article-intro { display: flex; flex-direction: column; gap: 16px; }
+    .article-intro p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
+    .article-block { display: flex; flex-direction: column; gap: 24px; }
+    .article-h2 { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
+    .article-paras { display: flex; flex-direction: column; gap: 16px; }
+    .article-p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
+    .article-list-item { display: flex; flex-direction: column; gap: 4px; }
+    .article-list-title-row { display: flex; gap: 4px; align-items: flex-start; }
+    .article-list-label { width: 20px; flex-shrink: 0; font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); }
+    .article-list-title { flex: 1; font-size: 14px; font-weight: 600; line-height: 22px; color: var(--text-main); }
+    .article-footnote-section { display: flex; flex-direction: column; gap: 40px; }
+    .article-divider { height: 1px; background: #CDD5E0; }
+    .article-footnotes { display: flex; flex-direction: column; gap: 16px; }
+    .article-footnotes p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-secondary); margin: 0; }
+
+    /* CTA buttons */
+    .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 176px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
+    .cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; }
+    .cta-btn .cta-ring { transition: fill 0.2s ease, stroke 0.2s ease; }
+    .cta-btn .cta-fill { transition: fill 0.2s ease; }
+    .cta-btn .cta-stroke { transition: stroke 0.2s ease, stroke-width 0.2s ease; }
+    .cta-btn:hover .cta-ring { fill: #3D4148; stroke: #3D4148; }
+    .cta-btn:hover .cta-fill { fill: #fff; }
+    .cta-btn:hover .cta-stroke { stroke: #fff; stroke-width: 1.5px; }
+    .cta-btn.cta-copied .cta-ring { fill: var(--blue-main); stroke: var(--blue-main); }
+    .cta-btn.cta-copied .cta-stroke { stroke: #fff; }
+    .cta-back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .cta-back-to-top.visible { opacity: 1; pointer-events: auto; }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav class="nav">
+  <div class="nav-container">
+  <div class="nav-tabbar">
+    <a class="nav-logo" href="index.html">
+      <div class="nav-logo-inner"><img src="assets/menu-bar-marco-logo.svg" alt="Marco" /></div>
+    </a>
+    <div class="nav-menu">
+      <div class="nav-tab nav-tab-services">
+        <div class="nav-tab-inner"><span>Services</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-services-dropdown">
+          <p class="nav-dropdown-label">Services</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-services-columns">
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-global-payroll.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/global payroll.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Global Payroll</span><span class="nav-services-item-desc">End-to-end payroll in 150+ countries</span></div></a>
+              <a class="nav-services-item" href="service-employer-of-record.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/eor.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Employer of Record (EOR)</span><span class="nav-services-item-desc">Hire globally without a local entity</span></div></a>
+              <a class="nav-services-item" href="service-independent-contractor.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/ic.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Independent Contractor (IC)</span><span class="nav-services-item-desc">Compliant contractor engagement</span></div></a>
+              <a class="nav-services-item" href="service-global-mobility.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/global mobility.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Global Mobility</span><span class="nav-services-item-desc">Seamless cross-border movements</span></div></a>
+            </div>
+            <div class="nav-services-col">
+              <a class="nav-services-item" href="service-expense-processing.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/Expense Processing.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Expense Processing</span><span class="nav-services-item-desc">Streamlined global expense management</span></div></a>
+              <a class="nav-services-item" href="service-hr-operations.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/HRO Support.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">HR Operation Support</span><span class="nav-services-item-desc">Comprehensive HR administration</span></div></a>
+              <a class="nav-services-item" href="service-service-delivery-model.html"><div class="nav-services-item-icon"><img src="assets/Services/drop-down/Service Delivery Model.svg" alt="" /></div><div class="nav-services-item-text"><span class="nav-services-item-title">Service Delivery Model</span><span class="nav-services-item-desc">Our partnership approach</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-compliance">
+        <div class="nav-tab-inner"><span>Compliance</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-compliance-dropdown">
+          <p class="nav-dropdown-label">Compliance</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-compliance-item" href="compliance-data-protection.html">
+              <div class="nav-compliance-item-icon"><img src="assets/Compliance/data-protection-privacy-icon.svg" alt=""></div>
+              <div class="nav-compliance-item-text">
+                <span class="nav-compliance-item-title">Data Protection &amp; Privacy</span>
+                <span class="nav-compliance-item-desc">Privacy controls for sensitive workforce data</span>
+              </div>
+            </a>
+            <a class="nav-compliance-item" href="compliance-operational-governance.html">
+              <div class="nav-compliance-item-icon"><img src="assets/Compliance/operational-governance-icon.svg" alt=""></div>
+              <div class="nav-compliance-item-text">
+                <span class="nav-compliance-item-title">Operational Governance</span>
+                <span class="nav-compliance-item-desc">Controls, accountability, and audit trails</span>
+              </div>
+            </a>
+            <a class="nav-compliance-item" href="compliance-licensing-regulatory.html">
+              <div class="nav-compliance-item-icon"><img src="assets/Compliance/licensing-regulatory-compliance-icon.svg" alt=""></div>
+              <div class="nav-compliance-item-text">
+                <span class="nav-compliance-item-title">Licensing &amp; Regulatory Compliance</span>
+                <span class="nav-compliance-item-desc">Local licenses and regulatory authorizations</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-resources">
+        <div class="nav-tab-inner"><span>Resources</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-resources-dropdown">
+          <p class="nav-dropdown-label">Resources</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-resources-item" href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/help-center-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Help Center</span>
+                <span class="nav-resources-item-desc">Manual guides, FAQs, and product support</span>
+              </div>
+            </a>
+            <a class="nav-resources-item" href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/developer-portal-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Developer Portal</span>
+                <span class="nav-resources-item-desc">API documentation and integration resources</span>
+              </div>
+            </a>
+            <a class="nav-resources-item" href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/demo-site-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Demo Site</span>
+                <span class="nav-resources-item-desc">A test environment to explore Marco OS</span>
+              </div>
+            </a>
+            <a class="nav-resources-item" href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/processing-integration-engines-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Processing &amp; Integration Engines</span>
+                <span class="nav-resources-item-desc">Systems that power payroll and data workflows</span>
+              </div>
+            </a>
+            <a class="nav-resources-item" href="#">
+              <div class="nav-resources-item-icon"><img src="assets/Resources/marco-copilot-icon.svg" alt=""></div>
+              <div class="nav-resources-item-text">
+                <span class="nav-resources-item-title">Marco Copilot (AI Assistant)</span>
+                <span class="nav-resources-item-desc">AI support for global workforce operations</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-hub">
+        <div class="nav-tab-inner"><span>HR Knowledge Hub</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-hub-dropdown">
+          <p class="nav-dropdown-label">HR Knowledge Hub</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-hub-columns">
+            <div class="nav-hub-col">
+              <a href="hr-knowledge-hub-labor-cost-calculator.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Labor Cost Calculator</span><span class="nav-hub-item-desc">Estimate employment costs by country</span></div></a>
+              <a href="hr-knowledge-hub-country-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Country Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Country Guide</span><span class="nav-hub-item-desc">Country-specific employment and payroll insights</span></div></a>
+              <a href="hr-knowledge-hub-visa-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Visa Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Visa Guide</span><span class="nav-hub-item-desc">Work visa requirements and application guidance</span></div></a>
+              <a href="hr-knowledge-hub-payroll-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Payroll Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Payroll Guide</span><span class="nav-hub-item-desc">Payroll rules, cycles, and statutory requirements</span></div></a>
+              <a href="hr-knowledge-hub-freelancer-guide.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Freelancer Guide.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Freelancer Guide</span><span class="nav-hub-item-desc">Independent contractor rules by country</span></div></a>
+              <a href="hr-knowledge-hub-work-schedule.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Work Schedule.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Work Schedule</span><span class="nav-hub-item-desc">Working hours, rest days, and schedule rules</span></div></a>
+            </div>
+            <div class="nav-hub-col">
+              <a href="hr-knowledge-hub-public-holiday-calendar-2026.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Public Holiday Calendar</span><span class="nav-hub-item-desc">Official holidays by country and year</span></div></a>
+              <a href="hr-knowledge-hub-leave-policy.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Leave Policy</span><span class="nav-hub-item-desc">Annual leave, sick leave, and statutory time off</span></div></a>
+              <a href="hr-knowledge-hub-travel-expense-policy.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Travel &amp; Expense Policy.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Travel &amp; Expense Policy</span><span class="nav-hub-item-desc">Business travel and reimbursement guidelines</span></div></a>
+              <a href="hr-knowledge-hub-benefits-plan.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Benefits Plan.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Benefits Plan</span><span class="nav-hub-item-desc">Mandatory and common employee benefits</span></div></a>
+              <a href="hr-knowledge-hub-vendor-list.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Vendor List.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Vendor List</span><span class="nav-hub-item-desc">Approved vendors and service partners</span></div></a>
+              <a href="hr-knowledge-hub-memo.html" class="nav-hub-item"><div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Memo.svg" alt=""></div><div class="nav-hub-item-text"><span class="nav-hub-item-title">Memo</span><span class="nav-hub-item-desc">HR updates, notes, and internal references</span></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-price">
+        <div class="nav-tab-inner"><span>Price</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-price-dropdown">
+          <p class="nav-dropdown-label">Price</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-dropdown-item" href="price-global-workforce-solution.html"><span class="nav-dropdown-item-title">Global Workforce Solution</span><span class="nav-dropdown-item-desc">Service pricing for global workforce administration</span></a>
+            <a class="nav-dropdown-item" href="price-global-managed-payroll-service.html"><span class="nav-dropdown-item-title">Global Managed Payroll Service</span><span class="nav-dropdown-item-desc">Managed payroll pricing for global teams</span></a>
+            <a class="nav-dropdown-item" href="price-proposal-builder.html"><span class="nav-dropdown-item-title">Proposal Builder</span><span class="nav-dropdown-item-desc">Build a tailored service pricing proposal</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-tab nav-tab-about">
+        <div class="nav-tab-inner"><span>Company</span><div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <div class="nav-about-dropdown">
+          <p class="nav-dropdown-label">Company</p><div class="nav-dropdown-divider"></div>
+          <div class="nav-dropdown-list">
+            <a class="nav-about-item" href="company-vision-values.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/vision-&-values-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Vision &amp; Values</span>
+                <span class="nav-about-item-desc">Our purpose and guiding principles</span>
+              </div>
+            </a>
+            <a class="nav-about-item" href="company-journey.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/our-journey-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Marco's Journey</span>
+                <span class="nav-about-item-desc">The story behind Marco</span>
+              </div>
+            </a>
+            <a class="nav-about-item" href="company-entity-network.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/entity-network-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Entity Network</span>
+                <span class="nav-about-item-desc">Global entities and operational service centers</span>
+              </div>
+            </a>
+            <a class="nav-about-item" href="company-organization.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/organization-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Organization</span>
+                <span class="nav-about-item-desc">Leadership and structure</span>
+              </div>
+            </a>
+            <a class="nav-about-item" href="company-contact-us.html">
+              <div class="nav-about-item-icon"><img src="assets/Company/contact-us-icon.svg" alt=""></div>
+              <div class="nav-about-item-text">
+                <span class="nav-about-item-title">Contact Us</span>
+                <span class="nav-about-item-desc">Get in touch with the Marco team</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-lang"><div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div><span>EN</span></div>
+    <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+  </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <div class="hero-container">
+    <!-- Left content -->
+    <div class="hero-left">
+      <a href="hr-knowledge-hub-memo.html" class="hero-back">
+        <img src="assets/HR Knowledge Hub/Memo/assets/chevron-left-icon.svg" alt="" />
+        <span>MEMO</span>
+      </a>
+      <div>
+        <h1 class="hero-title">Payroll Fraud: A Global Threat</h1>
+      </div>
+      <p class="hero-desc">Payroll fraud is a growing global risk, from phantom workers to weak approval workflows. Learn how businesses can strengthen payroll visibility, verification, and controls before fraud turns into financial loss.</p>
+    </div>
+
+    <!-- Author row -->
+    <div class="hero-meta">
+    <div class="hero-divider"></div>
+    <div class="hero-author">
+      <div class="hero-author-avatar">WH</div>
+      <div class="hero-author-info">
+        <span class="hero-author-label">AUTHOR</span>
+        <span class="hero-author-name">Wen Hui Ho</span>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Thumbnail image -->
+  <div class="hero-image">
+    <img src="assets/HR Knowledge Hub/Memo/images/stock-5.webp" alt="Payroll Fraud: A Global Threat" />
+  </div>
+</section>
+
+<!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
+<section class="article-section">
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-pervasiveness" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-pervasiveness"></div></div>
+            <span class="toc-text" id="toc-text-pervasiveness">Pervasiveness of Payroll Fraud</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-vulnerabilities" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-vulnerabilities"></div></div>
+            <span class="toc-text" id="toc-text-vulnerabilities">The Vulnerabilities of Traditional Payroll Systems</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-marco" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-marco"></div></div>
+            <span class="toc-text" id="toc-text-marco">How Marco Global Payroll Helps Combat Payroll Fraud</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-fortifying" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-fortifying"></div></div>
+            <span class="toc-text" id="toc-text-fortifying">Fortifying Payroll Security for the Future</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- Intro -->
+      <div class="article-intro">
+        <p>A recent case in China has once again brought payroll fraud into the spotlight.<sup>[1]</sup> A corporate manager was able to fabricate 22 fake employee records over three years, ultimately embezzling a staggering amount of US$2.2 million through fraudulent salary payments. This is one of the more prevalent forms of payroll fraud i.e. phantom workers.</p>
+        <p>This incident highlights a critical issue for businesses worldwide—payroll fraud is not a localized concern, but a global risk leads to severe financial and reputational damage.</p>
+      </div>
+
+      <!-- Section 1 -->
+      <div class="article-block" id="section-pervasiveness">
+        <h2 class="article-h2">Pervasiveness of Payroll Fraud</h2>
+        <div class="article-paras">
+          <p class="article-p">Payroll fraud is among the most common types of corporate fraud, affecting businesses of all sizes and industries. The Association of Certified Fraud Examiners (ACFE) reports that payroll fraud schemes account for 15% of all occupational fraud cases in the United States and Canada.</p>
+          <p class="article-p">On average, these schemes go undetected for 18 months, resulting in losses of approximately $2,800 per month. The study also found that payroll fraud affects businesses across all industries, with no sector being immune.<sup>[2]</sup> This extended period allows fraudsters to misappropriate significant sums before being caught, leaving businesses scrambling to deal with their substantial losses.</p>
+        </div>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="article-block" id="section-vulnerabilities">
+        <h2 class="article-h2">The Vulnerabilities of Traditional Payroll Systems</h2>
+        <div class="article-paras">
+          <p class="article-p">There are underlying and rooted causes as to why this bane remains protracted. Firstly, many companies still rely on decentralized payroll systems across multiple jurisdictions, creating blind spots that are prone to abuse. When payroll data is scattered across multiple jurisdictions, it becomes challenging for finance and human resource teams to track discrepancies, identify unusual salary payments, or detect fraudulent activity in real-time.</p>
+          <p class="article-p">Additionally, outdated verification processes pose a serious threat. Many organizations still rely on manual data entry and approvals, which are prone to human error and manipulation. Without a robust digital verification process, fraud can continue undetected for months or even years.</p>
+          <p class="article-p">Manual approvals further exacerbate these issues. In many companies, payroll changes—such as salary adjustments, new hires, or terminations—require sign-offs through paper-based forms or emails. These outdated methods increase the risk of approval forgery, oversight, or delays in fraud detection.</p>
+          <p class="article-p">Ultimately, businesses with traditional, fragmented payroll systems face higher risks of financial losses, compliance penalties, and reputational damage. Without a unified payroll management solution, fraudsters can exploit operational silos, creating long-term vulnerabilities that can cost companies millions.</p>
+        </div>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="article-block" id="section-marco">
+        <h2 class="article-h2">How Marco Global Payroll Helps Combat Payroll Fraud</h2>
+        <div class="article-paras">
+          <p class="article-p">Marco Global Payroll delivers a comprehensive, secure, and automated payroll management system which significantly minimizes fraud risks. Here's how our edge-cutting solution protects businesses:-</p>
+          <div class="article-list-item">
+            <div class="article-list-title-row">
+              <span class="article-list-label">a.</span>
+              <span class="article-list-title">Automated Fraud Detection &amp; Payroll Audits</span>
+            </div>
+            <p class="article-p">Our platform leverages AI-driven anomaly detection to flag suspicious payroll activities in real-time. Unusual salary patterns, duplicate payments, or inconsistent work hours are instantly identified for review before financial losses accumulate.</p>
+          </div>
+          <div class="article-list-item">
+            <div class="article-list-title-row">
+              <span class="article-list-label">b.</span>
+              <span class="article-list-title">Real-Time Employee Verification</span>
+            </div>
+            <p class="article-p">Every new employee added to payroll undergoes stringent background checks, including biometric authentication and official documentation verification, ensuring that only legitimate employees receive salaries.</p>
+          </div>
+          <div class="article-list-item">
+            <div class="article-list-title-row">
+              <span class="article-list-label">c.</span>
+              <span class="article-list-title">Unified Payroll Management</span>
+            </div>
+            <p class="article-p">By consolidating payroll functions across various locations into a single platform, Marco Global Payroll provides complete visibility and control, reducing the likelihood of localized fraud in subsidiaries or departments.</p>
+          </div>
+          <div class="article-list-item">
+            <div class="article-list-title-row">
+              <span class="article-list-label">d.</span>
+              <span class="article-list-title">Secure Approval Workflows</span>
+            </div>
+            <p class="article-p">All payroll modifications—such as salary changes or new hires—require multi-tier approvals with secure digital tracking, preventing unauthorized payroll adjustments.</p>
+          </div>
+          <div class="article-list-item">
+            <div class="article-list-title-row">
+              <span class="article-list-label">e.</span>
+              <span class="article-list-title">Regulatory Compliance &amp; Audit Preparedness</span>
+            </div>
+            <p class="article-p">Marco Global Payroll aligns with international labor and financial compliance standards, making it easier for businesses to meet audit requirements and mitigate legal risks related to payroll discrepancies.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="article-block" id="section-fortifying">
+        <h2 class="article-h2">Fortifying Payroll Security for the Future</h2>
+        <div class="article-paras">
+          <p class="article-p">The recent case in China serves as a stark reminder that payroll fraud can occur anywhere and its impact can be irreparable. Therefore, companies must take a proactive approach by adopting modern payroll solutions that enhance transparency, security, and efficiency.</p>
+          <p class="article-p">Marco Global Payroll equips businesses with the technology and expertise to prevent payroll fraud, ensuring payroll operations remain accurate, compliant, and protected. Don't wait for a financial loss—strengthen your payroll security today.</p>
+        </div>
+      </div>
+
+      <!-- Divider & Footnotes -->
+      <div class="article-footnote-section">
+        <div class="article-divider"></div>
+        <div class="article-footnotes">
+          <p>[1] https://tax.thomsonreuters.com/news/payroll-fraud-in-the-news-types-of-fraud-and-how-to-prevent-it/</p>
+          <p>[2] https://www.scmp.com/news/people-culture/trending-china/article/3301277/china-manager-creates-22-fake-employees-perfect-attendance-embezzles-us22-million</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Buttons -->
+    <div class="article-cta">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <!-- WeChat -->
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <!-- Copy Link -->
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <!-- Back to Top -->
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 15.5H15.5M20 24.5V17.5M23.5 21L20 17.5L16.5 21" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════ MORE FROM MARCO ══════════════════ -->
+<section class="more-section">
+  <div class="container">
+    <div class="more-header">
+      <div class="more-eyebrow">
+        <div class="more-eyebrow-line"></div>
+        <span class="more-eyebrow-label">MORE FROM MARCO</span>
+      </div>
+      <div class="more-title-row">
+        <h2 class="more-title">Recommended reads</h2>
+        <div class="more-chevrons">
+          <button class="more-chevron-btn" id="moreChevLeft" disabled aria-label="Previous">
+            <img src="assets/HR Knowledge Hub/Memo/assets/chevron-left-inactive.svg" id="moreChevLeftImg" alt="Previous" />
+          </button>
+          <button class="more-chevron-btn" id="moreChevRight" aria-label="Next">
+            <img src="assets/HR Knowledge Hub/Memo/assets/chevron-right-active.svg" id="moreChevRightImg" alt="Next" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="more-viewport" id="moreViewport">
+      <div class="more-track" id="moreTrack">
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-19.jpg" alt="Over $3.1m awarded to finance veteran for wrongful dismissal" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">3 min read</span>
+              <p class="more-card-title">Over $3.1m awarded to finance veteran for wrongful dismissal</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-10.png" alt="Poland's Employee Capital Plan" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">4 min read</span>
+              <p class="more-card-title">Poland's Employee Capital Plan</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-7.jpg" alt="The Italian Severance Payment (TFR) Explained" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">7 min read</span>
+              <p class="more-card-title">The Italian Severance Payment (TFR) Explained</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-11.webp" alt="30% Ruling in the Netherlands" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">5 min read</span>
+              <p class="more-card-title">30% Ruling in the Netherlands</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-4.jpg" alt="Catch the Unsuspecting: Scammers Go Back to Basics" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">2 min read</span>
+              <p class="more-card-title">Catch the Unsuspecting: Scammers Go Back to Basics</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-1.jpg" alt="Professional Employer Organisations &amp; its Origin" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">3 min read</span>
+              <p class="more-card-title">Professional Employer Organisations &amp; its Origin</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-14.avif" alt="Employment Without Entity in Poland" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">2 min read</span>
+              <p class="more-card-title">Employment Without Entity in Poland</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-21.jpg" alt="World's First AI Law is Right on HR's Doorstep" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">4 min read</span>
+              <p class="more-card-title">World's First AI Law is Right on HR's Doorstep</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-20.jpg" alt="RSU vs ESOP Taxation: What are the Differences and Which One is Better?" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">4 min read</span>
+              <p class="more-card-title">RSU vs ESOP Taxation: What are the Differences and Which One is Better?</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-18.jpg" alt="General Data Protection Regulation (GDPR)" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">4 min read</span>
+              <p class="more-card-title">General Data Protection Regulation (GDPR)</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-15.jpg" alt="Are You Certain Your Staff Are Employed &quot;At-Will&quot; in the US?" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">4 min read</span>
+              <p class="more-card-title">Are You Certain Your Staff Are Employed "At-Will" in the US?</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-13.jpg" alt="Comparing Singapore's Employment Pass, S-Pass and Work Permits" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">2 min read</span>
+              <p class="more-card-title">Comparing Singapore's Employment Pass, S-Pass and Work Permits</p>
+            </div>
+            <a href="#" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="more-scroll-track">
+      <div class="more-scroll-thumb" id="moreScrollThumb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <div class="container">
+  <div class="footer-top">
+    <a class="footer-logo" href="index.html"><img src="assets/footer-marco-logo-en.svg" alt="Marco" /></a>
+    <div class="footer-social">
+      <div class="footer-social-icon"><a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer"><img src="assets/linkedin-icon.svg" alt="LinkedIn" /></a></div>
+      <div class="footer-social-icon" style="cursor:pointer;" onclick="document.getElementById('wechat-modal').classList.add('active')"><img src="assets/wechat-icon.svg" alt="WeChat" /></div>
+    </div>
+  </div>
+  <div class="footer-nav">
+    <div class="footer-col"><span class="footer-col-header">Services</span><div class="footer-col-links"><a href="service-global-payroll.html">Global Payroll</a><a href="service-employer-of-record.html">EOR</a><a href="service-independent-contractor.html">IC</a><a href="service-global-mobility.html">Global Mobility</a><a href="service-expense-processing.html">Expense Processing</a><a href="service-hr-operations.html">HRO</a><a href="service-service-delivery-model.html">Service Delivery Model</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">Compliance</span><div class="footer-col-links"><a href="compliance-data-protection.html">Data Protection &amp; Privacy</a><a href="compliance-operational-governance.html">Operational Governance</a><a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">Resources</span><div class="footer-col-links"><a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a><a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a><a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a><a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a><a href="#">Marco Copilot (AI Assistant)</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">HR Knowledge Hub</span><div class="footer-col-links"><a href="hr-knowledge-hub-labor-cost-calculator.html">Labor Cost Calculator</a><a href="hr-knowledge-hub-country-guide.html">Country Guide</a><a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a><a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a><a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a><a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a><a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a><a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a><a href="hr-knowledge-hub-travel-expense-policy.html">Travel &amp; Expense Policy</a><a href="hr-knowledge-hub-benefits-plan.html">Benefits Plan</a><a href="hr-knowledge-hub-vendor-list.html">Vendor List</a><a href="hr-knowledge-hub-memo.html">Memo</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">Price</span><div class="footer-col-links"><a href="price-global-workforce-solution.html">Global Workforce Solution</a><a href="price-global-managed-payroll-service.html">Global Managed Payroll Service</a><a href="price-proposal-builder.html">Proposal Builder</a></div></div>
+    <div class="footer-col"><span class="footer-col-header">About</span><div class="footer-col-links"><a href="company-vision-values.html">Vision &amp; Value</a><a href="company-journey.html">Marco's Journey</a><a href="company-entity-network.html">Entity Network</a><a href="company-organization.html">Organization</a><a href="company-contact-us.html">Contact Us</a></div></div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <p>Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+    <div class="footer-legal"><a href="company-terms-of-use.html">Terms of Use</a><a href="company-privacy-policy.html">Privacy Policy</a><a href="company-cookies-policy.html">Cookies Policy</a></div>
+  </div>
+  </div>
+</footer>
+
+<!-- WeChat Modal -->
+<div id="wechat-modal" class="wechat-modal">
+  <img src="assets/wechat-card.svg" alt="WeChat QR Code" />
+</div>
+
+<script>
+  document.getElementById('wechat-modal').addEventListener('click', function () {
+    this.classList.remove('active');
+  });
+
+  var tocSections = [
+    { id: 'section-pervasiveness', key: 'pervasiveness' },
+    { id: 'section-vulnerabilities', key: 'vulnerabilities' },
+    { id: 'section-marco', key: 'marco' },
+    { id: 'section-fortifying', key: 'fortifying' }
+  ];
+
+  function updateToc() {
+    var scrollPos = window.scrollY + 160;
+    var current = tocSections[0].key;
+    for (var i = 0; i < tocSections.length; i++) {
+      var el = document.getElementById(tocSections[i].id);
+      if (el && el.offsetTop <= scrollPos) {
+        current = tocSections[i].key;
+      }
+    }
+    tocSections.forEach(function(s) {
+      var dot = document.getElementById('toc-dot-' + s.key);
+      var text = document.getElementById('toc-text-' + s.key);
+      if (dot && text) {
+        if (s.key === current) {
+          dot.classList.add('toc-active');
+          text.classList.add('toc-active');
+        } else {
+          dot.classList.remove('toc-active');
+          text.classList.remove('toc-active');
+        }
+      }
+    });
+  }
+
+  function updateBackToTop() {
+    var btn = document.getElementById('backToTop');
+    if (btn) {
+      if (window.scrollY > 300) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', function() {
+    updateToc();
+    updateBackToTop();
+  });
+
+  document.querySelectorAll('.toc-item').forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = this.getAttribute('href').substring(1);
+      var target = document.getElementById(targetId);
+      if (target) {
+        var offset = 116;
+        var targetY = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }
+    });
+  });
+
+  updateToc();
+
+  // ── More From Marco carousel ──
+  (function() {
+    var CARDS_PER_PAGE = 3;
+    var CARD_WIDTH = 380;
+    var GAP = 40;
+    var PAGE_SCROLL = CARDS_PER_PAGE * (CARD_WIDTH + GAP); // 1260px per page
+    var TOTAL_CARDS = 12;
+    var NUM_PAGES = Math.ceil(TOTAL_CARDS / CARDS_PER_PAGE); // 4
+    var currentPage = 0;
+
+    var track = document.getElementById('moreTrack');
+    var chevLeft = document.getElementById('moreChevLeft');
+    var chevRight = document.getElementById('moreChevRight');
+    var chevLeftImg = document.getElementById('moreChevLeftImg');
+    var chevRightImg = document.getElementById('moreChevRightImg');
+    var scrollThumb = document.getElementById('moreScrollThumb');
+    var viewport = document.getElementById('moreViewport');
+
+    function updateMore() {
+      track.style.transform = 'translateX(-' + (currentPage * PAGE_SCROLL) + 'px)';
+
+      var thumbPct = 100 / NUM_PAGES;
+      scrollThumb.style.width = thumbPct + '%';
+      scrollThumb.style.left = (currentPage * thumbPct) + '%';
+
+      var atStart = currentPage === 0;
+      var atEnd = currentPage === NUM_PAGES - 1;
+
+      chevLeft.disabled = atStart;
+      chevLeftImg.src = atStart
+        ? 'assets/HR Knowledge Hub/Memo/assets/chevron-left-inactive.svg'
+        : 'assets/HR Knowledge Hub/Memo/assets/chevron-left-active.svg';
+
+      chevRight.disabled = atEnd;
+      chevRightImg.src = atEnd
+        ? 'assets/HR Knowledge Hub/Memo/assets/chevron-right-inactive.svg'
+        : 'assets/HR Knowledge Hub/Memo/assets/chevron-right-active.svg';
+    }
+
+    chevLeft.addEventListener('click', function() {
+      if (currentPage > 0) { currentPage--; updateMore(); }
+    });
+    chevRight.addEventListener('click', function() {
+      if (currentPage < NUM_PAGES - 1) { currentPage++; updateMore(); }
+    });
+
+    // Block horizontal trackpad/wheel scroll on the viewport
+    viewport.addEventListener('wheel', function(e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault();
+    }, { passive: false });
+
+    updateMore();
+  })();
+
+  // Copy link button
+  var copyBtn = document.getElementById('copyLinkBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      var url = window.location.href;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function() { flashCopied(); });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = url; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        flashCopied();
+      }
+      function flashCopied() {
+        copyBtn.classList.add('cta-copied');
+        setTimeout(function() { copyBtn.classList.remove('cta-copied'); }, 1500);
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

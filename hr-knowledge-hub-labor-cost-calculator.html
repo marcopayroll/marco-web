@@ -437,10 +437,7 @@
     .footer-legal a:hover { text-decoration: underline; }
     .wechat-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
     .wechat-modal.active { opacity: 1; pointer-events: auto; }
-    .wechat-modal-box { background: #fff; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 320px; width: 90%; }
-    .wechat-modal-box img { width: 200px; height: 200px; object-fit: contain; }
-    .wechat-modal-box p { font-family: var(--font); font-size: 14px; color: var(--text-secondary); text-align: center; line-height: 20px; }
-    .wechat-modal-close { background: var(--text-main); color: #fff; border: none; border-radius: 50px; padding: 8px 24px; font-family: var(--font); font-size: 14px; cursor: pointer; }
+    .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
 
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -844,15 +841,15 @@
 </footer>
 
 <!-- WeChat Modal -->
-<div class="wechat-modal" id="wechat-modal" onclick="if(event.target===this)this.classList.remove('active')">
-  <div class="wechat-modal-box">
-    <img src="assets/wechat-qr.png" alt="WeChat QR Code" onerror="this.style.display='none'" />
-    <p>Scan to follow Marco on WeChat</p>
-    <button class="wechat-modal-close" onclick="document.getElementById('wechat-modal').classList.remove('active')">Close</button>
-  </div>
+<div id="wechat-modal" class="wechat-modal">
+  <img src="assets/wechat-card.svg" alt="WeChat QR Code" />
 </div>
 
 <script>
+  document.getElementById('wechat-modal').addEventListener('click', function () {
+    this.classList.remove('active');
+  });
+
   // ── Nav scroll ──
   const nav  = document.querySelector('.nav');
   const hero = document.querySelector('.hero');
