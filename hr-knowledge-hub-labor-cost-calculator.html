@@ -1930,10 +1930,6 @@
     try {
       await new Promise(function(r) { requestAnimationFrame(function() { requestAnimationFrame(r); }); });
 
-      btn.style.display = 'none';
-      var logoEl = document.getElementById('lcc-rpt-logo');
-      if (logoEl) logoEl.style.display = 'block';
-
       /* Collect section break points */
       var sourceAbsTop = source.getBoundingClientRect().top + window.scrollY;
       var breakSelectors = ['.lcc-rpt-cards', '.lcc-rpt-tables', '.lcc-rpt-notes-wrap', '.lcc-rpt-disclaimer'];
@@ -1951,7 +1947,13 @@
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
-        logging: false
+        logging: false,
+        onclone: function(doc) {
+          var clonedBtn = doc.getElementById('lcc-download-btn');
+          if (clonedBtn) clonedBtn.style.display = 'none';
+          var clonedLogo = doc.getElementById('lcc-rpt-logo');
+          if (clonedLogo) { clonedLogo.style.display = 'block'; clonedLogo.style.visibility = 'visible'; }
+        }
       });
 
       var SCALE    = 2;
@@ -2012,9 +2014,6 @@
       console.error('PDF generation failed:', err);
       alert('PDF generation failed: ' + err.message);
     } finally {
-      var logoEl = document.getElementById('lcc-rpt-logo');
-      if (logoEl) logoEl.style.display = 'none';
-      btn.style.display = '';
       btn.textContent   = origText;
       btn.disabled      = false;
       btn.style.opacity = '';
