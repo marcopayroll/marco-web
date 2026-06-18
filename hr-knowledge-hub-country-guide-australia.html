@@ -1050,6 +1050,29 @@
       .footer { display: none; }
       .footer-mobile { display: block; }
     }
+      .nav-lang { position: relative; cursor: pointer; }
+    .nav-lang-dropdown {
+      position: absolute; top: calc(100% + 17px); right: 0;
+      width: 90px; background: #fff; border-radius: 8px;
+      box-shadow: 0 4px 5px rgba(0,0,0,0.1), 0 4px 15px rgba(0,0,0,0.15);
+      padding: 8px; display: flex; flex-direction: column; gap: 8px;
+      z-index: 200;
+      opacity: 0; pointer-events: none; transform: translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-lang-dd-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 4px 8px; border-radius: 4px; cursor: pointer;
+      border: 1px solid transparent; transition: background 0.12s ease, border-color 0.12s ease;
+    }
+    .nav-lang-dd-row.is-active { background: #ECF2FB; border-color: #BCC9EB; }
+    .nav-lang-dd-row:hover { background: #ECF2FB; border-color: #BCC9EB; }
+    .nav-lang-dd-flag { position: relative; width: 20px; height: 20px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; }
+    .nav-lang-dd-flag img { position: absolute; top: 0; height: 100%; max-width: none; }
+    .nav-lang-dd-flag.flag-en img { left: -20.01%; width: 175.44%; }
+    .nav-lang-dd-flag.flag-cn img { left: 1.79%; width: 150%; }
+    .nav-lang-dd-label { font-family: var(--font); font-size: 12px; font-weight: 600; line-height: 20px; color: #162351; }
   </style>
 </head>
 <body>
@@ -2564,6 +2587,25 @@
         header.closest('.footer-mob-row').classList.toggle('is-open');
       });
     });
+  })();
+</script>
+<script>
+  /* ── Language dropdown ── */
+  (function() {
+    var trigger  = document.getElementById('nav-lang-trigger');
+    var dropdown = document.getElementById('nav-lang-dropdown');
+    if (!trigger || !dropdown) return;
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var opening = !dropdown.classList.contains('is-open');
+      dropdown.classList.toggle('is-open');
+      dropdown.setAttribute('aria-hidden', opening ? 'false' : 'true');
+    });
+    document.addEventListener('click', function() {
+      dropdown.classList.remove('is-open');
+      dropdown.setAttribute('aria-hidden', 'true');
+    });
+    dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
   })();
 </script>
 </body>
