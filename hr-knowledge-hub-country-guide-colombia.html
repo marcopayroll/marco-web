@@ -2315,6 +2315,13 @@
         if (!isOpen) row.classList.add('is-open');
       });
     });
+
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      panel.style.transition = 'none';
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() { panel.style.transition = ''; }, 100);
+    });
   })();
 </script>
 
