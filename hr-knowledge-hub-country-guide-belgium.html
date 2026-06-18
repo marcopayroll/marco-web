@@ -948,13 +948,15 @@
        TABLET NAV (≤1100px)
     ════════════════════════════════════════ */
     .nav-mobile-right { display: none; align-items: center; gap: 32px; }
-    .nav-mobile-lang { display: flex; align-items: center; gap: 6px; }
+    .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; }
     .nav-mobile-lang .nav-lang-flag { width: 16px; height: 16px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; position: relative; }
     .nav-mobile-lang .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
     .nav-mobile-lang span { font-family: var(--font); font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
     .nav-hamburger { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; cursor: pointer; background: none; border: none; padding: 0; flex-shrink: 0; }
     .nav-hamburger-icon-tablet { display: block; width: 24px; height: 24px; }
     .nav-hamburger-icon-mobile { display: none; }
+    .nav-hamburger img { transition: transform 0.3s ease; }
+    .nav-hamburger.is-open img { transform: rotate(90deg); }
     .nav-mobile-overlay { position: fixed; top: 80px; left: 0; width: 100vw; height: calc(100vh - 80px); background: rgba(0,0,0,0.6); z-index: 190; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
     .nav-mobile-overlay.is-open { opacity: 1; pointer-events: auto; }
     .nav-mobile-panel {
@@ -1429,8 +1431,19 @@
     <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
     </div>
     <div class="nav-mobile-right" id="nav-mobile-right">
-      <div class="nav-mobile-lang">
-        <div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div>
+      <div class="nav-mobile-lang" id="nav-mobile-lang-trigger">
+        <div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" />
+        <div class="nav-lang-dropdown" id="nav-mobile-lang-dropdown" aria-hidden="true">
+          <div class="nav-lang-dd-row is-active">
+            <div class="nav-lang-dd-flag flag-en"><img src="assets/flag-en.png" alt="" /></div>
+            <span class="nav-lang-dd-label">EN</span>
+          </div>
+          <div class="nav-lang-dd-row">
+            <div class="nav-lang-dd-flag flag-cn"><img src="assets/flag-cn.webp" alt="" /></div>
+            <span class="nav-lang-dd-label">CN</span>
+          </div>
+        </div>
+      </div>
         <span>EN</span>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
@@ -2620,20 +2633,27 @@
 <script>
   /* ── Language dropdown ── */
   (function() {
-    var trigger  = document.getElementById('nav-lang-trigger');
-    var dropdown = document.getElementById('nav-lang-dropdown');
-    if (!trigger || !dropdown) return;
-    trigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var opening = !dropdown.classList.contains('is-open');
-      dropdown.classList.toggle('is-open');
-      dropdown.setAttribute('aria-hidden', opening ? 'false' : 'true');
+    [
+      ['nav-lang-trigger', 'nav-lang-dropdown'],
+      ['nav-mobile-lang-trigger', 'nav-mobile-lang-dropdown']
+    ].forEach(function(pair) {
+      var trigger  = document.getElementById(pair[0]);
+      var dropdown = document.getElementById(pair[1]);
+      if (!trigger || !dropdown) return;
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var opening = !dropdown.classList.contains('is-open');
+        dropdown.classList.toggle('is-open');
+        dropdown.setAttribute('aria-hidden', opening ? 'false' : 'true');
+      });
+      dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
     });
     document.addEventListener('click', function() {
-      dropdown.classList.remove('is-open');
-      dropdown.setAttribute('aria-hidden', 'true');
+      document.querySelectorAll('.nav-lang-dropdown.is-open').forEach(function(d) {
+        d.classList.remove('is-open');
+        d.setAttribute('aria-hidden', 'true');
+      });
     });
-    dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
   })();
 </script>
 </body>
