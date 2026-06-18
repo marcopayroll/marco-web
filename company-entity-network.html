@@ -690,7 +690,8 @@
     .nav-mobile-lang .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
     .nav-mobile-lang span { font-family: var(--font); font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
     .nav-hamburger { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; cursor: pointer; background: none; border: none; padding: 0; flex-shrink: 0; }
-    .nav-hamburger img { display: block; width: 24px; height: 24px; }
+    .nav-hamburger-icon-tablet { display: block; width: 24px; height: 24px; }
+    .nav-hamburger-icon-mobile { display: none; }
     .nav-mobile-overlay { position: fixed; top: 80px; left: 0; width: 100vw; height: calc(100vh - 80px); background: rgba(0,0,0,0.6); z-index: 190; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
     .nav-mobile-overlay.is-open { opacity: 1; pointer-events: auto; }
     .nav-mobile-panel {
@@ -731,6 +732,15 @@
       .nav-right { display: none; }
       .nav-mobile-right { display: flex; }
     }
+    @media (max-width: 440px) {
+      .nav-container { padding: 16px 24px; }
+      .nav-logo { width: 101px; height: 32px; }
+      .nav-hamburger { width: 20px; height: 20px; }
+      .nav-hamburger-icon-tablet { display: none; }
+      .nav-hamburger-icon-mobile { display: block; width: 20px; height: 20px; }
+      .nav-mobile-overlay { top: 64px; height: calc(100vh - 64px); }
+      .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
+    }
     @media (max-width: 1100px) {
       .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
       .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
@@ -743,6 +753,39 @@
       .footer-divider { margin-bottom: 32px; }
       .footer-bottom { font-size: 12px; line-height: 16px; }
       .footer-legal { gap: 24px; }
+    }
+  
+    /* ════════════════════════════════════════
+       MOBILE FOOTER (≤440px)
+    ════════════════════════════════════════ */
+    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100vw; box-sizing: border-box; }
+    .footer-mob-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px 24px 0; }
+    .footer-mob-logo { display: block; width: 142px; height: 40px; flex-shrink: 0; text-decoration: none; }
+    .footer-mob-logo img { width: 142px; height: 40px; display: block; object-fit: contain; }
+    .footer-mob-social { display: flex; align-items: center; gap: 26px; padding-top: 8px; flex-shrink: 0; }
+    .footer-mob-social-link { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; }
+    .footer-mob-social-link img { width: 24px; height: 24px; display: block; }
+    .footer-mob-social-wechat { width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .footer-mob-social-wechat img { width: 24px; height: 24px; display: block; }
+    .footer-mob-acc { display: flex; flex-direction: column; padding: 32px 24px 0; }
+    .footer-mob-row { border-bottom: 1px solid #8f98b5; }
+    .footer-mob-row-header { display: flex; gap: 16px; align-items: center; padding: 24px 0; cursor: pointer; user-select: none; }
+    .footer-mob-row-label { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; flex: 1; }
+    .footer-mob-row-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .footer-mob-row-chevron svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .footer-mob-row.is-open .footer-mob-row-chevron svg { transform: rotate(180deg); }
+    .footer-mob-row-body { max-height: 0; overflow: hidden; opacity: 0; display: flex; flex-direction: column; gap: 24px; padding: 0; transition: max-height 0.35s ease, opacity 0.25s ease, padding-bottom 0.35s ease; }
+    .footer-mob-row.is-open .footer-mob-row-body { max-height: 800px; opacity: 1; padding-bottom: 24px; }
+    .footer-mob-row-body a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #fff; text-decoration: none; display: block; }
+    .footer-mob-row-body a:hover { color: #019DE7; }
+    .footer-mob-legal { display: flex; flex-direction: column; gap: 32px; padding: 60px 24px 32px; }
+    .footer-mob-legal-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-mob-legal-links a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #b2b6c8; text-decoration: none; }
+    .footer-mob-legal-links a:hover { color: #fff; }
+    .footer-mob-copyright { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #b2b6c8; }
+    @media (max-width: 440px) {
+      .footer { display: none; }
+      .footer-mobile { display: block; }
     }
   </style>
 </head>
@@ -1105,7 +1148,8 @@
         <span>EN</span>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
-        <img src="assets/tablet-menu-icon.svg" alt="" width="24" height="24" />
+        <img class="nav-hamburger-icon-tablet" src="assets/tablet-menu-icon.svg" alt="" width="24" height="24" />
+        <img class="nav-hamburger-icon-mobile" src="assets/mobile-menu-icon.svg" alt="" width="20" height="20" />
       </button>
     </div>
   </div>
@@ -1741,6 +1785,118 @@
   </div>
 </footer>
 
+<footer class="footer-mobile">
+  <div class="footer-mob-top">
+    <a class="footer-mob-logo" href="index.html">
+      <img src="assets/footer-marco-logo-en.svg" alt="Marco" />
+    </a>
+    <div class="footer-mob-social">
+      <a class="footer-mob-social-link" href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/linkedin-icon.svg" alt="LinkedIn" />
+      </a>
+      <div class="footer-mob-social-wechat" onclick="document.getElementById('wechat-modal').classList.add('active')">
+        <img src="assets/wechat-icon.svg" alt="WeChat" />
+      </div>
+    </div>
+  </div>
+  <div class="footer-mob-acc">
+    <div class="footer-mob-row">
+      <div class="footer-mob-row-header" data-footer-mob-acc>
+        <span class="footer-mob-row-label">Services</span>
+        <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="footer-mob-row-body">
+        <a href="service-global-payroll.html">Global Payroll</a>
+        <a href="service-employer-of-record.html">EOR</a>
+        <a href="service-independent-contractor.html">IC</a>
+        <a href="service-global-mobility.html">Global Mobility</a>
+        <a href="service-expense-processing.html">Expense Processing</a>
+        <a href="service-hr-operations.html">HRO</a>
+        <a href="service-service-delivery-model.html">Service Delivery Model</a>
+      </div>
+    </div>
+    <div class="footer-mob-row">
+      <div class="footer-mob-row-header" data-footer-mob-acc>
+        <span class="footer-mob-row-label">Compliance</span>
+        <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="footer-mob-row-body">
+        <a href="compliance-data-protection.html">Data Protection &amp; Privacy</a>
+        <a href="compliance-operational-governance.html">Operational Governance</a>
+        <a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a>
+      </div>
+    </div>
+    <div class="footer-mob-row">
+      <div class="footer-mob-row-header" data-footer-mob-acc>
+        <span class="footer-mob-row-label">Resources</span>
+        <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="footer-mob-row-body">
+        <a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a>
+        <a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a>
+        <a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a>
+        <a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a>
+        <a href="#">Marco Copilot (AI Assistant)</a>
+      </div>
+    </div>
+    <div class="footer-mob-row">
+      <div class="footer-mob-row-header" data-footer-mob-acc>
+        <span class="footer-mob-row-label">HR Knowledge Hub</span>
+        <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="footer-mob-row-body">
+        <a href="hr-knowledge-hub-labor-cost-calculator.html">Labor Cost Calculator</a>
+        <a href="hr-knowledge-hub-country-guide.html">Country Guide</a>
+        <a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a>
+        <a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a>
+        <a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a>
+        <a href="hr-knowledge-hub-employment-contract-matrix.html">Employment Contract Matrix</a>
+        <a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a>
+        <a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a>
+        <a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a>
+        <a href="hr-knowledge-hub-travel-expense-policy.html">Travel &amp; Expense Policy</a>
+        <a href="hr-knowledge-hub-benefits-plan.html">Benefits Plan</a>
+        <a href="hr-knowledge-hub-government-claim-update.html">Government Claim Update</a>
+        <a href="hr-knowledge-hub-vendor-list.html">Vendor List</a>
+        <a href="hr-knowledge-hub-memo.html">Memo</a>
+      </div>
+    </div>
+    <div class="footer-mob-row">
+      <div class="footer-mob-row-header" data-footer-mob-acc>
+        <span class="footer-mob-row-label">Price</span>
+        <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="footer-mob-row-body">
+        <a href="price-global-workforce-solution.html">Global Workforce Solution</a>
+        <a href="price-global-managed-payroll-service.html">Global Managed Payroll Service</a>
+        <a href="price-proposal-builder.html">Proposal Builder</a>
+      </div>
+    </div>
+    <div class="footer-mob-row">
+      <div class="footer-mob-row-header" data-footer-mob-acc>
+        <span class="footer-mob-row-label">About</span>
+        <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="footer-mob-row-body">
+        <a href="company-vision-values.html">Vision &amp; Value</a>
+        <a href="company-journey.html">Marco's Journey</a>
+        <a href="company-entity-network.html">Entity Network</a>
+        <a href="company-organization.html">Organization</a>
+        <a href="company-contact-us.html">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-mob-legal">
+    <div class="footer-mob-legal-links">
+      <a href="company-terms-of-use.html">Terms of Use</a>
+      <a href="company-privacy-policy.html">Privacy Policy</a>
+      <a href="company-cookies-policy.html">Cookies Policy</a>
+    </div>
+    <p class="footer-mob-copyright">Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+  </div>
+</footer>
+
+
 <div id="wechat-modal" class="wechat-modal">
   <img src="assets/wechat-card.svg" alt="WeChat QR Code" />
 </div>
@@ -1899,6 +2055,17 @@
         var isOpen = row.classList.contains('is-open');
         document.querySelectorAll('.nav-mob-row.is-open').forEach(function(r) { r.classList.remove('is-open'); });
         if (!isOpen) row.classList.add('is-open');
+      });
+    });
+  })();
+</script>
+
+<script>
+  /* ── Mobile footer accordion ── */
+  (function() {
+    document.querySelectorAll('[data-footer-mob-acc]').forEach(function(header) {
+      header.addEventListener('click', function() {
+        header.closest('.footer-mob-row').classList.toggle('is-open');
       });
     });
   })();
