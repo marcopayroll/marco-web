@@ -1422,11 +1422,17 @@
     </div>
   </div>
   <div class="nav-right">
-    <div class="nav-lang">
-      <div class="nav-lang-flag">
-        <img src="assets/flag-en.png" alt="" />
+    <div class="nav-lang" id="nav-lang-trigger"><div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div><span>EN</span>
+      <div class="nav-lang-dropdown" id="nav-lang-dropdown" aria-hidden="true">
+        <div class="nav-lang-dd-row is-active">
+          <div class="nav-lang-dd-flag flag-en"><img src="assets/flag-en.png" alt="" /></div>
+          <span class="nav-lang-dd-label">EN</span>
+        </div>
+        <div class="nav-lang-dd-row">
+          <div class="nav-lang-dd-flag flag-cn"><img src="assets/flag-cn.webp" alt="" /></div>
+          <span class="nav-lang-dd-label">CN</span>
+        </div>
       </div>
-      <span>EN</span>
     </div>
     <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
     </div>
@@ -2610,5 +2616,6 @@
     });
   })();
 </script>
+<script src="assets/lang/lang-loader.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════
-   Marco Website — Language Loader v2
+   Marco Website — Language Loader v3
 
    File structure:
      cn-shared.js   nav, footer, shared keys  (every page)
@@ -10,13 +10,70 @@
      cn-price.js
      cn-hub.js      hr-knowledge-hub-*.html pages
 
-   To add a new language (e.g. Japanese):
-     - Create ja-shared.js, ja-index.js, etc.
-     - Add 'ja' as an option in the language dropdown
+   This file also handles:
+     - Nav language indicator update (flag + label + active row)
+     - Language row clicks → persist to localStorage + reload
    ══════════════════════════════════════════════════════ */
 
 (function () {
   var lang = localStorage.getItem('marco-lang') || 'en';
+
+  var LANG_CONFIG = {
+    en: { label: 'EN', flagSrc: 'assets/flag-en.png' },
+    cn: { label: 'CN', flagSrc: 'assets/flag-cn.webp' }
+  };
+
+  /* ── Update nav language indicator on every page ── */
+  function updateNavUI() {
+    var cfg = LANG_CONFIG[lang] || LANG_CONFIG.en;
+
+    /* Update flag image + label text in both desktop and mobile triggers */
+    ['nav-lang-trigger', 'nav-mobile-lang-trigger'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var flagImg = el.querySelector('.nav-lang-flag img');
+      /* Use span:not(.nav-lang-dd-label) to avoid matching dropdown labels */
+      var labelEl = el.querySelector('span:not(.nav-lang-dd-label)');
+      if (flagImg) flagImg.src = cfg.flagSrc;
+      if (labelEl) labelEl.textContent = cfg.label;
+    });
+
+    /* Update is-active state on all dropdown rows */
+    document.querySelectorAll('.nav-lang-dropdown').forEach(function (dd) {
+      dd.querySelectorAll('.nav-lang-dd-row').forEach(function (row) {
+        var lbl = row.querySelector('.nav-lang-dd-label');
+        if (lbl) {
+          row.classList.toggle('is-active', lbl.textContent.trim().toLowerCase() === lang);
+        }
+      });
+    });
+
+    /* Wire language-row clicks (guard with data attribute to prevent duplicates) */
+    document.querySelectorAll('.nav-lang-dropdown:not([data-lang-wired])').forEach(function (dd) {
+      dd.setAttribute('data-lang-wired', '1');
+      dd.querySelectorAll('.nav-lang-dd-row').forEach(function (row) {
+        row.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var lbl = row.querySelector('.nav-lang-dd-label');
+          if (!lbl) return;
+          var selected = lbl.textContent.trim().toLowerCase();
+          if (selected !== lang) {
+            localStorage.setItem('marco-lang', selected);
+            location.reload();
+          } else {
+            /* Close dropdown if same lang selected */
+            dd.classList.remove('is-open');
+            dd.setAttribute('aria-hidden', 'true');
+          }
+        });
+      });
+    });
+  }
+
+  /* Run immediately — script sits before </body> so DOM is fully parsed */
+  updateNavUI();
+
+  /* ── Translation loading (only for non-EN) ── */
   if (lang === 'en') return;
 
   function applyPack(pack) {
