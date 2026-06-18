@@ -360,6 +360,8 @@
       letter-spacing: 0;
     }
     .hero-title .accent { color: var(--blue-main); }
+    html[data-lang="cn"] .hero-title { display: flex; flex-wrap: wrap; align-items: baseline; }
+    html[data-lang="cn"] .hero-title .accent { order: -1; }
     .hero-ctas {
       display: flex;
       gap: 16px;
@@ -1460,40 +1462,40 @@
       <div class="nav-menu">
         <div class="nav-tab nav-tab-services">
           <div class="nav-tab-inner">
-            <span>Services</span>
+            <span data-i18n="nav.services">Services</span>
             <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
           <div class="nav-services-dropdown">
-            <p class="nav-dropdown-label">Services</p>
+            <p class="nav-dropdown-label" data-i18n="nav.services">Services</p>
             <div class="nav-dropdown-divider"></div>
             <div class="nav-services-columns">
               <div class="nav-services-col">
                 <a class="nav-services-item" href="service-global-payroll.html">
                   <div class="nav-services-item-icon"><img src="assets/Services/drop-down/global payroll.svg" alt="" /></div>
                   <div class="nav-services-item-text">
-                    <span class="nav-services-item-title">Global Payroll</span>
-                    <span class="nav-services-item-desc">End-to-end payroll in 150+ countries</span>
+                    <span class="nav-services-item-title" data-i18n="nav.dd.payroll.title">Global Payroll</span>
+                    <span class="nav-services-item-desc" data-i18n="nav.dd.payroll.desc">End-to-end payroll in 150+ countries</span>
                   </div>
                 </a>
                 <a class="nav-services-item" href="service-employer-of-record.html">
                   <div class="nav-services-item-icon"><img src="assets/Services/drop-down/eor.svg" alt="" /></div>
                   <div class="nav-services-item-text">
-                    <span class="nav-services-item-title">Employer of Record (EOR)</span>
-                    <span class="nav-services-item-desc">Hire globally without a local entity</span>
+                    <span class="nav-services-item-title" data-i18n="nav.dd.eor.title">Employer of Record (EOR)</span>
+                    <span class="nav-services-item-desc" data-i18n="nav.dd.eor.desc">Hire globally without a local entity</span>
                   </div>
                 </a>
                 <a class="nav-services-item" href="service-independent-contractor.html">
                   <div class="nav-services-item-icon"><img src="assets/Services/drop-down/ic.svg" alt="" /></div>
                   <div class="nav-services-item-text">
-                    <span class="nav-services-item-title">Independent Contractor (IC)</span>
-                    <span class="nav-services-item-desc">Compliant contractor engagement</span>
+                    <span class="nav-services-item-title" data-i18n="nav.dd.ic.title">Independent Contractor (IC)</span>
+                    <span class="nav-services-item-desc" data-i18n="nav.dd.ic.desc">Compliant contractor engagement</span>
                   </div>
                 </a>
                 <a class="nav-services-item" href="service-global-mobility.html">
                   <div class="nav-services-item-icon"><img src="assets/Services/drop-down/global mobility.svg" alt="" /></div>
                   <div class="nav-services-item-text">
-                    <span class="nav-services-item-title">Global Mobility</span>
-                    <span class="nav-services-item-desc">Seamless cross-border movements</span>
+                    <span class="nav-services-item-title" data-i18n="nav.dd.mobility.title">Global Mobility</span>
+                    <span class="nav-services-item-desc" data-i18n="nav.dd.mobility.desc">Seamless cross-border movements</span>
                   </div>
                 </a>
               </div>
@@ -1501,22 +1503,22 @@
                 <a class="nav-services-item" href="service-expense-processing.html">
                   <div class="nav-services-item-icon"><img src="assets/Services/drop-down/Expense Processing.svg" alt="" /></div>
                   <div class="nav-services-item-text">
-                    <span class="nav-services-item-title">Expense Processing</span>
-                    <span class="nav-services-item-desc">Streamlined expense management</span>
+                    <span class="nav-services-item-title" data-i18n="nav.dd.expense.title">Expense Processing</span>
+                    <span class="nav-services-item-desc" data-i18n="nav.dd.expense.desc">Streamlined expense management</span>
                   </div>
                 </a>
                 <a class="nav-services-item" href="service-hr-operations.html">
                   <div class="nav-services-item-icon"><img src="assets/Services/drop-down/HRO Support.svg" alt="" /></div>
                   <div class="nav-services-item-text">
-                    <span class="nav-services-item-title">HRO</span>
-                    <span class="nav-services-item-desc">Outsourced HR operations</span>
+                    <span class="nav-services-item-title" data-i18n="nav.dd.hro.title">HRO</span>
+                    <span class="nav-services-item-desc" data-i18n="nav.dd.hro.desc">Outsourced HR operations</span>
                   </div>
                 </a>
                 <a class="nav-services-item" href="service-service-delivery-model.html">
                   <div class="nav-services-item-icon"><img src="assets/Services/drop-down/Service Delivery Model.svg" alt="" /></div>
                   <div class="nav-services-item-text">
-                    <span class="nav-services-item-title">Service Delivery Model</span>
-                    <span class="nav-services-item-desc">How Marco delivers its services</span>
+                    <span class="nav-services-item-title" data-i18n="nav.dd.sdm.title">Service Delivery Model</span>
+                    <span class="nav-services-item-desc" data-i18n="nav.dd.sdm.desc">How Marco delivers its services</span>
                   </div>
                 </a>
               </div>
@@ -1525,32 +1527,32 @@
         </div>
         <div class="nav-tab nav-tab-compliance">
           <div class="nav-tab-inner">
-            <span>Compliance</span>
+            <span data-i18n="nav.compliance">Compliance</span>
             <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
           <div class="nav-compliance-dropdown">
-            <p class="nav-dropdown-label">Compliance</p>
+            <p class="nav-dropdown-label" data-i18n="nav.compliance">Compliance</p>
             <div class="nav-dropdown-divider"></div>
             <div class="nav-dropdown-list">
               <a class="nav-compliance-item" href="compliance-data-protection.html">
                 <div class="nav-compliance-item-icon"><img src="assets/Compliance/data-protection-privacy-icon.svg" alt=""></div>
                 <div class="nav-compliance-item-text">
-                  <span class="nav-compliance-item-title">Data Protection &amp; Privacy</span>
-                  <span class="nav-compliance-item-desc">Privacy controls for sensitive workforce data</span>
+                  <span class="nav-compliance-item-title" data-i18n="nav.dd.dataprot.title">Data Protection &amp; Privacy</span>
+                  <span class="nav-compliance-item-desc" data-i18n="nav.dd.dataprot.desc">Privacy controls for sensitive workforce data</span>
                 </div>
               </a>
               <a class="nav-compliance-item" href="compliance-operational-governance.html">
                 <div class="nav-compliance-item-icon"><img src="assets/Compliance/operational-governance-icon.svg" alt=""></div>
                 <div class="nav-compliance-item-text">
-                  <span class="nav-compliance-item-title">Operational Governance</span>
-                  <span class="nav-compliance-item-desc">Controls, accountability, and audit trails</span>
+                  <span class="nav-compliance-item-title" data-i18n="nav.dd.opgov.title">Operational Governance</span>
+                  <span class="nav-compliance-item-desc" data-i18n="nav.dd.opgov.desc">Controls, accountability, and audit trails</span>
                 </div>
               </a>
               <a class="nav-compliance-item" href="compliance-licensing-regulatory.html">
                 <div class="nav-compliance-item-icon"><img src="assets/Compliance/licensing-regulatory-compliance-icon.svg" alt=""></div>
                 <div class="nav-compliance-item-text">
-                  <span class="nav-compliance-item-title">Licensing &amp; Regulatory Compliance</span>
-                  <span class="nav-compliance-item-desc">Local licenses and regulatory authorizations</span>
+                  <span class="nav-compliance-item-title" data-i18n="nav.dd.lic.title">Licensing &amp; Regulatory Compliance</span>
+                  <span class="nav-compliance-item-desc" data-i18n="nav.dd.lic.desc">Local licenses and regulatory authorizations</span>
                 </div>
               </a>
             </div>
@@ -1558,46 +1560,46 @@
         </div>
         <div class="nav-tab nav-tab-resources">
           <div class="nav-tab-inner">
-            <span>Resources</span>
+            <span data-i18n="nav.resources">Resources</span>
             <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
           <div class="nav-resources-dropdown">
-            <p class="nav-dropdown-label">Resources</p>
+            <p class="nav-dropdown-label" data-i18n="nav.resources">Resources</p>
             <div class="nav-dropdown-divider"></div>
             <div class="nav-dropdown-list">
               <a class="nav-resources-item" href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
                 <div class="nav-resources-item-icon"><img src="assets/Resources/help-center-icon.svg" alt=""></div>
                 <div class="nav-resources-item-text">
-                  <span class="nav-resources-item-title">Help Center</span>
-                  <span class="nav-resources-item-desc">Manual guides, FAQs, and product support</span>
+                  <span class="nav-resources-item-title" data-i18n="nav.dd.help.title">Help Center</span>
+                  <span class="nav-resources-item-desc" data-i18n="nav.dd.help.desc">Manual guides, FAQs, and product support</span>
                 </div>
               </a>
               <a class="nav-resources-item" href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
                 <div class="nav-resources-item-icon"><img src="assets/Resources/developer-portal-icon.svg" alt=""></div>
                 <div class="nav-resources-item-text">
-                  <span class="nav-resources-item-title">Developer Portal</span>
-                  <span class="nav-resources-item-desc">API documentation and integration resources</span>
+                  <span class="nav-resources-item-title" data-i18n="nav.dd.dev.title">Developer Portal</span>
+                  <span class="nav-resources-item-desc" data-i18n="nav.dd.dev.desc">API documentation and integration resources</span>
                 </div>
               </a>
               <a class="nav-resources-item" href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">
                 <div class="nav-resources-item-icon"><img src="assets/Resources/demo-site-icon.svg" alt=""></div>
                 <div class="nav-resources-item-text">
-                  <span class="nav-resources-item-title">Demo Site</span>
-                  <span class="nav-resources-item-desc">A test environment to explore Marco OS</span>
+                  <span class="nav-resources-item-title" data-i18n="nav.dd.demo.title">Demo Site</span>
+                  <span class="nav-resources-item-desc" data-i18n="nav.dd.demo.desc">A test environment to explore Marco OS</span>
                 </div>
               </a>
               <a class="nav-resources-item" href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
                 <div class="nav-resources-item-icon"><img src="assets/Resources/processing-integration-engines-icon.svg" alt=""></div>
                 <div class="nav-resources-item-text">
-                  <span class="nav-resources-item-title">Processing &amp; Integration Engines</span>
-                  <span class="nav-resources-item-desc">Systems that power payroll and data workflows</span>
+                  <span class="nav-resources-item-title" data-i18n="nav.dd.engine.title">Processing &amp; Integration Engines</span>
+                  <span class="nav-resources-item-desc" data-i18n="nav.dd.engine.desc">Systems that power payroll and data workflows</span>
                 </div>
               </a>
               <a class="nav-resources-item" href="#">
                 <div class="nav-resources-item-icon"><img src="assets/Resources/marco-copilot-icon.svg" alt=""></div>
                 <div class="nav-resources-item-text">
-                  <span class="nav-resources-item-title">Marco Copilot (AI Assistant)</span>
-                  <span class="nav-resources-item-desc">AI support for global workforce operations</span>
+                  <span class="nav-resources-item-title" data-i18n="nav.dd.copilot.title">Marco Copilot (AI Assistant)</span>
+                  <span class="nav-resources-item-desc" data-i18n="nav.dd.copilot.desc">AI support for global workforce operations</span>
                 </div>
               </a>
             </div>
@@ -1605,61 +1607,61 @@
         </div>
         <div class="nav-tab nav-tab-hub">
           <div class="nav-tab-inner">
-            <span>HR Knowledge Hub</span>
+            <span data-i18n="nav.hub">HR Knowledge Hub</span>
             <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
           <div class="nav-hub-dropdown">
-            <p class="nav-dropdown-label">HR Knowledge Hub</p>
+            <p class="nav-dropdown-label" data-i18n="nav.hub">HR Knowledge Hub</p>
             <div class="nav-dropdown-divider"></div>
             <div class="nav-hub-columns">
               <div class="nav-hub-col">
                 <a href="hr-knowledge-hub-labor-cost-calculator.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Labor Cost Calculator</span>
-                    <span class="nav-hub-item-desc">Estimate employment costs by country</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.lcc.title">Labor Cost Calculator</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.lcc.desc">Estimate employment costs by country</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-country-guide.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Country Guide.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Country Guide</span>
-                    <span class="nav-hub-item-desc">Country-specific employment and payroll insights</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.country.title">Country Guide</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.country.desc">Country-specific employment and payroll insights</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-visa-guide.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Visa Guide.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Visa Guide</span>
-                    <span class="nav-hub-item-desc">Work visa requirements and application guidance</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.visa.title">Visa Guide</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.visa.desc">Work visa requirements and application guidance</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-payroll-guide.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Payroll Guide.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Payroll Guide</span>
-                    <span class="nav-hub-item-desc">Payroll rules, cycles, and statutory requirements</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.payguide.title">Payroll Guide</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.payguide.desc">Payroll rules, cycles, and statutory requirements</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-freelancer-guide.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Freelancer Guide.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Freelancer Guide</span>
-                    <span class="nav-hub-item-desc">Independent contractor rules by country</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.freelancer.title">Freelancer Guide</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.freelancer.desc">Independent contractor rules by country</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-employment-contract-matrix.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Employment Contract.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Employment Contract Matrix</span>
-                    <span class="nav-hub-item-desc">Employment contract rules and required clauses by country</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.contract.title">Employment Contract Matrix</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.contract.desc">Employment contract rules and required clauses by country</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-work-schedule.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Work Schedule.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Work Schedule</span>
-                    <span class="nav-hub-item-desc">Working hours, rest days, and schedule rules</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.schedule.title">Work Schedule</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.schedule.desc">Working hours, rest days, and schedule rules</span>
                   </div>
                 </a>
               </div>
@@ -1667,50 +1669,50 @@
                 <a href="hr-knowledge-hub-public-holiday-calendar-2026.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Public Holiday Calendar</span>
-                    <span class="nav-hub-item-desc">Official holidays by country and year</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.holiday.title">Public Holiday Calendar</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.holiday.desc">Official holidays by country and year</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-leave-policy.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Leave Policy</span>
-                    <span class="nav-hub-item-desc">Annual leave, sick leave, and statutory time off</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.leave.title">Leave Policy</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.leave.desc">Annual leave, sick leave, and statutory time off</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-travel-expense-policy.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Travel &amp; Expense Policy.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Travel &amp; Expense Policy</span>
-                    <span class="nav-hub-item-desc">Business travel and reimbursement guidelines</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.travel.title">Travel &amp; Expense Policy</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.travel.desc">Business travel and reimbursement guidelines</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-benefits-plan.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Benefits Plan.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Benefits Plan</span>
-                    <span class="nav-hub-item-desc">Mandatory and common employee benefits</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.benefits.title">Benefits Plan</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.benefits.desc">Mandatory and common employee benefits</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-government-claim-update.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Government Claim.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Government Claim Update</span>
-                    <span class="nav-hub-item-desc">Government reimbursements, subsidies, and claim updates</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.govclaim.title">Government Claim Update</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.govclaim.desc">Government reimbursements, subsidies, and claim updates</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-vendor-list.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Vendor List.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Vendor List</span>
-                    <span class="nav-hub-item-desc">Approved vendors and service partners</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.vendor.title">Vendor List</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.vendor.desc">Approved vendors and service partners</span>
                   </div>
                 </a>
                 <a href="hr-knowledge-hub-memo.html" class="nav-hub-item">
                   <div class="nav-hub-item-icon"><img src="assets/HR Knowledge Hub/Memo.svg" alt=""></div>
                   <div class="nav-hub-item-text">
-                    <span class="nav-hub-item-title">Memo</span>
-                    <span class="nav-hub-item-desc">HR updates, notes, and internal references</span>
+                    <span class="nav-hub-item-title" data-i18n="nav.dd.memo.title">Memo</span>
+                    <span class="nav-hub-item-desc" data-i18n="nav.dd.memo.desc">HR updates, notes, and internal references</span>
                   </div>
                 </a>
               </div>
@@ -1719,70 +1721,70 @@
         </div>
         <div class="nav-tab nav-tab-price">
           <div class="nav-tab-inner">
-            <span>Price</span>
+            <span data-i18n="nav.price">Price</span>
             <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
           <div class="nav-price-dropdown">
-            <p class="nav-dropdown-label">Price</p>
+            <p class="nav-dropdown-label" data-i18n="nav.price">Price</p>
             <div class="nav-dropdown-divider"></div>
             <div class="nav-dropdown-list">
               <a class="nav-dropdown-item" href="price-global-workforce-solution.html">
-                <span class="nav-dropdown-item-title">Global Workforce Solution</span>
-                <span class="nav-dropdown-item-desc">Service pricing for global workforce administration</span>
+                <span class="nav-dropdown-item-title" data-i18n="nav.dd.gws.title">Global Workforce Solution</span>
+                <span class="nav-dropdown-item-desc" data-i18n="nav.dd.gws.desc">Service pricing for global workforce administration</span>
               </a>
               <a class="nav-dropdown-item" href="price-global-managed-payroll-service.html">
-                <span class="nav-dropdown-item-title">Global Managed Payroll Service</span>
-                <span class="nav-dropdown-item-desc">Managed payroll pricing for global teams</span>
+                <span class="nav-dropdown-item-title" data-i18n="nav.dd.gmps.title">Global Managed Payroll Service</span>
+                <span class="nav-dropdown-item-desc" data-i18n="nav.dd.gmps.desc">Managed payroll pricing for global teams</span>
               </a>
               <a class="nav-dropdown-item" href="price-proposal-builder.html">
-                <span class="nav-dropdown-item-title">Proposal Builder</span>
-                <span class="nav-dropdown-item-desc">Build a tailored service pricing proposal</span>
+                <span class="nav-dropdown-item-title" data-i18n="nav.dd.proposal.title">Proposal Builder</span>
+                <span class="nav-dropdown-item-desc" data-i18n="nav.dd.proposal.desc">Build a tailored service pricing proposal</span>
               </a>
             </div>
           </div>
         </div>
         <div class="nav-tab nav-tab-about">
           <div class="nav-tab-inner">
-            <span>Company</span>
+            <span data-i18n="nav.company">Company</span>
             <div class="nav-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#e5e7eb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
           <div class="nav-about-dropdown">
-            <p class="nav-dropdown-label">Company</p>
+            <p class="nav-dropdown-label" data-i18n="nav.company">Company</p>
             <div class="nav-dropdown-divider"></div>
             <div class="nav-dropdown-list">
               <a class="nav-about-item" href="company-vision-values.html">
                 <div class="nav-about-item-icon"><img src="assets/Company/vision-&-values-icon.svg" alt=""></div>
                 <div class="nav-about-item-text">
-                  <span class="nav-about-item-title">Vision &amp; Values</span>
-                  <span class="nav-about-item-desc">Our purpose and guiding principles</span>
+                  <span class="nav-about-item-title" data-i18n="nav.dd.vision.title">Vision &amp; Values</span>
+                  <span class="nav-about-item-desc" data-i18n="nav.dd.vision.desc">Our purpose and guiding principles</span>
                 </div>
               </a>
               <a class="nav-about-item" href="company-journey.html">
                 <div class="nav-about-item-icon"><img src="assets/Company/our-journey-icon.svg" alt=""></div>
                 <div class="nav-about-item-text">
-                  <span class="nav-about-item-title">Marco's Journey</span>
-                  <span class="nav-about-item-desc">The story behind Marco</span>
+                  <span class="nav-about-item-title" data-i18n="nav.dd.journey.title">Marco's Journey</span>
+                  <span class="nav-about-item-desc" data-i18n="nav.dd.journey.desc">The story behind Marco</span>
                 </div>
               </a>
               <a class="nav-about-item" href="company-entity-network.html">
                 <div class="nav-about-item-icon"><img src="assets/Company/entity-network-icon.svg" alt=""></div>
                 <div class="nav-about-item-text">
-                  <span class="nav-about-item-title">Entity Network</span>
-                  <span class="nav-about-item-desc">Global entities and operational service centers</span>
+                  <span class="nav-about-item-title" data-i18n="nav.dd.entity.title">Entity Network</span>
+                  <span class="nav-about-item-desc" data-i18n="nav.dd.entity.desc">Global entities and operational service centers</span>
                 </div>
               </a>
               <a class="nav-about-item" href="company-organization.html">
                 <div class="nav-about-item-icon"><img src="assets/Company/organization-icon.svg" alt=""></div>
                 <div class="nav-about-item-text">
-                  <span class="nav-about-item-title">Organization</span>
-                  <span class="nav-about-item-desc">Leadership and structure</span>
+                  <span class="nav-about-item-title" data-i18n="nav.dd.org.title">Organization</span>
+                  <span class="nav-about-item-desc" data-i18n="nav.dd.org.desc">Leadership and structure</span>
                 </div>
               </a>
               <a class="nav-about-item" href="company-contact-us.html">
                 <div class="nav-about-item-icon"><img src="assets/Company/contact-us-icon.svg" alt=""></div>
                 <div class="nav-about-item-text">
-                  <span class="nav-about-item-title">Contact Us</span>
-                  <span class="nav-about-item-desc">Get in touch with the Marco team</span>
+                  <span class="nav-about-item-title" data-i18n="nav.dd.contact.title">Contact Us</span>
+                  <span class="nav-about-item-desc" data-i18n="nav.dd.contact.desc">Get in touch with the Marco team</span>
                 </div>
               </a>
             </div>
@@ -1805,7 +1807,7 @@
           </div>
         </div>
       </div>
-      <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+      <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer" data-i18n="nav.signin">Sign in</a>
     </div>
     <div class="nav-mobile-right" id="nav-mobile-right">
       <div class="nav-mobile-lang" id="nav-mobile-lang-trigger">
@@ -1837,208 +1839,208 @@
     <!-- Services -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
-        <span class="nav-mob-header-label">Services</span>
+        <span class="nav-mob-header-label" data-i18n="nav.services">Services</span>
         <div class="nav-mob-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="nav-mob-body">
         <a class="nav-mob-sub-item" href="service-global-payroll.html">
           <div class="nav-mob-sub-icon"><img src="assets/Services/drop-down/global payroll.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Global Payroll</span><span class="nav-mob-sub-desc">End-to-end payroll in 150+ countries</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.payroll.title">Global Payroll</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.payroll.desc">End-to-end payroll in 150+ countries</span></div>
         </a>
         <a class="nav-mob-sub-item" href="service-employer-of-record.html">
           <div class="nav-mob-sub-icon"><img src="assets/Services/drop-down/eor.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Employer of Record (EOR)</span><span class="nav-mob-sub-desc">Hire globally without a local entity</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.eor.title">Employer of Record (EOR)</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.eor.desc">Hire globally without a local entity</span></div>
         </a>
         <a class="nav-mob-sub-item" href="service-independent-contractor.html">
           <div class="nav-mob-sub-icon"><img src="assets/Services/drop-down/ic.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Independent Contractor (IC)</span><span class="nav-mob-sub-desc">Compliant contractor engagement</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.ic.title">Independent Contractor (IC)</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.ic.desc">Compliant contractor engagement</span></div>
         </a>
         <a class="nav-mob-sub-item" href="service-global-mobility.html">
           <div class="nav-mob-sub-icon"><img src="assets/Services/drop-down/global mobility.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Global Mobility</span><span class="nav-mob-sub-desc">Seamless cross-border movements</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.mobility.title">Global Mobility</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.mobility.desc">Seamless cross-border movements</span></div>
         </a>
         <a class="nav-mob-sub-item" href="service-expense-processing.html">
           <div class="nav-mob-sub-icon"><img src="assets/Services/drop-down/Expense Processing.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Expense Processing</span><span class="nav-mob-sub-desc">Streamlined expense management</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.expense.title">Expense Processing</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.expense.desc">Streamlined expense management</span></div>
         </a>
         <a class="nav-mob-sub-item" href="service-hr-operations.html">
           <div class="nav-mob-sub-icon"><img src="assets/Services/drop-down/HRO Support.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">HR Operation Support</span><span class="nav-mob-sub-desc">Outsourced HR operations</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.hro.title">HR Operation Support</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.hro.desc">Outsourced HR operations</span></div>
         </a>
         <a class="nav-mob-sub-item" href="service-service-delivery-model.html">
           <div class="nav-mob-sub-icon"><img src="assets/Services/drop-down/Service Delivery Model.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Service Delivery Model</span><span class="nav-mob-sub-desc">How Marco delivers its services</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.sdm.title">Service Delivery Model</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.sdm.desc">How Marco delivers its services</span></div>
         </a>
       </div>
     </div>
     <!-- Compliance -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
-        <span class="nav-mob-header-label">Compliance</span>
+        <span class="nav-mob-header-label" data-i18n="nav.compliance">Compliance</span>
         <div class="nav-mob-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="nav-mob-body">
         <a class="nav-mob-sub-item" href="compliance-data-protection.html">
           <div class="nav-mob-sub-icon"><img src="assets/Compliance/data-protection-privacy-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Data Protection &amp; Privacy</span><span class="nav-mob-sub-desc">Privacy controls for sensitive workforce data</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.dataprot.title">Data Protection &amp; Privacy</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.dataprot.desc">Privacy controls for sensitive workforce data</span></div>
         </a>
         <a class="nav-mob-sub-item" href="compliance-operational-governance.html">
           <div class="nav-mob-sub-icon"><img src="assets/Compliance/operational-governance-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Operational Governance</span><span class="nav-mob-sub-desc">Controls, accountability, and audit trails</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.opgov.title">Operational Governance</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.opgov.desc">Controls, accountability, and audit trails</span></div>
         </a>
         <a class="nav-mob-sub-item" href="compliance-licensing-regulatory.html">
           <div class="nav-mob-sub-icon"><img src="assets/Compliance/licensing-regulatory-compliance-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Licensing &amp; Regulatory Compliance</span><span class="nav-mob-sub-desc">Local licenses and regulatory authorizations</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.lic.title">Licensing &amp; Regulatory Compliance</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.lic.desc">Local licenses and regulatory authorizations</span></div>
         </a>
       </div>
     </div>
     <!-- Resources -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
-        <span class="nav-mob-header-label">Resources</span>
+        <span class="nav-mob-header-label" data-i18n="nav.resources">Resources</span>
         <div class="nav-mob-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="nav-mob-body">
         <a class="nav-mob-sub-item" href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
           <div class="nav-mob-sub-icon"><img src="assets/Resources/help-center-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Help Center</span><span class="nav-mob-sub-desc">Manual guides, FAQs, and product support</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.help.title">Help Center</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.help.desc">Manual guides, FAQs, and product support</span></div>
         </a>
         <a class="nav-mob-sub-item" href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
           <div class="nav-mob-sub-icon"><img src="assets/Resources/developer-portal-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Developer Portal</span><span class="nav-mob-sub-desc">API documentation and integration resources</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.dev.title">Developer Portal</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.dev.desc">API documentation and integration resources</span></div>
         </a>
         <a class="nav-mob-sub-item" href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">
           <div class="nav-mob-sub-icon"><img src="assets/Resources/demo-site-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Demo Site</span><span class="nav-mob-sub-desc">A test environment to explore Marco OS</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.demo.title">Demo Site</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.demo.desc">A test environment to explore Marco OS</span></div>
         </a>
         <a class="nav-mob-sub-item" href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">
           <div class="nav-mob-sub-icon"><img src="assets/Resources/processing-integration-engines-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Processing &amp; Integration Engines</span><span class="nav-mob-sub-desc">Systems that power payroll and data workflows</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.engine.title">Processing &amp; Integration Engines</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.engine.desc">Systems that power payroll and data workflows</span></div>
         </a>
         <a class="nav-mob-sub-item" href="#">
           <div class="nav-mob-sub-icon"><img src="assets/Resources/marco-copilot-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Marco Copilot (AI Assistant)</span><span class="nav-mob-sub-desc">AI support for global workforce operations</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.copilot.title">Marco Copilot (AI Assistant)</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.copilot.desc">AI support for global workforce operations</span></div>
         </a>
       </div>
     </div>
     <!-- HR Knowledge Hub -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
-        <span class="nav-mob-header-label">HR Knowledge Hub</span>
+        <span class="nav-mob-header-label" data-i18n="nav.hub">HR Knowledge Hub</span>
         <div class="nav-mob-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="nav-mob-body">
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-labor-cost-calculator.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Labor Cost Calculator.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Labor Cost Calculator</span><span class="nav-mob-sub-desc">Estimate employment costs by country</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.lcc.title">Labor Cost Calculator</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.lcc.desc">Estimate employment costs by country</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-country-guide.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Country Guide.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Country Guide</span><span class="nav-mob-sub-desc">Country-specific employment and payroll insights</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.country.title">Country Guide</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.country.desc">Country-specific employment and payroll insights</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-visa-guide.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Visa Guide.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Visa Guide</span><span class="nav-mob-sub-desc">Work visa requirements and application guidance</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.visa.title">Visa Guide</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.visa.desc">Work visa requirements and application guidance</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-payroll-guide.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Payroll Guide.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Payroll Guide</span><span class="nav-mob-sub-desc">Payroll rules, cycles, and statutory requirements</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.payguide.title">Payroll Guide</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.payguide.desc">Payroll rules, cycles, and statutory requirements</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-freelancer-guide.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Freelancer Guide.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Freelancer Guide</span><span class="nav-mob-sub-desc">Independent contractor rules by country</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.freelancer.title">Freelancer Guide</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.freelancer.desc">Independent contractor rules by country</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-employment-contract-matrix.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Employment Contract.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Employment Contract Matrix</span><span class="nav-mob-sub-desc">Employment contract rules and required clauses by country</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.contract.title">Employment Contract Matrix</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.contract.desc">Employment contract rules and required clauses by country</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-work-schedule.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Work Schedule.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Work Schedule</span><span class="nav-mob-sub-desc">Working hours, rest days, and schedule rules</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.schedule.title">Work Schedule</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.schedule.desc">Working hours, rest days, and schedule rules</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-public-holiday-calendar-2026.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Public Holiday Calendar.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Public Holiday Calendar</span><span class="nav-mob-sub-desc">Official holidays by country and year</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.holiday.title">Public Holiday Calendar</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.holiday.desc">Official holidays by country and year</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-leave-policy.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Leave Policy.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Leave Policy</span><span class="nav-mob-sub-desc">Annual leave, sick leave, and statutory time off</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.leave.title">Leave Policy</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.leave.desc">Annual leave, sick leave, and statutory time off</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-travel-expense-policy.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Travel &amp; Expense Policy.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Travel &amp; Expense Policy</span><span class="nav-mob-sub-desc">Business travel and reimbursement guidelines</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.travel.title">Travel &amp; Expense Policy</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.travel.desc">Business travel and reimbursement guidelines</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-benefits-plan.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Benefits Plan.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Benefits Plan</span><span class="nav-mob-sub-desc">Mandatory and common employee benefits</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.benefits.title">Benefits Plan</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.benefits.desc">Mandatory and common employee benefits</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-government-claim-update.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Government Claim.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Government Claim Update</span><span class="nav-mob-sub-desc">Government reimbursements, subsidies, and claim updates</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.govclaim.title">Government Claim Update</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.govclaim.desc">Government reimbursements, subsidies, and claim updates</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-vendor-list.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Vendor List.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Vendor List</span><span class="nav-mob-sub-desc">Approved vendors and service partners</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.vendor.title">Vendor List</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.vendor.desc">Approved vendors and service partners</span></div>
         </a>
         <a class="nav-mob-sub-item" href="hr-knowledge-hub-memo.html">
           <div class="nav-mob-sub-icon"><img src="assets/HR Knowledge Hub/Memo.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Memo</span><span class="nav-mob-sub-desc">HR updates, notes, and internal references</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.memo.title">Memo</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.memo.desc">HR updates, notes, and internal references</span></div>
         </a>
       </div>
     </div>
     <!-- Price -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
-        <span class="nav-mob-header-label">Price</span>
+        <span class="nav-mob-header-label" data-i18n="nav.price">Price</span>
         <div class="nav-mob-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="nav-mob-body">
         <a class="nav-mob-sub-item-noicon" href="price-global-workforce-solution.html">
-          <span class="nav-mob-sub-title-noicon">Global Workforce Solution</span>
-          <span class="nav-mob-sub-desc-noicon">Service pricing for global workforce administration</span>
+          <span class="nav-mob-sub-title-noicon" data-i18n="nav.dd.gws.title">Global Workforce Solution</span>
+          <span class="nav-mob-sub-desc-noicon" data-i18n="nav.dd.gws.desc">Service pricing for global workforce administration</span>
         </a>
         <a class="nav-mob-sub-item-noicon" href="price-global-managed-payroll-service.html">
-          <span class="nav-mob-sub-title-noicon">Global Managed Payroll Service</span>
-          <span class="nav-mob-sub-desc-noicon">Managed payroll pricing for global teams</span>
+          <span class="nav-mob-sub-title-noicon" data-i18n="nav.dd.gmps.title">Global Managed Payroll Service</span>
+          <span class="nav-mob-sub-desc-noicon" data-i18n="nav.dd.gmps.desc">Managed payroll pricing for global teams</span>
         </a>
         <a class="nav-mob-sub-item-noicon" href="price-proposal-builder.html">
-          <span class="nav-mob-sub-title-noicon">Proposal Builder</span>
-          <span class="nav-mob-sub-desc-noicon">Build a tailored service pricing proposal</span>
+          <span class="nav-mob-sub-title-noicon" data-i18n="nav.dd.proposal.title">Proposal Builder</span>
+          <span class="nav-mob-sub-desc-noicon" data-i18n="nav.dd.proposal.desc">Build a tailored service pricing proposal</span>
         </a>
       </div>
     </div>
     <!-- Company -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
-        <span class="nav-mob-header-label">Company</span>
+        <span class="nav-mob-header-label" data-i18n="nav.company">Company</span>
         <div class="nav-mob-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="nav-mob-body">
         <a class="nav-mob-sub-item" href="company-vision-values.html">
           <div class="nav-mob-sub-icon"><img src="assets/Company/vision-&-values-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Vision &amp; Values</span><span class="nav-mob-sub-desc">Our purpose and guiding principles</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.vision.title">Vision &amp; Values</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.vision.desc">Our purpose and guiding principles</span></div>
         </a>
         <a class="nav-mob-sub-item" href="company-journey.html">
           <div class="nav-mob-sub-icon"><img src="assets/Company/our-journey-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Marco's Journey</span><span class="nav-mob-sub-desc">The story behind Marco</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.journey.title">Marco's Journey</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.journey.desc">The story behind Marco</span></div>
         </a>
         <a class="nav-mob-sub-item" href="company-entity-network.html">
           <div class="nav-mob-sub-icon"><img src="assets/Company/entity-network-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Entity Network</span><span class="nav-mob-sub-desc">Global entities and operational service centers</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.entity.title">Entity Network</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.entity.desc">Global entities and operational service centers</span></div>
         </a>
         <a class="nav-mob-sub-item" href="company-organization.html">
           <div class="nav-mob-sub-icon"><img src="assets/Company/organization-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Organization</span><span class="nav-mob-sub-desc">Leadership and structure</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.org.title">Organization</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.org.desc">Leadership and structure</span></div>
         </a>
         <a class="nav-mob-sub-item" href="company-contact-us.html">
           <div class="nav-mob-sub-icon"><img src="assets/Company/contact-us-icon.svg" alt=""></div>
-          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title">Contact Us</span><span class="nav-mob-sub-desc">Get in touch with the Marco team</span></div>
+          <div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.contact.title">Contact Us</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.contact.desc">Get in touch with the Marco team</span></div>
         </a>
       </div>
     </div>
   </div>
   <div class="nav-mob-signin-wrap">
-    <a class="nav-mob-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+    <a class="nav-mob-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer" data-i18n="nav.signin">Sign in</a>
   </div>
 </div>
 
@@ -2061,11 +2063,11 @@
     <div class="container">
       <div class="hero-content fade-in">
         <h1 class="hero-title">
-          Scale your global workforce <span class="accent">today</span>
+          <span data-i18n="hero.title.main">Scale your global workforce </span><span class="accent" data-i18n="hero.title.accent">today</span>
         </h1>
         <div class="hero-ctas">
           <a href="#marco-services" class="btn-light" id="hero-explore-services-btn">
-            Explore Services
+            <span data-i18n="btn.explore_services">Explore Services</span>
             <div class="btn-icon">
               <div class="btn-icon-inner">
                 <img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" />
@@ -2073,7 +2075,7 @@
             </div>
           </a>
           <a href="https://app.marcopayroll.com/" target="_blank" rel="noopener noreferrer" class="btn-clear">
-            Marco OS
+            <span data-i18n="btn.marco_os">Marco OS</span>
             <div class="btn-icon">
               <div class="btn-icon-inner">
                 <img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" />
@@ -2092,10 +2094,10 @@
 
   <!-- Text overlay — constrained to left gutter -->
   <div class="problems-text fade-in">
-    <h2 class="problems-title">Facing these problems?</h2>
+    <h2 class="problems-title" data-i18n="problems.title">Facing these problems?</h2>
     <div class="problems-desc">
-      <p>Marco is your solution to be worry-free.</p>
-      <p>Every operational challenge in global workforce management — solved under one roof.</p>
+      <p data-i18n="problems.desc1">Marco is your solution to be worry-free.</p>
+      <p data-i18n="problems.desc2">Every operational challenge in global workforce management — solved under one roof.</p>
     </div>
   </div>
 
@@ -2108,18 +2110,18 @@
     <div class="problems-tile problems-tile-payroll">
       <div class="problems-tile-payroll-inner">
         <div class="problems-tile-content">
-          <span class="problems-tile-label">Late Payroll Payment</span>
+          <span class="problems-tile-label" data-i18n="prob.payroll.label">Late Payroll Payment</span>
           <ul class="problems-bullet-list">
-            <li>Delayed salary payment</li>
-            <li>Incorrect contribution</li>
-            <li>Ungovernable process</li>
+            <li data-i18n="prob.payroll.b1">Delayed salary payment</li>
+            <li data-i18n="prob.payroll.b2">Incorrect contribution</li>
+            <li data-i18n="prob.payroll.b3">Ungovernable process</li>
           </ul>
           <div class="problems-solution-card--payroll">
-            <p class="problems-solution-card-label">MARCO&#8217;S SOLUTION</p>
+            <p class="problems-solution-card-label" data-i18n="prob.solution_label">MARCO'S SOLUTION</p>
             <div class="problems-solution-rows">
-              <div class="problems-solution-row--payroll">Fast, next-business day payment</div>
-              <div class="problems-solution-row--payroll">Locally compliant payroll processing, tax withholding and social contribution</div>
-              <div class="problems-solution-row--payroll">Global process governance, visibility and control</div>
+              <div class="problems-solution-row--payroll" data-i18n="prob.payroll.s1">Fast, next-business day payment</div>
+              <div class="problems-solution-row--payroll" data-i18n="prob.payroll.s2">Locally compliant payroll processing, tax withholding and social contribution</div>
+              <div class="problems-solution-row--payroll" data-i18n="prob.payroll.s3">Global process governance, visibility and control</div>
             </div>
           </div>
         </div>
@@ -2131,18 +2133,18 @@
     <div class="problems-tile problems-tile-onboarding">
       <div class="problems-tile-inner">
         <div class="problems-tile-content">
-          <span class="problems-tile-label">Onboarding Drags Forever</span>
+          <span class="problems-tile-label" data-i18n="prob.onboard.label">Onboarding Drags Forever</span>
           <ul class="problems-bullet-list">
-            <li>Radio silence</li>
-            <li>Disjointed procedures</li>
-            <li>Lengthy onboarding process</li>
+            <li data-i18n="prob.onboard.b1">Radio silence</li>
+            <li data-i18n="prob.onboard.b2">Disjointed procedures</li>
+            <li data-i18n="prob.onboard.b3">Lengthy onboarding process</li>
           </ul>
           <div class="problems-solution-card">
-            <p class="problems-solution-card-label">MARCO&#8217;S SOLUTION</p>
+            <p class="problems-solution-card-label" data-i18n="prob.solution_label">MARCO'S SOLUTION</p>
             <div class="problems-solution-rows">
-              <div class="problems-solution-row">Fully-engaged customer service manager for all onboarding cases</div>
-              <div class="problems-solution-row">Fully compliant, country-specific onboarding procedures</div>
-              <div class="problems-solution-row">Onboard within 3-7 working days</div>
+              <div class="problems-solution-row" data-i18n="prob.onboard.s1">Fully-engaged customer service manager for all onboarding cases</div>
+              <div class="problems-solution-row" data-i18n="prob.onboard.s2">Fully compliant, country-specific onboarding procedures</div>
+              <div class="problems-solution-row" data-i18n="prob.onboard.s3">Onboard within 3-7 working days</div>
             </div>
           </div>
         </div>
@@ -2154,18 +2156,18 @@
     <div class="problems-tile problems-tile-timeoff">
       <div class="problems-tile-timeoff-inner">
         <div class="problems-tile-content">
-          <span class="problems-tile-label">Inaccurate Time-Off Tracking</span>
+          <span class="problems-tile-label" data-i18n="prob.timeoff.label">Inaccurate Time-Off Tracking</span>
           <ul class="problems-bullet-list">
-            <li>Wrong public holidays</li>
-            <li>Confusing local time-off rules</li>
-            <li>Inaccurate balances</li>
+            <li data-i18n="prob.timeoff.b1">Wrong public holidays</li>
+            <li data-i18n="prob.timeoff.b2">Confusing local time-off rules</li>
+            <li data-i18n="prob.timeoff.b3">Inaccurate balances</li>
           </ul>
           <div class="problems-solution-card--timeoff">
-            <p class="problems-solution-card-label">MARCO&#8217;S SOLUTION</p>
+            <p class="problems-solution-card-label" data-i18n="prob.solution_label">MARCO'S SOLUTION</p>
             <div class="problems-solution-rows">
-              <div class="problems-solution-row--timeoff">Up to date country and state level public holidays</div>
-              <div class="problems-solution-row--timeoff">Local compliant time-off rules</div>
-              <div class="problems-solution-row--timeoff">Accurate carry over, encashment and balance calculation</div>
+              <div class="problems-solution-row--timeoff" data-i18n="prob.timeoff.s1">Up to date country and state level public holidays</div>
+              <div class="problems-solution-row--timeoff" data-i18n="prob.timeoff.s2">Local compliant time-off rules</div>
+              <div class="problems-solution-row--timeoff" data-i18n="prob.timeoff.s3">Accurate carry over, encashment and balance calculation</div>
             </div>
           </div>
         </div>
@@ -2175,18 +2177,18 @@
     <div class="problems-tile problems-tile-nosvc">
       <div class="problems-tile-nosvc-inner">
         <div class="problems-tile-content">
-          <span class="problems-tile-label">Only &#8220;System&#8221;, No Service</span>
+          <span class="problems-tile-label" data-i18n="prob.nosvc.label">Only "System", No Service</span>
           <ul class="problems-bullet-list">
-            <li>Customer service can never be reached</li>
-            <li>No consultation nor advice</li>
-            <li>Fixed conditions, no customization</li>
+            <li data-i18n="prob.nosvc.b1">Customer service can never be reached</li>
+            <li data-i18n="prob.nosvc.b2">No consultation nor advice</li>
+            <li data-i18n="prob.nosvc.b3">Fixed conditions, no customization</li>
           </ul>
           <div class="problems-solution-card--nosvc">
-            <p class="problems-solution-card-label">MARCO&#8217;S SOLUTION</p>
+            <p class="problems-solution-card-label" data-i18n="prob.solution_label">MARCO'S SOLUTION</p>
             <div class="problems-solution-rows">
-              <div class="problems-solution-row--nosvc">Dedicated customer service managers</div>
-              <div class="problems-solution-row--nosvc">Free consultation on workforce engagement, compliance, and risk mitigation</div>
-              <div class="problems-solution-row--nosvc">Flexible conditions specific for your situation</div>
+              <div class="problems-solution-row--nosvc" data-i18n="prob.nosvc.s1">Dedicated customer service managers</div>
+              <div class="problems-solution-row--nosvc" data-i18n="prob.nosvc.s2">Free consultation on workforce engagement, compliance, and risk mitigation</div>
+              <div class="problems-solution-row--nosvc" data-i18n="prob.nosvc.s3">Flexible conditions specific for your situation</div>
             </div>
           </div>
         </div>
@@ -2198,18 +2200,18 @@
     <div class="problems-tile problems-tile-expense">
       <div class="problems-tile-expense-inner">
         <div class="problems-tile-content">
-          <span class="problems-tile-label">Chaotic Expense Management</span>
+          <span class="problems-tile-label" data-i18n="prob.expense.label">Chaotic Expense Management</span>
           <ul class="problems-bullet-list">
-            <li>Expense claim and payment takes forever</li>
-            <li>Lots of manual work</li>
-            <li>No visibility on global spending</li>
+            <li data-i18n="prob.expense.b1">Expense claim and payment takes forever</li>
+            <li data-i18n="prob.expense.b2">Lots of manual work</li>
+            <li data-i18n="prob.expense.b3">No visibility on global spending</li>
           </ul>
           <div class="problems-solution-card--expense">
-            <p class="problems-solution-card-label">MARCO&#8217;S SOLUTION</p>
+            <p class="problems-solution-card-label" data-i18n="prob.solution_label">MARCO'S SOLUTION</p>
             <div class="problems-solution-rows">
-              <div class="problems-solution-row--expense">Streamlined global process with full local compliance</div>
-              <div class="problems-solution-row--expense">Minimized manual work for both staff and client</div>
-              <div class="problems-solution-row--expense">Clear GL reporting and Financial BI</div>
+              <div class="problems-solution-row--expense" data-i18n="prob.expense.s1">Streamlined global process with full local compliance</div>
+              <div class="problems-solution-row--expense" data-i18n="prob.expense.s2">Minimized manual work for both staff and client</div>
+              <div class="problems-solution-row--expense" data-i18n="prob.expense.s3">Clear GL reporting and Financial BI</div>
             </div>
           </div>
         </div>
@@ -2228,11 +2230,11 @@
     <div class="services-header fade-in">
       <div class="section-label" style="color: #019DE7;">
         <div class="line"></div>
-        <span>MARCO SERVICES</span>
+        <span data-i18n="sec.services.label">MARCO SERVICES</span>
       </div>
       <div class="services-heading">
-        <h2 class="services-title">Start from your very <span class="accent">first staff</span></h2>
-        <p class="services-subtitle">Tailored for each stage of your global expansion — compliant, flexible, and cost-effective. Global process governance with local service delivery.</p>
+        <h2 class="services-title"><span data-i18n="sec.services.title.main">Start from your very </span><span class="accent" data-i18n="sec.services.title.accent">first staff</span></h2>
+        <p class="services-subtitle" data-i18n="sec.services.subtitle">Tailored for each stage of your global expansion — compliant, flexible, and cost-effective. Global process governance with local service delivery.</p>
       </div>
     </div>
 
@@ -2242,11 +2244,11 @@
       <a href="service-employer-of-record.html" class="services-card">
         <div class="services-card-top">
           <img src="assets/Home/eor.svg" alt="" class="services-card-icon" />
-          <h3 class="services-card-title">Employer of Record (EOR)</h3>
-          <p class="services-card-desc">Hire and pay overseas staff without setting up your own entity. Marco provides a licensed local legal employer and day-to-day HR support.</p>
+          <h3 class="services-card-title" data-i18n="svc.eor.title">Employer of Record (EOR)</h3>
+          <p class="services-card-desc" data-i18n="svc.eor.desc">Hire and pay overseas staff without setting up your own entity. Marco provides a licensed local legal employer and day-to-day HR support.</p>
         </div>
         <div class="services-card-link">
-          <span class="services-card-link-text">LEARN MORE</span>
+          <span class="services-card-link-text" data-i18n="btn.learn_more">LEARN MORE</span>
           <div class="services-card-dash"></div>
         </div>
       </a>
@@ -2254,11 +2256,11 @@
       <a href="service-hr-operations.html" class="services-card">
         <div class="services-card-top">
           <img src="assets/Home/HRO.svg" alt="" class="services-card-icon" />
-          <h3 class="services-card-title">HR Operations (HRO)</h3>
-          <p class="services-card-desc">For companies with their own entity but no local HR. Marco handles your full local HR operations — including building your employee handbook, from ground up.</p>
+          <h3 class="services-card-title" data-i18n="svc.hro.title">HR Operations (HRO)</h3>
+          <p class="services-card-desc" data-i18n="svc.hro.desc">For companies with their own entity but no local HR. Marco handles your full local HR operations — including building your employee handbook, from ground up.</p>
         </div>
         <div class="services-card-link">
-          <span class="services-card-link-text">LEARN MORE</span>
+          <span class="services-card-link-text" data-i18n="btn.learn_more">LEARN MORE</span>
           <div class="services-card-dash"></div>
         </div>
       </a>
@@ -2266,11 +2268,11 @@
       <a href="service-global-payroll.html" class="services-card">
         <div class="services-card-top">
           <img src="assets/Home/global payroll.svg" alt="" class="services-card-icon" />
-          <h3 class="services-card-title">Global Payroll</h3>
-          <p class="services-card-desc">Global process governance and control. Marco handles all local payroll, social benefit, and tax requirements with customized reporting and business intelligence.</p>
+          <h3 class="services-card-title" data-i18n="svc.payroll.title">Global Payroll</h3>
+          <p class="services-card-desc" data-i18n="svc.payroll.desc">Global process governance and control. Marco handles all local payroll, social benefit, and tax requirements with customized reporting and business intelligence.</p>
         </div>
         <div class="services-card-link">
-          <span class="services-card-link-text">LEARN MORE</span>
+          <span class="services-card-link-text" data-i18n="btn.learn_more">LEARN MORE</span>
           <div class="services-card-dash"></div>
         </div>
       </a>
@@ -2279,11 +2281,11 @@
       <a href="service-independent-contractor.html" class="services-card">
         <div class="services-card-top">
           <img src="assets/Home/IC.svg" alt="" class="services-card-icon" />
-          <h3 class="services-card-title">Independent Contract (IC)</h3>
-          <p class="services-card-desc">Classify, onboard, and pay independent contractors compliantly across jurisdictions where misclassification risk carries real financial and legal exposure.</p>
+          <h3 class="services-card-title" data-i18n="svc.ic.title">Independent Contract (IC)</h3>
+          <p class="services-card-desc" data-i18n="svc.ic.desc">Classify, onboard, and pay independent contractors compliantly across jurisdictions where misclassification risk carries real financial and legal exposure.</p>
         </div>
         <div class="services-card-link">
-          <span class="services-card-link-text">LEARN MORE</span>
+          <span class="services-card-link-text" data-i18n="btn.learn_more">LEARN MORE</span>
           <div class="services-card-dash"></div>
         </div>
       </a>
@@ -2291,11 +2293,11 @@
       <a href="service-global-mobility.html" class="services-card">
         <div class="services-card-top">
           <img src="assets/Home/global mobility.svg" alt="" class="services-card-icon" />
-          <h3 class="services-card-title">Global Mobility</h3>
-          <p class="services-card-desc">Full-fledged expat and global mobility services — work visa application, transfer and renewal, expat tax, and landing and leaving support.</p>
+          <h3 class="services-card-title" data-i18n="svc.mobility.title">Global Mobility</h3>
+          <p class="services-card-desc" data-i18n="svc.mobility.desc">Full-fledged expat and global mobility services — work visa application, transfer and renewal, expat tax, and landing and leaving support.</p>
         </div>
         <div class="services-card-link">
-          <span class="services-card-link-text">LEARN MORE</span>
+          <span class="services-card-link-text" data-i18n="btn.learn_more">LEARN MORE</span>
           <div class="services-card-dash"></div>
         </div>
       </a>
@@ -2303,11 +2305,11 @@
       <a href="service-expense-processing.html" class="services-card">
         <div class="services-card-top">
           <img src="assets/Home/expense processing.svg" alt="" class="services-card-icon" />
-          <h3 class="services-card-title">Expense Processing</h3>
-          <p class="services-card-desc">All-inclusive expense processing and payment. Global expense policy in full local compliance, tax-compliant processing and unified reimbursement across currencies.</p>
+          <h3 class="services-card-title" data-i18n="svc.expense.title">Expense Processing</h3>
+          <p class="services-card-desc" data-i18n="svc.expense.desc">All-inclusive expense processing and payment. Global expense policy in full local compliance, tax-compliant processing and unified reimbursement across currencies.</p>
         </div>
         <div class="services-card-link">
-          <span class="services-card-link-text">LEARN MORE</span>
+          <span class="services-card-link-text" data-i18n="btn.learn_more">LEARN MORE</span>
           <div class="services-card-dash"></div>
         </div>
       </a>
@@ -2323,11 +2325,11 @@
     <div class="tech-header fade-in">
       <div class="section-label" style="color: #019DE7;">
         <div class="line"></div>
-        <span>MARCO&#8217;S TECHNOLOGY</span>
+        <span data-i18n="sec.tech.label">MARCO'S TECHNOLOGY</span>
       </div>
       <div class="tech-heading">
-        <h2 class="tech-title">Introducing <span class="accent">Marco OS</span></h2>
-        <p class="tech-subtitle">Your single portal for global workforce management</p>
+        <h2 class="tech-title"><span data-i18n="sec.tech.title.main">Introducing </span><span class="accent" data-i18n="sec.tech.title.accent">Marco OS</span></h2>
+        <p class="tech-subtitle" data-i18n="sec.tech.subtitle">Your single portal for global workforce management</p>
       </div>
     </div>
 
@@ -2338,26 +2340,26 @@
 
         <div class="tech-accordion-item active" data-tech-item data-panel="payroll">
           <div class="tech-accordion-header">
-            <h3 class="tech-accordion-title">Powerful Payroll &amp; People Management</h3>
+            <h3 class="tech-accordion-title" data-i18n="tech.payroll.title">Powerful Payroll &amp; People Management</h3>
             <span class="tech-accordion-chevron">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#9199A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </div>
           <div class="tech-accordion-body">
             <div class="tech-accordion-body-inner">
-              <p class="tech-accordion-desc">Say goodbye to messy operation and data</p>
+              <p class="tech-accordion-desc" data-i18n="tech.payroll.desc">Say goodbye to messy operation and data</p>
               <div class="tech-feature-list">
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Automated, global, multi-currency payroll processing</span>
+                  <span class="tech-feature-text" data-i18n="tech.payroll.f1">Automated, global, multi-currency payroll processing</span>
                 </div>
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Integrated people system, in-built with country-specific regulations</span>
+                  <span class="tech-feature-text" data-i18n="tech.payroll.f2">Integrated people system, in-built with country-specific regulations</span>
                 </div>
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Effortless onboarding, time off, and expense management</span>
+                  <span class="tech-feature-text" data-i18n="tech.payroll.f3">Effortless onboarding, time off, and expense management</span>
                 </div>
               </div>
             </div>
@@ -2366,26 +2368,26 @@
 
         <div class="tech-accordion-item" data-tech-item data-panel="api">
           <div class="tech-accordion-header">
-            <h3 class="tech-accordion-title">API Integrations</h3>
+            <h3 class="tech-accordion-title" data-i18n="tech.api.title">API Integrations</h3>
             <span class="tech-accordion-chevron">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#9199A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </div>
           <div class="tech-accordion-body">
             <div class="tech-accordion-body-inner">
-              <p class="tech-accordion-desc">Supercharge your current systems with Marco's open APIs.</p>
+              <p class="tech-accordion-desc" data-i18n="tech.api.desc">Supercharge your current systems with Marco's open APIs.</p>
               <div class="tech-feature-list">
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights</span>
+                  <span class="tech-feature-text" data-i18n="tech.api.f1">Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights</span>
                 </div>
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Secure data communication and transmission</span>
+                  <span class="tech-feature-text" data-i18n="tech.api.f2">Secure data communication and transmission</span>
                 </div>
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Ready-made integrations with leading Core HR, Finance, Time, and Expense platforms, including PeopleSoft, SuccessFactors, Workday, Rydoo, Kronos, and Xero</span>
+                  <span class="tech-feature-text" data-i18n="tech.api.f3">Ready-made integrations with leading Core HR, Finance, Time, and Expense platforms, including PeopleSoft, SuccessFactors, Workday, Rydoo, Kronos, and Xero</span>
                 </div>
               </div>
             </div>
@@ -2394,26 +2396,26 @@
 
         <div class="tech-accordion-item" data-tech-item data-panel="insights">
           <div class="tech-accordion-header">
-            <h3 class="tech-accordion-title">Business Insights</h3>
+            <h3 class="tech-accordion-title" data-i18n="tech.bi.title">Business Insights</h3>
             <span class="tech-accordion-chevron">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#9199A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </div>
           <div class="tech-accordion-body">
             <div class="tech-accordion-body-inner">
-              <p class="tech-accordion-desc">Empower your workforce strategy with data-driven insights.</p>
+              <p class="tech-accordion-desc" data-i18n="tech.bi.desc">Empower your workforce strategy with data-driven insights.</p>
               <div class="tech-feature-list">
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Aggregate staff data into automated reports</span>
+                  <span class="tech-feature-text" data-i18n="tech.bi.f1">Aggregate staff data into automated reports</span>
                 </div>
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Comprehensive insights into your workforce distribution and costs</span>
+                  <span class="tech-feature-text" data-i18n="tech.bi.f2">Comprehensive insights into your workforce distribution and costs</span>
                 </div>
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Data visualization to easily identify staffing trends, gaps, and opportunities</span>
+                  <span class="tech-feature-text" data-i18n="tech.bi.f3">Data visualization to easily identify staffing trends, gaps, and opportunities</span>
                 </div>
               </div>
             </div>
@@ -2422,26 +2424,26 @@
 
         <div class="tech-accordion-item" data-tech-item data-panel="mobility">
           <div class="tech-accordion-header">
-            <h3 class="tech-accordion-title">Borderless Mobility</h3>
+            <h3 class="tech-accordion-title" data-i18n="tech.mobility.title">Borderless Mobility</h3>
             <span class="tech-accordion-chevron">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#9199A6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </div>
           <div class="tech-accordion-body">
             <div class="tech-accordion-body-inner">
-              <p class="tech-accordion-desc">Gear up for the future of work.</p>
+              <p class="tech-accordion-desc" data-i18n="tech.mobility.desc">Gear up for the future of work.</p>
               <div class="tech-feature-list">
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights</span>
+                  <span class="tech-feature-text" data-i18n="tech.mobility.f1">Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights</span>
                 </div>
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Manage separate information for expat staff&#8217;s host and home country</span>
+                  <span class="tech-feature-text" data-i18n="tech.mobility.f2">Manage separate information for expat staff's host and home country</span>
                 </div>
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <span class="tech-feature-text">Fuss-free country and expat changes without worrying about payroll, time-off, and other HR compliance</span>
+                  <span class="tech-feature-text" data-i18n="tech.mobility.f3">Fuss-free country and expat changes without worrying about payroll, time-off, and other HR compliance</span>
                 </div>
               </div>
             </div>
@@ -2479,14 +2481,14 @@
         <div class="datacloud-header">
           <div class="section-label" style="color: #019DE7;">
             <div class="line"></div>
-            <span>MARCO DATA CLOUD</span>
+            <span data-i18n="sec.datacloud.label">MARCO DATA CLOUD</span>
           </div>
-          <h2 class="datacloud-title">All you need to know about <span class="accent">public holidays, leave rules, payroll formulas, and employee data sets</span></h2>
+          <h2 class="datacloud-title"><span data-i18n="sec.datacloud.title.main">All you need to know about </span><span class="accent" data-i18n="sec.datacloud.title.accent">public holidays, leave rules, payroll formulas, and employee data sets</span></h2>
         </div>
         <div class="datacloud-desc-list">
-          <p class="datacloud-desc">Get hyper-local data on a global scale, via Marco Platform or Marco REST API</p>
-          <p class="datacloud-desc">Unified, universal data across multi-language dictionaries</p>
-          <p class="datacloud-desc">Instant access to the latest information: mandatory pay items, state-level public holidays, and more</p>
+          <p class="datacloud-desc" data-i18n="sec.datacloud.desc1">Get hyper-local data on a global scale, via Marco Platform or Marco REST API</p>
+          <p class="datacloud-desc" data-i18n="sec.datacloud.desc2">Unified, universal data across multi-language dictionaries</p>
+          <p class="datacloud-desc" data-i18n="sec.datacloud.desc3">Instant access to the latest information: mandatory pay items, state-level public holidays, and more</p>
         </div>
       </div>
 
@@ -2508,17 +2510,17 @@
 
       <div class="stats-card">
         <div class="stats-number" data-count-target="5000" data-count-suffix="+">0+</div>
-        <div class="stats-label">ONBOARDED STAFF</div>
+        <div class="stats-label" data-i18n="stats.staff">ONBOARDED STAFF</div>
       </div>
 
       <div class="stats-card">
         <div class="stats-number" data-count-target="80" data-count-suffix="+">0+</div>
-        <div class="stats-label">COUNTRIES SUPPORTED</div>
+        <div class="stats-label" data-i18n="stats.countries">COUNTRIES SUPPORTED</div>
       </div>
 
       <div class="stats-card">
         <div class="stats-number" data-count-target="50" data-count-suffix="+">0+</div>
-        <div class="stats-label">SOFTWARE INTEGRATIONS</div>
+        <div class="stats-label" data-i18n="stats.integrations">SOFTWARE INTEGRATIONS</div>
       </div>
 
     </div>
@@ -2535,18 +2537,18 @@
         <div class="cta-heading-block">
           <div class="section-label" style="color: var(--text-main);">
             <div class="line" style="background: var(--text-main);"></div>
-            <span>START HERE</span>
+            <span data-i18n="cta.label">START HERE</span>
           </div>
-          <h2 class="cta-title">Ready to <span class="accent">simplify</span> your Global Workforce?</h2>
+          <h2 class="cta-title"><span data-i18n="cta.title.main">Ready to </span><span class="accent" data-i18n="cta.title.accent">simplify</span><span data-i18n="cta.title.end"> your Global Workforce?</span></h2>
         </div>
-        <p class="cta-desc">Tell us where you want to hire. We&#8217;ll show you exactly how Marco operates in those markets &#8212; the entities, the compliance posture, the team behind it.</p>
+        <p class="cta-desc" data-i18n="cta.desc">Tell us where you want to hire. We'll show you exactly how Marco operates in those markets — the entities, the compliance posture, the team behind it.</p>
         <div class="cta-buttons">
           <a href="company-contact-us.html" class="cta-btn cta-btn--primary">
-            Contact us
+            <span data-i18n="cta.btn.contact">Contact us</span>
             <svg class="cta-btn-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="#marco-services" class="cta-btn cta-btn--secondary" id="explore-services-btn">
-            Explore Services
+            <span data-i18n="btn.explore_services">Explore Services</span>
             <svg class="cta-btn-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -2581,80 +2583,80 @@
   </div>
   <div class="footer-nav">
     <div class="footer-col">
-      <span class="footer-col-header">Services</span>
+      <span class="footer-col-header" data-i18n="nav.services">Services</span>
       <div class="footer-col-links">
-        <a href="service-global-payroll.html">Global Payroll</a>
-        <a href="service-employer-of-record.html">EOR</a>
-        <a href="service-independent-contractor.html">IC</a>
-        <a href="service-global-mobility.html">Global Mobility</a>
-        <a href="service-expense-processing.html">Expense Processing</a>
-        <a href="service-hr-operations.html">HRO</a>
-        <a href="service-service-delivery-model.html">Service Delivery Model</a>
+        <a href="service-global-payroll.html" data-i18n="link.payroll">Global Payroll</a>
+        <a href="service-employer-of-record.html" data-i18n="link.eor">EOR</a>
+        <a href="service-independent-contractor.html" data-i18n="link.ic">IC</a>
+        <a href="service-global-mobility.html" data-i18n="link.mobility">Global Mobility</a>
+        <a href="service-expense-processing.html" data-i18n="link.expense">Expense Processing</a>
+        <a href="service-hr-operations.html" data-i18n="link.hro">HRO</a>
+        <a href="service-service-delivery-model.html" data-i18n="link.sdm">Service Delivery Model</a>
       </div>
     </div>
     <div class="footer-col">
-      <span class="footer-col-header">Compliance</span>
+      <span class="footer-col-header" data-i18n="nav.compliance">Compliance</span>
       <div class="footer-col-links">
-        <a href="compliance-data-protection.html">Data Protection &amp; Privacy</a>
-        <a href="compliance-operational-governance.html">Operational Governance</a>
-        <a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a>
+        <a href="compliance-data-protection.html" data-i18n="link.dp">Data Protection &amp; Privacy</a>
+        <a href="compliance-operational-governance.html" data-i18n="link.og">Operational Governance</a>
+        <a href="compliance-licensing-regulatory.html" data-i18n="link.lr">Licensing &amp; Regulatory Compliance</a>
       </div>
     </div>
     <div class="footer-col">
-      <span class="footer-col-header">Resources</span>
+      <span class="footer-col-header" data-i18n="nav.resources">Resources</span>
       <div class="footer-col-links">
-        <a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a>
-        <a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a>
-        <a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a>
-        <a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a>
-        <a href="#">Marco Copilot (AI Assistant)</a>
+        <a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer" data-i18n="link.help">Help Center</a>
+        <a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer" data-i18n="link.dev">Developer Portal</a>
+        <a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer" data-i18n="link.demo">Demo Site</a>
+        <a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer" data-i18n="link.engine">Processing &amp; Integration Engines</a>
+        <a href="#" data-i18n="link.copilot">Marco Copilot (AI Assistant)</a>
       </div>
     </div>
     <div class="footer-col">
-      <span class="footer-col-header">HR Knowledge Hub</span>
+      <span class="footer-col-header" data-i18n="nav.hub">HR Knowledge Hub</span>
       <div class="footer-col-links">
-        <a href="hr-knowledge-hub-labor-cost-calculator.html">Labor Cost Calculator</a>
-        <a href="hr-knowledge-hub-country-guide.html">Country Guide</a>
-        <a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a>
-        <a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a>
-        <a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a>
-                <a href="hr-knowledge-hub-employment-contract-matrix.html">Employment Contract Matrix</a>
-        <a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a>
-        <a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a>
-        <a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a>
-        <a href="hr-knowledge-hub-travel-expense-policy.html">Travel &amp; Expense Policy</a>
-        <a href="hr-knowledge-hub-benefits-plan.html">Benefits Plan</a>
-                <a href="hr-knowledge-hub-government-claim-update.html">Government Claim Update</a>
-        <a href="hr-knowledge-hub-vendor-list.html">Vendor List</a>
-        <a href="hr-knowledge-hub-memo.html">Memo</a>
+        <a href="hr-knowledge-hub-labor-cost-calculator.html" data-i18n="link.lcc">Labor Cost Calculator</a>
+        <a href="hr-knowledge-hub-country-guide.html" data-i18n="link.cg">Country Guide</a>
+        <a href="hr-knowledge-hub-visa-guide.html" data-i18n="link.vg">Visa Guide</a>
+        <a href="hr-knowledge-hub-payroll-guide.html" data-i18n="link.pg">Payroll Guide</a>
+        <a href="hr-knowledge-hub-freelancer-guide.html" data-i18n="link.fg">Freelancer Guide</a>
+        <a href="hr-knowledge-hub-employment-contract-matrix.html" data-i18n="link.ecm">Employment Contract Matrix</a>
+        <a href="hr-knowledge-hub-work-schedule.html" data-i18n="link.ws">Work Schedule</a>
+        <a href="hr-knowledge-hub-public-holiday-calendar-2026.html" data-i18n="link.phc">Public Holiday Calendar</a>
+        <a href="hr-knowledge-hub-leave-policy.html" data-i18n="link.lp">Leave Policy</a>
+        <a href="hr-knowledge-hub-travel-expense-policy.html" data-i18n="link.tep">Travel &amp; Expense Policy</a>
+        <a href="hr-knowledge-hub-benefits-plan.html" data-i18n="link.bp">Benefits Plan</a>
+        <a href="hr-knowledge-hub-government-claim-update.html" data-i18n="link.gcu">Government Claim Update</a>
+        <a href="hr-knowledge-hub-vendor-list.html" data-i18n="link.vl">Vendor List</a>
+        <a href="hr-knowledge-hub-memo.html" data-i18n="link.memo">Memo</a>
       </div>
     </div>
     <div class="footer-col">
-      <span class="footer-col-header">Price</span>
+      <span class="footer-col-header" data-i18n="nav.price">Price</span>
       <div class="footer-col-links">
-        <a href="price-global-workforce-solution.html">Global Workforce Solution</a>
-        <a href="price-global-managed-payroll-service.html">Global Managed Payroll Service</a>
-        <a href="price-proposal-builder.html">Proposal Builder</a>
+        <a href="price-global-workforce-solution.html" data-i18n="link.gws">Global Workforce Solution</a>
+        <a href="price-global-managed-payroll-service.html" data-i18n="link.gmps">Global Managed Payroll Service</a>
+        <a href="price-proposal-builder.html" data-i18n="link.pb">Proposal Builder</a>
       </div>
     </div>
     <div class="footer-col">
-      <span class="footer-col-header">About</span>
+      <span class="footer-col-header" data-i18n="nav.about">About</span>
       <div class="footer-col-links">
-        <a href="company-vision-values.html">Vision &amp; Value</a>
-        <a href="company-journey.html">Marco's Journey</a>
-        <a href="company-entity-network.html">Entity Network</a>
-        <a href="company-organization.html">Organization</a>
-        <a href="company-contact-us.html">Contact Us</a>
+        <a href="company-vision-values.html" data-i18n="link.vv">Vision &amp; Value</a>
+        <a href="company-journey.html" data-i18n="link.journey">Marco's Journey</a>
+        <a href="company-entity-network.html" data-i18n="link.en">Entity Network</a>
+        <a href="company-organization.html" data-i18n="link.org">Organization</a>
+        <a href="company-contact-us.html" data-i18n="link.contact">Contact Us</a>
       </div>
     </div>
   </div>
   <div class="footer-divider"></div>
   <div class="footer-bottom">
-    <p>Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+    <p data-i18n="footer.copyright">Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
     <div class="footer-legal">
-      <a href="company-terms-of-use.html">Terms of Use</a>
-      <a href="company-privacy-policy.html">Privacy Policy</a>
-      <a href="company-cookies-policy.html">Cookies Policy</a>
+      <a href="company-terms-of-use.html" data-i18n="link.terms">Terms of Use</a>
+      <a href="company-privacy-policy.html" data-i18n="link.privacy">Privacy Policy</a>
+      <a href="company-cookies-policy.html" data-i18n="link.cookies">Cookies Policy</a>
     </div>
   </div>
   </div>
@@ -2677,97 +2679,97 @@
   <div class="footer-mob-acc">
     <div class="footer-mob-row">
       <div class="footer-mob-row-header" data-footer-mob-acc>
-        <span class="footer-mob-row-label">Services</span>
+        <span class="footer-mob-row-label" data-i18n="nav.services">Services</span>
         <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="footer-mob-row-body">
-        <a href="service-global-payroll.html">Global Payroll</a>
-        <a href="service-employer-of-record.html">EOR</a>
-        <a href="service-independent-contractor.html">IC</a>
-        <a href="service-global-mobility.html">Global Mobility</a>
-        <a href="service-expense-processing.html">Expense Processing</a>
-        <a href="service-hr-operations.html">HRO</a>
-        <a href="service-service-delivery-model.html">Service Delivery Model</a>
+        <a href="service-global-payroll.html" data-i18n="link.payroll">Global Payroll</a>
+        <a href="service-employer-of-record.html" data-i18n="link.eor">EOR</a>
+        <a href="service-independent-contractor.html" data-i18n="link.ic">IC</a>
+        <a href="service-global-mobility.html" data-i18n="link.mobility">Global Mobility</a>
+        <a href="service-expense-processing.html" data-i18n="link.expense">Expense Processing</a>
+        <a href="service-hr-operations.html" data-i18n="link.hro">HRO</a>
+        <a href="service-service-delivery-model.html" data-i18n="link.sdm">Service Delivery Model</a>
       </div>
     </div>
     <div class="footer-mob-row">
       <div class="footer-mob-row-header" data-footer-mob-acc>
-        <span class="footer-mob-row-label">Compliance</span>
+        <span class="footer-mob-row-label" data-i18n="nav.compliance">Compliance</span>
         <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="footer-mob-row-body">
-        <a href="compliance-data-protection.html">Data Protection &amp; Privacy</a>
-        <a href="compliance-operational-governance.html">Operational Governance</a>
-        <a href="compliance-licensing-regulatory.html">Licensing &amp; Regulatory Compliance</a>
+        <a href="compliance-data-protection.html" data-i18n="link.dp">Data Protection &amp; Privacy</a>
+        <a href="compliance-operational-governance.html" data-i18n="link.og">Operational Governance</a>
+        <a href="compliance-licensing-regulatory.html" data-i18n="link.lr">Licensing &amp; Regulatory Compliance</a>
       </div>
     </div>
     <div class="footer-mob-row">
       <div class="footer-mob-row-header" data-footer-mob-acc>
-        <span class="footer-mob-row-label">Resources</span>
+        <span class="footer-mob-row-label" data-i18n="nav.resources">Resources</span>
         <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="footer-mob-row-body">
-        <a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Help Center</a>
-        <a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Developer Portal</a>
-        <a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer">Demo Site</a>
-        <a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer">Processing &amp; Integration Engines</a>
-        <a href="#">Marco Copilot (AI Assistant)</a>
+        <a href="https://help.marcopayroll.com/" target="_blank" rel="noopener noreferrer" data-i18n="link.help">Help Center</a>
+        <a href="https://developer.marcopayroll.com/" target="_blank" rel="noopener noreferrer" data-i18n="link.dev">Developer Portal</a>
+        <a href="https://test.tryglobalworkforce.com/" target="_blank" rel="noopener noreferrer" data-i18n="link.demo">Demo Site</a>
+        <a href="https://engine.marcopayroll.com/" target="_blank" rel="noopener noreferrer" data-i18n="link.engine">Processing &amp; Integration Engines</a>
+        <a href="#" data-i18n="link.copilot">Marco Copilot (AI Assistant)</a>
       </div>
     </div>
     <div class="footer-mob-row">
       <div class="footer-mob-row-header" data-footer-mob-acc>
-        <span class="footer-mob-row-label">HR Knowledge Hub</span>
+        <span class="footer-mob-row-label" data-i18n="nav.hub">HR Knowledge Hub</span>
         <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="footer-mob-row-body">
-        <a href="hr-knowledge-hub-labor-cost-calculator.html">Labor Cost Calculator</a>
-        <a href="hr-knowledge-hub-country-guide.html">Country Guide</a>
-        <a href="hr-knowledge-hub-visa-guide.html">Visa Guide</a>
-        <a href="hr-knowledge-hub-payroll-guide.html">Payroll Guide</a>
-        <a href="hr-knowledge-hub-freelancer-guide.html">Freelancer Guide</a>
-        <a href="hr-knowledge-hub-employment-contract-matrix.html">Employment Contract Matrix</a>
-        <a href="hr-knowledge-hub-work-schedule.html">Work Schedule</a>
-        <a href="hr-knowledge-hub-public-holiday-calendar-2026.html">Public Holiday Calendar</a>
-        <a href="hr-knowledge-hub-leave-policy.html">Leave Policy</a>
-        <a href="hr-knowledge-hub-travel-expense-policy.html">Travel &amp; Expense Policy</a>
-        <a href="hr-knowledge-hub-benefits-plan.html">Benefits Plan</a>
-        <a href="hr-knowledge-hub-government-claim-update.html">Government Claim Update</a>
-        <a href="hr-knowledge-hub-vendor-list.html">Vendor List</a>
-        <a href="hr-knowledge-hub-memo.html">Memo</a>
+        <a href="hr-knowledge-hub-labor-cost-calculator.html" data-i18n="link.lcc">Labor Cost Calculator</a>
+        <a href="hr-knowledge-hub-country-guide.html" data-i18n="link.cg">Country Guide</a>
+        <a href="hr-knowledge-hub-visa-guide.html" data-i18n="link.vg">Visa Guide</a>
+        <a href="hr-knowledge-hub-payroll-guide.html" data-i18n="link.pg">Payroll Guide</a>
+        <a href="hr-knowledge-hub-freelancer-guide.html" data-i18n="link.fg">Freelancer Guide</a>
+        <a href="hr-knowledge-hub-employment-contract-matrix.html" data-i18n="link.ecm">Employment Contract Matrix</a>
+        <a href="hr-knowledge-hub-work-schedule.html" data-i18n="link.ws">Work Schedule</a>
+        <a href="hr-knowledge-hub-public-holiday-calendar-2026.html" data-i18n="link.phc">Public Holiday Calendar</a>
+        <a href="hr-knowledge-hub-leave-policy.html" data-i18n="link.lp">Leave Policy</a>
+        <a href="hr-knowledge-hub-travel-expense-policy.html" data-i18n="link.tep">Travel &amp; Expense Policy</a>
+        <a href="hr-knowledge-hub-benefits-plan.html" data-i18n="link.bp">Benefits Plan</a>
+        <a href="hr-knowledge-hub-government-claim-update.html" data-i18n="link.gcu">Government Claim Update</a>
+        <a href="hr-knowledge-hub-vendor-list.html" data-i18n="link.vl">Vendor List</a>
+        <a href="hr-knowledge-hub-memo.html" data-i18n="link.memo">Memo</a>
       </div>
     </div>
     <div class="footer-mob-row">
       <div class="footer-mob-row-header" data-footer-mob-acc>
-        <span class="footer-mob-row-label">Price</span>
+        <span class="footer-mob-row-label" data-i18n="nav.price">Price</span>
         <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="footer-mob-row-body">
-        <a href="price-global-workforce-solution.html">Global Workforce Solution</a>
-        <a href="price-global-managed-payroll-service.html">Global Managed Payroll Service</a>
-        <a href="price-proposal-builder.html">Proposal Builder</a>
+        <a href="price-global-workforce-solution.html" data-i18n="link.gws">Global Workforce Solution</a>
+        <a href="price-global-managed-payroll-service.html" data-i18n="link.gmps">Global Managed Payroll Service</a>
+        <a href="price-proposal-builder.html" data-i18n="link.pb">Proposal Builder</a>
       </div>
     </div>
     <div class="footer-mob-row">
       <div class="footer-mob-row-header" data-footer-mob-acc>
-        <span class="footer-mob-row-label">About</span>
+        <span class="footer-mob-row-label" data-i18n="nav.about">About</span>
         <span class="footer-mob-row-chevron"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6l4 4 4-4" stroke="#8f98b5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="footer-mob-row-body">
-        <a href="company-vision-values.html">Vision &amp; Value</a>
-        <a href="company-journey.html">Marco's Journey</a>
-        <a href="company-entity-network.html">Entity Network</a>
-        <a href="company-organization.html">Organization</a>
-        <a href="company-contact-us.html">Contact Us</a>
+        <a href="company-vision-values.html" data-i18n="link.vv">Vision &amp; Value</a>
+        <a href="company-journey.html" data-i18n="link.journey">Marco's Journey</a>
+        <a href="company-entity-network.html" data-i18n="link.en">Entity Network</a>
+        <a href="company-organization.html" data-i18n="link.org">Organization</a>
+        <a href="company-contact-us.html" data-i18n="link.contact">Contact Us</a>
       </div>
     </div>
   </div>
   <div class="footer-mob-legal">
     <div class="footer-mob-legal-links">
-      <a href="company-terms-of-use.html">Terms of Use</a>
-      <a href="company-privacy-policy.html">Privacy Policy</a>
-      <a href="company-cookies-policy.html">Cookies Policy</a>
+      <a href="company-terms-of-use.html" data-i18n="link.terms">Terms of Use</a>
+      <a href="company-privacy-policy.html" data-i18n="link.privacy">Privacy Policy</a>
+      <a href="company-cookies-policy.html" data-i18n="link.cookies">Cookies Policy</a>
     </div>
-    <p class="footer-mob-copyright">Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
+    <p class="footer-mob-copyright" data-i18n="footer.copyright">Copyright &copy; 2026 Marco Global Payroll Pte. Ltd. All rights reserved.</p>
   </div>
 </footer>
 
@@ -3031,24 +3033,83 @@
   })();
 </script>
 
+<script src="assets/lang/lang-loader.js"></script>
+
 <script>
   /* ── Language dropdown ── */
   (function() {
+    var LANG_CONFIG = {
+      en: { label: 'EN', flagSrc: 'assets/flag-en.png',  flagClass: 'flag-en' },
+      cn: { label: 'CN', flagSrc: 'assets/flag-cn.webp', flagClass: 'flag-cn' }
+    };
+
+    var currentLang = localStorage.getItem('marco-lang') || 'en';
+
+    /* Update trigger display (flag + label) to reflect current language */
+    function updateTriggerDisplay(triggerId) {
+      var trigger = document.getElementById(triggerId);
+      if (!trigger) return;
+      var cfg = LANG_CONFIG[currentLang] || LANG_CONFIG.en;
+      var flagEl  = trigger.querySelector('.nav-lang-flag img');
+      var labelEl = trigger.querySelector('span');
+      if (flagEl)  flagEl.src = cfg.flagSrc;
+      if (labelEl) labelEl.textContent = cfg.label;
+    }
+
+    /* Update is-active state on dropdown rows */
+    function updateActiveRows(dropdownId) {
+      var dropdown = document.getElementById(dropdownId);
+      if (!dropdown) return;
+      dropdown.querySelectorAll('.nav-lang-dd-row').forEach(function(row) {
+        var rowLabel = row.querySelector('.nav-lang-dd-label');
+        if (!rowLabel) return;
+        var isActive = rowLabel.textContent.trim().toLowerCase() === currentLang;
+        row.classList.toggle('is-active', isActive);
+      });
+    }
+
+    /* Wire up each dropdown pair */
     [
-      ['nav-lang-trigger', 'nav-lang-dropdown'],
+      ['nav-lang-trigger',        'nav-lang-dropdown'],
       ['nav-mobile-lang-trigger', 'nav-mobile-lang-dropdown']
     ].forEach(function(pair) {
-      var trigger  = document.getElementById(pair[0]);
-      var dropdown = document.getElementById(pair[1]);
+      var triggerId  = pair[0];
+      var dropdownId = pair[1];
+      var trigger    = document.getElementById(triggerId);
+      var dropdown   = document.getElementById(dropdownId);
       if (!trigger || !dropdown) return;
+
+      /* Reflect current language on page load */
+      updateTriggerDisplay(triggerId);
+      updateActiveRows(dropdownId);
+
+      /* Toggle dropdown open/close */
       trigger.addEventListener('click', function(e) {
         e.stopPropagation();
         var opening = !dropdown.classList.contains('is-open');
         dropdown.classList.toggle('is-open');
         dropdown.setAttribute('aria-hidden', opening ? 'false' : 'true');
       });
+
+      /* Language row clicks → set lang and reload */
+      dropdown.querySelectorAll('.nav-lang-dd-row').forEach(function(row) {
+        row.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var rowLabel = row.querySelector('.nav-lang-dd-label');
+          if (!rowLabel) return;
+          var selectedLang = rowLabel.textContent.trim().toLowerCase();
+          if (selectedLang === currentLang) {
+            dropdown.classList.remove('is-open');
+            return;
+          }
+          localStorage.setItem('marco-lang', selectedLang);
+          location.reload();
+        });
+      });
+
       dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
     });
+
     document.addEventListener('click', function() {
       document.querySelectorAll('.nav-lang-dropdown.is-open').forEach(function(d) {
         d.classList.remove('is-open');

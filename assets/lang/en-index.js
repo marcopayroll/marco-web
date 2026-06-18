@@ -1,0 +1,121 @@
+window.MARCO_LANG_EN_INDEX = {
+
+  /* ── Hero ── */
+  "hero.title.main": "Scale your global workforce ",
+  "hero.title.accent": "today",
+  "btn.explore_services": "Explore Services",
+  "btn.marco_os": "Marco OS",
+
+  /* ── Problems ── */
+  "problems.title": "Facing these problems?",
+  "problems.desc1": "Marco is your solution to be worry-free.",
+  "problems.desc2": "Every operational challenge in global workforce management — solved under one roof.",
+  "prob.solution_label": "MARCO'S SOLUTION",
+
+  "prob.payroll.label": "Late Payroll Payment",
+  "prob.payroll.b1": "Delayed salary payment",
+  "prob.payroll.b2": "Incorrect contribution",
+  "prob.payroll.b3": "Ungovernable process",
+  "prob.payroll.s1": "Fast, next-business day payment",
+  "prob.payroll.s2": "Locally compliant payroll processing, tax withholding and social contribution",
+  "prob.payroll.s3": "Global process governance, visibility and control",
+
+  "prob.onboard.label": "Onboarding Drags Forever",
+  "prob.onboard.b1": "Radio silence",
+  "prob.onboard.b2": "Disjointed procedures",
+  "prob.onboard.b3": "Lengthy onboarding process",
+  "prob.onboard.s1": "Fully-engaged customer service manager for all onboarding cases",
+  "prob.onboard.s2": "Fully compliant, country-specific onboarding procedures",
+  "prob.onboard.s3": "Onboard within 3-7 working days",
+
+  "prob.timeoff.label": "Inaccurate Time-Off Tracking",
+  "prob.timeoff.b1": "Wrong public holidays",
+  "prob.timeoff.b2": "Confusing local time-off rules",
+  "prob.timeoff.b3": "Inaccurate balances",
+  "prob.timeoff.s1": "Up to date country and state level public holidays",
+  "prob.timeoff.s2": "Local compliant time-off rules",
+  "prob.timeoff.s3": "Accurate carry over, encashment and balance calculation",
+
+  "prob.nosvc.label": "Only “System”, No Service",
+  "prob.nosvc.b1": "Customer service can never be reached",
+  "prob.nosvc.b2": "No consultation nor advice",
+  "prob.nosvc.b3": "Fixed conditions, no customization",
+  "prob.nosvc.s1": "Dedicated customer service managers",
+  "prob.nosvc.s2": "Free consultation on workforce engagement, compliance, and risk mitigation",
+  "prob.nosvc.s3": "Flexible conditions specific for your situation",
+
+  "prob.expense.label": "Chaotic Expense Management",
+  "prob.expense.b1": "Expense claim and payment takes forever",
+  "prob.expense.b2": "Lots of manual work",
+  "prob.expense.b3": "No visibility on global spending",
+  "prob.expense.s1": "Streamlined global process with full local compliance",
+  "prob.expense.s2": "Minimized manual work for both staff and client",
+  "prob.expense.s3": "Clear GL reporting and Financial BI",
+
+  /* ── Services section ── */
+  "sec.services.label": "MARCO SERVICES",
+  "sec.services.title.main": "Start from your very ",
+  "sec.services.title.accent": "first staff",
+  "sec.services.subtitle": "Tailored for each stage of your global expansion — compliant, flexible, and cost-effective. Global process governance with local service delivery.",
+  "svc.eor.title": "Employer of Record (EOR)",
+  "svc.eor.desc": "Hire and pay overseas staff without setting up your own entity. Marco provides a licensed local legal employer and day-to-day HR support.",
+  "svc.hro.title": "HR Operations (HRO)",
+  "svc.hro.desc": "For companies with their own entity but no local HR. Marco handles your full local HR operations — including building your employee handbook, from ground up.",
+  "svc.payroll.title": "Global Payroll",
+  "svc.payroll.desc": "Global process governance and control. Marco handles all local payroll, social benefit, and tax requirements with customized reporting and business intelligence.",
+  "svc.ic.title": "Independent Contract (IC)",
+  "svc.ic.desc": "Classify, onboard, and pay independent contractors compliantly across jurisdictions where misclassification risk carries real financial and legal exposure.",
+  "svc.mobility.title": "Global Mobility",
+  "svc.mobility.desc": "Full-fledged expat and global mobility services — work visa application, transfer and renewal, expat tax, and landing and leaving support.",
+  "svc.expense.title": "Expense Processing",
+  "svc.expense.desc": "All-inclusive expense processing and payment. Global expense policy in full local compliance, tax-compliant processing and unified reimbursement across currencies.",
+  "btn.learn_more": "LEARN MORE",
+
+  /* ── Technology ── */
+  "sec.tech.label": "MARCO'S TECHNOLOGY",
+  "sec.tech.title.main": "Introducing ",
+  "sec.tech.title.accent": "Marco OS",
+  "sec.tech.subtitle": "Your single portal for global workforce management",
+  "tech.payroll.title": "Powerful Payroll & People Management",
+  "tech.payroll.desc": "Say goodbye to messy operation and data",
+  "tech.payroll.f1": "Automated, global, multi-currency payroll processing",
+  "tech.payroll.f2": "Integrated people system, in-built with country-specific regulations",
+  "tech.payroll.f3": "Effortless onboarding, time off, and expense management",
+  "tech.api.title": "API Integrations",
+  "tech.api.desc": "Supercharge your current systems with Marco's open APIs.",
+  "tech.api.f1": "Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights",
+  "tech.api.f2": "Secure data communication and transmission",
+  "tech.api.f3": "Ready-made integrations with leading Core HR, Finance, Time, and Expense platforms, including PeopleSoft, SuccessFactors, Workday, Rydoo, Kronos, and Xero",
+  "tech.bi.title": "Business Insights",
+  "tech.bi.desc": "Empower your workforce strategy with data-driven insights.",
+  "tech.bi.f1": "Aggregate staff data into automated reports",
+  "tech.bi.f2": "Comprehensive insights into your workforce distribution and costs",
+  "tech.bi.f3": "Data visualization to easily identify staffing trends, gaps, and opportunities",
+  "tech.mobility.title": "Borderless Mobility",
+  "tech.mobility.desc": "Gear up for the future of work.",
+  "tech.mobility.f1": "Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights",
+  "tech.mobility.f2": "Manage separate information for expat staff's host and home country",
+  "tech.mobility.f3": "Fuss-free country and expat changes without worrying about payroll, time-off, and other HR compliance",
+
+  /* ── Data Cloud ── */
+  "sec.datacloud.label": "MARCO DATA CLOUD",
+  "sec.datacloud.title.main": "All you need to know about ",
+  "sec.datacloud.title.accent": "public holidays, leave rules, payroll formulas, and employee data sets",
+  "sec.datacloud.desc1": "Get hyper-local data on a global scale, via Marco Platform or Marco REST API",
+  "sec.datacloud.desc2": "Unified, universal data across multi-language dictionaries",
+  "sec.datacloud.desc3": "Instant access to the latest information: mandatory pay items, state-level public holidays, and more",
+
+  /* ── Stats ── */
+  "stats.staff": "ONBOARDED STAFF",
+  "stats.countries": "COUNTRIES SUPPORTED",
+  "stats.integrations": "SOFTWARE INTEGRATIONS",
+
+  /* ── CTA ── */
+  "cta.label": "START HERE",
+  "cta.title.main": "Ready to ",
+  "cta.title.accent": "simplify",
+  "cta.title.end": " your Global Workforce?",
+  "cta.desc": "Tell us where you want to hire. We'll show you exactly how Marco operates in those markets — the entities, the compliance posture, the team behind it.",
+  "cta.btn.contact": "Contact us"
+
+};

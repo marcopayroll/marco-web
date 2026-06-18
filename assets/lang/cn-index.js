@@ -1,0 +1,121 @@
+window.MARCO_LANG_CN_INDEX = {
+
+  /* ── Hero ── */
+  "hero.title.main": "开启全球用工新时代",
+  "hero.title.accent": "就在此刻",
+  "btn.explore_services": "探索服务",
+  "btn.marco_os": "Marco OS",
+
+  /* ── Problems ── */
+  "problems.title": "正在被这些问题困扰吗？",
+  "problems.desc1": "Marco 让全球用工管理更省心。",
+  "problems.desc2": "从薪资、入职、休假到费用管理，全球用工的运营难题，都可以在这里找到答案。",
+  "prob.solution_label": "MARCO 解决方案",
+
+  "prob.payroll.label": "薪资发放延迟",
+  "prob.payroll.b1": "工资迟迟不到账",
+  "prob.payroll.b2": "供款与缴费计算错误",
+  "prob.payroll.b3": "流程混乱，难以管控",
+  "prob.payroll.s1": "最快可于下一个工作日完成付款",
+  "prob.payroll.s2": "按当地法规处理薪资、预扣税与社会保险供款",
+  "prob.payroll.s3": "建立全球统一的流程治理、可视化管理与控制机制",
+
+  "prob.onboard.label": "入职流程一拖再拖",
+  "prob.onboard.b1": "沟通没有回应",
+  "prob.onboard.b2": "流程分散不统一",
+  "prob.onboard.b3": "入职周期过长",
+  "prob.onboard.s1": "专属客户服务经理全程跟进入职事项",
+  "prob.onboard.s2": "按国家要求执行合规的本地化入职流程",
+  "prob.onboard.s3": "通常可在 3 至 7 个工作日内完成入职",
+
+  "prob.timeoff.label": "休假追踪不准确",
+  "prob.timeoff.b1": "公共假期信息错误",
+  "prob.timeoff.b2": "本地休假规则复杂难懂",
+  "prob.timeoff.b3": "假期余额计算不准",
+  "prob.timeoff.s1": "及时更新国家与州级公共假期信息",
+  "prob.timeoff.s2": "按当地法规配置合规的休假规则",
+  "prob.timeoff.s3": "准确计算结转、折现与假期余额",
+
+  "prob.nosvc.label": "只有系统，没有服务",
+  "prob.nosvc.b1": "客户服务总是联系不上",
+  "prob.nosvc.b2": "缺少咨询与专业建议",
+  "prob.nosvc.b3": "条件固定，无法按需求调整",
+  "prob.nosvc.s1": "配备专属客户服务经理",
+  "prob.nosvc.s2": "免费提供用工安排、合规与风险控制咨询",
+  "prob.nosvc.s3": "根据您的实际情况提供更灵活的服务条件",
+
+  "prob.expense.label": "费用管理混乱",
+  "prob.expense.b1": "费用申报和付款耗时太久",
+  "prob.expense.b2": "大量流程仍需人工处理",
+  "prob.expense.b3": "全球费用支出缺乏可视化",
+  "prob.expense.s1": "以本地合规为基础，建立顺畅的全球费用流程",
+  "prob.expense.s2": "减少员工与客户双方的手动操作",
+  "prob.expense.s3": "提供清晰的总账报表与财务 BI 分析",
+
+  /* ── Services section ── */
+  "sec.services.label": "MARCO 服务",
+  "sec.services.title.main": "从第一位海外员工开始，",
+  "sec.services.title.accent": "我们一路支持",
+  "sec.services.subtitle": "为全球扩张的不同阶段量身打造，兼顾合规、灵活与成本效益。以全球流程治理为基础，结合本地服务交付。",
+  "svc.eor.title": "名义雇主（EOR）",
+  "svc.eor.desc": "无需设立当地实体，即可雇佣并支付海外员工。Marco 提供持牌的本地法律雇主，并支持日常 HR 管理。",
+  "svc.hro.title": "HR 运营服务（HRO）",
+  "svc.hro.desc": "适合已有本地实体、但缺少当地 HR 团队的企业。Marco 可承接完整的本地 HR 运营，包括从零搭建员工手册。",
+  "svc.payroll.title": "全球薪资",
+  "svc.payroll.desc": "提供全球流程治理与管控。Marco 处理各地薪资、社会福利与税务要求，并提供定制化报表与商业智能分析。",
+  "svc.ic.title": "独立承包商（IC）",
+  "svc.ic.desc": "在不同司法辖区合规分类、入职并支付独立承包商，降低错误分类带来的财务与法律风险。",
+  "svc.mobility.title": "全球员工流动",
+  "svc.mobility.desc": "提供完整的外派与全球员工流动服务，包括工作签证申请、转移与续签、外派税务，以及入境和离境支持。",
+  "svc.expense.title": "费用处理",
+  "svc.expense.desc": "提供一站式费用处理与付款服务。以本地合规为基础制定全球费用政策，支持税务合规处理及多币种统一报销。",
+  "btn.learn_more": "了解更多",
+
+  /* ── Technology ── */
+  "sec.tech.label": "MARCO 技术",
+  "sec.tech.title.main": "认识 ",
+  "sec.tech.title.accent": "Marco OS",
+  "sec.tech.subtitle": "一个门户，统一管理全球用工",
+  "tech.payroll.title": "强大的薪资与员工管理",
+  "tech.payroll.desc": "告别混乱的运营流程与分散的数据",
+  "tech.payroll.f1": "自动化、全球化、多币种薪资处理",
+  "tech.payroll.f2": "内置各国法规要求的一体化员工管理系统",
+  "tech.payroll.f3": "轻松管理员工入职、休假与费用流程",
+  "tech.api.title": "API 集成",
+  "tech.api.desc": "通过 Marco 开放 API，为您现有系统注入更强能力。",
+  "tech.api.f1": "通过 Marco 开放 API 连接现有系统，让数据在员工、薪资与商业洞察之间顺畅流转",
+  "tech.api.f2": "安全的数据通信与传输",
+  "tech.api.f3": "支持与主流核心 HR、财务、考勤和费用平台的现成集成，包括 PeopleSoft、SuccessFactors、Workday、Rydoo、Kronos 和 Xero",
+  "tech.bi.title": "商业洞察",
+  "tech.bi.desc": "用数据洞察赋能您的全球用工策略。",
+  "tech.bi.f1": "将员工数据汇总为自动化报表",
+  "tech.bi.f2": "全面掌握员工分布与用工成本",
+  "tech.bi.f3": "通过数据可视化，轻松识别人员趋势、缺口与机会",
+  "tech.mobility.title": "无边界员工流动",
+  "tech.mobility.desc": "为未来工作方式做好准备。",
+  "tech.mobility.f1": "通过 Marco 开放 API 连接现有系统，让数据在员工、薪资与商业洞察之间顺畅流转",
+  "tech.mobility.f2": "分别管理员工派驻国与母国的相关信息",
+  "tech.mobility.f3": "轻松处理国家变更与外派员工变动，无需担心薪资、休假和其他 HR 合规问题",
+
+  /* ── Data Cloud ── */
+  "sec.datacloud.label": "MARCO 数据云",
+  "sec.datacloud.title.main": "一站掌握",
+  "sec.datacloud.title.accent": "公共假期、休假规则、薪资公式与员工数据集",
+  "sec.datacloud.desc1": "通过 Marco 平台或 Marco REST API，获取全球范围内高度本地化的数据",
+  "sec.datacloud.desc2": "以多语言词典为基础，统一不同地区与系统之间的数据口径",
+  "sec.datacloud.desc3": "即时获取最新信息，包括强制性薪资项目、州级公共假期等关键数据",
+
+  /* ── Stats ── */
+  "stats.staff": "已完成入职员工",
+  "stats.countries": "支持国家和地区",
+  "stats.integrations": "软件集成",
+
+  /* ── CTA ── */
+  "cta.label": "从这里开始",
+  "cta.title.main": "准备好让全球用工",
+  "cta.title.accent": "更简单",
+  "cta.title.end": "了吗？",
+  "cta.desc": "告诉我们您想在哪些市场雇佣员工。我们会清楚说明 Marco 在这些市场如何运作，包括本地实体、合规安排，以及背后支持您的服务团队。",
+  "cta.btn.contact": "联系我们"
+
+};
