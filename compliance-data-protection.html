@@ -96,6 +96,7 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
     .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang:hover .nav-lang-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
     .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
@@ -122,7 +123,7 @@
     .nav-signin:hover { background: #0185C4; }
     /* Services dropdown */
     .nav-tab-services { position: relative; }
-    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 697px; top: 100%; height: 44px; }
+    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
     .nav-tab-services:hover .nav-chevron svg { transform: scaleY(-1); }
     .nav-services-dropdown {
       position: absolute; top: calc(100% + 44px); left: 0;
@@ -148,7 +149,7 @@
     .nav-tab-compliance::before {
       content: '';
       position: absolute;
-      left: 0; width: 400px;
+      left: 0; width: 100%;
       top: 100%; height: 44px;
     }
     .nav-tab-compliance:hover .nav-chevron svg { transform: scaleY(-1); }
@@ -167,7 +168,7 @@
     .nav-tab-about::before {
       content: '';
       position: absolute;
-      left: 0; width: 400px;
+      left: 0; width: 100%;
       top: 100%; height: 44px;
     }
     .nav-tab-about:hover .nav-chevron svg { transform: scaleY(-1); }
@@ -182,7 +183,7 @@
     .nav-tab-about:hover .nav-about-dropdown,
     .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
     .nav-tab-resources { position: relative; }
-    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
     .nav-tab-resources:hover .nav-chevron svg { transform: scaleY(-1); }
     .nav-resources-dropdown {
       position: absolute; top: calc(100% + 44px); left: 0;
@@ -195,7 +196,7 @@
     .nav-tab-resources:hover .nav-resources-dropdown,
     .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
     .nav-tab-hub { position: relative; }
-    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 680px; top: 100%; height: 44px; }
+    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
     .nav-tab-hub:hover .nav-chevron svg { transform: scaleY(-1); }
     .nav-hub-dropdown {
       position: absolute; top: calc(100% + 44px); left: 0;
@@ -208,7 +209,7 @@
     .nav-tab-hub:hover .nav-hub-dropdown,
     .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
     .nav-tab-price { position: relative; }
-    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 400px; top: 100%; height: 44px; }
+    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
     .nav-tab-price:hover .nav-chevron svg { transform: scaleY(-1); }
     .nav-price-dropdown {
       position: absolute; top: calc(100% + 44px); left: 0;
@@ -535,7 +536,7 @@
     ════════════════════════════════════════ */
     .nav-mobile-right { display: none; align-items: center; gap: 32px; }
     .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; padding-top: 10px; padding-bottom: 10px; }
-    .nav-mobile-lang:hover::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
+    .nav-mobile-lang.is-open::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-mobile-lang .nav-lang-flag { width: 16px; height: 16px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; position: relative; }
     .nav-mobile-lang .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
     .nav-mobile-lang span { font-family: var(--font); font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
