@@ -1,3 +1,163 @@
 window.MARCO_LANG_CN_COMPANY = {
 
+	/* ── Vision & Values ── */
+	'vv.hero.label':              '关于 Marco',
+	'vv.hero.title.pre':          '支撑',
+	'vv.hero.title.mid':          '​',
+	'vv.hero.title.em':           '全球工作',
+	'vv.hero.title.post':         '的基础设施',
+	'vv.hero.body':               '大多数企业的全球扩张失败，并不是因为战略有问题，而是卡在运营层面：薪资、合规、本地雇佣法律。Marco 正是为了解决这些问题而建立。',
+
+	'vv.vision.label':            '我们的愿景',
+	'vv.vision.title':            '让全球用工更简单',
+	'vv.vision.body':             '全球工作被复杂化太久了。薪资要经过层层中介处理，合规像是在猜答案，不同国家的员工拿到工资的时间可能相差数周。我们创立 Marco，是因为我们相信这不该是现实。直到今天，也依然不该如此。',
+
+	'vv.values.label':            '我们的价值观',
+	'vv.values.title.line1':      '开放。',
+	'vv.values.title.line2':      '谦逊。',
+	'vv.values.title.line3':      '自信。',
+	'vv.values.intro':            '这些不是口号，而是 Marco 做决策的运营原则。它们影响我们如何定价、如何选择客户、如何保护我们服务的人，也影响我们如何在每一个运营国家建立信任。',
+
+	'vv.v1.title':                '保持开放',
+	'vv.v1.sub':                  '打破壁垒。\n连接知识。',
+	'vv.v1.body.p1':              '全球服务中的信息壁垒应该被打破。拥有专业知识并提供服务的服务方，应当能够以公平、合理且舒适的方式，直接服务真正需要的人。',
+	'vv.v1.body.p2':              '如今已经有足够多的社交工具和翻译工具，帮助我们触达世界任何地方的任何人。',
+	'vv.v1.body.p3':              '在我们的能力范围内，Marco 会与知识拥有者、服务专业人士和技术平台一起，让信息与服务能够更开放、更准确、更公平地被提供和支付。',
+	'vv.v1.quote':                '“开放不是后来添加的功能，而是你选择推倒的一堵墙。”',
+
+	'vv.v2.title':                '保持谦逊',
+	'vv.v2.sub':                  '每一个人。\n每一种文化。\n同等尊重。',
+	'vv.v2.body.p1':              '无论国家或领域，我们都以同一标准尊重员工、合同工作者、客户、服务提供者、知识拥有者和社区贡献者。',
+	'vv.v2.body.p2':              '我们尊重各国政府法规、国家文化、人们的价值观，以及不同人习惯的沟通方式。',
+	'vv.v2.body.p3':              '我们尊重客户员工以及 Marco 员工的隐私，也尊重他们做出选择的权利。',
+	'vv.v2.quote':                '“谦逊不是表现得低调，而是把每一个人、每一种文化、每一条规则都当作真正重要的事来对待。因为它们确实重要。”',
+
+	'vv.v3.title':                '保持自信',
+	'vv.v3.sub':                  '清楚自己是谁。\n认可自己的价值。\n谨慎做出选择。',
+	'vv.v3.body.p1':              '我们始终清楚自己是谁，也清楚自己正在交付什么样的服务。',
+	'vv.v3.body.p2':              '我们始终为自己的服务收取最合理的费用。',
+	'vv.v3.body.p3':              '我们也始终保有选择权，选择与我们认为合适且舒适的合作方一起工作。',
+	'vv.v3.quote':                '“知道自己是谁并不是傲慢，而是做生意最诚实的方式。”',
+
+	'vv.cta.label':               'MARCO 的承诺',
+	'vv.cta.title.line1':         '以开放的方式分享',
+	'vv.cta.title.line2':         '以谦逊的态度服务',
+	'vv.cta.title.line3':         '以自信的姿态前行',
+	'vv.cta.body':                '这三个价值观不是愿景式的表达，而是实际运营中的原则。当没有标准答案、没有先例、也没有容易的选择时，它们定义了 Marco 如何做决定。无论在哪个国家、使用哪种货币、进行哪一次对话，这都是 Marco 坚持的立场。',
+	'vv.cta.btn1':                '阅读 Marco 的发展历程',
+	'vv.cta.btn2':                '认识团队',
+
+	/* ── Company Journey ── */
+	'journey.hero.label':         'MARCO 的发展历程',
+	'journey.hero.title.pre':     '​',
+	'journey.hero.title.em':      'Marco',
+	'journey.hero.title.post':    '是如何建立起来的',
+	'journey.hero.body':          'Marco 并不是从路演或融资公告开始的。它始于 2020 年的北京，从一名 EOR 员工、一个客户，以及一个值得解决的问题开始。',
+
+	'journey.impact.label':       '我们今天走到哪里',
+	'journey.impact.title.pre':   '从第一位 EOR 员工入职，到打造',
+	'journey.impact.title.em':    '全球用工基础设施',
+	'journey.impact.body1':       '自 2020 年以来，Marco 已通过 21 个自有实体帮助超过 5,000 名员工完成入职，在三大洲设立 4 个服务中心，并处理超过 1.5 亿美元的用工付款，同时始终没有偏离最初建立这一切的价值观。',
+	'journey.impact.stat1.label': '自有实体',
+	'journey.impact.stat2.label': '年度现金流',
+	'journey.impact.stat3.label': '全球服务中心',
+	'journey.impact.stat4.label': '已入职员工',
+
+	'journey.os.label':           '平台',
+	'journey.os.title.pre':       'Marco OS',
+	'journey.os.body':            'Marco OS 是支撑 Marco 所有服务交付的统一平台，将薪资计算、员工管理、费用处理和全球员工流动整合在一个互联的系统中。它可以与企业现有工具集成，将实时用工数据反馈给需要的团队，并内置各国合规规则，让客户无需分别管理这些复杂要求。',
+	'journey.os.btn1':            '探索 Marco OS',
+	'journey.os.btn2':            '联系我们',
+
+	'journey.next.label':         '下一步',
+	'journey.next.title.pre':     '​',
+	'journey.next.title.em1':     'Marco 的下一章',
+	'journey.next.title.mid':     '尚未写下。但',
+	'journey.next.title.em2':     '基础',
+	'journey.next.title.post':    '已经就位',
+	'journey.next.body':          '这三个价值观不是愿景式的表达，而是实际运营中的原则。当没有标准答案、没有先例、也没有容易的选择时，它们定义了 Marco 如何做决定。无论在哪个国家、使用哪种货币、进行哪一次对话，这都是 Marco 坚持的立场。',
+	'journey.next.btn1':          '探索我们的网络',
+	'journey.next.btn2':          '我们的价值观',
+
+	/* ── Organization ── */
+	'org.hero.label':             '组织',
+	'org.hero.title.pre': '平台背后的',
+	'org.hero.title.em': '核心团队',
+	'org.hero.title.post':        '​',
+	'org.hero.body':              'Marco 由分布在 18 个国家的 70 多名成员共同建立。将他们连接在一起的，不是地理位置，而是一个共同信念：全球工作可以被做得更好，而服务全球员工团队的人，也应该属于一个认真对待这份使命的组织。',
+
+	'org.built.label':            '我们如何构建组织',
+	'org.built.r1.title':         '天生分布式，以统一标准连接',
+	'org.built.r1.body':          'Marco 不是一个总部加若干区域办公室的组织。我们是真正的分布式团队，决策权交给最接近客户和市场的区域团队。真正把组织连接起来的，不是物理距离，而是一套共同标准：一致的工作方式、汇报方式和责任机制。无论在新加坡还是圣保罗，标准都一样。',
+	'org.built.r2.title':         '专业优先于层级',
+	'org.built.r2.body':          '在 Marco，谁对一个问题理解最深，谁的答案就最有分量，而不是看头衔高低。一位在法兰克福研究德国新规劳动法影响三个月的初级合规分析师，在这个具体问题上，可能比新加坡的任何高管都更了解情况。Marco 的文化，就是为了让这种知识被看见，并真正用于决策。',
+	'org.built.r3.title':         '责任机制必须跟得上问题的速度',
+	'org.built.r3.body':          '全球薪资有固定截止时间。法定申报不能迟，工资不能压着不发。Marco 的组织设计正是围绕这一现实建立。决策权清晰，升级路径短，每位团队成员都清楚自己负责什么、需要解决什么，以及需要拉谁一起处理。这不是官僚式的清晰，而是运营上的必要。',
+
+	'org.struct.label':           '结构',
+	'org.struct.title':           'Marco 的\n组织方式',
+
+	'org.team.label':             '团队与文化',
+	'org.team.title.pre':         '成员',
+	'org.team.title.em':          '国家',
+	'org.team.title.post':        '同一种工作方式',
+	'org.team.body1':             'Marco 的团队本身就是一支全球员工团队。为客户提供国际团队管理建议的人，也正在亲身经历国际雇佣的现实：不同税制、不同休假权益、不同文化下对工作的期待。这不是巧合，而是 Marco 从设计之初就坚持的一部分。',
+	'org.team.body2':             '我们的文化建立在与客户关系相同的三大价值观之上：开放沟通、谦逊倾听、自信行动。内部意见分歧通过证据解决，而不是通过层级压下去。错误会被公开承认并快速纠正。优秀工作会被认可，无论它来自哪里。',
+	'org.team.body3':             '70 多名成员，18 个国家。Marco 的团队刻意保持精干，依靠专业深度，而不是单纯扩张人数。每一位 Marco 成员之所以被录用，都是因为他们在公司真正需要的某个领域足够出色。这就是标准，且不会因为增长而改变。',
+
+	'org.cta.label':              '与 Marco 一起工作',
+	'org.cta.title.pre':          '加入正在重新定义全球',
+	'org.cta.title.em':           '工作',
+	'org.cta.body':               '我们始终在寻找拥有真正专业能力、全球视野，以及能够在复杂问题与真实人的影响之间稳健行动的人。',
+	'org.cta.btn1':               '联系我们',
+	'org.cta.btn2':               '我们的价值观',
+
+	/* ── Entity Network ── */
+	'entity.hero.label':          '全球基础设施',
+	'entity.hero.title.pre':      '本地存在',
+	'entity.hero.title.em':       '全球规模',
+	'entity.hero.body':           '21 个自有法律实体，4 个服务中心，覆盖 AMER、EMEA 和 APAC。Marco 的基础设施不是一份合作伙伴名录，而是我们亲自建立并运营的网络。',
+
+	'entity.stats.label':         'MARCO 服务中心',
+	'entity.stats.stat1.label':   '自有实体',
+	'entity.stats.stat2.label':   '服务中心',
+	'entity.stats.stat3.label':   '支持工作签证的国家',
+
+	'entity.list.label':          'MARCO 实体',
+	'entity.region.amer':         'AMER',
+	'entity.region.emea':         'EMEA',
+	'entity.region.apac':         'APAC',
+
+	'entity.why.label':           '为什么这很重要',
+	'entity.why.title.pre':       '自有实体不是细节，而是',
+	'entity.why.title.accent':    '关键差异。',
+	'entity.why.body1':           '当一家全球薪资服务商说他们在某个国家运营时，真正值得问的是：他们是如何运营的？最常见的答案是第三方合作伙伴，也就是由当地公司代为处理合规、申报和发放。这个模式本身并非一定有问题，但它会带来延迟、不透明，以及客户无法真正验证的一层责任链。',
+	'entity.why.body2':           'Marco 的自有实体模式不同。在 Marco 通过自有法律实体运营的市场，本地团队直接纳入 Marco 的全球合规与运营结构。他们使用 Marco 的系统，遵循 Marco 的流程，并对 Marco 的标准负责。当问题发生时，而在全球薪资领域，问题迟早会出现，客户不需要通过中间方等待答案。答案直接来自 Marco。',
+
+	'entity.cta.label':           '继续了解',
+	'entity.cta.title.pre':       '认识基础设施背后的',
+	'entity.cta.title.post':      '团队',
+	'entity.cta.body':            '实体和服务中心是 Marco 的运营基础。组织页面将介绍真正运行这些基础设施的团队。',
+	'entity.cta.btn1':            '组织架构',
+	'entity.cta.btn2':            'Marco 的发展历程',
+
+	/* ── Contact Us ── */
+	'contact.hero.label':         '联系我们',
+	'contact.hero.title.pre':     '我们就在这里。',
+	'contact.hero.title.muted':   '欢迎聊聊。',
+	'contact.hero.body':          '无论您正在了解我们的服务、考虑合作机会、寻找职业发展，还是只是有一个问题，都欢迎联系我们，我们会尽快回复您。',
+
+	'contact.form.title':         '给我们留言',
+	'contact.form.fname.label':   '名字',
+	'contact.form.fname.placeholder': 'John',
+	'contact.form.lname.label':   '姓氏',
+	'contact.form.lname.placeholder': 'Doe',
+	'contact.form.phone.label':   '联系电话',
+	'contact.form.phone.placeholder': '(415) 555-0123',
+	'contact.form.email.label':   '电子邮箱',
+	'contact.form.email.placeholder': 'johndoe@email.com',
+	'contact.form.msg.label':     '留言内容',
+	'contact.form.msg.placeholder': '您想和我们聊些什么？',
+	'contact.form.submit':        '提交',
+
 };

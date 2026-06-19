@@ -997,7 +997,9 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
     .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang:hover .nav-lang-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
+    .nav-lang:hover .nav-lang-dropdown,
+    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
     .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
@@ -1627,11 +1629,11 @@
     <div class="hero-content fade-in">
       <div class="section-label">
         <div class="line" style="background:var(--blue-main)"></div>
-        <span>CONTACT US</span>
+        <span data-i18n="contact.hero.label">CONTACT US</span>
       </div>
       <div class="hero-text-group">
-        <h1 class="hero-title">We're here.<br><span class="hero-title-muted">Let's talk.</span></h1>
-        <p class="hero-body">Whether you're exploring our services, considering a partnership, seeking a career opportunity, or simply have a question — we're here, and we'll get back to you.</p>
+        <h1 class="hero-title"><span data-i18n="contact.hero.title.pre">We're here.</span><br><span class="hero-title-muted" data-i18n="contact.hero.title.muted">Let's talk.</span></h1>
+        <p class="hero-body" data-i18n="contact.hero.body">Whether you're exploring our services, considering a partnership, seeking a career opportunity, or simply have a question — we're here, and we'll get back to you.</p>
       </div>
     </div>
   </div>
@@ -1643,7 +1645,7 @@
 
     <!-- Title -->
     <div class="contact-form-title-block">
-      <h2 class="contact-form-title">Send us a message</h2>
+      <h2 class="contact-form-title" data-i18n="contact.form.title">Send us a message</h2>
     </div>
 
     <!-- Form fields -->
@@ -1653,18 +1655,18 @@
       <div class="form-row">
         <div class="form-field">
           <div class="form-label">
-            <span class="form-label-text">FIRST NAME</span>
+            <span class="form-label-text" data-i18n="contact.form.fname.label">FIRST NAME</span>
             <span class="form-label-required">*</span>
           </div>
-          <input type="text" class="form-input" id="field-first-name" placeholder="John" autocomplete="given-name" />
+          <input type="text" class="form-input" id="field-first-name" placeholder="John" data-i18n-placeholder="contact.form.fname.placeholder" autocomplete="given-name" />
           <p class="field-error" aria-live="polite"></p>
         </div>
         <div class="form-field">
           <div class="form-label">
-            <span class="form-label-text">LAST NAME</span>
+            <span class="form-label-text" data-i18n="contact.form.lname.label">LAST NAME</span>
             <span class="form-label-required">*</span>
           </div>
-          <input type="text" class="form-input" id="field-last-name" placeholder="Doe" autocomplete="family-name" />
+          <input type="text" class="form-input" id="field-last-name" placeholder="Doe" data-i18n-placeholder="contact.form.lname.placeholder" autocomplete="family-name" />
           <p class="field-error" aria-live="polite"></p>
         </div>
       </div>
@@ -1674,7 +1676,7 @@
         <!-- Contact Number with country code selector -->
         <div class="form-field">
           <div class="form-label">
-            <span class="form-label-text">CONTACT NUMBER</span>
+            <span class="form-label-text" data-i18n="contact.form.phone.label">CONTACT NUMBER</span>
             <span class="form-label-required">*</span>
           </div>
           <div class="form-phone-row">
@@ -1690,7 +1692,7 @@
               </svg>
             </button>
             <!-- Phone number input -->
-            <input type="tel" class="form-phone-input" id="field-phone" placeholder="(415) 555-0123" autocomplete="tel-national" />
+            <input type="tel" class="form-phone-input" id="field-phone" placeholder="(415) 555-0123" data-i18n-placeholder="contact.form.phone.placeholder" autocomplete="tel-national" />
             <!-- Country code dropdown -->
             <div class="phone-code-dropdown" id="phone-code-dropdown" hidden>
               <input type="text" class="phone-code-search" id="phone-code-search"
@@ -1706,10 +1708,10 @@
         <!-- Email Address -->
         <div class="form-field">
           <div class="form-label">
-            <span class="form-label-text">EMAIL ADDRESS</span>
+            <span class="form-label-text" data-i18n="contact.form.email.label">EMAIL ADDRESS</span>
             <span class="form-label-required">*</span>
           </div>
-          <input type="email" class="form-input" id="field-email" placeholder="johndoe@email.com" autocomplete="email" />
+          <input type="email" class="form-input" id="field-email" placeholder="johndoe@email.com" data-i18n-placeholder="contact.form.email.placeholder" autocomplete="email" />
           <p class="field-error" aria-live="polite"></p>
         </div>
       </div>
@@ -1717,11 +1719,11 @@
       <!-- Message textarea -->
       <div class="form-field">
         <div class="form-label">
-          <span class="form-label-text">MESSAGE</span>
+          <span class="form-label-text" data-i18n="contact.form.msg.label">MESSAGE</span>
           <span class="form-label-required">*</span>
         </div>
         <div class="form-textarea-wrap">
-          <textarea class="form-textarea" id="field-message" placeholder="What do you have in mind?" rows="8"></textarea>
+          <textarea class="form-textarea" id="field-message" placeholder="What do you have in mind?" data-i18n-placeholder="contact.form.msg.placeholder" rows="8"></textarea>
           <div class="textarea-resize-handle" id="textarea-resize-handle" aria-hidden="true">
             <img src="assets/Company/expand icon.svg" width="24" height="24" draggable="false" />
           </div>
@@ -1732,7 +1734,7 @@
     </div><!-- /contact-form-inner -->
 
     <!-- Submit — right-aligned via parent align-items: flex-end -->
-    <button type="submit" class="contact-submit-btn">Submit</button>
+    <button type="submit" class="contact-submit-btn" data-i18n="contact.form.submit">Submit</button>
 
   </form><!-- /contact-form-wrapper -->
 </section>

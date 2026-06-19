@@ -118,7 +118,9 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
     .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang:hover .nav-lang-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
+    .nav-lang:hover .nav-lang-dropdown,
+    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
     .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
@@ -1328,11 +1330,11 @@
     <div class="hero-content fade-in">
       <div class="section-label">
         <div class="line"></div>
-        <span>ORGANIZATION</span>
+        <span data-i18n="org.hero.label">ORGANIZATION</span>
       </div>
       <div>
-        <p class="hero-title">The <em>people</em><br>behind the platform</p>
-        <p class="hero-body">Marco is built by a team of 70+ people across 18 countries. What holds them together is not geography. It is a shared belief that global work can be done better and that the people who serve global workforces deserve to work for an organization that takes that mission seriously.</p>
+        <p class="hero-title"><span data-i18n="org.hero.title.pre">The </span><br><em data-i18n="org.hero.title.em">people</em><br><span data-i18n="org.hero.title.post">behind the platform</span></p>
+        <p class="hero-body" data-i18n="org.hero.body">Marco is built by a team of 70+ people across 18 countries. What holds them together is not geography. It is a shared belief that global work can be done better and that the people who serve global workforces deserve to work for an organization that takes that mission seriously.</p>
       </div>
     </div>
   </div>
@@ -1343,30 +1345,30 @@
   <div class="container">
     <div class="section-label how-built-label fade-in">
       <div class="line"></div>
-      <span>HOW WE ARE BUILT</span>
+      <span data-i18n="org.built.label">HOW WE ARE BUILT</span>
     </div>
 
     <div class="how-row fade-in">
       <p class="how-row-number">01</p>
       <div class="how-row-content">
-        <p class="how-row-heading">Distributed by design, unified by standard</p>
-        <p class="how-row-body">Marco does not operate from a single headquarters with regional outposts. It is a genuinely distributed organization, with decision-making authority vested in the regional teams who are closest to the clients and markets they serve. What unifies the organization is not physical proximity but a shared standard, a consistent way of working, reporting, and holding each other accountable that is the same in Singapore as it is in São Paulo.</p>
+        <p class="how-row-heading" data-i18n="org.built.r1.title">Distributed by design, unified by standard</p>
+        <p class="how-row-body" data-i18n="org.built.r1.body">Marco does not operate from a single headquarters with regional outposts. It is a genuinely distributed organization, with decision-making authority vested in the regional teams who are closest to the clients and markets they serve. What unifies the organization is not physical proximity but a shared standard, a consistent way of working, reporting, and holding each other accountable that is the same in Singapore as it is in São Paulo.</p>
       </div>
     </div>
 
     <div class="how-row fade-in">
       <p class="how-row-number">02</p>
       <div class="how-row-content">
-        <p class="how-row-heading">Expertise before hierarchy</p>
-        <p class="how-row-body">At Marco, the person with the deepest expertise in a question is the person whose answer carries the most weight, regardless of title. A junior compliance analyst in Frankfurt who has spent three months mapping the labor law implications of a new German regulation knows more about that specific question than any executive in Singapore. Marco's culture is built to surface that knowledge and act on it.</p>
+        <p class="how-row-heading" data-i18n="org.built.r2.title">Expertise before hierarchy</p>
+        <p class="how-row-body" data-i18n="org.built.r2.body">At Marco, the person with the deepest expertise in a question is the person whose answer carries the most weight, regardless of title. A junior compliance analyst in Frankfurt who has spent three months mapping the labor law implications of a new German regulation knows more about that specific question than any executive in Singapore. Marco's culture is built to surface that knowledge and act on it.</p>
       </div>
     </div>
 
     <div class="how-row fade-in">
       <p class="how-row-number">03</p>
       <div class="how-row-content">
-        <p class="how-row-heading">Accountability that moves at the speed of the problem</p>
-        <p class="how-row-body">Global payroll operates on fixed deadlines. Statutory filings cannot be late. Salaries cannot be held. Marco's organizational design is built around this reality. Decision rights are clear. Escalation paths are short. Every team member knows exactly what they own, what they need to resolve, and who they need to involve. This is not bureaucratic clarity. It is operational necessity.</p>
+        <p class="how-row-heading" data-i18n="org.built.r3.title">Accountability that moves at the speed of the problem</p>
+        <p class="how-row-body" data-i18n="org.built.r3.body">Global payroll operates on fixed deadlines. Statutory filings cannot be late. Salaries cannot be held. Marco's organizational design is built around this reality. Decision rights are clear. Escalation paths are short. Every team member knows exactly what they own, what they need to resolve, and who they need to involve. This is not bureaucratic clarity. It is operational necessity.</p>
       </div>
     </div>
   </div>
@@ -1378,9 +1380,9 @@
     <div class="structure-header">
       <div class="section-label">
         <div class="line"></div>
-        <span>STRUCTURE</span>
+        <span data-i18n="org.struct.label">STRUCTURE</span>
       </div>
-      <p class="structure-heading">How Marco is<br>organized</p>
+      <p class="structure-heading" data-i18n="org.struct.title">How Marco is<br>organized</p>
     </div>
     <div class="structure-chart">
       <img src="assets/Compliance/marco-web-company-organization.svg" alt="Marco organization structure" />
@@ -1395,19 +1397,19 @@
       <div class="team-culture-left fade-in">
         <div class="section-label">
           <div class="line"></div>
-          <span>TEAM &amp; CULTURE</span>
+          <span data-i18n="org.team.label">TEAM &amp; CULTURE</span>
         </div>
         <div class="team-culture-stats">
-          <p><em>70+</em> people</p>
-          <p><em>18</em> countries</p>
-          <p><em>One</em> way of working</p>
+          <p><em>70+</em> <span data-i18n="org.team.title.pre">people</span></p>
+          <p><em>18</em> <span data-i18n="org.team.title.em">countries</span></p>
+          <p><em>One</em> <span data-i18n="org.team.title.post">way of working</span></p>
         </div>
       </div>
       <div class="team-culture-right fade-in">
         <div class="team-culture-body">
-          <p>Marco's team is, by definition, a global workforce. The people who advise clients on how to manage international teams are themselves managing the realities of international employment — different tax regimes, different leave entitlements, different cultural expectations of how work should feel. This is not a coincidence. It is part of how Marco was designed.</p>
-          <p>The culture is built on the same three values that govern client relationships: open communication, humble listening, and confident action. Internal disagreements are resolved through evidence, not hierarchy. Mistakes are acknowledged publicly and corrected quickly. Good work is recognized regardless of where it originates.</p>
-          <p>70+ people. 18 countries. The team is intentionally lean — built on depth of expertise rather than breadth of headcount. Every person at Marco was hired because they are genuinely excellent at something the company needs. That is the standard. It does not change with growth.</p>
+          <p data-i18n="org.team.body1">Marco's team is, by definition, a global workforce. The people who advise clients on how to manage international teams are themselves managing the realities of international employment — different tax regimes, different leave entitlements, different cultural expectations of how work should feel. This is not a coincidence. It is part of how Marco was designed.</p>
+          <p data-i18n="org.team.body2">The culture is built on the same three values that govern client relationships: open communication, humble listening, and confident action. Internal disagreements are resolved through evidence, not hierarchy. Mistakes are acknowledged publicly and corrected quickly. Good work is recognized regardless of where it originates.</p>
+          <p data-i18n="org.team.body3">70+ people. 18 countries. The team is intentionally lean — built on depth of expertise rather than breadth of headcount. Every person at Marco was hired because they are genuinely excellent at something the company needs. That is the standard. It does not change with growth.</p>
         </div>
       </div>
     </div>
@@ -1420,19 +1422,19 @@
     <div class="work-with-text fade-in">
       <div class="section-label">
         <div class="line"></div>
-        <span>WORK WITH MARCO</span>
+        <span data-i18n="org.cta.label">WORK WITH MARCO</span>
       </div>
-      <p class="work-with-heading">Join the team that is redefining global<br>work</p>
-      <p class="work-with-body">We are always looking for people who bring genuine expertise, a global mindset, and the character to operate at the intersection of complex problems and real human impact.</p>
+      <p class="work-with-heading"><span data-i18n="org.cta.title.pre">Join the team that is redefining global</span><br><span data-i18n="org.cta.title.em">work</span></p>
+      <p class="work-with-body" data-i18n="org.cta.body">We are always looking for people who bring genuine expertise, a global mindset, and the character to operate at the intersection of complex problems and real human impact.</p>
       <div class="work-with-cta">
         <button class="btn-primary">
-          Contact Us
+          <span data-i18n="org.cta.btn1">Contact Us</span>
           <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
         <a href="company-vision-values.html" class="btn-outline">
-          Our Values
+          <span data-i18n="org.cta.btn2">Our Values</span>
           <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

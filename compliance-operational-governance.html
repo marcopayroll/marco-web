@@ -96,7 +96,9 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
     .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang:hover .nav-lang-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
+    .nav-lang:hover .nav-lang-dropdown,
+    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
     .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
@@ -1212,10 +1214,10 @@
     <div class="hero-content fade-in">
       <div class="section-label">
         <div class="line"></div>
-        <span>COMPLIANCE</span>
+        <span data-i18n="og.hero.label">COMPLIANCE</span>
       </div>
-      <h1 class="hero-title">Operational<br><span class="hero-title-muted">Governance</span></h1>
-      <p class="hero-body">Certifications tell you what Marco has achieved. Governance tells you how Marco operates every day — the controls, accountability structures, and audit trails that make those certifications meaningful.</p>
+      <h1 class="hero-title"><span data-i18n="og.hero.title.pre">Operational</span><br><span class="hero-title-muted" data-i18n="og.hero.title.muted">Governance</span></h1>
+      <p class="hero-body" data-i18n="og.hero.body">Certifications tell you what Marco has achieved. Governance tells you how Marco operates every day — the controls, accountability structures, and audit trails that make those certifications meaningful.</p>
     </div>
   </div>
 </section>
@@ -1226,15 +1228,15 @@
     <div class="position-left fade-in">
       <div class="section-label">
         <div class="line"></div>
-        <span>OUR POSITION</span>
+        <span data-i18n="og.pos.label">OUR POSITION</span>
       </div>
-      <h2 class="position-title">Governance is not<br>a document.<br>It is how we <span class="position-title-accent">operate.</span></h2>
+      <h2 class="position-title"><span data-i18n="og.pos.title.pre">Governance is not<br>a document.<br>It is how we </span><span class="position-title-accent" data-i18n="og.pos.title.accent">operate.</span></h2>
     </div>
     <div class="position-right fade-in">
       <div class="position-body">
-        <p>Most compliance programs produce policies. Marco's governance framework produces accountability — defined roles, documented controls, and a clear chain of responsibility at every stage of service delivery.</p>
-        <p><strong>Every payroll run, every client engagement, every internal process</strong> operates within a structure where no single person holds unchecked authority, and every action is traceable.</p>
-        <p>This is what enterprise clients require, and what Marco's three-pillar compliance framework is built to deliver.</p>
+        <p data-i18n="og.pos.body1">Most compliance programs produce policies. Marco's governance framework produces accountability — defined roles, documented controls, and a clear chain of responsibility at every stage of service delivery.</p>
+        <p><strong data-i18n="og.pos.body2">Every payroll run, every client engagement, every internal process</strong><span data-i18n="og.pos.body2.rest"> operates within a structure where no single person holds unchecked authority, and every action is traceable.</span></p>
+        <p data-i18n="og.pos.body3">This is what enterprise clients require, and what Marco's three-pillar compliance framework is built to deliver.</p>
       </div>
     </div>
   </div>
@@ -1245,24 +1247,24 @@
   <div class="container">
     <div class="section-label fade-in">
       <div class="line"></div>
-      <span>COMPLIANCE FOUNDATION</span>
+      <span data-i18n="og.found.label">COMPLIANCE FOUNDATION</span>
     </div>
     <div class="pillars-title-group fade-in">
-      <h2 class="pillars-title">Three pillars behind<br>every engagement</h2>
-      <p class="pillars-intro">Marco's compliance framework is structured across three pillars that together cover legal, governance, and risk obligations in every market.</p>
+      <h2 class="pillars-title" data-i18n="og.found.title">Three pillars behind<br>every engagement</h2>
+      <p class="pillars-intro" data-i18n="og.found.intro">Marco's compliance framework is structured across three pillars that together cover legal, governance, and risk obligations in every market.</p>
     </div>
     <div class="pillars-row">
       <div class="pillar-card fade-in">
-        <p class="pillar-card-title">Business Compliance</p>
-        <p class="pillar-card-body">Global operations meet local labor, tax, and data-protection requirements in every market Marco serves. Compliance is built into service delivery, not managed separately from it.</p>
+        <p class="pillar-card-title" data-i18n="og.pillar.biz.title">Business Compliance</p>
+        <p class="pillar-card-body" data-i18n="og.pillar.biz.body">Global operations meet local labor, tax, and data-protection requirements in every market Marco serves. Compliance is built into service delivery, not managed separately from it.</p>
       </div>
       <div class="pillar-card fade-in">
-        <p class="pillar-card-title">Corporate Governance</p>
-        <p class="pillar-card-body">Transparent management framework with a clear organizational structure, defined separation of duties, and internal audit controls operating across all service lines and geographies.</p>
+        <p class="pillar-card-title" data-i18n="og.pillar.corp.title">Corporate Governance</p>
+        <p class="pillar-card-body" data-i18n="og.pillar.corp.body">Transparent management framework with a clear organizational structure, defined separation of duties, and internal audit controls operating across all service lines and geographies.</p>
       </div>
       <div class="pillar-card fade-in">
-        <p class="pillar-card-title">Risk Management</p>
-        <p class="pillar-card-body">Systematic identification, assessment, and mitigation of compliance and security risks across operations. Risk is not treated as a one-time exercise but as a continuous operational discipline.</p>
+        <p class="pillar-card-title" data-i18n="og.pillar.risk.title">Risk Management</p>
+        <p class="pillar-card-body" data-i18n="og.pillar.risk.body">Systematic identification, assessment, and mitigation of compliance and security risks across operations. Risk is not treated as a one-time exercise but as a continuous operational discipline.</p>
       </div>
     </div>
   </div>
@@ -1273,10 +1275,10 @@
   <div class="container">
     <div class="section-label fade-in">
       <div class="line"></div>
-      <span>INTERNAL CONTROLS</span>
+      <span data-i18n="og.ctrl.label">INTERNAL CONTROLS</span>
     </div>
-    <h2 class="controls-title fade-in">Audit, risk, and<br>policy controls</h2>
-    <p class="controls-intro fade-in">The operational controls that govern how Marco manages risk, maintains policy, and keeps every process auditable.</p>
+    <h2 class="controls-title fade-in" data-i18n="og.ctrl.title">Audit, risk, and<br>policy controls</h2>
+    <p class="controls-intro fade-in" data-i18n="og.ctrl.intro">The operational controls that govern how Marco manages risk, maintains policy, and keeps every process auditable.</p>
     <div class="controls-grid">
       <!-- Row 1 -->
       <div class="controls-row controls-row-top">
@@ -1286,12 +1288,12 @@
               <img src="assets/Compliance/File-text.svg" alt="Policy Management" />
             </div>
             <div class="controls-content">
-              <p class="controls-box-title">Policy Management</p>
-              <p class="controls-box-body">Operational policies are documented, version-controlled, and reviewed on a defined cycle. Every service line operates under a written policy framework.</p>
+              <p class="controls-box-title" data-i18n="og.ctrl.policy.title">Policy Management</p>
+              <p class="controls-box-body" data-i18n="og.ctrl.policy.body">Operational policies are documented, version-controlled, and reviewed on a defined cycle. Every service line operates under a written policy framework.</p>
               <ul class="controls-box-list">
-                <li>Payroll processing procedures per entity</li>
-                <li>Client engagement and escalation policies</li>
-                <li>Data handling and retention policies</li>
+                <li data-i18n="og.ctrl.policy.li1">Payroll processing procedures per entity</li>
+                <li data-i18n="og.ctrl.policy.li2">Client engagement and escalation policies</li>
+                <li data-i18n="og.ctrl.policy.li3">Data handling and retention policies</li>
               </ul>
             </div>
           </div>
@@ -1302,12 +1304,12 @@
               <img src="assets/Compliance/Edit.svg" alt="Risk Register" />
             </div>
             <div class="controls-content">
-              <p class="controls-box-title">Risk Register</p>
-              <p class="controls-box-body">Compliance and operational risks are identified, assessed, and tracked. Risk management is an ongoing operational process, not a periodic review.</p>
+              <p class="controls-box-title" data-i18n="og.ctrl.risk.title">Risk Register</p>
+              <p class="controls-box-body" data-i18n="og.ctrl.risk.body">Compliance and operational risks are identified, assessed, and tracked. Risk management is an ongoing operational process, not a periodic review.</p>
               <ul class="controls-box-list">
-                <li>Jurisdiction-level compliance risk monitoring</li>
-                <li>Vendor and third-party risk assessment</li>
-                <li>Operational risk escalation procedures</li>
+                <li data-i18n="og.ctrl.risk.li1">Jurisdiction-level compliance risk monitoring</li>
+                <li data-i18n="og.ctrl.risk.li2">Vendor and third-party risk assessment</li>
+                <li data-i18n="og.ctrl.risk.li3">Operational risk escalation procedures</li>
               </ul>
             </div>
           </div>
@@ -1321,12 +1323,12 @@
               <img src="assets/Compliance/Database.svg" alt="Incident Management" />
             </div>
             <div class="controls-content">
-              <p class="controls-box-title">Incident Management</p>
-              <p class="controls-box-body">Incidents are logged, classified, and tracked through to resolution. Each incident generates a documented record used to strengthen controls and prevent recurrence.</p>
+              <p class="controls-box-title" data-i18n="og.ctrl.incident.title">Incident Management</p>
+              <p class="controls-box-body" data-i18n="og.ctrl.incident.body">Incidents are logged, classified, and tracked through to resolution. Each incident generates a documented record used to strengthen controls and prevent recurrence.</p>
               <ul class="controls-box-list">
-                <li>Structured incident classification and logging</li>
-                <li>Root cause analysis on all material incidents</li>
-                <li>Client notification procedures where applicable</li>
+                <li data-i18n="og.ctrl.incident.li1">Structured incident classification and logging</li>
+                <li data-i18n="og.ctrl.incident.li2">Root cause analysis on all material incidents</li>
+                <li data-i18n="og.ctrl.incident.li3">Client notification procedures where applicable</li>
               </ul>
             </div>
           </div>
@@ -1337,12 +1339,12 @@
               <img src="assets/Compliance/Slash.svg" alt="Evidence &amp; Audit Trail" />
             </div>
             <div class="controls-content">
-              <p class="controls-box-title">Evidence &amp; Audit Trail</p>
-              <p class="controls-box-body">Every material action across payroll, compliance, and client service generates an auditable record. Evidence is maintained and accessible for internal review and external audit.</p>
+              <p class="controls-box-title" data-i18n="og.ctrl.audit.title">Evidence &amp; Audit Trail</p>
+              <p class="controls-box-body" data-i18n="og.ctrl.audit.body">Every material action across payroll, compliance, and client service generates an auditable record. Evidence is maintained and accessible for internal review and external audit.</p>
               <ul class="controls-box-list">
-                <li>Payroll approval and payment records</li>
-                <li>Access logs and change history</li>
-                <li>SOC 2 Type 2 and ISO 27001 audit evidence</li>
+                <li data-i18n="og.ctrl.audit.li1">Payroll approval and payment records</li>
+                <li data-i18n="og.ctrl.audit.li2">Access logs and change history</li>
+                <li data-i18n="og.ctrl.audit.li3">SOC 2 Type 2 and ISO 27001 audit evidence</li>
               </ul>
             </div>
           </div>
@@ -1359,18 +1361,18 @@
       <div class="continue-header">
         <div class="section-label">
           <div class="line"></div>
-          <span>CONTINUE</span>
+          <span data-i18n="og.continue.label">CONTINUE</span>
         </div>
-        <h2 class="continue-title">Governance is one part<br>of the <span class="continue-title-accent">foundation</span></h2>
+        <h2 class="continue-title"><span data-i18n="og.continue.title.pre">Governance is one part<br>of the </span><span class="continue-title-accent" data-i18n="og.continue.title.accent">foundation</span></h2>
       </div>
-      <p class="continue-body">Marco's compliance framework spans data protection, operational governance, and regulatory licensing, each independently verified, each built to enterprise standard.</p>
+      <p class="continue-body" data-i18n="og.continue.body">Marco's compliance framework spans data protection, operational governance, and regulatory licensing, each independently verified, each built to enterprise standard.</p>
       <div class="continue-ctas">
         <a href="compliance-licensing-regulatory.html" class="btn-primary">
-          Licensing &amp; Regulatory Compliance
+          <span data-i18n="og.continue.btn1">Licensing &amp; Regulatory Compliance</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
         </a>
         <a href="compliance-data-protection.html" class="btn-outline">
-          Data Protection &amp; Privacy
+          <span data-i18n="og.continue.btn2">Data Protection &amp; Privacy</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
         </a>
       </div>

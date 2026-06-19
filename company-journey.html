@@ -1086,7 +1086,9 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
     .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang:hover .nav-lang-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
+    .nav-lang:hover .nav-lang-dropdown,
+    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
     .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
@@ -1714,11 +1716,11 @@
     <div class="hero-content fade-in">
       <div class="section-label">
         <div class="line" style="background:var(--blue-main)"></div>
-        <span>MARCO'S JOURNEY</span>
+        <span data-i18n="journey.hero.label">MARCO'S JOURNEY</span>
       </div>
       <div>
-        <p class="hero-title">How <em>Marco</em><br>was built</p>
-        <p class="hero-body">Marco didn't start with a roadshow or a funding announcement. It started in Beijing in 2020 with <strong>one EOR employee, one client, and one problem worth solving.</strong></p>
+        <p class="hero-title"><span data-i18n="journey.hero.title.pre">How </span><em data-i18n="journey.hero.title.em">Marco</em><br><span data-i18n="journey.hero.title.post">was built</span></p>
+        <p class="hero-body" data-i18n="journey.hero.body">Marco didn't start with a roadshow or a funding announcement. It started in Beijing in 2020 with <strong>one EOR employee, one client, and one problem worth solving.</strong></p>
       </div>
     </div>
   </div>
@@ -1730,27 +1732,27 @@
     <div class="impact-copy fade-in">
       <div class="section-label">
         <div class="line" style="background:var(--text-main)"></div>
-        <span>WHERE WE STAND TODAY</span>
+        <span data-i18n="journey.impact.label">WHERE WE STAND TODAY</span>
       </div>
-      <h2>From the first EOR onboarding to a <em>Global Workforce Infrastructure</em></h2>
-      <p>Since 2020, Marco onboarded over 5,000 staff across 21 owned entities, opened 4 service centers across three continents, and processed over USD 150M in workforce payments, without compromising on the values that started it all.</p>
+      <h2><span data-i18n="journey.impact.title.pre">From the first EOR onboarding to a </span><em data-i18n="journey.impact.title.em">Global Workforce Infrastructure</em></h2>
+      <p data-i18n="journey.impact.body1">Since 2020, Marco onboarded over 5,000 staff across 21 owned entities, opened 4 service centers across three continents, and processed over USD 150M in workforce payments, without compromising on the values that started it all.</p>
     </div>
     <div class="impact-stats fade-in">
       <div class="stat-card">
         <p class="stat-number" data-count="21">0</p>
-        <p class="stat-label">Owned Entities</p>
+        <p class="stat-label" data-i18n="journey.impact.stat1.label">Owned Entities</p>
       </div>
       <div class="stat-card">
         <p class="stat-number" data-count="100" data-prefix="$" data-suffix="M+">0</p>
-        <p class="stat-label">Annual Cash Flow</p>
+        <p class="stat-label" data-i18n="journey.impact.stat2.label">Annual Cash Flow</p>
       </div>
       <div class="stat-card">
         <p class="stat-number" data-count="4">0</p>
-        <p class="stat-label">Service Center Globally</p>
+        <p class="stat-label" data-i18n="journey.impact.stat3.label">Service Center Globally</p>
       </div>
       <div class="stat-card">
         <p class="stat-number" data-count="5000" data-suffix="+">0</p>
-        <p class="stat-label">Onboarded Staff</p>
+        <p class="stat-label" data-i18n="journey.impact.stat4.label">Onboarded Staff</p>
       </div>
     </div>
   </div>
@@ -1913,17 +1915,17 @@
     <div class="platform-text fade-in">
       <div class="section-label">
         <div class="line" style="background:var(--text-main)"></div>
-        <span style="color:var(--text-main)">THE PLATFORM</span>
+        <span style="color:var(--text-main)" data-i18n="journey.os.label">THE PLATFORM</span>
       </div>
-      <p class="platform-heading">Marco OS</p>
-      <p class="platform-body">Marco OS is the single platform behind every service Marco delivers — handling payroll calculation, people management, expense processing, and global mobility in one connected system. It integrates with the tools businesses already use, feeds real-time workforce data back to the teams that need it, and keeps every country's compliance rules built in, so clients don't have to manage them separately.</p>
+      <p class="platform-heading" data-i18n="journey.os.title.pre">Marco OS</p>
+      <p class="platform-body" data-i18n="journey.os.body">Marco OS is the single platform behind every service Marco delivers — handling payroll calculation, people management, expense processing, and global mobility in one connected system. It integrates with the tools businesses already use, feeds real-time workforce data back to the teams that need it, and keeps every country's compliance rules built in, so clients don't have to manage them separately.</p>
       <div class="platform-cta">
         <button class="btn-primary">
-          Explore Marco OS
+          <span data-i18n="journey.os.btn1">Explore Marco OS</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
         </button>
         <button class="btn-outline">
-          Contact Us
+          <span data-i18n="journey.os.btn2">Contact Us</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
         </button>
       </div>
@@ -1940,19 +1942,19 @@
     <div class="whatnext-left">
       <div class="section-label">
         <div class="line" style="background:#fff"></div>
-        <span style="color:#fff">WHAT COMES NEXT</span>
+        <span style="color:#fff" data-i18n="journey.next.label">WHAT COMES NEXT</span>
       </div>
-      <p class="whatnext-heading">The next chapter of <em class="dark">Marco's journey</em> has not been written yet. But the <em class="dark">foundations</em> are in place</p>
+      <p class="whatnext-heading"><span data-i18n="journey.next.title.pre">The next chapter of </span><em class="dark" data-i18n="journey.next.title.em1">Marco's journey</em><span data-i18n="journey.next.title.mid"> has not been written yet. But the </span><em class="dark" data-i18n="journey.next.title.em2">foundations</em><span data-i18n="journey.next.title.post"> are in place</span></p>
     </div>
     <div class="whatnext-right">
-      <p class="whatnext-body">These three values are not aspirational. They are operational. They define the decisions we make when there is no script, no precedent, and no easy answer. They are what Marco stands for, in every country, every currency, every conversation.</p>
+      <p class="whatnext-body" data-i18n="journey.next.body">These three values are not aspirational. They are operational. They define the decisions we make when there is no script, no precedent, and no easy answer. They are what Marco stands for, in every country, every currency, every conversation.</p>
       <div class="whatnext-cta">
         <a href="company-entity-network.html" class="btn-outline">
-          Explore Our Network
+          <span data-i18n="journey.next.btn1">Explore Our Network</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
         </a>
         <a href="company-vision-values.html" class="btn-outline">
-          Our Values
+          <span data-i18n="journey.next.btn2">Our Values</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
         </a>
       </div>

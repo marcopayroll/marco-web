@@ -96,7 +96,9 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
     .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang:hover .nav-lang-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
+    .nav-lang:hover .nav-lang-dropdown,
+    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
     .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
@@ -1228,11 +1230,11 @@
     <div class="hero-content fade-in">
       <div class="section-label">
         <div class="line"></div>
-        <span>COMPLIANCE</span>
+        <span data-i18n="lic.hero.label">COMPLIANCE</span>
       </div>
       <div class="hero-text-group">
-        <h1 class="hero-title">Licensing &amp;<br><span class="hero-title-muted">Regulatory Compliance</span></h1>
-        <p class="hero-body">Global payroll is a regulated industry. Marco holds the licenses required to operate legally in every market it serves — not just certifications, but government-issued authorizations tied to named legal entities.</p>
+        <h1 class="hero-title"><span data-i18n="lic.hero.title.pre">Licensing &amp;</span><br><span class="hero-title-muted" data-i18n="lic.hero.title.muted">Regulatory Compliance</span></h1>
+        <p class="hero-body" data-i18n="lic.hero.body">Global payroll is a regulated industry. Marco holds the licenses required to operate legally in every market it serves — not just certifications, but government-issued authorizations tied to named legal entities.</p>
       </div>
     </div>
   </div>
@@ -1244,15 +1246,15 @@
     <div class="position-left fade-in">
       <div class="section-label">
         <div class="line"></div>
-        <span>OUR POSITION</span>
+        <span data-i18n="lic.pos.label">OUR POSITION</span>
       </div>
-      <h2 class="position-title">A license is not<br>a formality.<br>It is <span class="position-title-accent">legal standing.</span></h2>
+      <h2 class="position-title"><span data-i18n="lic.pos.title.pre">A license is not<br>a formality.<br>It is </span><span class="position-title-accent" data-i18n="lic.pos.title.accent">legal standing.</span></h2>
     </div>
     <div class="position-right fade-in">
       <div class="position-body">
-        <p>Many payroll providers operate in markets where they are technically required to hold a license but have not obtained one. Marco does not take that approach.</p>
-        <p><strong>Every license Marco holds is tied to a specific legal entity, a specific jurisdiction, and a specific scope of activity.</strong> Obtaining them takes time. That is the point — it is proof that Marco has gone through the regulatory process, not around it.</p>
-        <p>As Marco expands into new markets, in-market licensing is part of the entry process, not an afterthought.</p>
+        <p data-i18n="lic.pos.body1">Many payroll providers operate in markets where they are technically required to hold a license but have not obtained one. Marco does not take that approach.</p>
+        <p><strong data-i18n="lic.pos.body2">Every license Marco holds is tied to a specific legal entity, a specific jurisdiction, and a specific scope of activity.</strong><span data-i18n="lic.pos.body2.rest"> Obtaining them takes time. That is the point — it is proof that Marco has gone through the regulatory process, not around it.</span></p>
+        <p data-i18n="lic.pos.body3">As Marco expands into new markets, in-market licensing is part of the entry process, not an afterthought.</p>
       </div>
     </div>
   </div>
@@ -1263,10 +1265,10 @@
   <div class="container">
     <div class="section-label fade-in">
       <div class="line"></div>
-      <span>WHY IT MATTERS</span>
+      <span data-i18n="lic.why.label">WHY IT MATTERS</span>
     </div>
-    <h2 class="why-title fade-in">What local licensing<br>actually delivers</h2>
-    <p class="why-intro fade-in">Beyond legal obligation, in-market licenses give Marco the operational authority to deliver services that unlicensed providers cannot.</p>
+    <h2 class="why-title fade-in" data-i18n="lic.why.title">What local licensing<br>actually delivers</h2>
+    <p class="why-intro fade-in" data-i18n="lic.why.intro">Beyond legal obligation, in-market licenses give Marco the operational authority to deliver services that unlicensed providers cannot.</p>
     <div class="why-row">
       <!-- Box 1: Financial Licensing -->
       <div class="why-box">
@@ -1275,8 +1277,8 @@
             <img src="assets/Compliance/File-text.svg" alt="Financial Licensing" />
           </div>
           <div class="why-content">
-            <p class="why-box-title">Financial Licensing</p>
-            <p class="why-box-body">Authorizes Marco to conduct cross-border payment, foreign exchange, and payment service provider activities from licensed entities. Clients transacting through Marco do so within a regulated payment framework.</p>
+            <p class="why-box-title" data-i18n="lic.why.fin.title">Financial Licensing</p>
+            <p class="why-box-body" data-i18n="lic.why.fin.body">Authorizes Marco to conduct cross-border payment, foreign exchange, and payment service provider activities from licensed entities. Clients transacting through Marco do so within a regulated payment framework.</p>
           </div>
         </div>
       </div>
@@ -1298,8 +1300,8 @@
             </svg>
           </div>
           <div class="why-content">
-            <p class="why-box-title">Tax-Agent Qualifications</p>
-            <p class="why-box-body">Enables Marco to file taxes, lodge statutory returns, and provide payroll tax advisory services on behalf of clients in registered markets. Unregistered providers cannot legally perform these activities.</p>
+            <p class="why-box-title" data-i18n="lic.why.tax.title">Tax-Agent Qualifications</p>
+            <p class="why-box-body" data-i18n="lic.why.tax.body">Enables Marco to file taxes, lodge statutory returns, and provide payroll tax advisory services on behalf of clients in registered markets. Unregistered providers cannot legally perform these activities.</p>
           </div>
         </div>
       </div>
@@ -1320,8 +1322,8 @@
             </svg>
           </div>
           <div class="why-content">
-            <p class="why-box-title">In-Market Operations</p>
-            <p class="why-box-body">Local licensing is a prerequisite for Marco's owned-entity model. It is what allows Marco to act as a legal employer, process statutory contributions, and engage with local regulators directly on behalf of clients.</p>
+            <p class="why-box-title" data-i18n="lic.why.mkt.title">In-Market Operations</p>
+            <p class="why-box-body" data-i18n="lic.why.mkt.body">Local licensing is a prerequisite for Marco's owned-entity model. It is what allows Marco to act as a legal employer, process statutory contributions, and engage with local regulators directly on behalf of clients.</p>
           </div>
         </div>
       </div>
@@ -1334,64 +1336,64 @@
   <div class="container">
     <div class="section-label fade-in">
       <div class="line"></div>
-      <span>ACTIVE LICENSES</span>
+      <span data-i18n="lic.active.label">ACTIVE LICENSES</span>
     </div>
-    <h2 class="licenses-title fade-in">Current regulatory<br>registrations</h2>
-    <p class="licenses-intro fade-in">Government-issued licenses held by Marco's legal entities. Each is actively maintained and subject to periodic renewal.</p>
+    <h2 class="licenses-title fade-in" data-i18n="lic.active.title">Current regulatory<br>registrations</h2>
+    <p class="licenses-intro fade-in" data-i18n="lic.active.intro">Government-issued licenses held by Marco's legal entities. Each is actively maintained and subject to periodic renewal.</p>
     <div class="licenses-row">
       <!-- Card 1: Canada MSB -->
       <div class="license-card fade-in">
         <div class="license-card-header">
-          <span class="license-reg-tag">MSB · CANADA</span>
-          <p class="license-card-title">Money Services Business</p>
+          <span class="license-reg-tag" data-i18n="lic.msb.tag">MSB · CANADA</span>
+          <p class="license-card-title" data-i18n="lic.msb.title">Money Services Business</p>
         </div>
         <div class="license-card-body">
-          <p class="license-subtitle">FINTRAC — Financial Transactions and Reports Analysis Centre of Canada</p>
-          <p class="license-desc">Authorizes Marco to conduct foreign exchange transactions, global funds transfers, and payment service provider activities from a Canadian legal entity. Registration is maintained with Canada's primary financial intelligence agency.</p>
+          <p class="license-subtitle" data-i18n="lic.msb.subtitle">FINTRAC — Financial Transactions and Reports Analysis Centre of Canada</p>
+          <p class="license-desc" data-i18n="lic.msb.body">Authorizes Marco to conduct foreign exchange transactions, global funds transfers, and payment service provider activities from a Canadian legal entity. Registration is maintained with Canada's primary financial intelligence agency.</p>
           <div class="license-meta">
             <div class="license-meta-row">
-              <span class="license-meta-label">AUTHORITY:</span>
-              <span class="license-meta-value">FINTRAC (Financial Transactions and Reports Analysis Centre of Canada)</span>
+              <span class="license-meta-label" data-i18n="lic.msb.meta.auth.label">AUTHORITY:</span>
+              <span class="license-meta-value" data-i18n="lic.msb.meta.auth.value">FINTRAC (Financial Transactions and Reports Analysis Centre of Canada)</span>
             </div>
             <div class="license-meta-row">
-              <span class="license-meta-label">ENTITY:</span>
-              <span class="license-meta-value">Marco Global Payroll (Canada) Ltd.</span>
+              <span class="license-meta-label" data-i18n="lic.msb.meta.entity.label">ENTITY:</span>
+              <span class="license-meta-value" data-i18n="lic.msb.meta.entity.value">Marco Global Payroll (Canada) Ltd.</span>
             </div>
           </div>
           <div class="license-divider"></div>
           <div class="license-tags">
-            <span class="license-tag-pill">Foreign Exchange</span>
-            <span class="license-tag-pill">Global Funds Transfer</span>
-            <span class="license-tag-pill">Payment Services</span>
-            <span class="license-tag-pill">Cross-Border Payments</span>
+            <span class="license-tag-pill" data-i18n="lic.msb.t1">Foreign Exchange</span>
+            <span class="license-tag-pill" data-i18n="lic.msb.t2">Global Funds Transfer</span>
+            <span class="license-tag-pill" data-i18n="lic.msb.t3">Payment Services</span>
+            <span class="license-tag-pill" data-i18n="lic.msb.t4">Cross-Border Payments</span>
           </div>
         </div>
       </div>
       <!-- Card 2: Australia TPB -->
       <div class="license-card fade-in">
         <div class="license-card-header">
-          <span class="license-reg-tag">TPB · AUSTRALIA</span>
-          <p class="license-card-title">Tax Practitioners Board</p>
+          <span class="license-reg-tag" data-i18n="lic.tpb.tag">TPB · AUSTRALIA</span>
+          <p class="license-card-title" data-i18n="lic.tpb.title">Tax Practitioners Board</p>
         </div>
         <div class="license-card-body">
-          <p class="license-subtitle">BAS Agent — Business Activity Statement Agent</p>
-          <p class="license-desc">Authorizes Marco to provide payroll tax filing and advisory services in Australia. BAS Agent registration is a legal requirement for any provider lodging business activity statements or processing payroll tax obligations on behalf of clients.</p>
+          <p class="license-subtitle" data-i18n="lic.tpb.subtitle">BAS Agent — Business Activity Statement Agent</p>
+          <p class="license-desc" data-i18n="lic.tpb.body">Authorizes Marco to provide payroll tax filing and advisory services in Australia. BAS Agent registration is a legal requirement for any provider lodging business activity statements or processing payroll tax obligations on behalf of clients.</p>
           <div class="license-meta">
             <div class="license-meta-row">
-              <span class="license-meta-label">AUTHORITY:</span>
-              <span class="license-meta-value">Tax Practitioners Board (TPB), Sydney, NSW</span>
+              <span class="license-meta-label" data-i18n="lic.tpb.meta.auth.label">AUTHORITY:</span>
+              <span class="license-meta-value" data-i18n="lic.tpb.meta.auth.value">Tax Practitioners Board (TPB), Sydney, NSW</span>
             </div>
             <div class="license-meta-row">
-              <span class="license-meta-label">ENTITY:</span>
-              <span class="license-meta-value">Marco Global Payroll (Australia) Pty Ltd</span>
+              <span class="license-meta-label" data-i18n="lic.tpb.meta.entity.label">ENTITY:</span>
+              <span class="license-meta-value" data-i18n="lic.tpb.meta.entity.value">Marco Global Payroll (Australia) Pty Ltd</span>
             </div>
           </div>
           <div class="license-divider"></div>
           <div class="license-tags">
-            <span class="license-tag-pill">Payroll Tax Filing</span>
-            <span class="license-tag-pill">BAS Lodgment</span>
-            <span class="license-tag-pill">Tax Advisory</span>
-            <span class="license-tag-pill">Statutory Compliance</span>
+            <span class="license-tag-pill" data-i18n="lic.tpb.t1">Payroll Tax Filing</span>
+            <span class="license-tag-pill" data-i18n="lic.tpb.t2">BAS Lodgment</span>
+            <span class="license-tag-pill" data-i18n="lic.tpb.t3">Tax Advisory</span>
+            <span class="license-tag-pill" data-i18n="lic.tpb.t4">Statutory Compliance</span>
           </div>
         </div>
       </div>
@@ -1406,18 +1408,18 @@
       <div class="continue-header">
         <div class="section-label">
           <div class="line"></div>
-          <span>CONTINUE</span>
+          <span data-i18n="lic.continue.label">CONTINUE</span>
         </div>
-        <h2 class="continue-title">Licensing is one part<br>of the <span class="continue-title-accent">foundation</span></h2>
+        <h2 class="continue-title"><span data-i18n="lic.continue.title.pre">Licensing is one part<br>of the </span><span class="continue-title-accent" data-i18n="lic.continue.title.accent">foundation</span></h2>
       </div>
-      <p class="continue-body">Marco's compliance framework spans data protection, operational governance, and regulatory licensing — each independently verified, each built to enterprise standard.</p>
+      <p class="continue-body" data-i18n="lic.continue.body">Marco's compliance framework spans data protection, operational governance, and regulatory licensing — each independently verified, each built to enterprise standard.</p>
       <div class="continue-ctas">
         <a href="compliance-data-protection.html" class="btn-primary">
-          Data Protection &amp; Privacy
+          <span data-i18n="lic.continue.btn1">Data Protection &amp; Privacy</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
         </a>
         <a href="compliance-operational-governance.html" class="btn-outline">
-          Operational Governance
+          <span data-i18n="lic.continue.btn2">Operational Governance</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
         </a>
       </div>

@@ -118,7 +118,9 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
     .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang:hover .nav-lang-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
+    .nav-lang:hover .nav-lang-dropdown,
+    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
     .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
@@ -1429,11 +1431,11 @@
     <div class="hero-content fade-in">
       <div class="section-label">
         <div class="line" style="background:var(--blue-main)"></div>
-        <span>GLOBAL INFRASTRUCTURE</span>
+        <span data-i18n="entity.hero.label">GLOBAL INFRASTRUCTURE</span>
       </div>
       <div>
-        <p class="hero-title">Local presence<br><em>Global scale</em></p>
-        <p class="hero-body">21 owned legal entities. 4 service centers. AMER, EMEA, and APAC. Marco's infrastructure is not a partner directory — it is a network we built and operate ourselves.</p>
+        <p class="hero-title"><span data-i18n="entity.hero.title.pre">Local presence</span><br><em data-i18n="entity.hero.title.em">Global scale</em></p>
+        <p class="hero-body" data-i18n="entity.hero.body">21 owned legal entities. 4 service centers. AMER, EMEA, and APAC. Marco's infrastructure is not a partner directory — it is a network we built and operate ourselves.</p>
       </div>
     </div>
   </div>
@@ -1444,7 +1446,7 @@
   <div class="container fade-in">
     <div class="section-label" style="margin-bottom:48px">
       <div class="line" style="background:var(--blue-main)"></div>
-      <span style="color:var(--blue-main)">MARCO SERVICE CENTERS</span>
+      <span style="color:var(--blue-main)" data-i18n="entity.stats.label">MARCO SERVICE CENTERS</span>
     </div>
     <div class="service-centers-inner">
       <div class="service-centers-map-wrap">
@@ -1481,15 +1483,15 @@
       <div class="service-centers-data">
         <div class="data-card">
           <p class="data-card-number" data-count="21">0</p>
-          <p class="data-card-label">OWNED ENTITIES</p>
+          <p class="data-card-label" data-i18n="entity.stats.stat1.label">OWNED ENTITIES</p>
         </div>
         <div class="data-card">
           <p class="data-card-number" data-count="4">0</p>
-          <p class="data-card-label">SERVICE CENTERS</p>
+          <p class="data-card-label" data-i18n="entity.stats.stat2.label">SERVICE CENTERS</p>
         </div>
         <div class="data-card">
           <p class="data-card-number" data-count="80" data-suffix="+">0</p>
-          <p class="data-card-label">COUNTRIES WORK-VISA SUPPORT</p>
+          <p class="data-card-label" data-i18n="entity.stats.stat3.label">COUNTRIES WORK-VISA SUPPORT</p>
         </div>
       </div>
     </div>
@@ -1502,14 +1504,14 @@
     <div class="entities-header fade-in">
       <div class="section-label">
         <div class="line"></div>
-        <span>MARCO ENTITIES</span>
+        <span data-i18n="entity.list.label">MARCO ENTITIES</span>
       </div>
     </div>
 
     <!-- AMER -->
     <div class="entities-region fade-in">
       <div class="entities-region-label">
-        <p class="entities-region-name">AMER</p>
+        <p class="entities-region-name" data-i18n="entity.region.amer">AMER</p>
         <div class="entities-region-bar"></div>
       </div>
       <div class="entities-grid">
@@ -1540,7 +1542,7 @@
     <!-- EMER -->
     <div class="entities-region fade-in">
       <div class="entities-region-label">
-        <p class="entities-region-name">EMER</p>
+        <p class="entities-region-name" data-i18n="entity.region.emea">EMER</p>
         <div class="entities-region-bar"></div>
       </div>
       <div class="entities-grid">
@@ -1599,7 +1601,7 @@
     <!-- APAC -->
     <div class="entities-region fade-in">
       <div class="entities-region-label">
-        <p class="entities-region-name">APAC</p>
+        <p class="entities-region-name" data-i18n="entity.region.apac">APAC</p>
         <div class="entities-region-bar"></div>
       </div>
       <div class="entities-grid">
@@ -1693,14 +1695,14 @@
       <div class="why-matters-left">
         <div class="section-label">
           <div class="line"></div>
-          <span>WHY IT MATTERS</span>
+          <span data-i18n="entity.why.label">WHY IT MATTERS</span>
         </div>
-        <p class="why-matters-heading">An owned entity is not a detail. It is the <span style="color:var(--blue-main)">difference.</span></p>
+        <p class="why-matters-heading"><span data-i18n="entity.why.title.pre">An owned entity is not a detail. It is the </span><span style="color:var(--blue-main)" data-i18n="entity.why.title.accent">difference.</span></p>
       </div>
       <div class="why-matters-right">
         <div class="why-matters-body">
-          <p>When a global payroll provider says they operate in a country, the question worth asking is: how? The most common answer is a third-party partner — a local firm that has agreed to handle compliance, filing, and disbursement on behalf of the provider. There is nothing inherently wrong with that model. But it introduces latency, opacity, and a layer of accountability that the client never gets to verify.</p>
-          <p>Marco's owned entity model is different. Where Marco operates through an owned legal entity, the local team reports directly into Marco's global compliance and operations structure. They use Marco's systems, follow Marco's protocols, and are accountable to Marco's standards. When something goes wrong — and in global payroll, something always eventually does — there is no intermediary. The answer comes directly from Marco.</p>
+          <p data-i18n="entity.why.body1">When a global payroll provider says they operate in a country, the question worth asking is: how? The most common answer is a third-party partner — a local firm that has agreed to handle compliance, filing, and disbursement on behalf of the provider. There is nothing inherently wrong with that model. But it introduces latency, opacity, and a layer of accountability that the client never gets to verify.</p>
+          <p data-i18n="entity.why.body2">Marco's owned entity model is different. Where Marco operates through an owned legal entity, the local team reports directly into Marco's global compliance and operations structure. They use Marco's systems, follow Marco's protocols, and are accountable to Marco's standards. When something goes wrong — and in global payroll, something always eventually does — there is no intermediary. The answer comes directly from Marco.</p>
         </div>
       </div>
     </div>
@@ -1713,19 +1715,19 @@
     <div class="continue-text fade-in">
       <div class="section-label">
         <div class="line"></div>
-        <span>CONTINUE</span>
+        <span data-i18n="entity.cta.label">CONTINUE</span>
       </div>
-      <p class="continue-heading">Meet the people<br>behind the infrastructure</p>
-      <p class="continue-body">The entities and service centers are the operational foundation. The organization page introduces the teams that run them.</p>
+      <p class="continue-heading"><span data-i18n="entity.cta.title.pre">Meet the people<br>behind the infrastructure</span></p>
+      <p class="continue-body" data-i18n="entity.cta.body">The entities and service centers are the operational foundation. The organization page introduces the teams that run them.</p>
       <div class="continue-cta">
         <a href="company-organization.html" class="btn-primary">
-          Organization
+          <span data-i18n="entity.cta.btn1">Organization</span>
           <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
         <a href="company-journey.html" class="btn-outline">
-          Marco's Journey
+          <span data-i18n="entity.cta.btn2">Marco's Journey</span>
           <svg class="btn-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.5 5l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

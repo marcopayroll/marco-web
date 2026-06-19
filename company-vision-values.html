@@ -1014,7 +1014,9 @@
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
     .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang:hover .nav-lang-dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
+    .nav-lang:hover .nav-lang-dropdown,
+    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
     .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
     .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
@@ -1645,11 +1647,11 @@
     <div class="hero-content fade-in">
       <div class="section-label">
         <div class="line" style="background:var(--blue-main)"></div>
-        <span>ABOUT MARCO</span>
+        <span data-i18n="vv.hero.label">ABOUT MARCO</span>
       </div>
       <div>
-        <p class="hero-title">The infrastructure<br>behind <em>global work</em></p>
-        <p class="hero-body">Most companies don't fail at global expansion because of strategy. They fail at the operational layer — payroll, compliance, local employment law. That's the problem Marco was built to solve.</p>
+        <p class="hero-title"><span data-i18n="vv.hero.title.pre">The infrastructure</span><br><span data-i18n="vv.hero.title.mid">behind </span><em data-i18n="vv.hero.title.em">global work</em><span data-i18n="vv.hero.title.post"></span></p>
+        <p class="hero-body" data-i18n="vv.hero.body">Most companies don't fail at global expansion because of strategy. They fail at the operational layer — payroll, compliance, local employment law. That's the problem Marco was built to solve.</p>
       </div>
     </div>
   </div>
@@ -1666,11 +1668,11 @@
     <div class="vision-text fade-in">
       <div class="section-label">
         <div class="line" style="background:var(--text-main)"></div>
-        <span style="color:var(--text-main)">OUR VISION</span>
+        <span style="color:var(--text-main)" data-i18n="vv.vision.label">OUR VISION</span>
       </div>
       <div>
-        <p class="vision-heading">Simplify Global Workforce</p>
-        <p class="vision-body" style="margin-top:24px">Global work has been unnecessarily complicated for too long. Payroll processed through chains of intermediaries. Compliance treated as a guessing game. Workers in one country paid weeks after those in another. We started Marco because we believed this didn't have to be the reality. It still doesn't.</p>
+        <p class="vision-heading" data-i18n="vv.vision.title">Simplify Global Workforce</p>
+        <p class="vision-body" style="margin-top:24px" data-i18n="vv.vision.body">Global work has been unnecessarily complicated for too long. Payroll processed through chains of intermediaries. Compliance treated as a guessing game. Workers in one country paid weeks after those in another. We started Marco because we believed this didn't have to be the reality. It still doesn't.</p>
       </div>
     </div>
   </div>
@@ -1684,15 +1686,15 @@
     <div class="values-header fade-in">
       <div class="section-label">
         <div class="line" style="background:var(--blue-main)"></div>
-        <span>OUR VALUES</span>
+        <span data-i18n="vv.values.label">OUR VALUES</span>
       </div>
       <div>
         <div class="values-stacked-title">
-          <p>Open.</p>
-          <p>Humble.</p>
-          <p>Confident.</p>
+          <p data-i18n="vv.values.title.line1">Open.</p>
+          <p data-i18n="vv.values.title.line2">Humble.</p>
+          <p data-i18n="vv.values.title.line3">Confident.</p>
         </div>
-        <p class="values-intro-body" style="margin-top:24px">These are not slogans. They are the operating principles behind how Marco makes decisions, how we price our services, how we choose the clients we work with, how we protect the people we serve, and how we build trust across every country we operate in.</p>
+        <p class="values-intro-body" style="margin-top:24px" data-i18n="vv.values.intro">These are not slogans. They are the operating principles behind how Marco makes decisions, how we price our services, how we choose the clients we work with, how we protect the people we serve, and how we build trust across every country we operate in.</p>
       </div>
     </div>
 
@@ -1704,20 +1706,20 @@
         <div class="values-row">
           <div class="values-row-left">
             <div class="values-row-title-block">
-              <p class="values-row-title">Be Open</p>
+              <p class="values-row-title" data-i18n="vv.v1.title">Be Open</p>
               <div class="values-row-title-underline"></div>
             </div>
-            <p class="values-row-subtitle">Remove the walls.<br>Connect the knowledge.</p>
+            <p class="values-row-subtitle" data-i18n="vv.v1.sub">Remove the walls.<br>Connect the knowledge.</p>
           </div>
           <div class="values-row-right">
             <div class="values-row-body">
-              <p>Information barriers of global services should be lifted. The service provider who has the knowledge, providing its services, should provide them directly to the one who needs, with a fair and comfortable pay.</p>
-              <p>There are more than enough social and translation tools to help us reach any person, in any part of the world.</p>
-              <p>To our best ability, together with our knowledge owners, service professionals, and technology platforms, we should make the information and services provided and paid, openly, accurately, and fairly.</p>
+              <p data-i18n="vv.v1.body.p1">Information barriers of global services should be lifted. The service provider who has the knowledge, providing its services, should provide them directly to the one who needs, with a fair and comfortable pay.</p>
+              <p data-i18n="vv.v1.body.p2">There are more than enough social and translation tools to help us reach any person, in any part of the world.</p>
+              <p data-i18n="vv.v1.body.p3">To our best ability, together with our knowledge owners, service professionals, and technology platforms, we should make the information and services provided and paid, openly, accurately, and fairly.</p>
             </div>
             <div class="values-row-quote">
               <div class="quote-line"></div>
-              <p>"Openness is not a feature you add. It is a wall you choose to tear down."</p>
+              <p data-i18n="vv.v1.quote">"Openness is not a feature you add. It is a wall you choose to tear down."</p>
             </div>
           </div>
         </div>
@@ -1732,20 +1734,20 @@
         <div class="values-row">
           <div class="values-row-left">
             <div class="values-row-title-block">
-              <p class="values-row-title">Be Humble</p>
+              <p class="values-row-title" data-i18n="vv.v2.title">Be Humble</p>
               <div class="values-row-title-underline"></div>
             </div>
-            <p class="values-row-subtitle">Every person.<br>Every culture.<br>The same respect.</p>
+            <p class="values-row-subtitle" data-i18n="vv.v2.sub">Every person.<br>Every culture.<br>The same respect.</p>
           </div>
           <div class="values-row-right">
             <div class="values-row-body">
-              <p>We respect all our employees, contracting workers, customers, service providers, knowledge owners, community contributors, in all countries and all fields, with the same standard.</p>
-              <p>We respect all government regulations, country cultures, people's values, and the ways how people like to be communicated with.</p>
-              <p>We respect all our customers' employees' and our own employees' privacy, and their rights of making choices.</p>
+              <p data-i18n="vv.v2.body.p1">We respect all our employees, contracting workers, customers, service providers, knowledge owners, community contributors, in all countries and all fields, with the same standard.</p>
+              <p data-i18n="vv.v2.body.p2">We respect all government regulations, country cultures, people's values, and the ways how people like to be communicated with.</p>
+              <p data-i18n="vv.v2.body.p3">We respect all our customers' employees' and our own employees' privacy, and their rights of making choices.</p>
             </div>
             <div class="values-row-quote">
               <div class="quote-line"></div>
-              <p>"Humility is not about being modest. It is about treating every person, every culture, every rule — as if it matters. Because it does."</p>
+              <p data-i18n="vv.v2.quote">"Humility is not about being modest. It is about treating every person, every culture, every rule — as if it matters. Because it does."</p>
             </div>
           </div>
         </div>
@@ -1760,20 +1762,20 @@
         <div class="values-row">
           <div class="values-row-left">
             <div class="values-row-title-block">
-              <p class="values-row-title">Be Confident</p>
+              <p class="values-row-title" data-i18n="vv.v3.title">Be Confident</p>
               <div class="values-row-title-underline"></div>
             </div>
-            <p class="values-row-subtitle">Know who you are.<br>Own your worth.<br>Choose wisely.</p>
+            <p class="values-row-subtitle" data-i18n="vv.v3.sub">Know who you are.<br>Own your worth.<br>Choose wisely.</p>
           </div>
           <div class="values-row-right">
             <div class="values-row-body">
-              <p>We always understand who we are and the services we are delivering.</p>
-              <p>We always charge the most reasonable fees for our services.</p>
-              <p>We always have our own choice to work with the parties we are comfortable with.</p>
+              <p data-i18n="vv.v3.body.p1">We always understand who we are and the services we are delivering.</p>
+              <p data-i18n="vv.v3.body.p2">We always charge the most reasonable fees for our services.</p>
+              <p data-i18n="vv.v3.body.p3">We always have our own choice to work with the parties we are comfortable with.</p>
             </div>
             <div class="values-row-quote">
               <div class="quote-line"></div>
-              <p>"Knowing who you are is not arrogance. It is the only honest way to do business."</p>
+              <p data-i18n="vv.v3.quote">"Knowing who you are is not arrogance. It is the only honest way to do business."</p>
             </div>
           </div>
         </div>
@@ -1791,21 +1793,21 @@
     <div class="commitment-text fade-in">
       <div class="section-label">
         <div class="line" style="background:var(--text-main)"></div>
-        <span style="color:var(--text-main)">THE MARCO COMMITMENT</span>
+        <span style="color:var(--text-main)" data-i18n="vv.cta.label">THE MARCO COMMITMENT</span>
       </div>
       <div class="commitment-heading">
-        <p>Open in how we share</p>
-        <p>Humble in how we serve</p>
-        <p>Confident in who we choose to be</p>
+        <p data-i18n="vv.cta.title.line1">Open in how we share</p>
+        <p data-i18n="vv.cta.title.line2">Humble in how we serve</p>
+        <p data-i18n="vv.cta.title.line3">Confident in who we choose to be</p>
       </div>
-      <p class="commitment-body">These three values are not aspirational. They are operational. They define the decisions we make when there is no script, no precedent, and no easy answer. They are what Marco stands for in every country, every currency, every conversation.</p>
+      <p class="commitment-body" data-i18n="vv.cta.body">These three values are not aspirational. They are operational. They define the decisions we make when there is no script, no precedent, and no easy answer. They are what Marco stands for in every country, every currency, every conversation.</p>
       <div class="commitment-cta">
         <a href="company-journey.html" class="btn-primary">
-          Read Marco's Journey
+          <span data-i18n="vv.cta.btn1">Read Marco's Journey</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
         </a>
         <a href="company-organization.html" class="btn-outline">
-          Meet the Team
+          <span data-i18n="vv.cta.btn2">Meet the Team</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
         </a>
       </div>

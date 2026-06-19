@@ -1,3 +1,163 @@
 window.MARCO_LANG_EN_COMPANY = {
 
+  /* ── Vision & Values ── */
+  'vv.hero.label':              'ABOUT MARCO',
+  'vv.hero.title.pre':          'The infrastructure',
+  'vv.hero.title.mid':          'behind ',
+  'vv.hero.title.em':           'global work',
+  'vv.hero.title.post':         '',
+  'vv.hero.body':               'Most companies don\'t fail at global expansion because of strategy. They fail at the operational layer — payroll, compliance, local employment law. That\'s the problem Marco was built to solve.',
+
+  'vv.vision.label':            'OUR VISION',
+  'vv.vision.title':            'Simplify Global Workforce',
+  'vv.vision.body':             'Global work has been unnecessarily complicated for too long. Payroll processed through chains of intermediaries. Compliance treated as a guessing game. Workers in one country paid weeks after those in another. We started Marco because we believed this didn\'t have to be the reality. It still doesn\'t.',
+
+  'vv.values.label':            'OUR VALUES',
+  'vv.values.title.line1':      'Open.',
+  'vv.values.title.line2':      'Humble.',
+  'vv.values.title.line3':      'Confident.',
+  'vv.values.intro':            'These are not slogans. They are the operating principles behind how Marco makes decisions, how we price our services, how we choose the clients we work with, how we protect the people we serve, and how we build trust across every country we operate in.',
+
+  'vv.v1.title':                'Be Open',
+  'vv.v1.sub':                  'Remove the walls.\nConnect the knowledge.',
+  'vv.v1.body.p1':              'Information barriers of global services should be lifted. The service provider who has the knowledge, providing its services, should provide them directly to the one who needs, with a fair and comfortable pay.',
+  'vv.v1.body.p2':              'There are more than enough social and translation tools to help us reach any person, in any part of the world.',
+  'vv.v1.body.p3':              'To our best ability, together with our knowledge owners, service professionals, and technology platforms, we should make the information and services provided and paid, openly, accurately, and fairly.',
+  'vv.v1.quote':                '"Openness is not a feature you add. It is a wall you choose to tear down."',
+
+  'vv.v2.title':                'Be Humble',
+  'vv.v2.sub':                  'Every person.\nEvery culture.\nThe same respect.',
+  'vv.v2.body.p1':              'We respect all our employees, contracting workers, customers, service providers, knowledge owners, community contributors, in all countries and all fields, with the same standard.',
+  'vv.v2.body.p2':              'We respect all government regulations, country cultures, people\'s values, and the ways how people like to be communicated with.',
+  'vv.v2.body.p3':              'We respect all our customers\' employees\' and our own employees\' privacy, and their rights of making choices.',
+  'vv.v2.quote':                '"Humility is not about being modest. It is about treating every person, every culture, every rule — as if it matters. Because it does."',
+
+  'vv.v3.title':                'Be Confident',
+  'vv.v3.sub':                  'Know who you are.\nOwn your worth.\nChoose wisely.',
+  'vv.v3.body.p1':              'We always understand who we are and the services we are delivering.',
+  'vv.v3.body.p2':              'We always charge the most reasonable fees for our services.',
+  'vv.v3.body.p3':              'We always have our own choice to work with the parties we are comfortable with.',
+  'vv.v3.quote':                '"Knowing who you are is not arrogance. It is the only honest way to do business."',
+
+  'vv.cta.label':               'THE MARCO COMMITMENT',
+  'vv.cta.title.line1':         'Open in how we share',
+  'vv.cta.title.line2':         'Humble in how we serve',
+  'vv.cta.title.line3':         'Confident in who we choose to be',
+  'vv.cta.body':                'These three values are not aspirational. They are operational. They define the decisions we make when there is no script, no precedent, and no easy answer. They are what Marco stands for in every country, every currency, every conversation.',
+  'vv.cta.btn1':                'Read Marco\'s Journey',
+  'vv.cta.btn2':                'Meet the Team',
+
+  /* ── Company Journey ── */
+  'journey.hero.label':         'MARCO\'S JOURNEY',
+  'journey.hero.title.pre':     'How ',
+  'journey.hero.title.em':      'Marco',
+  'journey.hero.title.post':    'was built',
+  'journey.hero.body':          'Marco didn\'t start with a roadshow or a funding announcement. It started in Beijing in 2020 with one EOR employee, one client, and one problem worth solving.',
+
+  'journey.impact.label':       'WHERE WE STAND TODAY',
+  'journey.impact.title.pre':   'From the first EOR onboarding to a ',
+  'journey.impact.title.em':    'Global Workforce Infrastructure',
+  'journey.impact.body1':       'Since 2020, Marco onboarded over 5,000 staff across 21 owned entities, opened 4 service centers across three continents, and processed over USD 150M in workforce payments, without compromising on the values that started it all.',
+  'journey.impact.stat1.label': 'Owned Entities',
+  'journey.impact.stat2.label': 'Annual Cash Flow',
+  'journey.impact.stat3.label': 'Service Center Globally',
+  'journey.impact.stat4.label': 'Onboarded Staff',
+
+  'journey.os.label':           'THE PLATFORM',
+  'journey.os.title.pre':       'Marco OS',
+  'journey.os.body':            'Marco OS is the single platform behind every service Marco delivers — handling payroll calculation, people management, expense processing, and global mobility in one connected system. It integrates with the tools businesses already use, feeds real-time workforce data back to the teams that need it, and keeps every country\'s compliance rules built in, so clients don\'t have to manage them separately.',
+  'journey.os.btn1':            'Explore Marco OS',
+  'journey.os.btn2':            'Contact Us',
+
+  'journey.next.label':         'WHAT COMES NEXT',
+  'journey.next.title.pre':     'The next chapter of ',
+  'journey.next.title.em1':     'Marco\'s journey',
+  'journey.next.title.mid':     ' has not been written yet. But the ',
+  'journey.next.title.em2':     'foundations',
+  'journey.next.title.post':    ' are in place',
+  'journey.next.body':          'These three values are not aspirational. They are operational. They define the decisions we make when there is no script, no precedent, and no easy answer. They are what Marco stands for, in every country, every currency, every conversation.',
+  'journey.next.btn1':          'Explore Our Network',
+  'journey.next.btn2':          'Our Values',
+
+  /* ── Organization ── */
+  'org.hero.label':             'ORGANIZATION',
+  'org.hero.title.pre':         'The ',
+  'org.hero.title.em':          'people',
+  'org.hero.title.post':        'behind the platform',
+  'org.hero.body':              'Marco is built by a team of 70+ people across 18 countries. What holds them together is not geography. It is a shared belief that global work can be done better and that the people who serve global workforces deserve to work for an organization that takes that mission seriously.',
+
+  'org.built.label':            'HOW WE ARE BUILT',
+  'org.built.r1.title':         'Distributed by design, unified by standard',
+  'org.built.r1.body':          'Marco does not operate from a single headquarters with regional outposts. It is a genuinely distributed organization, with decision-making authority vested in the regional teams who are closest to the clients and markets they serve. What unifies the organization is not physical proximity but a shared standard, a consistent way of working, reporting, and holding each other accountable that is the same in Singapore as it is in São Paulo.',
+  'org.built.r2.title':         'Expertise before hierarchy',
+  'org.built.r2.body':          'At Marco, the person with the deepest expertise in a question is the person whose answer carries the most weight, regardless of title. A junior compliance analyst in Frankfurt who has spent three months mapping the labor law implications of a new German regulation knows more about that specific question than any executive in Singapore. Marco\'s culture is built to surface that knowledge and act on it.',
+  'org.built.r3.title':         'Accountability that moves at the speed of the problem',
+  'org.built.r3.body':          'Global payroll operates on fixed deadlines. Statutory filings cannot be late. Salaries cannot be held. Marco\'s organizational design is built around this reality. Decision rights are clear. Escalation paths are short. Every team member knows exactly what they own, what they need to resolve, and who they need to involve. This is not bureaucratic clarity. It is operational necessity.',
+
+  'org.struct.label':           'STRUCTURE',
+  'org.struct.title':           'How Marco is\norganized',
+
+  'org.team.label':             'TEAM & CULTURE',
+  'org.team.title.pre':         'people',
+  'org.team.title.em':          'countries',
+  'org.team.title.post':        'way of working',
+  'org.team.body1':             'Marco\'s team is, by definition, a global workforce. The people who advise clients on how to manage international teams are themselves managing the realities of international employment — different tax regimes, different leave entitlements, different cultural expectations of how work should feel. This is not a coincidence. It is part of how Marco was designed.',
+  'org.team.body2':             'The culture is built on the same three values that govern client relationships: open communication, humble listening, and confident action. Internal disagreements are resolved through evidence, not hierarchy. Mistakes are acknowledged publicly and corrected quickly. Good work is recognized regardless of where it originates.',
+  'org.team.body3':             '70+ people. 18 countries. The team is intentionally lean — built on depth of expertise rather than breadth of headcount. Every person at Marco was hired because they are genuinely excellent at something the company needs. That is the standard. It does not change with growth.',
+
+  'org.cta.label':              'WORK WITH MARCO',
+  'org.cta.title.pre':          'Join the team that is redefining global',
+  'org.cta.title.em':           'work',
+  'org.cta.body':               'We are always looking for people who bring genuine expertise, a global mindset, and the character to operate at the intersection of complex problems and real human impact.',
+  'org.cta.btn1':               'Contact Us',
+  'org.cta.btn2':               'Our Values',
+
+  /* ── Entity Network ── */
+  'entity.hero.label':          'GLOBAL INFRASTRUCTURE',
+  'entity.hero.title.pre':      'Local presence',
+  'entity.hero.title.em':       'Global scale',
+  'entity.hero.body':           '21 owned legal entities. 4 service centers. AMER, EMEA, and APAC. Marco\'s infrastructure is not a partner directory — it is a network we built and operate ourselves.',
+
+  'entity.stats.label':         'MARCO SERVICE CENTERS',
+  'entity.stats.stat1.label':   'OWNED ENTITIES',
+  'entity.stats.stat2.label':   'SERVICE CENTERS',
+  'entity.stats.stat3.label':   'COUNTRIES WORK-VISA SUPPORT',
+
+  'entity.list.label':          'MARCO ENTITIES',
+  'entity.region.amer':         'AMER',
+  'entity.region.emea':         'EMEA',
+  'entity.region.apac':         'APAC',
+
+  'entity.why.label':           'WHY IT MATTERS',
+  'entity.why.title.pre':       'An owned entity is not a detail. It is the ',
+  'entity.why.title.accent':    'difference.',
+  'entity.why.body1':           'When a global payroll provider says they operate in a country, the question worth asking is: how? The most common answer is a third-party partner — a local firm that has agreed to handle compliance, filing, and disbursement on behalf of the provider. There is nothing inherently wrong with that model. But it introduces latency, opacity, and a layer of accountability that the client never gets to verify.',
+  'entity.why.body2':           'Marco\'s owned entity model is different. Where Marco operates through an owned legal entity, the local team reports directly into Marco\'s global compliance and operations structure. They use Marco\'s systems, follow Marco\'s protocols, and are accountable to Marco\'s standards. When something goes wrong — and in global payroll, something always eventually does — there is no intermediary. The answer comes directly from Marco.',
+
+  'entity.cta.label':           'CONTINUE',
+  'entity.cta.title.pre':       'Meet the people',
+  'entity.cta.title.post':      'behind the infrastructure',
+  'entity.cta.body':            'The entities and service centers are the operational foundation. The organization page introduces the teams that run them.',
+  'entity.cta.btn1':            'Organization',
+  'entity.cta.btn2':            'Marco\'s Journey',
+
+  /* ── Contact Us ── */
+  'contact.hero.label':         'CONTACT US',
+  'contact.hero.title.pre':     'We\'re here.',
+  'contact.hero.title.muted':   'Let\'s talk.',
+  'contact.hero.body':          'Whether you\'re exploring our services, considering a partnership, seeking a career opportunity, or simply have a question — we\'re here, and we\'ll get back to you.',
+
+  'contact.form.title':         'Send us a message',
+  'contact.form.fname.label':   'FIRST NAME',
+  'contact.form.fname.placeholder': 'John',
+  'contact.form.lname.label':   'LAST NAME',
+  'contact.form.lname.placeholder': 'Doe',
+  'contact.form.phone.label':   'CONTACT NUMBER',
+  'contact.form.phone.placeholder': '(415) 555-0123',
+  'contact.form.email.label':   'EMAIL ADDRESS',
+  'contact.form.email.placeholder': 'johndoe@email.com',
+  'contact.form.msg.label':     'MESSAGE',
+  'contact.form.msg.placeholder': 'What do you have in mind?',
+  'contact.form.submit':        'Submit',
+
 };

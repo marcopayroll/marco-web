@@ -452,9 +452,9 @@ window.MARCO_LANG_CN_SERVICES = {
 
 	/* Hero */
 	'gm.hero.label':              '全球员工流动',
-	'gm.hero.title.line1':        '调动员工，',
-	'gm.hero.title.muted':        '',
-	'gm.hero.title.accent':       '合规不掉线。',
+	'gm.hero.title.line1':        '让人才流动，',
+	'gm.hero.title.muted':        '跨越每一道',
+	'gm.hero.title.accent':       '边界。',
 	'gm.hero.body.strong':        '跨境派遣一旦把签证、合同和薪资分开管理，流程就容易出问题。',
 	'gm.hero.body.rest':          'Marco 按正确顺序处理每一个工作流，确保您的派遣员工合法入境、准时领薪，并获得完整保障。',
 	'gm.hero.cta':                '联系我们',
@@ -1033,7 +1033,7 @@ window.MARCO_LANG_CN_SERVICES = {
 	'sdm.before.label':               '交付前确认',
 	'sdm.before.title.pre':           '开始前需要确认的',
 	'sdm.before.title.accent':        '关键问题',
-	'sdm.before.title.post':          '',
+	'sdm.before.title.post':          '​',
 	'sdm.before.subtitle':            '这些问题应在任何 EOR 合作开始前得到回答并记录下来。它们会定义服务结构、参与方，以及所有相关方的义务。',
 	'sdm.before.q1':                  '谁是法定雇主？',
 	'sdm.before.q2':                  '谁为员工处理工作签证或 EP 支持？',
