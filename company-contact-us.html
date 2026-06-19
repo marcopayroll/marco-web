@@ -157,16 +157,19 @@
     .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
     .nav-right {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 24px;
       flex-shrink: 0;
     }
     .nav-lang {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 44px;
+      flex-direction: column;
+      padding-top: 16px;
+      padding-bottom: 14px;
+      align-items: flex-start;
       flex-shrink: 0;
+      position: relative;
+      cursor: pointer;
     }
     .nav-lang-flag {
       position: relative;
@@ -185,7 +188,7 @@
       height: 100%;
       max-width: none;
     }
-    .nav-lang span {
+    .nav-lang-inner span {
       font-size: 12px;
       font-weight: 600;
       color: #fff;
@@ -877,7 +880,8 @@
        TABLET NAV (≤1100px)
     ════════════════════════════════════════ */
     .nav-mobile-right { display: none; align-items: center; gap: 32px; }
-    .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; }
+    .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; padding-top: 10px; padding-bottom: 10px; }
+    .nav-mobile-lang:hover::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
     .nav-mobile-lang .nav-lang-flag { width: 16px; height: 16px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; position: relative; }
     .nav-mobile-lang .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
     .nav-mobile-lang span { font-family: var(--font); font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
@@ -925,6 +929,7 @@
       .nav-menu { display: none; }
       .nav-right { display: none; }
       .nav-mobile-right { display: flex; }
+      .nav-lang-dropdown { top: calc(100% + 16px); }
     }
     @media (max-width: 440px) {
       .nav-container { padding: 16px 24px; }
@@ -983,15 +988,18 @@
     }
       .nav-lang { position: relative; cursor: pointer; }
     .nav-lang-dropdown {
-      position: absolute; top: calc(100% + 17px); right: 0;
+      position: absolute; top: calc(100% + 25px); left: 50%;
       width: 90px; background: #fff; border-radius: 8px;
       box-shadow: 0 4px 5px rgba(0,0,0,0.1), 0 4px 15px rgba(0,0,0,0.15);
       padding: 8px; display: flex; flex-direction: column; gap: 8px;
       z-index: 200;
-      opacity: 0; pointer-events: none; transform: translateY(-4px);
+      opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-4px);
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
-    .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
+    .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
+    .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
     .nav-lang-dd-row {
       display: flex; align-items: center; justify-content: space-between;
       padding: 4px 8px; border-radius: 4px; cursor: pointer;
@@ -1351,7 +1359,11 @@
     </div>
   </div>
   <div class="nav-right">
-    <div class="nav-lang" id="nav-lang-trigger"><div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div><span>EN</span>
+    <div class="nav-lang" id="nav-lang-trigger">
+      <div class="nav-lang-inner">
+        <div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div>
+        <span>EN</span>
+      </div>
       <div class="nav-lang-dropdown" id="nav-lang-dropdown" aria-hidden="true">
         <div class="nav-lang-dd-row is-active">
           <div class="nav-lang-dd-flag flag-en"><img src="assets/flag-en.png" alt="" /></div>
@@ -1363,11 +1375,14 @@
         </div>
       </div>
     </div>
-    <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+    <div class="nav-signin-wrapper">
+      <a class="nav-signin" href="https://app.marcopayroll.com/login" target="_blank" rel="noopener noreferrer">Sign in</a>
+    </div>
     </div>
     <div class="nav-mobile-right" id="nav-mobile-right">
       <div class="nav-mobile-lang" id="nav-mobile-lang-trigger">
-        <div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" />
+        <div class="nav-lang-flag"><img src="assets/flag-en.png" alt="" /></div>
+        <span>EN</span>
         <div class="nav-lang-dropdown" id="nav-mobile-lang-dropdown" aria-hidden="true">
           <div class="nav-lang-dd-row is-active">
             <div class="nav-lang-dd-flag flag-en"><img src="assets/flag-en.png" alt="" /></div>
@@ -1378,8 +1393,6 @@
             <span class="nav-lang-dd-label">CN</span>
           </div>
         </div>
-      </div>
-        <span>EN</span>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
         <img class="nav-hamburger-icon-tablet" src="assets/tablet-menu-icon.svg" alt="" width="24" height="24" />
