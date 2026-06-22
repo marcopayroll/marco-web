@@ -718,6 +718,10 @@
       .footer { display: none; }
       .footer-mobile { display: block; }
     }
+    [data-lang="cn"] .hero-title span[data-i18n="org.hero.title.post"],
+    [data-lang="cn"] .hero-title br:has(+ span[data-i18n="org.hero.title.post"]) {
+      display: none;
+    }
   </style>
 </head>
 <body>

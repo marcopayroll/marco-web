@@ -79,6 +79,49 @@ window.MARCO_LANG_EN_COMPANY = {
   'journey.next.btn1':          'Explore Our Network',
   'journey.next.btn2':          'Our Values',
 
+  /* ── Journey Timeline ── */
+  'journey.tl.label':           "Marco's Journey",
+
+  'journey.tl.y2020.phase':     'LAUNCH',
+  'journey.tl.y2020.b1':        'Founded in Beijing',
+  'journey.tl.y2020.b2':        'First EOR employee placed',
+  'journey.tl.y2020.b3':        'First work visa secured: Vietnam',
+  'journey.tl.y2020.b4':        'First European work visa: Netherlands',
+  'journey.tl.y2020.b5':        'First global client signed',
+  'journey.tl.y2020.b6':        'Marco OS 1.0 released',
+
+  'journey.tl.y2022.phase':     'OPERATE',
+  'journey.tl.y2022.b1':        'Overseas headcount structure redesigned',
+  'journey.tl.y2022.b2':        'Cross-border entity transfers standardized',
+  'journey.tl.y2022.b3':        'Reimbursement & leave management built into platform',
+  'journey.tl.y2022.b4':        'Marco OS 2.0 released',
+
+  'journey.tl.y2023.phase':     'UPGRADE',
+  'journey.tl.y2023.b1':        '30+ active clients reached',
+  'journey.tl.y2023.b2':        'Dalian service center opened',
+  'journey.tl.y2023.b3':        'Singapore established as global HQ',
+  'journey.tl.y2023.b4':        'Work-visa support expanded to 50+ countries',
+  'journey.tl.y2023.b5':        'First UK payroll go-live',
+  'journey.tl.y2023.b6':        'Marco OS 3.0 released',
+
+  'journey.tl.y2024.phase':     'GROW',
+  'journey.tl.y2024.b1':        '45+ active clients reached',
+  'journey.tl.y2024.b2':        'Customer success structure upgraded',
+  'journey.tl.y2024.b3':        'Kuala Lumpur service center opened',
+  'journey.tl.y2024.b4':        'Marco OS 4.0 released',
+
+  'journey.tl.y2025.phase':     'RENEW',
+  'journey.tl.y2025.b1':        '70+ active clients reached',
+  'journey.tl.y2025.b2':        '21 owned entities across AMER, EMEA, APAC',
+  'journey.tl.y2025.b3':        'Los Angeles service centre opened',
+  'journey.tl.y2025.b4':        'Marco MasterCard launched',
+
+  'journey.tl.y2026.phase':     'TRANSFORM',
+  'journey.tl.y2026.b1':        'Marco Copilot AI launched',
+  'journey.tl.y2026.b2':        'Marco Engine introduced — a unified processing layer powering payroll, expenses, leave, billing, and financial reporting across all markets',
+  'journey.tl.y2026.b3':        'Registered as a Money Services Business in Canada',
+  'journey.tl.y2026.b4':        'Marco OS 6.0 released',
+
   /* ── Organization ── */
   'org.hero.label':             'ORGANIZATION',
   'org.hero.title.pre':         'The ',

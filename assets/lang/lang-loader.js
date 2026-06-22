@@ -76,26 +76,35 @@
   /* ── Translation loading (only for non-EN) ── */
   if (lang === 'en') return;
 
+  var mergedPack = {};
+
   function applyPack(pack) {
+    Object.assign(mergedPack, pack);
+    window.__marcoPack = mergedPack;
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
-      if (pack[key] !== undefined && pack[key] !== '') {
-        el.textContent = pack[key];
+      if (mergedPack[key] !== undefined && mergedPack[key] !== '') {
+        el.textContent = mergedPack[key];
       }
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-placeholder');
-      if (pack[key] !== undefined && pack[key] !== '') {
-        el.setAttribute('placeholder', pack[key]);
+      if (mergedPack[key] !== undefined && mergedPack[key] !== '') {
+        el.setAttribute('placeholder', mergedPack[key]);
       }
     });
     document.querySelectorAll('[data-i18n-title]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-title');
-      if (pack[key] !== undefined && pack[key] !== '') {
-        el.setAttribute('title', pack[key]);
+      if (mergedPack[key] !== undefined && mergedPack[key] !== '') {
+        el.setAttribute('title', mergedPack[key]);
       }
     });
   }
+
+  /* Exposed for pages that re-render content dynamically (e.g. price pages) */
+  window.__applyMarcoPack = function () {
+    if (Object.keys(mergedPack).length) applyPack({});
+  };
 
   function loadScript(src, globalName, callback) {
     var script = document.createElement('script');

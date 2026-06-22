@@ -79,6 +79,49 @@ window.MARCO_LANG_CN_COMPANY = {
 	'journey.next.btn1':          '探索我们的网络',
 	'journey.next.btn2':          '我们的价值观',
 
+	/* ── Journey Timeline ── */
+	'journey.tl.label':           'Marco 的发展历程',
+
+	'journey.tl.y2020.phase':     '启航',
+	'journey.tl.y2020.b1':        '在北京正式成立',
+	'journey.tl.y2020.b2':        '首位 EOR 员工入职',
+	'journey.tl.y2020.b3':        '首个工作签证落地：越南',
+	'journey.tl.y2020.b4':        '首个欧洲工作签证：荷兰',
+	'journey.tl.y2020.b5':        '首位全球客户签约',
+	'journey.tl.y2020.b6':        'Marco OS 1.0 正式发布',
+
+	'journey.tl.y2022.phase':     '运营',
+	'journey.tl.y2022.b1':        '海外人员架构完成重组',
+	'journey.tl.y2022.b2':        '跨境实体调动流程标准化',
+	'journey.tl.y2022.b3':        '报销与假期管理功能上线平台',
+	'journey.tl.y2022.b4':        'Marco OS 2.0 正式发布',
+
+	'journey.tl.y2023.phase':     '升级',
+	'journey.tl.y2023.b1':        '活跃客户突破 30+',
+	'journey.tl.y2023.b2':        '大连服务中心正式启用',
+	'journey.tl.y2023.b3':        '新加坡确立为全球总部',
+	'journey.tl.y2023.b4':        '工作签证支持国家扩展至 50+',
+	'journey.tl.y2023.b5':        '英国薪资首次正式上线',
+	'journey.tl.y2023.b6':        'Marco OS 3.0 正式发布',
+
+	'journey.tl.y2024.phase':     '成长',
+	'journey.tl.y2024.b1':        '活跃客户突破 45+',
+	'journey.tl.y2024.b2':        '客户成功体系全面升级',
+	'journey.tl.y2024.b3':        '吉隆坡服务中心正式启用',
+	'journey.tl.y2024.b4':        'Marco OS 4.0 正式发布',
+
+	'journey.tl.y2025.phase':     '焕新',
+	'journey.tl.y2025.b1':        '活跃客户突破 70+',
+	'journey.tl.y2025.b2':        '21 个自有实体覆盖 AMER、EMEA、APAC',
+	'journey.tl.y2025.b3':        '洛杉矶服务中心正式启用',
+	'journey.tl.y2025.b4':        'Marco MasterCard 正式推出',
+
+	'journey.tl.y2026.phase':     '转型',
+	'journey.tl.y2026.b1':        'Marco Copilot AI 正式上线',
+	'journey.tl.y2026.b2':        'Marco Engine 发布——统一处理层，覆盖薪资、费用、假期、账单及各市场财务报告',
+	'journey.tl.y2026.b3':        '在加拿大取得货币服务商资质',
+	'journey.tl.y2026.b4':        'Marco OS 6.0 正式发布',
+
 	/* ── Organization ── */
 	'org.hero.label':             '组织',
 	'org.hero.title.pre': '平台背后的',

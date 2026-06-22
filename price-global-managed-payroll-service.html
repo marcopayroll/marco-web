@@ -604,8 +604,8 @@ table {
     <a href="index.html"><img class="banner-logo" src="https://marcowallpaper.s3.ap-southeast-1.amazonaws.com/Marco+logo+white+(tall).png" alt="Marco"></a>
     <div class="banner-divider"></div>
     <div>
-      <div class="banner-title">Global Managed Payroll Service</div>
-      <div class="banner-subtitle">Managed payroll pricing for global teams</div>
+      <div class="banner-title" data-i18n="gmps.banner.title">Global Managed Payroll Service</div>
+      <div class="banner-subtitle" data-i18n="gmps.banner.subtitle">Managed payroll pricing for global teams</div>
     </div>
   </div>
 </header>
@@ -619,7 +619,7 @@ table {
 
       <!-- Version -->
       <div class="version-block">
-        <div class="version-label">Version</div>
+        <div class="version-label" data-i18n="price.version.label">Version</div>
         <div class="version-dropdown" id="versionDropdown">
           <span class="version-dropdown-label" id="versionDropdownLabel">2026.2</span>
           <span class="version-dropdown-chevron">▼</span>
@@ -720,9 +720,22 @@ const navStructure = {
 };
 
 /* ══════════════════════════════════════════
+   I18N KEY MAP
+══════════════════════════════════════════ */
+const priceI18nKeys = {
+  'Customer Pricing':           'price.cat.customer',
+  'Partner Pricing':            'price.cat.partner',
+  'Payroll':                    'price.gmps.sec.payroll',
+  'Expense Processing':         'price.sec.expense',
+  'Payment Processing/ Management': 'price.sec.payroll.payment',
+  'Marco OS':                   'price.sec.os',
+  'Additional HRO services':    'price.sec.payroll.hro'
+};
+
+/* ══════════════════════════════════════════
    HRO ROWS HELPER
 ══════════════════════════════════════════ */
-function hroRows(rate) {
+function hroRows(rate, rateKey) {
   const services = [
     ['Social Security & Income Tax Account Administrator', rate + ' / hour', 'Min. 2 hours / month'],
     ['Offline Counter Assistance for Social Security & Income Tax Account Setup', rate + ' / hour', 'Min. 4 hours / session'],
@@ -757,13 +770,20 @@ function hroRows(rate) {
     ['Employee Handbook Assistance', 'Quoted upon request', '—'],
     ['Consultation and Documentation on Union related Matters', rate + ' / hour + external vendor costs', 'Min. 2 hours / session'],
   ];
-  return services.map((s, i) => `
+  return services.map((s, i) => {
+    const priceI18n = s[1] === 'Quoted upon request'
+      ? ' data-i18n="price.label.quoted"'
+      : s[1].includes('external vendor costs')
+        ? ` data-i18n="${rateKey}.plus"`
+        : ` data-i18n="${rateKey}"`;
+    return `
     <tr class="data-row">
       <td class="hro-num">${i + 1}</td>
-      <td class="label">${s[0]}</td>
-      <td>${s[1]}</td>
-      <td class="note">${s[2]}</td>
-    </tr>`).join('');
+      <td class="label" data-i18n="price.hro.s${i+1}">${s[0]}</td>
+      <td${priceI18n}>${s[1]}</td>
+      <td class="note" data-i18n="price.hro.c${i+1}">${s[2]}</td>
+    </tr>`;
+  }).join('');
 }
 
 /* ══════════════════════════════════════════
@@ -772,11 +792,11 @@ function hroRows(rate) {
 function pricingNotes() {
   return `
   <div class="notes-block">
-    <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-    <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project's country.</p>
-    <p>3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees and will reconcile any discrepancies based on actual expenditures in the following fiscal year, issuing refunds or additional charges as necessary.</p>
-    <p>4. Regarding private insurance (additional supplementary medical insurance/non-statutory requirements), 10% of the monthly premium must be paid as an information service fee.</p>
-    <p>5. Regarding Shadow Payroll, a monthly payment equivalent to 10% of the expatriate employee's CTC cost is required as an additional fee for the local accounting firm's services.</p>
+    <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+    <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project's country.</p>
+    <p data-i18n="price.note.n3">3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees and will reconcile any discrepancies based on actual expenditures in the following fiscal year, issuing refunds or additional charges as necessary.</p>
+    <p data-i18n="price.note.n4">4. Regarding private insurance (additional supplementary medical insurance/non-statutory requirements), 10% of the monthly premium must be paid as an information service fee.</p>
+    <p data-i18n="price.note.n5">5. Regarding Shadow Payroll, a monthly payment equivalent to 10% of the expatriate employee's CTC cost is required as an additional fee for the local accounting firm's services.</p>
   </div>`;
 }
 
@@ -788,190 +808,190 @@ const contentRenderers = {
 
   '2026.2.1|Customer Pricing|Payroll': () => `
     <div class="page-meta">
-      <div class="page-title">Payroll</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.gmps.sec.payroll">Payroll</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Payroll Set-Up</div>
+      <div class="section-title" data-i18n="price.sec.payroll.setup">Payroll Set-Up</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        <tr class="data-row"><td class="label">Employer Social Security and Income Tax Account Set-up</td><td>USD 799/ account</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Setup Cost Per Entity - Payroll Project Transfer</td><td>USD 399/ entity</td><td class="note">Capped at 10 Hours, bespoke projects at cost of 150 USD per hour</td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.setup.r1">Employer Social Security and Income Tax Account Set-up</td><td data-i18n="price.payroll.setup.val.r1">USD 799/ account</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.setup.r2">Setup Cost Per Entity - Payroll Project Transfer</td><td data-i18n="price.payroll.setup.val.r2">USD 399/ entity</td><td class="note" data-i18n="price.payroll.setup.note.r2">Capped at 10 Hours, bespoke projects at cost of 150 USD per hour</td></tr>
       </table></div>
     </div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Payroll Processing</div>
+      <div class="section-title" data-i18n="price.sec.payroll.proc">Payroll Processing</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price-wide">Price Book</th></tr>
-        <tr class="data-row"><td class="label">Employee Headcount Registrations and De-Registrations - Social Security and Income Tax</td><td>USD 19.9/ Payslip - Up to 50 Employees<br><span style="color:#6b7280; font-size:12.5px;">USD 9.9/ Payslip - More Than 50 Employees</span></td></tr>
-        <tr class="data-row"><td class="label">Collect Client Payroll and Employees Expense Data</td><td>USD 19.9/ Payslip - Up to 50 Employees<br><span style="color:#6b7280; font-size:12.5px;">USD 9.9/ Payslip - More Than 50 Employees</span></td></tr>
-        <tr class="data-row"><td class="label">Submitting Payroll Reports to Client for Approval</td><td>USD 19.9/ Payslip - Up to 50 Employees<br><span style="color:#6b7280; font-size:12.5px;">USD 9.9/ Payslip - More Than 50 Employees</span></td></tr>
-        <tr class="data-row"><td class="label">Provide the Final Payroll Report, Invoice and Payslip</td><td>USD 19.9/ Payslip - Up to 50 Employees<br><span style="color:#6b7280; font-size:12.5px;">USD 9.9/ Payslip - More Than 50 Employees</span></td></tr>
-        <tr class="data-row"><td class="label">Monthly Social Security and Income Tax Application</td><td>USD 19.9/ Payslip - Up to 50 Employees<br><span style="color:#6b7280; font-size:12.5px;">USD 9.9/ Payslip - More Than 50 Employees</span></td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price-wide" data-i18n="price.th.price">Price Book</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r1">Employee Headcount Registrations and De-Registrations - Social Security and Income Tax</td><td><span data-i18n="price.payroll.proc.val.c1">USD 19.9/ Payslip – Up to 50 Employees</span><br><span style="color:#6b7280; font-size:12.5px;" data-i18n="price.payroll.proc.val.c2">USD 9.9/ Payslip – More Than 50 Employees</span></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r2">Collect Client Payroll and Employees Expense Data</td><td><span data-i18n="price.payroll.proc.val.c1">USD 19.9/ Payslip – Up to 50 Employees</span><br><span style="color:#6b7280; font-size:12.5px;" data-i18n="price.payroll.proc.val.c2">USD 9.9/ Payslip – More Than 50 Employees</span></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r3">Submitting Payroll Reports to Client for Approval</td><td><span data-i18n="price.payroll.proc.val.c1">USD 19.9/ Payslip – Up to 50 Employees</span><br><span style="color:#6b7280; font-size:12.5px;" data-i18n="price.payroll.proc.val.c2">USD 9.9/ Payslip – More Than 50 Employees</span></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r4">Provide the Final Payroll Report, Invoice and Payslip</td><td><span data-i18n="price.payroll.proc.val.c1">USD 19.9/ Payslip – Up to 50 Employees</span><br><span style="color:#6b7280; font-size:12.5px;" data-i18n="price.payroll.proc.val.c2">USD 9.9/ Payslip – More Than 50 Employees</span></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r5">Monthly Social Security and Income Tax Application</td><td><span data-i18n="price.payroll.proc.val.c1">USD 19.9/ Payslip – Up to 50 Employees</span><br><span style="color:#6b7280; font-size:12.5px;" data-i18n="price.payroll.proc.val.c2">USD 9.9/ Payslip – More Than 50 Employees</span></td></tr>
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n3">3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
       </div>
     </div>
   `,
 
   '2026.2.1|Customer Pricing|Expense Processing': () => `
     <div class="page-meta">
-      <div class="page-title">Expense Processing</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.sec.expense">Expense Processing</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Expense Processing</div>
+      <div class="section-title" data-i18n="price.sec.expense">Expense Processing</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        <tr class="data-row"><td class="label">Expense Compliance Review</td><td>2.5% per expense total amount</td><td class="note">2.5% of the total reimbursement amount</td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.expense.r1">Expense Compliance Review</td><td data-i18n="price.payroll.expense.val.r1">2.5% per expense total amount</td><td class="note" data-i18n="price.payroll.expense.note.r1">2.5% of the total reimbursement amount</td></tr>
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n3">3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
       </div>
     </div>
   `,
 
   '2026.2.1|Customer Pricing|Payment Processing/ Management': () => `
     <div class="page-meta">
-      <div class="page-title">Payment Processing/ Management</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.sec.payroll.payment">Payment Processing/ Management</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Payment Processing/ Management</div>
+      <div class="section-title" data-i18n="price.sec.payroll.payment">Payment Processing/ Management</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        <tr class="data-row"><td class="label">Configure Direct Debits</td><td>USD 799/ account</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Prepare Bank Files and Payment Notifications</td><td>USD 25/ payslip</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Social Contribution Payment on Behalf</td><td class="free-label">FREE</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Employees Income Tax Payment on Behalf</td><td class="free-label">FREE</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Salary Payment on Behalf</td><td class="free-label">FREE</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Off Cycle Payroll Payment</td><td>USD 99/ time</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Reimbursement Payment on Behalf</td><td class="free-label">FREE</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Business Card Issuance</td><td class="free-label">FREE</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Payroll Payment Arrangement</td><td class="quoted-label">Quoted upon request</td><td class="note">Deposit (prepayment) + interest</td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.payment.r1">Configure Direct Debits</td><td data-i18n="price.payroll.payment.val.r1">USD 799/ account</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.payment.r2">Prepare Bank Files and Payment Notifications</td><td data-i18n="price.payroll.payment.val.r2">USD 25/ payslip</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.payment.r3">Social Contribution Payment on Behalf</td><td class="free-label" data-i18n="price.label.free">FREE</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.payment.r4">Employees Income Tax Payment on Behalf</td><td class="free-label" data-i18n="price.label.free">FREE</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.payment.r5">Salary Payment on Behalf</td><td class="free-label" data-i18n="price.label.free">FREE</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.payment.r6">Off Cycle Payroll Payment</td><td data-i18n="price.payroll.payment.val.r6">USD 99/ time</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.payment.r7">Reimbursement Payment on Behalf</td><td class="free-label" data-i18n="price.label.free">FREE</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.payment.r8">Business Card Issuance</td><td class="free-label" data-i18n="price.label.free">FREE</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.payment.r9">Payroll Payment Arrangement</td><td class="quoted-label" data-i18n="price.label.quoted">Quoted upon request</td><td class="note" data-i18n="price.payroll.payment.note.r9">Deposit (prepayment) + interest</td></tr>
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n3">3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
       </div>
     </div>
   `,
 
   '2026.2.1|Customer Pricing|Marco OS': () => `
     <div class="page-meta">
-      <div class="page-title">Marco OS</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.sec.os">Marco OS</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Marco OS</div>
+      <div class="section-title" data-i18n="price.sec.os">Marco OS</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        <tr class="data-row"><td class="label">Marco OS User Access</td><td class="free-label">FREE</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Marco OS integration and Training</td><td>USD 150 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">Vendor Platform Setup and Configuration</td><td>USD 150 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">Customer Platform Setup and Configuration</td><td>USD 150 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">System Integration and Migration Support</td><td>USD 150 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">Data Cloud Set Up and Customization</td><td>USD 150 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">BI Dashboard Setup and Customization</td><td>USD 150 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">Support, Training and Documentation</td><td>USD 150 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r1">Marco OS User Access</td><td class="free-label" data-i18n="price.label.free">FREE</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r2">Marco OS integration and Training</td><td data-i18n="price.hourly.c">USD 150 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r3">Vendor Platform Setup and Configuration</td><td data-i18n="price.hourly.c">USD 150 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r4">Customer Platform Setup and Configuration</td><td data-i18n="price.hourly.c">USD 150 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r5">System Integration and Migration Support</td><td data-i18n="price.hourly.c">USD 150 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r6">Data Cloud Set Up and Customization</td><td data-i18n="price.hourly.c">USD 150 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r7">BI Dashboard Setup and Customization</td><td data-i18n="price.hourly.c">USD 150 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r8">Support, Training and Documentation</td><td data-i18n="price.hourly.c">USD 150 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n3">3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
       </div>
     </div>
   `,
 
   '2026.2.1|Customer Pricing|Additional HRO services': () => `
     <div class="page-meta">
-      <div class="page-title">Additional HRO services</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.sec.payroll.hro">Additional HRO services</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section">
-      <div class="section-title">Additional HRO services</div>
+      <div class="section-title" data-i18n="price.sec.payroll.hro">Additional HRO services</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-num" style="text-align:center;">#</th><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        ${hroRows('USD 150')}
+        <tr class="col-header-row"><th class="col-num" style="text-align:center;" data-i18n="price.th.num">#</th><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        ${hroRows('USD 150', 'price.hourly.c')}
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. Regarding the private insurance (additional supplementary medical insurance/non-statutory requirements), 10% of the monthly premium must be paid as an information service fee.</p>
-        <p>4. Regarding Shadow Payroll, a monthly payment equivalent to 10% of the expatriate employee CTC cost is required as an additional fee for the local accounting firm services.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n4">4. Regarding private insurance (additional supplementary medical insurance/non-statutory requirements), 10% of the monthly premium must be paid as an information service fee.</p>
+        <p data-i18n="price.note.n5">5. Regarding Shadow Payroll, a monthly payment equivalent to 10% of the expatriate employee CTC cost is required as an additional fee for the local accounting firm services.</p>
       </div>
     </div>
   `,
 
   '2026.2.1|Partner Pricing|Payroll': () => `
     <div class="page-meta">
-      <div class="page-title">Payroll</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.gmps.sec.payroll">Payroll</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Payroll Set-Up</div>
+      <div class="section-title" data-i18n="price.sec.payroll.setup">Payroll Set-Up</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        <tr class="data-row"><td class="label">Employer Social Security and Income Tax Account Set-up</td><td>USD 799/ account</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Setup Cost Per Entity - Payroll Project Transfer</td><td>USD 399/ entity</td><td class="note">Capped at 10 Hours, bespoke projects at cost of 99 USD per hour</td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.setup.r1">Employer Social Security and Income Tax Account Set-up</td><td data-i18n="price.payroll.setup.val.r1">USD 799/ account</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.setup.r2">Setup Cost Per Entity - Payroll Project Transfer</td><td data-i18n="price.payroll.setup.val.r2">USD 399/ entity</td><td class="note" data-i18n="price.payroll.setup.note.r2.partner">Capped at 10 Hours, bespoke projects at cost of 99 USD per hour</td></tr>
       </table></div>
     </div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Payroll Processing</div>
+      <div class="section-title" data-i18n="price.sec.payroll.proc">Payroll Processing</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price-wide">Price Book</th></tr>
-        <tr class="data-row"><td class="label">Employee Headcount Registrations and De-Registrations - Social Security and Income Tax</td><td>USD 10/ Payslip</td></tr>
-        <tr class="data-row"><td class="label">Collect Client Payroll and Employees Expense Data</td><td>USD 10/ Payslip</td></tr>
-        <tr class="data-row"><td class="label">Submitting Payroll Reports to Client for Approval</td><td>USD 10/ Payslip</td></tr>
-        <tr class="data-row"><td class="label">Provide the Final Payroll Report, Invoice and Payslip</td><td>USD 10/ Payslip</td></tr>
-        <tr class="data-row"><td class="label">Monthly Social Security and Income Tax Application</td><td>USD 10/ Payslip</td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price-wide" data-i18n="price.th.price">Price Book</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r1">Employee Headcount Registrations and De-Registrations - Social Security and Income Tax</td><td data-i18n="price.payroll.proc.val.p">USD 10/ Payslip</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r2">Collect Client Payroll and Employees Expense Data</td><td data-i18n="price.payroll.proc.val.p">USD 10/ Payslip</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r3">Submitting Payroll Reports to Client for Approval</td><td data-i18n="price.payroll.proc.val.p">USD 10/ Payslip</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r4">Provide the Final Payroll Report, Invoice and Payslip</td><td data-i18n="price.payroll.proc.val.p">USD 10/ Payslip</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r5">Monthly Social Security and Income Tax Application</td><td data-i18n="price.payroll.proc.val.p">USD 10/ Payslip</td></tr>
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n3">3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
       </div>
     </div>
   `,
@@ -982,58 +1002,58 @@ const contentRenderers = {
 
   '2026.2.1|Partner Pricing|Marco OS': () => `
     <div class="page-meta">
-      <div class="page-title">Marco OS</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.sec.os">Marco OS</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Marco OS</div>
+      <div class="section-title" data-i18n="price.sec.os">Marco OS</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        <tr class="data-row"><td class="label">Marco OS User Access</td><td class="free-label">FREE</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Marco OS integration and Training</td><td>USD 99 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">Vendor Platform Setup and Configuration</td><td>USD 99 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">Customer Platform Setup and Configuration</td><td>USD 99 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">System Integration and Migration Support</td><td>USD 99 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">Data Cloud Set Up and Customization</td><td>USD 99 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">BI Dashboard Setup and Customization</td><td>USD 99 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
-        <tr class="data-row"><td class="label">Support, Training and Documentation</td><td>USD 99 per hour</td><td class="note">Minimum of 2 hours/ session</td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r1">Marco OS User Access</td><td class="free-label" data-i18n="price.label.free">FREE</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r2">Marco OS integration and Training</td><td data-i18n="price.hourly.p">USD 99 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r3">Vendor Platform Setup and Configuration</td><td data-i18n="price.hourly.p">USD 99 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r4">Customer Platform Setup and Configuration</td><td data-i18n="price.hourly.p">USD 99 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r5">System Integration and Migration Support</td><td data-i18n="price.hourly.p">USD 99 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r6">Data Cloud Set Up and Customization</td><td data-i18n="price.hourly.p">USD 99 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r7">BI Dashboard Setup and Customization</td><td data-i18n="price.hourly.p">USD 99 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.os.r8">Support, Training and Documentation</td><td data-i18n="price.hourly.p">USD 99 / hour</td><td class="note" data-i18n="price.payroll.os.note">Minimum of 2 hours/ session</td></tr>
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n3">3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
       </div>
     </div>
   `,
 
   '2026.2.1|Partner Pricing|Additional HRO services': () => `
     <div class="page-meta">
-      <div class="page-title">Additional HRO services</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.sec.payroll.hro">Additional HRO services</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section">
-      <div class="section-title">Additional HRO services</div>
+      <div class="section-title" data-i18n="price.sec.payroll.hro">Additional HRO services</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-num" style="text-align:center;">#</th><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        ${hroRows('USD 99')}
+        <tr class="col-header-row"><th class="col-num" style="text-align:center;" data-i18n="price.th.num">#</th><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        ${hroRows('USD 99', 'price.hourly.p')}
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. Regarding the private insurance (additional supplementary medical insurance/non-statutory requirements), 10% of the monthly premium must be paid as an information service fee.</p>
-        <p>4. Regarding Shadow Payroll, a monthly payment equivalent to 10% of the expatriate employee CTC cost is required as an additional fee for the local accounting firm services.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n4">4. Regarding private insurance (additional supplementary medical insurance/non-statutory requirements), 10% of the monthly premium must be paid as an information service fee.</p>
+        <p data-i18n="price.note.n5">5. Regarding Shadow Payroll, a monthly payment equivalent to 10% of the expatriate employee CTC cost is required as an additional fee for the local accounting firm services.</p>
       </div>
     </div>
   `,
@@ -1041,47 +1061,47 @@ const contentRenderers = {
   // 2026.2.2 — Customer Pricing Payroll (custom Payroll Processing layout)
   '2026.2.2|Customer Pricing|Payroll': () => `
     <div class="page-meta">
-      <div class="page-title">Payroll</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.gmps.sec.payroll">Payroll</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Payroll Set-Up</div>
+      <div class="section-title" data-i18n="price.sec.payroll.setup">Payroll Set-Up</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        <tr class="data-row"><td class="label">Employer Social Security and Income Tax Account Set-up</td><td>USD 799/ account</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Setup Cost Per Entity - Payroll Project Transfer</td><td>USD 399/ entity</td><td class="note">Capped at 10 Hours, bespoke projects at cost of 150 USD per hour</td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.setup.r1">Employer Social Security and Income Tax Account Set-up</td><td data-i18n="price.payroll.setup.val.r1">USD 799/ account</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.setup.r2">Setup Cost Per Entity - Payroll Project Transfer</td><td data-i18n="price.payroll.setup.val.r2">USD 399/ entity</td><td class="note" data-i18n="price.payroll.setup.note.r2">Capped at 10 Hours, bespoke projects at cost of 150 USD per hour</td></tr>
       </table></div>
     </div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Payroll Processing</div>
+      <div class="section-title" data-i18n="price.sec.payroll.proc">Payroll Processing</div>
       <div class="table-wrap"><table>
         <tr class="col-header-row">
-          <th class="col-service" style="text-align:left;">Service Scope</th>
-          <th class="col-price-wide">Price Book</th>
+          <th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th>
+          <th class="col-price-wide" data-i18n="price.th.price">Price Book</th>
         </tr>
         <tr class="data-row">
-          <td class="label">Employee Headcount Registrations and De-Registrations - Social Security and Income Tax</td>
+          <td class="label" data-i18n="price.payroll.proc.r1">Employee Headcount Registrations and De-Registrations - Social Security and Income Tax</td>
           <td rowspan="5" style="vertical-align:top; padding-top:10px;">
-            USD 19.9/ Payslip - Up to 50 Employees<br>
-            USD 9.9/ Payslip - More Than 50 Employees<br>
-            <span class="note" style="display:block; margin-top:12px; font-style:italic;">Note: The payslip price includes the full Payroll Processing service package listed under the Service Scope. The fee is charged per payslip and covers all five listed services, not each service individually.</span>
+            <span data-i18n="price.payroll.proc.val.c1">USD 19.9/ Payslip – Up to 50 Employees</span><br>
+            <span data-i18n="price.payroll.proc.val.c2">USD 9.9/ Payslip – More Than 50 Employees</span><br>
+            <span class="note" style="display:block; margin-top:12px; font-style:italic;" data-i18n="price.note.payslip">Note: The payslip price includes the full Payroll Processing service package listed under the Service Scope. The fee is charged per payslip and covers all five listed services, not each service individually.</span>
           </td>
         </tr>
-        <tr class="data-row"><td class="label">Collect Client Payroll and Employees Expense Data</td></tr>
-        <tr class="data-row"><td class="label">Submitting Payroll Reports to Client for Approval</td></tr>
-        <tr class="data-row"><td class="label">Provide the Final Payroll Report, Invoice and Payslip</td></tr>
-        <tr class="data-row"><td class="label">Monthly Social Security and Income Tax Application</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r2">Collect Client Payroll and Employees Expense Data</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r3">Submitting Payroll Reports to Client for Approval</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r4">Provide the Final Payroll Report, Invoice and Payslip</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r5">Monthly Social Security and Income Tax Application</td></tr>
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n3">3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
       </div>
     </div>
   `,
@@ -1091,46 +1111,46 @@ const contentRenderers = {
   '2026.2.2|Customer Pricing|Additional HRO services':      () => contentRenderers['2026.2.1|Customer Pricing|Additional HRO services'](),
   '2026.2.2|Partner Pricing|Payroll': () => `
     <div class="page-meta">
-      <div class="page-title">Payroll</div>
-      <span class="page-meta-type">${state.category}</span>
-      <span class="page-meta-version">Version ${state.version}</span>
-      <span class="page-meta-validity">Validity: ${versionValidity[state.version]}</span>
+      <div class="page-title" data-i18n="price.gmps.sec.payroll">Payroll</div>
+      <span class="page-meta-type" data-i18n="${priceI18nKeys[state.category]||''}">${state.category}</span>
+      <span class="page-meta-version"><span data-i18n="price.meta.version">Version</span> ${state.version}</span>
+      <span class="page-meta-validity"><span data-i18n="price.meta.validity">Validity:</span> <span data-i18n="price.validity.${state.version}">${versionValidity[state.version]}</span></span>
     </div>
     <div class="page-divider"></div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Payroll Set-Up</div>
+      <div class="section-title" data-i18n="price.sec.payroll.setup">Payroll Set-Up</div>
       <div class="table-wrap"><table>
-        <tr class="col-header-row"><th class="col-service" style="text-align:left;">Service Scope</th><th class="col-price">Price Book</th><th class="col-comments" style="text-align:left;">Comments</th></tr>
-        <tr class="data-row"><td class="label">Employer Social Security and Income Tax Account Set-up</td><td>USD 799/ account</td><td class="note"></td></tr>
-        <tr class="data-row"><td class="label">Setup Cost Per Entity - Payroll Project Transfer</td><td>USD 399/ entity</td><td class="note">Capped at 10 Hours, bespoke projects at cost of 99 USD per hour</td></tr>
+        <tr class="col-header-row"><th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th><th class="col-price" data-i18n="price.th.price">Price Book</th><th class="col-comments" style="text-align:left;" data-i18n="price.th.comments">Comments</th></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.setup.r1">Employer Social Security and Income Tax Account Set-up</td><td data-i18n="price.payroll.setup.val.r1">USD 799/ account</td><td class="note"></td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.setup.r2">Setup Cost Per Entity - Payroll Project Transfer</td><td data-i18n="price.payroll.setup.val.r2">USD 399/ entity</td><td class="note" data-i18n="price.payroll.setup.note.r2.partner">Capped at 10 Hours, bespoke projects at cost of 99 USD per hour</td></tr>
       </table></div>
     </div>
     <div class="pricing-section section-gap">
-      <div class="section-title">Payroll Processing</div>
+      <div class="section-title" data-i18n="price.sec.payroll.proc">Payroll Processing</div>
       <div class="table-wrap"><table>
         <tr class="col-header-row">
-          <th class="col-service" style="text-align:left;">Service Scope</th>
-          <th class="col-price-wide">Price Book</th>
+          <th class="col-service" style="text-align:left;" data-i18n="price.th.service">Service Scope</th>
+          <th class="col-price-wide" data-i18n="price.th.price">Price Book</th>
         </tr>
         <tr class="data-row">
-          <td class="label">Employee Headcount Registrations and De-Registrations - Social Security and Income Tax</td>
+          <td class="label" data-i18n="price.payroll.proc.r1">Employee Headcount Registrations and De-Registrations - Social Security and Income Tax</td>
           <td rowspan="5" style="vertical-align:top; padding-top:10px;">
-            USD 10/ Payslip<br>
-            <span class="note" style="display:block; margin-top:12px; font-style:italic;">Note: The payslip price includes the full Payroll Processing service package listed under the Service Scope. The fee is charged per payslip and covers all five listed services, not each service individually.</span>
+            <span data-i18n="price.payroll.proc.val.p">USD 10/ Payslip</span><br>
+            <span class="note" style="display:block; margin-top:12px; font-style:italic;" data-i18n="price.note.payslip">Note: The payslip price includes the full Payroll Processing service package listed under the Service Scope. The fee is charged per payslip and covers all five listed services, not each service individually.</span>
           </td>
         </tr>
-        <tr class="data-row"><td class="label">Collect Client Payroll and Employees Expense Data</td></tr>
-        <tr class="data-row"><td class="label">Submitting Payroll Reports to Client for Approval</td></tr>
-        <tr class="data-row"><td class="label">Provide the Final Payroll Report, Invoice and Payslip</td></tr>
-        <tr class="data-row"><td class="label">Monthly Social Security and Income Tax Application</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r2">Collect Client Payroll and Employees Expense Data</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r3">Submitting Payroll Reports to Client for Approval</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r4">Provide the Final Payroll Report, Invoice and Payslip</td></tr>
+        <tr class="data-row"><td class="label" data-i18n="price.payroll.proc.r5">Monthly Social Security and Income Tax Application</td></tr>
       </table></div>
     </div>
     <div class="pricing-section">
       <div class="notes-block">
-        <p><strong>Scope of services and pricing details:</strong></p>
-        <p>1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
-        <p>2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
-        <p>3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
+        <p><strong data-i18n="price.note.heading">Scope of services and pricing details:</strong></p>
+        <p data-i18n="price.note.n1">1. The default currency for pricing is USD. If the service project involves Europe or the UK, it should be converted to EUR and GBP.</p>
+        <p data-i18n="price.note.n2">2. If exchange rate conversion is involved, a 2.5% markup should be applied based on the exchange rate of the commercial bank on the billing date in the project.</p>
+        <p data-i18n="price.note.n3">3. In cases where the client entity comprises fewer than 10 employees (annually), it is recommended to opt for a one-time annual payment. Marco will extend a 10% discount on payroll service fees.</p>
       </div>
     </div>
   `,
@@ -1172,19 +1192,20 @@ function renderSidebar() {
   document.getElementById('sidebarNav').innerHTML = Object.entries(vd.categories).map(([cat, sections]) => `
     <div class="nav-group" data-cat="${cat}">
       <div class="nav-group-header">
-        <span class="nav-group-title">${cat}</span>
+        <span class="nav-group-title" data-i18n="${priceI18nKeys[cat]||''}">${cat}</span>
       </div>
       <div class="nav-group-divider"></div>
       <div class="nav-group-items">
         ${sections.map(sec => `
           <div class="nav-link${state.category === cat && state.section === sec ? ' active' : ''}"
-               data-cat="${cat}" data-section="${sec}">
+               data-cat="${cat}" data-section="${sec}" data-i18n="${priceI18nKeys[sec]||''}">
             ${sec}
           </div>
         `).join('')}
       </div>
     </div>
   `).join('');
+  if (window.__applyMarcoPack) window.__applyMarcoPack();
 }
 
 /* ══════════════════════════════════════════
@@ -1197,6 +1218,7 @@ function renderContent() {
     ? renderer()
     : `<div class="empty-state"><p>Content for this section is not yet available for version ${state.version}.</p></div>`;
   document.querySelector('.content-area').scrollTop = 0;
+  if (window.__applyMarcoPack) window.__applyMarcoPack();
 }
 
 /* ══════════════════════════════════════════

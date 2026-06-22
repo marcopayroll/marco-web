@@ -429,6 +429,9 @@
     }
     .hero-title .muted { color: #8F98B5; }
     .hero-title .accent { color: var(--blue-main); }
+    .hero-title-cn { display: none; }
+    [data-lang="cn"] .hero-title-en { display: none; }
+    [data-lang="cn"] .hero-title-cn { display: block; }
 
     .hero-body {
       font-size: 16px;
@@ -2359,15 +2362,21 @@
       <!-- PROPOSAL BUILDER label -->
       <div class="hero-label">
         <div class="hero-label-line"></div>
-        <span>PROPOSAL BUILDER</span>
+        <span data-i18n="pb.hero.label">PROPOSAL BUILDER</span>
       </div>
       <!-- Title + subtitle -->
       <div class="hero-title-block">
-        <p class="hero-title">
-          Build your global hiring<br>
-          <span class="muted">proposal </span><span class="accent">instantly</span>
+        <!-- EN title -->
+        <p class="hero-title hero-title-en">
+          <span data-i18n="pb.hero.title.main">Build your global hiring</span><br>
+          <span class="muted" data-i18n="pb.hero.title.word1">proposal </span><span class="accent" data-i18n="pb.hero.title.word2">instantly</span>
         </p>
-        <p class="hero-body">Enter your hiring details and Marco generates a complete cost estimate covering service fees, statutory contributions, and total employer cost by country and employment type.</p>
+        <!-- CN title -->
+        <p class="hero-title hero-title-cn">
+          <span class="accent" data-i18n="pb.hero.title.word2">即时</span><span data-i18n="pb.hero.title.main">生成您的全球雇佣</span><br>
+          <span class="muted" data-i18n="pb.hero.title.word1">方案报价</span>
+        </p>
+        <p class="hero-body" data-i18n="pb.hero.body">Enter your hiring details and Marco generates a complete cost estimate covering service fees, statutory contributions, and total employer cost by country and employment type.</p>
       </div>
     </div>
   </div>
@@ -2379,9 +2388,9 @@
 
     <!-- Header -->
     <div class="pb-header">
-      <div class="pb-label">BUILD YOUR PROPOSAL</div>
-      <h2 class="pb-title">Enter your hiring details</h2>
-      <p class="pb-subtitle">Enter the basic hiring details below to generate an estimated proposal.</p>
+      <div class="pb-label" data-i18n="pb.form.label">BUILD YOUR PROPOSAL</div>
+      <h2 class="pb-title" data-i18n="pb.form.title">Enter your hiring details</h2>
+      <p class="pb-subtitle" data-i18n="pb.form.subtitle">Enter the basic hiring details below to generate an estimated proposal.</p>
     </div>
 
     <!-- Body: form + summary -->
@@ -2392,19 +2401,19 @@
 
         <!-- 1. Country -->
         <div class="pb-field">
-          <label class="pb-field-label">Where would you like to hire?</label>
+          <label class="pb-field-label" data-i18n="pb.field.country">Where would you like to hire?</label>
           <div class="pb-dropdown-wrap">
             <div class="pb-dropdown-trigger" id="pb-country-trigger" tabindex="0">
               <div class="pb-trigger-left">
                 <div class="pb-flag-wrap" id="pb-country-flag-wrap">
                   <img id="pb-country-flag" src="" alt="" class="pb-flag-img">
                 </div>
-                <span id="pb-country-text">Select a country</span>
+                <span id="pb-country-text" data-i18n="pb.country.placeholder">Select a country</span>
               </div>
               <img src="assets/Price/Proposal%20Builder/chevron-down.svg" alt="open" id="pb-country-chevron">
             </div>
             <div class="pb-dropdown-menu" id="pb-country-menu">
-              <input class="pb-dropdown-search" id="pb-country-search" placeholder="Search country..." autocomplete="off">
+              <input class="pb-dropdown-search" id="pb-country-search" placeholder="Search country..." data-i18n-placeholder="pb.country.search" autocomplete="off">
               <div class="pb-dropdown-list" id="pb-country-list"></div>
             </div>
           </div>
@@ -2412,7 +2421,7 @@
 
         <!-- 2. Headcount -->
         <div class="pb-field">
-          <label class="pb-field-label">How many employees are you hiring?</label>
+          <label class="pb-field-label" data-i18n="pb.field.headcount">How many employees are you hiring?</label>
           <div class="pb-headcount">
             <button class="pb-count-btn" id="pb-minus-btn" type="button">
               <img src="assets/Price/Proposal%20Builder/minus%20icon.svg" alt="minus">
@@ -2426,31 +2435,31 @@
 
         <!-- 3. Employment type -->
         <div class="pb-field">
-          <label class="pb-field-label">Employment type</label>
+          <label class="pb-field-label" data-i18n="pb.field.emptype">Employment type</label>
           <div style="display:flex;flex-direction:column;gap:16px;max-width:600px;">
             <div class="pb-emp-row pb-emp-row-1">
               <div class="pb-emp-card" data-emp="local_employee">
-                <div class="pb-emp-card-title">Local Employee</div>
-                <div class="pb-emp-card-sub">Citizen or permanent resident</div>
+                <div class="pb-emp-card-title" data-i18n="pb.emp.local.title">Local Employee</div>
+                <div class="pb-emp-card-sub" data-i18n="pb.emp.local.sub">Citizen or permanent resident</div>
 
               </div>
               <div class="pb-emp-card" data-emp="foreigner">
-                <div class="pb-emp-card-title">Foreigner</div>
-                <div class="pb-emp-card-sub">Valid work pass or visa holder</div>
+                <div class="pb-emp-card-title" data-i18n="pb.emp.foreigner.title">Foreigner</div>
+                <div class="pb-emp-card-sub" data-i18n="pb.emp.foreigner.sub">Valid work pass or visa holder</div>
               </div>
               <div class="pb-emp-card" data-emp="expat">
-                <div class="pb-emp-card-title">Expat</div>
-                <div class="pb-emp-card-sub">Seconded from a parent company</div>
+                <div class="pb-emp-card-title" data-i18n="pb.emp.expat.title">Expat</div>
+                <div class="pb-emp-card-sub" data-i18n="pb.emp.expat.sub">Seconded from a parent company</div>
               </div>
             </div>
             <div class="pb-emp-row">
               <div class="pb-emp-card" data-emp="independent_contractor">
-                <div class="pb-emp-card-title">Independent Contractor</div>
-                <div class="pb-emp-card-sub">Freelance or contract engagement</div>
+                <div class="pb-emp-card-title" data-i18n="pb.emp.ic.title">Independent Contractor</div>
+                <div class="pb-emp-card-sub" data-i18n="pb.emp.ic.sub">Freelance or contract engagement</div>
               </div>
               <div class="pb-emp-card" data-emp="eor_employee">
-                <div class="pb-emp-card-title">EOR Employee</div>
-                <div class="pb-emp-card-sub">Hired via Marco’s local entity</div>
+                <div class="pb-emp-card-title" data-i18n="pb.emp.eor.title">EOR Employee</div>
+                <div class="pb-emp-card-sub" data-i18n="pb.emp.eor.sub">Hired via Marco’s local entity</div>
               </div>
             </div>
           </div>
@@ -2458,15 +2467,15 @@
 
         <!-- 4. Salary -->
         <div class="pb-field">
-          <label class="pb-field-label">Salary</label>
+          <label class="pb-field-label" data-i18n="pb.field.salary">Salary</label>
           <div class="pb-freq-toggle">
             <div class="pb-freq-btn active" data-freq="monthly">
               <div class="pb-radio-outer"><div class="pb-radio-dot"></div></div>
-              Monthly
+              <span data-i18n="pb.freq.monthly">Monthly</span>
             </div>
             <div class="pb-freq-btn" data-freq="annual">
               <div class="pb-radio-outer"><div class="pb-radio-dot"></div></div>
-              Annual
+              <span data-i18n="pb.freq.annual">Annual</span>
             </div>
           </div>
           <div class="pb-salary-row">
@@ -2481,14 +2490,14 @@
                 <div class="pb-currency-item" data-currency="GBP">GBP</div>
               </div>
             </div>
-            <input class="pb-salary-input" id="pb-salary-input" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter amount">
+            <input class="pb-salary-input" id="pb-salary-input" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter amount" data-i18n-placeholder="pb.salary.placeholder">
           </div>
-          <div class="pb-monthly-equiv" id="pb-monthly-equiv">Monthly equivalent: <span id="pb-monthly-equiv-val">—</span></div>
+          <div class="pb-monthly-equiv" id="pb-monthly-equiv"><span data-i18n="pb.monthly.equiv">Monthly equivalent:</span> <span id="pb-monthly-equiv-val">—</span></div>
         </div>
 
         <!-- 6. Service scope -->
         <div class="pb-field">
-          <label class="pb-field-label">Select service scope</label>
+          <label class="pb-field-label" data-i18n="pb.field.scope">Select service scope</label>
           <div class="pb-service-grid">
             <div class="pb-service-row">
               <div class="pb-service-card" data-svc="local_setup">
@@ -2496,8 +2505,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">Local – Set-up Fee</div>
-                  <div class="pb-svc-desc">One-time account setup and onboarding cost per employee</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.local_setup.title">Local – Set-up Fee</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.local_setup.desc">One-time account setup and onboarding cost per employee</div>
                   <div class="pb-svc-price" data-base-price="99">USD 99 / Person</div>
                 </div>
               </div>
@@ -2506,8 +2515,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">Local – Monthly Service Fee</div>
-                  <div class="pb-svc-desc">Ongoing EOR service coverage based on country and employment type</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.local_monthly.title">Local – Monthly Service Fee</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.local_monthly.desc">Ongoing EOR service coverage based on country and employment type</div>
                   <div class="pb-svc-price" id="svc-price-local-monthly" data-base-price="299">USD 299 / Person</div>
                 </div>
               </div>
@@ -2518,8 +2527,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">Expat – Set-up Fee</div>
-                  <div class="pb-svc-desc">One-time onboarding fee for foreign national employees</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.expat_setup.title">Expat – Set-up Fee</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.expat_setup.desc">One-time onboarding fee for foreign national employees</div>
                   <div class="pb-svc-price" data-base-price="99">USD 99 / Person</div>
                 </div>
               </div>
@@ -2528,8 +2537,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">Expat – EOR Expat Monthly Fee</div>
-                  <div class="pb-svc-desc">Monthly EOR coverage for expatriate and foreign national employees</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.expat_monthly.title">Expat – EOR Expat Monthly Fee</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.expat_monthly.desc">Monthly EOR coverage for expatriate and foreign national employees</div>
                   <div class="pb-svc-price" id="svc-price-expat-monthly" data-base-price="499">USD 499 / Person</div>
                 </div>
               </div>
@@ -2540,8 +2549,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">IC Management – Contractor Engagement</div>
-                  <div class="pb-svc-desc">Full contractor onboarding and engagement management by Marco</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.ic_engagement.title">IC Management – Contractor Engagement</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.ic_engagement.desc">Full contractor onboarding and engagement management by Marco</div>
                   <div class="pb-svc-price" data-base-price="99">USD 99 / Transaction</div>
                 </div>
               </div>
@@ -2550,8 +2559,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">IC Management – Contractor Payment</div>
-                  <div class="pb-svc-desc">Payment processing and disbursement for your existing contractors</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.ic_payment.title">IC Management – Contractor Payment</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.ic_payment.desc">Payment processing and disbursement for your existing contractors</div>
                   <div class="pb-svc-price" data-base-price="19.90">USD 19.90 / Transaction</div>
                 </div>
               </div>
@@ -2562,8 +2571,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">Payroll Set-Up – Tax Account Setup</div>
-                  <div class="pb-svc-desc">Employer Social Security and Income Tax account registration.</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.payroll_tax.title">Payroll Set-Up – Tax Account Setup</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.payroll_tax.desc">Employer Social Security and Income Tax account registration.</div>
                   <div class="pb-svc-price" data-base-price="799">USD 799 / Account</div>
                 </div>
               </div>
@@ -2572,8 +2581,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">Payroll Set-Up – Entity Transfer</div>
-                  <div class="pb-svc-desc">Payroll project migration and entity configuration onto Marco's platform</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.payroll_entity.title">Payroll Set-Up – Entity Transfer</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.payroll_entity.desc">Payroll project migration and entity configuration onto Marco's platform</div>
                   <div class="pb-svc-price" data-base-price="399">USD 399 / Entity</div>
                 </div>
               </div>
@@ -2584,8 +2593,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">Payroll Processing (≤50 employees)</div>
-                  <div class="pb-svc-desc">Monthly payroll management including payslips, statutory submissions, and reporting.</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.payroll_small.title">Payroll Processing (≤50 employees)</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.payroll_small.desc">Monthly payroll management including payslips, statutory submissions, and reporting.</div>
                   <div class="pb-svc-price" data-base-price="19.90">USD 19.90 / Payslip</div>
                 </div>
               </div>
@@ -2594,8 +2603,8 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">Payroll Processing (&gt;50 employees)</div>
-                  <div class="pb-svc-desc">Monthly payroll management including payslips, statutory submissions, and reporting.</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.payroll_large.title">Payroll Processing (&gt;50 employees)</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.payroll_large.desc">Monthly payroll management including payslips, statutory submissions, and reporting.</div>
                   <div class="pb-svc-price" data-base-price="9.90">USD 9.90 / Payslip</div>
                 </div>
               </div>
@@ -2606,9 +2615,9 @@
                   <svg viewBox="0 0 12 12" width="12" height="12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="pb-svc-text">
-                  <div class="pb-svc-title">Marco OS Access</div>
-                  <div class="pb-svc-desc">Platform access for workforce and HR management</div>
-                  <div class="pb-svc-price free">Free</div>
+                  <div class="pb-svc-title" data-i18n="pb.svc.marco_os.title">Marco OS Access</div>
+                  <div class="pb-svc-desc" data-i18n="pb.svc.marco_os.desc">Platform access for workforce and HR management</div>
+                  <div class="pb-svc-price free" data-i18n="pb.svc.marco_os.price">Free</div>
                 </div>
               </div>
             </div>
@@ -2617,7 +2626,7 @@
 
         <!-- 7. Expected start date -->
         <div class="pb-field">
-          <label class="pb-field-label">Expected start date</label>
+          <label class="pb-field-label" data-i18n="pb.field.startdate">Expected start date</label>
           <div class="pb-date-wrap">
             <input class="pb-date-input" id="pb-date-input" type="text" placeholder="dd/mm/yyyy">
             <img class="pb-date-icon" id="pb-cal-icon" src="assets/Price/Proposal%20Builder/calendar-icon.svg" alt="calendar">
@@ -2628,19 +2637,19 @@
         <!-- 8. Advanced inputs -->
         <div class="pb-field" style="gap:0; max-width:600px;">
           <div class="pb-advanced-header" id="pb-advanced-header">
-            <label class="pb-field-label" style="cursor:pointer;">Advanced inputs</label>
+            <label class="pb-field-label" style="cursor:pointer;" data-i18n="pb.field.advanced">Advanced inputs</label>
             <img class="pb-adv-chevron" src="assets/Price/Proposal%20Builder/chevron-down.svg" alt="" />
           </div>
           <div class="pb-divider"></div>
           <div class="pb-advanced-body" id="pb-advanced-body">
             <div class="pb-advanced-row">
               <div class="pb-adv-field">
-                <label class="pb-adv-label">Annual Bonus</label>
+                <label class="pb-adv-label" data-i18n="pb.adv.bonus">Annual Bonus</label>
                 <input class="pb-adv-input" id="pb-bonus-input" type="text" inputmode="numeric" placeholder="0">
                 <div class="pb-adv-hint" id="pb-bonus-hint"></div>
               </div>
               <div class="pb-adv-field">
-                <label class="pb-adv-label">Monthly Allowance</label>
+                <label class="pb-adv-label" data-i18n="pb.adv.allowance">Monthly Allowance</label>
                 <input class="pb-adv-input" id="pb-allowance-input" type="text" inputmode="numeric" placeholder="0">
               </div>
             </div>
@@ -2650,26 +2659,26 @@
 
         <!-- Action buttons -->
         <div class="pb-actions">
-          <button class="pb-btn-generate" id="pb-generate-btn" type="button">Generate Proposal</button>
-          <button class="pb-btn-reset" id="pb-reset-btn" type="button">Reset</button>
+          <button class="pb-btn-generate" id="pb-generate-btn" type="button" data-i18n="pb.btn.generate">Generate Proposal</button>
+          <button class="pb-btn-reset" id="pb-reset-btn" type="button" data-i18n="pb.btn.reset">Reset</button>
         </div>
 
       </div><!-- end .pb-form-col -->
 
       <!-- ── Right: Summary card ── -->
       <div class="pb-summary-card">
-        <div class="pb-sum-title">ESTIMATED COST SUMMARY</div>
+        <div class="pb-sum-title" data-i18n="pb.sum.title">ESTIMATED COST SUMMARY</div>
         <div class="pb-sum-items" id="pb-sum-items">
           <div class="pb-sum-row">
             <div class="pb-sum-row-label">
-              <div class="pb-sum-row-label-main">Monthly Gross Salary</div>
+              <div class="pb-sum-row-label-main" data-i18n="pb.sum.salary">Monthly Gross Salary</div>
             </div>
             <div class="pb-sum-row-value" id="sum-salary">--</div>
           </div>
           <div class="pb-sum-row">
             <div class="pb-sum-row-label">
-              <div class="pb-sum-row-label-main">Employer Contributions</div>
-              <div class="pb-sum-row-label-sub" id="sum-contrib-note">% of gross</div>
+              <div class="pb-sum-row-label-main" data-i18n="pb.sum.contrib">Employer Contributions</div>
+              <div class="pb-sum-row-label-sub" id="sum-contrib-note" data-i18n="pb.sum.contrib.pct">% of gross</div>
             </div>
             <div class="pb-sum-row-value" id="sum-contrib">--</div>
           </div>
@@ -2678,16 +2687,16 @@
         <div class="pb-sum-divider"></div>
         <div class="pb-sum-totals">
           <div class="pb-sum-total-row">
-            <span class="pb-sum-total-label-month">Total / Month</span>
+            <span class="pb-sum-total-label-month" data-i18n="pb.sum.total.month">Total / Month</span>
             <span class="pb-sum-total-val-month" id="sum-total-month">--</span>
           </div>
           <div class="pb-sum-total-row">
-            <span class="pb-sum-total-label-year">Total / Year</span>
+            <span class="pb-sum-total-label-year" data-i18n="pb.sum.total.year">Total / Year</span>
             <span class="pb-sum-total-val-year" id="sum-total-year">--</span>
           </div>
         </div>
-        <div class="pb-sum-disclaimer">This estimate updates based on your selected country, employment type, salary, and service scope.</div>
-        <button class="pb-sum-btn" id="pb-sum-generate-btn" type="button">Generate Proposal</button>
+        <div class="pb-sum-disclaimer" data-i18n="pb.sum.disclaimer">This estimate updates based on your selected country, employment type, salary, and service scope.</div>
+        <button class="pb-sum-btn" id="pb-sum-generate-btn" type="button" data-i18n="pb.btn.generate">Generate Proposal</button>
       </div>
 
     </div><!-- end .pb-body -->
@@ -2705,31 +2714,31 @@
           <img src="assets/Price/Proposal%20Builder/alert-circle-icon.svg" alt="Note">
         </div>
         <div class="pb-assump-content">
-          <p class="pb-assump-title">Assumption &amp; Notes</p>
+          <p class="pb-assump-title" data-i18n="pb.assump.title">Assumption &amp; Notes</p>
           <div class="pb-assump-list">
             <div class="pb-assump-item">
               <div class="pb-assump-dot"></div>
-              <span class="pb-assump-text">This proposal is an estimate based on the information provided and current pricebook rates.</span>
+              <span class="pb-assump-text" data-i18n="pb.assump.a1">This proposal is an estimate based on the information provided and current pricebook rates.</span>
             </div>
             <div class="pb-assump-item">
               <div class="pb-assump-dot"></div>
-              <span class="pb-assump-text">Marco service fees are based on the selected country, employment type, and service scope as per the current pricebook.</span>
+              <span class="pb-assump-text" data-i18n="pb.assump.a2">Marco service fees are based on the selected country, employment type, and service scope as per the current pricebook.</span>
             </div>
             <div class="pb-assump-item">
               <div class="pb-assump-dot"></div>
-              <span class="pb-assump-text">Statutory employer contributions (e.g. social security, payroll taxes) are country-specific and subject to change based on local regulations.</span>
+              <span class="pb-assump-text" data-i18n="pb.assump.a3">Statutory employer contributions (e.g. social security, payroll taxes) are country-specific and subject to change based on local regulations.</span>
             </div>
             <div class="pb-assump-item">
               <div class="pb-assump-dot"></div>
-              <span class="pb-assump-text">Tax and statutory figures shown are indicative only and do not constitute tax or legal advice. Consult a qualified professional for final guidance.</span>
+              <span class="pb-assump-text" data-i18n="pb.assump.a4">Tax and statutory figures shown are indicative only and do not constitute tax or legal advice. Consult a qualified professional for final guidance.</span>
             </div>
             <div class="pb-assump-item">
               <div class="pb-assump-dot"></div>
-              <span class="pb-assump-text">Pricebook rates are valid for the current pricing period. Marco reserves the right to update pricing with prior notice.</span>
+              <span class="pb-assump-text" data-i18n="pb.assump.a5">Pricebook rates are valid for the current pricing period. Marco reserves the right to update pricing with prior notice.</span>
             </div>
             <div class="pb-assump-item">
               <div class="pb-assump-dot"></div>
-              <span class="pb-assump-text">Final engagement terms will be confirmed upon contract execution following Marco's review of employee and country-specific requirements.</span>
+              <span class="pb-assump-text" data-i18n="pb.assump.a6">Final engagement terms will be confirmed upon contract execution following Marco's review of employee and country-specific requirements.</span>
             </div>
           </div>
         </div>
@@ -2753,15 +2762,15 @@
           <div style="display:flex; flex-direction:column; gap:24px;">
             <div class="pr-label">
               <div class="pr-label-line"></div>
-              YOUR PROPOSAL REPORT
+              <span data-i18n="pb.pr.label">YOUR PROPOSAL REPORT</span>
             </div>
             <div class="pr-title-block">
-              <h2 class="pr-title">Estimated Cost Breakdown</h2>
-              <p class="pr-subtitle">Review the breakdown below. Download or contact Marco to finalise the quote.</p>
+              <h2 class="pr-title" data-i18n="pb.pr.title">Estimated Cost Breakdown</h2>
+              <p class="pr-subtitle" data-i18n="pb.pr.subtitle">Review the breakdown below. Download or contact Marco to finalise the quote.</p>
             </div>
           </div>
         </div>
-        <button class="pr-download-btn" id="pr-download-btn" type="button">Download Report</button>
+        <button class="pr-download-btn" id="pr-download-btn" type="button" data-i18n="pb.pr.download">Download Report</button>
       </div>
       <!-- Right: info card -->
       <div class="pr-info-card" id="pr-info-card"></div>
@@ -2772,13 +2781,13 @@
 
     <!-- Pay Details table -->
     <div class="pr-table-section">
-      <h3 class="pr-section-title">Pay Details</h3>
+      <h3 class="pr-section-title" data-i18n="pb.pr.pay">Pay Details</h3>
       <div class="pr-table" id="pr-pay-table"></div>
     </div>
 
     <!-- Marco Service Fees table -->
     <div class="pr-table-section">
-      <h3 class="pr-section-title">Marco Service Fees</h3>
+      <h3 class="pr-section-title" data-i18n="pb.pr.svcfees">Marco Service Fees</h3>
       <div class="pr-table" id="pr-services-table"></div>
     </div>
 
@@ -2792,13 +2801,13 @@
     <div class="qs-inner fade-in">
       <div class="section-label">
         <div class="line"></div>
-        <span>QUESTION?</span>
+        <span data-i18n="pb.qs.label">QUESTION?</span>
       </div>
-      <h2 class="qs-title">Need a personalized quote?</h2>
-      <p class="qs-body-text">Our team can review your specific workforce setup and produce a final binding proposal.</p>
+      <h2 class="qs-title" data-i18n="pb.qs.title">Need a personalized quote?</h2>
+      <p class="qs-body-text" data-i18n="pb.qs.body">Our team can review your specific workforce setup and produce a final binding proposal.</p>
       <div class="qs-cta-wrap">
         <a href="company-contact-us.html" class="btn-primary">
-          Contact us
+          <span data-i18n="pb.qs.cta">Contact us</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
         </a>
       </div>
