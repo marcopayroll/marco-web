@@ -1,9 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marco | Payroll Guide</title>
+  <title>Marco | Payroll Guide - Australia</title>
+  <!-- PDF libraries: html2canvas captures live DOM, jsPDF creates the PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
 
@@ -37,40 +40,14 @@
       margin-inline: auto;
     }
 
-    /* ─── SHARED HELPERS ─── */
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .section-label .line {
-      width: 16px;
-      height: 2px;
-      background: currentColor;
-      flex-shrink: 0;
-    }
-    .section-label span {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 18px;
-    }
-
     /* ════════════════════════════════════════
-       NAV — fixed, own 64px gutter rule
+       NAV
     ════════════════════════════════════════ */
     .nav {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       z-index: 100;
-      background: transparent;
-      background-image: none;
-      transition:
-        background-color 0.25s ease,
-        background-image 0.25s ease,
-        box-shadow 0.25s ease;
-    }
-    .nav.nav-scrolled {
       background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
@@ -256,22 +233,12 @@
     .nav-tab-about::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
     .nav-tab-about:hover .nav-chevron svg { transform: scaleY(-1); }
     .nav-about-dropdown {
-      position: absolute;
-      top: calc(100% + 44px);
-      left: 0;
-      width: 400px;
-      background: #fff;
-      border-radius: 8px;
-      padding: 16px 24px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
       box-shadow: 0 8px 32px rgba(22, 35, 81, 0.14);
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-6px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      z-index: 200;
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
     }
     .nav-tab-about:hover .nav-about-dropdown,
     .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
@@ -395,245 +362,120 @@
     }
 
     /* ════════════════════════════════════════
-       HERO
+       HERO — Australia Payroll Guide
     ════════════════════════════════════════ */
-    .cg-hero {
-      background: linear-gradient(90.54deg, rgb(15, 30, 70) 20%, rgb(8, 21, 87) 100%);
+    .pg-hero {
+      background: #e3daff;
       position: relative;
-      overflow: visible;          /* allows search bar to hang below hero boundary */
-      padding-top: 100px;
-      height: 480px;
-      display: flex;
-      align-items: flex-start;
+      overflow: hidden;
+      min-height: 540px;
     }
-    /* Inner clip wrapper — keeps the sphere cropped to hero bounds
-       without applying overflow:hidden to the whole hero */
-    /* Abstract line — same as Vision & Values hero: static, right-anchored */
-    .cg-hero-clip { display: none; }
-    .cg-hero-abstract {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      user-select: none;
-    }
-    .cg-hero-abstract img {
-      height: 100%;
-      width: auto;
-      display: block;
-      object-fit: contain;
-      object-position: right center;
-    }
-    .cg-hero > .container {
+
+    .pg-hero-inner {
+      padding-top: 180px;
+      padding-bottom: 60px;
       position: relative;
       z-index: 1;
-      padding-bottom: 80px;
-      padding-top: 120px; /* hero padding-top(100) + this(120) = 220px from screen top */
-      /* Override standard container to 1016px — matches search bar width */
-      max-width: 1016px;
-      width: min(100% - 48px, 1016px);
-      margin-inline: auto;
-    }
-    .cg-hero-content {
-      /* Left side of the 1016px container — text stays left-aligned */
-      max-width: 560px;
       display: flex;
       flex-direction: column;
     }
-    .cg-hero-title {
+
+    .pg-hero-text {
+      width: min(600px, calc(56vw - var(--gutter) - 24px));
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pg-hero-text-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .pg-breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      color: #019de7;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      width: fit-content;
+      transition: opacity 0.15s ease;
+    }
+    .pg-breadcrumb:hover { opacity: 0.8; }
+    .pg-breadcrumb svg { flex-shrink: 0; }
+
+    .pg-hero-title {
       font-size: 48px;
-      font-weight: 600;
-      color: #F8F8FA;
-      letter-spacing: -1px;
-      line-height: 1.3;
-      margin-top: 0;
-    }
-    .cg-hero-subtitle {
-      font-size: 18px;
-      font-weight: 400;
-      color: #B9B4DD;
-      line-height: 1.5;
-      margin-top: 12px;
+      font-weight: 700;
+      line-height: 60px;
+      letter-spacing: -2.4px;
+      color: #162351;
     }
 
-    /* ════════════════════════════════════════
-       SEARCH BAR
-       Figma: top=434px in 480px hero frame
-       → sits 46px above hero bottom
-       → bottom at 514px (34px into country list)
-       Implemented: lives inside .cg-content,
-       margin-top:-46px pulls it up into hero.
-    ════════════════════════════════════════ */
-    /* Search float: position:absolute inside hero
-       Figma: top=434px in the 480px hero frame
-       → top half (434-480px) overlaps dark hero
-       → bottom half (480-514px) overlaps light content
-       Does NOT affect document flow — no section is disturbed */
-    .cg-search-float {
-      position: absolute;
-      top: 434px;
-      left: 0;
-      right: 0;
-      z-index: 10;
-      background: transparent;
+    .pg-hero-desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #475072;
     }
-    .cg-search-box {
-      background: #ffffff;
-      border: 1px solid #E2E2E2;
-      border-radius: 8px;
-      box-shadow: 0px 16px 8px rgba(12,12,13,0.10), 0px 4px 2px rgba(12,12,13,0.05);
-      padding: 24px 32px;
+
+    .pg-hero-meta {
+      width: min(600px, calc(56vw - var(--gutter) - 24px));
       display: flex;
-      align-items: center;
-      gap: 16px;
-      max-width: 1016px;
-      margin-inline: auto;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 70px;
     }
-    .cg-search-icon {
-      width: 32px;
-      height: 32px;
+
+    .pg-hero-divider {
+      height: 1px;
+      background: #cdd5e0;
+      width: 100%;
       flex-shrink: 0;
-      color: #9094a9;
     }
-    .cg-search-row {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid #E2E2E2;
-      padding: 8px 10px;
-    }
-    .cg-search-field {
-      flex: 1;
-      border: none;
-      outline: none;
-      padding: 0;
-      font-family: var(--font);
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--text-main);
-      background: transparent;
-      line-height: 1.5;
-    }
-    .cg-search-field::placeholder { color: #9094a9; }
 
-    /* ════════════════════════════════════════
-       CONTENT AREA
-    ════════════════════════════════════════ */
-    /* Content starts immediately after the 480px hero — no gap.
-       padding-top: 120px pushes cards below the search bar
-       (search hangs from 434px, height ~80px, bottom at 514px;
-        content starts at 480px, so 514-480=34px + 86px breathing = 120px) */
-    .cg-content {
-      margin-top: 0;
-      padding: 120px 0 80px;
-      background: linear-gradient(to bottom, #f4f4ff 49%, #fff 100%);
-      position: relative;
+    .pg-hero-last-updated {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #475072;
+    }
+
+    .pg-hero-img {
+      position: absolute;
+      right: 0;
+      top: var(--nav-h, 98px);
+      bottom: 0;
+      width: min(628px, 44vw);
+      overflow: hidden;
       z-index: 0;
     }
 
-
-    /* Country grid — 3 columns matching Figma */
-    .cg-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      justify-content: center;
-    }
-    .cg-card {
-      flex: 0 0 calc((100% - 48px) / 3); /* 48px = 2 × 24px gaps in a 3-col row */
-    }
-
-    /* Photo card — Figma spec */
-    .cg-card {
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 16px 16px rgba(12,12,13,0.10), 0 4px 2px rgba(12,12,13,0.05);
-      overflow: hidden;
-      cursor: pointer;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .cg-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(12,12,13,0.14), 0 4px 8px rgba(12,12,13,0.08);
-    }
-    .cg-card-thumb {
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      flex-shrink: 0;
-      background: linear-gradient(135deg, #c8d4e8 0%, #a8b8d0 100%);
-    }
-    .cg-card-thumb img {
+    .pg-hero-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    .cg-card-body {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 100px;
-    }
-    .cg-card-title-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .cg-card-name {
-      font-family: var(--font);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 20px;
-      white-space: nowrap;
-    }
-    .cg-card-currency {
-      background: #ECF2FB;
-      border-radius: 4px;
-      padding: 4px 6px;
-      font-family: var(--font);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-secondary);
-      line-height: 16px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .cg-card-date {
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--text-tertiary);
-      line-height: 18px;
+
+    @media (max-width: 1100px) {
+      .pg-hero { min-height: auto; }
+      .pg-hero-img { display: none; }
+      .pg-hero-inner { padding-top: 160px; padding-bottom: 48px; }
+      .pg-hero-text { width: 100%; max-width: 600px; }
+      .pg-hero-meta { width: 100%; max-width: 600px; margin-top: 40px; }
     }
 
-    /* Empty state */
-    .cg-empty { text-align: center; padding: 60px 0; color: var(--text-tertiary); font-size: 16px; display: none; }
-
-    /* View More button */
-    .cg-view-more-wrap { display: flex; justify-content: center; margin-top: 48px; }
-    .cg-view-more {
-      display: flex; align-items: center; gap: 16px;
-      background: #fff;
-      border: none;
-      border-radius: 50px;
-      padding: 20px 28px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.10);
-      font-family: var(--font); font-size: 16px; font-weight: 600;
-      color: var(--blue-main);
-      cursor: pointer;
-      transition: box-shadow 0.2s, transform 0.15s;
+    @media (max-width: 440px) {
+      .pg-hero-inner { padding-top: 120px; padding-bottom: 40px; }
+      .pg-hero-title { font-size: 32px; line-height: 42px; letter-spacing: -1.5px; }
+      .pg-hero-desc { font-size: 15px; }
+      .pg-hero-meta { margin-top: 32px; }
     }
-    .cg-view-more:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.14); transform: translateY(-1px); }
-    .cg-view-more svg { flex-shrink: 0; }
-
 
     /* ════════════════════════════════════════
        FOOTER
@@ -727,22 +569,7 @@
     .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
     .footer-legal a:hover { text-decoration: underline; }
 
-    /* ─── FADE-IN REVEAL ─── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
-    .fade-in.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .fade-in { opacity: 1; transform: none; transition: none; }
-    }
-
-    /* ─── WECHAT MODAL ─── */
+    /* ── WECHAT MODAL ── */
     .wechat-modal {
       position: fixed;
       inset: 0;
@@ -755,36 +582,21 @@
       pointer-events: none;
       transition: opacity 0.2s ease;
     }
-    .wechat-modal.active {
-      opacity: 1;
-      pointer-events: auto;
+    .wechat-modal.active { opacity: 1; pointer-events: auto; }
+    .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
+
+    /* ── FADE-IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
     }
-    .wechat-modal img {
-      max-width: 360px;
-      width: 90%;
-      height: auto;
-      display: block;
+    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; transition: none; }
     }
 
-    /* ── Search clear (x) button ── */
-    .cg-search-clear {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-      cursor: pointer;
-      display: none;           /* hidden until input has value */
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      border: none;
-      background: none;
-      opacity: 0.6;
-      transition: opacity 0.15s;
-    }
-    .cg-search-clear:hover { opacity: 1; }
-    .cg-search-clear img { width: 16px; height: 16px; display: block; }
-    .cg-search-clear.visible { display: flex; }
-  
     /* ════════════════════════════════════════
        TABLET NAV (≤1100px)
     ════════════════════════════════════════ */
@@ -833,7 +645,6 @@
     .nav-mob-signin:hover { background: #0185C4; }
     @media (max-width: 1100px) {
       .nav { z-index: 300; width: 100vw; }
-      .nav.nav-panel-open { background-image: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%); }
       .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }
       .nav-menu { display: none; }
       .nav-right { display: none; }
@@ -862,7 +673,7 @@
       .footer-bottom { font-size: 12px; line-height: 16px; }
       .footer-legal { gap: 24px; }
     }
-  
+
     /* ════════════════════════════════════════
        MOBILE FOOTER (≤440px)
     ════════════════════════════════════════ */
@@ -895,7 +706,8 @@
       .footer { display: none; }
       .footer-mobile { display: block; }
     }
-      .nav-lang { position: relative; cursor: pointer; }
+
+    .nav-lang { position: relative; cursor: pointer; }
     .nav-lang-dropdown {
       position: absolute; top: calc(100% + 25px); left: 50%;
       width: 90px; background: #fff; border-radius: 8px;
@@ -924,6 +736,166 @@
     .nav-lang-dd-flag.flag-en img { left: -20.01%; width: 175.44%; }
     .nav-lang-dd-flag.flag-cn img { left: 1.79%; width: 150%; }
     .nav-lang-dropdown .nav-lang-dd-label { font-family: var(--font); font-size: 12px; font-weight: 600; line-height: 20px; color: #162351; }
+
+    /* ════════════════════════════════════════
+       EXPLORE MORE
+    ════════════════════════════════════════ */
+    .explore-section { background: #e3daff; padding: 80px 0 60px; overflow-x: clip; }
+    .explore-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+    .explore-eyebrow { display: flex; align-items: center; gap: 8px; }
+    .explore-eyebrow-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
+    .explore-eyebrow-label { font-size: 14px; font-weight: 500; line-height: 18px; color: #162351; }
+    .explore-title-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .explore-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; color: #162351; white-space: nowrap; flex-shrink: 0; margin: 0; }
+    .explore-controls { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .explore-search { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid #bcc9eb; border-radius: 12px; padding: 12px; width: 320px; flex-shrink: 0; box-sizing: border-box; }
+    .explore-search-icon { width: 16px; height: 16px; flex-shrink: 0; }
+    .explore-search-icon img { width: 100%; height: 100%; display: block; }
+    .explore-search-input { flex: 1; min-width: 0; border: none; outline: none; font-family: var(--font); font-size: 16px; font-weight: 400; line-height: 20px; color: #162351; background: transparent; }
+    .explore-search-input::placeholder { color: #8f98b5; }
+    .explore-search-clear { width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; background: none; border: none; padding: 0; display: none; }
+    .explore-search-clear.visible { display: block; }
+    .explore-search-clear img { width: 100%; height: 100%; display: block; }
+    .explore-chevrons { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .explore-chev-btn { width: 50px; height: 50px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; transition: filter 0.2s ease; }
+    .explore-chev-btn:not(:disabled):hover { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25)); }
+    .explore-chev-btn:disabled { cursor: default; }
+    .explore-chev-btn img { width: 50px; height: 50px; display: block; }
+    .explore-viewport { width: 100%; padding: 20px 0; overflow: visible; }
+    .explore-track { display: flex; gap: 40px; padding-left: max(var(--gutter), calc((100% - 1224px) / 2)); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+    .explore-card { flex: 0 0 340px; width: 340px; background: #fff; border-radius: 6px; box-shadow: 0 16px 16px rgba(12,12,13,0.1), 0 4px 2px rgba(12,12,13,0.05); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
+    .explore-card:hover { transform: translateY(-4px); box-shadow: 0 20px 24px rgba(12,12,13,0.14), 0 8px 10px rgba(12,12,13,0.08); }
+    .explore-card-thumb { width: 100%; height: 200px; flex-shrink: 0; overflow: hidden; background: #d4ccf5; }
+    .explore-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .explore-card-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; height: 100px; flex-shrink: 0; box-sizing: border-box; }
+    .explore-card-title-row { display: flex; align-items: center; gap: 16px; }
+    .explore-card-name { font-size: 16px; font-weight: 700; line-height: 20px; color: #162351; white-space: nowrap; }
+    .explore-card-currency { background: #ecf2fb; padding: 4px 6px; border-radius: 4px; font-size: 12px; font-weight: 700; line-height: 16px; color: #475072; white-space: nowrap; }
+    .explore-card-date { font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; }
+    .explore-empty { padding: 40px 0 0; font-family: var(--font); font-size: 16px; color: #8f98b5; display: none; }
+    .explore-scroll-track { height: 6px; background: #cdd5e0; border-radius: 10px; margin-top: 40px; position: relative; overflow: hidden; }
+    .explore-scroll-thumb { height: 6px; background: #3d4148; border-radius: 10px; position: absolute; left: 0; top: 0; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* ════════════════ ARTICLE SECTION ════════════════ */
+    .article-section { background: #fff; padding: 80px 0 120px; }
+    .article-layout { display: flex; align-items: flex-start; }
+    .article-toc { width: 240px; flex-shrink: 0; margin-right: 72px; position: sticky; top: 176px; }
+    .toc-card { background: #fff; border-radius: 8px; padding: 16px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.10); display: flex; flex-direction: column; gap: 40px; }
+    .toc-title { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
+    .toc-list { display: flex; flex-direction: column; gap: 24px; }
+    .toc-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .toc-dot-wrap { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .toc-dot { width: 8px; height: 8px; border-radius: 50%; background: #9199A6; flex-shrink: 0; transition: background 0.2s ease; }
+    .toc-dot.toc-active { background: var(--blue-main); }
+    .toc-text { flex: 1; font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); transition: color 0.2s ease, font-size 0.2s ease, font-weight 0.2s ease; }
+    .toc-text.toc-active { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
+    .toc-divider-line { height: 1px; background: #CDD5E0; width: 100%; }
+    .article-content { flex: 1; min-width: 0; max-width: 808px; margin-right: 64px; display: flex; flex-direction: column; gap: 40px; }
+    .article-block { display: flex; flex-direction: column; gap: 24px; }
+    .article-h2 { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
+    .article-p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
+    .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 176px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
+    .cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; }
+    .cta-btn .cta-ring { transition: fill 0.2s ease, stroke 0.2s ease; }
+    .cta-btn .cta-fill { transition: fill 0.2s ease; }
+    .cta-btn .cta-stroke { transition: stroke 0.2s ease, stroke-width 0.2s ease; }
+    .cta-btn:hover .cta-ring { fill: #3D4148; stroke: #3D4148; }
+    .cta-btn:hover .cta-fill { fill: #fff; }
+    .cta-btn:hover .cta-stroke { stroke: #fff; stroke-width: 1.5px; }
+    .cta-btn.cta-copied .cta-ring { fill: var(--blue-main); stroke: var(--blue-main); }
+    .cta-btn.cta-copied .cta-stroke { stroke: #fff; }
+    .cta-back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .cta-back-to-top.visible { opacity: 1; pointer-events: auto; }
+    /* ── AU Article specific ── */
+    .au-section-header { display: flex; flex-direction: column; gap: 8px; }
+    .au-section-header .article-h2 { font-size: 32px; font-weight: 700; line-height: 40px; color: #1D4783; }
+    .au-section-sub { font-size: 14px; font-weight: 400; line-height: 24px; color: var(--text-secondary); margin: 0; }
+    .au-section-sep { font-size: 14px; font-weight: 400; line-height: 24px; color: var(--text-secondary); margin: 0; }
+    .au-bullet-list { display: flex; flex-direction: column; gap: 16px; }
+    .au-bullet-item { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); }
+    .au-bullet-dot-wrap { width: 22px; flex-shrink: 0; padding-top: 7px; }
+    .au-bullet-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-main); }
+    .au-data-cards-wrap { border-left: 6px solid var(--blue-main); background: #E4EFFF; padding: 16px 32px 24px; }
+    .au-data-cards-label { font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0 0 32px; }
+    .au-data-cards-grid { display: flex; flex-direction: column; gap: 32px; }
+    .au-data-cards-row { display: flex; gap: 24px; }
+    .au-data-card { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+    .au-dc-name { font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-main); }
+    .au-dc-value { font-size: 24px; font-weight: 600; line-height: 32px; color: var(--blue-main); }
+    .au-dc-note { font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-secondary); }
+    .au-marco-insight { background: #E4EFFF; border-left: 6px solid var(--blue-main); padding: 16px 32px 24px; display: flex; flex-direction: column; gap: 16px; }
+    .au-mi-label { font-size: 16px; font-weight: 600; line-height: 24px; color: var(--blue-main); margin: 0; }
+    .au-mi-text { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
+    .au-table-group { display: flex; flex-direction: column; gap: 16px; }
+    .au-table-title { display: flex; gap: 8px; align-items: flex-start; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0; }
+    .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
+    .au-table-wrap { overflow-x: auto; }
+    .au-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-family: var(--font); }
+    .au-table th { background: #162351; color: #fff; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; padding: 10px 12px; vertical-align: middle; }
+    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); padding: 8px 12px; vertical-align: top; border-bottom: 1px solid #CDD5E0; }
+    .au-table tbody tr:nth-child(even) td { background: #F7F9FF; }
+    .au-table tbody tr:last-child td { border-bottom: none; }
+
+    /* ════════════════ GET STARTED ════════════════ */
+    .gs-cta {
+      position: relative;
+      overflow: hidden;
+      height: 490px;
+      background: linear-gradient(to bottom, #f4f4ff 49.1%, #ffffff 110.4%);
+    }
+    .gs-cta-content {
+      position: absolute;
+      left: max(var(--gutter), calc((100% - 1224px) / 2));
+      top: 80px;
+      width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .gs-cta-label { display: flex; align-items: center; gap: 8px; }
+    .gs-cta-label-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
+    .gs-cta-label span { font-family: var(--font); font-size: 14px; font-weight: 500; color: #162351; line-height: 18px; }
+    .gs-cta-title {
+      font-family: var(--font);
+      font-size: 48px; font-weight: 600; line-height: 60px;
+      color: #162351; letter-spacing: -2.4px; margin: 0;
+    }
+    .gs-cta-title .accent { color: #019de7; display: block; }
+    .gs-cta-subtitle {
+      position: absolute;
+      left: max(var(--gutter), calc((100% - 1224px) / 2));
+      top: 282px;
+      width: 600px;
+      font-family: var(--font); font-size: 16px; font-weight: 400;
+      color: #162351; line-height: 20px; margin: 0;
+    }
+    .gs-cta-btn {
+      position: absolute;
+      left: max(var(--gutter), calc((100% - 1224px) / 2));
+      top: 362px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 4px 24px; border-radius: 50px;
+      font-family: var(--font); font-size: 16px; font-weight: 400;
+      line-height: normal; letter-spacing: -0.8px; color: #fff;
+      background: #162351; border: none; cursor: pointer; text-decoration: none;
+      white-space: nowrap; flex-shrink: 0; transition: background 0.18s ease;
+    }
+    .gs-cta-btn:hover { background: #0185c4; }
+    .gs-cta-btn-icon { position: relative; overflow: hidden; flex-shrink: 0; width: 20px; height: 20px; }
+    .gs-cta-btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
+    .gs-cta-btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
+    .gs-cta-thumb {
+      position: absolute;
+      left: 50.8%;
+      top: 0; right: 0; height: 100%;
+      overflow: hidden;
+    }
+    .gs-cta-thumb img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -1318,7 +1290,6 @@
 <div class="nav-mobile-overlay" id="nav-mobile-overlay"></div>
 <div class="nav-mobile-panel" id="nav-mobile-panel" aria-hidden="true">
   <div class="nav-mob-acc">
-    <!-- Services -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
         <span class="nav-mob-header-label">Services</span>
@@ -1355,7 +1326,6 @@
         </a>
       </div>
     </div>
-    <!-- Compliance -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
         <span class="nav-mob-header-label">Compliance</span>
@@ -1376,7 +1346,6 @@
         </a>
       </div>
     </div>
-    <!-- Resources -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
         <span class="nav-mob-header-label">Resources</span>
@@ -1405,7 +1374,6 @@
         </a>
       </div>
     </div>
-    <!-- HR Knowledge Hub -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
         <span class="nav-mob-header-label">HR Knowledge Hub</span>
@@ -1470,7 +1438,6 @@
         </a>
       </div>
     </div>
-    <!-- Price -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
         <span class="nav-mob-header-label">Price</span>
@@ -1491,7 +1458,6 @@
         </a>
       </div>
     </div>
-    <!-- Company -->
     <div class="nav-mob-row">
       <div class="nav-mob-header" data-mob-acc>
         <span class="nav-mob-header-label">Company</span>
@@ -1528,59 +1494,478 @@
 
 
 <!-- ════════════════ HERO ════════════════ -->
-<section class="cg-hero">
-  <!-- Inner clip: keeps the abstract sphere cropped to hero bounds
-       while allowing the search bar (sibling) to overflow below -->
-  <div class="cg-hero-abstract">
-    <img src="assets/Background Assets/abstract line 2.svg" alt="" />
-  </div>
-
-  <div class="container">
-    <div class="cg-hero-content fade-in">
-      <h1 class="cg-hero-title">Payroll Guide</h1>
-      <p class="cg-hero-subtitle">Our dedicated guide for payroll rules and statutory requirements</p>
+<section class="pg-hero">
+  <div class="container pg-hero-inner">
+    <div class="pg-hero-text fade-in">
+      <a class="pg-breadcrumb" href="hr-knowledge-hub-payroll-guide.html">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Payroll Guide</span>
+      </a>
+      <div class="pg-hero-text-inner">
+        <h1 class="pg-hero-title">Payroll Guide - Australia</h1>
+        <p class="pg-hero-desc">Complete operational guide to Australia payroll compliance — entity setup, STP Phase 2 real-time reporting, Super Guarantee, Modern Awards, tax brackets, employee leave entitlements, and all monthly and annual filing requirements.</p>
+      </div>
+    </div>
+    <div class="pg-hero-meta fade-in">
+      <div class="pg-hero-divider"></div>
+      <p class="pg-hero-last-updated">Last Update by, 22 June 2026</p>
     </div>
   </div>
+  <div class="pg-hero-img">
+    <img src="assets/HR Knowledge Hub/Payroll Guide/thumbnails/australia.jpg" alt="Australia" />
+  </div>
+</section>
 
-  <!-- Search bar: position:absolute at top:434px
-       Sits 46px above hero bottom → floats across the hero/content boundary
-       Does NOT affect document flow of either section -->
-  <div class="cg-search-float">
-    <div class="container">
-      <div class="cg-search-box">
-        <svg class="cg-search-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M27 27L21.65 21.65M25 15C25 20.5228 20.5228 25 15 25C9.47715 25 5 20.5228 5 15C5 9.47715 9.47715 5 15 5C20.5228 5 25 9.47715 25 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+<!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
+<section class="article-section">
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-scope" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
+            <span class="toc-text" id="toc-text-scope">Scope &amp; Application</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-setup" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
+            <span class="toc-text" id="toc-text-setup">Payroll Set-up</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-calculation" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
+            <span class="toc-text" id="toc-text-calculation">Payroll Calculation</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-processing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
+            <span class="toc-text" id="toc-text-processing">Payroll Processing &amp; Compliance</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- ── Section 1: Scope & Application ── -->
+      <div class="article-block" id="section-scope">
+        <div class="au-section-header">
+          <h2 class="article-h2">Scope &amp; Application</h2>
+          <p class="au-section-sub">Legal Basis / Fair Work Act &middot; ATO &middot; STP Phase 2 &middot; Super</p>
+        </div>
+        <div>
+          <p class="article-p">This document applies to:</p>
+          <div class="au-bullet-list" style="margin-top:16px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Companies that have already established a local legal entity in Australia (Pty Ltd / Public Ltd / Branch / Trust structure)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Employees directly employed by that local entity and governed by the federal Fair Work Act 2009, National Employment Standards (NES), and Modern Awards</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Payroll compliance based on the ITAA, Superannuation Guarantee Act, Fair Work Act, and rules issued by the ATO / Fair Work Commission / state Revenue Offices</span>
+            </div>
+          </div>
+        </div>
+        <p class="article-p">This framework explains how companies complete Payroll Set-up (ASIC registration + ABN + TFN + PAYG Withholding + Super Fund + Workers Comp), monthly payroll calculation (PAYG + 12% Super + Award Wages + Leave Entitlements), monthly reporting and payment (STP Phase 2 each pay run + BAS + quarterly Super / Payday Super from 2026/7/1), and annual compliance management (STP Finalisation on 14 July, Payment Summary).</p>
+        <div class="au-data-cards-wrap">
+          <p class="au-data-cards-label">2026 KEY NUMBERS</p>
+          <div class="au-data-cards-grid">
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">Super Guarantee</span>
+                <span class="au-dc-value">12.0%</span>
+                <span class="au-dc-note">from 2025/7/1; final target rate</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">National Minimum Wage</span>
+                <span class="au-dc-value">AUD 24.95/hr</span>
+                <span class="au-dc-note">from 2025/7/1; 948/week</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Tax-free Threshold</span>
+                <span class="au-dc-value">AUD 18,200</span>
+                <span class="au-dc-note">Tax-free threshold</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Second Bracket Tax Rate</span>
+                <span class="au-dc-value">16%</span>
+                <span class="au-dc-note">18,201 - 45,000; from 2024</span>
+              </div>
+            </div>
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">Top Tax Rate</span>
+                <span class="au-dc-value">45%</span>
+                <span class="au-dc-note">&gt; AUD 190,000</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Medicare Levy</span>
+                <span class="au-dc-value">2%</span>
+                <span class="au-dc-note">health levy; low-income exemption</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Annual Leave</span>
+                <span class="au-dc-value">4 weeks/yr</span>
+                <span class="au-dc-note">NES standard; shift workers 5 weeks</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Payday Super</span>
+                <span class="au-dc-value">2026/7/1</span>
+                <span class="au-dc-note">Super must follow each pay run</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Australia Payroll has three major characteristics: (1) STP Phase 2 real-time tax reporting - mandatory since 2022; each pay run reports employee gross pay, tax withheld, Super, and related details to the ATO, and the employee year-end Income Statement appears automatically in myGov; (2) 121 Modern Awards cover almost all industries, with state labor rules layered on top. Award Rates / Loadings / Penalties must be strictly followed, and penalties for breaches may reach AUD 939,000 per entity; (3) Payday Super from 2026/7/1 is a major reform - quarterly Super payment is removed, and 12% Super must be paid into the employee fund with each pay run. Late payment directly triggers SGC charges.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 2: Payroll Set-up ── -->
+      <div class="article-block" id="section-setup">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Set-up</h2>
+          <p class="au-section-sub">How to establish legal payroll capability in Australia / Entity &middot; ATO &middot; Super &middot; WorkCover</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Entity, ABN, TFN &amp; PAYG Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28.4%"><col style="width:28.4%"><col style="width:14.9%"><col style="width:28.4%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Company registration (Pty Ltd)</td><td>Australian local entity</td><td>Yes</td><td>ASIC registration; minimum share capital AUD 1; two directors, one must be Australian resident</td></tr>
+                <tr><td>ABN Australian Business Number</td><td>Australian local entity</td><td>Yes</td><td>11-digit ABN; online application through ABR; usually within 24h</td></tr>
+                <tr><td>TFN Tax File Number</td><td>Australian local entity</td><td>Yes</td><td>Tax File Number; normally applied together with ABN</td></tr>
+                <tr><td>PAYG Withholding registration</td><td>Australian local entity</td><td>Yes</td><td>Before hiring employees; through ATO Business Portal</td></tr>
+                <tr><td>Default Super Fund</td><td>Australian local entity</td><td>Yes</td><td>Select a Default Fund, e.g. AustralianSuper / Hostplus</td></tr>
+                <tr><td>WorkCover / WorkSafe registration</td><td>Australian local entity</td><td>Yes</td><td>State-based (VIC / NSW / QLD, etc.); industry risk rates apply</td></tr>
+                <tr><td>State Payroll Tax registration</td><td>Australian local entity</td><td>Conditional</td><td>Required when total annual wages exceed state thresholds (NSW $1.2M / VIC $700k, etc.)</td></tr>
+                <tr><td>Fair Work Information Statement</td><td>New employee onboarding</td><td>Yes</td><td>Issued to every new employee at onboarding; casual employees also receive the casual statement</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Entity, ABN, TFN &amp; PAYG Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:19.8%"><col style="width:19.8%"><col style="width:19.8%"><col style="width:40.6%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Super Guarantee (SG)</td><td>-</td><td>12.0%</td><td>Ordinary Time Earnings; maximum quarterly contribution base AUD 62,500/q until 2026/6/30</td></tr>
+                <tr><td>PAYG Withholding</td><td>According to ATO tables</td><td>-</td><td>Employer withholds; employee Income Statement is transparent</td></tr>
+                <tr><td>State Payroll Tax</td><td>-</td><td>4.75% - 6.5%</td><td>State-based; NSW 5.45% / VIC 4.85% / QLD 4.75%</td></tr>
+                <tr><td>WorkCover / workers compensation</td><td>-</td><td>0.2% - 8%+</td><td>By state and industry risk; employer-only</td></tr>
+                <tr><td>Medicare Levy</td><td>2%</td><td>-</td><td>Included in income-tax withholding; reconciled in employee annual tax return</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 3: Payroll Calculation ── -->
+      <div class="article-block" id="section-calculation">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Calculation</h2>
+          <p class="au-section-sub">How salary, tax, and employee entitlements are calculated / Salary &middot; Leave</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Salary, Minimum Wage &amp; Award Rates</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:29.7%"><col style="width:70.3%"></colgroup>
+              <thead><tr><th>Item</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Pay cycle</td><td>Weekly / Fortnightly are most common; Monthly is common for executives</td></tr>
+                <tr><td>National Minimum Wage (NMW)</td><td>AUD 24.95 / hour; 38h/week = AUD 948 + 25% Casual Loading</td></tr>
+                <tr><td>Modern Award Rates</td><td>121 industry minimum-wage instruments + Loadings / Penalties / Allowances</td></tr>
+                <tr><td>Overtime</td><td>Set by Award; usually 1.5x for first 2h + 2x thereafter / weekends often 2x</td></tr>
+                <tr><td>13th Month</td><td>Not statutory; for executives often replaced by Bonus / Commission</td></tr>
+                <tr><td>Annual Leave Loading</td><td>Many Awards require an additional +17.5% during annual leave</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Statutory Leave Entitlements (NES Standard)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:33.3%"><col style="width:33.3%"><col style="width:33.3%"></colgroup>
+              <thead><tr><th>Item</th><th>Days / Period</th><th>Pay Rate / Source</th></tr></thead>
+              <tbody>
+                <tr><td>Annual Leave</td><td>4 weeks / year (shift workers 5 weeks)</td><td>100% / employer; many Awards add +17.5% Loading</td></tr>
+                <tr><td>Public Holidays</td><td>8 national holidays + 3-5 state holidays</td><td>100% / employer</td></tr>
+                <tr><td>Personal / Carer's Leave</td><td>10 days / year (FT)</td><td>100% / employer; accumulates</td></tr>
+                <tr><td>Compassionate Leave</td><td>2 days / occasion</td><td>100% / employer</td></tr>
+                <tr><td>Parental Leave</td><td>52 weeks (up to 24 months)</td><td>Government Paid Parental Leave 24 weeks; employer may top up</td></tr>
+                <tr><td>Dad &amp; Partner Pay</td><td>&le; 24 weeks (shared with PPL)</td><td>From 2025/7, 24 weeks; 55% via Centrelink</td></tr>
+                <tr><td>Long Service Leave</td><td>8.67 weeks / 10 years</td><td>State-based; 100% / employer</td></tr>
+                <tr><td>FDV Leave</td><td>10 paid days / year</td><td>100% / employer (mandatory for all employees since 2023)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="au-section-sep">PAYG + Super / Income Tax &amp; Super Detail</p>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Personal Income Tax &mdash; FY 2025-26 Brackets</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:40.1%"><col style="width:19.8%"><col style="width:40.1%"></colgroup>
+              <thead><tr><th>Annual Taxable Income (AUD)</th><th>Tax Rate</th><th>Accumulated Tax (lower)</th></tr></thead>
+              <tbody>
+                <tr><td>0 - 18,200</td><td>0%</td><td>Tax-free threshold</td></tr>
+                <tr><td>18,201 - 45,000</td><td>16%</td><td>0</td></tr>
+                <tr><td>45,001 - 135,000</td><td>30%</td><td>AUD 4,288</td></tr>
+                <tr><td>135,001 - 190,000</td><td>37%</td><td>AUD 31,288</td></tr>
+                <tr><td>&gt; 190,000</td><td>45%</td><td>AUD 51,638</td></tr>
+                <tr><td>Medicare Levy</td><td>+ 2%</td><td>Based on total taxable income (low-income exemption &lt; $29,207)</td></tr>
+                <tr><td>Medicare Levy Surcharge</td><td>+ 1% - 1.5%</td><td>Single taxpayer earning &gt; $101,000 without hospital cover</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Super &mdash; Operational Details</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:33.3%"><col style="width:33.3%"><col style="width:33.3%"></colgroup>
+              <thead><tr><th>Item</th><th>2025-26 Value</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>SG standard rate</td><td>12.0%</td><td>From 2025/7/1; OTE &times; 12%</td></tr>
+                <tr><td>Maximum contribution base</td><td>AUD 62,500 / quarter</td><td>Valid until 2026/6/30; excess portion not mandatory</td></tr>
+                <tr><td>Concessional Cap</td><td>AUD 30,000 / year</td><td>Pre-tax contribution cap, including SG + voluntary amounts</td></tr>
+                <tr><td>Non-Concessional Cap</td><td>AUD 120,000 / year</td><td>After-tax voluntary contribution; three-year bring-forward may apply</td></tr>
+                <tr><td>SuperStream</td><td>Mandatory electronic contribution</td><td>SBR reporting + ATO electronic payment</td></tr>
+                <tr><td>Payday Super</td><td>From 2026/7/1</td><td>Paid with each payroll; must reach Super Fund within 7 business days</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three Australia Payroll details are often underestimated: (1) Casual Loading 25% - casual employees do not receive annual leave / sick leave / public holiday pay, but their hourly wage is increased by 25%; from 2024, Casual Conversion gives eligible workers the right to request permanent status (after &ge; 6 months); (2) State Payroll Tax is a cross-state trap: NSW, VIC, and QLD have different thresholds / rates, and cross-state employment may require separate registrations with grouped threshold calculation; (3) Wage Theft was criminalized from 2025/1/1 - intentional underpayment can lead to up to 10 years&rsquo; imprisonment and AUD 8.25M corporate penalties.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 4: Payroll Processing & Compliance ── -->
+      <div class="article-block" id="section-processing">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub">Monthly execution, reporting, payment, and journal entries / STP, BAS &amp; Journal</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Payroll Payment Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:24.8%"><col style="width:24.8%"><col style="width:50.5%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payment frequency</td><td>Weekly / Fortnightly / Monthly</td><td>Fair Work Act; most Awards require no less frequently than monthly</td></tr>
+                <tr><td>Payment method + currency</td><td>Direct deposit &middot; AUD</td><td>Cheque / cash is compliant but rare</td></tr>
+                <tr><td>Payslip</td><td>Fair Work Reg s.536 mandatory</td><td>Electronic or paper payslip within 1 business day after each pay run</td></tr>
+                <tr><td>Wage deductions</td><td>Only specific items</td><td>Employee written authorization required; cannot deduct more than actual amount owed</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> STP, BAS, Super &amp; State Filings</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:18.6%"><col style="width:18.6%"><col style="width:18.6%"><col style="width:18.6%"><col style="width:25.7%"></colgroup>
+              <thead><tr><th>Filing Item</th><th>Responsible</th><th>Frequency</th><th>Due Date</th><th>Payment Authority</th></tr></thead>
+              <tbody>
+                <tr><td>STP Phase 2</td><td>Employer</td><td>Each pay run</td><td>Pay date</td><td>ATO (online STP-enabled software)</td></tr>
+                <tr><td>BAS Business Activity Statement</td><td>Employer</td><td>Monthly / quarterly</td><td>21st / 28th of following period</td><td>ATO (PAYG + GST + FBT)</td></tr>
+                <tr><td>Super (Payday from 2026/7)</td><td>Employer</td><td>Each pay run</td><td>Within 7 business days after payday</td><td>Super Fund directly / Clearing House</td></tr>
+                <tr><td>State Payroll Tax</td><td>Employer</td><td>Monthly / annual</td><td>7th of following month</td><td>NSW Revenue / SRO VIC, etc.</td></tr>
+                <tr><td>WorkCover Premium</td><td>Employer</td><td>Annual + renewal</td><td>Varies by state</td><td>WorkSafe VIC / icare NSW, etc.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Journal Mapping Rules (AASB / IFRS)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:50%"><col style="width:50%"></colgroup>
+              <thead><tr><th>Item</th><th>Account (AASB Australian GAAP)</th></tr></thead>
+              <tbody>
+                <tr><td>Salary + Wages + Bonus + Annual Leave</td><td>Employee Benefits - Salaries &amp; Wages</td></tr>
+                <tr><td>Super Guarantee 12%</td><td>Employee Benefits - Superannuation Expense</td></tr>
+                <tr><td>State Payroll Tax</td><td>Employee Benefits - Payroll Tax</td></tr>
+                <tr><td>WorkCover / WorkSafe Premium</td><td>Employee Benefits - Workers Compensation</td></tr>
+                <tr><td>PAYG Withholding</td><td>Liability - PAYG Withholding Payable</td></tr>
+                <tr><td>Net Pay</td><td>Bank - CBA / ANZ / NAB / Westpac</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="au-section-sep">Annual filings, termination settlement, and foreign workers / Annual Filings &amp; Termination</p>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Annual Filings</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup>
+              <thead><tr><th>Item</th><th>Responsible</th><th>Deadline</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>STP Finalisation</td><td>Employer &rarr; ATO</td><td>14 July following year</td><td>Finalizes employee annual Income Statement</td></tr>
+                <tr><td>TPAR (contractor reporting)</td><td>Employer &rarr; ATO</td><td>28 August following year</td><td>Building / Cleaning / Courier and related industries</td></tr>
+                <tr><td>FBT return</td><td>Employer &rarr; ATO</td><td>21 May following year</td><td>Fringe Benefits Tax; FBT year 4/1 - 3/31</td></tr>
+                <tr><td>State Payroll Tax Annual Reconciliation</td><td>Employer</td><td>July following year</td><td>Annual reconciliation by state</td></tr>
+                <tr><td>WorkCover Premium Renewal</td><td>Employer</td><td>By state</td><td>Annual actual wage reconciliation + renewal</td></tr>
+                <tr><td>Company Income Tax Return</td><td>Company</td><td>By end of April after year-end</td><td>Corporate tax; standard financial year ends 6/30</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">v.</span> Termination &amp; Foreign Workers</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:33.3%"><col style="width:33.3%"><col style="width:33.3%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Notice</td><td>1-5 weeks</td><td>Based on service (NES Sec. 117) + 1 week if age 45+</td></tr>
+                <tr><td>Redundancy Pay</td><td>4-16 weeks</td><td>Based on service; NES Sec. 119 standard</td></tr>
+                <tr><td>Unused Annual Leave payout</td><td>Mandatory</td><td>At base rate + 17.5% Loading if applicable</td></tr>
+                <tr><td>Unused LSL Long Service Leave</td><td>Mandatory by state</td><td>State rules; usually triggered from 10 years</td></tr>
+                <tr><td>Final Pay + ETP</td><td>Within 7 days after termination</td><td>Employment Termination Payment (ETP) tax applies</td></tr>
+                <tr><td>Foreign workers</td><td>482 / 186 / TSS Skills in Demand Visa</td><td>From 2024/12/7, TSS 482 replaced by SID by stream</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three key changes for Australia Payroll in 2026: (1) Payday Super is mandatory from 2026/7/1 - 12% Super must be paid into the employee fund with each pay run and received within 7 business days; quarterly payment is abolished; (2) Award minimum wages increased by +3.5% from 2025/7/1 - national minimum wage is AUD 24.95 / hour (948/week), and 121 Modern Awards increased together; (3) Wage Theft criminalization took effect on 2025/1/1 - intentional underpayment can expose companies to penalties up to AUD 8.25M and individuals to 10 years&rsquo; imprisonment.</p>
+        </div>
+      </div>
+
+    </div><!-- /.article-content -->
+
+    <!-- CTA Buttons -->
+    <div class="article-cta">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
         </svg>
-        <div class="cg-search-row">
-          <input class="cg-search-field" id="countrySearch" type="text" placeholder="Search Country" oninput="filterCountries(); toggleClearBtn(this)">
-          <button class="cg-search-clear" id="cgClearBtn" onclick="clearSearch()" type="button" aria-label="Clear search">
-            <img src="assets/HR Knowledge Hub/Payroll Guide/icons/x-icon.svg" alt="clear" />
-          </button>
+      </a>
+      <!-- WeChat -->
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <!-- Download -->
+      <button class="cta-btn" id="payrollDownloadBtn" aria-label="Download" onclick="downloadPayrollGuidePDF(event)">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 21.5V23.5C24.5 23.7652 24.3946 24.0196 24.2071 24.2071C24.0196 24.3946 23.7652 24.5 23.5 24.5H16.5C16.2348 24.5 15.9804 24.3946 15.7929 24.2071C15.6054 24.0196 15.5 23.7652 15.5 23.5V21.5M22.5 19L20 21.5L17.5 19M20 21.5V15.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <!-- Copy Link -->
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <!-- Back to Top -->
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 15.5H15.5M20 24.5V17.5M23.5 21L20 17.5L16.5 21" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════ GET STARTED ════════════════ -->
+<section class="gs-cta">
+  <div class="gs-cta-content">
+    <div class="gs-cta-label">
+      <div class="gs-cta-label-line"></div>
+      <span>GET STARTED</span>
+    </div>
+    <h2 class="gs-cta-title">
+      Ready to Expand in
+      <span class="accent">Australia?</span>
+    </h2>
+  </div>
+  <p class="gs-cta-subtitle">Have any questions? We&rsquo;d love to hear from you</p>
+  <a href="company-contact-us.html" class="gs-cta-btn">
+    Contact us
+    <div class="gs-cta-btn-icon"><div class="gs-cta-btn-icon-inner"><img class="gs-cta-btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
+  </a>
+  <div class="gs-cta-thumb">
+    <img src="assets/HR Knowledge Hub/Payroll Guide/thumbnails/australia.jpg" alt="Australia" />
+  </div>
+</section>
+
+<!-- ════════════════ EXPLORE MORE ════════════════ -->
+<section class="explore-section">
+  <div class="container">
+    <div class="explore-header">
+      <div class="explore-eyebrow">
+        <div class="explore-eyebrow-line"></div>
+        <span class="explore-eyebrow-label">EXPLORE MORE</span>
+      </div>
+      <div class="explore-title-row">
+        <h2 class="explore-title">Other Payroll Guides</h2>
+        <div class="explore-controls">
+          <div class="explore-search">
+            <div class="explore-search-icon"><img src="assets/HR Knowledge Hub/Payroll Guide/assets/search-icon.svg" alt="" /></div>
+            <input class="explore-search-input" id="exploreSearch" type="text" placeholder="Search Country" autocomplete="off" />
+            <button class="explore-search-clear" id="exploreSearchClear" aria-label="Clear search">
+              <img src="assets/HR Knowledge Hub/Payroll Guide/assets/x-icon.svg" alt="" />
+            </button>
+          </div>
+          <div class="explore-chevrons">
+            <button class="explore-chev-btn" id="exploreChevLeft" disabled aria-label="Previous">
+              <img src="assets/HR Knowledge Hub/Payroll Guide/assets/chevron-left-inactive.svg" id="exploreChevLeftImg" alt="Previous" />
+            </button>
+            <button class="explore-chev-btn" id="exploreChevRight" aria-label="Next">
+              <img src="assets/HR Knowledge Hub/Payroll Guide/assets/chevron-right-active.svg" id="exploreChevRightImg" alt="Next" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
-
-<!-- ════════════════ CONTENT ════════════════ -->
-<section class="cg-content">
+  <div class="explore-viewport" id="exploreViewport">
+    <div class="explore-track" id="exploreTrack"></div>
+    <p class="explore-empty container" id="exploreEmpty">No countries found.</p>
+  </div>
   <div class="container">
-    <!-- Country grid -->
-    <div class="cg-grid" id="countryGrid">
-      <!-- Cards injected by JS -->
-    </div>
-
-    <!-- Empty state -->
-    <div class="cg-empty" id="cgEmpty">No countries found matching your search.</div>
-
-    <!-- View More -->
-    <div class="cg-view-more-wrap" id="cgViewMoreWrap">
-      <button class="cg-view-more" onclick="viewMore()">
-        View More
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 7.5L10 12.5L15 7.5" stroke="#019DE7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+    <div class="explore-scroll-track">
+      <div class="explore-scroll-thumb" id="exploreScrollThumb"></div>
     </div>
   </div>
 </section>
@@ -1643,13 +2028,13 @@
         <a href="hr-knowledge-hub-visa-guide.html" data-i18n="link.visa">Visa Guide</a>
         <a href="hr-knowledge-hub-payroll-guide.html" data-i18n="link.payrollguide">Payroll Guide</a>
         <a href="hr-knowledge-hub-freelancer-guide.html" data-i18n="link.freelancer">Freelancer Guide</a>
-                <a href="hr-knowledge-hub-employment-contract-matrix.html" data-i18n="link.contract">Employment Contract Matrix</a>
+        <a href="hr-knowledge-hub-employment-contract-matrix.html" data-i18n="link.contract">Employment Contract Matrix</a>
         <a href="hr-knowledge-hub-work-schedule.html" data-i18n="link.schedule">Work Schedule</a>
         <a href="hr-knowledge-hub-public-holiday-calendar-2026.html" data-i18n="link.holiday">Public Holiday Calendar</a>
         <a href="hr-knowledge-hub-leave-policy.html" data-i18n="link.leave">Leave Policy</a>
         <a href="hr-knowledge-hub-travel-expense-policy.html" data-i18n="link.travel">Travel &amp; Expense Policy</a>
         <a href="hr-knowledge-hub-benefits-plan.html" data-i18n="link.benefits">Benefits Plan</a>
-                <a href="hr-knowledge-hub-government-claim-update.html" data-i18n="link.govtclaim">Government Claim Update</a>
+        <a href="hr-knowledge-hub-government-claim-update.html" data-i18n="link.govtclaim">Government Claim Update</a>
         <a href="hr-knowledge-hub-vendor-list.html" data-i18n="link.vendor">Vendor List</a>
         <a href="hr-knowledge-hub-memo.html" data-i18n="link.memo">Memo</a>
       </div>
@@ -1803,138 +2188,18 @@
 </div>
 
 <script>
-  /* ── Countries data ── */
-  const COUNTRIES = [
-    // Africa
-    { name: "Algeria",       currency: "DZD", region: "Africa",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/algeria.jpg" },
-    { name: "Kenya",         currency: "KES", region: "Africa",       img: "" },
-    { name: "Nigeria",       currency: "NGN", region: "Africa",       img: "" },
-    { name: "South Africa",  currency: "ZAR", region: "Africa",       img: "" },
-    { name: "Tunisia",       currency: "TND", region: "Africa",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/tunisia.webp" },
-    // Americas
-    { name: "Argentina",     currency: "ARS", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/argentina 2.jpg" },
-    { name: "Brazil",        currency: "BRL", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/brazil.png" },
-    { name: "Canada",        currency: "CAD", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/canada.jpg" },
-    { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/chile.png" },
-    { name: "Colombia",      currency: "COP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/colombia 1.png" },
-    { name: "Mexico",        currency: "MXN", region: "Americas",     img: "" },
-    { name: "Peru",          currency: "PEN", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/peru.jpg" },
-    { name: "USA",           currency: "USD", region: "Americas",     img: "" },
-    // Asia Pacific
-    { name: "Australia",     currency: "AUD", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/australia.jpg", url: "hr-knowledge-hub-payroll-guide-australia.html" },
-    { name: "Bangladesh",    currency: "BDT", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/bangladesh.jpg" },
-    { name: "Brunei",        currency: "BND", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/brunei.jpg" },
-    { name: "Cambodia",      currency: "KHR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/cambodia.jpg" },
-    { name: "China",         currency: "CNY", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/china.jpg" },
-    { name: "Hong Kong",     currency: "HKD", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/hong kong.jpg" },
-    { name: "India",         currency: "INR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/india.png" },
-    { name: "Indonesia",     currency: "IDR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/indonesia.webp" },
-    { name: "Japan",         currency: "JPY", region: "Asia Pacific", img: "" },
-    { name: "Malaysia",      currency: "MYR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/malaysia.webp" },
-    { name: "New Zealand",   currency: "NZD", region: "Asia Pacific", img: "" },
-    { name: "Pakistan",      currency: "PKR", region: "Asia Pacific", img: "" },
-    { name: "Philippines",   currency: "PHP", region: "Asia Pacific", img: "" },
-    { name: "Singapore",     currency: "SGD", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/singapore.webp" },
-    { name: "South Korea",   currency: "KRW", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/south-korea.jpg" },
-    { name: "Sri Lanka",     currency: "LKR", region: "Asia Pacific", img: "" },
-    { name: "Taiwan",        currency: "TWD", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/taiwan.jpg" },
-    { name: "Thailand",      currency: "THB", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/thailand.jpg" },
-    { name: "Vietnam",       currency: "VND", region: "Asia Pacific", img: "" },
-    // Europe
-    { name: "Austria",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/austria.jpg" },
-    { name: "Belgium",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/belgium.jpg" },
-    { name: "Bulgaria",      currency: "BGN", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/bulgaria.jpg" },
-    { name: "Croatia",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/croatia 1.jpg" },
-    { name: "Czech Republic",currency: "CZK", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/czech republic.webp" },
-    { name: "Denmark",       currency: "DKK", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/denmark.webp" },
-    { name: "Finland",       currency: "EUR", region: "Europe",       img: "" },
-    { name: "France",        currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/france.jpg" },
-    { name: "Germany",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/germany 2.webp" },
-    { name: "Hungary",       currency: "HUF", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/hungary.webp" },
-    { name: "Ireland",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/ireland.jpeg" },
-    { name: "Italy",         currency: "EUR", region: "Europe",       img: "" },
-    { name: "Netherlands",   currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/netherlands.jpeg" },
-    { name: "Poland",        currency: "PLN", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/poland.jpg" },
-    { name: "Portugal",      currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/portugal.avif" },
-    { name: "Romania",       currency: "RON", region: "Europe",       img: "" },
-    { name: "Russia",        currency: "RUB", region: "Europe",       img: "" },
-    { name: "Spain",         currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/spain.jpg" },
-    { name: "Sweden",        currency: "SEK", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/sweden.jpg" },
-    { name: "Switzerland",   currency: "CHF", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/switzerland.jpg" },
-    { name: "Turkey",        currency: "TRY", region: "Europe",       img: "" },
-    { name: "United Kingdom", currency: "GBP", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/united-kingdom.jpg", aliases: ["uk"] },
-    { name: "Ukraine",       currency: "UAH", region: "Europe",       img: "" },
-    // Middle East
-    { name: "Azerbaijan",    currency: "AZN", region: "Middle East",  img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/azerbaijan.jpg" },
-    { name: "Egypt",         currency: "EGP", region: "Middle East",  img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/egypt 1.jpeg" },
-    { name: "Israel",        currency: "ILS", region: "Middle East",  img: "" },
-    { name: "Saudi Arabia",  currency: "SAR", region: "Middle East",  img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/saudi-arabia.jpg" },
-    { name: "UAE",           currency: "AED", region: "Middle East",  img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/uae.webp" },
-  ];
+  /* ── Nav height → CSS variable (keeps thumbnail flush with nav bottom) ── */
+  (function() {
+    function setNavH() {
+      var h = document.querySelector('.nav').getBoundingClientRect().height;
+      document.documentElement.style.setProperty('--nav-h', h + 'px');
+    }
+    setNavH();
+    window.addEventListener('resize', setNavH);
+  })();
+</script>
 
-  /* Sort alphabetically */
-  COUNTRIES.sort(function(a, b) { return a.name.localeCompare(b.name); });
-
-  /* ── View More state ── */
-  const PAGE_SIZE = 12;
-  let visibleCount = PAGE_SIZE;
-  let activeQuery = '';
-
-  function getFiltered() {
-    return COUNTRIES.filter(function(c) {
-      const matchName = !activeQuery || c.name.toLowerCase().includes(activeQuery);
-      const matchAlias = activeQuery && c.aliases && c.aliases.some(a => a.includes(activeQuery));
-      return matchName || matchAlias;
-    });
-  }
-
-  function buildCard(c) {
-    var a = document.createElement('a');
-    a.href = c.url || '#';
-    a.className = 'cg-card';
-    a.dataset.name = c.name.toLowerCase();
-    a.dataset.region = c.region;
-    var thumbHtml = c.img
-      ? '<img src="' + c.img + '" alt="' + c.name + '" loading="lazy" />'
-      : '';
-    a.innerHTML =
-      '<div class="cg-card-thumb">' + thumbHtml + '</div>' +
-      '<div class="cg-card-body">' +
-        '<div class="cg-card-title-row">' +
-          '<span class="cg-card-name">' + c.name + '</span>' +
-          '<span class="cg-card-currency">' + c.currency + '</span>' +
-        '</div>' +
-        '<span class="cg-card-date">Last Updated by, 22 June 2026</span>' +
-      '</div>';
-    return a;
-  }
-
-  function renderGrid() {
-    var filtered = getFiltered();
-    var grid  = document.getElementById('countryGrid');
-    var empty = document.getElementById('cgEmpty');
-    var wrap  = document.getElementById('cgViewMoreWrap');
-    grid.innerHTML = '';
-    var toShow = filtered.slice(0, visibleCount);
-    toShow.forEach(function(c) { grid.appendChild(buildCard(c)); });
-    empty.style.display = filtered.length === 0 ? 'block' : 'none';
-    wrap.style.display  = filtered.length > visibleCount ? 'flex' : 'none';
-  }
-
-  function filterCountries() {
-    activeQuery  = document.getElementById('countrySearch').value.toLowerCase().trim();
-    visibleCount = PAGE_SIZE;
-    renderGrid();
-  }
-
-  function viewMore() {
-    visibleCount += PAGE_SIZE;
-    renderGrid();
-  }
-
-  /* Init */
-  renderGrid();
-
+<script>
   /* ── WeChat modal ── */
   document.getElementById('wechat-modal').addEventListener('click', function() {
     this.classList.remove('active');
@@ -1954,39 +2219,7 @@
     { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
   revealElements.forEach(function(el) { revealObserver.observe(el); });
-
-  /* ── Scroll-state navbar ── */
-  const nav  = document.querySelector('.nav');
-  const hero = document.querySelector('.cg-hero');
-
-  function updateNavState() {
-    if (!nav || !hero) return;
-    const threshold = hero.offsetTop + hero.offsetHeight * 0.25;
-    if (window.scrollY >= threshold) {
-      nav.classList.add('nav-scrolled');
-    } else {
-      nav.classList.remove('nav-scrolled');
-    }
-  }
-
-  updateNavState();
-  window.addEventListener('scroll', updateNavState, { passive: true });
-  window.addEventListener('resize', updateNavState);
-
-  function toggleClearBtn(input) {
-    var btn = document.getElementById('cgClearBtn');
-    if (btn) btn.classList.toggle('visible', input.value.length > 0);
-  }
-
-  function clearSearch() {
-    var input = document.getElementById('countrySearch');
-    var btn   = document.getElementById('cgClearBtn');
-    if (input) { input.value = ''; input.focus(); }
-    if (btn)   btn.classList.remove('visible');
-    filterCountries();
-  }
 </script>
-
 
 <script>
   /* ── Tablet nav: hamburger toggle, overlay, accordion ── */
@@ -1994,7 +2227,7 @@
     var hamburger = document.getElementById('nav-hamburger');
     var overlay   = document.getElementById('nav-mobile-overlay');
     var panel     = document.getElementById('nav-mobile-panel');
-    var nav       = document.getElementById('main-nav') || document.querySelector('.nav');
+    var nav       = document.querySelector('.nav');
     if (!hamburger || !overlay || !panel) return;
 
     function openPanel() {
@@ -2049,6 +2282,7 @@
     });
   })();
 </script>
+
 <script>
   /* ── Language dropdown ── */
   (function() {
@@ -2075,6 +2309,393 @@
     });
   })();
 </script>
+<script>
+  /* ── Explore More carousel ── */
+  (function() {
+    var CARD_WIDTH = 340;
+    var GAP = 40;
+    var PAGE_SCROLL = CARD_WIDTH + GAP;
+    var CARDS_PER_VIEW = 3;
+    var currentPage = 0;
+    var filtered = [];
+
+    var EXPLORE_COUNTRIES = [
+      { name: "Algeria",        currency: "DZD", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/algeria.jpg" },
+      { name: "Argentina",      currency: "ARS", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/argentina 2.jpg" },
+      { name: "Austria",        currency: "EUR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/austria.jpg" },
+      { name: "Azerbaijan",     currency: "AZN", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/azerbaijan.jpg" },
+      { name: "Bangladesh",     currency: "BDT", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/bangladesh.jpg" },
+      { name: "Belgium",        currency: "EUR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/belgium.jpg" },
+      { name: "Brazil",         currency: "BRL", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/brazil.png" },
+      { name: "Brunei",         currency: "BND", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/brunei.jpg" },
+      { name: "Bulgaria",       currency: "BGN", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/bulgaria.jpg" },
+      { name: "Cambodia",       currency: "KHR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/cambodia.jpg" },
+      { name: "Canada",         currency: "CAD", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/canada.jpg" },
+      { name: "Chile",          currency: "CLP", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/chile.png" },
+      { name: "China",          currency: "CNY", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/china.jpg" },
+      { name: "Colombia",       currency: "COP", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/colombia 1.png" },
+      { name: "Croatia",        currency: "EUR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/croatia 1.jpg" },
+      { name: "Czech Republic", currency: "CZK", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/czech republic.webp" },
+      { name: "Denmark",        currency: "DKK", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/denmark.webp" },
+      { name: "Egypt",          currency: "EGP", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/egypt 1.jpeg" },
+      { name: "Finland",        currency: "EUR", img: "" },
+      { name: "France",         currency: "EUR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/france.jpg" },
+      { name: "Germany",        currency: "EUR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/germany 2.webp" },
+      { name: "Hong Kong",      currency: "HKD", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/hong kong.jpg" },
+      { name: "Hungary",        currency: "HUF", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/hungary.webp" },
+      { name: "India",          currency: "INR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/india.png" },
+      { name: "Indonesia",      currency: "IDR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/indonesia.webp" },
+      { name: "Ireland",        currency: "EUR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/ireland.jpeg" },
+      { name: "Israel",         currency: "ILS", img: "" },
+      { name: "Italy",          currency: "EUR", img: "" },
+      { name: "Japan",          currency: "JPY", img: "" },
+      { name: "Kenya",          currency: "KES", img: "" },
+      { name: "Malaysia",       currency: "MYR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/malaysia.webp" },
+      { name: "Mexico",         currency: "MXN", img: "" },
+      { name: "Netherlands",    currency: "EUR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/netherlands.jpeg" },
+      { name: "New Zealand",    currency: "NZD", img: "" },
+      { name: "Nigeria",        currency: "NGN", img: "" },
+      { name: "Pakistan",       currency: "PKR", img: "" },
+      { name: "Peru",           currency: "PEN", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/peru.jpg" },
+      { name: "Philippines",    currency: "PHP", img: "" },
+      { name: "Poland",         currency: "PLN", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/poland.jpg" },
+      { name: "Portugal",       currency: "EUR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/portugal.avif" },
+      { name: "Romania",        currency: "RON", img: "" },
+      { name: "Russia",         currency: "RUB", img: "" },
+      { name: "Saudi Arabia",   currency: "SAR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/saudi-arabia.jpg" },
+      { name: "Singapore",      currency: "SGD", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/singapore.webp" },
+      { name: "South Africa",   currency: "ZAR", img: "" },
+      { name: "South Korea",    currency: "KRW", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/south-korea.jpg" },
+      { name: "Spain",          currency: "EUR", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/spain.jpg" },
+      { name: "Sri Lanka",      currency: "LKR", img: "" },
+      { name: "Sweden",         currency: "SEK", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/sweden.jpg" },
+      { name: "Switzerland",    currency: "CHF", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/switzerland.jpg" },
+      { name: "Taiwan",         currency: "TWD", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/taiwan.jpg" },
+      { name: "Thailand",       currency: "THB", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/thailand.jpg" },
+      { name: "Tunisia",        currency: "TND", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/tunisia.webp" },
+      { name: "Turkey",         currency: "TRY", img: "" },
+      { name: "UAE",            currency: "AED", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/uae.webp" },
+      { name: "Ukraine",        currency: "UAH", img: "" },
+      { name: "United Kingdom", currency: "GBP", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/united-kingdom.jpg" },
+      { name: "USA",            currency: "USD", img: "" },
+      { name: "Vietnam",        currency: "VND", img: "" }
+    ];
+
+    var track      = document.getElementById('exploreTrack');
+    var chevLeft   = document.getElementById('exploreChevLeft');
+    var chevRight  = document.getElementById('exploreChevRight');
+    var chevLeftImg  = document.getElementById('exploreChevLeftImg');
+    var chevRightImg = document.getElementById('exploreChevRightImg');
+    var scrollThumb  = document.getElementById('exploreScrollThumb');
+    var emptyEl    = document.getElementById('exploreEmpty');
+    var searchInput  = document.getElementById('exploreSearch');
+    var searchClear  = document.getElementById('exploreSearchClear');
+
+    function buildCard(c) {
+      var a = document.createElement('a');
+      a.className = 'explore-card';
+      a.href = c.url || '#';
+      var thumbHtml = c.img
+        ? '<img src="' + c.img + '" alt="' + c.name + '" loading="lazy" />'
+        : '';
+      a.innerHTML =
+        '<div class="explore-card-thumb">' + thumbHtml + '</div>' +
+        '<div class="explore-card-body">' +
+          '<div class="explore-card-title-row">' +
+            '<span class="explore-card-name">' + c.name + '</span>' +
+            '<span class="explore-card-currency">' + c.currency + '</span>' +
+          '</div>' +
+          '<span class="explore-card-date">Last Updated by, 22 June 2026</span>' +
+        '</div>';
+      return a;
+    }
+
+    function updateCarousel() {
+      var numPos = Math.max(1, filtered.length - CARDS_PER_VIEW + 1);
+      if (currentPage >= numPos) currentPage = numPos - 1;
+      if (currentPage < 0) currentPage = 0;
+      var atStart = currentPage === 0;
+      var atEnd   = filtered.length <= CARDS_PER_VIEW || currentPage >= numPos - 1;
+
+      track.style.transform = 'translateX(-' + (currentPage * PAGE_SCROLL) + 'px)';
+
+      if (numPos > 1) {
+        var pct = 100 / numPos;
+        scrollThumb.style.width = pct + '%';
+        scrollThumb.style.left  = (currentPage * pct) + '%';
+      } else {
+        scrollThumb.style.width = '100%';
+        scrollThumb.style.left  = '0%';
+      }
+
+      chevLeft.disabled = atStart;
+      chevLeftImg.src = atStart
+        ? 'assets/HR Knowledge Hub/Payroll Guide/assets/chevron-left-inactive.svg'
+        : 'assets/HR Knowledge Hub/Payroll Guide/assets/chevron-left-active.svg';
+      chevRight.disabled = atEnd;
+      chevRightImg.src = atEnd
+        ? 'assets/HR Knowledge Hub/Payroll Guide/assets/chevron-right-inactive.svg'
+        : 'assets/HR Knowledge Hub/Payroll Guide/assets/chevron-right-active.svg';
+    }
+
+    function render(query) {
+      var q = (query || '').toLowerCase().trim();
+      filtered = EXPLORE_COUNTRIES.filter(function(c) {
+        return !q || c.name.toLowerCase().indexOf(q) !== -1;
+      });
+      track.innerHTML = '';
+      filtered.forEach(function(c) { track.appendChild(buildCard(c)); });
+      emptyEl.style.display = filtered.length === 0 ? 'block' : 'none';
+      currentPage = 0;
+      updateCarousel();
+    }
+
+    chevLeft.addEventListener('click', function() {
+      if (currentPage > 0) { currentPage--; updateCarousel(); }
+    });
+    chevRight.addEventListener('click', function() {
+      var numPos = Math.max(1, filtered.length - CARDS_PER_VIEW + 1);
+      if (currentPage < numPos - 1) { currentPage++; updateCarousel(); }
+    });
+
+    searchInput.addEventListener('input', function() {
+      searchClear.classList.toggle('visible', searchInput.value.length > 0);
+      render(searchInput.value);
+    });
+    searchClear.addEventListener('click', function() {
+      searchInput.value = '';
+      searchClear.classList.remove('visible');
+      render('');
+      searchInput.focus();
+    });
+
+    document.getElementById('exploreViewport').addEventListener('wheel', function(e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault();
+    }, { passive: false });
+
+    render('');
+  })();
+</script>
+
+<script>
+  /* ── Download PDF ── */
+  async function downloadPayrollGuidePDF(e) {
+    if (e) e.preventDefault();
+
+    var btn = document.getElementById('payrollDownloadBtn');
+    btn.style.opacity = '0.5';
+    btn.style.pointerEvents = 'none';
+
+    var articleContent = document.querySelector('.article-content');
+    var fileName = 'Marco Payroll Guide - Australia.pdf';
+
+    try {
+      /* Pre-load Marco watermark logo (684 × 180 px → ratio 3.8:1) */
+      var logoBase64 = null;
+      var logoWmm = 24, logoHmm = 6.32;
+      try {
+        var resp = await fetch('assets/marco-watermark-logo.png');
+        var blob = await resp.blob();
+        logoBase64 = await new Promise(function(res) {
+          var r = new FileReader(); r.onloadend = function() { res(r.result); }; r.readAsDataURL(blob);
+        });
+      } catch (_) {}
+
+      /* Build off-screen wrapper: hero header + article content */
+      var contentWidth = articleContent.offsetWidth;
+      var wrapper = document.createElement('div');
+      wrapper.style.cssText = [
+        'position:absolute', 'left:-9999px', 'top:0',
+        'width:' + contentWidth + 'px',
+        'background:#fff',
+        'font-family:"Euclid Circular B",sans-serif'
+      ].join(';');
+
+      /* Hero header block */
+      var heroEl = document.createElement('div');
+      heroEl.style.cssText = 'padding:0 0 32px;margin-bottom:40px;border-bottom:1px solid #CDD5E0;';
+
+      var titleEl = document.createElement('h1');
+      titleEl.textContent = (document.querySelector('.pg-hero-title') || {}).textContent || 'Payroll Guide - Australia';
+      titleEl.style.cssText = 'font-size:32px;font-weight:700;line-height:40px;color:#162351;margin:0 0 12px;font-family:inherit;';
+
+      var descEl = document.createElement('p');
+      descEl.textContent = (document.querySelector('.pg-hero-desc') || {}).textContent || '';
+      descEl.style.cssText = 'font-size:14px;font-weight:400;line-height:22px;color:#475072;margin:0 0 24px;font-family:inherit;';
+
+      var dividerEl = document.createElement('div');
+      dividerEl.style.cssText = 'width:100%;height:1px;background:#CDD5E0;margin:0 0 12px;';
+
+      var dateEl = document.createElement('p');
+      dateEl.textContent = (document.querySelector('.pg-hero-last-updated') || {}).textContent || '';
+      dateEl.style.cssText = 'font-size:12px;font-weight:400;line-height:24px;color:#8F98B5;margin:0;font-family:inherit;';
+
+      heroEl.appendChild(titleEl);
+      heroEl.appendChild(descEl);
+      heroEl.appendChild(dateEl);
+
+      wrapper.appendChild(heroEl);
+      wrapper.appendChild(articleContent.cloneNode(true));
+      document.body.appendChild(wrapper);
+
+      /* Collect section break points using document-relative positions
+         (wrapper is at top:0 in the document, so offsetTop of children = CSS px from top) */
+      var wrapperDocTop = wrapper.getBoundingClientRect().top + window.scrollY;
+      var sectionCSSY = [0];
+      var heroBottom = (heroEl.getBoundingClientRect().bottom + window.scrollY) - wrapperDocTop;
+      if (heroBottom > 10) sectionCSSY.push(heroBottom);
+      wrapper.querySelectorAll('.article-block').forEach(function(el) {
+        var top = (el.getBoundingClientRect().top + window.scrollY) - wrapperDocTop;
+        if (top > 10) sectionCSSY.push(top);
+      });
+      sectionCSSY.sort(function(a, b) { return a - b; });
+
+      /* Capture the wrapper — scrollY:0 because wrapper is at document top */
+      var canvas = await html2canvas(wrapper, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff',
+        scrollY: 0,
+        logging: false
+      });
+
+      document.body.removeChild(wrapper);
+
+      /* Smart page slicing */
+      var SCALE   = 2;
+      var cssW    = canvas.width  / SCALE;
+      var cssH    = canvas.height / SCALE;
+
+      var jsPDFLib = window.jspdf.jsPDF;
+      var pdf      = new jsPDFLib({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      var pW       = pdf.internal.pageSize.getWidth();
+      var pH       = pdf.internal.pageSize.getHeight();
+      var mT = 18, mB = 14, mL = 14, mR = 14;
+      var usableW  = pW - mL - mR;
+      var usableH  = pH - mT - mB;
+      var ratio    = usableW / cssW;
+      var pageCSS  = usableH / ratio;
+
+      var slices = [];
+      var startCSS = 0;
+      while (startCSS < cssH) {
+        var idealEnd = startCSS + pageCSS;
+        if (idealEnd >= cssH) { slices.push({ start: startCSS, end: cssH }); break; }
+        var safeZone  = startCSS + pageCSS * 0.65;
+        var bestBreak = null;
+        for (var si = 0; si < sectionCSSY.length; si++) {
+          var sy = sectionCSSY[si];
+          if (sy > safeZone && sy < idealEnd) { bestBreak = sy; break; }
+        }
+        var cutAt = bestBreak !== null ? bestBreak : idealEnd;
+        slices.push({ start: startCSS, end: cutAt });
+        startCSS = cutAt;
+      }
+
+      /* Render slices to PDF pages */
+      for (var pi = 0; pi < slices.length; pi++) {
+        if (pi > 0) pdf.addPage();
+        var sl       = slices[pi];
+        var slCSS    = sl.end - sl.start;
+        var slCanvas = document.createElement('canvas');
+        slCanvas.width  = canvas.width;
+        slCanvas.height = Math.round(slCSS * SCALE);
+        slCanvas.getContext('2d').drawImage(
+          canvas,
+          0, Math.round(sl.start * SCALE), canvas.width, Math.round(slCSS * SCALE),
+          0, 0, canvas.width, Math.round(slCSS * SCALE)
+        );
+        var slData = slCanvas.toDataURL('image/jpeg', 0.95);
+        var slHmm  = slCSS * ratio;
+
+        pdf.setFillColor(255, 255, 255);
+        pdf.rect(0, 0, pW, mT, 'F');
+        pdf.addImage(slData, 'JPEG', mL, mT, usableW, slHmm);
+        pdf.setFillColor(255, 255, 255);
+        pdf.rect(0, pH - mB, pW, mB + 2, 'F');
+        if (logoBase64) pdf.addImage(logoBase64, 'PNG', pW - mR - logoWmm, 4, logoWmm, logoHmm);
+        pdf.setFontSize(8);
+        pdf.setTextColor(180, 180, 180);
+        pdf.text('Page ' + (pi + 1) + ' of ' + slices.length, pW / 2, pH - 4, { align: 'center' });
+      }
+
+      pdf.save(fileName);
+
+    } catch (err) {
+      console.error('PDF generation failed:', err);
+      alert('PDF generation failed: ' + err.message);
+    } finally {
+      btn.style.opacity = '';
+      btn.style.pointerEvents = '';
+    }
+  }
+</script>
+
+<script>
+  /* ── Article TOC + Back-to-top + Copy link ── */
+  var tocSections = [
+    { id: 'section-scope',       key: 'scope'       },
+    { id: 'section-setup',       key: 'setup'       },
+    { id: 'section-calculation', key: 'calculation' },
+    { id: 'section-processing',  key: 'processing'  }
+  ];
+
+  function updateToc() {
+    var scrollPos = window.scrollY + 160;
+    var current = tocSections[0].key;
+    for (var i = 0; i < tocSections.length; i++) {
+      var el = document.getElementById(tocSections[i].id);
+      if (el && el.offsetTop <= scrollPos) current = tocSections[i].key;
+    }
+    tocSections.forEach(function(s) {
+      var dot  = document.getElementById('toc-dot-'  + s.key);
+      var text = document.getElementById('toc-text-' + s.key);
+      if (dot && text) {
+        dot.classList.toggle('toc-active',  s.key === current);
+        text.classList.toggle('toc-active', s.key === current);
+      }
+    });
+  }
+
+  function updateBackToTop() {
+    var btn = document.getElementById('backToTop');
+    if (btn) btn.classList.toggle('visible', window.scrollY > 300);
+  }
+
+  window.addEventListener('scroll', function() { updateToc(); updateBackToTop(); });
+
+  document.querySelectorAll('.toc-item').forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      var target = document.getElementById(this.getAttribute('href').substring(1));
+      if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 116, behavior: 'smooth' });
+    });
+  });
+
+  updateToc();
+
+  // Copy link
+  var copyBtn = document.getElementById('copyLinkBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      var url = window.location.href;
+      function flashCopied() {
+        copyBtn.classList.add('cta-copied');
+        setTimeout(function() { copyBtn.classList.remove('cta-copied'); }, 1500);
+      }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(flashCopied);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = url; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        flashCopied();
+      }
+    });
+  }
+</script>
+
 <script src="assets/lang/lang-loader.js"></script>
 </body>
 </html>
