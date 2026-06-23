@@ -1009,6 +1009,20 @@
         padding: 4px;
         border-radius: 4px;
       }
+
+      /* ── Tablet click-to-expand (mirrors :hover) ── */
+      .problems-tile-onboarding.is-expanded .problems-tile-inner         { height: 240px; }
+      .problems-tile-payroll.is-expanded .problems-tile-payroll-inner     { height: 240px; }
+      .problems-tile-timeoff.is-expanded .problems-tile-timeoff-inner     { height: 240px; }
+      .problems-tile-expense.is-expanded .problems-tile-expense-inner     { height: 240px; }
+      .problems-tile-nosvc.is-expanded .problems-tile-nosvc-inner         { height: 240px; }
+
+      /* Suppress sticky hover after click-collapse (tablet) */
+      .problems-tile-onboarding.is-closing:hover .problems-tile-inner       { height: 120px; }
+      .problems-tile-payroll.is-closing:hover .problems-tile-payroll-inner   { height: 120px; }
+      .problems-tile-timeoff.is-closing:hover .problems-tile-timeoff-inner   { height: 120px; }
+      .problems-tile-expense.is-closing:hover .problems-tile-expense-inner   { height: 120px; }
+      .problems-tile-nosvc.is-closing:hover .problems-tile-nosvc-inner       { height: 120px; }
     }
 
     /* ≤ 440px — Mobile single-column stack (Figma node 5435-7031) */
@@ -1317,6 +1331,25 @@
       .problems-tile-nosvc .problems-solution-card-label { font-size: 12px; line-height: 16px; }
       .problems-tile-nosvc .problems-solution-rows { gap: 4px; }
       .problems-tile-nosvc .problems-solution-row--nosvc { font-size: 12px; line-height: 16px; padding: 8px; border-radius: 6px; background: #019de7; }
+
+      /* Suppress sticky hover after click-collapse (mobile) */
+      .problems-tile-onboarding.is-closing:hover,
+      .problems-tile-payroll.is-closing:hover,
+      .problems-tile-timeoff.is-closing:hover,
+      .problems-tile-expense.is-closing:hover,
+      .problems-tile-nosvc.is-closing:hover { height: 100px; }
+
+      .problems-tile-onboarding.is-closing:hover .problems-bullet-list,
+      .problems-tile-payroll.is-closing:hover .problems-bullet-list,
+      .problems-tile-timeoff.is-closing:hover .problems-bullet-list,
+      .problems-tile-expense.is-closing:hover .problems-bullet-list,
+      .problems-tile-nosvc.is-closing:hover .problems-bullet-list { opacity: 0; transition: none; }
+
+      .problems-tile-onboarding.is-closing:hover .problems-solution-card,
+      .problems-tile-payroll.is-closing:hover .problems-solution-card--payroll,
+      .problems-tile-timeoff.is-closing:hover .problems-solution-card--timeoff,
+      .problems-tile-expense.is-closing:hover .problems-solution-card--expense,
+      .problems-tile-nosvc.is-closing:hover .problems-solution-card--nosvc { opacity: 0; transition: none; }
     }
 
     /* ════════════════════════════════════════
@@ -1426,6 +1459,24 @@
     }
     .services-card:hover .services-card-dash {
       width: 24px;
+    }
+
+    /* ── Services — Tablet (≤1100px, Figma 5480-7660) ── */
+    @media (max-width: 1100px) {
+      .services { padding: 32px 0; }
+      .services .container { width: calc(100% - 64px); max-width: none; }
+      .services-header { max-width: 506px; gap: 12px; margin-bottom: 60px; }
+      .services .section-label span { font-size: 8px; line-height: 12px; }
+      .services-title { font-size: 32px; line-height: 40px; }
+      .services-subtitle { font-size: 12px; line-height: 16px; letter-spacing: 0; max-width: 100%; }
+      .services-grid { row-gap: 16px; }
+      .services-card { padding: 16px; min-height: 220px; height: 220px; }
+      .services-card-top { gap: 16px; }
+      .services-card-icon { width: 24px; height: 24px; }
+      .services-card-title { font-size: 16px; line-height: 20px; }
+      .services-card-desc { font-size: 10px; line-height: 14px; letter-spacing: 0; }
+      .services-card-link { margin-top: 0; }
+      .services-card-link-text { font-size: 10px; line-height: 14px; }
     }
 
     /* ════════════════════════════════════════
@@ -3602,16 +3653,25 @@
 </script>
 
 <script>
-  /* ── Mobile problems tile tap-to-expand ── */
+  /* ── Mobile + Tablet problems tile tap-to-expand / click-to-collapse ── */
   (function() {
-    document.querySelectorAll('.problems-grid > .problems-tile').forEach(function(tile) {
+    var tiles = document.querySelectorAll('.problems-grid > .problems-tile');
+    tiles.forEach(function(tile) {
       tile.addEventListener('click', function() {
-        if (window.innerWidth > 440) return;
+        if (window.innerWidth > 1100) return;
         var isExpanded = tile.classList.contains('is-expanded');
-        document.querySelectorAll('.problems-grid > .problems-tile.is-expanded').forEach(function(t) {
+        tiles.forEach(function(t) {
           t.classList.remove('is-expanded');
+          t.classList.remove('is-closing');
         });
-        if (!isExpanded) tile.classList.add('is-expanded');
+        if (!isExpanded) {
+          tile.classList.add('is-expanded');
+        } else {
+          tile.classList.add('is-closing');
+        }
+      });
+      tile.addEventListener('mouseleave', function() {
+        tile.classList.remove('is-closing');
       });
     });
   })();
