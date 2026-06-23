@@ -31,7 +31,8 @@
       --label-top:      60px;
     }
 
-    body { font-family: var(--font); background: #fff; color: var(--text-main); min-width: 960px; overflow-x: hidden; }
+    html { overflow-x: hidden; }
+    body { font-family: var(--font); background: #0F1E46; color: var(--text-main); min-width: 320px; overflow-x: hidden; }
     .container { width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; }
     .section-label { display: flex; align-items: center; gap: 8px; }
     .section-label .line { width: 16px; height: 2px; background: currentColor; flex-shrink: 0; }
@@ -369,6 +370,7 @@
       letter-spacing: 0;
     }
     .hero-title .accent { color: var(--blue-main); }
+    .hero-title-br { display: none; }
     html[data-lang="cn"] .hero-title { display: flex; flex-wrap: wrap; align-items: baseline; }
     html[data-lang="cn"] .hero-title .accent { order: -1; }
     .hero-ctas {
@@ -417,6 +419,56 @@
     .btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
 
     /* ════════════════════════════════════════
+       HERO — TABLET (≤1100px)
+    ════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .hero { height: 400px; }
+      .hero-title-br { display: block; }
+      .hero-container .container { padding-top: 140px; }
+      .hero-content {
+        gap: 24px;
+        align-items: center;
+        width: 100%;
+      }
+      .hero-title {
+        font-size: clamp(32px, calc(18.67px + 3.03vw), 52px);
+        line-height: 1.27;
+        letter-spacing: -0.03em;
+        font-weight: 600;
+        text-align: center;
+      }
+      .hero-ctas { gap: 8px; justify-content: center; }
+      .btn-light,
+      .btn-clear {
+        height: 32px;
+        padding: 4px 16px;
+        font-size: 12px;
+        letter-spacing: 0;
+        gap: 4px;
+      }
+      .btn-icon { width: 16px; height: 16px; }
+    }
+
+    /* ════════════════════════════════════════
+       HERO — MOBILE (≤440px)
+    ════════════════════════════════════════ */
+    @media (max-width: 440px) {
+      .hero { height: 430px; }
+      .hero-container .container {
+        padding-top: 190px;
+        width: calc(100% - 48px);
+        max-width: none;
+      }
+      .hero-content { gap: 20px; }
+      .hero-title {
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: 0;
+        font-weight: 700;
+      }
+    }
+
+    /* ════════════════════════════════════════
        PROBLEMS SECTION
     ════════════════════════════════════════ */
     .problems {
@@ -429,15 +481,15 @@
       position: absolute;
       left: var(--gutter);
       top: 80px;
-      width: min(312px, calc(33.333% - var(--gutter) - 16px));
+      width: min(312px, calc(33.333% - var(--gutter) - 32px));
       z-index: 2;
       pointer-events: none;
     }
     .problems-title {
-      font-size: 48px;
+      font-size: clamp(40px, calc(14.12px + 2.353vw), 48px);
       font-weight: 600;
-      line-height: 60px;
-      letter-spacing: -2.4px;
+      line-height: 1.25;
+      letter-spacing: -0.05em;
       color: var(--text-main);
     }
     .problems-desc {
@@ -445,9 +497,9 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
-      font-size: 16px;
+      font-size: clamp(12px, calc(-0.94px + 1.176vw), 16px);
       font-weight: 400;
-      line-height: 20px;
+      line-height: 1.25;
       color: var(--text-tertiary);
     }
     .problems-grid {
@@ -734,35 +786,537 @@
        PROBLEMS — RESPONSIVE
     ════════════════════════════════════════ */
 
-    /* ≤ 1280px — slightly taller rows, tighter padding */
-    @media (max-width: 1280px) {
-      :root {
-        --row-h:       220px;
-        --tile-pad-h:  48px;
-      }
-    }
-
-    /* ≤ 1100px — noticeably taller rows, reduced padding */
+    /* ≤ 1100px — Tablet compact grid (Figma node 5453-5803) */
     @media (max-width: 1100px) {
       :root {
-        --row-h:       245px;
-        --tile-pad-h:  40px;
+        --row-h:      120px;
+        --tile-pad-h: 32px;
+        --label-top:  32px;
       }
-      .problems-title { font-size: 40px; line-height: 52px; }
+
+      .problems-text {
+        left: 32px;
+        top: 32px;
+        width: min(196px, calc(33.333% - 64px));
+      }
+
+      .problems-title {
+        font-size: clamp(20px, calc(12px + 1.818vw), 32px);
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: 0;
+      }
+
+      .problems-desc {
+        margin-top: 16px;
+        font-size: clamp(8px, calc(6.67px + 0.303vw), 10px);
+        line-height: 1.4;
+        gap: 8px;
+        color: #8F98B5;
+      }
+
+      .problems-tile-label {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
+      }
+
+      /* No Service inner — restore transition for dropdown */
+      .problems-tile-nosvc-inner {
+        height: 120px;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* No Service dropdown: expands to 240px (2 rows) on hover */
+      .problems-tile-nosvc:hover .problems-tile-nosvc-inner {
+        height: 240px;
+      }
+
+      /* No Service expanded content — tablet specs (Figma 5455-6037) */
+      .problems-tile-nosvc .problems-bullet-list {
+        font-size: 8px;
+        line-height: 12px;
+        margin-top: 8px;
+        padding-left: 12px;
+      }
+      .problems-tile-nosvc .problems-solution-card--nosvc {
+        margin-top: 8px;
+        padding: 4px;
+        gap: 4px;
+        border-radius: 4px;
+      }
+      .problems-tile-nosvc .problems-solution-card-label {
+        font-size: 8px;
+        line-height: 12px;
+      }
+      .problems-tile-nosvc .problems-solution-rows {
+        gap: 4px;
+      }
+      .problems-tile-nosvc .problems-solution-row--nosvc {
+        font-size: 8px;
+        line-height: 12px;
+        padding: 4px;
+        border-radius: 4px;
+      }
+
+      /* Expense inner — restore transition for drop-up */
+      .problems-tile-expense-inner {
+        height: 120px;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Expense drop-up: expands to 240px (2 rows) on hover */
+      .problems-tile-expense:hover .problems-tile-expense-inner {
+        height: 240px;
+      }
+
+      /* Expense expanded content — tablet specs (Figma 5455-6014) */
+      .problems-tile-expense .problems-bullet-list {
+        font-size: 8px;
+        line-height: 12px;
+        margin-top: 8px;
+        padding-left: 12px;
+      }
+      .problems-tile-expense .problems-solution-card--expense {
+        margin-top: 8px;
+        padding: 4px;
+        gap: 4px;
+      }
+      .problems-tile-expense .problems-solution-card-label {
+        font-size: 8px;
+        line-height: 12px;
+      }
+      .problems-tile-expense .problems-solution-rows {
+        gap: 4px;
+      }
+      .problems-tile-expense .problems-solution-row--expense {
+        font-size: 8px;
+        line-height: 12px;
+        padding: 4px;
+        border-radius: 4px;
+      }
+
+      /* Time-Off inner — restore transition for dropdown */
+      .problems-tile-timeoff-inner {
+        height: 120px;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Time-Off dropdown: expands to 240px (2 rows) on hover */
+      .problems-tile-timeoff:hover .problems-tile-timeoff-inner {
+        height: 240px;
+      }
+
+      /* Time-Off expanded content — tablet specs (Figma 5455-5991) */
+      .problems-tile-timeoff .problems-bullet-list {
+        font-size: 8px;
+        line-height: 12px;
+        margin-top: 8px;
+        padding-left: 12px;
+      }
+      .problems-tile-timeoff .problems-solution-card--timeoff {
+        margin-top: 8px;
+        padding: 4px;
+        gap: 4px;
+        border-radius: 4px;
+      }
+      .problems-tile-timeoff .problems-solution-card-label {
+        font-size: 8px;
+        line-height: 12px;
+      }
+      .problems-tile-timeoff .problems-solution-rows {
+        gap: 4px;
+      }
+      .problems-tile-timeoff .problems-solution-row--timeoff {
+        font-size: 8px;
+        line-height: 12px;
+        padding: 4px;
+        border-radius: 4px;
+      }
+
+      /* Payroll inner — restore transition for dropdown */
+      .problems-tile-payroll-inner {
+        height: 120px;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Payroll dropdown: expands to 240px (2 rows) on hover */
+      .problems-tile-payroll:hover .problems-tile-payroll-inner {
+        height: 240px;
+      }
+
+      /* Payroll expanded content — tablet specs (Figma 5455-5909) */
+      .problems-tile-payroll .problems-bullet-list {
+        font-size: 8px;
+        line-height: 12px;
+        margin-top: 8px;
+        padding-left: 12px;
+      }
+      .problems-tile-payroll .problems-solution-card--payroll {
+        margin-top: 8px;
+        padding: 4px;
+        gap: 4px;
+        border-radius: 4px;
+      }
+      .problems-tile-payroll .problems-solution-card-label {
+        font-size: 8px;
+        line-height: 12px;
+      }
+      .problems-tile-payroll .problems-solution-rows {
+        gap: 4px;
+      }
+      .problems-tile-payroll .problems-solution-row--payroll {
+        font-size: 8px;
+        line-height: 12px;
+        padding: 4px;
+        border-radius: 4px;
+      }
+
+      /* Onboarding inner — restore transition, base height 120px */
+      .problems-tile-inner {
+        height: 120px;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Onboarding drop-up: expands to 240px (2 rows) on hover */
+      .problems-tile-onboarding:hover .problems-tile-inner {
+        height: 240px;
+      }
+
+      /* Onboarding expanded content — tablet specs (Figma 5454-5832) */
+      .problems-tile-onboarding .problems-bullet-list {
+        font-size: 8px;
+        line-height: 12px;
+        margin-top: 8px;
+        padding-left: 12px;
+      }
+      .problems-tile-onboarding .problems-solution-card {
+        margin-top: 8px;
+        padding: 4px;
+        gap: 4px;
+        border-radius: 4px;
+      }
+      .problems-tile-onboarding .problems-solution-card-label {
+        font-size: 8px;
+        line-height: 12px;
+      }
+      .problems-tile-onboarding .problems-solution-rows {
+        gap: 4px;
+      }
+      .problems-tile-onboarding .problems-solution-row {
+        font-size: 8px;
+        line-height: 12px;
+        padding: 4px;
+        border-radius: 4px;
+      }
     }
 
-    /* ≤ 1024px — tallest rows, tightest padding */
-    @media (max-width: 1024px) {
-      :root {
-        --row-h:        270px;
-        --tile-pad-h:   32px;
-        --label-top:    44px;
+    /* ≤ 440px — Mobile single-column stack (Figma node 5435-7031) */
+    @media (max-width: 440px) {
+      /* Section: clear gradient — text box + tiles have own BG */
+      .problems {
+        background: #fff;
+        overflow: visible;
       }
-      .problems-text { top: 64px; }
-      .problems-title { font-size: 36px; line-height: 46px; letter-spacing: -1.8px; }
-      .problems-desc  { font-size: 14px; line-height: 18px; margin-top: 24px; gap: 16px; }
-      .problems-tile-label { font-size: 18px; line-height: 24px; }
-      .problems-bullet-list { font-size: 13px; line-height: 17px; }
+
+      /* Text box: static flow, full width, 160px, gradient per Figma */
+      .problems-text {
+        position: static;
+        width: 100%;
+        height: 160px;
+        box-sizing: border-box;
+        padding: 27px 24px;
+        background: linear-gradient(to bottom, #f4f4ff 49.112%, #ffffff 110.41%);
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        pointer-events: auto;
+        z-index: auto;
+      }
+
+      .problems-title {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 26px;
+        letter-spacing: 0;
+        color: #162351;
+      }
+
+      .problems-desc {
+        margin-top: 16px;
+        font-size: 12px;
+        line-height: 16px;
+        gap: 0;
+        color: #8F98B5;
+      }
+
+      /* Grid: single-column flex stack */
+      .problems-grid {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Hide empty placeholder tiles */
+      .problems-grid > .problems-tile:empty {
+        display: none;
+      }
+
+      /* All content tiles: full width, 100px */
+      .problems-grid > .problems-tile {
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Reorder to match Figma top-to-bottom sequence */
+      .problems-tile-onboarding { order: 1; }
+      .problems-tile-payroll    { order: 2; }
+      .problems-tile-timeoff    { order: 3; }
+      .problems-tile-expense    { order: 4; }
+      .problems-tile-nosvc      { order: 5; }
+
+      /* Colors per Figma */
+      .problems-tile-onboarding { background: #019DE7; }
+      .problems-tile-payroll    { background: #162351; }
+      .problems-tile-timeoff    { background: #019DE7; }
+      .problems-tile-expense    { background: #162351; }
+      .problems-tile-nosvc      { background: #019DE7; }
+
+      /* Label: 16px Bold, 32px from top, 24px from left */
+      .problems-tile-content {
+        padding: 32px 24px 20px;
+      }
+      .problems-tile-label {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+        color: #fff;
+      }
+
+      /* Lock all inner wrappers to 100px, no transitions */
+      .problems-tile-inner,
+      .problems-tile-payroll-inner,
+      .problems-tile-timeoff-inner,
+      .problems-tile-nosvc-inner,
+      .problems-tile-expense-inner {
+        height: 100px;
+        transition: none;
+      }
+
+      /* Disable hover expansions on mobile */
+      /* Onboarding inner uses auto (fills parent via top:0/bottom:0) — parent overflow clips it */
+      .problems-tile-onboarding:hover .problems-tile-inner { height: auto; }
+      /* All implemented tiles now have their own expand rules */
+
+      /* ── Onboarding: tap-to-expand dropdown (Figma 5435-7046) ── */
+      .problems-tile-onboarding {
+        cursor: pointer;
+        height: 100px;
+        overflow: hidden;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Re-anchor inner to top so content expands downward */
+      .problems-tile-onboarding .problems-tile-inner {
+        top: 0;
+        bottom: 0;
+        height: auto;
+        transition: none;
+      }
+
+      .problems-tile-onboarding:hover,
+      .problems-tile-onboarding.is-expanded {
+        height: 340px;
+      }
+
+      /* Bullet list: mobile sizing, opacity-hidden until expanded */
+      .problems-tile-onboarding .problems-bullet-list {
+        font-size: 12px;
+        line-height: 16px;
+        margin-top: 16px;
+        padding-left: 18px;
+        opacity: 0;
+        transition: opacity 0.2s ease 0s;
+      }
+      .problems-tile-onboarding.is-expanded .problems-bullet-list {
+        opacity: 1;
+        transition: opacity 0.25s ease 0.22s;
+      }
+
+      /* Solution card: mobile sizing */
+      .problems-tile-onboarding .problems-solution-card {
+        margin-top: 16px;
+        padding: 8px;
+        gap: 10px;
+        border-radius: 6px;
+        opacity: 0;
+        transition: opacity 0.2s ease 0s;
+      }
+      .problems-tile-onboarding.is-expanded .problems-solution-card {
+        opacity: 1;
+        transition: opacity 0.25s ease 0.28s;
+      }
+      .problems-tile-onboarding .problems-solution-card-label {
+        font-size: 12px;
+        line-height: 16px;
+      }
+      .problems-tile-onboarding .problems-solution-rows { gap: 4px; }
+      .problems-tile-onboarding .problems-solution-row {
+        font-size: 12px;
+        line-height: 16px;
+        padding: 8px;
+        border-radius: 6px;
+      }
+
+      /* ── Payroll: tap/hover dropdown (Figma 5435-7073) ── */
+      .problems-tile-payroll {
+        cursor: pointer;
+        height: 100px;
+        overflow: hidden;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .problems-tile-payroll .problems-tile-payroll-inner {
+        bottom: 0;
+        height: auto;
+        transition: none;
+      }
+      .problems-tile-payroll:hover,
+      .problems-tile-payroll.is-expanded {
+        height: 340px;
+      }
+      /* Hover fix — inner fills parent */
+      .problems-tile-payroll:hover .problems-tile-payroll-inner { height: auto; }
+
+      .problems-tile-payroll .problems-bullet-list {
+        font-size: 12px;
+        line-height: 16px;
+        margin-top: 16px;
+        padding-left: 18px;
+        opacity: 0;
+        transition: opacity 0.2s ease 0s;
+      }
+      .problems-tile-payroll:hover .problems-bullet-list,
+      .problems-tile-payroll.is-expanded .problems-bullet-list {
+        opacity: 1;
+        transition: opacity 0.25s ease 0.22s;
+      }
+      .problems-tile-payroll .problems-solution-card--payroll {
+        margin-top: 16px;
+        padding: 12px;
+        gap: 10px;
+        border-radius: 6px;
+        opacity: 0;
+        transition: opacity 0.2s ease 0s;
+      }
+      .problems-tile-payroll:hover .problems-solution-card--payroll,
+      .problems-tile-payroll.is-expanded .problems-solution-card--payroll {
+        opacity: 1;
+        transition: opacity 0.25s ease 0.28s;
+      }
+      .problems-tile-payroll .problems-solution-card-label {
+        font-size: 12px;
+        line-height: 16px;
+      }
+      .problems-tile-payroll .problems-solution-rows { gap: 4px; }
+      .problems-tile-payroll .problems-solution-row--payroll {
+        font-size: 12px;
+        line-height: 16px;
+        padding: 8px;
+        border-radius: 6px;
+      }
+
+      /* ── Time-Off: tap/hover dropdown (Figma 5435-7112) ── */
+      .problems-tile-timeoff {
+        cursor: pointer;
+        height: 100px;
+        overflow: hidden;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .problems-tile-timeoff .problems-tile-timeoff-inner {
+        bottom: 0;
+        height: auto;
+        transition: none;
+      }
+      .problems-tile-timeoff:hover,
+      .problems-tile-timeoff.is-expanded {
+        height: 340px;
+      }
+      .problems-tile-timeoff:hover .problems-tile-timeoff-inner { height: auto; }
+
+      .problems-tile-timeoff .problems-bullet-list {
+        font-size: 12px;
+        line-height: 16px;
+        margin-top: 16px;
+        padding-left: 18px;
+        opacity: 0;
+        transition: opacity 0.2s ease 0s;
+      }
+      .problems-tile-timeoff:hover .problems-bullet-list,
+      .problems-tile-timeoff.is-expanded .problems-bullet-list {
+        opacity: 1;
+        transition: opacity 0.25s ease 0.22s;
+      }
+      .problems-tile-timeoff .problems-solution-card--timeoff {
+        margin-top: 16px;
+        padding: 12px;
+        gap: 10px;
+        border-radius: 6px;
+        opacity: 0;
+        transition: opacity 0.2s ease 0s;
+      }
+      .problems-tile-timeoff:hover .problems-solution-card--timeoff,
+      .problems-tile-timeoff.is-expanded .problems-solution-card--timeoff {
+        opacity: 1;
+        transition: opacity 0.25s ease 0.28s;
+      }
+      .problems-tile-timeoff .problems-solution-card-label {
+        font-size: 12px;
+        line-height: 16px;
+      }
+      .problems-tile-timeoff .problems-solution-rows { gap: 4px; }
+      .problems-tile-timeoff .problems-solution-row--timeoff {
+        font-size: 12px;
+        line-height: 16px;
+        padding: 8px;
+        border-radius: 6px;
+      }
+
+      /* ── Expense expand (Figma 5435-7151) ── */
+      .problems-tile-expense {
+        cursor: pointer; height: 100px; overflow: hidden;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .problems-tile-expense .problems-tile-expense-inner { top: 0; bottom: 0; height: auto; transition: none; }
+      .problems-tile-expense:hover, .problems-tile-expense.is-expanded { height: 340px; }
+      .problems-tile-expense:hover .problems-tile-expense-inner { height: auto; }
+      .problems-tile-expense .problems-bullet-list { font-size: 12px; line-height: 16px; margin-top: 16px; padding-left: 18px; opacity: 0; transition: opacity 0.2s ease 0s; }
+      .problems-tile-expense:hover .problems-bullet-list,
+      .problems-tile-expense.is-expanded .problems-bullet-list { opacity: 1; transition: opacity 0.25s ease 0.22s; }
+      .problems-tile-expense .problems-solution-card--expense { margin-top: 16px; padding: 12px; gap: 10px; border-radius: 6px; opacity: 0; transition: opacity 0.2s ease 0s; }
+      .problems-tile-expense:hover .problems-solution-card--expense,
+      .problems-tile-expense.is-expanded .problems-solution-card--expense { opacity: 1; transition: opacity 0.25s ease 0.28s; }
+      .problems-tile-expense .problems-solution-card-label { font-size: 12px; line-height: 16px; }
+      .problems-tile-expense .problems-solution-rows { gap: 4px; }
+      .problems-tile-expense .problems-solution-row--expense { font-size: 12px; line-height: 16px; padding: 8px; border-radius: 6px; }
+
+      /* ── No Service expand (Figma 5435-7191) ── */
+      .problems-tile-nosvc {
+        cursor: pointer; height: 100px; overflow: hidden;
+        transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .problems-tile-nosvc .problems-tile-nosvc-inner { bottom: 0; height: auto; transition: none; }
+      .problems-tile-nosvc:hover, .problems-tile-nosvc.is-expanded { height: 340px; }
+      .problems-tile-nosvc:hover .problems-tile-nosvc-inner { height: auto; }
+      .problems-tile-nosvc .problems-bullet-list { font-size: 12px; line-height: 16px; margin-top: 16px; padding-left: 18px; opacity: 0; transition: opacity 0.2s ease 0s; }
+      .problems-tile-nosvc:hover .problems-bullet-list,
+      .problems-tile-nosvc.is-expanded .problems-bullet-list { opacity: 1; transition: opacity 0.25s ease 0.22s; }
+      .problems-tile-nosvc .problems-solution-card--nosvc { margin-top: 16px; padding: 12px; gap: 10px; border-radius: 6px; background: #5abfef; opacity: 0; transition: opacity 0.2s ease 0s; }
+      .problems-tile-nosvc:hover .problems-solution-card--nosvc,
+      .problems-tile-nosvc.is-expanded .problems-solution-card--nosvc { opacity: 1; transition: opacity 0.25s ease 0.28s; }
+      .problems-tile-nosvc .problems-solution-card-label { font-size: 12px; line-height: 16px; }
+      .problems-tile-nosvc .problems-solution-rows { gap: 4px; }
+      .problems-tile-nosvc .problems-solution-row--nosvc { font-size: 12px; line-height: 16px; padding: 8px; border-radius: 6px; background: #019de7; }
     }
 
     /* ════════════════════════════════════════
@@ -1399,7 +1953,7 @@
     .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
     .footer-legal a:hover { text-decoration: underline; }
     @media (max-width: 1100px) {
-      .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
+      .footer { padding: 60px 32px 32px; width: 100%; max-width: 100%; box-sizing: border-box; }
       .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
       .footer-top { margin-bottom: 60px; }
       .footer-logo { width: 171px; }
@@ -1415,7 +1969,7 @@
     /* ════════════════════════════════════════
        MOBILE FOOTER (≤440px)
     ════════════════════════════════════════ */
-    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100vw; box-sizing: border-box; }
+    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100%; box-sizing: border-box; }
     .footer-mob-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px 24px 0; }
     .footer-mob-logo { display: block; width: 142px; height: 40px; flex-shrink: 0; text-decoration: none; }
     .footer-mob-logo img { width: 142px; height: 40px; display: block; object-fit: contain; }
@@ -2076,7 +2630,7 @@
     <div class="container">
       <div class="hero-content fade-in">
         <h1 class="hero-title">
-          <span data-i18n="hero.title.main">Scale your global workforce </span><span class="accent" data-i18n="hero.title.accent">today</span>
+          <span data-i18n="hero.title.part1">Scale your global</span><br class="hero-title-br"><span data-i18n="hero.title.part2"> workforce </span><span class="accent" data-i18n="hero.title.accent">today</span>
         </h1>
         <div class="hero-ctas">
           <a href="#marco-services" class="btn-light" id="hero-explore-services-btn">
@@ -3042,6 +3596,22 @@
     document.querySelectorAll('[data-footer-mob-acc]').forEach(function(header) {
       header.addEventListener('click', function() {
         header.closest('.footer-mob-row').classList.toggle('is-open');
+      });
+    });
+  })();
+</script>
+
+<script>
+  /* ── Mobile problems tile tap-to-expand ── */
+  (function() {
+    document.querySelectorAll('.problems-grid > .problems-tile').forEach(function(tile) {
+      tile.addEventListener('click', function() {
+        if (window.innerWidth > 440) return;
+        var isExpanded = tile.classList.contains('is-expanded');
+        document.querySelectorAll('.problems-grid > .problems-tile.is-expanded').forEach(function(t) {
+          t.classList.remove('is-expanded');
+        });
+        if (!isExpanded) tile.classList.add('is-expanded');
       });
     });
   })();

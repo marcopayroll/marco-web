@@ -97,7 +97,8 @@ window.MARCO_LANG_CN = {
 	"nav.dd.contact.desc": "与 Marco 团队取得联系",
 
 	/* ── Hero ── */
-	"hero.title.main": "开启全球用工新时代",
+	"hero.title.part1": "开启全球用工新时代",
+	"hero.title.part2": "",
 	"hero.title.accent": "就在此刻",
 	"btn.explore_services": "探索服务",
 	"btn.marco_os": "Marco OS",

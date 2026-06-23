@@ -1,7 +1,8 @@
 window.MARCO_LANG_EN_INDEX = {
 
   /* ── Hero ── */
-  "hero.title.main": "Scale your global workforce ",
+  "hero.title.part1": "Scale your global",
+  "hero.title.part2": " workforce ",
   "hero.title.accent": "today",
   "btn.explore_services": "Explore Services",
   "btn.marco_os": "Marco OS",
