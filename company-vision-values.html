@@ -23,8 +23,8 @@
       --gutter:        clamp(64px, 7.5vw, 108px);
       --nav-gutter:    clamp(32px, 4.44vw, 64px);
       --footer-gutter: clamp(40px, 5.56vw, 80px);
-      /* thumbnail columns bleed to viewport edge: 604/1440 */
-      --thumb-width:   41.94%;
+      /* thumbnail columns bleed to viewport edge: 708/1440 (600px in container) */
+      --thumb-width:   49.17%;
       --thumb-gap:     24px;
     }
 
@@ -495,7 +495,7 @@
        Uses vw units (not %) so it scales against the viewport, not the container.
        Bleed = max(gutter, auto-margin) → image always reaches viewport edge. */
     .vision-image {
-      flex: 0 0 41.94vw;
+      flex: 0 0 calc(600px + max(var(--gutter), (100vw - 1224px) / 2));
       margin-left: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
       margin-right: var(--thumb-gap);
       position: relative;
@@ -513,7 +513,7 @@
        container already provides correct 1224px grid alignment */
     .vision-text {
       flex: 1;
-      padding: 63px 0;
+      padding: 53px 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
