@@ -31,9 +31,7 @@
 
 body {
   font-family: var(--font);
-  background: #fff;
   color: var(--text-main);
-  min-width: 960px;
 }
 
 /* ─── CONTENT CONTAINER ─── */
