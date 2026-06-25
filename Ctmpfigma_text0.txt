@@ -1,0 +1,1018 @@
+<frame id="5575:9714" name="container" x="420" y="80" width="832" height="5796">
+  <frame id="5575:10686" name="data row" x="0" y="0" width="832" height="120">
+    <frame id="5575:10687" name="data card" x="0" y="0" width="264" height="120">
+      <text id="5575:10688" name="National Living Wage (21+)" x="16" y="16" width="232" height="16" />
+      <frame id="5575:10689" name="row" x="16" y="40" width="120" height="40">
+        <text id="5575:10690" name="£12.71" x="0" y="0" width="89" height="40" />
+        <text id="5575:10691" name="/ hr" x="93" y="10" width="27" height="20" />
+      </frame>
+      <text id="5575:10692" name="From April 2026 (+4.1%)" x="16" y="88" width="232" height="16" />
+    </frame>
+    <frame id="5575:10693" name="data card" x="284" y="0" width="264" height="120">
+      <text id="5575:10694" name="Median Full-Time Salary" x="16" y="16" width="232" height="16" />
+      <frame id="5575:10695" name="row" x="16" y="40" width="151" height="40">
+        <text id="5575:10696" name="£39,039" x="0" y="0" width="121" height="40" />
+        <text id="5575:10697" name="/ yr" x="125" y="10" width="26" height="20" />
+      </frame>
+      <text id="5575:10698" name="ONS ASHE April 2025" x="16" y="88" width="232" height="16" />
+    </frame>
+    <frame id="5575:10699" name="data card" x="568" y="0" width="264" height="120">
+      <text id="5575:10700" name="CPI Inflation Rate" x="16" y="16" width="232" height="16" />
+      <frame id="5575:10701" name="row" x="16" y="40" width="80" height="40">
+        <text id="5575:10702" name="3.4%" x="0" y="0" width="80" height="40" />
+        <text id="5575:10703" name="/ 年" x="79" y="13" width="28" height="20" hidden="true" />
+      </frame>
+      <text id="5575:10704" name="Q4 2025 Average" x="16" y="88" width="232" height="16" />
+    </frame>
+  </frame>
+  <frame id="5575:9715" name="container" x="0" y="180" width="832" height="356">
+    <frame id="5575:9716" name="title" x="0" y="0" width="832" height="56">
+      <text id="5575:9717" name="Cost of Living" x="0" y="8" width="832" height="40" />
+      <text id="5575:9718" name="description" x="0" y="56" width="808" height="24" hidden="true" />
+    </frame>
+    <frame id="5575:10816" name="container" x="0" y="80" width="832" height="276">
+      <frame id="5575:9719" name="content" x="0" y="0" width="832" height="50">
+        <text id="5575:9720" name="City Cost Levels London / Manchester" x="0" y="0" width="832" height="26" />
+        <text id="5575:10738" name="The following are publicly available cost data for reference only (GBP)" x="0" y="30" width="832" height="20" />
+      </frame>
+      <frame id="5575:10706" name="table" x="0" y="66" width="832" height="210">
+        <frame id="5575:10707" name="row" x="0" y="0" width="832" height="40">
+          <frame id="5575:10708" name="box" x="0" y="0" width="416" height="40">
+            <text id="5575:10709" name="Expense Category" x="12" y="11" width="392" height="18" />
+          </frame>
+          <frame id="5575:10710" name="box" x="416" y="0" width="416" height="40">
+            <text id="5575:10711" name="Reference Price (GBP)" x="12" y="11" width="392" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:10712" name="row" x="0" y="40" width="832" height="34">
+          <frame id="5575:10713" name="box" x="0" y="0" width="416" height="34">
+            <text id="5575:10714" name="Lunch set (city centre)" x="12" y="8" width="392" height="18" />
+          </frame>
+          <frame id="5575:10715" name="box" x="416" y="0" width="416" height="34">
+            <text id="5575:10716" name="approx. £8 – £15" x="12" y="8" width="392" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:10717" name="row" x="0" y="74" width="832" height="34">
+          <frame id="5575:10718" name="box" x="0" y="0" width="416" height="34">
+            <text id="5575:10719" name="Monthly public transport pass (London Zone 1–3)" x="12" y="8" width="392" height="18" />
+          </frame>
+          <frame id="5575:10720" name="box" x="416" y="0" width="416" height="34">
+            <text id="5575:10721" name="approx. £180 – £220" x="12" y="8" width="392" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:10722" name="row" x="0" y="108" width="832" height="34">
+          <frame id="5575:10723" name="box" x="0" y="0" width="416" height="34">
+            <text id="5575:10724" name="2-bed city centre rent / month (London)" x="12" y="8" width="392" height="18" />
+          </frame>
+          <frame id="5575:10725" name="box" x="416" y="0" width="416" height="34">
+            <text id="5575:10726" name="approx. £2,200 – £3,500" x="12" y="8" width="392" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:10727" name="row" x="0" y="142" width="832" height="34">
+          <frame id="5575:10728" name="box" x="0" y="0" width="416" height="34">
+            <text id="5575:10729" name="2-bed city centre rent / month (Manchester)" x="12" y="8" width="392" height="18" />
+          </frame>
+          <frame id="5575:10730" name="box" x="416" y="0" width="416" height="34">
+            <text id="5575:10731" name="approx. £1,200 – £1,800" x="12" y="8" width="392" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:10732" name="row" x="0" y="176" width="832" height="34">
+          <frame id="5575:10733" name="box" x="0" y="0" width="416" height="34">
+            <text id="5575:10734" name="Minimum single-person monthly expenses" x="12" y="8" width="392" height="18" />
+          </frame>
+          <frame id="5575:10735" name="box" x="416" y="0" width="416" height="34">
+            <text id="5575:10736" name="approx. £1,500 (outside London) / £2,200+ (London)" x="12" y="8" width="392" height="18" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+  <frame id="5575:10740" name="container" x="0" y="596" width="832" height="612">
+    <frame id="5575:10741" name="title" x="0" y="0" width="832" height="56">
+      <text id="5575:10742" name="Salary Benchmark" x="0" y="8" width="832" height="40" />
+      <text id="5575:10743" name="description" x="0" y="56" width="808" height="24" hidden="true" />
+    </frame>
+    <frame id="5575:10898" name="content" x="0" y="80" width="832" height="532">
+      <frame id="5575:10817" name="container" x="0" y="0" width="832" height="218">
+        <frame id="5575:10744" name="content" x="0" y="0" width="832" height="26">
+          <text id="5575:10745" name="National Minimum Wage/ National Living Wage" x="0" y="0" width="832" height="26" />
+          <text id="5575:10746" name="The following are publicly available cost data for reference only (GBP)" x="0" y="30" width="808" height="20" hidden="true" />
+        </frame>
+        <frame id="5575:10779" name="table" x="0" y="42" width="832" height="176">
+          <frame id="5575:10780" name="row" x="0" y="0" width="832" height="40">
+            <frame id="5575:10781" name="box" x="0" y="0" width="277.3333435058594" height="40">
+              <text id="5575:10782" name="Age Group" x="12" y="11" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10783" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="40">
+              <text id="5575:10784" name="Hourly Rate (from April 2026)" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10785" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="40">
+              <text id="5575:10786" name="Increase" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:10787" name="row" x="0" y="40" width="832" height="34">
+            <frame id="5575:10788" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:10789" name="21 and above (NLW)" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10790" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10791" name="£12.71" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10792" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10793" name="+4.1%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:10794" name="row" x="0" y="74" width="832" height="34">
+            <frame id="5575:10795" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:10796" name="18 - 20 years" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10797" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10798" name="£10.85" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10799" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10800" name="+8.5%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:10801" name="row" x="0" y="108" width="832" height="34">
+            <frame id="5575:10802" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:10803" name="16 - 17 years/ Apprentices" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10804" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10805" name="£8.00" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10806" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10807" name="+6.0%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:10808" name="row" x="0" y="142" width="832" height="34">
+            <frame id="5575:10809" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:10810" name="Real Living Wage (voluntary)" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10811" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10812" name="£13.45 / £14.80 (London)" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10813" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10814" name="-" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="5575:10818" name="container" x="0" y="258" width="832" height="274">
+        <frame id="5575:10819" name="content" x="0" y="0" width="832" height="26">
+          <text id="5575:10820" name="Median Salary - By Job Level" x="0" y="0" width="832" height="26" />
+          <text id="5575:10821" name="The following are publicly available cost data for reference only (GBP)" x="0" y="30" width="808" height="20" hidden="true" />
+        </frame>
+        <frame id="5575:10859" name="table" x="0" y="42" width="832" height="176">
+          <frame id="5575:10860" name="row" x="0" y="0" width="832" height="40">
+            <frame id="5575:10861" name="box" x="0" y="0" width="277.3333435058594" height="40">
+              <text id="5575:10862" name="Level" x="12" y="11" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10863" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="40">
+              <text id="5575:10864" name="Annual Salary (GBP, pre-tax)" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10865" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="40">
+              <text id="5575:10866" name="Monthly Reference" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:10867" name="row" x="0" y="40" width="832" height="34">
+            <frame id="5575:10868" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:10869" name="Graduate" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10870" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10871" name="£24,000 - £30,000" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10872" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10873" name="£2,000 – £2,500" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:10874" name="row" x="0" y="74" width="832" height="34">
+            <frame id="5575:10875" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:10876" name="Mid-level (3-5 years)" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10877" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10878" name="£32,000 – £42,000" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10879" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10880" name="£2,667 – £3,500" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:10881" name="row" x="0" y="108" width="832" height="34">
+            <frame id="5575:10882" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:10883" name="Senior/ Mid-Management" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10884" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10885" name="£45,000 – £65,000" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10886" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10887" name="£3,750 – £5,417" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:10888" name="row" x="0" y="142" width="832" height="34">
+            <frame id="5575:10889" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:10890" name="Director/ Senior Management" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10891" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10892" name="£70,000 – £120,000+" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10893" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10894" name="£5,833+" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+        </frame>
+        <text id="5575:10896" name="Annual salary growth rate: approx. 3 – 5% (2025 – 2026); London finance / tech sector salaries are significantly above the national median" x="0" y="234" width="832" height="40" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="5575:10899" name="container" x="0" y="1268" width="832" height="786">
+    <frame id="5575:10900" name="title" x="0" y="0" width="832" height="56">
+      <text id="5575:10901" name="Statutory Benefits" x="0" y="8" width="832" height="40" />
+      <text id="5575:10902" name="description" x="0" y="56" width="808" height="24" hidden="true" />
+    </frame>
+    <frame id="5575:10903" name="content" x="0" y="80" width="832" height="706">
+      <frame id="5575:10904" name="container" x="0" y="0" width="832" height="276">
+        <frame id="5575:10905" name="content" x="0" y="0" width="832" height="50">
+          <text id="5575:10907" name="Main statutory employer social security costs in the UK: National Insurance + Workplace Pension" x="0" y="0" width="832" height="20" />
+          <text id="5575:10906" name="Employer National Insurance (Class 1 Secondary)" x="0" y="24" width="832" height="26" />
+        </frame>
+        <frame id="5575:10986" name="table" x="0" y="66" width="832" height="210">
+          <frame id="5575:10987" name="row" x="0" y="0" width="832" height="40">
+            <frame id="5575:10988" name="box" x="0" y="0" width="277.3333435058594" height="40">
+              <text id="5575:10989" name="Item" x="12" y="11" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10990" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="40">
+              <text id="5575:10991" name="Rate / Amount" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10992" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="40">
+              <text id="5575:10993" name="Notes" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:10994" name="row" x="0" y="40" width="832" height="34">
+            <frame id="5575:10995" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:10996" name="Employer NI Rate" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:10997" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:10998" name="15%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:10999" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11000" name="From 2025/26 (previously 13.8%)" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11001" name="row" x="0" y="74" width="832" height="34">
+            <frame id="5575:11002" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11003" name="Secondary Threshold" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11004" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11005" name="£5,000 / year" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11006" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11007" name="NI applies on earnings above this" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11008" name="row" x="0" y="108" width="832" height="34">
+            <frame id="5575:11009" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11010" name="Employment Allowance" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11011" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11012" name="£10,500 / year" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11013" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11014" name="Eligible employers can offset" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11015" name="row" x="0" y="142" width="832" height="34">
+            <frame id="5575:11016" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11017" name="Employee NI Rate" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11018" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11019" name="8% + 2% (above UEL)" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11020" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11021" name="£242 – £967/week: main rate 8%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11022" name="row" x="0" y="176" width="832" height="34">
+            <frame id="5575:11023" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11024" name="Upper Earnings Limit" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11025" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11026" name="£50,270 / year" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11027" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11028" name="Employees pay 2% above this" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="5575:10944" name="container" x="0" y="316" width="832" height="184">
+        <frame id="5575:10945" name="content" x="0" y="0" width="832" height="26">
+          <text id="5575:10946" name="Workplace Pension (Auto-Enrolment)" x="0" y="0" width="832" height="26" />
+          <text id="5575:10947" name="The following are publicly available cost data for reference only (GBP)" x="0" y="30" width="808" height="20" hidden="true" />
+        </frame>
+        <frame id="5575:11030" name="table" x="0" y="42" width="832" height="142">
+          <frame id="5575:11031" name="row" x="0" y="0" width="832" height="40">
+            <frame id="5575:11032" name="box" x="0" y="0" width="277.3333435058594" height="40">
+              <text id="5575:11033" name="Party" x="12" y="11" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11034" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="40">
+              <text id="5575:11035" name="Minimum Contribution" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11036" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="40">
+              <text id="5575:11037" name="Notes" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11038" name="row" x="0" y="40" width="832" height="34">
+            <frame id="5575:11039" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11040" name="Employer" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11041" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11042" name="3%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11043" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11044" name="Based on Qualifying Earnings" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11045" name="row" x="0" y="74" width="832" height="34">
+            <frame id="5575:11046" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11047" name="Employee" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11048" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11049" name="5% (incl. 1% tax relief)" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11050" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11051" name="Can opt out" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11052" name="row" x="0" y="108" width="832" height="34">
+            <frame id="5575:11053" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11054" name="Combined minimum" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11055" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11056" name="8%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11057" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11058" name="Qualifying Earnings: £6,240 – £50,270" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="5575:11060" name="container" x="0" y="540" width="832" height="166">
+        <text id="5575:11061" name="Common Benefits" x="0" y="0" width="832" height="26" />
+        <frame id="5575:11062" name="container" x="0" y="34" width="832" height="132">
+          <frame id="5575:11063" name="row" x="0" y="0" width="832" height="20">
+            <frame id="5575:11064" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11065" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11066" name="Private Medical Insurance (PMI): approx. 40 – 60% of employers provide, especially mid-large companies" x="38" y="0" width="794" height="20" />
+          </frame>
+          <frame id="5575:11067" name="row" x="0" y="28" width="832" height="20">
+            <frame id="5575:11068" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11069" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11070" name="Life Insurance (Death in Service): typically 2 – 4× annual salary" x="38" y="0" width="794" height="20" />
+          </frame>
+          <frame id="5575:11071" name="row" x="0" y="56" width="832" height="20">
+            <frame id="5575:11072" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11073" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11074" name="Cycle to Work Scheme: tax-free bicycle purchase scheme" x="38" y="0" width="794" height="20" />
+          </frame>
+          <frame id="5575:11075" name="row" x="0" y="84" width="832" height="20">
+            <frame id="5575:11076" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11077" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11078" name="Enhanced Maternity / Paternity Pay: above statutory minimum pay" x="38" y="0" width="794" height="20" />
+          </frame>
+          <frame id="5575:11079" name="row" x="0" y="112" width="832" height="20">
+            <frame id="5575:11080" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11081" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11082" name="Employee Assistance Programme (EAP): mental health support" x="38" y="0" width="794" height="20" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+  <frame id="5575:11084" name="container" x="0" y="2114" width="832" height="452">
+    <frame id="5575:11085" name="title" x="0" y="0" width="832" height="56">
+      <text id="5575:11086" name="Income Tax (PAYE)" x="0" y="8" width="832" height="40" />
+      <text id="5575:11087" name="description" x="0" y="56" width="808" height="24" hidden="true" />
+    </frame>
+    <frame id="5575:11088" name="content" x="0" y="80" width="832" height="372">
+      <frame id="5575:11193" name="container" x="0" y="0" width="832" height="48">
+        <text id="5575:11194" name="Title" x="0" y="0" width="1108" height="25" hidden="true" />
+        <frame id="5575:11195" name="container" x="0" y="0" width="832" height="48">
+          <frame id="5575:11196" name="row" x="0" y="0" width="832" height="20">
+            <frame id="5575:11197" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11198" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11199" name="UK tax residents must pay Income Tax; employers withhold and remit via the PAYE system" x="38" y="0" width="794" height="20" />
+          </frame>
+          <frame id="5575:11200" name="row" x="0" y="28" width="832" height="20">
+            <frame id="5575:11201" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11202" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11203" name="Tax year: 6 April to 5 April the following year; Personal Allowance frozen until 2028" x="38" y="0" width="794" height="20" />
+          </frame>
+        </frame>
+      </frame>
+      <frame id="5575:11204" name="container" x="0" y="88" width="832" height="284">
+        <frame id="5575:11205" name="table" x="0" y="0" width="832" height="228">
+          <frame id="5575:11206" name="row" x="0" y="0" width="832" height="40">
+            <frame id="5575:11207" name="box" x="0" y="0" width="277.3333435058594" height="40">
+              <text id="5575:11208" name="Annual Taxable Income (GBP)" x="12" y="11" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11209" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="40">
+              <text id="5575:11210" name="Tax Rate" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11211" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="40">
+              <text id="5575:11212" name="Notes" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11213" name="row" x="0" y="40" width="832" height="34">
+            <frame id="5575:11214" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11215" name="0 – £12,570" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11216" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11217" name="0%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11218" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11219" name="Personal Allowance (tax-free)" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11220" name="row" x="0" y="74" width="832" height="34">
+            <frame id="5575:11221" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11222" name="£12,571 – £50,270" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11223" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11224" name="20%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11225" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11226" name="Basic Rate" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11227" name="row" x="0" y="108" width="832" height="34">
+            <frame id="5575:11228" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11229" name="£50,271 – £125,140" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11230" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11231" name="40%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11232" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11233" name="Higher Rate" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11234" name="row" x="0" y="142" width="832" height="34">
+            <frame id="5575:11235" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11236" name="£125,141+" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11237" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11238" name="45%" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11239" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11240" name="Additional Rate" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11241" name="row" x="0" y="176" width="832" height="52">
+            <frame id="5575:11242" name="box" x="0" y="9" width="277.3333435058594" height="34">
+              <text id="5575:11243" name="Income &gt; £100,000" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11244" name="box" x="277.3333435058594" y="9" width="277.33331298828125" height="34">
+              <text id="5575:11245" name="Tapered allowance reduction" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11246" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="52">
+              <text id="5575:11247" name="Allowance reduced by £1 for every £2 over" x="12" y="8" width="253.33331298828125" height="36" />
+            </frame>
+          </frame>
+        </frame>
+        <text id="5575:11248" name="Scotland applies different rates (Starter 19% / Basic 20% / Intermediate 21% / Higher 42% / Advanced 45% / Top 48%)" x="0" y="244" width="832" height="40" />
+      </frame>
+    </frame>
+  </frame>
+  <frame id="5575:11250" name="container" x="0" y="2626" width="832" height="512">
+    <frame id="5575:11251" name="title" x="0" y="0" width="832" height="56">
+      <text id="5575:11252" name="Working Hours" x="0" y="8" width="832" height="40" />
+      <text id="5575:11253" name="description" x="0" y="56" width="808" height="24" hidden="true" />
+    </frame>
+    <frame id="5575:11254" name="content" x="0" y="80" width="832" height="432">
+      <frame id="5575:11312" name="container" x="0" y="0" width="832" height="262">
+        <frame id="5575:11313" name="table" x="0" y="0" width="832" height="262">
+          <frame id="5575:11314" name="row" x="0" y="0" width="832" height="40">
+            <frame id="5575:11315" name="box" x="0" y="0" width="277.3333435058594" height="40">
+              <text id="5575:11316" name="Item" x="12" y="11" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11317" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="40">
+              <text id="5575:11318" name="Statutory Requirement" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11319" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="40">
+              <text id="5575:11320" name="Market Practice" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11321" name="row" x="0" y="40" width="832" height="34">
+            <frame id="5575:11322" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11323" name="Maximum weekly hours" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11324" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11325" name="48 hours ( Working Time Regs)" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11326" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11327" name="37.5 - 40 hours" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11328" name="row" x="0" y="74" width="832" height="52">
+            <frame id="5575:11329" name="box" x="0" y="9" width="277.3333435058594" height="34">
+              <text id="5575:11330" name="Opt-out agreement" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11331" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="52">
+              <text id="5575:11332" name="Employee may voluntarily sign to exceed 48h" x="12" y="8" width="253.33331298828125" height="36" />
+            </frame>
+            <frame id="5575:11333" name="box" x="554.6666259765625" y="9" width="277.33331298828125" height="34">
+              <text id="5575:11334" name="Common in some industries" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11335" name="row" x="0" y="126" width="832" height="34">
+            <frame id="5575:11336" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11337" name="Daily rest" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11338" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11339" name="11 consecutive hours/ 24 hours" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11340" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11341" name="-" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11342" name="row" x="0" y="160" width="832" height="34">
+            <frame id="5575:11343" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11344" name="Weekly rest" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11345" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11346" name="At least 24 hours per 7 days" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11347" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11348" name="Usually weekends off" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11349" name="row" x="0" y="194" width="832" height="34">
+            <frame id="5575:11350" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11351" name="Rest breaks" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11352" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11353" name="At least 20 minutes per 6 hours" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11354" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11355" name="-" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11356" name="row" x="0" y="228" width="832" height="34">
+            <frame id="5575:11357" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11358" name="Night work limit" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11359" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11360" name="Average 8 hours/ 24 hours" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11361" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11362" name="-" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+        </frame>
+      </frame>
+      <frame id="5575:11363" name="container" x="0" y="302" width="832" height="130">
+        <text id="5575:11364" name="Overtime" x="0" y="0" width="832" height="26" />
+        <frame id="5575:11365" name="container" x="0" y="34" width="832" height="96">
+          <frame id="5575:11366" name="row" x="0" y="0" width="832" height="40">
+            <frame id="5575:11367" name="bullet point" x="0" y="10" width="32" height="20">
+              <rounded-rectangle id="5575:11368" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11369" name="UK law does not mandate overtime pay; governed by employment contract (typically 1.5× or Time Off In Lieu – TOIL)" x="38" y="0" width="794" height="40" />
+          </frame>
+          <frame id="5575:11370" name="row" x="0" y="48" width="832" height="20">
+            <frame id="5575:11371" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11372" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11373" name="Hourly rate after overtime must not fall below the National Minimum Wage" x="38" y="0" width="794" height="20" />
+          </frame>
+          <frame id="5575:11374" name="row" x="0" y="76" width="832" height="20">
+            <frame id="5575:11375" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11376" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11377" name="Bank Holiday work: no statutory overtime pay; determined by contract (typically 1.5× – 2×)" x="38" y="0" width="794" height="20" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+  <frame id="5575:11379" name="container" x="0" y="3198" width="832" height="756">
+    <frame id="5575:11380" name="title" x="0" y="0" width="832" height="56">
+      <text id="5575:11381" name="Employment Contract" x="0" y="8" width="832" height="40" />
+      <text id="5575:11382" name="description" x="0" y="56" width="808" height="24" hidden="true" />
+    </frame>
+    <frame id="5575:11383" name="content" x="0" y="80" width="832" height="676">
+      <frame id="5575:11451" name="container" x="0" y="0" width="832" height="212">
+        <frame id="5575:11452" name="table" x="0" y="0" width="832" height="176">
+          <frame id="5575:11453" name="row" x="0" y="0" width="832" height="40">
+            <frame id="5575:11454" name="box" x="0" y="0" width="208" height="40">
+              <text id="5575:11455" name="Contract Type" x="12" y="11" width="184" height="18" />
+            </frame>
+            <frame id="5575:11456" name="box" x="208" y="0" width="208" height="40">
+              <text id="5575:11457" name="Format" x="12" y="11" width="184" height="18" />
+            </frame>
+            <frame id="5575:11458" name="box" x="416" y="0" width="208" height="40">
+              <text id="5575:11459" name="Currency" x="12" y="11" width="184" height="18" />
+            </frame>
+            <frame id="5575:11460" name="box" x="624" y="0" width="208" height="40">
+              <text id="5575:11461" name="Probation" x="12" y="11" width="184" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11462" name="row" x="0" y="40" width="832" height="34">
+            <frame id="5575:11463" name="box" x="0" y="0" width="208" height="34">
+              <text id="5575:11464" name="Permanent" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11465" name="box" x="208" y="0" width="208" height="34">
+              <text id="5575:11466" name="Written Statement" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11467" name="box" x="416" y="0" width="208" height="34">
+              <text id="5575:11468" name="GBP" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11469" name="box" x="624" y="0" width="208" height="34">
+              <text id="5575:11470" name="3 - 6 months" x="12" y="8" width="184" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11471" name="row" x="0" y="74" width="832" height="34">
+            <frame id="5575:11472" name="box" x="0" y="0" width="208" height="34">
+              <text id="5575:11473" name="Fixed-Term" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11474" name="box" x="208" y="0" width="208" height="34">
+              <text id="5575:11475" name="Written contract" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11476" name="box" x="416" y="0" width="208" height="34">
+              <text id="5575:11477" name="GBP" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11478" name="box" x="624" y="0" width="208" height="34">
+              <text id="5575:11479" name="-" x="12" y="8" width="184" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11480" name="row" x="0" y="108" width="832" height="34">
+            <frame id="5575:11481" name="box" x="0" y="0" width="208" height="34">
+              <text id="5575:11482" name="Zero-Hours" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11483" name="box" x="208" y="0" width="208" height="34">
+              <text id="5575:11484" name="Written contract" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11485" name="box" x="416" y="0" width="208" height="34">
+              <text id="5575:11486" name="GBP" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11487" name="box" x="624" y="0" width="208" height="34">
+              <text id="5575:11488" name="-" x="12" y="8" width="184" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11489" name="row" x="0" y="142" width="832" height="34">
+            <frame id="5575:11490" name="box" x="0" y="0" width="208" height="34">
+              <text id="5575:11491" name="Agency Workers" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11492" name="box" x="208" y="0" width="208" height="34">
+              <text id="5575:11493" name="Signed via agency" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11494" name="box" x="416" y="0" width="208" height="34">
+              <text id="5575:11495" name="GBP" x="12" y="8" width="184" height="18" />
+            </frame>
+            <frame id="5575:11496" name="box" x="624" y="0" width="208" height="34">
+              <text id="5575:11497" name="Equal right after 12 weeks" x="12" y="8" width="184" height="18" />
+            </frame>
+          </frame>
+        </frame>
+        <text id="5575:11498" name="From April 2020, employers must provide a Written Statement of Particulars on the first day of employment" x="0" y="192" width="832" height="20" />
+      </frame>
+      <frame id="5575:11499" name="container" x="0" y="252" width="832" height="254">
+        <frame id="5575:11500" name="title" x="0" y="0" width="832" height="26">
+          <text id="5575:11501" name="Statutory Notice Periods" x="0" y="0" width="832" height="26" />
+          <text id="5575:11502" name="title description" x="0" y="30" width="1108" height="20" hidden="true" />
+        </frame>
+        <frame id="5575:11503" name="table" x="0" y="42" width="832" height="176">
+          <frame id="5575:11504" name="row" x="0" y="0" width="832" height="40">
+            <frame id="5575:11505" name="box" x="0" y="0" width="277.3333435058594" height="40">
+              <text id="5575:11506" name="Length of Service" x="12" y="11" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11507" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="40">
+              <text id="5575:11508" name="Employer Notice" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11509" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="40">
+              <text id="5575:11510" name="Employee Notice" x="12" y="11" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11511" name="row" x="0" y="40" width="832" height="34">
+            <frame id="5575:11512" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11513" name="&lt; 1 month" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11514" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11515" name="None" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11516" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11517" name="None" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11518" name="row" x="0" y="74" width="832" height="34">
+            <frame id="5575:11519" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11520" name="1 month – 2 years" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11521" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11522" name="1 week" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11523" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11524" name="1 week" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11525" name="row" x="0" y="108" width="832" height="34">
+            <frame id="5575:11526" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11527" name="2 – 12 years" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11528" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11529" name="+1 week per year" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11530" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11531" name="1 week" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+          <frame id="5575:11532" name="row" x="0" y="142" width="832" height="34">
+            <frame id="5575:11533" name="box" x="0" y="0" width="277.3333435058594" height="34">
+              <text id="5575:11534" name="12+ years" x="12" y="8" width="253.33334350585938" height="18" />
+            </frame>
+            <frame id="5575:11535" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11536" name="12 weeks (maximum)" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+            <frame id="5575:11537" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+              <text id="5575:11538" name="1 week" x="12" y="8" width="253.33331298828125" height="18" />
+            </frame>
+          </frame>
+        </frame>
+        <text id="5575:11539" name="Contractual notice can exceed statutory minimum; senior roles typically agree 3 – 6 months&#39; notice" x="0" y="234" width="832" height="20" />
+      </frame>
+      <frame id="5575:11540" name="container" x="0" y="546" width="832" height="130">
+        <text id="5575:11541" name="Statutory Redundancy Pay" x="0" y="0" width="832" height="26" />
+        <frame id="5575:11542" name="container" x="0" y="34" width="832" height="96">
+          <frame id="5575:11543" name="row" x="0" y="0" width="832" height="20">
+            <frame id="5575:11544" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11545" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11546" name="Requires 2 years&#39; continuous service; weekly pay cap £700 (2025/26)" x="38" y="0" width="794" height="20" />
+          </frame>
+          <frame id="5575:11547" name="row" x="0" y="28" width="832" height="20">
+            <frame id="5575:11548" name="bullet point" x="0" y="0" width="32" height="20">
+              <rounded-rectangle id="5575:11549" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11550" name="Under 22: 0.5 week/year | 22 – 40: 1 week/year | 41+: 1.5 weeks/year" x="38" y="0" width="794" height="20" />
+          </frame>
+          <frame id="5575:11551" name="row" x="0" y="56" width="832" height="40">
+            <frame id="5575:11552" name="bullet point" x="0" y="10" width="32" height="20">
+              <rounded-rectangle id="5575:11553" name="Rectangle 12413" x="12" y="6" width="8" height="8" />
+            </frame>
+            <text id="5575:11554" name="Maximum 20 years counted; statutory cap approx. £21,000; unfair dismissal compensation calculated separately" x="38" y="0" width="794" height="40" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+  <frame id="5575:11556" name="container" x="0" y="4014" width="832" height="450">
+    <frame id="5575:11557" name="title" x="0" y="0" width="832" height="56">
+      <text id="5575:11558" name="Leave Entitlement" x="0" y="8" width="832" height="40" />
+      <text id="5575:11559" name="description" x="0" y="56" width="808" height="24" hidden="true" />
+    </frame>
+    <frame id="5575:11666" name="container" x="0" y="80" width="832" height="370">
+      <frame id="5575:11667" name="title" x="0" y="0" width="808" height="50" hidden="true">
+        <text id="5575:11668" name="Title" x="0" y="0" width="808" height="26" />
+        <text id="5575:11669" name="Title + Description" x="0" y="30" width="808" height="20" />
+      </frame>
+      <frame id="5575:11670" name="table" x="0" y="0" width="832" height="370">
+        <frame id="5575:11671" name="row" x="0" y="0" width="832" height="40">
+          <frame id="5575:11672" name="box" x="0" y="0" width="277.3333435058594" height="40">
+            <text id="5575:11673" name="Leave Type" x="12" y="11" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11674" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="40">
+            <text id="5575:11675" name="Entitlement" x="12" y="11" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11676" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="40">
+            <text id="5575:11677" name="Conditions" x="12" y="11" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11678" name="row" x="0" y="40" width="832" height="70">
+          <frame id="5575:11679" name="box" x="0" y="0" width="277.3333435058594" height="70">
+            <text id="5575:11680" name="Annual Leave" x="12" y="26" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11681" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="70">
+            <text id="5575:11682" name="28 days (5.6 weeks) statutory May include Bank Holidays Contractual additions possible" x="12" y="8" width="253.33331298828125" height="54" />
+          </frame>
+          <frame id="5575:11683" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="70">
+            <text id="5575:11684" name="Full-time employees Part-time: pro-rata" x="12" y="17" width="253.33331298828125" height="36" />
+          </frame>
+        </frame>
+        <frame id="5575:11685" name="row" x="0" y="110" width="832" height="70">
+          <frame id="5575:11686" name="box" x="0" y="0" width="277.3333435058594" height="70">
+            <text id="5575:11687" name="Sick Leave (SSP)" x="12" y="26" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11688" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="70">
+            <text id="5575:11689" name="£116.75 / week From day 4 (3 waiting days) Up to 28 weeks" x="12" y="8" width="253.33331298828125" height="54" />
+          </frame>
+          <frame id="5575:11690" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="70">
+            <text id="5575:11691" name="Must reach LEL Employers often top up to full pay" x="12" y="17" width="253.33331298828125" height="36" />
+          </frame>
+        </frame>
+        <frame id="5575:11692" name="row" x="0" y="180" width="832" height="70">
+          <frame id="5575:11693" name="box" x="0" y="0" width="277.3333435058594" height="70">
+            <text id="5575:11694" name="Maternity Leave" x="12" y="26" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11695" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="70">
+            <text id="5575:11696" name="52 weeks (39 weeks paid) First 6 weeks: 90% salary Next 33 weeks: £184.03/week" x="12" y="8" width="253.33331298828125" height="54" />
+          </frame>
+          <frame id="5575:11697" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="70">
+            <text id="5575:11698" name="Eligible from day 1 15 weeks&#39; advance notice required" x="12" y="17" width="253.33331298828125" height="36" />
+          </frame>
+        </frame>
+        <frame id="5575:11699" name="row" x="0" y="250" width="832" height="34">
+          <frame id="5575:11700" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11701" name="Paternity Leave" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11702" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11703" name="2 weeks £184.03/week" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11704" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11705" name="26+ continuous weeks + reach LEL" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11706" name="row" x="0" y="284" width="832" height="34">
+          <frame id="5575:11707" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11708" name="Shared Parental Leave" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11709" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11710" name="Up to 50 weeks (37 weeks paid)" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11711" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11712" name="Flexibly shared between parents" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11713" name="row" x="0" y="318" width="832" height="52">
+          <frame id="5575:11714" name="box" x="0" y="0" width="277.3333435058594" height="52">
+            <text id="5575:11715" name="Bereavement Leave" x="12" y="17" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11716" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="52">
+            <text id="5575:11717" name="2 weeks £184.03/week (Jack&#39;s Law)" x="12" y="8" width="253.33331298828125" height="36" />
+          </frame>
+          <frame id="5575:11718" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="52">
+            <text id="5575:11719" name="Loss of a child under 18" x="12" y="17" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+  <frame id="5575:11721" name="container" x="0" y="4524" width="832" height="576">
+    <frame id="5575:11954" name="title" x="0" y="0" width="832" height="56">
+      <text id="5575:11955" name="2026 Public Holidays" x="0" y="8" width="832" height="40" />
+      <text id="5575:11956" name="description" x="0" y="56" width="808" height="24" hidden="true" />
+    </frame>
+    <frame id="5575:11781" name="container" x="0" y="80" width="832" height="496">
+      <frame id="5575:11782" name="title" x="0" y="0" width="832" height="20">
+        <text id="5575:11783" name="*Official public holidays observed nationally (known as “Bank Holidays” in the United Kingdom)." x="0" y="0" width="832" height="20" />
+        <text id="5575:11784" name="Title" x="0" y="24" width="1108" height="26" hidden="true" />
+      </frame>
+      <frame id="5575:11950" name="title" x="0" y="36" width="832" height="20">
+        <text id="5575:11951" name="Below for England and Wales (8 days total); Scotland: 9 days / Northern Ireland: 10 days — some dates differ" x="0" y="0" width="832" height="20" />
+        <text id="5575:11952" name="Title" x="0" y="24" width="1108" height="26" hidden="true" />
+      </frame>
+      <frame id="5575:11785" name="table" x="0" y="72" width="832" height="312">
+        <frame id="5575:11786" name="row" x="0" y="0" width="832" height="40">
+          <frame id="5575:11787" name="box" x="0" y="0" width="277.3333435058594" height="40">
+            <text id="5575:11788" name="Date" x="12" y="11" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11789" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="40">
+            <text id="5575:11790" name="Holiday Name" x="12" y="11" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11791" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="40">
+            <text id="5575:11792" name="Day" x="12" y="11" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11793" name="row" x="0" y="40" width="832" height="34">
+          <frame id="5575:11794" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11795" name="01/01 (Thu)" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11796" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11797" name="New Year&#39;s Day" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11798" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11799" name="Thursday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11800" name="row" x="0" y="74" width="832" height="34">
+          <frame id="5575:11801" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11802" name="04/03 (Fri)" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11803" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11804" name="Good Friday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11805" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11806" name="Friday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11807" name="row" x="0" y="108" width="832" height="34">
+          <frame id="5575:11808" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11809" name="04/06 (Mon)" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11810" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11811" name="Easter Monday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11812" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11813" name="Monday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11814" name="row" x="0" y="142" width="832" height="34">
+          <frame id="5575:11815" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11816" name="05/04 (Mon)" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11817" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11818" name="Early May Bank Holiday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11819" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11820" name="Monday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11821" name="row" x="0" y="176" width="832" height="34">
+          <frame id="5575:11822" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11823" name="05/25 (Mon)" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11824" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11825" name="Spring Bank Holiday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11826" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11827" name="Monday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11828" name="row" x="0" y="210" width="832" height="34">
+          <frame id="5575:11829" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11830" name="08/31 (Mon)" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11831" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11832" name="Summer Bank Holiday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11833" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11834" name="Monday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11835" name="row" x="0" y="244" width="832" height="34">
+          <frame id="5575:11836" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11837" name="12/25 (Fri)" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11838" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11839" name="Christmas Day" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11840" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11841" name="Friday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+        <frame id="5575:11842" name="row" x="0" y="278" width="832" height="34">
+          <frame id="5575:11843" name="box" x="0" y="0" width="277.3333435058594" height="34">
+            <text id="5575:11844" name="12/28 (Mon)" x="12" y="8" width="253.33334350585938" height="18" />
+          </frame>
+          <frame id="5575:11845" name="box" x="277.3333435058594" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11846" name="Boxing Day (substitute)" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+          <frame id="5575:11847" name="box" x="554.6666259765625" y="0" width="277.33331298828125" height="34">
+            <text id="5575:11848" name="Monday" x="12" y="8" width="253.33331298828125" height="18" />
+          </frame>
+        </frame>
+      </frame>
+      <text id="5575:11849" name="Scotland additional: 1/2 New Year Holiday, 11/30 St Andrew&#39;s Day | Northern Ireland additional: 3/17 St Patrick&#39;s Day, 7/13 Battle of the Boyne" x="0" y="400" width="832" height="40" />
+      <text id="5575:11850" name="Bank Holidays are not automatically paid leave; employers may include them within the 28-day entitlement or provide them additionally, as set out in the contract" x="0" y="456" width="832" height="40" />
+    </frame>
+  </frame>
+  <frame id="5575:11852" name="container" x="0" y="5160" width="832" height="636">
+    <frame id="5575:11853" name="title" x="0" y="0" width="832" height="56">
+      <text id="5575:11854" name="Key Regulations" x="0" y="8" width="832" height="40" />
+      <text id="5575:11855" name="description" x="0" y="56" width="808" height="24" hidden="true" />
+    </frame>
+    <frame id="5575:11927" name="container" x="0" y="80" width="832" height="556">
+      <frame id="5575:11928" name="title" x="0" y="0" width="1108" height="50" hidden="true">
+        <text id="5575:11929" name="Title" x="0" y="0" width="1108" height="26" />
+        <text id="5575:11930" name="title" x="0" y="30" width="1108" height="20" />
+      </frame>
+      <frame id="5575:11931" name="row" x="0" y="0" width="832" height="96">
+        <text id="5575:11932" name="Employment Rights Bill 2025" x="16" y="16" width="800" height="20" />
+        <text id="5575:11933" name="Major reform: proposes removing the 2-year qualifying period for unfair dismissal claims, restricting zero-hours contracts, and establishing a Fair Work Agency" x="16" y="40" width="800" height="40" />
+      </frame>
+      <frame id="5575:11934" name="row" x="0" y="104" width="832" height="96">
+        <text id="5575:11935" name="IR35 / Off-Payroll Working Rules" x="16" y="16" width="800" height="20" />
+        <text id="5575:11936" name="Determines contractor tax status; medium and large businesses must assess IR35 status and bear responsibility" x="16" y="40" width="800" height="40" />
+      </frame>
+      <frame id="5575:11937" name="row" x="0" y="208" width="832" height="76">
+        <text id="5575:11938" name="Auto-Enrolment Pension" x="16" y="16" width="800" height="20" />
+        <text id="5575:11939" name="All eligible employees automatically enrolled; employer minimum 3% + employee 5% = 8%; can opt out" x="16" y="40" width="800" height="20" />
+      </frame>
+      <frame id="5575:11940" name="row" x="0" y="292" width="832" height="76">
+        <text id="5575:11941" name="Gender Pay Gap Reporting" x="16" y="16" width="800" height="20" />
+        <text id="5575:11942" name="Companies with 250+ employees must publish annual gender pay gap reports (deadline: 4 April)" x="16" y="40" width="800" height="20" />
+      </frame>
+      <frame id="5575:11943" name="row" x="0" y="376" width="832" height="96">
+        <text id="5575:11944" name="Right to Request Flexible Working" x="16" y="16" width="800" height="20" />
+        <text id="5575:11945" name="Employees can request flexible working from day 1 of employment (Day-1 Right); employer must respond within 2 months" x="16" y="40" width="800" height="40" />
+      </frame>
+      <frame id="5575:11946" name="row" x="0" y="480" width="832" height="76">
+        <text id="5575:11947" name="Holiday Pay Reform (from 2024)" x="16" y="16" width="800" height="20" />
+        <text id="5575:11948" name="Irregular-hours workers&#39; holiday pay may accrue at 12.07% (rolled-up holiday pay reinstated as lawful)" x="16" y="40" width="800" height="20" />
+      </frame>
+    </frame>
+  </frame>
+</frame>

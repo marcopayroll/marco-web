@@ -398,16 +398,17 @@
     .pg-breadcrumb {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 8px;
       text-decoration: none;
       color: #019de7;
       font-size: 14px;
       font-weight: 500;
       line-height: 18px;
       width: fit-content;
-      transition: opacity 0.15s ease;
+      padding: 4px 0;
     }
-    .pg-breadcrumb:hover { opacity: 0.8; }
+    .pg-breadcrumb span { text-decoration: none; transition: text-decoration-color 0.15s ease; }
+    .pg-breadcrumb:hover span { text-decoration: underline; text-decoration-color: #019DE7; text-underline-offset: 2px; text-decoration-thickness: 1.6px; }
     .pg-breadcrumb svg { flex-shrink: 0; }
 
     .pg-hero-title {
@@ -779,24 +780,24 @@
     .explore-scroll-thumb { height: 6px; background: #3d4148; border-radius: 10px; position: absolute; left: 0; top: 0; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
     /* ════════════════ ARTICLE SECTION ════════════════ */
-    .article-section { background: #fff; padding: 80px 0 120px; }
+    .article-section { background: #fff; padding: 60px 0 120px; }
     .article-layout { display: flex; align-items: flex-start; }
-    .article-toc { width: 240px; flex-shrink: 0; margin-right: 72px; position: sticky; top: 176px; }
+    .article-toc { width: 280px; flex-shrink: 0; margin-right: 32px; position: sticky; top: 130px; }
     .toc-card { background: #fff; border-radius: 8px; padding: 16px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.10); display: flex; flex-direction: column; gap: 40px; }
     .toc-title { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
     .toc-list { display: flex; flex-direction: column; gap: 24px; }
-    .toc-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .toc-item { display: flex; gap: 8px; align-items: center; text-decoration: none; }
     .toc-dot-wrap { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
     .toc-dot { width: 8px; height: 8px; border-radius: 50%; background: #9199A6; flex-shrink: 0; transition: background 0.2s ease; }
     .toc-dot.toc-active { background: var(--blue-main); }
     .toc-text { flex: 1; font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); transition: color 0.2s ease, font-size 0.2s ease, font-weight 0.2s ease; }
     .toc-text.toc-active { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
     .toc-divider-line { height: 1px; background: #CDD5E0; width: 100%; }
-    .article-content { flex: 1; min-width: 0; max-width: 808px; margin-right: 64px; display: flex; flex-direction: column; gap: 40px; }
+    .article-content { flex: 1; min-width: 0; max-width: 832px; margin-right: 40px; display: flex; flex-direction: column; gap: 40px; }
     .article-block { display: flex; flex-direction: column; gap: 24px; }
     .article-h2 { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
     .article-p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
-    .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 176px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
+    .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 130px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
     .cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; }
     .cta-btn .cta-ring { transition: fill 0.2s ease, stroke 0.2s ease; }
     .cta-btn .cta-fill { transition: fill 0.2s ease; }
@@ -840,19 +841,32 @@
 
     /* ════════════════ GET STARTED ════════════════ */
     .gs-cta {
-      position: relative;
       overflow: hidden;
-      height: 490px;
       background: linear-gradient(to bottom, #f4f4ff 49.1%, #ffffff 110.4%);
     }
-    .gs-cta-content {
-      position: absolute;
-      left: max(var(--gutter), calc((100% - 1224px) / 2));
-      top: 80px;
-      width: 600px;
+    .gs-cta-inner {
+      display: flex;
+      align-items: stretch;
+      gap: 24px;
+      padding-left: max(var(--gutter), calc((100% - 1224px) / 2));
+    }
+    .gs-cta-left {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      padding: 80px 0;
+    }
+    .gs-cta-text {
       display: flex;
       flex-direction: column;
       gap: 32px;
+    }
+    .gs-cta-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
     .gs-cta-label { display: flex; align-items: center; gap: 8px; }
     .gs-cta-label-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
@@ -865,19 +879,13 @@
     }
     .gs-cta-title .accent { color: #019de7; }
     .gs-cta-subtitle {
-      position: absolute;
-      left: max(var(--gutter), calc((100% - 1224px) / 2));
-      top: 282px;
-      width: 600px;
       font-family: var(--font);
       font-size: clamp(12px, calc(0.4vw + 10.24px), 16px);
       font-weight: 400;
       color: #162351; line-height: 20px; margin: 0;
     }
     .gs-cta-btn {
-      position: absolute;
-      left: max(var(--gutter), calc((100% - 1224px) / 2));
-      top: 362px;
+      align-self: flex-start;
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       height: 48px; padding: 4px 24px; border-radius: 50px;
       font-family: var(--font); font-size: 16px; font-weight: 400;
@@ -890,16 +898,19 @@
     .gs-cta-btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
     .gs-cta-btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
     .gs-cta-thumb {
-      position: absolute;
-      left: max(calc(var(--gutter) + 624px), calc((100% - 1224px) / 2 + 624px));
-      top: 0; right: 0; height: 100%;
+      flex: 1 1 0;
+      min-width: 0;
       overflow: hidden;
     }
     .gs-cta-thumb img {
-      position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center;
       display: block;
+    }
+    @media (max-width: 800px) {
+      .gs-cta-inner { padding-right: max(var(--gutter), calc((100% - 1224px) / 2)); }
+      .gs-cta-left { flex-basis: 100%; }
+      .gs-cta-thumb { display: none; }
     }
   </style>
   <link rel="stylesheet" href="shared.css">
@@ -919,7 +930,7 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title">Payroll Guide - United Kingdom</h1>
-        <p class="pg-hero-desc">Description to be added</p>
+        <p class="pg-hero-desc">description to be added</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
@@ -935,31 +946,71 @@
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;">United Kingdom Payroll Guide content coming soon</p>
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list"></div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+    </div>
+
+    <!-- Article CTA sidebar -->
+    <div class="article-cta">
+      <button id="copyLinkBtn" class="cta-btn" title="Copy link">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle class="cta-ring" cx="20" cy="20" r="19.5" fill="none" stroke="#CDD5E0"/>
+          <path class="cta-stroke" d="M16 20h8M20 16v8" stroke="#3D4148" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <a href="#" id="backToTop" class="cta-btn cta-back-to-top" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle class="cta-ring" cx="20" cy="20" r="19.5" fill="none" stroke="#CDD5E0"/>
+          <path class="cta-stroke" d="M14 22l6-6 6 6" stroke="#3D4148" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a id="payrollDownloadBtn" href="#" class="cta-btn" title="Download PDF" onclick="downloadPayrollGuidePDF(event)">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle class="cta-ring" cx="20" cy="20" r="19.5" fill="none" stroke="#CDD5E0"/>
+          <path class="cta-stroke" d="M14 22l6 6 6-6M20 12v16" stroke="#3D4148" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
   </div>
 </section>
 
 
 <!-- ════════════════ GET STARTED ════════════════ -->
 <section class="gs-cta">
-  <div class="gs-cta-content">
-    <div class="gs-cta-label">
-      <div class="gs-cta-label-line"></div>
-      <span>GET STARTED</span>
+  <div class="gs-cta-inner">
+    <div class="gs-cta-left">
+      <div class="gs-cta-text">
+        <div class="gs-cta-title-block">
+          <div class="gs-cta-label">
+            <div class="gs-cta-label-line"></div>
+            <span>GET STARTED</span>
+          </div>
+          <h2 class="gs-cta-title">
+            Need help with Payroll Compliance in
+            <span class="accent">United Kingdom?</span>
+          </h2>
+        </div>
+        <p class="gs-cta-subtitle">Have any questions? We&rsquo;d love to hear from you</p>
+      </div>
+      <a href="company-contact-us.html" class="gs-cta-btn">
+        Contact us
+        <div class="gs-cta-btn-icon"><div class="gs-cta-btn-icon-inner"><img class="gs-cta-btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
+      </a>
     </div>
-    <h2 class="gs-cta-title">
-      Need help with Payroll Compliance in
-      <span class="accent">United Kingdom?</span>
-    </h2>
-  </div>
-  <p class="gs-cta-subtitle">Have any questions? We&rsquo;d love to hear from you</p>
-  <a href="company-contact-us.html" class="gs-cta-btn">
-    Contact us
-    <div class="gs-cta-btn-icon"><div class="gs-cta-btn-icon-inner"><img class="gs-cta-btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
-  </a>
-  <div class="gs-cta-thumb">
-    <img src="assets/HR Knowledge Hub/Payroll Guide/thumbnails/united-kingdom.jpg" alt="United Kingdom" />
+    <div class="gs-cta-thumb">
+      <img src="assets/HR Knowledge Hub/Payroll Guide/thumbnails/united-kingdom.jpg" alt="United Kingdom" />
+    </div>
   </div>
 </section>
 
@@ -1253,7 +1304,8 @@
     { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
   revealElements.forEach(function(el) { revealObserver.observe(el); });
-</script><script>
+</script>
+<script>
   /* ── Mobile footer accordion ── */
   (function() {
     document.querySelectorAll('[data-footer-mob-acc]').forEach(function(header) {
@@ -1262,7 +1314,8 @@
       });
     });
   })();
-</script><script>
+</script>
+<script>
   /* ── Explore More carousel ── */
   (function() {
     var CARD_WIDTH = 340;
@@ -1588,10 +1641,15 @@
 <script>
   /* ── Article TOC + Back-to-top + Copy link ── */
   var tocSections = [
-    { id: 'section-scope',       key: 'scope'       },
-    { id: 'section-setup',       key: 'setup'       },
-    { id: 'section-calculation', key: 'calculation' },
-    { id: 'section-processing',  key: 'processing'  }
+    { id: 'section-cost-living',  key: 'cost-living'  },
+    { id: 'section-salary',       key: 'salary'       },
+    { id: 'section-benefits',     key: 'benefits'     },
+    { id: 'section-tax',          key: 'tax'          },
+    { id: 'section-hours',        key: 'hours'        },
+    { id: 'section-contract',     key: 'contract'     },
+    { id: 'section-leave',        key: 'leave'        },
+    { id: 'section-holidays',     key: 'holidays'     },
+    { id: 'section-regulations',  key: 'regulations'  }
   ];
 
   function updateToc() {
