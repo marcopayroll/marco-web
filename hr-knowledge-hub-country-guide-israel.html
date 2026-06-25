@@ -366,7 +366,7 @@
        HERO — Australia Payroll Guide
     ════════════════════════════════════════ */
     .pg-hero {
-      background: #e3daff;
+      background: #ffdcd8;
       position: relative;
       overflow: hidden;
       min-height: 540px;
@@ -742,7 +742,7 @@
     /* ════════════════════════════════════════
        EXPLORE MORE
     ════════════════════════════════════════ */
-    .explore-section { background: #e3daff; padding: 80px 0 60px; overflow-x: clip; }
+    .explore-section { background: #ffdcd8; padding: 80px 0 60px; overflow-x: clip; }
     .explore-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
     .explore-eyebrow { display: flex; align-items: center; gap: 8px; }
     .explore-eyebrow-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
@@ -951,7 +951,7 @@
     </div>
   </div>
   <div class="pg-hero-img">
-    <img src="assets/HR Knowledge Hub/Country Guide/thumbnails/israel.jpg" alt="Israel" />
+    <img src="assets/HR Knowledge Hub/Country Guide/thumbnails/israel.webp" alt="Israel" />
   </div>
 </section>
 
@@ -987,7 +987,7 @@
       </a>
     </div>
     <div class="gs-cta-thumb">
-      <img src="assets/HR Knowledge Hub/Country Guide/thumbnails/israel.jpg" alt="Israel" />
+      <img src="assets/HR Knowledge Hub/Country Guide/thumbnails/israel.webp" alt="Israel" />
     </div>
   </div>
 </section>
@@ -1329,7 +1329,7 @@
       { name: "India",          currency: "INR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/india.png",           url: "hr-knowledge-hub-country-guide-india.html",          date: "" },
       { name: "Indonesia",      currency: "IDR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/indonesia.webp",      url: "hr-knowledge-hub-country-guide-indonesia.html",      date: "" },
       { name: "Ireland",        currency: "EUR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/ireland.jpeg",        url: "hr-knowledge-hub-country-guide-ireland.html",        date: "4 June 2026" },
-      { name: "Israel",         currency: "ILS", img: "",                                                                      url: "hr-knowledge-hub-country-guide-israel.html",         date: "" },
+      { name: "Israel",         currency: "ILS", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/israel.webp",                                                                      url: "hr-knowledge-hub-country-guide-israel.html",         date: "" },
       { name: "Italy",          currency: "EUR", img: "",                                                                      url: "hr-knowledge-hub-country-guide-italy.html",          date: "" },
       { name: "Japan",          currency: "JPY", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/japan.jpg",           url: "hr-knowledge-hub-country-guide-japan.html",          date: "4 June 2026" },
       { name: "Kenya",          currency: "KES", img: "",                                                                      url: "hr-knowledge-hub-country-guide-kenya.html",          date: "" },
@@ -1421,8 +1421,9 @@
 
     function render(query) {
       var q = (query || '').toLowerCase().trim();
+      var currentUrl = window.location.href.split('/').pop().split('?')[0].replace(/\.html$/, '');
       filtered = EXPLORE_COUNTRIES.filter(function(c) {
-        return !q || c.name.toLowerCase().indexOf(q) !== -1;
+        return c.url.replace(/\.html$/, '') !== currentUrl && (!q || c.name.toLowerCase().indexOf(q) !== -1);
       });
       track.innerHTML = '';
       filtered.forEach(function(c) { track.appendChild(buildCard(c)); });

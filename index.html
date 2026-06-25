@@ -1480,6 +1480,20 @@
       .services-card-link-text { font-size: 10px; line-height: 14px; }
     }
 
+    /* ── Services — Mobile (≤440px, Figma 5436-7338) ── */
+    @media (max-width: 440px) {
+      .services .container { width: calc(100% - 48px); }
+      .services-header { margin-bottom: 32px; }
+      .services-heading { gap: 16px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .services-card { padding: 8px; height: 180px; min-height: 180px; }
+      .services-card-top { gap: 8px; }
+      .services-card-title { font-size: 12px; line-height: 16px; font-weight: 700; }
+      .services-card-desc { font-size: 8px; line-height: 12px; }
+      .services-card-link-text { font-size: 8px; font-weight: 600; line-height: 12px; }
+      .services-card-dash { width: 8px; }
+    }
+
     /* ════════════════════════════════════════
        TECHNOLOGY SECTION
     ════════════════════════════════════════ */

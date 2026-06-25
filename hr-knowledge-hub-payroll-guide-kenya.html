@@ -376,6 +376,7 @@
     .pg-hero-inner {
       padding-top: 180px;
       padding-bottom: 60px;
+      padding-right: calc(min(628px, 44vw) - var(--gutter) + 24px);
       position: relative;
       z-index: 1;
       display: flex;
@@ -383,7 +384,7 @@
     }
 
     .pg-hero-text {
-      width: min(600px, calc(56vw - var(--gutter) - 24px));
+      max-width: 600px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -427,7 +428,7 @@
     }
 
     .pg-hero-meta {
-      width: min(600px, calc(56vw - var(--gutter) - 24px));
+      max-width: 600px;
       display: flex;
       flex-direction: column;
       gap: 24px;
@@ -468,7 +469,7 @@
     @media (max-width: 1100px) {
       .pg-hero { min-height: auto; }
       .pg-hero-img { display: none; }
-      .pg-hero-inner { padding-top: 160px; padding-bottom: 48px; }
+      .pg-hero-inner { padding-top: 160px; padding-bottom: 48px; padding-right: 0; }
       .pg-hero-text { width: 100%; max-width: 600px; }
       .pg-hero-meta { width: 100%; max-width: 600px; margin-top: 40px; }
     }
@@ -935,7 +936,7 @@
     </div>
   </div>
   <div class="pg-hero-img">
-    
+    <img src="assets/HR Knowledge Hub/Payroll Guide/thumbnails/kenya.avif" alt="Kenya" />
   </div>
 </section>
 

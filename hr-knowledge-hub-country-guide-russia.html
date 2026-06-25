@@ -366,7 +366,7 @@
        HERO — Australia Payroll Guide
     ════════════════════════════════════════ */
     .pg-hero {
-      background: #e3daff;
+      background: #ffefce;
       position: relative;
       overflow: hidden;
       min-height: 540px;
@@ -375,6 +375,7 @@
     .pg-hero-inner {
       padding-top: 180px;
       padding-bottom: 60px;
+      padding-right: calc(min(628px, 44vw) - var(--gutter) + 24px);
       position: relative;
       z-index: 1;
       display: flex;
@@ -382,7 +383,7 @@
     }
 
     .pg-hero-text {
-      width: min(600px, calc(56vw - var(--gutter) - 24px));
+      max-width: 600px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -426,7 +427,7 @@
     }
 
     .pg-hero-meta {
-      width: min(600px, calc(56vw - var(--gutter) - 24px));
+      max-width: 600px;
       display: flex;
       flex-direction: column;
       gap: 24px;
@@ -467,7 +468,7 @@
     @media (max-width: 1100px) {
       .pg-hero { min-height: auto; }
       .pg-hero-img { display: none; }
-      .pg-hero-inner { padding-top: 160px; padding-bottom: 48px; }
+      .pg-hero-inner { padding-top: 160px; padding-bottom: 48px; padding-right: 0; }
       .pg-hero-text { width: 100%; max-width: 600px; }
       .pg-hero-meta { width: 100%; max-width: 600px; margin-top: 40px; }
     }
@@ -742,7 +743,7 @@
     /* ════════════════════════════════════════
        EXPLORE MORE
     ════════════════════════════════════════ */
-    .explore-section { background: #e3daff; padding: 80px 0 60px; overflow-x: clip; }
+    .explore-section { background: #ffefce; padding: 80px 0 60px; overflow-x: clip; }
     .explore-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
     .explore-eyebrow { display: flex; align-items: center; gap: 8px; }
     .explore-eyebrow-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
@@ -951,7 +952,7 @@
     </div>
   </div>
   <div class="pg-hero-img">
-    <img src="assets/HR Knowledge Hub/Country Guide/thumbnails/russia.jpg" alt="Russia" />
+    <img src="assets/HR Knowledge Hub/Country Guide/thumbnails/russia.webp" alt="Russia" />
   </div>
 </section>
 
@@ -987,7 +988,7 @@
       </a>
     </div>
     <div class="gs-cta-thumb">
-      <img src="assets/HR Knowledge Hub/Country Guide/thumbnails/russia.jpg" alt="Russia" />
+      <img src="assets/HR Knowledge Hub/Country Guide/thumbnails/russia.webp" alt="Russia" />
     </div>
   </div>
 </section>
@@ -1329,25 +1330,25 @@
       { name: "India",          currency: "INR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/india.png",           url: "hr-knowledge-hub-country-guide-india.html",          date: "" },
       { name: "Indonesia",      currency: "IDR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/indonesia.webp",      url: "hr-knowledge-hub-country-guide-indonesia.html",      date: "" },
       { name: "Ireland",        currency: "EUR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/ireland.jpeg",        url: "hr-knowledge-hub-country-guide-ireland.html",        date: "4 June 2026" },
-      { name: "Israel",         currency: "ILS", img: "",                                                                      url: "hr-knowledge-hub-country-guide-israel.html",         date: "" },
-      { name: "Italy",          currency: "EUR", img: "",                                                                      url: "hr-knowledge-hub-country-guide-italy.html",          date: "" },
+      { name: "Israel",         currency: "ILS", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/israel.webp",                                                                      url: "hr-knowledge-hub-country-guide-israel.html",         date: "" },
+      { name: "Italy",          currency: "EUR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/italy.jpeg",                                                                      url: "hr-knowledge-hub-country-guide-italy.html",          date: "" },
       { name: "Japan",          currency: "JPY", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/japan.jpg",           url: "hr-knowledge-hub-country-guide-japan.html",          date: "4 June 2026" },
-      { name: "Kenya",          currency: "KES", img: "",                                                                      url: "hr-knowledge-hub-country-guide-kenya.html",          date: "" },
+      { name: "Kenya",          currency: "KES", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/kenya.avif",                                                                      url: "hr-knowledge-hub-country-guide-kenya.html",          date: "" },
       { name: "Malaysia",       currency: "MYR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/malaysia.webp",       url: "hr-knowledge-hub-country-guide-malaysia.html",       date: "4 June 2026" },
-      { name: "Mexico",         currency: "MXN", img: "",                                                                      url: "hr-knowledge-hub-country-guide-mexico.html",         date: "" },
+      { name: "Mexico",         currency: "MXN", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/mexico.webp",                                                                      url: "hr-knowledge-hub-country-guide-mexico.html",         date: "" },
       { name: "Netherlands",    currency: "EUR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/netherlands.jpeg",    url: "hr-knowledge-hub-country-guide-netherlands.html",    date: "" },
-      { name: "New Zealand",    currency: "NZD", img: "",                                                                      url: "hr-knowledge-hub-country-guide-new-zealand.html",    date: "" },
+      { name: "New Zealand",    currency: "NZD", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/new-zealand.jpg",                                                                      url: "hr-knowledge-hub-country-guide-new-zealand.html",    date: "" },
       { name: "Nigeria",        currency: "NGN", img: "",                                                                      url: "hr-knowledge-hub-country-guide-nigeria.html",        date: "" },
-      { name: "Pakistan",       currency: "PKR", img: "",                                                                      url: "hr-knowledge-hub-country-guide-pakistan.html",       date: "" },
+      { name: "Pakistan",       currency: "PKR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/pakistan.png",                                                                      url: "hr-knowledge-hub-country-guide-pakistan.html",       date: "" },
       { name: "Peru",           currency: "PEN", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/peru.jpg",            url: "hr-knowledge-hub-country-guide-peru.html",           date: "4 June 2026" },
-      { name: "Philippines",    currency: "PHP", img: "",                                                                      url: "hr-knowledge-hub-country-guide-philippines.html",    date: "" },
+      { name: "Philippines",    currency: "PHP", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/philippines.jpg",                                                                      url: "hr-knowledge-hub-country-guide-philippines.html",    date: "" },
       { name: "Poland",         currency: "PLN", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/poland.jpg",          url: "hr-knowledge-hub-country-guide-poland.html",         date: "4 June 2026" },
       { name: "Portugal",       currency: "EUR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/portugal.avif",       url: "hr-knowledge-hub-country-guide-portugal.html",       date: "" },
-      { name: "Romania",        currency: "RON", img: "",                                                                      url: "hr-knowledge-hub-country-guide-romania.html",        date: "" },
-      { name: "Russia",         currency: "RUB", img: "",                                                                      url: "hr-knowledge-hub-country-guide-russia.html",         date: "" },
+      { name: "Romania",        currency: "RON", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/romania.webp",                                                                      url: "hr-knowledge-hub-country-guide-romania.html",        date: "" },
+      { name: "Russia",         currency: "RUB", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/russia.webp",                                                                      url: "hr-knowledge-hub-country-guide-russia.html",         date: "" },
       { name: "Saudi Arabia",   currency: "SAR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/saudi-arabia.jpg",    url: "hr-knowledge-hub-country-guide-saudi-arabia.html",   date: "" },
       { name: "Singapore",      currency: "SGD", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/singapore.webp",      url: "hr-knowledge-hub-country-guide-singapore.html",      date: "" },
-      { name: "South Africa",   currency: "ZAR", img: "",                                                                      url: "hr-knowledge-hub-country-guide-south-africa.html",   date: "" },
+      { name: "South Africa",   currency: "ZAR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/south-africa.webp",                                                                      url: "hr-knowledge-hub-country-guide-south-africa.html",   date: "" },
       { name: "South Korea",    currency: "KRW", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/south-korea.jpg",     url: "hr-knowledge-hub-country-guide-south-korea.html",    date: "" },
       { name: "Spain",          currency: "EUR", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/spain.jpg",           url: "hr-knowledge-hub-country-guide-spain.html",          date: "4 June 2026" },
       { name: "Sri Lanka",      currency: "LKR", img: "",                                                                      url: "hr-knowledge-hub-country-guide-sri-lanka.html",      date: "" },
@@ -1356,11 +1357,11 @@
       { name: "Taiwan",         currency: "TWD", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/taiwan.jpg",          url: "hr-knowledge-hub-country-guide-taiwan.html",         date: "" },
       { name: "Thailand",       currency: "THB", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/thailand.jpg",        url: "hr-knowledge-hub-country-guide-thailand.html",       date: "4 June 2026" },
       { name: "Tunisia",        currency: "TND", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/tunisia.webp",        url: "hr-knowledge-hub-country-guide-tunisia.html",        date: "4 June 2026" },
-      { name: "Turkey",         currency: "TRY", img: "",                                                                      url: "hr-knowledge-hub-country-guide-turkey.html",         date: "" },
+      { name: "Turkey",         currency: "TRY", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/turkey.jpg",                                                                      url: "hr-knowledge-hub-country-guide-turkey.html",         date: "" },
       { name: "UAE",            currency: "AED", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/uae.webp",            url: "hr-knowledge-hub-country-guide-uae.html",            date: "" },
-      { name: "Ukraine",        currency: "UAH", img: "",                                                                      url: "hr-knowledge-hub-country-guide-ukraine.html",        date: "" },
-      { name: "USA",            currency: "USD", img: "",                                                                      url: "hr-knowledge-hub-country-guide-usa.html",            date: "" },
-      { name: "Vietnam",        currency: "VND", img: "",                                                                      url: "hr-knowledge-hub-country-guide-vietnam.html",        date: "" }
+      { name: "Ukraine",        currency: "UAH", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/ukraine.jpg",                                                                      url: "hr-knowledge-hub-country-guide-ukraine.html",        date: "" },
+      { name: "USA",            currency: "USD", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/usa.jpg",                                                                      url: "hr-knowledge-hub-country-guide-usa.html",            date: "" },
+      { name: "Vietnam",        currency: "VND", img: "assets/HR Knowledge Hub/Country Guide/thumbnails/vietnam.avif",                                                                      url: "hr-knowledge-hub-country-guide-vietnam.html",        date: "" }
     ];
     var track      = document.getElementById('exploreTrack');
     var chevLeft   = document.getElementById('exploreChevLeft');
@@ -1421,8 +1422,9 @@
 
     function render(query) {
       var q = (query || '').toLowerCase().trim();
+      var currentUrl = window.location.href.split('/').pop().split('?')[0].replace(/\.html$/, '');
       filtered = EXPLORE_COUNTRIES.filter(function(c) {
-        return !q || c.name.toLowerCase().indexOf(q) !== -1;
+        return c.url.replace(/\.html$/, '') !== currentUrl && (!q || c.name.toLowerCase().indexOf(q) !== -1);
       });
       track.innerHTML = '';
       filtered.forEach(function(c) { track.appendChild(buildCard(c)); });
