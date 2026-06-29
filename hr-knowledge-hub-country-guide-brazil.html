@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="assets/marco-favicon.png">
@@ -798,20 +798,13 @@
     .article-h2 { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
     .article-p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
     .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 130px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
-    .cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; border-radius: 50%; transition: background 0.2s ease; }
-    .cta-btn img { display: block; width: 40px; height: 40px; transition: filter 0.2s ease; }
-    /* inline-SVG hover (Download button) */
+    .cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; }
     .cta-btn .cta-ring { transition: fill 0.2s ease, stroke 0.2s ease; }
     .cta-btn .cta-fill { transition: fill 0.2s ease; }
     .cta-btn .cta-stroke { transition: stroke 0.2s ease, stroke-width 0.2s ease; }
     .cta-btn:hover .cta-ring { fill: #3D4148; stroke: #3D4148; }
     .cta-btn:hover .cta-fill { fill: #fff; }
     .cta-btn:hover .cta-stroke { stroke: #fff; stroke-width: 1.5px; }
-    /* img-based hover */
-    .cta-btn:hover { background: #3D4148; }
-    .cta-btn:hover img { filter: brightness(0) invert(1); }
-    .cta-btn.cta-copied { background: var(--blue-main); }
-    .cta-btn.cta-copied img { filter: brightness(0) invert(1); }
     .cta-btn.cta-copied .cta-ring { fill: var(--blue-main); stroke: var(--blue-main); }
     .cta-btn.cta-copied .cta-stroke { stroke: #fff; }
     .cta-back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
