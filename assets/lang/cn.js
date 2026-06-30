@@ -35,6 +35,8 @@ window.MARCO_LANG_CN = {
 	"nav.dd.lic.desc": "涵盖本地牌照、监管授权与合规要求",
 
 	/* ── Nav dropdown — Resources ── */
+	"nav.dd.marcos.title": "Marco OS",
+	"nav.dd.marcos.desc": "新时代全球用工管理平台",
 	"nav.dd.help.title": "帮助中心",
 	"nav.dd.help.desc": "产品手册、常见问题与使用支持",
 	"nav.dd.dev.title": "开发者门户",
