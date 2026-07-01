@@ -2561,7 +2561,6 @@
     if (!vidA || !vidB) return;
 
     const DISSOLVE = 1.5;   // crossfade duration in seconds
-    const FADE_IN  = 1.2;   // initial page-load fade-in duration
     let active    = vidA;   // currently playing video
     let inactive  = vidB;   // next video (waiting)
     let dissolving = false;
@@ -2570,6 +2569,12 @@
     /* Set initial state */
     vidA.style.opacity = '0';
     vidB.style.opacity = '0';
+
+    /* Show video immediately when it has enough data — no intentional delay */
+    vidA.addEventListener('canplay', function () {
+      vidA.style.opacity = '1';
+      pageLoaded = true;
+    }, { once: true });
 
     /* Start active video */
     vidA.play();
@@ -2584,14 +2589,6 @@
       const t = active.currentTime;
       const d = active.duration;
       if (!d || isNaN(d)) return;
-
-      /* ── Initial page-load fade-in ── */
-      if (!pageLoaded) {
-        const fadeProgress = Math.min(1, t / FADE_IN);
-        active.style.opacity = easeInOut(fadeProgress);
-        if (fadeProgress >= 1) pageLoaded = true;
-        return;
-      }
 
       /* ── Start dissolve when active video nears its end ── */
       if (!dissolving && t >= d - DISSOLVE) {
