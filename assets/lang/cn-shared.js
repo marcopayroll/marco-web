@@ -36,7 +36,7 @@ window.MARCO_LANG_CN_SHARED = {
 
   /* ── Nav dropdown — Resources ── */
   "nav.dd.marcos.title": "Marco OS",
-	"nav.dd.marcos.desc": "新时代全球用工管理平台",
+  "nav.dd.marcos.desc": "新时代全球用工管理平台",
   "nav.dd.help.title": "使用指南",
   "nav.dd.help.desc": "产品手册、常见问题与使用支持",
   "nav.dd.dev.title": "开发者文档",
@@ -97,6 +97,9 @@ window.MARCO_LANG_CN_SHARED = {
   "nav.dd.org.desc": "了解 Marco 的领导团队与组织结构",
   "nav.dd.contact.title": "联系我们",
   "nav.dd.contact.desc": "与 Marco 团队取得联系",
+
+  /* ── Footer — Resources link ── */
+  "link.marcosos": "Marco OS",
 
   /* ── Footer column headers ── */
   "footer.col.services":   "服务",

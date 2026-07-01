@@ -87,6 +87,12 @@
         el.textContent = mergedPack[key];
       }
     });
+    document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-html');
+      if (mergedPack[key] !== undefined && mergedPack[key] !== '') {
+        el.innerHTML = mergedPack[key];
+      }
+    });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-placeholder');
       if (mergedPack[key] !== undefined && mergedPack[key] !== '') {
@@ -148,6 +154,9 @@
   } else if (filename.indexOf('price-') === 0) {
     sectionFile   = base + '-price.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_PRICE';
+  } else if (filename === 'marco-os.html' || filename === 'marco-os') {
+    sectionFile   = base + '-marco-os.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_MARCO_OS';
   } else if (filename.indexOf('hr-knowledge-hub-') === 0) {
     sectionFile   = base + '-hub.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB';

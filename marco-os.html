@@ -741,6 +741,27 @@
     .os-payroll-text .os-payroll-title.fade-in { transition-delay: 0.15s; }
     .os-payroll-text .os-payroll-bullets.fade-in { transition-delay: 0.3s; }
 
+    .os-hl-s1 .os-hl-text .section-label.fade-in  { transition-delay: 0s; }
+    .os-hl-s1 .os-hl-text .os-hl-title.fade-in    { transition-delay: 0.15s; }
+    .os-hl-s1 .os-hl-text .os-hl-bullets.fade-in  { transition-delay: 0.3s; }
+
+    .os-hl-s2 .os-hl-text .section-label.fade-in  { transition-delay: 0s; }
+    .os-hl-s2 .os-hl-text .os-hl-title.fade-in    { transition-delay: 0.15s; }
+    .os-hl-s2 .os-hl-text .os-hl-bullets.fade-in  { transition-delay: 0.3s; }
+
+    .os-hl-s3 .os-hl-text .section-label.fade-in  { transition-delay: 0s; }
+    .os-hl-s3 .os-hl-text .os-hl-title.fade-in    { transition-delay: 0.15s; }
+    .os-hl-s3 .os-hl-text .os-hl-bullets.fade-in  { transition-delay: 0.3s; }
+
+    .sgs-cards .sgs-card.fade-in { transform: none; }
+    .sgs-cards .sgs-card:nth-child(1).fade-in { transition-delay: 0s; }
+    .sgs-cards .sgs-card:nth-child(2).fade-in { transition-delay: 0.15s; }
+    .sgs-cards .sgs-card:nth-child(3).fade-in { transition-delay: 0.30s; }
+    .sgs-cards .sgs-card:nth-child(4).fade-in { transition-delay: 0.45s; }
+
+    .os-hl-s2 .os-hl-widget { animation: os-logo-float 4s ease-in-out infinite; }
+    .os-hl-s2 .os-hl-card-float { animation: os-logo-float 4s ease-in-out infinite; }
+
     .os-payroll-title {
       font-size: 48px;
       font-weight: 700;
@@ -963,13 +984,12 @@
     /* Screen cards */
     .os-hl-card {
       position: absolute;
-      border: 2px solid #e5e7eb;
+      border: none;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.10), 0 4px 30px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.10), 0 4px 30px 10px rgba(0,0,0,0.15), inset 0 0 0 2px #e5e7eb;
       overflow: hidden;
       z-index: 2;
     }
-    .os-hl-card-thick { border-width: 4px; }
     .os-hl-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* Floating data widgets (no border) */
@@ -982,7 +1002,14 @@
     .os-hl-widget img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* Partner logos */
-    .os-hl-logo { position: absolute; z-index: 2; }
+    @keyframes os-logo-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+    .os-hl-logo {
+      position: absolute; z-index: 2;
+      animation: os-logo-float 4s ease-in-out infinite;
+    }
     .os-hl-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
     /* Dashed circle decorations */
@@ -1116,7 +1143,7 @@
         <span class="line"></span>
         <span data-i18n="marcos.payroll.label">Powerful Payroll &amp; People Management</span>
       </div>
-      <h2 class="os-payroll-title fade-in" data-i18n="marcos.payroll.title">Say goodbye to <em>chaotic operations</em></h2>
+      <h2 class="os-payroll-title fade-in" data-i18n-html="marcos.payroll.title">Say goodbye to <em>chaotic operations</em></h2>
       <ul class="os-payroll-bullets fade-in">
         <li class="os-payroll-bullet">
           <div class="os-payroll-dot-wrap"><div class="os-payroll-dot"></div></div>
@@ -1181,24 +1208,24 @@
 
       <!-- Text -->
       <div class="os-hl-text" style="left:288px;top:60px;">
-        <div class="section-label" style="color:var(--text-main);">
+        <div class="section-label fade-in" style="color:var(--text-main);">
           <span class="line"></span>
           <span data-i18n="marcos.api.label">API Integrations</span>
         </div>
         <div class="os-hl-body">
-          <h2 class="os-hl-title">Supercharge your current systems with <em>Marco's open APIs</em></h2>
-          <ul class="os-hl-bullets">
+          <h2 class="os-hl-title fade-in" data-i18n-html="marcos.api.title">Supercharge your current systems with <em>Marco's open APIs</em></h2>
+          <ul class="os-hl-bullets fade-in">
             <li class="os-hl-bullet">
               <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
-              <p>Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights</p>
+              <p data-i18n="marcos.api.bullet1">Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights</p>
             </li>
             <li class="os-hl-bullet">
               <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
-              <p>Secure data communication and transmission</p>
+              <p data-i18n="marcos.api.bullet2">Secure data communication and transmission</p>
             </li>
             <li class="os-hl-bullet">
               <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
-              <p>Ready-made integrations with leading Core HR, Finance, Time, and Expense platforms, including PeopleSoft, SuccessFactors, Workday, Rydoo, Kronos, and Xero</p>
+              <p data-i18n="marcos.api.bullet3">Ready-made integrations with leading Core HR, Finance, Time, and Expense platforms, including PeopleSoft, SuccessFactors, Workday, Rydoo, Kronos, and Xero</p>
             </li>
           </ul>
         </div>
@@ -1210,12 +1237,12 @@
       <div class="os-hl-card" style="left:608px;top:577px;width:320px;height:183px;"><img src="assets/Resources/people-details.png" alt="People Details"/></div>
 
       <!-- Partner logos -->
-      <div class="os-hl-logo" style="left:357px;top:420px;width:200px;height:133px;"><img src="assets/Resources/people-soft-logo.png" alt="PeopleSoft"/></div>
-      <div class="os-hl-logo" style="left:1450px;top:552px;width:100px;height:100px;"><img src="assets/Resources/rydoo-logo.png" alt="Rydoo"/></div>
-      <div class="os-hl-logo" style="left:644px;top:447px;width:100px;height:79px;"><img src="assets/Resources/workday-logo.png" alt="Workday"/></div>
-      <div class="os-hl-logo" style="left:445px;top:577px;width:100px;height:75px;"><img src="assets/Resources/Kronos.png" alt="Kronos"/></div>
-      <div class="os-hl-logo" style="left:999px;top:725px;width:300px;height:36px;"><img src="assets/Resources/SAP-SuccessFactors-logo.png" alt="SAP SuccessFactors"/></div>
-      <div class="os-hl-logo" style="left:1346px;top:159px;width:101px;height:97px;"><img src="assets/Resources/xero-logo.png" alt="Xero"/></div>
+      <div class="os-hl-logo" style="left:357px;top:420px;width:200px;height:133px;animation-delay:0s;"><img src="assets/Resources/people-soft-logo.png" alt="PeopleSoft"/></div>
+      <div class="os-hl-logo" style="left:1450px;top:552px;width:100px;height:100px;animation-delay:-0.7s;"><img src="assets/Resources/rydoo-logo.png" alt="Rydoo"/></div>
+      <div class="os-hl-logo" style="left:644px;top:447px;width:100px;height:79px;animation-delay:-1.4s;"><img src="assets/Resources/workday-logo.png" alt="Workday"/></div>
+      <div class="os-hl-logo" style="left:445px;top:577px;width:100px;height:75px;animation-delay:-2.1s;"><img src="assets/Resources/Kronos.png" alt="Kronos"/></div>
+      <div class="os-hl-logo" style="left:999px;top:725px;width:300px;height:36px;animation-delay:-2.8s;"><img src="assets/Resources/SAP-SuccessFactors-logo.png" alt="SAP SuccessFactors"/></div>
+      <div class="os-hl-logo" style="left:1346px;top:159px;width:101px;height:97px;animation-delay:-3.5s;"><img src="assets/Resources/xero-logo.png" alt="Xero"/></div>
 
     </div>
   </div>
@@ -1226,24 +1253,24 @@
 
       <!-- Text -->
       <div class="os-hl-text" style="left:808px;top:32px;">
-        <div class="section-label" style="color:var(--text-main);">
+        <div class="section-label fade-in" style="color:var(--text-main);">
           <span class="line"></span>
           <span data-i18n="marcos.bi.label">Business Insights</span>
         </div>
         <div class="os-hl-body">
-          <h2 class="os-hl-title">Empower your workforce strategy with <em>data-driven insights</em></h2>
-          <ul class="os-hl-bullets">
+          <h2 class="os-hl-title fade-in" data-i18n-html="marcos.bi.title">Empower your workforce strategy with <em>data-driven insights</em></h2>
+          <ul class="os-hl-bullets fade-in">
             <li class="os-hl-bullet">
               <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
-              <p>Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights</p>
+              <p data-i18n="marcos.bi.bullet1">Aggregate your workforce data into automated reports</p>
             </li>
             <li class="os-hl-bullet">
               <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
-              <p>Secure data communication and transmission</p>
+              <p data-i18n="marcos.bi.bullet2">Full visibility into workforce distribution and employment costs</p>
             </li>
             <li class="os-hl-bullet">
               <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
-              <p>Ready-made integrations with leading Core HR, Finance, Time, and Expense platforms, including PeopleSoft, SuccessFactors, Workday, Rydoo, Kronos, and Xero</p>
+              <p data-i18n="marcos.bi.bullet3">Identify workforce trends, gaps, and opportunities through data visualisation</p>
             </li>
           </ul>
         </div>
@@ -1252,16 +1279,16 @@
       <!-- Screen cards -->
       <div class="os-hl-card" style="left:315px;top:201px;width:440px;height:251px;"><img src="assets/Resources/BI-blank.png" alt="Business Intelligence"/></div>
       <div class="os-hl-card" style="left:784px;top:356px;width:400px;height:260px;"><img src="assets/Resources/home-blank.png" alt="Home Dashboard"/></div>
-      <div class="os-hl-card" style="left:763px;top:505px;width:160px;height:132px;border-radius:4px;"><img src="assets/Resources/home-active-team.png" alt="Active Team"/></div>
-      <div class="os-hl-card" style="left:941px;top:531px;width:160px;height:132px;border-radius:4px;"><img src="assets/Resources/home-team-status.png" alt="Team Status"/></div>
+      <div class="os-hl-card os-hl-card-float" style="left:763px;top:505px;width:160px;height:132px;border-radius:4px;animation-delay:0s;"><img src="assets/Resources/home-active-team.png" alt="Active Team"/></div>
+      <div class="os-hl-card os-hl-card-float" style="left:941px;top:531px;width:160px;height:132px;border-radius:4px;animation-delay:-0.5s;"><img src="assets/Resources/home-team-status.png" alt="Team Status"/></div>
 
       <!-- Floating data widgets -->
-      <div class="os-hl-widget" style="left:622px;top:412px;width:98px;height:73px;"><img src="assets/Resources/data-timeoff.png" alt="Time Off"/></div>
-      <div class="os-hl-widget" style="left:288px;top:371px;width:124px;height:74px;"><img src="assets/Resources/data-service type.png" alt="Service Type"/></div>
-      <div class="os-hl-widget" style="left:435px;top:408px;width:85px;height:73px;"><img src="assets/Resources/data-mobility.png" alt="Mobility"/></div>
-      <div class="os-hl-widget" style="left:546px;top:308px;width:112px;height:84px;"><img src="assets/Resources/data-hiring type.png" alt="Hiring Type"/></div>
-      <div class="os-hl-widget" style="left:535px;top:425px;width:74px;height:73px;"><img src="assets/Resources/data-expense.png" alt="Expense"/></div>
-      <div class="os-hl-widget" style="left:350px;top:285px;width:176px;height:83px;"><img src="assets/Resources/data-country data.png" alt="Country Data"/></div>
+      <div class="os-hl-widget" style="left:622px;top:412px;width:98px;height:73px;animation-delay:-1.0s;"><img src="assets/Resources/data-timeoff.png" alt="Time Off"/></div>
+      <div class="os-hl-widget" style="left:288px;top:371px;width:124px;height:74px;animation-delay:-1.5s;"><img src="assets/Resources/data-service type.png" alt="Service Type"/></div>
+      <div class="os-hl-widget" style="left:435px;top:408px;width:85px;height:73px;animation-delay:-2.0s;"><img src="assets/Resources/data-mobility.png" alt="Mobility"/></div>
+      <div class="os-hl-widget" style="left:546px;top:308px;width:112px;height:84px;animation-delay:-2.5s;"><img src="assets/Resources/data-hiring type.png" alt="Hiring Type"/></div>
+      <div class="os-hl-widget" style="left:535px;top:425px;width:74px;height:73px;animation-delay:-3.0s;"><img src="assets/Resources/data-expense.png" alt="Expense"/></div>
+      <div class="os-hl-widget" style="left:350px;top:285px;width:176px;height:83px;animation-delay:-3.5s;"><img src="assets/Resources/data-country data.png" alt="Country Data"/></div>
 
     </div>
   </div>
@@ -1278,33 +1305,33 @@
 
       <!-- Text -->
       <div class="os-hl-text" style="left:288px;top:60px;">
-        <div class="section-label" style="color:var(--text-main);">
+        <div class="section-label fade-in" style="color:var(--text-main);">
           <span class="line"></span>
           <span data-i18n="marcos.mobility.label">Borderless Mobility</span>
         </div>
         <div class="os-hl-body">
-          <h2 class="os-hl-title">Gear up for the <em>future</em> of work.</h2>
-          <ul class="os-hl-bullets">
+          <h2 class="os-hl-title fade-in" data-i18n-html="marcos.mobility.title">Gear up for the <em>future</em> of work.</h2>
+          <ul class="os-hl-bullets fade-in">
             <li class="os-hl-bullet">
               <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
-              <p>Keep track of all visa cases, for work assignments or relocations</p>
+              <p data-i18n="marcos.mobility.bullet1">Keep track of all visa cases, for work assignments or relocations</p>
             </li>
             <li class="os-hl-bullet">
               <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
-              <p>Manage separate information for expat staff's host and home country</p>
+              <p data-i18n="marcos.mobility.bullet2">Manage separate information for expat staff's host and home country</p>
             </li>
             <li class="os-hl-bullet">
               <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
-              <p>Fuss-free country and expat changes without worrying about payroll, time-off, and other HR compliance</p>
+              <p data-i18n="marcos.mobility.bullet3">Fuss-free country and expat changes without worrying about payroll, time-off, and other HR compliance</p>
             </li>
           </ul>
         </div>
       </div>
 
       <!-- Screen cards -->
-      <div class="os-hl-card os-hl-card-thick" style="left:439px;top:368px;width:440px;height:251px;"><img src="assets/Resources/global-mobility-blank.png" alt="Global Mobility"/></div>
-      <div class="os-hl-card os-hl-card-thick" style="left:992px;top:278px;width:418px;height:251px;"><img src="assets/Resources/people-global-mobility.png" alt="People Global Mobility"/></div>
-      <div class="os-hl-widget" style="left:386px;top:498px;width:584px;height:24px;"><img src="assets/Resources/global-mobility-list.png" alt="Global Mobility List"/></div>
+      <div class="os-hl-card" style="left:439px;top:368px;width:440px;height:251px;"><img src="assets/Resources/global-mobility-blank.png" alt="Global Mobility"/></div>
+      <div class="os-hl-card" style="left:992px;top:278px;width:418px;height:251px;"><img src="assets/Resources/people-global-mobility.png" alt="People Global Mobility"/></div>
+      <div class="os-hl-widget" style="left:386px;top:498px;width:584px;height:24px;animation:os-logo-float 4s ease-in-out infinite;animation-delay:-1.2s;"><img src="assets/Resources/global-mobility-list.png" alt="Global Mobility List"/></div>
 
     </div>
   </div>
@@ -1314,41 +1341,41 @@
 <!-- Simple · Global · Secure -->
 <section class="sgs-section">
   <div class="sgs-inner">
-    <h2 class="sgs-title">Simple <span class="sgs-dot">·</span> <em class="sgs-global">Global</em> <span class="sgs-dot">·</span> Secure</h2>
+    <h2 class="sgs-title"><span data-i18n="marcos.sgs.simple">Simple</span> <span class="sgs-dot">·</span> <em class="sgs-global" data-i18n="marcos.sgs.global">Global</em> <span class="sgs-dot">·</span> <span data-i18n="marcos.sgs.secure">Secure</span></h2>
     <div class="sgs-cards">
 
       <!-- Integrations -->
-      <div class="sgs-card">
+      <div class="sgs-card fade-in">
         <div class="sgs-icon"><img src="assets/Resources/integration-icon.svg" alt=""/></div>
-        <h3 class="sgs-card-title">Integrations</h3>
-        <p class="sgs-card-desc">Connect Marco Platform with your own HCM, ERP, payroll, or expense systems.</p>
+        <h3 class="sgs-card-title" data-i18n="marcos.sgs.card1.title">Integrations</h3>
+        <p class="sgs-card-desc" data-i18n="marcos.sgs.card1.desc">Connect Marco Platform with your own HCM, ERP, payroll, or expense systems.</p>
       </div>
 
       <!-- Coverage -->
-      <div class="sgs-card">
+      <div class="sgs-card fade-in">
         <div class="sgs-icon"><img src="assets/Resources/coverage-icon.svg" alt=""/></div>
-        <h3 class="sgs-card-title">Coverage</h3>
-        <p class="sgs-card-desc">Marco Platform covers 80+ countries with multilingual support and localized databases.</p>
+        <h3 class="sgs-card-title" data-i18n="marcos.sgs.card2.title">Coverage</h3>
+        <p class="sgs-card-desc" data-i18n="marcos.sgs.card2.desc">Marco Platform covers 80+ countries with multilingual support and localized databases.</p>
       </div>
 
       <!-- In-built Compliance -->
-      <div class="sgs-card">
+      <div class="sgs-card fade-in">
         <div class="sgs-icon"><img src="assets/Resources/compliance-icon.svg" alt=""/></div>
-        <h3 class="sgs-card-title">In-built Compliance</h3>
-        <p class="sgs-card-desc">Keep compliant with Marco's country-specific databases that adapt to ever-changing regulations.</p>
+        <h3 class="sgs-card-title" data-i18n="marcos.sgs.card3.title">In-built Compliance</h3>
+        <p class="sgs-card-desc" data-i18n="marcos.sgs.card3.desc">Keep compliant with Marco's country-specific databases that adapt to ever-changing regulations.</p>
       </div>
 
       <!-- Data Privacy & Security -->
-      <div class="sgs-card">
+      <div class="sgs-card fade-in">
         <div class="sgs-icon"><img src="assets/Resources/privacy-icon.svg" alt=""/></div>
-        <h3 class="sgs-card-title">Data Privacy &amp; Security</h3>
-        <p class="sgs-card-desc">Marco Platform is secured with enterprise-level protocols and standards.</p>
+        <h3 class="sgs-card-title" data-i18n="marcos.sgs.card4.title">Data Privacy &amp; Security</h3>
+        <p class="sgs-card-desc" data-i18n="marcos.sgs.card4.desc">Marco Platform is secured with enterprise-level protocols and standards.</p>
       </div>
 
     </div>
     <div class="sgs-cta-wrap">
       <a href="company-contact-us.html" class="cta-btn cta-btn--primary">
-        <span>Contact us</span>
+        <span data-i18n="marcos.sgs.cta.btn">Contact us</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
