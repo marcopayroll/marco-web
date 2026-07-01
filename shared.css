@@ -117,7 +117,7 @@ body {
 .nav-lang-dd-flag { position: relative; width: 20px; height: 20px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; }
 .nav-lang-dd-flag img { position: absolute; top: 0; height: 100%; max-width: none; }
 .nav-lang-dd-flag.flag-en img { left: -20.01%; width: 175.44%; }
-.nav-lang-dd-flag.flag-cn img { left: 1.79%; width: 150%; }
+.nav-lang-dd-flag.flag-cn img { left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: left center; }
 .nav-lang-dropdown .nav-lang-dd-label { font-family: var(--font); font-size: 12px; font-weight: 600; line-height: 20px; color: #162351; }
 .nav-signin {
   background: var(--blue-main); color: #fff; font-family: var(--font);
