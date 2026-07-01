@@ -371,3 +371,36 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .fade-in { opacity: 1; transform: none; transition: none; }
 }
+
+/* ════════════════════════════════════════
+   CTA BUTTONS — shared across all pages
+   Base styles scoped to variant classes to avoid
+   conflicting with .cta-btn icon buttons on other pages.
+════════════════════════════════════════ */
+.cta-btn--primary,
+.cta-btn--secondary,
+.cta-btn--clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 4px 24px;
+  border-radius: 50px;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.8px;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.cta-btn--primary { background: #162351; border: none; color: #fff; }
+.cta-btn--primary:hover { background: #0185C4; }
+.cta-btn--secondary { background: #fff; border: 1px solid #003751; color: #162351; }
+.cta-btn--secondary:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
+.cta-btn--secondary:hover .btn-icon-img { filter: brightness(0) invert(1); }
+.cta-btn--clear { background: transparent; border: 1px solid #fff; color: #fff; }
+.cta-btn--clear:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
+.cta-btn-chevron { width: 16px; height: 16px; flex-shrink: 0; }

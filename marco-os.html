@@ -1,0 +1,1385 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="assets/marco-favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marco OS — Global Workforce Management Platform | Marco</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-main:     #019DE7;
+      --blue-dark:     #003751;
+      --blue-darkest:  #162351;
+      --blue-lighter:  #8DD3F4;
+      --text-main:     #162351;
+      --text-tertiary: #8F98B5;
+      --font: 'Euclid Circular B', 'Inter', sans-serif;
+      --gutter:        clamp(64px, 7.5vw, 108px);
+      --nav-gutter:    clamp(32px, 4.44vw, 64px);
+      --footer-gutter: clamp(40px, 5.56vw, 80px);
+    }
+
+    body {
+      font-family: var(--font);
+      background: #0F1E46;
+      color: var(--text-main);
+      min-width: 960px;
+    }
+
+    .container {
+      width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+    }
+
+    /* ════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+      background-image: none;
+      transition:
+        background-color 0.25s ease,
+        background-image 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+    .nav.nav-scrolled {
+      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+    .nav-container {
+      width: min(100% - 48px, 1440px);
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+    }
+    .nav-tabbar {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      flex-shrink: 0;
+    }
+    .nav-logo {
+      width: 152px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .nav-logo-inner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 684 / 108;
+    }
+    .nav-logo-inner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+    .nav-tab {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 16px;
+      align-items: flex-start;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .nav-tab:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 4px; right: 4px;
+      height: 2px;
+      background: #fff;
+      pointer-events: none;
+    }
+    .nav-tab--active::after {
+      content: ''; position: absolute; bottom: -16px; left: 4px; right: 4px;
+      height: 2px; background: var(--blue-main); pointer-events: none;
+    }
+    .nav-tab-inner {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 4px;
+      flex-shrink: 0;
+    }
+    .nav-tab-inner span {
+      font-size: 12px;
+      font-weight: 500;
+      color: #e5e7eb;
+      white-space: nowrap;
+      line-height: 20px;
+    }
+    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-right {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+    .nav-lang {
+      display: flex;
+      flex-direction: column;
+      padding-top: 16px;
+      padding-bottom: 14px;
+      align-items: flex-start;
+      flex-shrink: 0;
+      position: relative;
+      cursor: pointer;
+    }
+    .nav-lang-flag {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      border-radius: 50px;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .nav-lang-flag img {
+      position: absolute;
+      top: 0;
+      left: -20.01%;
+      width: 175.44%;
+      height: 100%;
+      max-width: none;
+    }
+    .nav-lang-inner span {
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 20px;
+    }
+    .nav-signin {
+      background: var(--blue-main);
+      color: #fff;
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 14px 24px;
+      height: 32px;
+      width: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      cursor: pointer;
+      border: none;
+      flex-shrink: 0;
+      text-decoration: none;
+      transition: background 0.18s ease;
+    }
+    .nav-signin:hover { background: #0185C4; }
+
+    /* Services dropdown */
+    .nav-tab-services { position: relative; }
+    .nav-tab-services::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
+    .nav-tab-services:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-services-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 697px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22, 35, 81, 0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-services:hover .nav-services-dropdown,
+    .nav-services-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-services-columns { display: flex; gap: 16px; }
+    .nav-services-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-services-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-services-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-services-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-services-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-services-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-services-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-services-item:hover .nav-services-item-title { color: var(--blue-main); }
+    /* Compliance dropdown */
+    .nav-tab-compliance { position: relative; }
+    .nav-tab-compliance::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
+    .nav-tab-compliance:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-compliance-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22, 35, 81, 0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-compliance:hover .nav-compliance-dropdown,
+    .nav-compliance-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    /* About Us dropdown */
+    .nav-tab-about { position: relative; }
+    .nav-tab-about::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
+    .nav-tab-about:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-about-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22, 35, 81, 0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-about:hover .nav-about-dropdown,
+    .nav-about-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-resources { position: relative; }
+    .nav-tab-resources::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
+    .nav-tab-resources:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-resources-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-resources:hover .nav-resources-dropdown,
+    .nav-resources-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-hub { position: relative; }
+    .nav-tab-hub::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
+    .nav-tab-hub:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-hub-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 680px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-hub:hover .nav-hub-dropdown,
+    .nav-hub-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-tab-price { position: relative; }
+    .nav-tab-price::before { content: ''; position: absolute; left: 0; width: 100%; top: 100%; height: 44px; }
+    .nav-tab-price:hover .nav-chevron svg { transform: scaleY(-1); }
+    .nav-price-dropdown {
+      position: absolute; top: calc(100% + 44px); left: 0;
+      width: 400px; background: #fff; border-radius: 8px;
+      padding: 16px 24px 24px; display: flex; flex-direction: column; gap: 16px;
+      box-shadow: 0 8px 32px rgba(22,35,81,0.14);
+      opacity: 0; pointer-events: none; transform: translateY(-6px);
+      transition: opacity 0.18s ease, transform 0.18s ease; z-index: 200;
+    }
+    .nav-tab-price:hover .nav-price-dropdown,
+    .nav-price-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .nav-hub-columns { display: flex; gap: 16px; }
+    .nav-hub-col { flex: 1 0 0; display: flex; flex-direction: column; gap: 20px; }
+    .nav-hub-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-hub-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-hub-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-hub-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-hub-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-hub-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-hub-item:hover .nav-hub-item-title { color: var(--blue-main); }
+    .nav-about-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-about-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-about-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-about-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-about-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-about-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-about-item:hover .nav-about-item-title { color: var(--blue-main); }
+    .nav-compliance-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-compliance-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-compliance-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-compliance-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-compliance-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-compliance-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-compliance-item:hover .nav-compliance-item-title { color: var(--blue-main); }
+    .nav-resources-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+    .nav-resources-item-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-resources-item-icon img { width: 100%; height: 100%; display: block; }
+    .nav-resources-item-text { display: flex; flex-direction: column; gap: 4px; }
+    .nav-resources-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-resources-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-resources-item:hover .nav-resources-item-title { color: var(--blue-main); }
+    .nav-dropdown-label { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-tertiary); }
+    .nav-dropdown-divider { height: 1px; background: #CDD5E0; }
+    .nav-dropdown-list { display: flex; flex-direction: column; gap: 20px; }
+    .nav-dropdown-item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; }
+    .nav-dropdown-item-title { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); display: block; transition: color 0.12s ease; }
+    .nav-dropdown-item-desc { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); display: block; }
+    .nav-dropdown-item:hover .nav-dropdown-item-title { color: var(--blue-main); }
+
+    /* ════════════════════════════════════════
+       HERO — MARCO OS
+    ════════════════════════════════════════ */
+    .os-hero {
+      position: relative;
+      width: 100%;
+      min-height: 1000px;
+      background: linear-gradient(90.26deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 180px;
+      padding-bottom: 80px;
+    }
+
+    @keyframes screen-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    @keyframes blob-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-18px); }
+    }
+
+    /* Decorative blobs */
+    .os-blob {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .os-hero-label.fade-in    { transition-delay: 0s; }
+    .os-hero-title.fade-in    { transition-delay: 0.15s; }
+    .os-hero-desc.fade-in     { transition-delay: 0.3s; }
+    .os-hero-laptop.fade-in   { transition-delay: 0.45s; }
+
+    .os-blob-right { animation: blob-float 5s ease-in-out infinite; }
+    .os-blob-left  { animation: blob-float 6.5s ease-in-out infinite; }
+    .os-blob-right {
+      width: 151px;
+      height: 151px;
+      left: calc(50% + 233px);
+      top: 500px;
+    }
+    .os-blob-left {
+      width: 227px;
+      height: 227px;
+      right: calc(50% + 194px);
+      top: 697px;
+    }
+    .os-blob img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Text block */
+    .os-hero-text {
+      position: relative;
+      z-index: 2;
+      width: 808px;
+      max-width: calc(100% - 80px);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .os-hero-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .os-hero-label span {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      color: #019DE7;
+    }
+
+    .os-hero-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .os-hero-title {
+      font-size: 52px;
+      font-weight: 600;
+      line-height: 66px;
+      letter-spacing: -1.56px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    .os-hero-desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Laptop image */
+    .os-hero-laptop {
+      position: relative;
+      z-index: 2;
+      width: 660px;
+      max-width: calc(100% - 80px);
+      margin-top: 40px;
+      flex-shrink: 0;
+    }
+    .os-hero-laptop img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ════════════════════════════════════════
+       CTA BUTTONS
+    ════════════════════════════════════════ */
+    .btn-icon { position: relative; overflow: hidden; flex-shrink: 0; width: 20px; height: 20px; }
+    .btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
+    .btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; transition: filter 0.18s ease; }
+
+    /* ════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════ */
+    .footer {
+      width: 100%;
+      overflow: hidden;
+      background-image: linear-gradient(90.352deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      padding: 60px 0 58px;
+    }
+    .footer > .container { display: flex; flex-direction: column; }
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 56px;
+    }
+    .footer-logo { width: 199.5px; flex-shrink: 0; text-decoration: none; }
+    .footer-logo img { width: 100%; height: auto; display: block; }
+    .footer-social {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 80px;
+      flex-shrink: 0;
+    }
+    .footer-social-icon { width: 24px; height: 24px; overflow: hidden; flex-shrink: 0; }
+    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .footer-col {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .footer-col-header { font-size: 14px; font-weight: 400; line-height: normal; color: var(--text-tertiary); }
+    .footer-col-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-col-links a, .footer-col-links span { font-size: 14px; font-weight: 500; line-height: normal; color: #fff; text-decoration: none; display: block; }
+    .footer-col-links a:hover { text-decoration: underline; }
+    .footer-divider { height: 1px; background: rgba(205,213,224,0.25); margin-bottom: 32px; }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+    }
+    .footer-legal { display: flex; gap: 40px; align-items: center; }
+    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
+    .footer-legal a:hover { text-decoration: underline; }
+
+    /* ════════════════════════════════════════
+       FADE-IN REVEAL
+    ════════════════════════════════════════ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .fade-in { opacity: 1; transform: none; transition: none; } }
+
+    .wechat-modal {
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+    }
+    .wechat-modal.active { opacity: 1; pointer-events: auto; }
+    .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
+
+    /* ════════════════════════════════════════
+       TABLET NAV (≤1100px)
+    ════════════════════════════════════════ */
+    .nav-mobile-right { display: none; align-items: center; gap: 32px; }
+    .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; padding-top: 10px; padding-bottom: 10px; }
+    .nav-mobile-lang.is-open::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
+    .nav-mobile-lang .nav-lang-flag { width: 16px; height: 16px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; position: relative; }
+    .nav-mobile-lang .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
+    .nav-mobile-lang span { font-family: var(--font); font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
+    .nav-hamburger { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; cursor: pointer; background: none; border: none; padding: 0; flex-shrink: 0; }
+    .nav-hamburger-icon-tablet { display: block; width: 24px; height: 24px; }
+    .nav-hamburger-icon-mobile { display: none; }
+    .nav-hamburger img { transition: transform 0.3s ease; }
+    .nav-hamburger.is-open img { transform: rotate(90deg); }
+    .nav-mobile-overlay { position: fixed; top: 80px; left: 0; width: 100vw; height: calc(100vh - 80px); background: rgba(0,0,0,0.6); z-index: 190; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+    .nav-mobile-overlay.is-open { opacity: 1; pointer-events: auto; }
+    .nav-mobile-panel {
+      position: fixed; top: 80px; left: calc(100vw - min(100vw, 390px)); width: min(100vw, 390px); height: calc(100vh - 80px);
+      background: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%);
+      z-index: 200; overflow-y: auto; box-sizing: border-box;
+      transform: translateX(100%); transition: transform 0.3s ease;
+      display: flex; flex-direction: column; padding: 24px; justify-content: space-between;
+    }
+    .nav-mobile-panel.is-open { transform: translateX(0); }
+    .nav-mob-acc { display: flex; flex-direction: column; gap: 16px; }
+    .nav-mob-row { }
+    .nav-mob-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; cursor: pointer; user-select: none; gap: 8px; }
+    .nav-mob-header-label { font-family: var(--font); font-size: 16px; font-weight: 500; color: #fff; line-height: 20px; }
+    .nav-mob-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .nav-mob-chevron svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .nav-mob-row.is-open .nav-mob-chevron svg { transform: rotate(180deg); }
+    .nav-mob-body { display: flex; flex-direction: column; gap: 16px; padding: 0 20px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.35s ease, opacity 0.25s ease, padding-top 0.35s ease; }
+    .nav-mob-row.is-open .nav-mob-body { max-height: 700px; opacity: 1; padding-top: 16px; }
+    .nav-mob-sub-item { display: flex; gap: 8px; align-items: center; text-decoration: none; }
+    .nav-mob-sub-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .nav-mob-sub-icon img { width: 100%; height: 100%; display: block; }
+    .nav-mob-sub-title { font-family: var(--font); font-size: 14px; font-weight: 500; color: #fff; display: block; line-height: 18px; transition: color 0.12s ease; }
+    .nav-mob-sub-desc { display: none; }
+    .nav-mob-sub-item:hover .nav-mob-sub-title { color: #019DE7; }
+    .nav-mob-sub-item-noicon { display: block; padding: 0; text-decoration: none; }
+    .nav-mob-sub-title-noicon { font-family: var(--font); font-size: 14px; font-weight: 500; color: #fff; display: block; line-height: 18px; transition: color 0.12s ease; }
+    .nav-mob-sub-item-noicon:hover .nav-mob-sub-title-noicon { color: #019DE7; }
+    .nav-mob-signin-wrap { flex-shrink: 0; }
+    .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
+    .nav-mob-signin:hover { background: #0185C4; }
+    @media (max-width: 1100px) {
+      .nav { z-index: 300; width: 100vw; }
+      .nav.nav-panel-open { background-image: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%); }
+      .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }
+      .nav-menu { display: none; }
+      .nav-right { display: none; }
+      .nav-mobile-right { display: flex; }
+      .nav-lang-dropdown { top: calc(100% + 16px); }
+    }
+    @media (max-width: 440px) {
+      .nav-container { padding: 16px 24px; }
+      .nav-logo { width: 101px; height: 32px; }
+      .nav-hamburger { width: 20px; height: 20px; }
+      .nav-hamburger-icon-tablet { display: none; }
+      .nav-hamburger-icon-mobile { display: block; width: 20px; height: 20px; }
+      .nav-mobile-overlay { top: 64px; height: calc(100vh - 64px); }
+      .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
+    }
+    @media (max-width: 1100px) {
+      .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
+      .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
+      .footer-top { margin-bottom: 60px; }
+      .footer-logo { width: 171px; }
+      .footer-nav { flex-wrap: wrap; column-gap: 24px; row-gap: 60px; margin-bottom: 60px; }
+      .footer-col { flex: 1 1 calc(33.333% - 16px); max-width: calc(33.333% - 16px); }
+      .footer-col-header { font-size: 12px; line-height: 16px; }
+      .footer-col-links a, .footer-col-links span { font-size: 12px; line-height: 16px; }
+      .footer-divider { margin-bottom: 32px; }
+      .footer-bottom { font-size: 12px; line-height: 16px; }
+      .footer-legal { gap: 24px; }
+    }
+
+    /* ════════════════════════════════════════
+       MOBILE FOOTER (≤440px)
+    ════════════════════════════════════════ */
+    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100vw; box-sizing: border-box; }
+    .footer-mob-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px 24px 0; }
+    .footer-mob-logo { display: block; width: 142px; height: 40px; flex-shrink: 0; text-decoration: none; }
+    .footer-mob-logo img { width: 142px; height: 40px; display: block; object-fit: contain; }
+    .footer-mob-social { display: flex; align-items: center; gap: 26px; padding-top: 8px; flex-shrink: 0; }
+    .footer-mob-social-link { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; }
+    .footer-mob-social-link img { width: 24px; height: 24px; display: block; }
+    .footer-mob-social-wechat { width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .footer-mob-social-wechat img { width: 24px; height: 24px; display: block; }
+    .footer-mob-acc { display: flex; flex-direction: column; padding: 32px 24px 0; }
+    .footer-mob-row { border-bottom: 1px solid #8f98b5; }
+    .footer-mob-row-header { display: flex; gap: 16px; align-items: center; padding: 24px 0; cursor: pointer; user-select: none; }
+    .footer-mob-row-label { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; flex: 1; }
+    .footer-mob-row-chevron { display: flex; align-items: center; flex-shrink: 0; }
+    .footer-mob-row-chevron svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+    .footer-mob-row.is-open .footer-mob-row-chevron svg { transform: rotate(180deg); }
+    .footer-mob-row-body { max-height: 0; overflow: hidden; opacity: 0; display: flex; flex-direction: column; gap: 24px; padding: 0; transition: max-height 0.35s ease, opacity 0.25s ease, padding-bottom 0.35s ease; }
+    .footer-mob-row.is-open .footer-mob-row-body { max-height: 800px; opacity: 1; padding-bottom: 24px; }
+    .footer-mob-row-body a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #fff; text-decoration: none; display: block; }
+    .footer-mob-row-body a:hover { color: #019DE7; }
+    .footer-mob-legal { display: flex; flex-direction: column; gap: 32px; padding: 60px 24px 32px; }
+    .footer-mob-legal-links { display: flex; flex-direction: column; gap: 16px; }
+    .footer-mob-legal-links a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #b2b6c8; text-decoration: none; }
+    .footer-mob-legal-links a:hover { color: #fff; }
+    .footer-mob-copyright { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #b2b6c8; }
+    @media (max-width: 440px) {
+      .footer { display: none; }
+      .footer-mobile { display: block; }
+      .os-hero { min-height: unset; padding-top: 120px; padding-bottom: 48px; }
+      .os-hero-title { font-size: 36px; line-height: 46px; letter-spacing: -0.8px; }
+      .os-blob-right, .os-blob-left { display: none; }
+    }
+
+    .nav-lang { position: relative; cursor: pointer; }
+    .nav-lang-dropdown {
+      position: absolute; top: calc(100% + 25px); left: 50%;
+      width: 90px; background: #fff; border-radius: 8px;
+      box-shadow: 0 4px 5px rgba(0,0,0,0.1), 0 4px 15px rgba(0,0,0,0.15);
+      padding: 8px; display: flex; flex-direction: column; gap: 8px;
+      z-index: 200;
+      opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-4px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
+    .nav-lang:hover .nav-lang-dropdown,
+    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
+    .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
+    .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
+    .nav-lang-dd-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 4px 8px; border-radius: 4px; cursor: pointer;
+      border: 1px solid transparent; transition: background 0.12s ease, border-color 0.12s ease;
+    }
+    .nav-lang-dd-row.is-active { background: #ECF2FB; border-color: #BCC9EB; }
+    .nav-lang-dd-row:hover { background: #ECF2FB; border-color: #BCC9EB; }
+    .nav-lang-dd-flag { position: relative; width: 20px; height: 20px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; }
+    .nav-lang-dd-flag img { position: absolute; top: 0; height: 100%; max-width: none; }
+    .nav-lang-dd-flag.flag-en img { left: -20.01%; width: 175.44%; }
+    .nav-lang-dd-flag.flag-cn img { left: 1.79%; width: 150%; }
+    .nav-lang-dropdown .nav-lang-dd-label { font-family: var(--font); font-size: 12px; font-weight: 600; line-height: 20px; color: #162351; }
+
+    /* ════════════════════════════════════════
+       SECTION LABEL (shared)
+    ════════════════════════════════════════ */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label .line {
+      width: 16px;
+      height: 2px;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+    .section-label span {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+    }
+
+    /* ════════════════════════════════════════
+       PAYROLL & PEOPLE SECTION
+    ════════════════════════════════════════ */
+    .os-payroll {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(to bottom, #f4f4ff 49%, #ffffff 100%);
+      overflow: hidden;
+      padding: 80px 0 80px;
+      min-height: 550px;
+    }
+
+    /* Dashed decoration */
+    .os-payroll-dashed {
+      position: absolute;
+      left: calc(50% - 168px);
+      top: 149px;
+      width: 988px;
+      height: 444px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .os-payroll-dashed img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Text side */
+    .os-payroll-text {
+      position: relative;
+      z-index: 2;
+      max-width: 520px;
+      padding-top: 57px; /* 80px section padding + 57px = 137px from section top */
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .os-payroll-text .section-label { color: var(--text-main); }
+    .os-payroll-text .section-label.fade-in  { transition-delay: 0s; }
+    .os-payroll-text .os-payroll-title.fade-in { transition-delay: 0.15s; }
+    .os-payroll-text .os-payroll-bullets.fade-in { transition-delay: 0.3s; }
+
+    .os-payroll-title {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 60px;
+      letter-spacing: -2.4px;
+      color: var(--text-main);
+    }
+    .os-payroll-title em {
+      color: var(--blue-main);
+      font-style: normal;
+    }
+
+    .os-payroll-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .os-payroll-bullet {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .os-payroll-dot-wrap {
+      display: flex;
+      align-items: center;
+      padding: 6px 12px;
+      flex-shrink: 0;
+    }
+    .os-payroll-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--blue-main);
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .os-payroll-bullet p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #475072;
+      flex: 1;
+    }
+
+    /* Screen cards */
+    .os-screen {
+      position: absolute;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.10), 0 4px 30px 10px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    .os-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Card 1: payroll — top-right, back */
+    .os-screen-1 {
+      left: calc(50% + 277px);
+      top: 58px;
+      width: 320px;
+      height: 182px;
+      z-index: 1;
+      animation: screen-float 5s ease-in-out infinite;
+    }
+    /* Card 2: payroll-processing — middle-left, mid */
+    .os-screen-2 {
+      left: calc(50% + 27px);
+      top: 170px;
+      width: 320px;
+      height: 183px;
+      z-index: 2;
+      animation: screen-float 6s ease-in-out infinite 0.5s;
+    }
+    /* Card 3: people-details — bottom-right, front */
+    .os-screen-3 {
+      left: calc(50% + 231px);
+      top: 283px;
+      width: 320px;
+      height: 183px;
+      z-index: 3;
+      animation: screen-float 5.5s ease-in-out infinite 1s;
+    }
+
+    /* ════════════════════════════════════════
+       MARCO DATA CLOUD
+    ════════════════════════════════════════ */
+    .datacloud {
+      background-image: linear-gradient(90.589deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
+      overflow: hidden;
+    }
+    .datacloud-body {
+      display: flex;
+      align-items: stretch;
+      min-height: 400px;
+    }
+    .datacloud-left {
+      flex: 0 0 41.94vw;
+      margin-left: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
+      margin-right: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .datacloud-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .datacloud-right {
+      flex: 1;
+      min-width: 0;
+      padding: 80px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .datacloud-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .datacloud-title {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 40px;
+      color: #fff;
+      max-width: 704px;
+    }
+    .datacloud-title .accent { color: var(--blue-main); }
+    .datacloud-desc-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 704px;
+    }
+    .datacloud-desc-list {
+      padding-left: 24px;
+    }
+    .datacloud-desc {
+      list-style: disc;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #8F98B5;
+      letter-spacing: -0.8px;
+      text-align: justify;
+      word-break: break-word;
+    }
+    @media (max-width: 1280px) { .datacloud-title { font-size: 28px; line-height: 36px; } }
+    @media (max-width: 1100px) { .datacloud-title { font-size: 26px; line-height: 34px; } }
+    @media (max-width: 1024px) { .datacloud-title { font-size: 24px; line-height: 32px; } .datacloud-right { padding: 60px 0; } }
+    @media (max-width: 960px) {
+      .datacloud-body { flex-direction: column; min-height: unset; }
+      .datacloud-left { flex: none; width: calc(100% + 2 * max(var(--gutter), (100vw - 1224px) / 2)); margin-left: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2)); margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2)); height: 260px; position: relative; }
+      .datacloud-right { padding: 48px 0; }
+      .datacloud-title { font-size: 28px; line-height: 36px; }
+    }
+
+    /* ════════════════════════════════════════
+       MARCO OS HIGHLIGHTS (3 sub-sections)
+    ════════════════════════════════════════ */
+    .os-highlights {
+      position: relative;
+      width: 100%;
+      background: linear-gradient(to bottom, #f4f4ff 49%, #ffffff 100%);
+      overflow: clip; /* prevents horizontal scrollbar; clips section-3 circles at footer */
+    }
+    .os-hl-sub {
+      position: relative;
+      width: 100%;
+    }
+    .os-hl-s1 { height: 880px; }
+    .os-hl-s2 { height: 700px; }
+    .os-hl-s3 { height: 699px; }
+
+    /*
+      1800px inner: centers the Figma 1800px frame within the viewport.
+      - At 1800px+ viewport: inner fits perfectly, all circles fully visible.
+      - At narrower viewports: inner overflows symmetrically; overflow:clip clips the sides.
+      All child positions are direct Figma pixel values (no calc needed).
+    */
+    .os-hl-inner {
+      position: absolute;
+      width: 1800px;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Text block */
+    .os-hl-text {
+      position: absolute;
+      width: 704px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 2;
+    }
+    .os-hl-body { display: flex; flex-direction: column; gap: 24px; }
+    .os-hl-title {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 60px;
+      letter-spacing: -2.4px;
+      color: var(--text-main);
+    }
+    .os-hl-title em { color: var(--blue-main); font-style: normal; }
+    .os-hl-bullets { display: flex; flex-direction: column; gap: 8px; }
+    .os-hl-bullet { display: flex; align-items: center; gap: 6px; }
+    .os-hl-dot-wrap { display: flex; align-items: center; padding: 6px 12px; flex-shrink: 0; }
+    .os-hl-dot { width: 8px; height: 8px; background: var(--blue-main); border-radius: 8px; flex-shrink: 0; }
+    .os-hl-bullet p { font-size: 16px; font-weight: 400; line-height: 20px; color: #475072; flex: 1; }
+
+    /* Screen cards */
+    .os-hl-card {
+      position: absolute;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.10), 0 4px 30px 10px rgba(0,0,0,0.15);
+      overflow: hidden;
+      z-index: 2;
+    }
+    .os-hl-card-thick { border-width: 4px; }
+    .os-hl-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Floating data widgets (no border) */
+    .os-hl-widget {
+      position: absolute;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.10), 0 4px 30px 10px rgba(0,0,0,0.15);
+      overflow: hidden;
+      z-index: 3;
+    }
+    .os-hl-widget img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Partner logos */
+    .os-hl-logo { position: absolute; z-index: 2; }
+    .os-hl-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+    /* Dashed circle decorations */
+    .os-hl-dashed { position: absolute; pointer-events: none; z-index: 0; }
+    .os-hl-dashed img { width: 100%; height: 100%; display: block; }
+
+    /* ════════════════ SIMPLE · GLOBAL · SECURE ════════════════ */
+    .sgs-section {
+      background: linear-gradient(to bottom, #f4f4ff 49.112%, #ffffff 110.41%);
+      padding: 80px 0 60px;
+    }
+    .sgs-inner {
+      max-width: 1224px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 108px;
+      box-sizing: border-box;
+    }
+    .sgs-title {
+      font-size: 52px;
+      font-weight: 600;
+      line-height: 66px;
+      letter-spacing: -1.56px;
+      color: var(--text-main);
+      text-align: center;
+      width: 100%;
+      margin: 0 0 60px;
+    }
+    .sgs-title .sgs-dot { font-weight: 400; }
+    .sgs-title .sgs-global { color: var(--blue-main); font-style: normal; font-weight: 600; }
+    .sgs-cards {
+      display: flex;
+      gap: 24px;
+      width: 100%;
+      margin-bottom: 60px;
+    }
+    .sgs-card {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .sgs-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .sgs-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .sgs-icon-box {
+      width: 36px;
+      height: 36px;
+      background: #1d4783;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+    .sgs-icon-box img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .sgs-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 26px;
+      color: var(--text-main);
+      margin: 0;
+    }
+    .sgs-card-desc {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #475072;
+      margin: 0;
+    }
+    .sgs-cta-wrap {
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+<script src="nav.js"></script>
+
+<!-- ════════════════ HERO — MARCO OS ════════════════ -->
+<section class="os-hero">
+  <div class="os-blob os-blob-right"><img src="assets/Resources/marco-os-blob-right.png" alt="" /></div>
+  <div class="os-blob os-blob-left"><img src="assets/Resources/marco-os-blob-left.png" alt="" /></div>
+
+  <div class="os-hero-text">
+    <div class="os-hero-label fade-in">
+      <span data-i18n="marcos.hero.label">Marco OS</span>
+    </div>
+    <div class="os-hero-copy">
+      <h1 class="os-hero-title fade-in" data-i18n="marcos.hero.title">Your single portal for global workforce management</h1>
+      <p class="os-hero-desc fade-in" data-i18n="marcos.hero.desc">It's people, payroll, and data insights rolled into one platform. Local employee, expatriate, EOR staff, or independent contractor: Marco Platform closes the loop from start to finish.</p>
+    </div>
+  </div>
+
+  <div class="os-hero-laptop fade-in">
+    <img src="assets/Resources/marco-os-laptop.png" alt="Marco OS Platform" />
+  </div>
+</section>
+
+<!-- ════════════════ PAYROLL & PEOPLE SECTION ════════════════ -->
+<section class="os-payroll">
+
+  <!-- Dashed curve decoration -->
+  <div class="os-payroll-dashed" aria-hidden="true">
+    <img src="assets/Resources/curvy-dash.png" alt="" />
+  </div>
+
+  <!-- Screen cards (absolutely positioned, behind text z-index) -->
+  <div class="os-screen os-screen-1">
+    <img src="assets/Resources/payroll.png" alt="Payroll screen" />
+  </div>
+  <div class="os-screen os-screen-2">
+    <img src="assets/Resources/payroll-processing.png" alt="Payroll processing screen" />
+  </div>
+  <div class="os-screen os-screen-3">
+    <img src="assets/Resources/people-details.png" alt="People details screen" />
+  </div>
+
+  <!-- Text content -->
+  <div class="container">
+    <div class="os-payroll-text">
+      <div class="section-label fade-in">
+        <span class="line"></span>
+        <span data-i18n="marcos.payroll.label">Powerful Payroll &amp; People Management</span>
+      </div>
+      <h2 class="os-payroll-title fade-in" data-i18n="marcos.payroll.title">Say goodbye to <em>chaotic operations</em></h2>
+      <ul class="os-payroll-bullets fade-in">
+        <li class="os-payroll-bullet">
+          <div class="os-payroll-dot-wrap"><div class="os-payroll-dot"></div></div>
+          <p data-i18n="marcos.payroll.bullet1">Automated, global, multi-currency payroll processing</p>
+        </li>
+        <li class="os-payroll-bullet">
+          <div class="os-payroll-dot-wrap"><div class="os-payroll-dot"></div></div>
+          <p data-i18n="marcos.payroll.bullet2">Integrated people system, in-built with country-specific regulations</p>
+        </li>
+        <li class="os-payroll-bullet">
+          <div class="os-payroll-dot-wrap"><div class="os-payroll-dot"></div></div>
+          <p data-i18n="marcos.payroll.bullet3">Effortless onboarding, time off, and expense management</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════ MARCO DATA CLOUD ════════════════ -->
+<section class="datacloud">
+  <div class="container">
+    <div class="datacloud-body">
+
+      <!-- Left — image bleeds to left viewport edge -->
+      <div class="datacloud-left">
+        <img src="assets/Resources/data 14.jpg" alt="Marco Data Cloud" class="datacloud-image" />
+      </div>
+
+      <!-- Right — text content -->
+      <div class="datacloud-right fade-in">
+        <div class="datacloud-header">
+          <div class="section-label" style="color: #019DE7;">
+            <div class="line"></div>
+            <span data-i18n="sec.datacloud.label">MARCO DATA CLOUD</span>
+          </div>
+          <h2 class="datacloud-title"><span data-i18n="sec.datacloud.title.main">All you need to know about </span><span class="accent" data-i18n="sec.datacloud.title.accent">public holidays, leave rules, payroll formulas, and employee data sets</span></h2>
+        </div>
+        <ul class="datacloud-desc-list">
+          <li class="datacloud-desc" data-i18n="sec.datacloud.desc1">Get hyper-local data on a global scale, via Marco Platform or Marco REST API</li>
+          <li class="datacloud-desc" data-i18n="sec.datacloud.desc2">Unified, universal data across multi-language dictionaries</li>
+          <li class="datacloud-desc" data-i18n="sec.datacloud.desc3">Instant access to the latest information: mandatory pay items, state-level public holidays, and more</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ MARCO OS HIGHLIGHTS ════════════════ -->
+<section class="os-highlights">
+
+  <!-- ── Section 1: API Integrations ── -->
+  <div class="os-hl-sub os-hl-s1">
+    <div class="os-hl-inner">
+
+      <!-- Dashed decorations (direct Figma 1800px pixel positions) -->
+      <div class="os-hl-dashed" style="left:659px;top:420px;width:400px;height:400px;"><img src="assets/Resources/dashed 1.png" alt=""/></div>
+      <div class="os-hl-dashed" style="left:492px;top:382px;width:300px;height:300px;"><img src="assets/Resources/dashed 2.png" alt=""/></div>
+      <div class="os-hl-dashed" style="left:1110px;top:347px;width:600px;height:600px;"><img src="assets/Resources/dashed 3.png" alt=""/></div>
+      <div class="os-hl-dashed" style="left:1298px;top:222px;width:400px;height:400px;"><img src="assets/Resources/dashed 4.png" alt=""/></div>
+
+      <!-- Text -->
+      <div class="os-hl-text" style="left:288px;top:60px;">
+        <div class="section-label" style="color:var(--text-main);">
+          <span class="line"></span>
+          <span data-i18n="marcos.api.label">API Integrations</span>
+        </div>
+        <div class="os-hl-body">
+          <h2 class="os-hl-title">Supercharge your current systems with <em>Marco's open APIs</em></h2>
+          <ul class="os-hl-bullets">
+            <li class="os-hl-bullet">
+              <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
+              <p>Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights</p>
+            </li>
+            <li class="os-hl-bullet">
+              <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
+              <p>Secure data communication and transmission</p>
+            </li>
+            <li class="os-hl-bullet">
+              <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
+              <p>Ready-made integrations with leading Core HR, Finance, Time, and Expense platforms, including PeopleSoft, SuccessFactors, Workday, Rydoo, Kronos, and Xero</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Screen cards -->
+      <div class="os-hl-card" style="left:1180px;top:300px;width:320px;height:182px;"><img src="assets/Resources/people-list.png" alt="People List"/></div>
+      <div class="os-hl-card" style="left:859px;top:401px;width:440px;height:251px;"><img src="assets/Resources/payroll-processing.png" alt="Payroll Processing"/></div>
+      <div class="os-hl-card" style="left:608px;top:577px;width:320px;height:183px;"><img src="assets/Resources/people-details.png" alt="People Details"/></div>
+
+      <!-- Partner logos -->
+      <div class="os-hl-logo" style="left:357px;top:420px;width:200px;height:133px;"><img src="assets/Resources/people-soft-logo.png" alt="PeopleSoft"/></div>
+      <div class="os-hl-logo" style="left:1450px;top:552px;width:100px;height:100px;"><img src="assets/Resources/rydoo-logo.png" alt="Rydoo"/></div>
+      <div class="os-hl-logo" style="left:644px;top:447px;width:100px;height:79px;"><img src="assets/Resources/workday-logo.png" alt="Workday"/></div>
+      <div class="os-hl-logo" style="left:445px;top:577px;width:100px;height:75px;"><img src="assets/Resources/Kronos.png" alt="Kronos"/></div>
+      <div class="os-hl-logo" style="left:999px;top:725px;width:300px;height:36px;"><img src="assets/Resources/SAP-SuccessFactors-logo.png" alt="SAP SuccessFactors"/></div>
+      <div class="os-hl-logo" style="left:1346px;top:159px;width:101px;height:97px;"><img src="assets/Resources/xero-logo.png" alt="Xero"/></div>
+
+    </div>
+  </div>
+
+  <!-- ── Section 2: Business Insights ── -->
+  <div class="os-hl-sub os-hl-s2">
+    <div class="os-hl-inner">
+
+      <!-- Text -->
+      <div class="os-hl-text" style="left:808px;top:32px;">
+        <div class="section-label" style="color:var(--text-main);">
+          <span class="line"></span>
+          <span data-i18n="marcos.bi.label">Business Insights</span>
+        </div>
+        <div class="os-hl-body">
+          <h2 class="os-hl-title">Empower your workforce strategy with <em>data-driven insights</em></h2>
+          <ul class="os-hl-bullets">
+            <li class="os-hl-bullet">
+              <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
+              <p>Link up your systems with Marco's open APIs, so that data flows to where it matters: from people to payroll to business insights</p>
+            </li>
+            <li class="os-hl-bullet">
+              <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
+              <p>Secure data communication and transmission</p>
+            </li>
+            <li class="os-hl-bullet">
+              <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
+              <p>Ready-made integrations with leading Core HR, Finance, Time, and Expense platforms, including PeopleSoft, SuccessFactors, Workday, Rydoo, Kronos, and Xero</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Screen cards -->
+      <div class="os-hl-card" style="left:315px;top:201px;width:440px;height:251px;"><img src="assets/Resources/BI-blank.png" alt="Business Intelligence"/></div>
+      <div class="os-hl-card" style="left:784px;top:356px;width:400px;height:260px;"><img src="assets/Resources/home-blank.png" alt="Home Dashboard"/></div>
+      <div class="os-hl-card" style="left:763px;top:505px;width:160px;height:132px;border-radius:4px;"><img src="assets/Resources/home-active-team.png" alt="Active Team"/></div>
+      <div class="os-hl-card" style="left:941px;top:531px;width:160px;height:132px;border-radius:4px;"><img src="assets/Resources/home-team-status.png" alt="Team Status"/></div>
+
+      <!-- Floating data widgets -->
+      <div class="os-hl-widget" style="left:622px;top:412px;width:98px;height:73px;"><img src="assets/Resources/data-timeoff.png" alt="Time Off"/></div>
+      <div class="os-hl-widget" style="left:288px;top:371px;width:124px;height:74px;"><img src="assets/Resources/data-service type.png" alt="Service Type"/></div>
+      <div class="os-hl-widget" style="left:435px;top:408px;width:85px;height:73px;"><img src="assets/Resources/data-mobility.png" alt="Mobility"/></div>
+      <div class="os-hl-widget" style="left:546px;top:308px;width:112px;height:84px;"><img src="assets/Resources/data-hiring type.png" alt="Hiring Type"/></div>
+      <div class="os-hl-widget" style="left:535px;top:425px;width:74px;height:73px;"><img src="assets/Resources/data-expense.png" alt="Expense"/></div>
+      <div class="os-hl-widget" style="left:350px;top:285px;width:176px;height:83px;"><img src="assets/Resources/data-country data.png" alt="Country Data"/></div>
+
+    </div>
+  </div>
+
+  <!-- ── Section 3: Borderless Mobility ── -->
+  <div class="os-hl-sub os-hl-s3">
+    <div class="os-hl-inner">
+
+      <!-- Dashed decorations -->
+      <div class="os-hl-dashed" style="left:328px;top:375px;width:400px;height:400px;"><img src="assets/Resources/dashed 1.png" alt=""/></div>
+      <div class="os-hl-dashed" style="left:161px;top:337px;width:300px;height:300px;"><img src="assets/Resources/dashed 2.png" alt=""/></div>
+      <div class="os-hl-dashed" style="left:1091px;top:328px;width:600px;height:600px;"><img src="assets/Resources/dashed 3.png" alt=""/></div>
+      <div class="os-hl-dashed" style="left:1328px;top:165px;width:400px;height:400px;"><img src="assets/Resources/dashed 4.png" alt=""/></div>
+
+      <!-- Text -->
+      <div class="os-hl-text" style="left:288px;top:60px;">
+        <div class="section-label" style="color:var(--text-main);">
+          <span class="line"></span>
+          <span data-i18n="marcos.mobility.label">Borderless Mobility</span>
+        </div>
+        <div class="os-hl-body">
+          <h2 class="os-hl-title">Gear up for the <em>future</em> of work.</h2>
+          <ul class="os-hl-bullets">
+            <li class="os-hl-bullet">
+              <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
+              <p>Keep track of all visa cases, for work assignments or relocations</p>
+            </li>
+            <li class="os-hl-bullet">
+              <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
+              <p>Manage separate information for expat staff's host and home country</p>
+            </li>
+            <li class="os-hl-bullet">
+              <div class="os-hl-dot-wrap"><div class="os-hl-dot"></div></div>
+              <p>Fuss-free country and expat changes without worrying about payroll, time-off, and other HR compliance</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Screen cards -->
+      <div class="os-hl-card os-hl-card-thick" style="left:439px;top:368px;width:440px;height:251px;"><img src="assets/Resources/global-mobility-blank.png" alt="Global Mobility"/></div>
+      <div class="os-hl-card os-hl-card-thick" style="left:992px;top:278px;width:418px;height:251px;"><img src="assets/Resources/people-global-mobility.png" alt="People Global Mobility"/></div>
+      <div class="os-hl-widget" style="left:386px;top:498px;width:584px;height:24px;"><img src="assets/Resources/global-mobility-list.png" alt="Global Mobility List"/></div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- Simple · Global · Secure -->
+<section class="sgs-section">
+  <div class="sgs-inner">
+    <h2 class="sgs-title">Simple <span class="sgs-dot">·</span> <em class="sgs-global">Global</em> <span class="sgs-dot">·</span> Secure</h2>
+    <div class="sgs-cards">
+
+      <!-- Integrations -->
+      <div class="sgs-card">
+        <div class="sgs-icon"><img src="assets/Resources/integration-icon.svg" alt=""/></div>
+        <h3 class="sgs-card-title">Integrations</h3>
+        <p class="sgs-card-desc">Connect Marco Platform with your own HCM, ERP, payroll, or expense systems.</p>
+      </div>
+
+      <!-- Coverage -->
+      <div class="sgs-card">
+        <div class="sgs-icon"><img src="assets/Resources/coverage-icon.svg" alt=""/></div>
+        <h3 class="sgs-card-title">Coverage</h3>
+        <p class="sgs-card-desc">Marco Platform covers 80+ countries with multilingual support and localized databases.</p>
+      </div>
+
+      <!-- In-built Compliance -->
+      <div class="sgs-card">
+        <div class="sgs-icon"><img src="assets/Resources/compliance-icon.svg" alt=""/></div>
+        <h3 class="sgs-card-title">In-built Compliance</h3>
+        <p class="sgs-card-desc">Keep compliant with Marco's country-specific databases that adapt to ever-changing regulations.</p>
+      </div>
+
+      <!-- Data Privacy & Security -->
+      <div class="sgs-card">
+        <div class="sgs-icon"><img src="assets/Resources/privacy-icon.svg" alt=""/></div>
+        <h3 class="sgs-card-title">Data Privacy &amp; Security</h3>
+        <p class="sgs-card-desc">Marco Platform is secured with enterprise-level protocols and standards.</p>
+      </div>
+
+    </div>
+    <div class="sgs-cta-wrap">
+      <a href="company-contact-us.html" class="cta-btn cta-btn--primary">
+        <span>Contact us</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4l4 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script src="footer.js"></script>
+
+
+<script>
+  /* Nav: always show dark gradient on this page — no transparent state */
+  (function () {
+    const nav = document.querySelector('.nav');
+    if (nav) nav.classList.add('nav-scrolled');
+  })();
+
+  /* Fade-in on scroll */
+  const revealElements = document.querySelectorAll('.fade-in');
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  revealElements.forEach((el) => revealObserver.observe(el));
+</script>
+<script src="assets/lang/lang-loader.js"></script>
+</body>
+</html>
