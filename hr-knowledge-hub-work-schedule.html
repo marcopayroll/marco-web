@@ -1689,8 +1689,38 @@ const SCHEDULE_DATA = {
     }
 
 
+    var WS_EN = {
+      "ws.lastChecked": "Last checked: 2026-06-16",
+      "ws.sidebar.empty": "No countries found",
+      "ws.section.workingHours": "Working Hours",
+      "ws.section.overtime": "Overtime",
+      "ws.section.restBreaks": "Rest & Breaks",
+      "ws.section.specialProvisions": "Special Provisions",
+      "ws.section.compliance": "Compliance",
+      "ws.field.stdDay": "Standard Hours / Day",
+      "ws.field.stdWeek": "Standard Hours / Week",
+      "ws.field.pattern": "Work Pattern",
+      "ws.field.maxHours": "Maximum Hours",
+      "ws.field.otThreshold": "OT Threshold",
+      "ws.field.otRate": "OT Rate",
+      "ws.field.weeklyRest": "Weekly Rest",
+      "ws.field.dailyRest": "Daily Rest",
+      "ws.field.breakRule": "Break / Rest Period",
+      "ws.field.nightWork": "Night Work",
+      "ws.field.weekendHoliday": "Weekend & Holiday",
+      "ws.field.flexible": "Flexible Work",
+      "ws.field.records": "Record-Keeping",
+      "ws.field.compliance": "Compliance Note",
+      "ws.sources.label": "Sources",
+      "ws.sources.primary": "Primary Source",
+      "ws.sources.secondary": "Secondary Source",
+      "ws.region.Americas": "Americas",
+      "ws.region.APAC": "APAC",
+      "ws.region.EMEA": "EMEA",
+      "ws.region.Middle_East": "Middle East"
+    };
     /* ── Translation helpers ── */
-    function wsT(key) { return (window.__marcoPack && window.__marcoPack[key]) || key; }
+    function wsT(key) { return (window.__marcoPack && window.__marcoPack[key]) || WS_EN[key] || key; }
     function wsStr(s) { return (window.__wsStrMap && window.__wsStrMap[s]) || s; }
     function wsCountry(k) { return (window.__marcoPack && window.__marcoPack['ws.country.' + k]) || k; }
     function wsRegion(r) {

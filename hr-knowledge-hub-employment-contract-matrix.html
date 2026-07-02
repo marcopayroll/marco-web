@@ -174,22 +174,22 @@
       <a href="index.html"><img class="banner-logo" src="https://marcowallpaper.s3.ap-southeast-1.amazonaws.com/Marco+logo+white+(tall).png" alt="Marco"></a>
       <div class="banner-divider"></div>
       <div class="banner-text">
-        <div class="banner-title">Employment Contract Matrix</div>
-        <div class="banner-subtitle">Written contract requirements, language &amp; compliance notes by country</div>
+        <div class="banner-title" data-i18n="ecm.banner.title">Employment Contract Matrix</div>
+        <div class="banner-subtitle" data-i18n="ecm.banner.subtitle">Written contract requirements, language &amp; compliance notes by country</div>
       </div>
     </div>
   </div>
   <!-- FILTER BAR -->
   <div class="filter-bar">
     <button class="btn-hamburger" id="btnMobileOpen" onclick="mobileOpenDrawer()" aria-label="Open menu">&#9776;</button>
-    <span class="filter-label">FILTER</span>
+    <span class="filter-label" data-i18n="ecm.filter.label">FILTER</span>
     <div class="search-wrap">
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <input type="text" class="search-input" id="sidebarSearch" placeholder="Search country..." oninput="filterSidebar()">
+      <input type="text" class="search-input" id="sidebarSearch" placeholder="Search country..." data-i18n-placeholder="ecm.filter.search" oninput="filterSidebar()">
     </div>
     <div class="select-wrap">
       <select id="regionFilter" onchange="filterSidebar()">
-        <option value="">All Regions</option>
+        <option value="" data-i18n="ecm.filter.allRegions">All Regions</option>
         <option value="Americas">Americas</option>
         <option value="APAC">APAC</option>
         <option value="EMEA">EMEA</option>
@@ -197,14 +197,14 @@
         <option value="Africa">Africa</option>
       </select>
     </div>
-    <button class="btn-clear" onclick="clearFilters()"><span class="clear-text">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
+    <button class="btn-clear" onclick="clearFilters()"><span class="clear-text" data-i18n="ecm.btn.clear">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
   </div>
   <!-- LAYOUT -->
   <div class="layout">
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="mobileCloseDrawer()"></div>
     <div class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <span class="sidebar-header-text">SELECT A COUNTRY</span>
+        <span class="sidebar-header-text" data-i18n="ecm.sidebar.header">SELECT A COUNTRY</span>
         <button class="btn-sb-toggle" id="btnSbToggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8H14M2 4H14M2 12H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
@@ -214,8 +214,8 @@
     <div class="main" id="mainContent">
       <div class="welcome-state">
         <div class="big-icon">&#128196;</div>
-        <h2>Select a country to view its employment contract requirements</h2>
-        <p>Choose any country from the left panel to see written contract requirements, language rules, and compliance notes.</p>
+        <h2 data-i18n="ecm.welcome.title">Select a country to view its employment contract requirements</h2>
+        <p data-i18n="ecm.welcome.body">Choose any country from the left panel to see written contract requirements, language rules, and compliance notes.</p>
       </div>
     </div>
   </div>
@@ -372,6 +372,43 @@ var ECM_DATA = {
     buildSidebar(ALL_KEYS);
   }
 
+
+    var ECM_EN = {
+      "ecm.lastChecked": "Last checked: 2026-06-18",
+      "ecm.sidebar.empty": "No countries found",
+      "ecm.section.contractForm": "Contract Form",
+      "ecm.section.requiredContents": "Required Contents",
+      "ecm.section.probationFixedTerm": "Probation & Fixed-Term",
+      "ecm.section.minRightsRegistration": "Minimum Rights & Registration",
+      "ecm.section.compliance": "Compliance",
+      "ecm.field.written": "Written Contract Required",
+      "ecm.field.deadline": "Deadline",
+      "ecm.field.language": "Language",
+      "ecm.field.contents": "Minimum Required Contents",
+      "ecm.field.probation": "Probation",
+      "ecm.field.fixedTerm": "Fixed-Term",
+      "ecm.field.minRights": "Minimum Rights",
+      "ecm.field.registration": "Registration",
+      "ecm.field.compliance": "Compliance Note",
+      "ecm.sources.label": "Sources",
+      "ecm.sources.link": "Source",
+      "ecm.region.Americas": "Americas",
+      "ecm.region.APAC": "APAC",
+      "ecm.region.EMEA": "EMEA",
+      "ecm.region.Middle_East": "Middle East",
+      "ecm.region.Africa": "Africa",
+      "ecm.region.EMEA___Middle_East": "EMEA / Middle East",
+      "ecm.region.Middle_East___Africa": "Middle East / Africa"
+    };
+    /* ── Translation helpers ── */
+    function ecmT(key) { return (window.__marcoPack && window.__marcoPack[key]) || ECM_EN[key] || key; }
+    function ecmStr(s) { return (window.__ecmStrMap && window.__ecmStrMap[s]) || s; }
+    function ecmCountry(k) { return (window.__marcoPack && window.__marcoPack['ecm.country.' + k]) || k; }
+    function ecmRegion(r) {
+      var key = 'ecm.region.' + r.replace(/[\s\/]+/g, '_');
+      return (window.__marcoPack && window.__marcoPack[key]) || r;
+    }
+
   function renderDetail(key) {
     var d = ECM_DATA[key];
     if (!d) return;
@@ -379,34 +416,34 @@ var ECM_DATA = {
     document.getElementById('mainContent').innerHTML =
       '<div class="detail-header">' +
         '<div>' +
-          '<h1>' + escHtml(key) + '</h1>' +
-          '<div class="meta">' + escHtml(d.region) + ' &middot; Last checked: 2026-06-18</div>' +
+          '<h1>' + escHtml(ecmCountry(key)) + '</h1>' +
+          '<div class="meta">' + escHtml(ecmRegion(d.region)) + ' &middot; ' + ecmT('ecm.lastChecked') + '</div>' +
         '</div>' +
-        '<div class="region-tag">' + escHtml(d.region) + '</div>' +
+        '<div class="region-tag">' + escHtml(ecmRegion(d.region)) + '</div>' +
       '</div>' +
-      renderSection('Contract Form', [
-        { label: 'Written Contract Required', value: d.written },
-        { label: 'Deadline', value: d.deadline, half: true },
-        { label: 'Language', value: d.language, half: true }
+      renderSection(ecmT('ecm.section.contractForm'), [
+        { label: ecmT('ecm.field.written'), value: ecmStr(d.written) },
+        { label: ecmT('ecm.field.deadline'), value: ecmStr(d.deadline), half: true },
+        { label: ecmT('ecm.field.language'), value: ecmStr(d.language), half: true }
       ]) +
-      renderSection('Required Contents', [
-        { label: 'Minimum Required Contents', value: d.contents }
+      renderSection(ecmT('ecm.section.requiredContents'), [
+        { label: ecmT('ecm.field.contents'), value: ecmStr(d.contents) }
       ]) +
-      renderSection('Probation &amp; Fixed-Term', [
-        { label: 'Probation', value: d.probation, half: true },
-        { label: 'Fixed-Term', value: d.fixedTerm, half: true }
+      renderSection(ecmT('ecm.section.probationFixedTerm'), [
+        { label: ecmT('ecm.field.probation'), value: ecmStr(d.probation), half: true },
+        { label: ecmT('ecm.field.fixedTerm'), value: ecmStr(d.fixedTerm), half: true }
       ]) +
-      renderSection('Minimum Rights &amp; Registration', [
-        { label: 'Minimum Rights', value: d.minRights },
-        { label: 'Registration', value: d.registration }
+      renderSection(ecmT('ecm.section.minRightsRegistration'), [
+        { label: ecmT('ecm.field.minRights'), value: ecmStr(d.minRights) },
+        { label: ecmT('ecm.field.registration'), value: ecmStr(d.registration) }
       ]) +
-      renderSection('Compliance', [
-        { label: 'Compliance Note', value: d.compliance, highlight: true }
+      renderSection(ecmT('ecm.section.compliance'), [
+        { label: ecmT('ecm.field.compliance'), value: ecmStr(d.compliance), highlight: true }
       ]) +
       '<div class="sources-section">' +
-        '<span class="sources-label">Sources</span>' +
+        '<span class="sources-label">' + ecmT('ecm.sources.label') + '</span>' +
         sourceLinks.map(function(url, i) {
-          return '<a href="' + escHtml(url.trim()) + '" target="_blank" rel="noopener" class="source-link">Source ' + (i + 1) + ' &#8599;</a>';
+          return '<a href="' + escHtml(url.trim()) + '" target="_blank" rel="noopener" class="source-link">' + ecmT('ecm.sources.link') + ' ' + (i + 1) + ' &#8599;</a>';
         }).join('') +
       '</div>';
   }
@@ -438,7 +475,14 @@ var ECM_DATA = {
   }
   function toggleSidebar() { document.getElementById('sidebar').classList.toggle('expanded'); }
 
-  buildSidebar(ALL_KEYS);
+
+    /* Re-render on language change */
+    document.addEventListener('marcolangready', function() {
+      buildSidebar(getFilteredKeys());
+      if (currentKey) renderDetail(currentKey);
+    });
+
+      buildSidebar(ALL_KEYS);
   </script>
 <script src="assets/lang/lang-loader.js"></script>
 </body>
