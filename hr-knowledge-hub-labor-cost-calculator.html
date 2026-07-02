@@ -592,12 +592,12 @@
   <div class="hero-bg-pattern"><img src="assets/Background Assets/abstract line 4.svg" alt="" /></div>
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-label"><div class="hero-label-line"></div><span>LABOR COST CALCULATOR</span></div>
+      <div class="hero-label"><div class="hero-label-line"></div><span data-i18n="lcc.hero.label">LABOR COST CALCULATOR</span></div>
       <div class="hero-body">
         <h1 class="hero-title">
-          <span class="hero-title-white">Calculate the </span><span class="hero-title-blue">True Cost </span><span class="hero-title-white">of Hiring</span>
+          <span class="hero-title-white" data-i18n-html="lcc.hero.title.white1">Calculate the </span><span class="hero-title-blue" data-i18n="lcc.hero.title.blue">True Cost </span><span class="hero-title-white" data-i18n="lcc.hero.title.white2">of Hiring</span>
         </h1>
-        <p class="hero-subtitle">Estimate total employer cost by combining salary, statutory contributions, and other required employment obligations.</p>
+        <p class="hero-subtitle" data-i18n="lcc.hero.subtitle">Estimate total employer cost by combining salary, statutory contributions, and other required employment obligations.</p>
       </div>
     </div>
   </div>
@@ -609,9 +609,9 @@
 
     <!-- Title -->
     <div class="lcc-title-block">
-      <div class="lcc-section-label"><div class="lcc-label-line"></div><span>Labor Cost Calculator</span></div>
-      <h2 class="lcc-title-h1">Where would you like to hire?</h2>
-      <p class="lcc-subtitle">Enter the basic hiring details below to generate an estimated proposal.</p>
+      <div class="lcc-section-label"><div class="lcc-label-line"></div><span data-i18n="lcc.section.label">Labor Cost Calculator</span></div>
+      <h2 class="lcc-title-h1" data-i18n="lcc.section.h2">Where would you like to hire?</h2>
+      <p class="lcc-subtitle" data-i18n="lcc.section.subtitle">Enter the basic hiring details below to generate an estimated proposal.</p>
     </div>
 
     <!-- Body -->
@@ -623,20 +623,20 @@
 
           <!-- Country -->
           <div class="lcc-row">
-            <p class="lcc-row-label">Where would you like to hire?</p>
+            <p class="lcc-row-label" data-i18n="lcc.form.country.label">Where would you like to hire?</p>
             <div class="lcc-dropdown-wrap">
               <div class="lcc-dropdown-trigger" id="lcc-country-trigger" tabindex="0">
                 <div class="lcc-trigger-left">
                   <div class="lcc-flag-wrap" id="lcc-flag-wrap">
                     <img id="lcc-flag-img" src="" alt="" class="lcc-flag-img">
                   </div>
-                  <span class="lcc-country-label placeholder" id="lcc-country-label">Select a country</span>
+                  <span class="lcc-country-label placeholder" id="lcc-country-label" data-i18n="lcc.form.country.placeholder">Select a country</span>
                 </div>
                 <svg class="lcc-drop-chevron" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#8F98B5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div class="lcc-dropdown-menu" id="lcc-country-menu">
                 <div class="lcc-dropdown-search">
-                  <input type="text" id="lcc-country-search" placeholder="Search country…" autocomplete="off">
+                  <input type="text" id="lcc-country-search" placeholder="Search country…" data-i18n-placeholder="lcc.form.country.search" autocomplete="off">
                 </div>
                 <div class="lcc-country-list" id="lcc-country-list"></div>
               </div>
@@ -645,35 +645,35 @@
 
           <!-- Worker Type -->
           <div class="lcc-row">
-            <p class="lcc-row-label">Worker Type</p>
+            <p class="lcc-row-label" data-i18n="lcc.form.workertype.label">Worker Type</p>
             <div class="lcc-worker-cards">
               <div class="lcc-worker-card" id="lcc-wt-local" onclick="lccSetWorkerType('local')">
-                <span class="lcc-wt-title">Local/ PR</span>
-                <span class="lcc-wt-desc">Citizen or permanent resident</span>
+                <span class="lcc-wt-title" data-i18n="lcc.form.workertype.local.title">Local/ PR</span>
+                <span class="lcc-wt-desc" data-i18n="lcc.form.workertype.local.desc">Citizen or permanent resident</span>
               </div>
               <div class="lcc-worker-card" id="lcc-wt-foreign" onclick="lccSetWorkerType('foreign')">
-                <span class="lcc-wt-title">Foreign National</span>
-                <span class="lcc-wt-desc">Valid work pass or visa holder</span>
+                <span class="lcc-wt-title" data-i18n="lcc.form.workertype.foreign.title">Foreign National</span>
+                <span class="lcc-wt-desc" data-i18n="lcc.form.workertype.foreign.desc">Valid work pass or visa holder</span>
               </div>
             </div>
           </div>
 
           <!-- Salary -->
           <div class="lcc-row">
-            <p class="lcc-row-label">Salary</p>
+            <p class="lcc-row-label" data-i18n="lcc.form.salary.label">Salary</p>
             <div class="lcc-radio-row">
               <div class="lcc-radio-option active" id="lcc-radio-monthly" onclick="lccSetFreq('monthly')">
                 <div class="lcc-radio-dot-wrap"><div class="lcc-radio-dot"></div></div>
-                <span class="lcc-radio-label">Monthly</span>
+                <span class="lcc-radio-label" data-i18n="lcc.form.salary.monthly">Monthly</span>
               </div>
               <div class="lcc-radio-option" id="lcc-radio-annual" onclick="lccSetFreq('annual')">
                 <div class="lcc-radio-dot-wrap"><div class="lcc-radio-dot"></div></div>
-                <span class="lcc-radio-label">Annual</span>
+                <span class="lcc-radio-label" data-i18n="lcc.form.salary.annual">Annual</span>
               </div>
             </div>
             <div class="lcc-salary-input-row">
               <div class="lcc-currency-box">USD</div>
-              <input type="text" class="lcc-amount-input" id="lcc-salary-input" placeholder="Enter amount" inputmode="numeric" autocomplete="off">
+              <input type="text" class="lcc-amount-input" id="lcc-salary-input" placeholder="Enter amount" data-i18n-placeholder="lcc.form.salary.placeholder" inputmode="numeric" autocomplete="off">
             </div>
             <div class="lcc-hint-block">
               <p id="lcc-monthly-hint" class="lcc-hint-monthly"></p>
@@ -687,8 +687,8 @@
         <div class="lcc-divider"></div>
 
         <div class="lcc-buttons">
-          <button class="lcc-btn-primary" onclick="lccCalculate()">View Report</button>
-          <button class="lcc-btn-secondary" onclick="lccReset()">Reset</button>
+          <button class="lcc-btn-primary" onclick="lccCalculate()" data-i18n="lcc.form.btn.calculate">View Report</button>
+          <button class="lcc-btn-secondary" onclick="lccReset()" data-i18n="lcc.form.btn.reset">Reset</button>
         </div>
       </div><!-- /input-panel -->
 
@@ -708,11 +708,11 @@
     <!-- Header -->
     <div class="lcc-rpt-hdr">
       <div class="lcc-rpt-title-block">
-        <div class="lcc-section-label"><div class="lcc-label-line"></div><span>LABOR COST REPORT</span></div>
+        <div class="lcc-section-label"><div class="lcc-label-line"></div><span data-i18n="lcc.report.label">LABOR COST REPORT</span></div>
         <h2 id="rpt-country" class="lcc-rpt-h2"></h2>
         <p id="rpt-subtitle" class="lcc-rpt-subtitle"></p>
       </div>
-      <button class="lcc-rpt-download-btn" id="lcc-download-btn">Download Report</button>
+      <button class="lcc-rpt-download-btn" id="lcc-download-btn" data-i18n="lcc.report.btn.download">Download Report</button>
       <img id="lcc-rpt-logo" src="assets/marco-watermark-logo.png" alt="Marco" style="display:none; height:48px; width:auto; object-fit:contain; flex-shrink:0;">
     </div>
 
@@ -722,12 +722,12 @@
     <!-- Statutory table -->
     <div class="lcc-rpt-tables">
       <div>
-        <h3 class="lcc-rpt-table-title">Statutory Contribution Breakdown</h3>
+        <h3 class="lcc-rpt-table-title" data-i18n="lcc.report.statutory.title">Statutory Contribution Breakdown</h3>
         <div class="lcc-rpt-table-wrap" id="rpt-stat-table"></div>
       </div>
       <!-- Benefits table -->
       <div id="rpt-ben-wrap">
-        <h3 class="lcc-rpt-table-title">Benefits &amp; Estimated Costs</h3>
+        <h3 class="lcc-rpt-table-title" data-i18n="lcc.report.benefits.title">Benefits &amp; Estimated Costs</h3>
         <div class="lcc-rpt-table-wrap" id="rpt-ben-table"></div>
       </div>
     </div>
@@ -739,7 +739,7 @@
     <div class="lcc-rpt-notes-wrap" id="rpt-notes"></div>
 
     <!-- Disclaimer -->
-    <p class="lcc-rpt-disclaimer">* Rates are based on publicly available statutory regulations and are for estimation purposes only. Actual employer costs vary based on local regulations, salary thresholds, employee age, industry classification, and applicable bilateral Social Security Agreements. Rates are periodically updated by governments — always verify with Marco's local payroll specialists before making employment decisions.</p>
+    <p class="lcc-rpt-disclaimer" data-i18n="lcc.disclaimer">* Rates are based on publicly available statutory regulations and are for estimation purposes only. Actual employer costs vary based on local regulations, salary thresholds, employee age, industry classification, and applicable bilateral Social Security Agreements. Rates are periodically updated by governments — always verify with Marco's local payroll specialists before making employment decisions.</p>
 
   </div>
 </section>
@@ -750,16 +750,16 @@
     <div class="lcc-cta-left">
       <div class="lcc-cta-label">
         <div class="lcc-cta-label-line"></div>
-        <span>NEED MORE CLARITY?</span>
+        <span data-i18n="lcc.cta.label">NEED MORE CLARITY?</span>
       </div>
       <h2 class="lcc-cta-heading">
-        <span class="lcc-cta-heading-dark">Numbers are a start.</span><br>
-        <span class="lcc-cta-heading-blue">Let's talk through the details.</span>
+        <span class="lcc-cta-heading-dark" data-i18n="lcc.cta.heading.dark">Numbers are a start.</span><br>
+        <span class="lcc-cta-heading-blue" data-i18n="lcc.cta.heading.blue">Let's talk through the details.</span>
       </h2>
-      <p class="lcc-cta-body">Statutory rates only tell part of the story. Thresholds, bilateral agreements, visa classifications, and collective bargaining rules all affect your real cost. Our payroll specialists can walk you through an accurate, country-specific breakdown for your team.</p>
+      <p class="lcc-cta-body" data-i18n="lcc.cta.body">Statutory rates only tell part of the story. Thresholds, bilateral agreements, visa classifications, and collective bargaining rules all affect your real cost. Our payroll specialists can walk you through an accurate, country-specific breakdown for your team.</p>
       <div>
         <a href="company-contact-us.html" class="lcc-cta-btn">
-          Contact Us
+          <span data-i18n="lcc.cta.btn">Contact Us</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
         </a>
       </div>
@@ -802,6 +802,16 @@
     salaryFreq: 'monthly',
     salary: ''
   };
+
+  function lccT(key, fallback) {
+    return (window.__marcoPack && window.__marcoPack[key]) || fallback;
+  }
+  function lccFmt(key, fallback, vals) {
+    var tpl = lccT(key, fallback);
+    return tpl.replace(/\{(\d+)\}/g, function(_, i) {
+      return vals[parseInt(i, 10)] !== undefined ? vals[parseInt(i, 10)] : '{' + i + '}';
+    });
+  }
 
   function getCountryBenRate(country, isLocal) {
     var items = BEN_DATA[country] || [];
@@ -1087,7 +1097,7 @@
     if (!localCcy) { clear(); return; }
 
     if (localCcy === 'USD') {
-      fxEl.textContent = 'USD is used as the calculation currency';
+      fxEl.textContent = lccT('lcc.hint.fx.samecurrency', 'USD is used as the calculation currency');
       fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
       discEl.style.display = 'none';
       return;
@@ -1098,14 +1108,14 @@
     if (isNaN(usdAmt) || usdAmt <= 0) { clear(); return; }
 
     var reqId = ++_fxReqId;
-    fxEl.textContent = 'Fetching exchange rate…';
+    fxEl.textContent = lccT('lcc.hint.fx.loading', 'Fetching exchange rate…');
     fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
     discEl.style.display = 'none';
 
     getExchangeRate('USD', localCcy).then(function(result) {
       if (reqId !== _fxReqId) return; // stale
       if (result.error) {
-        fxEl.textContent = 'Exchange rate unavailable for this currency. Please try again later.';
+        fxEl.textContent = lccT('lcc.hint.fx.error', 'Exchange rate unavailable for this currency. Please try again later.');
         fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
         discEl.style.display = 'none';
         return;
@@ -1114,15 +1124,14 @@
       var localFmt = new Intl.NumberFormat('en-US', {
         minimumFractionDigits: 2, maximumFractionDigits: 2
       }).format(localAmt);
-      fxEl.textContent = '≈ ' + localCcy + ' ' + localFmt +
-        ' based on exchange rate dated ' + result.date;
+      fxEl.textContent = lccFmt('lcc.hint.fx.result', '≈ {0} {1} based on exchange rate dated {2}', [localCcy, localFmt, result.date]);
       fxEl.className = 'lcc-hint-fx';
-      discEl.textContent = 'Exchange rate is for reference only. Final payroll funding may vary by bank rate and processing date.';
+      discEl.textContent = lccT('lcc.hint.fx.disclaimer', 'Exchange rate is for reference only. Final payroll funding may vary by bank rate and processing date.');
       discEl.style.display = '';
     }).catch(function(err) {
       if (reqId !== _fxReqId) return;
       console.warn('[FX] Unexpected error in lccUpdateFxHint:', err);
-      fxEl.textContent = 'Exchange rate unavailable. Please try again later.';
+      fxEl.textContent = lccT('lcc.hint.fx.error2', 'Exchange rate unavailable. Please try again later.');
       fxEl.className = 'lcc-hint-fx lcc-hint-fx--muted';
       discEl.style.display = 'none';
     });
@@ -1250,9 +1259,9 @@
     var raw = lccState.salary.replace(/,/g, '');
     var n = parseFloat(raw);
     if (lccState.salaryFreq === 'monthly' && n > 0) {
-      hint.textContent = 'Annual equivalent: USD ' + fmtNum(n * 12);
+      hint.textContent = lccFmt('lcc.hint.annual', 'Annual equivalent: USD {0}', [fmtNum(n * 12)]);
     } else if (lccState.salaryFreq === 'annual' && n > 0) {
-      hint.textContent = 'Monthly equivalent: USD ' + fmtNum(n / 12);
+      hint.textContent = lccFmt('lcc.hint.monthly', 'Monthly equivalent: USD {0}', [fmtNum(n / 12)]);
     } else {
       hint.textContent = '';
     }
@@ -1274,7 +1283,7 @@
     lccState.salaryFreq = 'monthly';
     lccState.salary = '';
     // Reset UI
-    countryLabel.textContent = 'Select a country';
+    countryLabel.textContent = lccT('lcc.form.country.placeholder', 'Select a country');
     countryLabel.classList.add('placeholder');
     flagWrap.classList.remove('visible');
     flagImg.src = '';
@@ -1295,29 +1304,29 @@
     var html =
       '<div class="lcc-result-header">' +
         '<div>' +
-          '<p class="lcc-result-total-label">TOTAL EMPLOYMENT COST</p>' +
+          '<p class="lcc-result-total-label">' + lccT('lcc.result.total.label', 'TOTAL EMPLOYMENT COST') + '</p>' +
           '<div class="lcc-result-total-row">' +
             '<span class="lcc-result-total-amount">--</span>' +
-            '<span class="lcc-result-total-per">/mo</span>' +
+            '<span class="lcc-result-total-per">' + lccT('lcc.result.total.per', '/mo') + '</span>' +
           '</div>' +
         '</div>' +
         '<div class="lcc-result-meta">' +
           '<p class="lcc-result-meta-country">--</p>' +
           '<p class="lcc-result-meta-rate">--</p>' +
-          '<p class="lcc-result-meta-desc">employer contributions rate</p>' +
+          '<p class="lcc-result-meta-desc">' + lccT('lcc.result.contributions.rate', 'employer contributions rate') + '</p>' +
         '</div>' +
       '</div>' +
       '<div class="lcc-bars">' +
-        lccBarRow('Base Salary', '-- / mo', null, 'base') +
-        lccBarRow('Statutory Contributions', '-- / mo', null, 'stat') +
-        lccBarRow('Benefits &amp; Other Costs', '-- / mo', null, 'ben') +
+        lccBarRow(lccT('lcc.result.bar.base', 'Base Salary'), '-- / mo', null, 'base') +
+        lccBarRow(lccT('lcc.result.bar.statutory', 'Statutory Contributions'), '-- / mo', null, 'stat') +
+        lccBarRow(lccT('lcc.result.bar.benefits', 'Benefits &amp; Other Costs'), '-- / mo', null, 'ben') +
       '</div>' +
       '<div class="lcc-result-divider"></div>' +
       '<div class="lcc-summary">' +
-        lccSummaryCard('--', 'Monthly Cost') +
-        lccSummaryCard('--', 'Annual Cost') +
-        lccSummaryCard('--', 'M Ratio') +
-        lccSummaryCard('--', 'Statutory Rate') +
+        lccSummaryCard('--', lccT('lcc.result.summary.monthly', 'Monthly Cost')) +
+        lccSummaryCard('--', lccT('lcc.result.summary.annual', 'Annual Cost')) +
+        lccSummaryCard('--', lccT('lcc.result.summary.mratio', 'M Ratio')) +
+        lccSummaryCard('--', lccT('lcc.result.summary.statrate', 'Statutory Rate')) +
       '</div>';
     document.getElementById('lcc-result-content').innerHTML = html;
   }
@@ -1338,36 +1347,36 @@
     var benPct  = (benefits / total * 100).toFixed(1);
 
     var sym = '$';
-    var workerLabel = lccState.workerType === 'local' ? 'Local / PR' : 'Foreign National';
+    var workerLabel = lccState.workerType === 'local' ? lccT('lcc.workertype.local', 'Local / PR') : lccT('lcc.workertype.foreign', 'Foreign National');
     var statRateDisplay = statRate % 1 === 0 ? statRate + '%' : statRate.toFixed(2).replace(/\.?0+$/, '') + '%';
     var overheadDisplay = overheadRate % 1 === 0 ? '+' + overheadRate + '%' : '+' + overheadRate.toFixed(1) + '%';
 
     var html =
       '<div class="lcc-result-header">' +
         '<div>' +
-          '<p class="lcc-result-total-label">TOTAL EMPLOYMENT COST</p>' +
+          '<p class="lcc-result-total-label">' + lccT('lcc.result.total.label', 'TOTAL EMPLOYMENT COST') + '</p>' +
           '<div class="lcc-result-total-row">' +
             '<span class="lcc-result-total-amount">' + sym + fmtNum(total) + '</span>' +
-            '<span class="lcc-result-total-per">/mo</span>' +
+            '<span class="lcc-result-total-per">' + lccT('lcc.result.total.per', '/mo') + '</span>' +
           '</div>' +
         '</div>' +
         '<div class="lcc-result-meta">' +
           '<p class="lcc-result-meta-country">' + lccState.country + ' · ' + workerLabel + '</p>' +
           '<p class="lcc-result-meta-rate">' + overheadDisplay + '</p>' +
-          '<p class="lcc-result-meta-desc">employer contributions rate</p>' +
+          '<p class="lcc-result-meta-desc">' + lccT('lcc.result.contributions.rate', 'employer contributions rate') + '</p>' +
         '</div>' +
       '</div>' +
       '<div class="lcc-bars">' +
-        lccBarRow('Base Salary', sym + fmtNum(base) + '/ mo', basePct, 'base') +
-        lccBarRow('Statutory Contributions (' + statRateDisplay + ')', sym + fmtNum(statutory) + '/ mo', statPct, 'stat') +
-        lccBarRow(benRate > 0 ? 'Benefits &amp; Other Costs (est. ' + benRate.toFixed(2).replace(/\.?0+$/, '') + '%)' : 'Benefits &amp; Other Costs', benRate > 0 ? sym + fmtNum(benefits) + '/ mo' : 'Not applicable for this country', benRate > 0 ? benPct : null, 'ben') +
+        lccBarRow(lccT('lcc.result.bar.base', 'Base Salary'), sym + fmtNum(base) + '/ mo', basePct, 'base') +
+        lccBarRow(lccFmt('lcc.result.bar.statutory.rate', 'Statutory Contributions ({0})', [statRateDisplay]), sym + fmtNum(statutory) + '/ mo', statPct, 'stat') +
+        lccBarRow(benRate > 0 ? lccFmt('lcc.result.bar.benefits.est', 'Benefits &amp; Other Costs (est. {0})', [benRate.toFixed(2).replace(/\.?0+$/, '') + '%']) : lccT('lcc.result.bar.benefits', 'Benefits &amp; Other Costs'), benRate > 0 ? sym + fmtNum(benefits) + '/ mo' : lccT('lcc.result.bar.benefits.na', 'Not applicable for this country'), benRate > 0 ? benPct : null, 'ben') +
       '</div>' +
       '<div class="lcc-result-divider"></div>' +
       '<div class="lcc-summary">' +
-        lccSummaryCard(sym + fmtNum(total), 'Monthly Cost') +
-        lccSummaryCard(sym + fmtNum(annualTotal), 'Annual Cost') +
-        lccSummaryCard(mRatio.toFixed(2) + 'x', 'M Ratio') +
-        lccSummaryCard(statRateDisplay, 'Statutory Rate') +
+        lccSummaryCard(sym + fmtNum(total), lccT('lcc.result.summary.monthly', 'Monthly Cost')) +
+        lccSummaryCard(sym + fmtNum(annualTotal), lccT('lcc.result.summary.annual', 'Annual Cost')) +
+        lccSummaryCard(mRatio.toFixed(2) + 'x', lccT('lcc.result.summary.mratio', 'M Ratio')) +
+        lccSummaryCard(statRateDisplay, lccT('lcc.result.summary.statrate', 'Statutory Rate')) +
       '</div>';
 
     var content = document.getElementById('lcc-result-content');
@@ -1690,8 +1699,8 @@
     var total     = base + statutory + benefits;
     var mRatio    = total / base;
     var sym       = 'USD ';
-    var workerLabel = wt === 'local' ? 'Local / PR' : 'Foreign National';
-    var freqLabel   = lccState.salaryFreq === 'monthly' ? '/mo base salary' : '/mo base salary (from annual)';
+    var workerLabel = wt === 'local' ? lccT('lcc.workertype.local', 'Local / PR') : lccT('lcc.workertype.foreign', 'Foreign National');
+    var freqLabel   = lccState.salaryFreq === 'monthly' ? lccT('lcc.report.subtitle.mo', '/mo base salary') : lccT('lcc.report.subtitle.annual', '/mo base salary (from annual)');
 
     // Header
     document.getElementById('rpt-country').textContent = country;
@@ -1705,20 +1714,20 @@
     var benRateFmt = benRate > 0 ? '~ ' + benRate.toFixed(2).replace(/\.?0+$/, '') + '%' : '—';
     var mRatFmt  = mRatio.toFixed(2) + 'x';
     var cardsHtml =
-      rptCard('#1d4783', totalMo,  'Monthly Total Cost',   'per month') +
-      rptCard('#019de7', totalYr,  'Annual Total Cost',    'per year') +
-      rptCard('#1d4783', statMo,   'Monthly Statutory',    'contributions') +
-      rptCard('#019de7', statYr,   'Annual Statutory',     'contributions') +
-      rptCard('#ff1d1d', mRatFmt,  'M Ratio',              'cost multiplier');
+      rptCard('#1d4783', totalMo,  lccT('lcc.report.card.monthly.total', 'Monthly Total Cost'),  lccT('lcc.report.card.per.month', 'per month')) +
+      rptCard('#019de7', totalYr,  lccT('lcc.report.card.annual.total',  'Annual Total Cost'),   lccT('lcc.report.card.per.year', 'per year')) +
+      rptCard('#1d4783', statMo,   lccT('lcc.report.card.monthly.stat',  'Monthly Statutory'),   lccT('lcc.report.card.contributions', 'contributions')) +
+      rptCard('#019de7', statYr,   lccT('lcc.report.card.annual.stat',   'Annual Statutory'),    lccT('lcc.report.card.contributions', 'contributions')) +
+      rptCard('#ff1d1d', mRatFmt,  lccT('lcc.report.card.mratio',        'M Ratio'),             lccT('lcc.report.card.multiplier', 'cost multiplier'));
     if (benRate > 0) {
-      cardsHtml += rptCard('#ca45ff', benRateFmt, 'Benefits (Est.)', 'of base salary');
+      cardsHtml += rptCard('#ca45ff', benRateFmt, lccT('lcc.report.card.benefits', 'Benefits (Est.)'), lccT('lcc.report.card.of.base', 'of base salary'));
     }
     document.getElementById('rpt-cards').innerHTML = cardsHtml;
 
     // Statutory table
     var items = STAT_ITEMS[country] || [];
     var isLocal = (wt === 'local');
-    document.getElementById('rpt-stat-table').innerHTML = buildTable(items, base, sym, isLocal, 'Total Statutory Contributions', statRate);
+    document.getElementById('rpt-stat-table').innerHTML = buildTable(items, base, sym, isLocal, lccT('lcc.table.total.statutory', 'Total Statutory Contributions'), statRate);
 
     // Benefits table — show only when country has quantifiable benefit items for this worker type
     var benItems = (BEN_DATA[country] || []).filter(function(it) {
@@ -1761,12 +1770,12 @@
   function buildTable(items, base, sym, isLocal, totalLabel, totalRate) {
     var totalMo = base * totalRate / 100;
     var html = '<div class="lcc-rpt-trow lcc-rpt-trow--hdr">' +
-      tCell('name','th','Contribution Item') + tCell('rate','th','Rate') + tCell('mo','th','Monthly Amount') + tCell('yr','th','Annual Amount') +
+      tCell('name','th', lccT('lcc.table.header.item', 'Contribution Item')) + tCell('rate','th', lccT('lcc.table.header.rate', 'Rate')) + tCell('mo','th', lccT('lcc.table.header.monthly', 'Monthly Amount')) + tCell('yr','th', lccT('lcc.table.header.annual', 'Annual Amount')) +
       '</div>';
 
     if (items.length === 0) {
       html += '<div class="lcc-rpt-trow lcc-rpt-trow--body">' +
-        '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">No mandatory employer statutory contributions</p><p class="lcc-rpt-td-note">Contribution obligations are minimal or conditional for this country</p></div>' +
+        '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">' + lccT('lcc.table.empty.name', 'No mandatory employer statutory contributions') + '</p><p class="lcc-rpt-td-note">' + lccT('lcc.table.empty.note', 'Contribution obligations are minimal or conditional for this country') + '</p></div>' +
         tCell('rate','td','0%') + tCell('mo','td',sym+'0') + tCell('yr','td',sym+'0','yr') + '</div>';
     } else {
       items.forEach(function(it) {
@@ -1798,7 +1807,7 @@
     var totalRate = 0; filtered.forEach(function(it){ totalRate += it[2]; });
     var totalMo = base * totalRate / 100;
     var html = '<div class="lcc-rpt-trow lcc-rpt-trow--hdr">' +
-      tCell('name','th','Contribution Item') + tCell('rate','th','Rate') + tCell('mo','th','Monthly Amount') + tCell('yr','th','Annual Amount') +
+      tCell('name','th', lccT('lcc.table.header.item', 'Contribution Item')) + tCell('rate','th', lccT('lcc.table.header.rate', 'Rate')) + tCell('mo','th', lccT('lcc.table.header.monthly', 'Monthly Amount')) + tCell('yr','th', lccT('lcc.table.header.annual', 'Annual Amount')) +
       '</div>';
     filtered.forEach(function(it) {
       var mo = base * it[2] / 100;
@@ -1808,7 +1817,7 @@
     });
     var trStr = '~ ' + Math.round(totalRate) + '%';
     html += '<div class="lcc-rpt-trow lcc-rpt-trow--total">' +
-      '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">Total Benefits (Est.)</p></div>' +
+      '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">' + lccT('lcc.table.total.benefits', 'Total Benefits (Est.)') + '</p></div>' +
       tCell('rate','td',trStr) +
       '<div class="lcc-rpt-tcell lcc-rpt-tcell--mo"><p class="lcc-rpt-td-total">' + sym + fmtNum(totalMo) + '</p></div>' +
       '<div class="lcc-rpt-tcell lcc-rpt-tcell--yr"><p class="lcc-rpt-td-total">' + sym + fmtNum(totalMo*12) + '</p></div>' +
@@ -1829,11 +1838,16 @@
   buildCountryList('');
   showEmptyState();
 
+  // Re-render dynamic content once the translation pack loads
+  document.addEventListener('marcolangready', function() {
+    if (!lccState.country && !lccState.workerType) showEmptyState();
+  });
+
   // ── PDF Download ──
   document.getElementById('lcc-download-btn').addEventListener('click', async function() {
     var btn      = document.getElementById('lcc-download-btn');
     var origText = btn.textContent;
-    btn.textContent = 'Generating . . .';
+    btn.textContent = lccT('lcc.report.btn.generating', 'Generating . . .');
     btn.disabled    = true;
     btn.style.opacity = '0.8';
 

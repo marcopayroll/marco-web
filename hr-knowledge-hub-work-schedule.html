@@ -166,36 +166,36 @@
       <a href="index.html"><img class="banner-logo" src="https://marcowallpaper.s3.ap-southeast-1.amazonaws.com/Marco+logo+white+(tall).png" alt="Marco"></a>
       <div class="banner-divider"></div>
       <div class="banner-text">
-        <div class="banner-title">Work Schedule &#8212; Global Work Schedule Matrix</div>
-        <div class="banner-subtitle">Standard hours, overtime rules &amp; compliance notes by country</div>
+        <div class="banner-title" data-i18n="ws.banner.title">Work Schedule &#8212; Global Work Schedule Matrix</div>
+        <div class="banner-subtitle" data-i18n="ws.banner.subtitle">Standard hours, overtime rules &amp; compliance notes by country</div>
       </div>
     </div>
   </div>
   <!-- FILTER BAR -->
   <div class="filter-bar">
     <button class="btn-hamburger" id="btnMobileOpen" onclick="mobileOpenDrawer()" aria-label="Open menu">&#9776;</button>
-    <span class="filter-label">FILTER</span>
+    <span class="filter-label" data-i18n="ws.filter.label">FILTER</span>
     <div class="search-wrap">
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <input type="text" class="search-input" id="sidebarSearch" placeholder="Search country..." oninput="filterSidebar()">
+      <input type="text" class="search-input" id="sidebarSearch" placeholder="Search country..." data-i18n-placeholder="ws.filter.search" oninput="filterSidebar()">
     </div>
     <div class="select-wrap">
       <select id="regionFilter" onchange="filterSidebar()">
-        <option value="">All Regions</option>
+        <option value="" data-i18n="ws.filter.allRegions">All Regions</option>
         <option value="Americas">Americas</option>
         <option value="APAC">APAC</option>
         <option value="EMEA">EMEA</option>
         <option value="Middle East">Middle East</option>
       </select>
     </div>
-    <button class="btn-clear" onclick="clearFilters()"><span class="clear-text">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
+    <button class="btn-clear" onclick="clearFilters()"><span class="clear-text" data-i18n="ws.btn.clear">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
   </div>
   <!-- LAYOUT -->
   <div class="layout">
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="mobileCloseDrawer()"></div>
     <div class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <span class="sidebar-header-text">SELECT A COUNTRY</span>
+        <span class="sidebar-header-text" data-i18n="ws.sidebar.header">SELECT A COUNTRY</span>
         <button class="btn-sb-toggle" id="btnSbToggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8H14M2 4H14M2 12H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
@@ -205,8 +205,8 @@
     <div class="main" id="mainContent">
       <div class="welcome-state">
         <div class="big-icon">&#127760;</div>
-        <h2>Select a country to view its work schedule</h2>
-        <p>Choose any country from the left panel. You can search by name or filter by region.</p>
+        <h2 data-i18n="ws.welcome.title">Select a country to view its work schedule</h2>
+        <p data-i18n="ws.welcome.body">Choose any country from the left panel. You can search by name or filter by region.</p>
       </div>
     </div>
   </div>
@@ -1660,13 +1660,13 @@ const SCHEDULE_DATA = {
     function buildSidebar(keys) {
       var list = document.getElementById('countryList');
       if (!keys.length) {
-        list.innerHTML = '<div class="sidebar-empty">No countries found</div>';
+        list.innerHTML = '<div class="sidebar-empty">' + wsT('ws.sidebar.empty') + '</div>';
         return;
       }
       list.innerHTML = keys.map(function(k) {
         return '<div class="sb-row' + (currentKey === k ? ' active' : '') + '" data-key="' + escHtml(k) + '">' +
           '<span class="sb-code">' + escHtml(getISO(k)) + '</span>' +
-          '<span class="sb-label">' + escHtml(k) + '</span>' +
+          '<span class="sb-label">' + escHtml(wsCountry(k)) + '</span>' +
           '</div>';
       }).join('');
     }
@@ -1688,45 +1688,55 @@ const SCHEDULE_DATA = {
       buildSidebar(ALL_KEYS);
     }
 
+
+    /* ── Translation helpers ── */
+    function wsT(key) { return (window.__marcoPack && window.__marcoPack[key]) || key; }
+    function wsStr(s) { return (window.__wsStrMap && window.__wsStrMap[s]) || s; }
+    function wsCountry(k) { return (window.__marcoPack && window.__marcoPack['ws.country.' + k]) || k; }
+    function wsRegion(r) {
+      var key = 'ws.region.' + r.replace(/\s+/g, '_');
+      return (window.__marcoPack && window.__marcoPack[key]) || r;
+    }
+
     function renderDetail(key) {
       var d = SCHEDULE_DATA[key];
       if (!d) return;
       document.getElementById('mainContent').innerHTML =
         '<div class="detail-header">' +
           '<div>' +
-            '<h1>' + escHtml(key) + '</h1>' +
-            '<div class="meta">' + escHtml(d.region) + ' &middot; Last checked: 2026-06-16</div>' +
+            '<h1>' + escHtml(wsCountry(key)) + '</h1>' +
+            '<div class="meta">' + escHtml(wsRegion(d.region)) + ' &middot; ' + wsT('ws.lastChecked') + '</div>' +
           '</div>' +
-          '<div class="region-tag">' + escHtml(d.region) + '</div>' +
+          '<div class="region-tag">' + escHtml(wsRegion(d.region)) + '</div>' +
         '</div>' +
-        renderSection('Working Hours', [
-          { label: 'Standard Hours / Day', value: d.stdDay, half: true },
-          { label: 'Standard Hours / Week', value: d.stdWeek, half: true },
-          { label: 'Work Pattern', value: d.pattern },
-          { label: 'Maximum Hours', value: d.maxHours }
+        renderSection(wsT('ws.section.workingHours'), [
+          { label: wsT('ws.field.stdDay'), value: wsStr(d.stdDay), half: true },
+          { label: wsT('ws.field.stdWeek'), value: wsStr(d.stdWeek), half: true },
+          { label: wsT('ws.field.pattern'), value: wsStr(d.pattern) },
+          { label: wsT('ws.field.maxHours'), value: wsStr(d.maxHours) }
         ]) +
-        renderSection('Overtime', [
-          { label: 'OT Threshold', value: d.otThreshold },
-          { label: 'OT Rate', value: d.otRate }
+        renderSection(wsT('ws.section.overtime'), [
+          { label: wsT('ws.field.otThreshold'), value: wsStr(d.otThreshold) },
+          { label: wsT('ws.field.otRate'), value: wsStr(d.otRate) }
         ]) +
-        renderSection('Rest &amp; Breaks', [
-          { label: 'Weekly Rest', value: d.weeklyRest },
-          { label: 'Daily Rest', value: d.dailyRest },
-          { label: 'Break / Rest Period', value: d.breakRule }
+        renderSection(wsT('ws.section.restBreaks'), [
+          { label: wsT('ws.field.weeklyRest'), value: wsStr(d.weeklyRest) },
+          { label: wsT('ws.field.dailyRest'), value: wsStr(d.dailyRest) },
+          { label: wsT('ws.field.breakRule'), value: wsStr(d.breakRule) }
         ]) +
-        renderSection('Special Provisions', [
-          { label: 'Night Work', value: d.nightWork },
-          { label: 'Weekend &amp; Holiday', value: d.weekendHoliday },
-          { label: 'Flexible Work', value: d.flexible }
+        renderSection(wsT('ws.section.specialProvisions'), [
+          { label: wsT('ws.field.nightWork'), value: wsStr(d.nightWork) },
+          { label: wsT('ws.field.weekendHoliday'), value: wsStr(d.weekendHoliday) },
+          { label: wsT('ws.field.flexible'), value: wsStr(d.flexible) }
         ]) +
-        renderSection('Compliance', [
-          { label: 'Record-Keeping', value: d.records },
-          { label: 'Compliance Note', value: d.compliance, highlight: true }
+        renderSection(wsT('ws.section.compliance'), [
+          { label: wsT('ws.field.records'), value: wsStr(d.records) },
+          { label: wsT('ws.field.compliance'), value: wsStr(d.compliance), highlight: true }
         ]) +
         '<div class="sources-section">' +
-          '<span class="sources-label">Sources</span>' +
-          (d.primarySource ? '<a href="' + escHtml(d.primarySource) + '" target="_blank" rel="noopener" class="source-link">Primary Source &#8599;</a>' : '') +
-          (d.secondarySource && d.secondarySource !== d.primarySource ? '<a href="' + escHtml(d.secondarySource) + '" target="_blank" rel="noopener" class="source-link">Secondary Source &#8599;</a>' : '') +
+          '<span class="sources-label">' + wsT('ws.sources.label') + '</span>' +
+          (d.primarySource ? '<a href="' + escHtml(d.primarySource) + '" target="_blank" rel="noopener" class="source-link">' + wsT('ws.sources.primary') + ' &#8599;</a>' : '') +
+          (d.secondarySource && d.secondarySource !== d.primarySource ? '<a href="' + escHtml(d.secondarySource) + '" target="_blank" rel="noopener" class="source-link">' + wsT('ws.sources.secondary') + ' &#8599;</a>' : '') +
         '</div>';
     }
 
@@ -1757,7 +1767,14 @@ const SCHEDULE_DATA = {
     }
     function toggleSidebar() { document.getElementById('sidebar').classList.toggle('expanded'); }
 
-    buildSidebar(ALL_KEYS);
+
+    /* Re-render on language change */
+    document.addEventListener('marcolangready', function() {
+      buildSidebar(getFilteredKeys());
+      if (currentKey) renderDetail(currentKey);
+    });
+
+        buildSidebar(ALL_KEYS);
   </script>
 <script src="assets/lang/lang-loader.js"></script>
 </body>

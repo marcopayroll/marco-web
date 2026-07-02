@@ -8,7 +8,10 @@
      cn-compliance.js
      cn-company.js
      cn-price.js
-     cn-hub.js      hr-knowledge-hub-*.html pages
+     cn-hub.js          hr-knowledge-hub.html (landing)
+     cn-hub-country.js  hr-knowledge-hub-country-guide-*.html
+     cn-hub-visa.js     hr-knowledge-hub-visa-guide-*.html
+     cn-hub-articles.js all other hr-knowledge-hub-*.html pages
 
    This file also handles:
      - Nav language indicator update (flag + label + active row)
@@ -105,6 +108,7 @@
         el.setAttribute('title', mergedPack[key]);
       }
     });
+    document.dispatchEvent(new CustomEvent('marcolangready'));
   }
 
   /* Exposed for pages that re-render content dynamically (e.g. price pages) */
@@ -134,6 +138,8 @@
 
   /* Detect which section file to load from the page filename */
   var filename = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  /* Vite dev server strips .html — normalise so all routes can use .html consistently */
+  if (filename && !filename.match(/\.[a-z]+$/)) filename += '.html';
   var L = lang.toUpperCase();
   var base = 'assets/lang/' + lang;
   var sectionFile = null;
@@ -157,9 +163,51 @@
   } else if (filename === 'marco-os.html' || filename === 'marco-os') {
     sectionFile   = base + '-marco-os.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_MARCO_OS';
-  } else if (filename.indexOf('hr-knowledge-hub-') === 0) {
+  } else if (filename === 'hr-knowledge-hub.html') {
     sectionFile   = base + '-hub.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB';
+  } else if (filename.indexOf('hr-knowledge-hub-country-guide-') === 0) {
+    sectionFile   = base + '-hub-country.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_COUNTRY';
+  } else if (filename.indexOf('hr-knowledge-hub-visa-guide-') === 0) {
+    sectionFile   = base + '-hub-visa.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_VISA';
+  } else if (filename === 'hr-knowledge-hub-labor-cost-calculator.html') {
+    sectionFile   = base + '-hub-labor-cost.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_LABOR_COST';
+  } else if (filename === 'hr-knowledge-hub-payroll-guide.html') {
+    sectionFile   = base + '-hub-payroll-guide.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_PAYROLL_GUIDE';
+  } else if (filename === 'hr-knowledge-hub-freelancer-guide.html') {
+    sectionFile   = base + '-hub-freelancer-guide.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_FREELANCER_GUIDE';
+  } else if (filename.indexOf('hr-knowledge-hub-employment-contract') === 0) {
+    sectionFile   = base + '-hub-employment-contract.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_EMPLOYMENT_CONTRACT';
+  } else if (filename.indexOf('hr-knowledge-hub-work-schedule') === 0) {
+    sectionFile   = base + '-hub-work-schedule.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_WORK_SCHEDULE';
+  } else if (filename.indexOf('hr-knowledge-hub-public-holiday') === 0) {
+    sectionFile   = base + '-hub-public-holiday.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_PUBLIC_HOLIDAY';
+  } else if (filename === 'hr-knowledge-hub-leave-policy.html') {
+    sectionFile   = base + '-hub-leave-policy.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_LEAVE_POLICY';
+  } else if (filename === 'hr-knowledge-hub-travel-expense-policy.html') {
+    sectionFile   = base + '-hub-travel-expense.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_TRAVEL_EXPENSE';
+  } else if (filename === 'hr-knowledge-hub-benefits-plan.html') {
+    sectionFile   = base + '-hub-benefits-plan.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_BENEFITS_PLAN';
+  } else if (filename.indexOf('hr-knowledge-hub-government-claim') === 0) {
+    sectionFile   = base + '-hub-government-claim.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_GOVERNMENT_CLAIM';
+  } else if (filename === 'hr-knowledge-hub-vendor-list.html') {
+    sectionFile   = base + '-hub-vendor-list.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_VENDOR_LIST';
+  } else if (filename.indexOf('hr-knowledge-hub-memo') === 0) {
+    sectionFile   = base + '-hub-memo.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_HUB_MEMO';
   }
 
   /* Load shared (nav + footer) first, then page section */

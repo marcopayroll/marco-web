@@ -475,8 +475,8 @@ body {
     <a href="index.html"><img class="banner-logo" src="https://marcowallpaper.s3.ap-southeast-1.amazonaws.com/Marco+logo+white+(tall).png" alt="Marco"></a>
     <div class="banner-divider"></div>
     <div class="banner-text">
-      <div class="banner-title">Public Holiday 2026 — Global Calendar</div>
-      <div class="banner-subtitle">158 calendars &middot; 80+ countries &middot; States, regions &amp; religion-based profiles</div>
+      <div class="banner-title" data-i18n="phc.banner.title">Public Holiday 2026 — Global Calendar</div>
+      <div class="banner-subtitle" data-i18n="phc.banner.subtitle">158 calendars &middot; 80+ countries &middot; States, regions &amp; religion-based profiles</div>
     </div>
   </div>
 </div>
@@ -486,23 +486,23 @@ body {
   <!-- Mobile hamburger (in filter bar) -->
   <button class="btn-hamburger" id="btnMobileOpen" onclick="mobileOpenDrawer()" aria-label="Open menu">&#9776;</button>
 
-  <span class="filter-label">FILTER</span>
+  <span class="filter-label" data-i18n="phc.filter.label">FILTER</span>
   <div class="search-wrap">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <input type="text" class="search-input" id="sidebarSearch" placeholder="Search" oninput="filterSidebar()">
+    <input type="text" class="search-input" id="sidebarSearch" placeholder="Search" oninput="filterSidebar()" data-i18n-placeholder="phc.filter.search">
   </div>
   <div class="select-wrap">
     <select id="regionFilter" onchange="filterSidebar()">
-      <option value="">All Regions</option>
-      <option value="Africa">Africa</option>
-      <option value="Americas">Americas</option>
-      <option value="Asia">Asia</option>
-      <option value="Europe">Europe</option>
-      <option value="Middle East">Middle East</option>
-      <option value="Oceania">Oceania</option>
+      <option value="" data-i18n="phc.filter.region.all">All Regions</option>
+      <option value="Africa" data-i18n="phc.filter.region.africa">Africa</option>
+      <option value="Americas" data-i18n="phc.filter.region.americas">Americas</option>
+      <option value="Asia" data-i18n="phc.filter.region.asia">Asia</option>
+      <option value="Europe" data-i18n="phc.filter.region.europe">Europe</option>
+      <option value="Middle East" data-i18n="phc.filter.region.mideast">Middle East</option>
+      <option value="Oceania" data-i18n="phc.filter.region.oceania">Oceania</option>
     </select>
   </div>
-  <button class="btn-clear" onclick="clearFilters()"><span class="clear-text">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
+  <button class="btn-clear" onclick="clearFilters()"><span class="clear-text" data-i18n="phc.filter.clear">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
 </div>
 
 <!-- ── LAYOUT ── -->
@@ -514,7 +514,7 @@ body {
   <!-- SIDEBAR -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <span class="sidebar-header-text">SELECT A CALENDAR PROFILE</span>
+      <span class="sidebar-header-text" data-i18n="phc.sidebar.header">SELECT A CALENDAR PROFILE</span>
       <!-- Tablet/Mobile: toggle button inside sidebar -->
       <button class="btn-sb-toggle" id="btnSbToggle" onclick="toggleSidebar()" aria-label="Toggle sidebar"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8H14M2 4H14M2 12H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
@@ -525,8 +525,8 @@ body {
   <div class="main" id="mainContent">
     <div class="welcome-state">
       <div class="big-icon">&#128197;</div>
-      <h2>Select a country to view its 2026 public holidays</h2>
-      <p>Choose any calendar profile from the left panel. You can search by country name, filter by region, or browse by holiday type once selected.</p>
+      <h2 data-i18n="phc.welcome.heading">Select a country to view its 2026 public holidays</h2>
+      <p data-i18n="phc.welcome.body">Choose any calendar profile from the left panel. You can search by country name, filter by region, or browse by holiday type once selected.</p>
     </div>
   </div>
 
@@ -537,7 +537,16 @@ const HOLIDAYS = {"Algeria":[{"name":"New Year","date":"2026-01-01","end_date":n
 ;
 const ISO_CODES = {"Algeria": "DZ", "Argentina": "AR", "Australia": "AU", "Austria": "AT", "Azerbaijan": "AZ", "Bahrain": "BH", "Bangladesh": "BD", "Belgium": "BE", "Brazil": "BR", "Bulgaria": "BG", "Cambodia": "KH", "Canada": "CA", "Chile": "CL", "China": "CN", "Colombia": "CO", "Croatia": "HR", "Czechia": "CZ", "Denmark": "DK", "Ecuador": "EC", "Egypt": "EG", "Estonia": "EE", "Finland": "FI", "France": "FR", "Georgia": "GE", "Germany": "DE", "Greece": "GR", "Hong Kong": "HK", "Hungary": "HU", "Iceland": "IS", "India": "IN", "Indonesia": "ID", "Iraq": "IQ", "Ireland": "IE", "Italy": "IT", "Japan": "JP", "Jordan": "JO", "Kazakhstan": "KZ", "Korea": "KR", "Kuwait": "KW", "Kyrgyzstan": "KG", "Laos": "LA", "Latvia": "LV", "Lithuania": "LT", "Luxembourg": "LU", "Malaysia": "MY", "Mauritius": "MU", "Mexico": "MX", "Morocco": "MA", "Netherlands": "NL", "New Zealand": "NZ", "Norway": "NO", "Oman": "OM", "Pakistan": "PK", "Panama": "PA", "Paraguay": "PY", "Peru": "PE", "Philippines": "PH", "Poland": "PL", "Portugal": "PT", "Qatar": "QA", "Romania": "RO", "Saudi Arabia": "SA", "Serbia": "RS", "Singapore": "SG", "Slovakia": "SK", "South Africa": "ZA", "Spain": "ES", "Sweden": "SE", "Switzerland": "CH", "Taiwan": "TW", "Tajikistan": "TJ", "Thailand": "TH", "Turkey": "TR", "Ukraine": "UA", "United Arab Emirates": "AE", "United Kingdom": "GB", "United States": "US", "Uruguay": "UY", "Uzbekistan": "UZ", "Vietnam": "VN"};
 
-const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+function getMonths() {
+  return [
+    phcT('phc.detail.month.jan','January'), phcT('phc.detail.month.feb','February'),
+    phcT('phc.detail.month.mar','March'),   phcT('phc.detail.month.apr','April'),
+    phcT('phc.detail.month.may','May'),     phcT('phc.detail.month.jun','June'),
+    phcT('phc.detail.month.jul','July'),    phcT('phc.detail.month.aug','August'),
+    phcT('phc.detail.month.sep','September'),phcT('phc.detail.month.oct','October'),
+    phcT('phc.detail.month.nov','November'),phcT('phc.detail.month.dec','December'),
+  ];
+}
 
 const REGIONS = {
   'Africa': ['Algeria','Egypt','Mauritius','Morocco','South Africa'],
@@ -557,7 +566,15 @@ function getTypeCategory(type) {
   return 'observance';
 }
 
-const TYPE_LABELS = { national:'National', religious:'Religious', festival:'Festival', regional:'Regional / Local', observance:'Observance' };
+function getTypeLabels() {
+  return {
+    national:   phcT('phc.detail.type.national',  'National'),
+    religious:  phcT('phc.detail.type.religious', 'Religious'),
+    festival:   phcT('phc.detail.type.festival',  'Festival'),
+    regional:   phcT('phc.detail.type.regional',  'Regional / Local'),
+    observance: phcT('phc.detail.type.observance','Observance'),
+  };
+}
 
 function getIso(key) { return ISO_CODES[key] || ''; }
 function getRegion(profile) {
@@ -594,7 +611,7 @@ function makeRow({ profile, label, iso, badge, isAccordion, isSub }) {
   if (isAccordion) {
     const profEl = document.createElement('span');
     profEl.className = 'sb-profiles';
-    profEl.textContent = badge + ' profiles';
+    profEl.textContent = badge + phcT('phc.sidebar.profiles', ' profiles');
     el.appendChild(profEl);
     const chev = document.createElement('span');
     chev.className = 'sb-chevron';
@@ -609,6 +626,34 @@ function makeRow({ profile, label, iso, badge, isAccordion, isSub }) {
   return el;
 }
 
+function phcT(key, fallback) {
+  return (window.__marcoPack && window.__marcoPack[key]) || fallback;
+}
+function phcProfileName(profile) {
+  const dash = profile.indexOf(' - ');
+  if (dash > -1) {
+    const country = profile.slice(0, dash);
+    const sub = profile.slice(dash + 3);
+    return phcT('phc.country.' + country, country) + ' - ' + phcT('phc.sub.' + sub, sub);
+  }
+  return phcT('phc.country.' + profile, profile);
+}
+function phcRegionLabel(profile) {
+  const region = getRegion(profile);
+  const keyMap = {
+    'Africa':      'phc.filter.region.africa',
+    'Americas':    'phc.filter.region.americas',
+    'Asia':        'phc.filter.region.asia',
+    'Europe':      'phc.filter.region.europe',
+    'Middle East': 'phc.filter.region.mideast',
+    'Oceania':     'phc.filter.region.oceania',
+  };
+  return phcT(keyMap[region] || '', region);
+}
+function phcTagLabel(type) {
+  return phcT('phc.tag.' + type, type);
+}
+
 let allProfiles = Object.keys(HOLIDAYS).sort();
 let activeProfile = null;
 let activeTypeFilter = 'all';
@@ -618,7 +663,7 @@ function buildSidebar(profiles) {
   const list = document.getElementById('countryList');
   list.innerHTML = '';
   if (!profiles.length) {
-    list.innerHTML = '<div class="sidebar-empty">' + 'No calendars match your search.' + '</div>';
+    list.innerHTML = '<div class="sidebar-empty">' + phcT('phc.sidebar.empty', 'No calendars match your search.') + '</div>';
     return;
   }
 
@@ -641,13 +686,13 @@ function buildSidebar(profiles) {
     item.className = 'accordion-item';
 
     if (items.length === 1 && items[0] === grpKey) {
-      const row = makeRow({ profile: grpKey, label: grpKey, iso, badge: HOLIDAYS[grpKey].length });
+      const row = makeRow({ profile: grpKey, label: phcT('phc.country.' + grpKey, grpKey), iso, badge: HOLIDAYS[grpKey].length });
       if (grpKey === activeProfile) row.classList.add('active');
       row.addEventListener('click', () => selectProfile(grpKey));
       item.appendChild(row);
     } else {
       const isOpen = openGroups.has(grpKey) || items.some(p => p === activeProfile);
-      const trigger = makeRow({ label: grpKey, iso, badge: items.length, isAccordion: true });
+      const trigger = makeRow({ label: phcT('phc.country.' + grpKey, grpKey), iso, badge: items.length, isAccordion: true });
       if (isOpen) trigger.classList.add('open');
 
       const panel = document.createElement('div');
@@ -665,7 +710,7 @@ function buildSidebar(profiles) {
       });
       sorted.forEach(p => {
         const subLabel = p.slice(grpKey.length + 3);
-        const sub = makeRow({ profile: p, label: subLabel, iso: '', badge: HOLIDAYS[p].length, isSub: true });
+        const sub = makeRow({ profile: p, label: phcT('phc.sub.' + subLabel, subLabel), iso: '', badge: HOLIDAYS[p].length, isSub: true });
         if (p === activeProfile) sub.classList.add('active');
         sub.addEventListener('click', () => selectProfile(p));
         panel.appendChild(sub);
@@ -729,21 +774,21 @@ function renderDetail(profile) {
   let html = `
     <div class="detail-header">
       <div>
-        <h1>${profile}</h1>
-        <div class="meta">${`${isoCode ? '<strong>' + isoCode + '</strong> &middot; ' : ''}${getRegion(profile)} &middot; 2026 Public Holiday Calendar`}</div>
+        <h1>${phcProfileName(profile)}</h1>
+        <div class="meta">${`${isoCode ? '<strong>' + isoCode + '</strong> &middot; ' : ''}${phcRegionLabel(profile)}${phcT('phc.detail.meta.suffix', ' · 2026 Public Holiday Calendar')}`}</div>
       </div>
-      <div class="holiday-count">${holidays.length}<span>holidays</span></div>
+      <div class="holiday-count">${holidays.length}<span>${phcT('phc.detail.count.label','holidays')}</span></div>
     </div>
     <div class="type-pills">
-      <span class="type-pill all ${activeTypeFilter === 'all' ? 'active' : ''}" onclick="setTypeFilter('all')">All</span>`;
+      <span class="type-pill all ${activeTypeFilter === 'all' ? 'active' : ''}" onclick="setTypeFilter('all')">${phcT('phc.detail.type.all','All')}</span>`;
 
   typesPresent.forEach(t => {
-    html += `<span class="type-pill ${t} ${activeTypeFilter === t ? 'active' : ''}" onclick="setTypeFilter('${t}')">${TYPE_LABELS[t]}</span>`;
+    html += `<span class="type-pill ${t} ${activeTypeFilter === t ? 'active' : ''}" onclick="setTypeFilter('${t}')">${getTypeLabels()[t]}</span>`;
   });
   html += `</div>`;
 
   const filtered = activeTypeFilter === 'all' ? holidays : holidays.filter(h => getTypeCategory(h.type) === activeTypeFilter);
-  if (!filtered.length) { html += `<div class="no-results">No holidays match this filter.</div>`; main.innerHTML = html; return; }
+  if (!filtered.length) { html += `<div class="no-results">${phcT('phc.detail.noresults','No holidays match this filter.')}</div>`; main.innerHTML = html; return; }
 
   const byMonth = {};
   filtered.forEach(h => {
@@ -753,7 +798,7 @@ function renderDetail(profile) {
   });
 
   Object.keys(byMonth).sort((a,b) => a-b).forEach(m => {
-    html += `<div class="month-group"><div class="month-label">${MONTHS[m]}</div>`;
+    html += `<div class="month-group"><div class="month-label">${getMonths()[m]}</div>`;
     byMonth[m].forEach(h => {
       const dayNum  = parseInt(h.date.split('-')[2]);
       const endInfo = h.end_date ? `<div class="end-date">&#8211;&nbsp;${h.end_date.slice(5).replace('-','/')}</div>` : '';
@@ -766,7 +811,7 @@ function renderDetail(profile) {
           </div>
           <div class="holiday-info">
             <div class="holiday-name">${h.name}</div>
-            <span class="holiday-type-tag ${getTagClass(h.type)}">${h.type}</span>
+            <span class="holiday-type-tag ${getTagClass(h.type)}">${phcTagLabel(h.type)}</span>
           </div>
         </div>`;
     });
@@ -826,6 +871,11 @@ window.addEventListener('resize', () => {
 });
 
 buildSidebar(allProfiles);
+
+document.addEventListener('marcolangready', function() {
+  filterSidebar();
+  if (activeProfile) renderDetail(activeProfile);
+});
 </script>
 <script src="assets/lang/lang-loader.js"></script>
 </body>
