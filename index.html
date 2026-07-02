@@ -1500,11 +1500,10 @@
       display: flex;
       gap: 24px;
       align-items: flex-start;
-      margin-right: calc(-1 * var(--gutter)); /* let image bleed to right edge */
     }
     .tech-left {
-      width: 600px;
-      flex-shrink: 0;
+      flex: 0 0 49%;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -1513,34 +1512,32 @@
       flex: 1;
       min-width: 0;
     }
-    /* All 4 images pre-mounted; only .is-active is visible */
+    /* All 4 images at natural Figma aspect ratio (599×412); only .is-active is visible */
     .tech-visuals {
       position: relative;
       width: 100%;
+      aspect-ratio: 599 / 412;
     }
     .tech-visual {
+      position: absolute;
+      inset: 0;
       width: 100%;
-      height: auto;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover;
       object-position: left top;
       display: block;
-      border-radius: 12px 0 0 12px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.2s ease;
       will-change: opacity;
-    }
-    /* Inactive images sit on top of the active one without affecting layout */
-    .tech-visual:not(.is-active) {
-      position: absolute;
-      top: 0;
-      left: 0;
       pointer-events: none;
     }
     .tech-visual.is-active {
       opacity: 1;
       visibility: visible;
+      pointer-events: auto;
     }
+    .tech-visual-card { display: none; }
     @media (prefers-reduced-motion: reduce) {
       .tech-accordion-body,
       .tech-visual { transition: none; }
@@ -1647,40 +1644,54 @@
     ──────────────────────────────────────── */
     @media (max-width: 1280px) {
       .tech-title { font-size: 56px; line-height: 68px; }
-      .tech-left { width: 520px; }
     }
     @media (max-width: 1100px) {
       .tech-title { font-size: 48px; line-height: 60px; }
-      .tech-left { width: 440px; }
       .tech-accordion-item { padding: 20px 24px; }
       .tech-accordion-title { font-size: 18px; line-height: 24px; }
     }
     @media (max-width: 1024px) {
       .tech-title { font-size: 42px; line-height: 52px; }
-      .tech-left { width: 380px; }
       .tech-accordion-item { padding: 16px 20px; }
       .tech-accordion-title { font-size: 16px; line-height: 22px; }
       .tech-accordion-desc { font-size: 14px; line-height: 18px; }
     }
-    @media (max-width: 960px) {
-      /* Stack accordion above image */
-      .tech-body {
-        flex-direction: column;
-        margin-right: 0;
-      }
-      .tech-left {
+    /* ── Tablet: text + spacing adjustments (layout stays fluid two-column) ── */
+    @media (min-width: 768px) and (max-width: 960px) {
+      .technology { padding: 32px 0; }
+      .tech-header { gap: 12px; margin-bottom: 32px; }
+      .tech-heading { gap: 24px; }
+      .tech-title { font-size: 32px; line-height: 40px; }
+      .tech-subtitle { font-size: 12px; line-height: 20px; }
+      .tech-left { gap: 12px; }
+      .tech-accordion-item { padding: 16px 12px; }
+      .tech-accordion-title { font-size: 16px; line-height: 20px; }
+      .tech-accordion-desc { font-size: 12px; line-height: 20px; }
+      .tech-feature-text { font-size: 12px; line-height: 20px; }
+    }
+
+    /* ── Mobile: single column stack ── */
+    @media (max-width: 767px) {
+      .technology { --gutter: 24px; }
+      .tech-header { gap: 12px; margin-bottom: 32px; }
+      .tech-heading { gap: 16px; }
+      .tech-title { font-size: 32px; line-height: 40px; }
+      .tech-subtitle { font-size: 12px; line-height: 16px; }
+      .tech-body { flex-direction: column; margin-right: 0; gap: 12px; }
+      .tech-left { width: 100%; gap: 12px; }
+      .tech-right { display: none; }
+      .tech-accordion-item { padding: 16px; }
+      .tech-accordion-title { font-size: 16px; line-height: 20px; }
+      .tech-accordion-desc { font-size: 12px; line-height: 16px; }
+      .tech-feature-text { font-size: 10px; line-height: 14px; }
+      .tech-visual-card {
+        display: block;
         width: 100%;
+        aspect-ratio: 4096 / 2816;
+        object-fit: cover;
+        border-radius: 4px;
+        margin: 12px 0;
       }
-      .tech-right {
-        width: calc(100% + var(--gutter));  /* keep slight right bleed */
-      }
-      .tech-visual {
-        height: 320px;
-        border-radius: 0 0 0 12px;
-        object-position: center top;
-      }
-      .tech-title { font-size: 36px; line-height: 46px; }
-      .tech-header { margin-bottom: 40px; }
     }
 
     /* ════════════════════════════════════════
@@ -1769,21 +1780,47 @@
       .datacloud-title { font-size: 24px; line-height: 32px; }
       .datacloud-right { padding: 60px 0; }
     }
-    @media (max-width: 960px) {
+    /* ── Tablet: two-column layout per Figma (768px frame) ── */
+    @media (min-width: 768px) and (max-width: 960px) {
+      .datacloud { --gutter: 32px; }
       .datacloud-body {
-        flex-direction: column;
-        min-height: unset;
+        flex-direction: row;
+        align-items: stretch;
+        min-height: 308px;
+        gap: 16px;
       }
       .datacloud-left {
         flex: none;
-        width: calc(100% + 2 * max(var(--gutter), (100vw - 1224px) / 2));
-        margin-left: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
-        margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
+        width: 376px;
+        margin-left: calc(-1 * var(--gutter));
+        margin-right: 0;
+        height: 308px;
+      }
+      .datacloud-right {
+        flex: 1;
+        padding: 32px 0;
+        gap: 24px;
+      }
+      .datacloud-title { font-size: 20px; line-height: 26px; font-weight: 600; }
+      .datacloud-desc { font-size: 10px; line-height: 14px; letter-spacing: 0; }
+      .datacloud-desc-list { padding-left: 15px; gap: 20px; }
+    }
+
+    /* ── Mobile: single column stack ── */
+    @media (max-width: 767px) {
+      .datacloud-body {
+        flex-direction: column;
+        min-height: unset;
+        gap: 0;
+      }
+      .datacloud-left {
+        flex: none;
+        width: calc(100% + 2 * var(--gutter));
+        margin-left: calc(-1 * var(--gutter));
+        margin-right: calc(-1 * var(--gutter));
         height: 260px;
-        position: relative;
       }
       .datacloud-right { padding: 48px 0; }
-      .datacloud-title { font-size: 28px; line-height: 36px; }
     }
 
     /* ════════════════════════════════════════
@@ -2323,6 +2360,7 @@
           <div class="tech-accordion-body">
             <div class="tech-accordion-body-inner">
               <p class="tech-accordion-desc" data-i18n="tech.payroll.desc">Say goodbye to messy operation and data</p>
+              <img class="tech-visual-card" src="assets/Home/home-payroll-people.webp" alt="Marco OS — Payroll &amp; People" loading="lazy" />
               <div class="tech-feature-list">
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2351,6 +2389,7 @@
           <div class="tech-accordion-body">
             <div class="tech-accordion-body-inner">
               <p class="tech-accordion-desc" data-i18n="tech.api.desc">Supercharge your current systems with Marco's open APIs.</p>
+              <img class="tech-visual-card" src="assets/Home/home-api.webp" alt="Marco OS — API Integrations" loading="lazy" />
               <div class="tech-feature-list">
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2379,6 +2418,7 @@
           <div class="tech-accordion-body">
             <div class="tech-accordion-body-inner">
               <p class="tech-accordion-desc" data-i18n="tech.bi.desc">Empower your workforce strategy with data-driven insights.</p>
+              <img class="tech-visual-card" src="assets/Marco OS Screens/home-bi.png" alt="Marco OS — Business Insights" loading="lazy" />
               <div class="tech-feature-list">
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2407,6 +2447,7 @@
           <div class="tech-accordion-body">
             <div class="tech-accordion-body-inner">
               <p class="tech-accordion-desc" data-i18n="tech.mobility.desc">Gear up for the future of work.</p>
+              <img class="tech-visual-card" src="assets/Home/home-mobility.webp" alt="Marco OS — Borderless Mobility" loading="lazy" />
               <div class="tech-feature-list">
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
