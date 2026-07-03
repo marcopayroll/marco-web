@@ -695,14 +695,14 @@
   <div class="hero-content">
     <div class="hero-label">
       <div class="hero-label-line"></div>
-      <span>VENDOR LIST</span>
+      <span data-i18n="vl.hero.label">VENDOR LIST</span>
     </div>
     <div class="hero-body">
       <h1 class="hero-title">
-        <span class="hero-title-white">Approved </span><span class="hero-title-blue">Vendor</span>
-        <span class="hero-title-grey">Directory</span>
+        <span class="hero-title-white" data-i18n="vl.hero.title.part1">Approved </span><span class="hero-title-blue" data-i18n="vl.hero.title.part2">Vendor</span>
+        <span class="hero-title-grey" data-i18n="vl.hero.title.part3">Directory</span>
       </h1>
-      <p class="hero-subtitle">Marco's curated network of approved partners across HRIS, banking, legal, technology, and benefits — each assessed for security, compliance, and global capability.</p>
+      <p class="hero-subtitle" data-i18n="vl.hero.subtitle">Marco's curated network of approved partners across HRIS, banking, legal, technology, and benefits — each assessed for security, compliance, and global capability.</p>
     </div>
   </div>
 </section>
@@ -718,7 +718,7 @@
       <div class="vd-filter-top">
         <div class="vd-search">
           <img class="vd-search-icon" src="assets/HR Knowledge Hub/search-icon.svg" alt="" />
-          <input type="text" id="vd-search" placeholder="Search vendors" oninput="vdOnSearch(this.value)" />
+          <input type="text" id="vd-search" placeholder="Search vendors" data-i18n-placeholder="vl.filter.search" oninput="vdOnSearch(this.value)" />
         </div>
         <div class="vd-divider"></div>
       </div>
@@ -727,40 +727,40 @@
       <div class="vd-filter-body" id="vd-filter-scroll">
       <div class="vd-active-bar" id="vd-active-bar">
         <span class="vd-active-label" id="vd-active-label">0 filter active</span>
-        <button class="vd-clear-btn" onclick="vdClearFilters()">Clear all</button>
+        <button class="vd-clear-btn" data-i18n="vl.btn.clearAll" onclick="vdClearFilters()">Clear all</button>
       </div>
       <div class="vd-filter-section" id="fs-cat">
         <div class="vd-filter-header" onclick="vdToggleSection('fs-cat')">
-          <span class="vd-filter-header-label">Category</span>
+          <span class="vd-filter-header-label" data-i18n="vl.filter.category">Category</span>
           <img class="vd-filter-chevron" src="assets/HR Knowledge Hub/chevron-down-icon.svg" alt="" />
         </div>
         <div class="vd-filter-list" id="fl-cat">
-          <div class="vd-filter-item" data-type="cat" data-value="EOR & PEO" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">EOR & PEO</span><span class="vd-filter-count" id="cnt-cat-EOR___PEO">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Payroll & HR Operations" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Payroll & HR Operations</span><span class="vd-filter-count" id="cnt-cat-Payroll___HR_Operations">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Immigration & Global Mobility" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Immigration & Global Mobility</span><span class="vd-filter-count" id="cnt-cat-Immigration___Global_Mobility">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Legal, Compliance & Incorporation" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Legal, Compliance & Incorporation</span><span class="vd-filter-count" id="cnt-cat-Legal__Compliance___Incorporation">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Accounting, Tax & Audit" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Accounting, Tax & Audit</span><span class="vd-filter-count" id="cnt-cat-Accounting__Tax___Audit">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Recruitment & Staffing" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Recruitment & Staffing</span><span class="vd-filter-count" id="cnt-cat-Recruitment___Staffing">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Banking, Payments & Treasury" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Banking, Payments & Treasury</span><span class="vd-filter-count" id="cnt-cat-Banking__Payments___Treasury">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Technology & Platform Partners" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Technology & Platform Partners</span><span class="vd-filter-count" id="cnt-cat-Technology___Platform_Partners">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Benefits & Insurance" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Benefits & Insurance</span><span class="vd-filter-count" id="cnt-cat-Benefits___Insurance">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Workspace & Local Business Services" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Workspace & Local Business Services</span><span class="vd-filter-count" id="cnt-cat-Workspace___Local_Business_Services">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Channel & Strategic Partners" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Channel & Strategic Partners</span><span class="vd-filter-count" id="cnt-cat-Channel___Strategic_Partners">0</span></div>
-          <div class="vd-filter-item" data-type="cat" data-value="Specialized Consulting & Industry Services" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Specialized Consulting & Industry Services</span><span class="vd-filter-count" id="cnt-cat-Specialized_Consulting___Industry_Services">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="EOR & PEO" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.EOR___PEO">EOR & PEO</span><span class="vd-filter-count" id="cnt-cat-EOR___PEO">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Payroll & HR Operations" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Payroll___HR_Operations">Payroll & HR Operations</span><span class="vd-filter-count" id="cnt-cat-Payroll___HR_Operations">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Immigration & Global Mobility" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Immigration___Global_Mobility">Immigration & Global Mobility</span><span class="vd-filter-count" id="cnt-cat-Immigration___Global_Mobility">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Legal, Compliance & Incorporation" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Legal__Compliance___Incorporation">Legal, Compliance & Incorporation</span><span class="vd-filter-count" id="cnt-cat-Legal__Compliance___Incorporation">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Accounting, Tax & Audit" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Accounting__Tax___Audit">Accounting, Tax & Audit</span><span class="vd-filter-count" id="cnt-cat-Accounting__Tax___Audit">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Recruitment & Staffing" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Recruitment___Staffing">Recruitment & Staffing</span><span class="vd-filter-count" id="cnt-cat-Recruitment___Staffing">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Banking, Payments & Treasury" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Banking__Payments___Treasury">Banking, Payments & Treasury</span><span class="vd-filter-count" id="cnt-cat-Banking__Payments___Treasury">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Technology & Platform Partners" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Technology___Platform_Partners">Technology & Platform Partners</span><span class="vd-filter-count" id="cnt-cat-Technology___Platform_Partners">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Benefits & Insurance" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Benefits___Insurance">Benefits & Insurance</span><span class="vd-filter-count" id="cnt-cat-Benefits___Insurance">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Workspace & Local Business Services" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Workspace___Local_Business_Services">Workspace & Local Business Services</span><span class="vd-filter-count" id="cnt-cat-Workspace___Local_Business_Services">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Channel & Strategic Partners" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Channel___Strategic_Partners">Channel & Strategic Partners</span><span class="vd-filter-count" id="cnt-cat-Channel___Strategic_Partners">0</span></div>
+          <div class="vd-filter-item" data-type="cat" data-value="Specialized Consulting & Industry Services" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.cat.Specialized_Consulting___Industry_Services">Specialized Consulting & Industry Services</span><span class="vd-filter-count" id="cnt-cat-Specialized_Consulting___Industry_Services">0</span></div>
         </div>
       </div>
       <div class="vd-divider"></div>
       <div class="vd-filter-section" id="fs-reg">
         <div class="vd-filter-header" onclick="vdToggleSection('fs-reg')">
-          <span class="vd-filter-header-label">Region</span>
+          <span class="vd-filter-header-label" data-i18n="vl.filter.region">Region</span>
           <img class="vd-filter-chevron" src="assets/HR Knowledge Hub/chevron-down-icon.svg" alt="" />
         </div>
         <div class="vd-filter-list" id="fl-reg">
-          <div class="vd-filter-item" data-type="reg" data-value="Global" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Global</span><span class="vd-filter-count" id="cnt-reg-Global">0</span></div>
-          <div class="vd-filter-item" data-type="reg" data-value="APAC" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">APAC</span><span class="vd-filter-count" id="cnt-reg-APAC">0</span></div>
-          <div class="vd-filter-item" data-type="reg" data-value="EMEA" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">EMEA</span><span class="vd-filter-count" id="cnt-reg-EMEA">0</span></div>
-          <div class="vd-filter-item" data-type="reg" data-value="Americas" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Americas</span><span class="vd-filter-count" id="cnt-reg-Americas">0</span></div>
-          <div class="vd-filter-item" data-type="reg" data-value="Middle East" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label">Middle East</span><span class="vd-filter-count" id="cnt-reg-Middle-East">0</span></div>
+          <div class="vd-filter-item" data-type="reg" data-value="Global" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.region.Global">Global</span><span class="vd-filter-count" id="cnt-reg-Global">0</span></div>
+          <div class="vd-filter-item" data-type="reg" data-value="APAC" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.region.APAC">APAC</span><span class="vd-filter-count" id="cnt-reg-APAC">0</span></div>
+          <div class="vd-filter-item" data-type="reg" data-value="EMEA" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.region.EMEA">EMEA</span><span class="vd-filter-count" id="cnt-reg-EMEA">0</span></div>
+          <div class="vd-filter-item" data-type="reg" data-value="Americas" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.region.Americas">Americas</span><span class="vd-filter-count" id="cnt-reg-Americas">0</span></div>
+          <div class="vd-filter-item" data-type="reg" data-value="Middle East" onclick="toggleFilter(this)"><div class="vd-checkbox"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vd-filter-label" data-i18n="vl.region.Middle_East">Middle East</span><span class="vd-filter-count" id="cnt-reg-Middle-East">0</span></div>
         </div>
       </div>
       </div><!-- end vd-filter-body -->
@@ -782,7 +782,7 @@
           <div class="vd-sort">
             <button class="vd-sort-btn" id="vd-sort-btn" onclick="vdToggleSort()">
               <img src="assets/HR Knowledge Hub/sort-icon.svg" alt="" />
-              <span id="vd-sort-label">Sort: Name A - Z</span>
+              <span id="vd-sort-label" data-i18n="vl.sort.nameAZ">Sort: Name A - Z</span>
             </button>
           </div>
           <div class="vd-view-toggle">
@@ -803,11 +803,11 @@
         <div class="vd-page-nav">
           <button class="vd-page-btn" id="vd-prev-btn" onclick="vdGoPage(vdState.page - 1)">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Prev</span>
+            <span data-i18n="vl.pagination.prev">Prev</span>
           </button>
           <div class="vd-page-numbers" id="vd-page-numbers"></div>
           <button class="vd-page-btn" id="vd-next-btn" onclick="vdGoPage(vdState.page + 1)">
-            <span>Next</span>
+            <span data-i18n="vl.pagination.next">Next</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
@@ -925,6 +925,64 @@
     return d;
   }
 
+
+    /* ── VL Translation helpers ── */
+    var VL_EN = {
+      "vl.hero.label": "VENDOR LIST",
+      "vl.hero.title.part1": "Approved ",
+      "vl.hero.title.part2": "Vendor",
+      "vl.hero.title.part3": "Directory",
+      "vl.hero.subtitle": "Marco's curated network of approved partners across HRIS, banking, legal, technology, and benefits — each assessed for security, compliance, and global capability.",
+      "vl.filter.search": "Search vendors",
+      "vl.btn.clearAll": "Clear all",
+      "vl.filter.category": "Category",
+      "vl.filter.region": "Region",
+      "vl.cat.EOR___PEO": "EOR & PEO",
+      "vl.cat.Payroll___HR_Operations": "Payroll & HR Operations",
+      "vl.cat.Immigration___Global_Mobility": "Immigration & Global Mobility",
+      "vl.cat.Legal__Compliance___Incorporation": "Legal, Compliance & Incorporation",
+      "vl.cat.Accounting__Tax___Audit": "Accounting, Tax & Audit",
+      "vl.cat.Recruitment___Staffing": "Recruitment & Staffing",
+      "vl.cat.Banking__Payments___Treasury": "Banking, Payments & Treasury",
+      "vl.cat.Technology___Platform_Partners": "Technology & Platform Partners",
+      "vl.cat.Benefits___Insurance": "Benefits & Insurance",
+      "vl.cat.Workspace___Local_Business_Services": "Workspace & Local Business Services",
+      "vl.cat.Channel___Strategic_Partners": "Channel & Strategic Partners",
+      "vl.cat.Specialized_Consulting___Industry_Services": "Specialized Consulting & Industry Services",
+      "vl.region.APAC": "APAC",
+      "vl.region.EMEA": "EMEA",
+      "vl.region.Americas": "Americas",
+      "vl.region.Global": "Global",
+      "vl.region.Middle_East": "Middle East",
+      "vl.count": "{n} Vendors",
+      "vl.count.single": "{n} Vendor",
+      "vl.showing": "Showing {start}\u2013{end} of {total}",
+      "vl.noResults": "No results",
+      "vl.empty": "No vendors match your filters.",
+      "vl.pageInfo": "Page {page} of {pages} \u00b7 {total} vendors total",
+      "vl.pageInfo.single": "Page {page} of {pages} \u00b7 {total} vendor total",
+      "vl.filterActive": "{n} filters active",
+      "vl.filterActive.single": "{n} filter active",
+      "vl.sort.nameAZ": "Sort: Name A - Z",
+      "vl.sort.nameZA": "Sort: Name Z - A",
+      "vl.pagination.prev": "Prev",
+      "vl.pagination.next": "Next"
+    };
+    function vlT(key) { return (window.__marcoPack && window.__marcoPack[key]) || VL_EN[key] || key; }
+    function vlFmt(key, vars) {
+      var t = vlT(key);
+      return t.replace(/\{(\w+)\}/g, function(_, k) { return vars[k] !== undefined ? vars[k] : ''; });
+    }
+    function vlStr(s) { return (window.__vlStrMap && window.__vlStrMap[s]) || s; }
+    function vlCat(c) {
+      var key = 'vl.cat.' + c.replace(/[^a-zA-Z0-9]/g, '_');
+      var val = vlT(key); return (val !== key) ? val : c;
+    }
+    function vlReg(r) {
+      var key = 'vl.region.' + r.replace(/\s+/g, '_');
+      var val = vlT(key); return (val !== key) ? val : r;
+    }
+
   function renderCard(v) {
     var logoHtml;
     if (v.logo) {
@@ -934,24 +992,24 @@
       logoHtml = "<div class=\"vd-logo-placeholder\">" + esc(v.name.charAt(0)) + "</div>";
     }
     var rCls = "vd-region-" + v.region.replace(/\s+/g, "-");
-    var regionTag = "<span class=\"vd-tag " + rCls + "\">" + esc(v.region) + "</span>";
+    var regionTag = "<span class=\"vd-tag " + rCls + "\">" + esc(vlReg(v.region)) + "</span>";
     var catTags = v.categories.split(";").map(function(c) {
       c = c.trim();
-      return "<span class=\"vd-cat-tag\"><span class=\"vd-cat-dot\"></span>" + esc(c) + "</span>";
+      return "<span class=\"vd-cat-tag\"><span class=\"vd-cat-dot\"></span>" + esc(vlCat(c)) + "</span>";
     }).join("");
     var svcLines = v.services.split("\n")
       .map(function(s) { return s.replace(/^[-\u2022\*]\s*/, "").trim(); })
       .filter(function(s) { return s.length > 0; })
       .slice(0, 3)
       .map(function(s) {
-        return "<div class=\"vd-card-service\"><div class=\"vd-service-dot\"></div><span class=\"vd-service-text\">" + esc(s) + "</span></div>";
+        return "<div class=\"vd-card-service\"><div class=\"vd-service-dot\"></div><span class=\"vd-service-text\">" + esc(vlStr(s)) + "</span></div>";
       }).join("");
     return "<div class=\"vd-card\">"
       + "<div class=\"vd-card-logo\">" + logoHtml + "</div>"
       + "<div class=\"vd-card-body\">"
       + "<div class=\"vd-card-name\">" + esc(v.name) + "</div>"
       + "<div class=\"vd-card-tags\">" + regionTag + catTags + "</div>"
-      + "<div class=\"vd-card-desc\">" + esc(v.description) + "</div>"
+      + "<div class=\"vd-card-desc\">" + esc(vlStr(v.description)) + "</div>"
       + "<div class=\"vd-card-services\">" + svcLines + "</div>"
       + "</div></div>";
   }
@@ -972,24 +1030,24 @@
     var grid = document.getElementById("vd-grid");
     if (grid) {
       grid.innerHTML = total === 0
-        ? "<div class=\"vd-empty\">No vendors match your filters.</div>"
+        ? "<div class=\"vd-empty\">" + vlT('vl.empty') + "</div>"
         : pageItems.map(renderCard).join("");
     }
 
     // Toolbar count + showing
     var countEl   = document.getElementById("vd-count");
     var showingEl = document.getElementById("vd-showing");
-    if (countEl)   countEl.textContent = total + " Vendor" + (total !== 1 ? "s" : "");
+    if (countEl)   countEl.textContent = vlFmt(total !== 1 ? 'vl.count' : 'vl.count.single', {n: total});
     if (showingEl) showingEl.textContent = total === 0
-      ? "No results"
-      : "Showing " + (start + 1) + "–" + end + " of " + total;
+      ? vlT('vl.noResults')
+      : vlFmt('vl.showing', {start: start + 1, end: end, total: total});
 
     // Pagination bar
     var pageInfo  = document.getElementById("vd-page-info");
     var pageNums  = document.getElementById("vd-page-numbers");
     var prevBtn   = document.getElementById("vd-prev-btn");
     var nextBtn   = document.getElementById("vd-next-btn");
-    if (pageInfo) pageInfo.textContent = "Page " + vdState.page + " of " + totalPages + " · " + total + " vendor" + (total !== 1 ? "s" : "") + " total";
+    if (pageInfo) pageInfo.textContent = vlFmt(total !== 1 ? 'vl.pageInfo' : 'vl.pageInfo.single', {page: vdState.page, pages: totalPages, total: total});
     if (prevBtn)  prevBtn.disabled = vdState.page <= 1;
     if (nextBtn)  nextBtn.disabled = vdState.page >= totalPages;
     if (pageNums) {
@@ -1026,7 +1084,7 @@
     var bar = document.getElementById("vd-active-bar");
     var lbl = document.getElementById("vd-active-label");
     if (bar) bar.classList.toggle("visible", activeCount > 0);
-    if (lbl) lbl.textContent = activeCount + " filter" + (activeCount !== 1 ? "s" : "") + " active";
+    if (lbl) lbl.textContent = vlFmt(activeCount !== 1 ? 'vl.filterActive' : 'vl.filterActive.single', {n: activeCount});
   }
 
   window.vdGoPage = function(p) {
@@ -1069,7 +1127,7 @@
     var btn = document.getElementById("vd-sort-btn");
     var lbl = document.getElementById("vd-sort-label");
     if (btn) btn.classList.toggle("desc", vdState.sort === "desc");
-    if (lbl) lbl.textContent = vdState.sort === "asc" ? "Sort: Name A - Z" : "Sort: Name Z - A";
+    if (lbl) lbl.textContent = vlT(vdState.sort === "asc" ? 'vl.sort.nameAZ' : 'vl.sort.nameZA');
     vdRender();
   };
   window.vdSetView = function(v) {
@@ -1095,9 +1153,16 @@
     vdRender();
   };
 
-  document.addEventListener("DOMContentLoaded", function() { initListHeights(); vdRender(); });
+
+  /* Re-render on language change */
+  document.addEventListener('marcolangready', function() {
+    vdRender();
+  });
+
+    document.addEventListener("DOMContentLoaded", function() { initListHeights(); vdRender(); });
 })();
-</script><script>
+</script>
+<script>
   /* ── Mobile footer accordion ── */
   (function() {
     document.querySelectorAll('[data-footer-mob-acc]').forEach(function(header) {
@@ -1106,6 +1171,7 @@
       });
     });
   })();
-</script><script src="assets/lang/lang-loader.js"></script>
+</script>
+<script src="assets/lang/lang-loader.js"></script>
 </body>
 </html>
