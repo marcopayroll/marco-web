@@ -394,8 +394,8 @@ body {
     <a href="index.html"><img class="banner-logo" src="https://marcowallpaper.s3.ap-southeast-1.amazonaws.com/Marco+logo+white+(tall).png" alt="Marco"></a>
     <div class="banner-divider"></div>
     <div class="banner-text">
-      <div class="banner-title">Global Employee Benefits Plan</div>
-      <div class="banner-subtitle">Statutory obligations, employer costs &amp; compliance notes</div>
+      <div class="banner-title" data-i18n="bp.banner.title">Global Employee Benefits Plan</div>
+      <div class="banner-subtitle" data-i18n="bp.banner.subtitle">Statutory obligations, employer costs &amp; compliance notes</div>
     </div>
   </div>
 </div>
@@ -403,22 +403,22 @@ body {
 <!-- FILTER BAR -->
 <div class="filter-bar">
   <button class="btn-hamburger" id="btnMobileOpen" onclick="mobileOpenDrawer()" aria-label="Open menu">&#9776;</button>
-  <span class="filter-label">FILTER</span>
+  <span class="filter-label" data-i18n="bp.filter.label">FILTER</span>
   <div class="search-wrap">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <input type="text" class="search-input" id="sidebarSearch" placeholder="Search country..." oninput="filterSidebar()">
+    <input type="text" class="search-input" id="sidebarSearch" placeholder="Search country..." data-i18n-placeholder="bp.search.placeholder" oninput="filterSidebar()">
   </div>
   <div class="select-wrap">
     <select id="regionFilter" onchange="filterSidebar()">
-      <option value="">All Regions</option>
-      <option value="Africa">Africa</option>
-      <option value="Americas">Americas</option>
-      <option value="Asia Pacific">Asia Pacific</option>
-      <option value="Europe">Europe</option>
-      <option value="Middle East">Middle East</option>
+      <option value="" data-i18n="bp.region.all">All Regions</option>
+      <option value="Africa" data-i18n="bp.region.Africa">Africa</option>
+      <option value="Americas" data-i18n="bp.region.Americas">Americas</option>
+      <option value="Asia Pacific" data-i18n="bp.region.Asia">Asia Pacific</option>
+      <option value="Europe" data-i18n="bp.region.Europe">Europe</option>
+      <option value="Middle East" data-i18n="bp.region.Middle_East">Middle East</option>
     </select>
   </div>
-  <button class="btn-clear" onclick="clearFilters()"><span class="clear-text">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
+  <button class="btn-clear" onclick="clearFilters()"><span class="clear-text" data-i18n="bp.filter.clear">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
 </div>
 
 <!-- LAYOUT -->
@@ -426,7 +426,7 @@ body {
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="mobileCloseDrawer()"></div>
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <span class="sidebar-header-text">SELECT A COUNTRY</span>
+      <span class="sidebar-header-text" data-i18n="bp.sidebar.header">SELECT A COUNTRY</span>
       <button class="btn-sb-toggle" id="btnSbToggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2 8H14M2 4H14M2 12H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -438,8 +438,8 @@ body {
   <div class="main" id="mainContent">
     <div class="welcome-state">
       <div class="big-icon">&#127775;</div>
-      <h2>Select a country to view its employee benefits</h2>
-      <p>Choose any country or state from the left panel. You can search by name, filter by region, or browse by benefit category once selected.</p>
+      <h2 data-i18n="bp.welcome.title">Select a country to view its employee benefits</h2>
+      <p data-i18n="bp.welcome.body">Choose any country or state from the left panel. You can search by name, filter by region, or browse by benefit category once selected.</p>
     </div>
   </div>
 </div>
@@ -487,21 +487,59 @@ const ISO_MAP = {
 };
 
 const PARENT_NAMES = {'U.S.':'United States','UAE':'United Arab Emirates'};
+const PARENT_NAMES_CN = {'U.S.':'美国','UAE':'阿联酋','Australia':'澳大利亚','Canada':'加拿大','China':'中国','Germany':'德国','India':'印度'};
 
 let currentKey = null;
 let currentBroadCat = 'all';
 const openGroups = new Set();
 
-const ALL_KEYS = Object.keys(BENEFITS);
+var ALL_KEYS = Object.keys(BENEFITS);
+
+function bpT(key, fallback) {
+  var pack = window.__marcoPack;
+  if (pack && pack[key] !== undefined && pack[key] !== '') return pack[key];
+  return (fallback !== undefined) ? fallback : key;
+}
+function bpCountryName(k) {
+  var pack = window.__marcoPack;
+  if (pack && pack['bp.country.' + k]) return pack['bp.country.' + k];
+  return k;
+}
+function bpBroadCatName(bc) {
+  return bpT('bp.broadCat.' + bc, bc);
+}
 
 function getParent(k) { return k.includes(' - ') ? k.split(' - ')[0] : null; }
-function getSubName(k) { return k.includes(' - ') ? k.split(' - ')[1] : k; }
-function getParentDisplay(p) { return PARENT_NAMES[p] || p; }
+function getSubName(k) {
+  var cn = bpCountryName(k);
+  if (cn !== k && cn.includes(' - ')) return cn.split(' - ')[1];
+  return k.includes(' - ') ? k.split(' - ')[1] : k;
+}
+function getParentDisplay(p) {
+  var cnNames = (window.__marcoPack) ? PARENT_NAMES_CN : {};
+  return cnNames[p] || PARENT_NAMES[p] || p;
+}
 function getRegion(k) { const p = getParent(k) || k; return REGION_MAP[p] || 'Other'; }
 function getISO(k) { const p = getParent(k) || k; return ISO_MAP[p] || ''; }
-function getDisplayName(k) { return k.includes(' - ') ? k.split(' - ')[1] : k; }
+function getDisplayName(k) {
+  var cn = bpCountryName(k);
+  if (cn !== k && cn.includes(' - ')) return cn.split(' - ')[1];
+  if (cn !== k) return cn;
+  return k.includes(' - ') ? k.split(' - ')[1] : k;
+}
 
+var CN_BROAD_CAT_MAP = {
+  '休假与带薪假期':'Leave','休假与请假':'Leave','育儿与家庭':'Leave',
+  '健康与医疗':'Insurance & Health','工伤与保险':'Insurance & Health',
+  '社会保障与保护':'Social Security',
+  '退休与养老金':'Pension & Retirement',
+  '奖金与法定付款':'Bonus & Allowances','奖金与法定支付':'Bonus & Allowances',
+  '津贴 / 市场福利':'Bonus & Allowances','津贴/市场福利':'Bonus & Allowances',
+  '其他员工福利':'Other',
+  '离职补偿与服务终止':'Termination','遣散与离职福利':'Termination'
+};
 function getBroadCat(cat) {
+  if (CN_BROAD_CAT_MAP[cat]) return CN_BROAD_CAT_MAP[cat];
   const c = (cat || '').toLowerCase();
   if (/leave|maternity|paternity|family.*leave|sick.*leave|parental/.test(c)) return 'Leave';
   if (/insurance|health(?! fund| levy)|safety|injury|worker welfare/.test(c)) return 'Insurance & Health';
@@ -516,7 +554,10 @@ function getFilteredKeys() {
   const search = (document.getElementById('sidebarSearch').value || '').toLowerCase();
   const region = document.getElementById('regionFilter').value;
   return ALL_KEYS.filter(k => {
-    if (search && !k.toLowerCase().includes(search)) return false;
+    if (search) {
+      var cn = bpCountryName(k).toLowerCase();
+      if (!k.toLowerCase().includes(search) && !cn.includes(search)) return false;
+    }
     if (region && getRegion(k) !== region) return false;
     return true;
   });
@@ -524,7 +565,7 @@ function getFilteredKeys() {
 
 function buildSidebar(filtered) {
   const list = document.getElementById('countryList');
-  if (!filtered.length) { list.innerHTML = '<div class="sidebar-empty">No results found</div>'; return; }
+  if (!filtered.length) { list.innerHTML = '<div class="sidebar-empty">' + bpT('bp.sidebar.empty', 'No results found') + '</div>'; return; }
 
   const groups = {};
   const singles = [];
@@ -535,7 +576,7 @@ function buildSidebar(filtered) {
   });
 
   const allItems = [
-    ...Object.keys(groups).map(p => ({ type: 'group', key: p, sort: getParentDisplay(p) })),
+    ...Object.keys(groups).map(p => ({ type: 'group', key: p, sort: (PARENT_NAMES[p] || p) })),
     ...singles.map(s => ({ type: 'single', key: s, sort: s }))
   ].sort((a, b) => a.sort.localeCompare(b.sort));
 
@@ -557,7 +598,7 @@ function buildSidebar(filtered) {
             <div class="sb-row sub-item${currentKey === c ? ' active' : ''}" data-key="${c}">
               <span class="sb-code"></span>
               <span class="sb-label">${getSubName(c)}</span>
-              <span class="sb-badge">${BENEFITS[c].length}</span>
+              <span class="sb-badge">${(BENEFITS[c]||[]).length}</span>
             </div>`).join('')}
         </div>
       </div>`;
@@ -566,8 +607,8 @@ function buildSidebar(filtered) {
       html += `<div class="accordion-item">
         <div class="sb-row${currentKey === s ? ' active' : ''}" data-key="${s}">
           <span class="sb-code">${getISO(s)}</span>
-          <span class="sb-label">${s}</span>
-          <span class="sb-badge">${BENEFITS[s].length}</span>
+          <span class="sb-label">${bpCountryName(s)}</span>
+          <span class="sb-badge">${(BENEFITS[s]||[]).length}</span>
         </div>
       </div>`;
     }
@@ -616,7 +657,7 @@ function renderDetail(key) {
   const metaParts = [];
   if (parent) metaParts.push(`<strong>${getParentDisplay(parent)}</strong>`);
   metaParts.push(region);
-  metaParts.push(`${benefits.length} benefit${benefits.length !== 1 ? 's' : ''}`);
+  metaParts.push(benefits.length + ' ' + bpT('bp.label.benefits', 'benefits'));
 
   const BROAD_ORDER = ['Leave','Insurance & Health','Social Security','Pension & Retirement','Bonus & Allowances','Termination','Other'];
   const broadCount = {};
@@ -624,9 +665,9 @@ function renderDetail(key) {
   const presentCats = BROAD_ORDER.filter(c => broadCount[c]);
 
   let pillsHtml = `<div class="cat-pills">
-    <span class="cat-pill${currentBroadCat==='all'?' active':''}" data-cat="all">All (${benefits.length})</span>`;
+    <span class="cat-pill${currentBroadCat==='all'?' active':''}" data-cat="all">${bpT('bp.region.all','All')} (${benefits.length})</span>`;
   presentCats.forEach(c => {
-    pillsHtml += `<span class="cat-pill${currentBroadCat===c?' active':''}" data-cat="${c}">${c} (${broadCount[c]})</span>`;
+    pillsHtml += `<span class="cat-pill${currentBroadCat===c?' active':''}" data-cat="${c}">${bpBroadCatName(c)} (${broadCount[c]})</span>`;
   });
   pillsHtml += '</div>';
 
@@ -650,7 +691,7 @@ function renderDetail(key) {
     });
   });
 
-  if (!contentHtml) contentHtml = '<div class="no-results">No benefits in this category.</div>';
+  if (!contentHtml) contentHtml = '<div class="no-results">' + bpT('bp.label.noResults', 'No benefits in this category.') + '</div>';
 
   document.getElementById('mainContent').innerHTML = `
     <div class="detail-header">
@@ -658,7 +699,7 @@ function renderDetail(key) {
         <h1>${escHtml(displayName)}</h1>
         <div class="meta">${metaParts.join(' &middot; ')}</div>
       </div>
-      <div class="benefit-count">${benefits.length}<span>benefits</span></div>
+      <div class="benefit-count">${benefits.length}<span>${bpT('bp.label.benefits','benefits')}</span></div>
     </div>
     ${pillsHtml}
     <div id="benefitContent">${contentHtml}</div>`;
@@ -669,18 +710,18 @@ function renderBenefit(b) {
   const mandClass = mandMap[b.mandatory] || 'tag-m-no';
 
   let detailsHtml = '';
-  if (b.employer) detailsHtml += `<div class="detail-block"><div class="detail-label">Employer Obligation</div><div class="detail-value">${escHtml(b.employer)}</div></div>`;
-  if (b.employee) detailsHtml += `<div class="detail-block"><div class="detail-label">Employee Entitlement</div><div class="detail-value">${escHtml(b.employee)}</div></div>`;
-  if (b.cost) detailsHtml += `<div class="detail-block"><div class="detail-label">Estimated Cost</div><div class="detail-value">${escHtml(b.cost)}</div></div>`;
-  if (b.costBasis) detailsHtml += `<div class="detail-block"><div class="detail-label">Cost Basis</div><div class="detail-value">${escHtml(b.costBasis)}</div></div>`;
+  if (b.employer) detailsHtml += `<div class="detail-block"><div class="detail-label">${bpT('bp.label.employer','Employer Obligation')}</div><div class="detail-value">${escHtml(b.employer)}</div></div>`;
+  if (b.employee) detailsHtml += `<div class="detail-block"><div class="detail-label">${bpT('bp.label.employee','Employee Entitlement')}</div><div class="detail-value">${escHtml(b.employee)}</div></div>`;
+  if (b.cost) detailsHtml += `<div class="detail-block"><div class="detail-label">${bpT('bp.label.cost','Estimated Cost')}</div><div class="detail-value">${escHtml(b.cost)}</div></div>`;
+  if (b.costBasis) detailsHtml += `<div class="detail-block"><div class="detail-label">${bpT('bp.label.costBasis','Cost Basis')}</div><div class="detail-value">${escHtml(b.costBasis)}</div></div>`;
 
   const compHtml = b.compliance
-    ? `<div class="compliance-note"><strong>Compliance: </strong>${escHtml(b.compliance)}</div>` : '';
+    ? `<div class="compliance-note"><strong>${bpT('bp.label.compliance','Compliance')}: </strong>${escHtml(b.compliance)}</div>` : '';
 
   return `<div class="benefit-card">
     <div class="benefit-header">
       <span class="benefit-name">${escHtml(b.benefit)}</span>
-      <span class="mandatory-tag ${mandClass}">Mandatory: ${escHtml(b.mandatory||'—')}</span>
+      <span class="mandatory-tag ${mandClass}">${bpT('bp.label.mandatory','Mandatory')}: ${escHtml(b.mandatory||'—')}</span>
     </div>
     <div class="benefit-details">${detailsHtml}</div>
     ${compHtml}
@@ -704,5 +745,18 @@ function toggleSidebar() { document.getElementById('sidebar').classList.toggle('
 buildSidebar(ALL_KEYS);
 </script>
 <script src="assets/lang/lang-loader.js"></script>
+<script>
+document.addEventListener('marcolangready', function() {
+  var pack = window.__marcoPack;
+  if (!pack) return;
+  if (pack['bp.data']) {
+    var cnData = pack['bp.data'];
+    Object.keys(cnData).forEach(function(k) { BENEFITS[k] = cnData[k]; });
+  }
+  ALL_KEYS = Object.keys(BENEFITS);
+  buildSidebar(getFilteredKeys());
+  if (currentKey) renderDetail(currentKey);
+});
+</script>
 </body>
 </html>

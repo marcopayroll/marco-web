@@ -358,8 +358,31 @@
     .lcc-rpt-title-block { display: flex; flex-direction: column; gap: 12px; max-width: 600px; }
     .lcc-rpt-h2 { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; color: #162351; }
     .lcc-rpt-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; letter-spacing: -0.8px; color: #8f98b5; white-space: pre-wrap; }
-    .lcc-rpt-download-btn { background: #019de7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 700; line-height: 20px; height: 44px; padding: 0 12px; width: 200px; border: none; border-radius: 8px; cursor: pointer; flex-shrink: 0; }
-    .lcc-rpt-download-btn:hover { background: #0180c0; }
+    .lcc-rpt-download-wrap { position: relative; display: inline-block; flex-shrink: 0; }
+    .lcc-rpt-download-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      width: 200px; height: 44px; padding: 8px 12px;
+      background: #019de7; color: #fff; border: none; border-radius: 8px;
+      font-size: 16px; font-weight: 700; line-height: 20px; font-family: var(--font);
+      cursor: pointer; transition: background 0.18s ease;
+    }
+    .lcc-rpt-download-btn:hover { background: #0185c4; }
+    .lcc-rpt-download-btn .btn-chevron { width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.2s ease; }
+    .lcc-rpt-download-btn.open .btn-chevron { transform: rotate(180deg); }
+    .lcc-rpt-download-menu {
+      position: absolute; top: calc(100% + 6px); left: 0; width: 200px;
+      background: #fff; border-radius: 8px; padding: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12); display: none; z-index: 20; flex-direction: column;
+    }
+    .lcc-rpt-download-menu.open { display: flex; }
+    .lcc-rpt-download-menu-item {
+      display: flex; align-items: center; gap: 16px; padding: 12px; border-radius: 8px;
+      cursor: pointer; border: none; background: none; width: 100%;
+      font-family: var(--font); font-size: 16px; font-weight: 500; line-height: 20px;
+      color: #475072; transition: background 0.15s ease;
+    }
+    .lcc-rpt-download-menu-item:hover { background: #e4efff; }
+    .lcc-rpt-download-menu-item img { width: 24px; height: 24px; flex-shrink: 0; }
     /* Summary cards */
     .lcc-rpt-cards { display: flex; gap: 16px; margin-bottom: 40px; }
     .lcc-rpt-card { flex: 1 0 0; min-width: 0; background: #ecf2fb; border: 1px solid #e4efff; border-radius: 8px; padding: 16px 12px; display: flex; flex-direction: column; gap: 8px; }
@@ -375,7 +398,7 @@
     .lcc-rpt-table-wrap { border-radius: 12px; overflow: hidden; }
     .lcc-rpt-trow { display: flex; align-items: stretch; }
     .lcc-rpt-trow--hdr { background: #ecf2fb; }
-    .lcc-rpt-trow--body { background: #0F1E46; }
+    .lcc-rpt-trow--body { background: #FFFFFF; }
     .lcc-rpt-trow--total { background: #e4efff; }
     .lcc-rpt-tcell { padding: 8px 20px; min-height: 50px; display: flex; flex-direction: column; justify-content: center; }
     .lcc-rpt-tcell--name { flex: 1 0 0; min-width: 0; }
@@ -402,7 +425,7 @@
     .lcc-rpt-disclaimer { font-size: 10px; font-weight: 400; line-height: 14px; color: #8f98b5; }
     .error-highlight { outline: 2px solid #ff4d4d !important; transition: outline 0.2s; }
     /* Print styles */
-    @media print { .nav, .hero, .lcc-section, .footer, .lcc-rpt-download-btn { display: none !important; } .lcc-report-section { display: block !important; padding: 20px 0; } }
+    @media print { .nav, .hero, .lcc-section, .footer, .lcc-rpt-download-wrap { display: none !important; } .lcc-report-section { display: block !important; padding: 20px 0; } }
 
     /* ════════════════════════════════════════
        CTA SECTION
@@ -582,6 +605,7 @@
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
   <link rel="stylesheet" href="shared.css">
 </head>
 <body>
@@ -712,7 +736,19 @@
         <h2 id="rpt-country" class="lcc-rpt-h2"></h2>
         <p id="rpt-subtitle" class="lcc-rpt-subtitle"></p>
       </div>
-      <button class="lcc-rpt-download-btn" id="lcc-download-btn" data-i18n="lcc.report.btn.download">Download Report</button>
+      <div class="lcc-rpt-download-wrap" id="lcc-download-wrap">
+        <button class="lcc-rpt-download-btn" id="lcc-download-btn" type="button"><span data-i18n="lcc.report.btn.download">Download Report</span><svg class="btn-chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 7.5L10 12.5L15 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="lcc-rpt-download-menu" id="lcc-download-menu">
+          <button class="lcc-rpt-download-menu-item" id="lcc-dl-excel" type="button">
+            <img src="assets/HR%20Knowledge%20Hub/Labor%20Cost%20Calculator/excel-svg.svg" alt="Excel">
+            <span>Excel File</span>
+          </button>
+          <button class="lcc-rpt-download-menu-item" id="lcc-dl-pdf" type="button">
+            <img src="assets/HR%20Knowledge%20Hub/Labor%20Cost%20Calculator/pdf%20svg.svg" alt="PDF">
+            <span>PDF File</span>
+          </button>
+        </div>
+      </div>
       <img id="lcc-rpt-logo" src="assets/marco-watermark-logo.png" alt="Marco" style="display:none; height:48px; width:auto; object-fit:contain; flex-shrink:0;">
     </div>
 
@@ -1844,20 +1880,36 @@
   });
 
   // ── PDF Download ──
-  document.getElementById('lcc-download-btn').addEventListener('click', async function() {
-    var btn      = document.getElementById('lcc-download-btn');
-    var origText = btn.textContent;
-    btn.textContent = lccT('lcc.report.btn.generating', 'Generating . . .');
-    btn.disabled    = true;
-    btn.style.opacity = '0.8';
+  /* ── Download dropdown toggle ── */
+  var lccDlBtn  = document.getElementById('lcc-download-btn');
+  var lccDlMenu = document.getElementById('lcc-download-menu');
+  lccDlBtn.addEventListener('click', function() {
+    var isOpen = lccDlMenu.classList.toggle('open');
+    lccDlBtn.classList.toggle('open', isOpen);
+  });
+  document.addEventListener('click', function(e) {
+    var wrap = document.getElementById('lcc-download-wrap');
+    if (wrap && !wrap.contains(e.target)) {
+      lccDlMenu.classList.remove('open');
+      lccDlBtn.classList.remove('open');
+    }
+  });
+
+  /* ── PDF download ── */
+  document.getElementById('lcc-dl-pdf').addEventListener('click', async function() {
+    lccDlMenu.classList.remove('open');
+    lccDlBtn.classList.remove('open');
+    var btnSpan  = lccDlBtn.querySelector('span');
+    var origText = btnSpan.textContent;
+    btnSpan.textContent = lccT('lcc.report.btn.generating', 'Generating . . .');
+    lccDlBtn.disabled = true;
 
     var source   = document.querySelector('.lcc-report-inner');
+    var dlWrap   = document.getElementById('lcc-download-wrap');
     var country  = (lccState.country || 'Report').replace(/[^a-zA-Z0-9 \-]/g, '');
     var fileName = 'Marco Labor Cost Report - ' + country + '.pdf';
 
     try {
-      await new Promise(function(r) { requestAnimationFrame(function() { requestAnimationFrame(r); }); });
-
       /* Collect section break points */
       var sourceAbsTop = source.getBoundingClientRect().top + window.scrollY;
       var breakSelectors = ['.lcc-rpt-cards', '.lcc-rpt-tables', '.lcc-rpt-notes-wrap', '.lcc-rpt-disclaimer'];
@@ -1877,8 +1929,8 @@
         backgroundColor: '#ffffff',
         logging: false,
         onclone: function(doc) {
-          var clonedBtn = doc.getElementById('lcc-download-btn');
-          if (clonedBtn) clonedBtn.style.display = 'none';
+          var clonedWrap = doc.getElementById('lcc-download-wrap');
+          if (clonedWrap) clonedWrap.style.display = 'none';
           var clonedLogo = doc.getElementById('lcc-rpt-logo');
           if (clonedLogo) { clonedLogo.style.display = 'block'; clonedLogo.style.visibility = 'visible'; }
         }
@@ -1942,13 +1994,206 @@
       console.error('PDF generation failed:', err);
       alert('PDF generation failed: ' + err.message);
     } finally {
-      btn.textContent   = origText;
-      btn.disabled      = false;
-      btn.style.opacity = '';
+      btnSpan.textContent = origText;
+      lccDlBtn.disabled   = false;
     }
   });
 
-</script><script>
+  /* ── Excel download ── */
+  document.getElementById('lcc-dl-excel').addEventListener('click', async function() {
+    lccDlMenu.classList.remove('open');
+    lccDlBtn.classList.remove('open');
+
+    var country    = lccState.country;
+    var wt         = lccState.workerType;
+    var isLocal    = (wt === 'local');
+    var base       = getMonthlyBase();
+    if (!base || !country) { alert('Please generate a report first.'); return; }
+
+    var statRate   = getStatRate();
+    var statutory  = base * statRate / 100;
+    var benRate    = getCountryBenRate(country, isLocal);
+    var benefits   = base * benRate / 100;
+    var total      = base + statutory + benefits;
+    var sym        = 'USD';
+    var workerLabel = isLocal ? 'Local / PR' : 'Foreign National';
+    var freqLabel  = lccState.salaryFreq === 'monthly' ? '/mo base salary' : '/mo base salary (from annual)';
+    var items      = STAT_ITEMS[country] || [];
+    var benItems   = (BEN_DATA[country] || []).filter(function(it) { return isLocal || it[3] !== false; });
+    var notesData  = COUNTRY_NOTES[country] || COUNTRY_NOTES['default'];
+    var notesList  = isLocal ? (notesData.l || notesData) : (notesData.f || notesData.l || notesData);
+
+    var today  = new Date();
+    var mos = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var genDate = today.getDate() + ' ' + mos[today.getMonth()] + ' ' + today.getFullYear();
+
+    var fontMain   = { name: 'Arial', size: 10 };
+    var fontBold   = { name: 'Arial', size: 10, bold: true };
+    var fontTitle  = { name: 'Arial', size: 12, bold: true, color: { argb: 'FF1D4783' } };
+    var fontHdr    = { name: 'Arial', size: 10, bold: true, color: { argb: 'FFFFFFFF' } };
+    var fontTotal  = { name: 'Arial', size: 10, bold: true, color: { argb: 'FF1D4783' } };
+    var fillHdr    = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1D4783' } };
+    var fillTotal  = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF0F4FA' } };
+    var fillInfo   = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF7F8FB' } };
+    var borderThin = { top: {style:'thin', color:{argb:'FFD0D5E0'}}, bottom: {style:'thin', color:{argb:'FFD0D5E0'}}, left: {style:'thin', color:{argb:'FFD0D5E0'}}, right: {style:'thin', color:{argb:'FFD0D5E0'}} };
+    var numFmt     = '#,##0.00';
+    var alignR     = { horizontal: 'right', vertical: 'middle' };
+    var alignL     = { horizontal: 'left', vertical: 'middle' };
+    var alignWrap  = { horizontal: 'left', vertical: 'middle', wrapText: true };
+
+    function xlRowHeight(text, mergedWidth, fontSize) {
+      var charsPerLine = Math.floor(mergedWidth / (fontSize * 0.13));
+      var lines = Math.ceil(text.length / charsPerLine);
+      if (lines < 1) lines = 1;
+      return lines * (fontSize + 5) + 4;
+    }
+
+    function xlStyleRow(ws, rw, cols, opts) {
+      for (var c = 1; c <= cols; c++) {
+        var cell = ws.getCell(rw, c);
+        if (opts.font) cell.font = opts.font;
+        if (opts.fill) cell.fill = opts.fill;
+        if (opts.border) cell.border = opts.border;
+        if (opts.alignment) cell.alignment = opts.alignment;
+        if (opts.numFmt && typeof cell.value === 'number') cell.numFmt = opts.numFmt;
+      }
+    }
+
+    var wb = new ExcelJS.Workbook();
+    var ws = wb.addWorksheet('Labor Cost Report');
+    ws.columns = [ { width: 36 }, { width: 22 }, { width: 22 }, { width: 22 } ];
+    var r = 0;
+
+    r++; ws.getCell(r, 1).value = country + ' — Labor Cost Report';
+    ws.getCell(r, 1).font = { name: 'Arial', size: 14, bold: true, color: { argb: 'FF1D4783' } };
+    ws.mergeCells(r, 1, r, 4);
+
+    r++; ws.getCell(r, 1).value = workerLabel + '  ·  ' + sym + ' ' + fmtNum(base) + freqLabel + '  ·  ' + sym;
+    ws.getCell(r, 1).font = { name: 'Arial', size: 10, color: { argb: 'FF8F98B5' } };
+    ws.mergeCells(r, 1, r, 4);
+
+    r++; ws.getCell(r, 1).value = 'Generated: ' + genDate;
+    ws.getCell(r, 1).font = { name: 'Arial', size: 10, color: { argb: 'FF8F98B5' } };
+
+    r += 2;
+    [['Country', country], ['Worker Type', workerLabel], ['Base Monthly Salary (' + sym + ')', base], ['Salary Frequency', lccState.salaryFreq === 'monthly' ? 'Monthly' : 'Annual'], ['Generated', genDate]
+    ].forEach(function(rd) {
+      ws.getCell(r, 1).value = rd[0]; ws.getCell(r, 1).font = fontBold; ws.getCell(r, 1).fill = fillInfo; ws.getCell(r, 1).border = borderThin;
+      ws.getCell(r, 2).value = rd[1]; ws.getCell(r, 2).font = fontMain; ws.getCell(r, 2).border = borderThin; ws.getCell(r, 2).alignment = alignL;
+      if (typeof rd[1] === 'number') ws.getCell(r, 2).numFmt = numFmt;
+      r++;
+    });
+
+    r++;
+    ws.getCell(r, 2).value = 'Monthly (' + sym + ')'; ws.getCell(r, 3).value = 'Annual (' + sym + ')';
+    xlStyleRow(ws, r, 3, { font: fontHdr, fill: fillHdr, border: borderThin, alignment: alignR });
+    ws.getCell(r, 1).font = fontHdr; ws.getCell(r, 1).fill = fillHdr; ws.getCell(r, 1).border = borderThin;
+    r++;
+
+    [['Base Salary', base, base * 12], ['Statutory Contributions', statutory, statutory * 12], ['Benefits & Other Costs (Est.)', benefits, benefits * 12]
+    ].forEach(function(sd) {
+      ws.getCell(r, 1).value = sd[0]; ws.getCell(r, 1).font = fontMain; ws.getCell(r, 1).border = borderThin;
+      ws.getCell(r, 2).value = sd[1]; ws.getCell(r, 2).font = fontMain; ws.getCell(r, 2).border = borderThin; ws.getCell(r, 2).numFmt = numFmt; ws.getCell(r, 2).alignment = alignR;
+      ws.getCell(r, 3).value = sd[2]; ws.getCell(r, 3).font = fontMain; ws.getCell(r, 3).border = borderThin; ws.getCell(r, 3).numFmt = numFmt; ws.getCell(r, 3).alignment = alignR;
+      r++;
+    });
+    ws.getCell(r, 1).value = 'Total Employment Cost'; ws.getCell(r, 2).value = total; ws.getCell(r, 3).value = total * 12;
+    xlStyleRow(ws, r, 3, { font: fontTotal, fill: fillTotal, border: borderThin, alignment: alignR, numFmt: numFmt });
+    ws.getCell(r, 1).alignment = alignL;
+    r++;
+
+    r += 2;
+    ws.getCell(r, 1).value = 'STATUTORY CONTRIBUTION BREAKDOWN';
+    ws.getCell(r, 1).font = fontTitle; ws.mergeCells(r, 1, r, 4);
+    r++;
+
+    ['Contribution Item', 'Rate', 'Monthly Amount (' + sym + ')', 'Annual Amount (' + sym + ')'].forEach(function(h, ci) { ws.getCell(r, ci + 1).value = h; });
+    xlStyleRow(ws, r, 4, { font: fontHdr, fill: fillHdr, border: borderThin, alignment: alignR });
+    ws.getCell(r, 1).alignment = alignL;
+    r++;
+
+    if (items.length === 0) {
+      ws.getCell(r, 1).value = 'No mandatory employer statutory contributions';
+      ws.getCell(r, 2).value = '0%'; ws.getCell(r, 3).value = 0; ws.getCell(r, 4).value = 0;
+      xlStyleRow(ws, r, 4, { font: fontMain, border: borderThin, alignment: alignR, numFmt: numFmt });
+      ws.getCell(r, 1).alignment = alignL;
+      r++;
+    } else {
+      items.forEach(function(it) {
+        var rate = isLocal ? it[2] : (it[3] !== null ? it[3] : it[2]);
+        var mo = base * rate / 100;
+        ws.getCell(r, 1).value = it[0]; ws.getCell(r, 2).value = rate + '%'; ws.getCell(r, 3).value = mo; ws.getCell(r, 4).value = mo * 12;
+        xlStyleRow(ws, r, 4, { font: fontMain, border: borderThin, alignment: alignR, numFmt: numFmt });
+        ws.getCell(r, 1).alignment = alignL;
+        r++;
+      });
+    }
+    var totalStatMo = base * statRate / 100;
+    var trStr = statRate % 1 === 0 ? statRate + '%' : statRate.toFixed(2).replace(/\.?0+$/, '') + '%';
+    ws.getCell(r, 1).value = 'Total Statutory Contributions'; ws.getCell(r, 2).value = trStr; ws.getCell(r, 3).value = totalStatMo; ws.getCell(r, 4).value = totalStatMo * 12;
+    xlStyleRow(ws, r, 4, { font: fontTotal, fill: fillTotal, border: borderThin, alignment: alignR, numFmt: numFmt });
+    ws.getCell(r, 1).alignment = alignL;
+    r++;
+
+    if (benItems.length > 0) {
+      r += 2;
+      ws.getCell(r, 1).value = 'BENEFITS & ESTIMATED COSTS';
+      ws.getCell(r, 1).font = fontTitle; ws.mergeCells(r, 1, r, 4);
+      r++;
+      ['Contribution Item', 'Rate', 'Monthly Amount (' + sym + ')', 'Annual Amount (' + sym + ')'].forEach(function(h, ci) { ws.getCell(r, ci + 1).value = h; });
+      xlStyleRow(ws, r, 4, { font: fontHdr, fill: fillHdr, border: borderThin, alignment: alignR });
+      ws.getCell(r, 1).alignment = alignL;
+      r++;
+      var totalBenRate = 0;
+      benItems.forEach(function(it) {
+        var mo = base * it[2] / 100;
+        totalBenRate += it[2];
+        ws.getCell(r, 1).value = it[0]; ws.getCell(r, 2).value = '~' + it[2] + '%'; ws.getCell(r, 3).value = mo; ws.getCell(r, 4).value = mo * 12;
+        xlStyleRow(ws, r, 4, { font: fontMain, border: borderThin, alignment: alignR, numFmt: numFmt });
+        ws.getCell(r, 1).alignment = alignL;
+        r++;
+      });
+      var totalBenMo = base * totalBenRate / 100;
+      ws.getCell(r, 1).value = 'Total Benefits (Est.)'; ws.getCell(r, 2).value = '~ ' + Math.round(totalBenRate) + '%'; ws.getCell(r, 3).value = totalBenMo; ws.getCell(r, 4).value = totalBenMo * 12;
+      xlStyleRow(ws, r, 4, { font: fontTotal, fill: fillTotal, border: borderThin, alignment: alignR, numFmt: numFmt });
+      ws.getCell(r, 1).alignment = alignL;
+      r++;
+    }
+
+    r += 2;
+    ws.getCell(r, 1).value = country + ' — ' + workerLabel;
+    ws.getCell(r, 1).font = fontTitle; ws.mergeCells(r, 1, r, 4);
+    r++;
+    notesList.forEach(function(note) {
+      var noteText = '•  ' + note;
+      ws.getCell(r, 1).value = noteText;
+      ws.getCell(r, 1).font = { name: 'Arial', size: 10, color: { argb: 'FF475072' } };
+      ws.getCell(r, 1).alignment = alignWrap;
+      ws.mergeCells(r, 1, r, 4);
+      ws.getRow(r).height = xlRowHeight(noteText, 102, 10);
+      r++;
+    });
+
+    r += 1;
+    var disclaimerText = '* Rates are based on publicly available statutory regulations and are for estimation purposes only. Actual employer costs vary based on local regulations, salary thresholds, employee age, industry classification, and applicable bilateral Social Security Agreements. Rates are periodically updated by governments — always verify with Marco\'s local payroll specialists before making employment decisions.';
+    ws.getCell(r, 1).value = disclaimerText;
+    ws.getCell(r, 1).font = { name: 'Arial', size: 8, italic: true, color: { argb: 'FF8F98B5' } };
+    ws.getCell(r, 1).alignment = alignWrap;
+    ws.mergeCells(r, 1, r, 4);
+    ws.getRow(r).height = xlRowHeight(disclaimerText, 102, 8);
+
+    var buf = await wb.xlsx.writeBuffer();
+    var blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'Marco Labor Cost Report - ' + (country || 'Report') + '.xlsx';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+</script>
+<script>
   /* ── Mobile footer accordion ── */
   (function() {
     document.querySelectorAll('[data-footer-mob-acc]').forEach(function(header) {
@@ -1957,6 +2202,7 @@
       });
     });
   })();
-</script><script src="assets/lang/lang-loader.js"></script>
+</script>
+<script src="assets/lang/lang-loader.js"></script>
 </body>
 </html>

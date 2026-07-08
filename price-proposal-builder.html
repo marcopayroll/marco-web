@@ -7,6 +7,7 @@
   <title>Proposal Builder | Marco</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
   <style>
     @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
 
@@ -1019,66 +1020,141 @@
       pointer-events: none;
     }
 
-    /* Advanced inputs */
-    .pb-advanced-header {
+    /* Employee rows container */
+    .pb-employees-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 600px;
+    }
+    .pb-emp-divider {
+      height: 1px;
+      background: #CDD5E0;
+      width: 100%;
+    }
+    .pb-emp-row-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      cursor: pointer;
-      user-select: none;
     }
-    .pb-advanced-header:hover .pb-field-label { color: #019de7; }
-    .pb-adv-chevron {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-      transition: transform 0.25s ease;
-    }
-    .pb-advanced-header.open .pb-adv-chevron {
-      transform: rotate(180deg);
-    }
-    .pb-divider { height: 1px; background: #CDD5E0; width: 100%; margin-top: 20px; }
-    .pb-advanced-body {
+    .pb-emp-row-title {
       display: flex;
-      flex-direction: column;
-      gap: 40px;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      margin-top: 0;
-      transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.25s ease;
-    }
-    .pb-advanced-body.open {
-      max-height: 800px;
-      opacity: 1;
-      margin-top: 20px;
-    }
-    .pb-advanced-row {
-      display: flex;
+      align-items: center;
       gap: 16px;
     }
-    .pb-adv-field {
+    .pb-emp-row-tag {
+      width: 24px;
+      height: 24px;
+      border-radius: 50px;
+      background: #8DD3F4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: #1D4783;
+      flex-shrink: 0;
+    }
+    .pb-emp-row-name {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      color: #162351;
+    }
+    .pb-emp-row-gross {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      line-height: 16px;
+    }
+    .pb-emp-row-gross-label {
+      color: #8F98B5;
+      font-weight: 400;
+    }
+    .pb-emp-row-gross-value {
+      color: #019DE7;
+      font-weight: 700;
+    }
+    .pb-emp-row-inputs {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+    .pb-emp-input-group {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
+      min-width: 0;
     }
-    .pb-adv-label { font-size: 14px; font-weight: 500; color: #162351; }
-    .pb-adv-input {
+    .pb-emp-input-label {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: #8F98B5;
+      text-transform: uppercase;
+    }
+    .pb-emp-input {
       background: #ecf2fb;
       border: 1px solid #bcc9eb;
       border-radius: 8px;
       height: 40px;
       padding: 0 16px;
       font-size: 14px;
+      font-weight: 500;
       font-family: 'Euclid Circular B', sans-serif;
       color: #162351;
       outline: none;
       box-sizing: border-box;
       width: 100%;
     }
-    .pb-adv-input::placeholder { color: #8F98B5; }
-    .pb-adv-hint { font-size: 12px; font-weight: 400; color: #8F98B5; }
+    .pb-emp-input::placeholder { color: #8F98B5; }
+
+    /* Headcount row — controls + currency/freq on same line */
+    .pb-headcount-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 600px;
+    }
+    .pb-headcount-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .pb-freq-toggle-pills {
+      display: flex;
+      align-items: stretch;
+    }
+    .pb-freq-pill {
+      width: 100px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: #475072;
+      background: #ecf2fb;
+      border: 1px solid #bcc9eb;
+      cursor: pointer;
+      user-select: none;
+      box-sizing: border-box;
+    }
+    .pb-freq-pill:first-child {
+      border-radius: 8px 0 0 8px;
+      border-right: none;
+    }
+    .pb-freq-pill:last-child {
+      border-radius: 0 8px 8px 0;
+    }
+    .pb-freq-pill.active {
+      background: #019DE7;
+      border-color: #019DE7;
+      color: #fff;
+      font-weight: 700;
+    }
 
 
     /* Action buttons */
@@ -1419,19 +1495,61 @@
       letter-spacing: -0.8px;
     }
     .pr-download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       width: 200px;
       height: 44px;
+      padding: 8px 12px;
       background: #019de7;
       color: #fff;
       border: none;
       border-radius: 8px;
       font-size: 16px;
       font-weight: 700;
+      line-height: 20px;
       font-family: 'Euclid Circular B', sans-serif;
       cursor: pointer;
       transition: background 0.18s ease;
     }
     .pr-download-btn:hover { background: #0185c4; }
+    .pr-download-btn .btn-chevron { width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.2s ease; }
+    .pr-download-btn.open .btn-chevron { transform: rotate(180deg); }
+    .pr-download-wrap { position: relative; display: inline-block; }
+    .pr-download-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 200px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      display: none;
+      z-index: 20;
+      flex-direction: column;
+    }
+    .pr-download-menu.open { display: flex; }
+    .pr-download-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      font-family: 'Euclid Circular B', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 20px;
+      color: #475072;
+      transition: background 0.15s ease;
+    }
+    .pr-download-menu-item:hover { background: #e4efff; }
+    .pr-download-menu-item img { width: 24px; height: 24px; flex-shrink: 0; }
 
     /* ── Info card (right) ── */
     .pr-info-card {
@@ -1801,18 +1919,39 @@
           </div>
         </div>
 
-        <!-- 2. Headcount -->
+        <!-- 2. Headcount + Currency + Frequency -->
         <div class="pb-field">
           <label class="pb-field-label" data-i18n="pb.field.headcount">How many employees are you hiring?</label>
-          <div class="pb-headcount">
-            <button class="pb-count-btn" id="pb-minus-btn" type="button">
-              <img src="assets/Price/Proposal%20Builder/minus%20icon.svg" alt="minus">
-            </button>
-            <input class="pb-count-display" id="pb-count-display" type="text" inputmode="numeric" value="1" min="1" max="999">
-            <button class="pb-count-btn" id="pb-plus-btn" type="button">
-              <img src="assets/Price/Proposal%20Builder/plus-icon.svg" alt="plus">
-            </button>
+          <div class="pb-headcount-row">
+            <div class="pb-headcount">
+              <button class="pb-count-btn" id="pb-minus-btn" type="button">
+                <img src="assets/Price/Proposal%20Builder/minus%20icon.svg" alt="minus">
+              </button>
+              <input class="pb-count-display" id="pb-count-display" type="text" inputmode="numeric" value="1" min="1" max="999">
+              <button class="pb-count-btn" id="pb-plus-btn" type="button">
+                <img src="assets/Price/Proposal%20Builder/plus-icon.svg" alt="plus">
+              </button>
+            </div>
+            <div class="pb-headcount-cta">
+              <div class="pb-currency-select">
+                <div class="pb-currency-trigger" id="pb-currency-trigger" tabindex="0">
+                  <span id="pb-currency-text">USD</span>
+                  <img src="assets/Price/Proposal%20Builder/chevron-down.svg" alt="open">
+                </div>
+                <div class="pb-currency-menu" id="pb-currency-menu">
+                  <div class="pb-currency-item" data-currency="USD">USD</div>
+                  <div class="pb-currency-item" data-currency="EUR">EUR</div>
+                  <div class="pb-currency-item" data-currency="GBP">GBP</div>
+                </div>
+              </div>
+              <div class="pb-freq-toggle-pills">
+                <div class="pb-freq-pill active" data-freq="monthly">Monthly</div>
+                <div class="pb-freq-pill" data-freq="annual">Annual</div>
+              </div>
+            </div>
           </div>
+          <!-- Employee rows rendered by JS -->
+          <div class="pb-employees-container" id="pb-employees-container"></div>
         </div>
 
         <!-- 3. Employment type -->
@@ -1847,35 +1986,6 @@
           </div>
         </div>
 
-        <!-- 4. Salary -->
-        <div class="pb-field">
-          <label class="pb-field-label" data-i18n="pb.field.salary">Salary</label>
-          <div class="pb-freq-toggle">
-            <div class="pb-freq-btn active" data-freq="monthly">
-              <div class="pb-radio-outer"><div class="pb-radio-dot"></div></div>
-              <span data-i18n="pb.freq.monthly">Monthly</span>
-            </div>
-            <div class="pb-freq-btn" data-freq="annual">
-              <div class="pb-radio-outer"><div class="pb-radio-dot"></div></div>
-              <span data-i18n="pb.freq.annual">Annual</span>
-            </div>
-          </div>
-          <div class="pb-salary-row">
-            <div class="pb-currency-select">
-              <div class="pb-currency-trigger" id="pb-currency-trigger" tabindex="0">
-                <span id="pb-currency-text">USD</span>
-                <img src="assets/Price/Proposal%20Builder/chevron-down.svg" alt="open">
-              </div>
-              <div class="pb-currency-menu" id="pb-currency-menu">
-                <div class="pb-currency-item" data-currency="USD">USD</div>
-                <div class="pb-currency-item" data-currency="EUR">EUR</div>
-                <div class="pb-currency-item" data-currency="GBP">GBP</div>
-              </div>
-            </div>
-            <input class="pb-salary-input" id="pb-salary-input" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter amount" data-i18n-placeholder="pb.salary.placeholder">
-          </div>
-          <div class="pb-monthly-equiv" id="pb-monthly-equiv"><span data-i18n="pb.monthly.equiv">Monthly equivalent:</span> <span id="pb-monthly-equiv-val">—</span></div>
-        </div>
 
         <!-- 6. Service scope -->
         <div class="pb-field">
@@ -2016,28 +2126,6 @@
           </div>
         </div>
 
-        <!-- 8. Advanced inputs -->
-        <div class="pb-field" style="gap:0; max-width:600px;">
-          <div class="pb-advanced-header" id="pb-advanced-header">
-            <label class="pb-field-label" style="cursor:pointer;" data-i18n="pb.field.advanced">Advanced inputs</label>
-            <img class="pb-adv-chevron" src="assets/Price/Proposal%20Builder/chevron-down.svg" alt="" />
-          </div>
-          <div class="pb-divider"></div>
-          <div class="pb-advanced-body" id="pb-advanced-body">
-            <div class="pb-advanced-row">
-              <div class="pb-adv-field">
-                <label class="pb-adv-label" data-i18n="pb.adv.bonus">Annual Bonus</label>
-                <input class="pb-adv-input" id="pb-bonus-input" type="text" inputmode="numeric" placeholder="0">
-                <div class="pb-adv-hint" id="pb-bonus-hint"></div>
-              </div>
-              <div class="pb-adv-field">
-                <label class="pb-adv-label" data-i18n="pb.adv.allowance">Monthly Allowance</label>
-                <input class="pb-adv-input" id="pb-allowance-input" type="text" inputmode="numeric" placeholder="0">
-              </div>
-            </div>
-
-          </div>
-        </div>
 
         <!-- Action buttons -->
         <div class="pb-actions">
@@ -2056,6 +2144,20 @@
               <div class="pb-sum-row-label-main" data-i18n="pb.sum.salary">Monthly Gross Salary</div>
             </div>
             <div class="pb-sum-row-value" id="sum-salary">--</div>
+          </div>
+          <div class="pb-sum-row" id="sum-bonus-row" style="display:none;">
+            <div class="pb-sum-row-label">
+              <div class="pb-sum-row-label-main">Annual Bonus</div>
+              <div class="pb-sum-row-label-sub" id="sum-bonus-note">All employees ÷ 12</div>
+            </div>
+            <div class="pb-sum-row-value" id="sum-bonus">--</div>
+          </div>
+          <div class="pb-sum-row" id="sum-allowance-row" style="display:none;">
+            <div class="pb-sum-row-label">
+              <div class="pb-sum-row-label-main">Monthly Allowance</div>
+              <div class="pb-sum-row-label-sub" id="sum-allowance-note">All employees combined</div>
+            </div>
+            <div class="pb-sum-row-value" id="sum-allowance">--</div>
           </div>
           <div class="pb-sum-row">
             <div class="pb-sum-row-label">
@@ -2152,7 +2254,19 @@
             </div>
           </div>
         </div>
-        <button class="pr-download-btn" id="pr-download-btn" type="button" data-i18n="pb.pr.download">Download Report</button>
+        <div class="pr-download-wrap">
+          <button class="pr-download-btn" id="pr-download-btn" type="button"><span data-i18n="pb.pr.download">Download Report</span><svg class="btn-chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 7.5L10 12.5L15 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="pr-download-menu" id="pr-download-menu">
+            <button class="pr-download-menu-item" id="pr-dl-excel" type="button">
+              <img src="assets/Price/Proposal%20Builder/excel-svg.svg" alt="Excel">
+              <span>Excel File</span>
+            </button>
+            <button class="pr-download-menu-item" id="pr-dl-pdf" type="button">
+              <img src="assets/Price/Proposal%20Builder/pdf%20svg.svg" alt="PDF">
+              <span>PDF File</span>
+            </button>
+          </div>
+        </div>
       </div>
       <!-- Right: info card -->
       <div class="pr-info-card" id="pr-info-card"></div>
@@ -2165,6 +2279,12 @@
     <div class="pr-table-section">
       <h3 class="pr-section-title" data-i18n="pb.pr.pay">Pay Details</h3>
       <div class="pr-table" id="pr-pay-table"></div>
+    </div>
+
+    <!-- Employer Contributions table -->
+    <div class="pr-table-section" id="pr-contrib-section" style="display:none;">
+      <h3 class="pr-section-title">Employer Contributions</h3>
+      <div class="pr-table" id="pr-contrib-table"></div>
     </div>
 
     <!-- Marco Service Fees table -->
@@ -2222,12 +2342,10 @@
       headcount: 1,
       empType: null,
       currency: 'USD',
-      salary: null,
       salaryFreq: 'monthly',
       services: { marco_os: true },
       startDate: null,
-      bonus: null,
-      allowance: null
+      employees: [{ salary: null, bonus: null, allowance: null }]
     };
 
     /* ── Countries list ── */
@@ -2364,17 +2482,334 @@
       marco_os:              { label: 'Marco OS Access',                     amount: 0,    unit: 'free', oneTime: false, free: true }
     };
 
+    /* ── Employer contribution data (17 countries) ──
+       Each item: { code, name, rate, fixed, cap, threshold, addon, floor, ceiling, base, group }
+       rate = percentage (e.g. 9.76 means 9.76%), base = 'gross' | 'salary_only'
+       group = 'Employer contribution' | 'Statutory/employee benefit' | 'Additional cost'
+    */
+    var countryContribData = {
+      'Poland': {
+        currency: 'PLN', vat: 0,
+        items: [
+          { code:'Pension', name:'Pension', rate:9.76, cap:23550, base:'gross', group:'Employer contribution' },
+          { code:'Disability', name:'Disability', rate:6.5, cap:23550, base:'gross', group:'Employer contribution' },
+          { code:'Accident', name:'Accident', rate:1.67, base:'gross', group:'Employer contribution' },
+          { code:'LaborFund', name:'Labour Fund FP', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'SolidarityFund', name:'Solidarity Fund FS', rate:1.45, base:'gross', group:'Employer contribution' },
+          { code:'GEBF', name:'FGSP', rate:0.1, base:'gross', group:'Employer contribution' },
+          { code:'PFRON', name:'PFRON', rate:2.44, base:'gross', group:'Employer contribution' },
+          { code:'ZFSS', name:'ZFSS', rate:1.27, base:'gross', group:'Employer contribution' },
+          { code:'PPK', name:'PPK', rate:1.5, base:'gross', group:'Employer contribution' },
+          { code:'BHP', name:'BHP', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'OC', name:'OC', rate:0.9, base:'gross', group:'Employer contribution' }
+        ]
+      },
+      'Croatia': {
+        currency: 'EUR', vat: 0,
+        items: [
+          { code:'Health', name:'Health Insurance', rate:16.5, base:'gross', group:'Employer contribution' },
+          { code:'SuppHealth', name:'Supplementary Health', rate:5.0, base:'gross', group:'Employer contribution' },
+          { code:'BonusHR', name:'Christmas/Holiday Bonus', rate:0, base:'gross', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Greece': {
+        currency: 'EUR', vat: 0,
+        items: [
+          { code:'Salary13', name:'13th Salary', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'Salary14', name:'14th Salary', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'MainPension', name:'Main Pension', rate:13.33, cap:7761.94, base:'gross', group:'Employer contribution' },
+          { code:'HealthGR', name:'Health', rate:4.05, cap:7761.94, base:'gross', group:'Employer contribution' },
+          { code:'AuxPension', name:'Auxiliary Pension', rate:3.0, cap:7761.94, base:'gross', group:'Employer contribution' },
+          { code:'UnempGR', name:'Unemployment & Other', rate:1.41, cap:7761.94, base:'gross', group:'Employer contribution' }
+        ]
+      },
+      'Spain': {
+        currency: 'EUR', vat: 0,
+        items: [
+          { code:'CommonCont', name:'Common Contingencies', rate:23.6, cap:5101.2, base:'gross', group:'Employer contribution' },
+          { code:'Unemployment', name:'Unemployment', rate:5.5, cap:5101.2, base:'gross', group:'Employer contribution' },
+          { code:'FOGASA', name:'FOGASA', rate:0.2, cap:5101.2, base:'gross', group:'Employer contribution' },
+          { code:'Vocational', name:'Vocational Training', rate:0.6, cap:5101.2, base:'gross', group:'Employer contribution' },
+          { code:'WorkAccident', name:'Work Accident', rate:1.5, cap:5101.2, base:'gross', group:'Employer contribution' },
+          { code:'MEI', name:'MEI', rate:0.75, cap:5101.2, base:'gross', group:'Employer contribution' },
+          { code:'Solidarity', name:'Solidarity', rate:1.15, threshold:5101.2, base:'gross', group:'Employer contribution' },
+          { code:'PagaVerano', name:'Summer Extra Pay', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'PagaNavidad', name:'Christmas Extra Pay', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'SeguroConvenio', name:'Seguro de Convenio', fixed:10.0, base:'gross', group:'Additional cost' },
+          { code:'Antiguedad', name:'Seniority Bonus', rate:0, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'France': {
+        currency: 'EUR', vat: 0,
+        items: [
+          { code:'PensionCap', name:'Pension capped', rate:8.55, cap:4005, base:'gross', group:'Employer contribution' },
+          { code:'PensionUncap', name:'Pension uncapped', rate:2.11, base:'gross', group:'Employer contribution' },
+          { code:'SuppPensT1', name:'AGIRC-ARRCO T1', rate:4.72, cap:4005, base:'gross', group:'Employer contribution' },
+          { code:'SuppPensT2', name:'AGIRC-ARRCO T2', rate:12.95, cap:32040, threshold:4005, base:'gross', group:'Employer contribution' },
+          { code:'CEG_T1', name:'CEG T1', rate:1.29, cap:4005, base:'gross', group:'Employer contribution' },
+          { code:'CEG_T2', name:'CEG T2', rate:1.62, cap:32040, threshold:4005, base:'gross', group:'Employer contribution' },
+          { code:'CET', name:'CET', rate:0.21, base:'gross', group:'Employer contribution' },
+          { code:'Health', name:'Health', rate:13.0, base:'gross', group:'Employer contribution' },
+          { code:'HealthSupp', name:'Health Supp', rate:6.0, base:'gross', group:'Employer contribution' },
+          { code:'Prevoyance', name:'Prevoyance', rate:1.5, cap:4005, base:'gross', group:'Additional cost' },
+          { code:'CSA', name:'CSA', rate:0.3, base:'gross', group:'Employer contribution' },
+          { code:'ForfaitSocial', name:'Forfait Social', rate:0.48, base:'gross', group:'Employer contribution' },
+          { code:'Family', name:'Family', rate:5.25, base:'gross', group:'Employer contribution' },
+          { code:'FNAL', name:'FNAL', rate:0.5, base:'gross', group:'Employer contribution' },
+          { code:'Unemployment', name:'Unemployment', rate:4.0, cap:16020, base:'gross', group:'Employer contribution' },
+          { code:'AGS', name:'AGS', rate:0.25, cap:16020, base:'gross', group:'Employer contribution' },
+          { code:'APEC', name:'APEC', rate:0.036, cap:16020, base:'gross', group:'Employer contribution' },
+          { code:'ProfTraining', name:'Prof Training', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'ApprenticeTax', name:'Apprenticeship Tax', rate:0.68, base:'gross', group:'Employer contribution' },
+          { code:'Mobility', name:'Mobility', rate:3.2, base:'gross', group:'Employer contribution' },
+          { code:'ATMP', name:'AT/MP', rate:5.0, base:'gross', group:'Employer contribution' },
+          { code:'MedecineTravail', name:'Occupational Health', fixed:10.0, base:'gross', group:'Employer contribution' },
+          { code:'TaxeSalaires', name:'Payroll Tax', rate:4.25, base:'gross', group:'Employer contribution' },
+          { code:'Construction', name:'Construction', rate:0.45, base:'gross', group:'Employer contribution' },
+          { code:'SocialDialogue', name:'Social Dialogue', rate:0.016, base:'gross', group:'Employer contribution' },
+          { code:'Gratuity', name:'Gratuity', rate:10.0, base:'salary_only', group:'Employer contribution' },
+          { code:'PortageFee', name:'Portage Fee', rate:5.0, base:'salary_only', group:'Employer contribution' }
+        ]
+      },
+      'Indonesia': {
+        currency: 'IDR', vat: 11,
+        items: [
+          { code:'JHT', name:'JHT', rate:3.7, base:'gross', group:'Employer contribution' },
+          { code:'JP', name:'JP', rate:2.0, cap:11086300, base:'gross', group:'Employer contribution' },
+          { code:'BPJSHealth', name:'BPJS Health', rate:4.0, cap:12000000, base:'gross', group:'Employer contribution' },
+          { code:'JKK', name:'JKK', rate:0.89, base:'gross', group:'Employer contribution' },
+          { code:'JKM', name:'JKM', rate:0.3, base:'gross', group:'Employer contribution' },
+          { code:'JKP', name:'JKP', rate:0.24, base:'gross', group:'Employer contribution' },
+          { code:'DKPTKA', name:'DKPTKA', fixed:1790000, base:'gross', group:'Employer contribution' },
+          { code:'THR', name:'THR', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Colombia': {
+        currency: 'COP', vat: 19,
+        items: [
+          { code:'HealthCO', name:'Health EPS', rate:8.5, base:'gross', group:'Employer contribution' },
+          { code:'PensionCO', name:'Pension', rate:12.0, base:'gross', group:'Employer contribution' },
+          { code:'ARL', name:'ARL', rate:2.436, base:'gross', group:'Employer contribution' },
+          { code:'SENA', name:'SENA', rate:2.0, base:'gross', group:'Employer contribution' },
+          { code:'ICBF', name:'ICBF', rate:3.0, base:'gross', group:'Employer contribution' },
+          { code:'CCF', name:'CCF', rate:4.0, base:'gross', group:'Employer contribution' },
+          { code:'PrimaCO', name:'Prima', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'Cesantias', name:'Cesantias', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'InteresCes', name:'Interes Cesantias', rate:1.0, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Ecuador': {
+        currency: 'USD', vat: 15,
+        items: [
+          { code:'IESS', name:'IESS Patronal', rate:11.15, base:'gross', group:'Employer contribution' },
+          { code:'IECE_SECAP', name:'IECE/SECAP', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'Dec13EC', name:'Decimo Tercero', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'Dec14EC', name:'Decimo Cuarto', fixed:40.17, base:'gross', group:'Statutory/employee benefit' },
+          { code:'FondoReserva', name:'Fondo Reserva', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'ProfitShareEC', name:'Profit Sharing', rate:8.33, base:'salary_only', group:'Additional cost' }
+        ]
+      },
+      'Myanmar': {
+        currency: 'USD', vat: 5,
+        items: [
+          { code:'SSB', name:'SSB', rate:3.0, base:'gross', group:'Employer contribution' },
+          { code:'WorkmenComp', name:'Workmen Comp', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'SeveranceMM', name:'Severance', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'RiskFundMM', name:'Employment Risk Fund', rate:3.0, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Nigeria': {
+        currency: 'NGN', vat: 7.5,
+        items: [
+          { code:'PensionNG', name:'Pension (CPS)', rate:10.0, base:'gross', group:'Employer contribution' },
+          { code:'NHIA', name:'NHIA', rate:2.0, base:'gross', group:'Employer contribution' },
+          { code:'GroupLife', name:'Group Life', rate:18.0, base:'gross', group:'Employer contribution' },
+          { code:'NSITF', name:'NSITF', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'ITF', name:'ITF', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'GratuityNG', name:'Gratuity', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Vietnam': {
+        currency: 'VND', vat: 10,
+        items: [
+          { code:'SI_VN', name:'Social Insurance', rate:17.5, cap:50600000, base:'gross', group:'Employer contribution' },
+          { code:'HI_VN', name:'Health Insurance', rate:3.0, cap:50600000, base:'gross', group:'Employer contribution' },
+          { code:'UI_VN', name:'Unemployment', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'Union_VN', name:'Trade Union', rate:2.0, base:'gross', group:'Employer contribution' }
+        ]
+      },
+      'Malaysia': {
+        currency: 'MYR', vat: 0,
+        items: [
+          { code:'EPF', name:'EPF', rate:13.0, base:'gross', group:'Employer contribution' },
+          { code:'SOCSO', name:'SOCSO', rate:1.75, cap:6000, base:'gross', group:'Employer contribution' },
+          { code:'EIS', name:'EIS', rate:0.2, cap:6000, base:'gross', group:'Employer contribution' },
+          { code:'HRDF', name:'HRDF', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'MYInsurance', name:'Insurance', fixed:300, base:'gross', group:'Employer contribution' },
+          { code:'Severance', name:'Severance Provision', rate:4.1, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Peru': {
+        currency: 'PEN', vat: 18,
+        items: [
+          { code:'EsSalud', name:'EsSalud', rate:9.0, base:'gross', group:'Employer contribution' },
+          { code:'SENATI', name:'SENATI', rate:0.75, base:'gross', group:'Employer contribution' },
+          { code:'VidaLey', name:'Vida Ley', rate:0.9, base:'gross', group:'Employer contribution' },
+          { code:'FamilyAllowancePE', name:'Family Allowance', fixed:113, base:'gross', group:'Statutory/employee benefit' },
+          { code:'GratJul', name:'Gratif Julio', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'GratDec', name:'Gratif Navidad', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'CTS', name:'CTS', rate:9.72, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Philippines': {
+        currency: 'PHP', vat: 0,
+        items: [
+          { code:'Salary13', name:'13th Month', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'SSS', name:'SSS', rate:10.0, cap:35000, addon:30, base:'gross', group:'Employer contribution' },
+          { code:'PhilHealth', name:'PhilHealth', rate:2.5, cap:100000, floor:250, ceiling:2500, base:'gross', group:'Employer contribution' },
+          { code:'PagIBIG', name:'Pag-IBIG', rate:2.0, cap:10000, base:'gross', group:'Employer contribution' },
+          { code:'HMO', name:'HMO', rate:4.0, base:'gross', group:'Additional cost' },
+          { code:'RiceSubsidy', name:'Rice Subsidy', fixed:2500, base:'gross', group:'Statutory/employee benefit' },
+          { code:'Retirement', name:'Retirement Provision', rate:6.16, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Japan': {
+        currency: 'JPY', vat: 0,
+        items: [
+          { code:'Pension', name:'Pension', rate:9.15, cap:650000, base:'gross', group:'Employer contribution' },
+          { code:'Health', name:'Health', rate:4.925, cap:1390000, base:'gross', group:'Employer contribution' },
+          { code:'Nursing', name:'Nursing Care', rate:0.81, cap:1390000, base:'gross', group:'Employer contribution' },
+          { code:'WorkAccident', name:'Work Accident', rate:1.2, base:'gross', group:'Employer contribution' },
+          { code:'Unemployment', name:'Unemployment', rate:0.95, base:'gross', group:'Employer contribution' },
+          { code:'ChildSupport', name:'Child Support 2026', rate:0.115, base:'gross', group:'Employer contribution' },
+          { code:'ChildRearing', name:'Child-rearing', rate:0.36, cap:650000, base:'gross', group:'Employer contribution' },
+          { code:'Asbestos', name:'Asbestos Levy', rate:0.002, base:'gross', group:'Employer contribution' },
+          { code:'RetirementJP', name:'Retirement Allowance', rate:8.33, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Germany': {
+        currency: 'EUR', vat: 0,
+        items: [
+          { code:'Pension', name:'Pension', rate:9.3, cap:8450, base:'gross', group:'Employer contribution' },
+          { code:'Health', name:'Health', rate:7.3, cap:5812.5, base:'gross', group:'Employer contribution' },
+          { code:'SuppHealthDE', name:'Zusatzbeitrag', rate:0.85, cap:5812.5, base:'gross', group:'Employer contribution' },
+          { code:'Nursing', name:'Nursing', rate:1.8, cap:5812.5, base:'gross', group:'Employer contribution' },
+          { code:'U1Sickness', name:'U1 Sickness', rate:4.0, base:'gross', group:'Employer contribution' },
+          { code:'U2Maternity', name:'U2 Maternity', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'Unemployment', name:'Unemployment', rate:1.3, cap:8450, base:'gross', group:'Employer contribution' },
+          { code:'Accident', name:'Accident', rate:1.3, base:'gross', group:'Employer contribution' },
+          { code:'Insolvency', name:'Insolvency', rate:0.15, base:'gross', group:'Employer contribution' },
+          { code:'MedicalCareDE', name:'Medical Care', fixed:95, base:'gross', group:'Additional cost' },
+          { code:'OccHealthDE', name:'Occupational Health', fixed:12.5, base:'gross', group:'Additional cost' },
+          { code:'EqualisationDE', name:'Equalisation', fixed:17.5, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Belgium': {
+        currency: 'EUR', vat: 0,
+        items: [
+          { code:'SocialSecurity', name:'Social Security', rate:32.99, base:'gross', group:'Employer contribution' },
+          { code:'WorkAccident', name:'Work Accident', rate:2.925, base:'gross', group:'Employer contribution' },
+          { code:'OccHealthBE', name:'Occupational Health', rate:3.39, base:'gross', group:'Additional cost' },
+          { code:'Salary13', name:'13th Month', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'DoubleHoliday', name:'Double Holiday Pay', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'MealVouchers', name:'Meal Vouchers', fixed:180, base:'gross', group:'Statutory/employee benefit' },
+          { code:'EcoVouchers', name:'Eco Vouchers', fixed:20.84, base:'gross', group:'Statutory/employee benefit' },
+          { code:'JC200', name:'JC200 Premium', fixed:27.57, base:'gross', group:'Statutory/employee benefit' }
+        ]
+      }
+    };
+
+    /* ── Calculate one contribution item for a single employee ── */
+    function calcOneContrib(item, monthlySalary, monthlyGross) {
+      if (item.fixed) return item.fixed;
+      var rate = item.rate;
+      if (!rate) return 0;
+      var baseAmt = item.base === 'salary_only' ? monthlySalary : monthlyGross;
+      var applicable = baseAmt;
+      if (item.threshold) applicable = Math.max(0, baseAmt - item.threshold);
+      if (item.cap) applicable = Math.min(applicable, item.cap - (item.threshold || 0));
+      if (applicable < 0) applicable = 0;
+      var amount = applicable * rate / 100;
+      if (item.addon) amount += item.addon;
+      if (item.floor != null && amount < item.floor) amount = item.floor;
+      if (item.ceiling != null && amount > item.ceiling) amount = item.ceiling;
+      return amount;
+    }
+
+    /* ── Calculate total employer contributions for all employees ── */
+    function calcTotalContributions() {
+      var country = pbState.country;
+      var data = country ? countryContribData[country] : null;
+      if (!data) return { total: 0, items: [], hasData: false };
+
+      var totalContrib = 0;
+      var itemTotals = {};
+      data.items.forEach(function(item) { itemTotals[item.code] = 0; });
+
+      for (var i = 0; i < pbState.headcount; i++) {
+        var emp = pbState.employees[i];
+        if (!emp) continue;
+        var sal = parseFloat(emp.salary);
+        if (!sal || isNaN(sal)) continue;
+        var monthlySalary = pbState.salaryFreq === 'annual' ? sal / 12 : sal;
+        var bonus = parseFloat(emp.bonus);
+        var allowance = parseFloat(emp.allowance);
+        bonus = (!bonus || isNaN(bonus)) ? 0 : bonus / 12;
+        allowance = (!allowance || isNaN(allowance)) ? 0 : allowance;
+        var monthlyGross = monthlySalary + bonus + allowance;
+
+        data.items.forEach(function(item) {
+          var amt = calcOneContrib(item, monthlySalary, monthlyGross);
+          itemTotals[item.code] += amt;
+          totalContrib += amt;
+        });
+      }
+
+      return { total: totalContrib, itemTotals: itemTotals, items: data.items, hasData: true };
+    }
+
     /* ── Format currency ── */
     function fmtMoney(amount, currency) {
       if (!amount && amount !== 0) return '--';
       return currency + ' ' + Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    /* ── Get monthly salary ── */
+    /* ── Get total monthly gross across all employees ── */
     function getMonthlyGross() {
-      var sal = parseFloat(pbState.salary);
-      if (!sal || isNaN(sal)) return null;
-      return pbState.salaryFreq === 'annual' ? sal / 12 : sal;
+      var total = 0;
+      var hasAny = false;
+      for (var i = 0; i < pbState.headcount; i++) {
+        var emp = pbState.employees[i];
+        if (!emp) continue;
+        var sal = parseFloat(emp.salary);
+        if (sal && !isNaN(sal)) {
+          hasAny = true;
+          total += pbState.salaryFreq === 'annual' ? sal / 12 : sal;
+        }
+      }
+      return hasAny ? total : null;
+    }
+
+    function getTotalMonthlyBonus() {
+      var total = 0;
+      for (var i = 0; i < pbState.headcount; i++) {
+        var emp = pbState.employees[i];
+        if (!emp) continue;
+        var val = parseFloat(emp.bonus);
+        if (val && !isNaN(val)) total += val / 12;
+      }
+      return total;
+    }
+
+    function getTotalMonthlyAllowance() {
+      var total = 0;
+      for (var i = 0; i < pbState.headcount; i++) {
+        var emp = pbState.employees[i];
+        if (!emp) continue;
+        var val = parseFloat(emp.allowance);
+        if (val && !isNaN(val)) total += val;
+      }
+      return total;
     }
 
     /* ── Get default currency for country ── */
@@ -2543,6 +2978,7 @@
           document.getElementById('pb-currency-text').textContent = curr;
           // Update service card visibility and prices
           updateServiceCards(c);
+          renderEmployeeRows();
           updateSummary();
         });
         countryList.appendChild(item);
@@ -2580,6 +3016,7 @@
         pbState.currency = this.dataset.currency;
         document.getElementById('pb-currency-text').textContent = pbState.currency;
         currencyMenu.classList.remove('open');
+        renderEmployeeRows();
         updateSummary();
       });
     });
@@ -2596,6 +3033,10 @@
       n = Math.max(1, Math.min(999, n));
       pbState.headcount = n;
       countInput.value = n;
+      while (pbState.employees.length < n) {
+        pbState.employees.push({ salary: null, bonus: null, allowance: null });
+      }
+      renderEmployeeRows();
       updateSummary();
     }
 
@@ -2633,34 +3074,13 @@
       });
     });
 
-    /* ── Salary input ── */
-    document.getElementById('pb-salary-input').addEventListener('input', function() {
-      pbState.salary = this.value;
-      updateFreqHint();
-      updateSummary();
-    });
-
-    /* ── Frequency toggle ── */
-    function updateFreqHint() {
-      var equiv = document.getElementById('pb-monthly-equiv');
-      var val   = document.getElementById('pb-monthly-equiv-val');
-      if (pbState.salaryFreq === 'annual' && pbState.salary) {
-        var monthly = parseFloat(pbState.salary) / 12;
-        if (!isNaN(monthly)) {
-          val.textContent = fmtMoney(monthly, pbState.currency);
-          equiv.classList.add('visible');
-          return;
-        }
-      }
-      equiv.classList.remove('visible');
-    }
-
-    document.querySelectorAll('.pb-freq-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.pb-freq-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        pbState.salaryFreq = btn.dataset.freq;
-        updateFreqHint();
+    /* ── Frequency toggle (pill buttons) ── */
+    document.querySelectorAll('.pb-freq-pill').forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        document.querySelectorAll('.pb-freq-pill').forEach(function(p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+        pbState.salaryFreq = pill.dataset.freq;
+        renderEmployeeRows();
         updateSummary();
       });
     });
@@ -2693,31 +3113,99 @@
       });
     });
 
-    /* ── Advanced inputs — collapse/expand ── */
-    document.getElementById('pb-advanced-header').addEventListener('click', function() {
-      var header = this;
-      var body   = document.getElementById('pb-advanced-body');
-      var isOpen = body.classList.contains('open');
-      header.classList.toggle('open', !isOpen);
-      body.classList.toggle('open', !isOpen);
-    });
+    /* ── Employee rows rendering ── */
+    function renderEmployeeRows() {
+      var container = document.getElementById('pb-employees-container');
+      container.innerHTML = '';
+      var cur = pbState.currency;
+      var isAnnual = pbState.salaryFreq === 'annual';
+      var salLabel = isAnnual ? 'ANNUAL SALARY' : 'MONTHLY SALARY';
 
-    /* ── Advanced inputs ── */
-    document.getElementById('pb-bonus-input').addEventListener('input', function() {
-      pbState.bonus = this.value;
-      var val = parseFloat(this.value);
-      var hint = document.getElementById('pb-bonus-hint');
-      if (!isNaN(val) && val > 0) {
-        hint.textContent = 'Monthly equivalent: ' + fmtMoney(val / 12, pbState.currency);
-      } else {
-        hint.textContent = '';
+      for (var i = 0; i < pbState.headcount; i++) {
+        var emp = pbState.employees[i];
+        if (!emp) { emp = { salary: null, bonus: null, allowance: null }; pbState.employees[i] = emp; }
+
+        var grossVal = getEmployeeMonthlyGross(i);
+        var grossText = grossVal ? fmtGross(grossVal, cur) : '--';
+
+        var block = document.createElement('div');
+        block.style.cssText = 'display:flex;flex-direction:column;gap:20px;';
+
+        var divider = document.createElement('div');
+        divider.className = 'pb-emp-divider';
+        block.appendChild(divider);
+
+        var header = document.createElement('div');
+        header.className = 'pb-emp-row-header';
+        header.innerHTML =
+          '<div class="pb-emp-row-title">' +
+            '<div class="pb-emp-row-tag">' + (i + 1) + '</div>' +
+            '<div class="pb-emp-row-name">Employee ' + (i + 1) + '</div>' +
+          '</div>' +
+          '<div class="pb-emp-row-gross">' +
+            '<span class="pb-emp-row-gross-label">Gross:</span>' +
+            '<span class="pb-emp-row-gross-value" id="pb-emp-gross-' + i + '">' + grossText + '</span>' +
+          '</div>';
+        block.appendChild(header);
+
+        var inputs = document.createElement('div');
+        inputs.className = 'pb-emp-row-inputs';
+        inputs.innerHTML =
+          '<div class="pb-emp-input-group">' +
+            '<div class="pb-emp-input-label">' + salLabel + ' (' + cur + ')</div>' +
+            '<input class="pb-emp-input" data-emp-idx="' + i + '" data-field="salary" type="text" inputmode="numeric" placeholder="0" value="' + (emp.salary || '') + '">' +
+          '</div>' +
+          '<div class="pb-emp-input-group">' +
+            '<div class="pb-emp-input-label">MONTHLY ALLOWANCE (' + cur + ')</div>' +
+            '<input class="pb-emp-input" data-emp-idx="' + i + '" data-field="allowance" type="text" inputmode="numeric" placeholder="0" value="' + (emp.allowance || '') + '">' +
+          '</div>' +
+          '<div class="pb-emp-input-group">' +
+            '<div class="pb-emp-input-label">ANNUAL BONUS (' + cur + ')</div>' +
+            '<input class="pb-emp-input" data-emp-idx="' + i + '" data-field="bonus" type="text" inputmode="numeric" placeholder="0" value="' + (emp.bonus || '') + '">' +
+          '</div>';
+        block.appendChild(inputs);
+
+        container.appendChild(block);
       }
-      updateSummary();
-    });
-    document.getElementById('pb-allowance-input').addEventListener('input', function() {
-      pbState.allowance = this.value;
-      updateSummary();
-    });
+
+      // Add trailing divider
+      var lastDiv = document.createElement('div');
+      lastDiv.className = 'pb-emp-divider';
+      container.appendChild(lastDiv);
+
+      // Attach input listeners
+      container.querySelectorAll('.pb-emp-input').forEach(function(input) {
+        input.addEventListener('input', function() {
+          var idx = parseInt(this.dataset.empIdx, 10);
+          var field = this.dataset.field;
+          pbState.employees[idx][field] = this.value;
+          updateEmployeeGross(idx);
+          updateSummary();
+        });
+      });
+    }
+
+    function getEmployeeMonthlyGross(idx) {
+      var emp = pbState.employees[idx];
+      if (!emp) return null;
+      var sal = parseFloat(emp.salary);
+      if (!sal || isNaN(sal)) return null;
+      var monthlySal = pbState.salaryFreq === 'annual' ? sal / 12 : sal;
+      var monthlyBonus = (parseFloat(emp.bonus) || 0) / 12;
+      var monthlyAllow = parseFloat(emp.allowance) || 0;
+      return monthlySal + monthlyBonus + monthlyAllow;
+    }
+
+    function fmtGross(amount, currency) {
+      return currency + ' ' + Math.round(amount).toLocaleString('en-US') + '/ mo';
+    }
+
+    function updateEmployeeGross(idx) {
+      var el = document.getElementById('pb-emp-gross-' + idx);
+      if (!el) return;
+      var grossVal = getEmployeeMonthlyGross(idx);
+      el.textContent = grossVal ? fmtGross(grossVal, pbState.currency) : '--';
+    }
 
     /* ── Summary updater ── */
     function updateSummary() {
@@ -2725,12 +3213,22 @@
       var cur     = pbState.currency;
       var hc      = pbState.headcount;
 
-      // Salary row
-      document.getElementById('sum-salary').textContent = monthly ? fmtMoney(monthly * hc, cur) : '--';
+      // Salary row — total across all employees
+      document.getElementById('sum-salary').textContent = monthly ? fmtMoney(monthly, cur) : '--';
 
-      // Employer contributions (simplified — 0% for now)
-      document.getElementById('sum-contrib').textContent = monthly ? fmtMoney(0, cur) : '--';
-      document.getElementById('sum-contrib-note').textContent = 'Contact for country-specific rates';
+      // Employer contributions
+      var contribResult = calcTotalContributions();
+      if (monthly && contribResult.hasData) {
+        document.getElementById('sum-contrib').textContent = fmtMoney(contribResult.total, cur);
+        var contribPct = monthly ? ((contribResult.total / monthly) * 100).toFixed(1) : '0';
+        document.getElementById('sum-contrib-note').textContent = '~' + contribPct + '% of gross';
+      } else if (monthly) {
+        document.getElementById('sum-contrib').textContent = fmtMoney(0, cur);
+        document.getElementById('sum-contrib-note').textContent = 'Contact for country-specific rates';
+      } else {
+        document.getElementById('sum-contrib').textContent = '--';
+        document.getElementById('sum-contrib-note').textContent = '% of gross';
+      }
 
       // Services
       var container = document.getElementById('sum-services-container');
@@ -2778,41 +3276,30 @@
         container.appendChild(row);
       });
 
-      // Annual Bonus — shown if entered, added as monthly equivalent
-      var bonusMonthly = 0;
-      var bonusVal = parseFloat(pbState.bonus);
-      if (!isNaN(bonusVal) && bonusVal > 0) {
-        bonusMonthly = (bonusVal / 12) * hc;
-        var bonusRow = document.createElement('div');
-        bonusRow.className = 'pb-sum-row';
-        bonusRow.innerHTML =
-          '<div class="pb-sum-row-label">' +
-            '<div class="pb-sum-row-label-main">Annual Bonus</div>' +
-            '<div class="pb-sum-row-label-sub">' + fmtMoney(bonusVal, cur) + ' / year ÷ 12</div>' +
-          '</div>' +
-          '<div class="pb-sum-row-value">' + fmtMoney(bonusMonthly, cur) + '</div>';
-        container.appendChild(bonusRow);
+      // Annual Bonus row
+      var bonusMonthly = getTotalMonthlyBonus();
+      var bonusRowEl = document.getElementById('sum-bonus-row');
+      if (bonusMonthly > 0) {
+        document.getElementById('sum-bonus').textContent = fmtMoney(bonusMonthly, cur);
+        bonusRowEl.style.display = '';
+      } else {
+        bonusRowEl.style.display = 'none';
       }
 
-      // Monthly Allowance — shown if entered, added directly
-      var allowanceMonthly = 0;
-      var allowanceVal = parseFloat(pbState.allowance);
-      if (!isNaN(allowanceVal) && allowanceVal > 0) {
-        allowanceMonthly = allowanceVal * hc;
-        var allowRow = document.createElement('div');
-        allowRow.className = 'pb-sum-row';
-        allowRow.innerHTML =
-          '<div class="pb-sum-row-label">' +
-            '<div class="pb-sum-row-label-main">Monthly Allowance</div>' +
-            '<div class="pb-sum-row-label-sub">' + fmtMoney(allowanceVal, cur) + ' × ' + hc + ' person(s)</div>' +
-          '</div>' +
-          '<div class="pb-sum-row-value">' + fmtMoney(allowanceMonthly, cur) + '</div>';
-        container.appendChild(allowRow);
+      // Monthly Allowance row
+      var allowanceMonthly = getTotalMonthlyAllowance();
+      var allowRowEl = document.getElementById('sum-allowance-row');
+      if (allowanceMonthly > 0) {
+        document.getElementById('sum-allowance').textContent = fmtMoney(allowanceMonthly, cur);
+        allowRowEl.style.display = '';
+      } else {
+        allowRowEl.style.display = 'none';
       }
 
-      // Totals
+      // Totals (include contributions)
       if (monthly) {
-        var totalMonth = monthly * hc + totalServices + bonusMonthly + allowanceMonthly;
+        var contribAmount = contribResult.hasData ? contribResult.total : 0;
+        var totalMonth = monthly + bonusMonthly + allowanceMonthly + contribAmount + totalServices;
         var totalYear  = totalMonth * 12;
         document.getElementById('sum-total-month').textContent = fmtMoney(totalMonth, cur);
         document.getElementById('sum-total-year').textContent  = fmtMoney(totalYear, cur);
@@ -2838,7 +3325,7 @@
     function handleGenerate() {
       var monthly = getMonthlyGross();
       if (!monthly) {
-        alert('Please enter a monthly salary before generating the proposal.');
+        alert('Please enter a salary for at least one employee before generating the proposal.');
         return;
       }
 
@@ -2858,7 +3345,7 @@
         return serviceFees[k] ? serviceFees[k].label : k;
       }).join(', ') || '—';
 
-      var salaryDisplay = fmtMoney(monthly, cur) + '/ month';
+      var salaryDisplay = fmtMoney(monthly, cur) + '/ month (total)';
       var infoRows = [
         ['Country',             pbState.country || '—'],
         ['Employment Type',     empTypeLabels[pbState.empType] || '—'],
@@ -2881,17 +3368,21 @@
         if (!svc || svc.free || svc.oneTime) return;
         totalSvcMonthly += svc.amount * hc;
       });
-      var bonusM     = (parseFloat(pbState.bonus)     || 0) / 12;
-      var allowanceM = (parseFloat(pbState.allowance)  || 0);
-      var grossM     = monthly * hc + bonusM * hc + allowanceM * hc;
-      var totalM     = grossM + totalSvcMonthly;
+      var bonusM     = getTotalMonthlyBonus();
+      var allowanceM = getTotalMonthlyAllowance();
+      var grossM     = monthly + bonusM + allowanceM;
+      var contribGen = calcTotalContributions();
+      var contribM   = contribGen.hasData ? contribGen.total : 0;
+      var totalM     = grossM + contribM + totalSvcMonthly;
 
       // ── Metric cards ──
+      var contribNote = contribGen.hasData ? 'per month' : 'Contact for rates';
+      var totalNote   = contribGen.hasData ? 'per month' : 'per month (excl. contributions)';
       var metrics = [
         { dot: '#1d4783', value: fmtMoney(grossM, cur), label: 'Gross Salary',           note: 'per month' },
-        { dot: '#019de7', value: fmtMoney(0, cur),      label: 'Employer Contributions', note: 'Contact for rates' },
+        { dot: '#019de7', value: fmtMoney(contribM, cur), label: 'Employer Contributions', note: contribNote },
         { dot: '#ffa245', value: fmtMoney(totalSvcMonthly, cur), label: 'Marco Service Fees', note: 'per month' },
-        { dot: '#6bce20', value: fmtMoney(totalM, cur), label: 'Total Employer Cost',    note: 'per month (excl. contributions)' }
+        { dot: '#6bce20', value: fmtMoney(totalM, cur), label: 'Total Employer Cost',    note: totalNote }
       ];
       document.getElementById('pr-metrics-row').innerHTML = metrics.map(function(m) {
         return '<div class="pr-metric-card">' +
@@ -2903,33 +3394,76 @@
           '</div></div>';
       }).join('');
 
-      // ── Pay Details table ──
-      var payRows = [
-        ['Basic Salary', 'Fixed monthly', fmtMoney(monthly * hc, cur), fmtMoney(monthly * hc * 12, cur)]
-      ];
-      if (bonusM > 0) payRows.push(['Annual Bonus', 'Annual ÷ 12', fmtMoney(bonusM * hc, cur), fmtMoney(bonusM * hc * 12, cur)]);
-      if (allowanceM > 0) payRows.push(['Monthly Allowance', 'Fixed monthly', fmtMoney(allowanceM * hc, cur), fmtMoney(allowanceM * hc * 12, cur)]);
-
+      // ── Pay Details table (per-employee) ──
       var payTable = document.getElementById('pr-pay-table');
       var payHtml = '<div class="pr-table-row header">' +
-        ['Pay Item','Calculation Basis','Monthly Amount','Annual Amount'].map(function(h) {
-          return '<div class="pr-table-cell muted">' + h + '</div>';
+        ['Employee','Monthly Salary','Monthly Allowance','Annual Bonus','Gross/ Month','Gross/ Year'].map(function(h) {
+          return '<div class="pr-table-cell" style="color:#8f98b5">' + h + '</div>';
         }).join('') + '</div>';
-      payRows.forEach(function(row) {
+
+      for (var ei = 0; ei < hc; ei++) {
+        var emp = pbState.employees[ei] || {};
+        var empSal = parseFloat(emp.salary) || 0;
+        var empMonthlySal = pbState.salaryFreq === 'annual' ? empSal / 12 : empSal;
+        var empAllow = parseFloat(emp.allowance) || 0;
+        var empBonus = parseFloat(emp.bonus) || 0;
+        var empGrossM = empMonthlySal + empAllow + (empBonus / 12);
+        var empGrossY = empGrossM * 12;
+
         payHtml += '<div class="pr-table-row body-row">' +
-          ['<span>' + row[0] + '</span>',
-           '<span class="muted" style="color:#8f98b5;font-weight:400">' + row[1] + '</span>',
-           row[2], row[3]].map(function(v, i) {
-            return '<div class="pr-table-cell' + (i > 0 ? '' : '') + '">' + v + '</div>';
-          }).join('') + '</div>';
-      });
+          '<div class="pr-table-cell">Employee ' + (ei + 1) + '</div>' +
+          '<div class="pr-table-cell">' + fmtMoney(empMonthlySal, cur) + '</div>' +
+          '<div class="pr-table-cell">' + fmtMoney(empAllow, cur) + '</div>' +
+          '<div class="pr-table-cell">' + fmtMoney(empBonus, cur) + '</div>' +
+          '<div class="pr-table-cell">' + fmtMoney(empGrossM, cur) + '</div>' +
+          '<div class="pr-table-cell">' + fmtMoney(empGrossY, cur) + '</div>' +
+          '</div>';
+      }
+
       payHtml += '<div class="pr-table-row total-row">' +
-        '<div class="pr-table-cell">Total Gross</div>' +
+        '<div class="pr-table-cell">Total (' + hc + ' employee' + (hc > 1 ? 's' : '') + ')</div>' +
+        '<div class="pr-table-cell"></div>' +
+        '<div class="pr-table-cell"></div>' +
         '<div class="pr-table-cell"></div>' +
         '<div class="pr-table-cell accent">' + fmtMoney(grossM, cur) + '</div>' +
         '<div class="pr-table-cell accent">' + fmtMoney(grossM * 12, cur) + '</div>' +
         '</div>';
       payTable.innerHTML = payHtml;
+
+      // ── Employer Contributions table ──
+      var contribSection = document.getElementById('pr-contrib-section');
+      var contribTable = document.getElementById('pr-contrib-table');
+      if (contribGen.hasData && contribGen.items.length > 0) {
+        contribSection.style.display = '';
+        var cHtml = '<div class="pr-table-row header">' +
+          ['Item','Group','Rate / Amount','Monthly Cost (' + cur + ')'].map(function(h) {
+            return '<div class="pr-table-cell muted">' + h + '</div>';
+          }).join('') + '</div>';
+
+        contribGen.items.forEach(function(item) {
+          var amt = contribGen.itemTotals[item.code];
+          var rateDisplay = item.fixed ? (cur + ' ' + Number(item.fixed).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' fixed')
+                         : (item.rate ? item.rate + '%' : '0%');
+          if (item.cap) rateDisplay += ' (cap ' + Number(item.cap).toLocaleString('en-US') + ')';
+          if (item.threshold) rateDisplay += ' (above ' + Number(item.threshold).toLocaleString('en-US') + ')';
+          cHtml += '<div class="pr-table-row body-row">' +
+            '<div class="pr-table-cell">' + item.name + '</div>' +
+            '<div class="pr-table-cell muted">' + item.group + '</div>' +
+            '<div class="pr-table-cell muted">' + rateDisplay + '</div>' +
+            '<div class="pr-table-cell">' + fmtMoney(amt, cur) + '</div>' +
+            '</div>';
+        });
+
+        cHtml += '<div class="pr-table-row total-row">' +
+          '<div class="pr-table-cell">Total Employer Contributions</div>' +
+          '<div class="pr-table-cell"></div>' +
+          '<div class="pr-table-cell"></div>' +
+          '<div class="pr-table-cell accent">' + fmtMoney(contribM, cur) + '</div>' +
+          '</div>';
+        contribTable.innerHTML = cHtml;
+      } else {
+        contribSection.style.display = 'none';
+      }
 
       // ── Marco Service Fees table ──
       var svcKeys = Object.keys(pbState.services);
@@ -2975,26 +3509,283 @@
     }
     document.getElementById('pb-generate-btn').addEventListener('click', handleGenerate);
     document.getElementById('pb-sum-generate-btn').addEventListener('click', handleGenerate);
-    document.getElementById('pr-download-btn').addEventListener('click', async function() {
-      var btn = document.getElementById('pr-download-btn');
-      var origText = btn.textContent;
-      btn.textContent = 'Generating . . .';
-      btn.disabled = true;
-      btn.style.opacity = '0.8';
+    /* ── Download dropdown toggle ── */
+    var dlBtn = document.getElementById('pr-download-btn');
+    var dlMenu = document.getElementById('pr-download-menu');
+    dlBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dlMenu.classList.toggle('open');
+      dlBtn.classList.toggle('open', isOpen);
+    });
+    document.addEventListener('click', function(e) {
+      if (!dlMenu.contains(e.target) && !dlBtn.contains(e.target)) {
+        dlMenu.classList.remove('open');
+        dlBtn.classList.remove('open');
+      }
+    });
+
+    /* ── Excel download ── */
+    document.getElementById('pr-dl-excel').addEventListener('click', async function() {
+      dlMenu.classList.remove('open');
+      dlBtn.classList.remove('open');
+
+      var cur = pbState.currency;
+      var hc  = pbState.headcount;
+      var monthly = getMonthlyGross();
+      if (!monthly) { alert('Please generate a proposal first.'); return; }
+
+      var today = new Date();
+      var months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+      var genDate = today.getDate() + ' ' + months[today.getMonth()] + ' ' + today.getFullYear();
+      var empTypeLabels = {
+        local_employee: 'Local Employee', foreigner: 'Foreigner', expat: 'Expat',
+        independent_contractor: 'Independent Contractor', eor_employee: 'EOR Employee'
+      };
+      var selectedSvcNames = Object.keys(pbState.services).map(function(k) {
+        return serviceFees[k] ? serviceFees[k].label : k;
+      }).join(', ') || '—';
+
+      var bonusM     = getTotalMonthlyBonus();
+      var allowanceM = getTotalMonthlyAllowance();
+      var grossM     = monthly + bonusM + allowanceM;
+      var contribGen = calcTotalContributions();
+      var contribM   = contribGen.hasData ? contribGen.total : 0;
+      var totalSvcMonthly = 0;
+      Object.keys(pbState.services).forEach(function(k) {
+        var svc = serviceFees[k];
+        if (!svc || svc.free || svc.oneTime) return;
+        totalSvcMonthly += svc.amount * hc;
+      });
+      var totalM = grossM + contribM + totalSvcMonthly;
+
+      /* ── Style constants ── */
+      var fontMain   = { name: 'Arial', size: 10 };
+      var fontBold   = { name: 'Arial', size: 10, bold: true };
+      var fontTitle  = { name: 'Arial', size: 12, bold: true, color: { argb: 'FF1D4783' } };
+      var fontHdr    = { name: 'Arial', size: 10, bold: true, color: { argb: 'FFFFFFFF' } };
+      var fontTotal  = { name: 'Arial', size: 10, bold: true, color: { argb: 'FF1D4783' } };
+      var fillHdr    = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1D4783' } };
+      var fillTotal  = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF0F4FA' } };
+      var fillInfo   = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF7F8FB' } };
+      var borderThin = { top: {style:'thin', color:{argb:'FFD0D5E0'}}, bottom: {style:'thin', color:{argb:'FFD0D5E0'}}, left: {style:'thin', color:{argb:'FFD0D5E0'}}, right: {style:'thin', color:{argb:'FFD0D5E0'}} };
+      var numFmt     = '#,##0.00';
+      var alignR     = { horizontal: 'right', vertical: 'middle' };
+      var alignL     = { horizontal: 'left', vertical: 'middle' };
+
+      function styleRow(ws, r, cols, opts) {
+        for (var c = 1; c <= cols; c++) {
+          var cell = ws.getCell(r, c);
+          if (opts.font) cell.font = opts.font;
+          if (opts.fill) cell.fill = opts.fill;
+          if (opts.border) cell.border = opts.border;
+          if (opts.alignment) cell.alignment = opts.alignment;
+          if (opts.numFmt && typeof cell.value === 'number') cell.numFmt = opts.numFmt;
+        }
+      }
+
+      var wb = new ExcelJS.Workbook();
+      var ws = wb.addWorksheet('Proposal Report');
+      ws.columns = [
+        { width: 30 }, { width: 24 }, { width: 24 }, { width: 24 }, { width: 22 }, { width: 22 }
+      ];
+      var r = 0;
+
+      /* ── Section 1: Proposal Summary ── */
+      r++; ws.getCell(r, 1).value = 'MARCO PROPOSAL REPORT';
+      ws.getCell(r, 1).font = { name: 'Arial', size: 14, bold: true, color: { argb: 'FF1D4783' } };
+      ws.mergeCells(r, 1, r, 6);
+
+      r += 2;
+      var infoData = [
+        ['Country', pbState.country || '—'],
+        ['Employment Type', empTypeLabels[pbState.empType] || '—'],
+        ['Employees', hc],
+        ['Total Monthly Salary (' + cur + ')', monthly],
+        ['Expected Start Date', document.getElementById('pb-date-input').value || '—'],
+        ['Generated', genDate],
+        ['Services', selectedSvcNames]
+      ];
+      infoData.forEach(function(row_data) {
+        ws.getCell(r, 1).value = row_data[0];
+        ws.getCell(r, 1).font = fontBold;
+        ws.getCell(r, 1).fill = fillInfo;
+        ws.getCell(r, 1).border = borderThin;
+        ws.getCell(r, 2).value = row_data[1];
+        ws.getCell(r, 2).font = fontMain;
+        ws.getCell(r, 2).border = borderThin;
+        ws.getCell(r, 2).alignment = alignL;
+        if (typeof row_data[1] === 'number') ws.getCell(r, 2).numFmt = numFmt;
+        r++;
+      });
+
+      r += 1;
+      ws.getCell(r, 2).value = 'Monthly (' + cur + ')';
+      ws.getCell(r, 3).value = 'Annual (' + cur + ')';
+      styleRow(ws, r, 3, { font: fontHdr, fill: fillHdr, border: borderThin, alignment: alignR });
+      ws.getCell(r, 1).font = fontHdr; ws.getCell(r, 1).fill = fillHdr; ws.getCell(r, 1).border = borderThin;
+      r++;
+
+      var summaryData = [
+        ['Gross Salary', grossM, grossM * 12],
+        ['Employer Contributions', contribM, contribM * 12],
+        ['Marco Service Fees', totalSvcMonthly, totalSvcMonthly * 12]
+      ];
+      summaryData.forEach(function(sd) {
+        ws.getCell(r, 1).value = sd[0]; ws.getCell(r, 1).font = fontMain; ws.getCell(r, 1).border = borderThin;
+        ws.getCell(r, 2).value = sd[1]; ws.getCell(r, 2).font = fontMain; ws.getCell(r, 2).border = borderThin; ws.getCell(r, 2).numFmt = numFmt; ws.getCell(r, 2).alignment = alignR;
+        ws.getCell(r, 3).value = sd[2]; ws.getCell(r, 3).font = fontMain; ws.getCell(r, 3).border = borderThin; ws.getCell(r, 3).numFmt = numFmt; ws.getCell(r, 3).alignment = alignR;
+        r++;
+      });
+      ws.getCell(r, 1).value = 'Total Employer Cost'; ws.getCell(r, 2).value = totalM; ws.getCell(r, 3).value = totalM * 12;
+      styleRow(ws, r, 3, { font: fontTotal, fill: fillTotal, border: borderThin, alignment: alignR, numFmt: numFmt });
+      ws.getCell(r, 1).alignment = alignL;
+      r++;
+
+      /* ── Section 2: Pay Details ── */
+      r += 2;
+      ws.getCell(r, 1).value = 'PAY DETAILS';
+      ws.getCell(r, 1).font = fontTitle;
+      ws.mergeCells(r, 1, r, 6);
+      r++;
+
+      var payHeaders = ['Employee', 'Monthly Salary (' + cur + ')', 'Monthly Allowance (' + cur + ')', 'Annual Bonus (' + cur + ')', 'Gross/ Month (' + cur + ')', 'Gross/ Year (' + cur + ')'];
+      payHeaders.forEach(function(h, ci) {
+        ws.getCell(r, ci + 1).value = h;
+      });
+      styleRow(ws, r, 6, { font: fontHdr, fill: fillHdr, border: borderThin, alignment: alignR });
+      ws.getCell(r, 1).alignment = alignL;
+      r++;
+
+      var totalGrossM = 0, totalGrossY = 0;
+      for (var ei = 0; ei < hc; ei++) {
+        var emp = pbState.employees[ei] || {};
+        var empSal = parseFloat(emp.salary) || 0;
+        var empMonthlySal = pbState.salaryFreq === 'annual' ? empSal / 12 : empSal;
+        var empAllow = parseFloat(emp.allowance) || 0;
+        var empBonus = parseFloat(emp.bonus) || 0;
+        var empGrossM = empMonthlySal + empAllow + (empBonus / 12);
+        var empGrossY = empGrossM * 12;
+        totalGrossM += empGrossM;
+        totalGrossY += empGrossY;
+        var payRow = ['Employee ' + (ei + 1), empMonthlySal, empAllow, empBonus, empGrossM, empGrossY];
+        payRow.forEach(function(v, ci) { ws.getCell(r, ci + 1).value = v; });
+        styleRow(ws, r, 6, { font: fontMain, border: borderThin, alignment: alignR, numFmt: numFmt });
+        ws.getCell(r, 1).alignment = alignL;
+        r++;
+      }
+      ws.getCell(r, 1).value = 'Total (' + hc + ' employee' + (hc > 1 ? 's' : '') + ')';
+      ws.getCell(r, 5).value = totalGrossM;
+      ws.getCell(r, 6).value = totalGrossY;
+      styleRow(ws, r, 6, { font: fontTotal, fill: fillTotal, border: borderThin, alignment: alignR, numFmt: numFmt });
+      ws.getCell(r, 1).alignment = alignL;
+      r++;
+
+      /* ── Section 3: Employer Contributions ── */
+      r += 2;
+      ws.getCell(r, 1).value = 'EMPLOYER CONTRIBUTIONS';
+      ws.getCell(r, 1).font = fontTitle;
+      ws.mergeCells(r, 1, r, 4);
+      r++;
+
+      if (contribGen.hasData && contribGen.items.length > 0) {
+        var cHeaders = ['Item', 'Group', 'Rate / Amount', 'Monthly Cost (' + cur + ')'];
+        cHeaders.forEach(function(h, ci) { ws.getCell(r, ci + 1).value = h; });
+        styleRow(ws, r, 4, { font: fontHdr, fill: fillHdr, border: borderThin, alignment: alignR });
+        ws.getCell(r, 1).alignment = alignL;
+        r++;
+
+        contribGen.items.forEach(function(item) {
+          var amt = contribGen.itemTotals[item.code];
+          var rateDisplay = item.fixed ? (cur + ' ' + Number(item.fixed).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' fixed')
+                         : (item.rate ? item.rate + '%' : '0%');
+          if (item.cap) rateDisplay += ' (cap ' + Number(item.cap).toLocaleString('en-US') + ')';
+          if (item.threshold) rateDisplay += ' (above ' + Number(item.threshold).toLocaleString('en-US') + ')';
+          ws.getCell(r, 1).value = item.name;
+          ws.getCell(r, 2).value = item.group;
+          ws.getCell(r, 3).value = rateDisplay;
+          ws.getCell(r, 4).value = amt;
+          styleRow(ws, r, 4, { font: fontMain, border: borderThin, alignment: alignR, numFmt: numFmt });
+          ws.getCell(r, 1).alignment = alignL;
+          ws.getCell(r, 2).alignment = alignL;
+          r++;
+        });
+
+        ws.getCell(r, 1).value = 'Total Employer Contributions';
+        ws.getCell(r, 4).value = contribM;
+        styleRow(ws, r, 4, { font: fontTotal, fill: fillTotal, border: borderThin, alignment: alignR, numFmt: numFmt });
+        ws.getCell(r, 1).alignment = alignL;
+        r++;
+      } else {
+        ws.getCell(r, 1).value = 'Contact for country-specific rates';
+        ws.getCell(r, 1).font = { name: 'Arial', size: 10, italic: true, color: { argb: 'FF8F98B5' } };
+        r++;
+      }
+
+      /* ── Section 4: Marco Service Fees ── */
+      r += 2;
+      ws.getCell(r, 1).value = 'MARCO SERVICE FEES';
+      ws.getCell(r, 1).font = fontTitle;
+      ws.mergeCells(r, 1, r, 4);
+      r++;
+
+      var svcHeaders = ['Service', 'Pricing Model', 'One-time Fee (' + cur + ')', 'Monthly Fee (' + cur + ')'];
+      svcHeaders.forEach(function(h, ci) { ws.getCell(r, ci + 1).value = h; });
+      styleRow(ws, r, 4, { font: fontHdr, fill: fillHdr, border: borderThin, alignment: alignR });
+      ws.getCell(r, 1).alignment = alignL;
+      r++;
+
+      var totalOneTime = 0, totalMonthlyFee = 0;
+      Object.keys(pbState.services).forEach(function(k) {
+        var svc = serviceFees[k];
+        if (!svc) return;
+        var oneTime = svc.oneTime ? svc.amount * hc : null;
+        var mFee = svc.free ? 'Free' : (!svc.oneTime ? svc.amount * hc : null);
+        var model = svc.free ? 'Included' : (svc.oneTime ? 'One-time per person' : svc.unit);
+        if (svc.oneTime && !svc.free) totalOneTime += svc.amount * hc;
+        if (!svc.oneTime && !svc.free) totalMonthlyFee += svc.amount * hc;
+        ws.getCell(r, 1).value = svc.label;
+        ws.getCell(r, 2).value = model;
+        ws.getCell(r, 3).value = oneTime;
+        ws.getCell(r, 4).value = mFee;
+        styleRow(ws, r, 4, { font: fontMain, border: borderThin, alignment: alignR, numFmt: numFmt });
+        ws.getCell(r, 1).alignment = alignL;
+        ws.getCell(r, 2).alignment = alignL;
+        r++;
+      });
+      ws.getCell(r, 1).value = 'Calculable Totals';
+      ws.getCell(r, 2).value = 'Variable fees quoted separately';
+      ws.getCell(r, 3).value = totalOneTime || null;
+      ws.getCell(r, 4).value = totalMonthlyFee || null;
+      styleRow(ws, r, 4, { font: fontTotal, fill: fillTotal, border: borderThin, alignment: alignR, numFmt: numFmt });
+      ws.getCell(r, 1).alignment = alignL;
+      ws.getCell(r, 2).alignment = alignL;
+
+      /* ── Save file ── */
+      var buf = await wb.xlsx.writeBuffer();
+      var blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'Marco Proposal Report.xlsx';
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    /* ── PDF download (moved from button to PDF menu item) ── */
+    document.getElementById('pr-dl-pdf').addEventListener('click', async function() {
+      dlMenu.classList.remove('open');
+      dlBtn.classList.remove('open');
+      var btnSpan = dlBtn.querySelector('span');
+      var origText = btnSpan.textContent;
+      btnSpan.textContent = 'Generating . . .';
+      dlBtn.disabled = true;
 
       var source   = document.getElementById('proposal-report');
       var fileName = 'Marco Proposal Report.pdf';
-      var dlBtn    = document.getElementById('pr-download-btn');
+      var dlWrap   = document.querySelector('.pr-download-wrap');
 
       try {
-
-        /* Give the browser a frame to render the button text change */
-        await new Promise(function(r) { requestAnimationFrame(function() { requestAnimationFrame(r); }); });
-
-        /* Hide CTA button, show logo for PDF */
-        if (dlBtn) dlBtn.style.display = 'none';
-        var reportLogo = document.querySelector('.pr-report-logo');
-        if (reportLogo) reportLogo.style.display = 'block';
 
         /* Collect section break points relative to source element */
         var sourceRect = source.getBoundingClientRect();
@@ -3010,13 +3801,19 @@
         });
         sectionCSSY.sort(function(a, b) { return a - b; });
 
-        /* Capture element — no page scrolling, offset handled by html2canvas */
+        /* Capture element — use onclone to show logo & hide button only in the clone */
         var canvas = await html2canvas(source, {
           scale: 2,
           useCORS: true,
           allowTaint: true,
           backgroundColor: '#ffffff',
-          logging: false
+          logging: false,
+          onclone: function(clonedDoc) {
+            var clonedLogo = clonedDoc.querySelector('.pr-report-logo');
+            if (clonedLogo) clonedLogo.style.display = 'block';
+            var clonedWrap = clonedDoc.querySelector('.pr-download-wrap');
+            if (clonedWrap) clonedWrap.style.display = 'none';
+          }
         });
 
         /* Build PDF */
@@ -3086,12 +3883,8 @@
         console.error('PDF generation failed:', err);
         alert('PDF generation failed: ' + err.message);
       } finally {
-        var rl = document.querySelector('.pr-report-logo');
-        if (rl) rl.style.display = 'none';
-        if (dlBtn) dlBtn.style.display = '';
-        btn.textContent = origText;
-        btn.disabled = false;
-        btn.style.opacity = '';
+        btnSpan.textContent = origText;
+        dlBtn.disabled = false;
       }
     });
 
@@ -3101,12 +3894,10 @@
       pbState.headcount = 1;
       pbState.empType   = null;
       pbState.currency  = 'USD';
-      pbState.salary    = null;
       pbState.salaryFreq= 'monthly';
       pbState.services  = { marco_os: true };
       pbState.startDate = null;
-      pbState.bonus     = null;
-      pbState.allowance = null;
+      pbState.employees = [{ salary: null, bonus: null, allowance: null }];
 
       // Reset UI
       countryText.textContent = 'Select a country';
@@ -3114,26 +3905,15 @@
       document.getElementById('pb-count-display').value = '1';
       document.querySelectorAll('.pb-emp-card').forEach(function(c) { c.classList.remove('selected'); });
       document.getElementById('pb-currency-text').textContent = 'USD';
-      document.getElementById('pb-salary-input').value = '';
-      document.querySelectorAll('.pb-freq-btn').forEach(function(b, i) {
-        b.classList.toggle('active', i === 0);
+      document.querySelectorAll('.pb-freq-pill').forEach(function(p) {
+        p.classList.toggle('active', p.dataset.freq === 'monthly');
       });
-      document.getElementById('pb-monthly-equiv').classList.remove('visible');
       document.querySelectorAll('.pb-service-card').forEach(function(c) { c.classList.remove('selected'); });
       var marcoOsCard = document.querySelector('.pb-service-card[data-svc="marco_os"]');
       if (marcoOsCard) marcoOsCard.classList.add('selected');
       updateServiceCards(null);
       document.getElementById('pb-date-input').value = '';
-      document.getElementById('pb-bonus-input').value = '';
-      document.getElementById('pb-bonus-hint').textContent = '';
-      document.getElementById('pb-allowance-input').value = '';
-
-
-      // Collapse Advanced inputs
-      var advHeader = document.getElementById('pb-advanced-header');
-      var advBody   = document.getElementById('pb-advanced-body');
-      if (advHeader) advHeader.classList.remove('open');
-      if (advBody)   advBody.classList.remove('open');
+      renderEmployeeRows();
 
       // Clear calendar selection
       var calEl = document.getElementById('pb-calendar');
@@ -3148,10 +3928,10 @@
 
     /* ── Initial render ── */
     buildCountryList('');
-    updateServiceCards(null);   // hide expat cards until country selected
-    // Pre-select Marco OS Access
+    updateServiceCards(null);
     var marcoOsCard = document.querySelector('.pb-service-card[data-svc="marco_os"]');
     if (marcoOsCard) marcoOsCard.classList.add('selected');
+    renderEmployeeRows();
     updateSummary();
 
   })();
