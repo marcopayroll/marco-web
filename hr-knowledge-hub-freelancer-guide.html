@@ -419,8 +419,8 @@ body {
          alt="Marco" onerror="this.style.display='none'"></a>
     <div class="banner-divider"></div>
     <div class="banner-text">
-      <div class="banner-title">Freelancer Guide</div>
-      <div class="banner-subtitle">Independent Contractor Eligibility</div>
+      <div class="banner-title" data-i18n="fg.banner.title">Freelancer Guide</div>
+      <div class="banner-subtitle" data-i18n="fg.banner.subtitle">Independent Contractor Eligibility</div>
     </div>
   </div>
 </header>
@@ -428,24 +428,24 @@ body {
 <!-- FILTER BAR -->
 <div class="filter-bar">
   <button class="btn-hamburger" id="btnMobileOpen" onclick="mobileOpenDrawer()" aria-label="Open menu">&#9776;</button>
-  <span class="filter-label">Filter</span>
+  <span class="filter-label" data-i18n="fg.filter.label">Filter</span>
   <div class="search-wrap">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <input class="search-input" id="sidebarSearch" type="text"
-           placeholder="Search countries&hellip;" oninput="filterSidebar()">
+           placeholder="Search countries…" data-i18n-placeholder="fg.search.placeholder" oninput="filterSidebar()">
   </div>
   <div class="select-wrap">
     <select id="regionFilter" onchange="filterSidebar()">
-      <option value="">All regions</option>
-      <option value="Africa">Africa</option>
-      <option value="Americas">Americas</option>
-      <option value="Asia">Asia</option>
-      <option value="Europe">Europe</option>
-      <option value="Middle East">Middle East</option>
-      <option value="Oceania">Oceania</option>
+      <option value="" data-i18n="fg.region.all">All regions</option>
+      <option value="Africa" data-i18n="fg.region.Africa">Africa</option>
+      <option value="Americas" data-i18n="fg.region.Americas">Americas</option>
+      <option value="Asia" data-i18n="fg.region.Asia">Asia</option>
+      <option value="Europe" data-i18n="fg.region.Europe">Europe</option>
+      <option value="Middle East" data-i18n="fg.region.Middle_East">Middle East</option>
+      <option value="Oceania" data-i18n="fg.region.Oceania">Oceania</option>
     </select>
   </div>
-  <button class="btn-clear" onclick="clearFilters()"><span class="clear-text">Clear ✕</span><span class="clear-icon">✕</span></button>
+  <button class="btn-clear" onclick="clearFilters()"><span class="clear-text" data-i18n="fg.filter.clear">Clear ✕</span><span class="clear-icon">✕</span></button>
 </div>
 
 <!-- LAYOUT -->
@@ -457,7 +457,7 @@ body {
   <!-- SIDEBAR -->
   <nav class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <span class="sidebar-header-text">SELECT A COUNTRY</span>
+      <span class="sidebar-header-text" data-i18n="fg.sidebar.header">SELECT A COUNTRY</span>
       <button class="btn-sb-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 8H14M2 4H14M2 12H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
     <div class="sidebar-scroll" id="countryList"></div>
@@ -472,8 +472,8 @@ body {
         <line x1="20" y1="32" x2="44" y2="32" stroke="#4a9eff" stroke-width="2"/>
         <line x1="20" y1="40" x2="34" y2="40" stroke="#4a9eff" stroke-width="2"/>
       </svg>
-      <h2>Select a Country</h2>
-      <p>Select a country from the panel to view its freelancer eligibility guide.</p>
+      <h2 data-i18n="fg.welcome.title">Select a Country</h2>
+      <p data-i18n="fg.welcome.body">Select a country from the panel to view its freelancer eligibility guide.</p>
     </div>
   </main>
 
@@ -13898,18 +13898,92 @@ function getRegion(country) {
 let activeCountry = null;
 let allCountries = Object.keys(FREELANCER_DATA).sort();
 
+var FG_EN = {
+  'fg.banner.title': 'Freelancer Guide',
+  'fg.banner.subtitle': 'Independent Contractor Eligibility',
+  'fg.filter.label': 'Filter',
+  'fg.search.placeholder': 'Search countries…',
+  'fg.region.all': 'All regions',
+  'fg.region.Africa': 'Africa',
+  'fg.region.Americas': 'Americas',
+  'fg.region.Asia': 'Asia',
+  'fg.region.Europe': 'Europe',
+  'fg.region.Middle_East': 'Middle East',
+  'fg.region.Oceania': 'Oceania',
+  'fg.region.Other': 'Other',
+  'fg.filter.clear': 'Clear ✕',
+  'fg.sidebar.header': 'SELECT A COUNTRY',
+  'fg.welcome.title': 'Select a Country',
+  'fg.welcome.body': 'Select a country from the panel to view its freelancer eligibility guide.',
+  'fg.sidebar.empty': 'No countries match your search.',
+  'fg.country.Argentina': 'Argentina',
+  'fg.country.Australia': 'Australia',
+  'fg.country.Bangladesh': 'Bangladesh',
+  'fg.country.Belgium': 'Belgium',
+  'fg.country.Brazil': 'Brazil',
+  'fg.country.Cambodia': 'Cambodia',
+  'fg.country.Canada': 'Canada',
+  'fg.country.Chile': 'Chile',
+  'fg.country.China': 'China',
+  'fg.country.Colombia': 'Colombia',
+  'fg.country.Czech_Republic': 'Czech Republic',
+  'fg.country.Egypt': 'Egypt',
+  'fg.country.France': 'France',
+  'fg.country.Germany': 'Germany',
+  'fg.country.Hong_Kong': 'Hong Kong',
+  'fg.country.Hungary': 'Hungary',
+  'fg.country.India': 'India',
+  'fg.country.Indonesia': 'Indonesia',
+  'fg.country.Ireland': 'Ireland',
+  'fg.country.Israel': 'Israel',
+  'fg.country.Italy': 'Italy',
+  'fg.country.Japan': 'Japan',
+  'fg.country.Kenya': 'Kenya',
+  'fg.country.Malaysia': 'Malaysia',
+  'fg.country.Mexico': 'Mexico',
+  'fg.country.Netherlands': 'Netherlands',
+  'fg.country.New_Zealand': 'New Zealand',
+  'fg.country.Nigeria': 'Nigeria',
+  'fg.country.Pakistan': 'Pakistan',
+  'fg.country.Philippines': 'Philippines',
+  'fg.country.Poland': 'Poland',
+  'fg.country.Portugal': 'Portugal',
+  'fg.country.Romania': 'Romania',
+  'fg.country.Russia': 'Russia',
+  'fg.country.Saudi_Arabia': 'Saudi Arabia',
+  'fg.country.Singapore': 'Singapore',
+  'fg.country.South_Africa': 'South Africa',
+  'fg.country.South_Korea': 'South Korea',
+  'fg.country.Spain': 'Spain',
+  'fg.country.Sri_Lanka': 'Sri Lanka',
+  'fg.country.Sweden': 'Sweden',
+  'fg.country.Switzerland': 'Switzerland',
+  'fg.country.Taiwan': 'Taiwan',
+  'fg.country.Thailand': 'Thailand',
+  'fg.country.Turkey': 'Turkey',
+  'fg.country.UK': 'UK',
+  'fg.country.Ukraine': 'Ukraine',
+  'fg.country.United_Arab_Emirates__UAE_': 'United Arab Emirates (UAE)',
+  'fg.country.USA': 'USA',
+  'fg.country.Vietnam': 'Vietnam'
+};
+function fgT(key) { return (window.__marcoPack && window.__marcoPack[key]) || FG_EN[key] || key; }
+function fgCountry(k) { var key = 'fg.country.' + k.replace(/[^a-zA-Z0-9]/g, '_'); var val = fgT(key); return (val !== key) ? val : k; }
+function fgRegion(r) { var key = 'fg.region.' + r.replace(/[^a-zA-Z0-9]/g, '_'); var val = fgT(key); return (val !== key) ? val : r; }
+function fgStr(s) { return (window.__fgStrMap && window.__fgStrMap[s]) || s; }
+
 function buildSidebar(filtered) {
   const list = document.getElementById("countryList");
   list.innerHTML = "";
   if (!filtered.length) {
-    list.innerHTML = '<div class="sidebar-empty">No countries match your search.</div>';
+    list.innerHTML = '<div class="sidebar-empty">' + fgT('fg.sidebar.empty') + '</div>';
     return;
   }
   filtered.forEach(country => {
     const iso = COUNTRY_CODES_EN[country] || "";
     const row = document.createElement("div");
     row.className = "sb-row" + (country === activeCountry ? " active" : "");
-    row.innerHTML = `<span class="sb-code">${iso}</span><span class="sb-label">${country}</span>`;
+    row.innerHTML = `<span class="sb-code">${iso}</span><span class="sb-label">${escHtml(fgCountry(country))}</span>`;
     row.addEventListener("click", () => selectCountry(country));
     list.appendChild(row);
   });
@@ -13958,8 +14032,8 @@ function renderDetail(country) {
 
   // Country header sits outside the card flow
   let html = `<div class="fg-country-header">`;
-  html += `<h1>${escHtml(country)}</h1>`;
-  html += `<div class="fg-country-meta">${iso ? '<strong>' + iso + '</strong> &middot; ' : ''}${escHtml(region)}</div>`;
+  html += `<h1>${escHtml(fgCountry(country))}</h1>`;
+  html += `<div class="fg-country-meta">${iso ? '<strong>' + iso + '</strong> &middot; ' : ''}${escHtml(fgRegion(region))}</div>`;
   html += `</div>`;
 
   html += `<div class="fg-content">`;
@@ -13986,7 +14060,7 @@ function renderDetail(country) {
 
       // open a new card and put the section title inside as the card header
       html += `<div class="fg-card">`;
-      html += `<h2 class="fg-section-title">${escHtml(col0)}</h2>`;
+      html += `<h2 class="fg-section-title">${escHtml(fgStr(col0))}</h2>`;
       inCard = true;
 
       const m = col0.match(/^(\d+)\./);
@@ -13996,17 +14070,17 @@ function renderDetail(country) {
     } else if (isMultiCol) {
       if (nextIsTableHeader) {
         if (inTable) { html += `</tbody></table>`; }
-        const th2 = col2 !== "" ? `<th>${escHtml(col2)}</th>` : "";
-        html += `<table class="fg-table"><thead><tr><th>${escHtml(col0)}</th><th>${escHtml(col1)}</th>${th2}</tr></thead><tbody>`;
+        const th2 = col2 !== "" ? `<th>${escHtml(fgStr(col2))}</th>` : "";
+        html += `<table class="fg-table"><thead><tr><th>${escHtml(fgStr(col0))}</th><th>${escHtml(fgStr(col1))}</th>${th2}</tr></thead><tbody>`;
         inTable = true;
         nextIsTableHeader = false;
       } else if (inTable) {
-        const td2 = col2 !== "" ? `<td>${escHtml(col2)}</td>` : `<td></td>`;
-        html += `<tr><td>${escHtml(col0)}</td><td>${escHtml(col1)}</td>${td2}</tr>`;
+        const td2 = col2 !== "" ? `<td>${escHtml(fgStr(col2))}</td>` : `<td></td>`;
+        html += `<tr><td>${escHtml(fgStr(col0))}</td><td>${escHtml(fgStr(col1))}</td>${td2}</tr>`;
       } else {
         // multi-col outside table context — open a table
-        const th2 = col2 !== "" ? `<th>${escHtml(col2)}</th>` : "";
-        html += `<table class="fg-table"><thead><tr><th>${escHtml(col0)}</th><th>${escHtml(col1)}</th>${th2}</tr></thead><tbody>`;
+        const th2 = col2 !== "" ? `<th>${escHtml(fgStr(col2))}</th>` : "";
+        html += `<table class="fg-table"><thead><tr><th>${escHtml(fgStr(col0))}</th><th>${escHtml(fgStr(col1))}</th>${th2}</tr></thead><tbody>`;
         inTable = true;
       }
     } else {
@@ -14014,9 +14088,9 @@ function renderDetail(country) {
       if (inTable) { html += `</tbody></table>`; inTable = false; }
       if (col0.trim() === "") continue;
       if (col0.length <= 100) {
-        html += `<h3 class="fg-subheading">${escHtml(col0)}</h3>`;
+        html += `<h3 class="fg-subheading">${escHtml(fgStr(col0))}</h3>`;
       } else {
-        html += `<p class="fg-body">${escHtml(col0)}</p>`;
+        html += `<p class="fg-body">${escHtml(fgStr(col0))}</p>`;
       }
     }
   }
@@ -14066,6 +14140,12 @@ window.addEventListener('resize', () => {
   if (!isTablet()) {
     sb.classList.remove('expanded');
   }
+});
+</script>
+<script>
+document.addEventListener('marcolangready', function() {
+  filterSidebar();
+  if (activeCountry) renderDetail(activeCountry);
 });
 </script>
 <script src="assets/lang/lang-loader.js"></script>

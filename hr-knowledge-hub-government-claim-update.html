@@ -379,8 +379,8 @@ body {
     <a href="index.html"><img class="banner-logo" src="https://marcowallpaper.s3.ap-southeast-1.amazonaws.com/Marco+logo+white+(tall).png" alt="Marco"></a>
     <div class="banner-divider"></div>
     <div class="banner-text">
-      <div class="banner-title">Government Claim Guide</div>
-      <div class="banner-subtitle">Government claim schemes, eligibility &amp; employer responsibilities by country</div>
+      <div class="banner-title" data-i18n="gcu.banner.title">Government Claim Guide</div>
+      <div class="banner-subtitle" data-i18n="gcu.banner.subtitle">Government claim schemes, eligibility &amp; employer responsibilities by country</div>
     </div>
   </div>
 </div>
@@ -388,22 +388,22 @@ body {
 <!-- FILTER BAR -->
 <div class="filter-bar">
   <button class="btn-hamburger" id="btnMobileOpen" onclick="mobileOpenDrawer()" aria-label="Open menu">&#9776;</button>
-  <span class="filter-label">FILTER</span>
+  <span class="filter-label" data-i18n="gcu.filter.label">FILTER</span>
   <div class="search-wrap">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <input type="text" class="search-input" id="sidebarSearch" placeholder="Search country..." oninput="filterSidebar()">
+    <input type="text" class="search-input" id="sidebarSearch" placeholder="Search country..." data-i18n-placeholder="gcu.filter.search" oninput="filterSidebar()">
   </div>
   <div class="select-wrap">
     <select id="regionFilter" onchange="filterSidebar()">
-      <option value="">All Regions</option>
-      <option value="Americas">Americas</option>
-      <option value="APAC">APAC</option>
-      <option value="EMEA">EMEA</option>
-      <option value="Middle East">Middle East</option>
-      <option value="Africa">Africa</option>
+      <option value="" data-i18n="gcu.filter.allRegions">All Regions</option>
+      <option value="Americas" data-i18n="gcu.region.Americas">Americas</option>
+      <option value="APAC" data-i18n="gcu.region.APAC">APAC</option>
+      <option value="EMEA" data-i18n="gcu.region.EMEA">EMEA</option>
+      <option value="Middle East" data-i18n="gcu.region.Middle_East">Middle East</option>
+      <option value="Africa" data-i18n="gcu.region.Africa">Africa</option>
     </select>
   </div>
-  <button class="btn-clear" onclick="clearFilters()"><span class="clear-text">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
+  <button class="btn-clear" onclick="clearFilters()"><span class="clear-text" data-i18n="gcu.btn.clear">&#10005; Clear</span><span class="clear-icon">&#10005;</span></button>
 </div>
 
 <!-- LAYOUT -->
@@ -411,7 +411,7 @@ body {
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="mobileCloseDrawer()"></div>
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <span class="sidebar-header-text">SELECT A COUNTRY</span>
+      <span class="sidebar-header-text" data-i18n="gcu.sidebar.header">SELECT A COUNTRY</span>
       <button class="btn-sb-toggle" id="btnSbToggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M2 8H14M2 4H14M2 12H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -423,8 +423,8 @@ body {
   <div class="main" id="mainContent">
     <div class="welcome-state">
       <div class="big-icon">&#128196;</div>
-      <h2>Select a country to view its government claims</h2>
-      <p>Choose any country from the left panel. You can search by name, filter by region, or browse by claim category once selected.</p>
+      <h2 data-i18n="gcu.welcome.title">Select a country to view its government claims</h2>
+      <p data-i18n="gcu.welcome.body">Choose any country from the left panel. You can search by name, filter by region, or browse by claim category once selected.</p>
     </div>
   </div>
 </div>
@@ -585,15 +585,161 @@ function getClaimableByClass(text) {
   return 'tag-cb-other';
 }
 
+
+  /* ── GCU Translation helpers ── */
+  var GCU_EN = {
+    "gcu.banner.title":    "Government Claim Guide",
+    "gcu.banner.subtitle": "Government claim schemes, eligibility & employer responsibilities by country",
+    "gcu.filter.label":      "FILTER",
+    "gcu.filter.search":     "Search country...",
+    "gcu.filter.allRegions": "All Regions",
+    "gcu.region.Americas":   "Americas",
+    "gcu.region.APAC":       "APAC",
+    "gcu.region.EMEA":       "EMEA",
+    "gcu.region.Middle_East":"Middle East",
+    "gcu.region.Africa":     "Africa",
+    "gcu.btn.clear":         "✕ Clear",
+    "gcu.sidebar.header":    "SELECT A COUNTRY",
+    "gcu.sidebar.empty":     "No results found",
+    "gcu.welcome.title":     "Select a country to view its government claims",
+    "gcu.welcome.body":      "Choose any country from the left panel. You can search by name, filter by region, or browse by claim category once selected.",
+    "gcu.detail.eligible":     "Who Is Eligible",
+    "gcu.detail.amount":       "Amount / Rate",
+    "gcu.detail.duration":     "Duration / Limit",
+    "gcu.detail.claimableBy":  "Claimable By",
+    "gcu.detail.howToClaim":   "How to Claim",
+    "gcu.detail.documents":    "Required Documents",
+    "gcu.detail.deadline":     "Submission Deadline",
+    "gcu.detail.authority":    "Government Authority",
+    "gcu.detail.employerResp": "Employer Responsibility",
+    "gcu.detail.employeeResp": "Employee Responsibility",
+    "gcu.detail.payrollImpact":"Payroll / HR Impact",
+    "gcu.detail.notes":        "Notes",
+    "gcu.detail.source":       "Official Source",
+    "gcu.cb.employee":         "Employee",
+    "gcu.cb.employer":         "Employer",
+    "gcu.cb.both":             "Employee & Employer",
+    "gcu.cb.beneficiary":      "Beneficiary",
+    "gcu.cb.other":            "Other",
+    "gcu.pill.all":            "All",
+    "gcu.meta.claim":          "{n} claim",
+    "gcu.meta.claims":         "{n} claims",
+    "gcu.claimsUnit":          "claims",
+    "gcu.noCategory":          "No claims in this category.",
+    "gcu.source.link":         "Source",
+    "gcu.broad.Maternity___Parental":            "Maternity & Parental",
+    "gcu.broad.Sick_Leave___Disability":         "Sick Leave & Disability",
+    "gcu.broad.Work_Injury":                     "Work Injury",
+    "gcu.broad.Unemployment___Wage_Support":     "Unemployment & Wage Support",
+    "gcu.broad.Pension___Retirement":            "Pension & Retirement",
+    "gcu.broad.Death___Survivors":               "Death & Survivors",
+    "gcu.broad.Employment___Training":           "Employment & Training",
+    "gcu.broad.Other":                           "Other",
+    "gcu.country.Argentina":            "Argentina",
+    "gcu.country.Australia":            "Australia",
+    "gcu.country.Austria":              "Austria",
+    "gcu.country.Bahrain":              "Bahrain",
+    "gcu.country.Bangladesh":           "Bangladesh",
+    "gcu.country.Belgium":              "Belgium",
+    "gcu.country.Brazil":               "Brazil",
+    "gcu.country.Bulgaria":             "Bulgaria",
+    "gcu.country.Cambodia":             "Cambodia",
+    "gcu.country.Canada":               "Canada",
+    "gcu.country.Chile":                "Chile",
+    "gcu.country.China":                "China",
+    "gcu.country.Colombia":             "Colombia",
+    "gcu.country.Costa Rica":           "Costa Rica",
+    "gcu.country.Croatia":              "Croatia",
+    "gcu.country.Cyprus":               "Cyprus",
+    "gcu.country.Czech Republic":       "Czech Republic",
+    "gcu.country.Denmark":              "Denmark",
+    "gcu.country.Egypt":                "Egypt",
+    "gcu.country.Estonia":              "Estonia",
+    "gcu.country.Finland":              "Finland",
+    "gcu.country.France":               "France",
+    "gcu.country.Germany":              "Germany",
+    "gcu.country.Ghana":                "Ghana",
+    "gcu.country.Greece":               "Greece",
+    "gcu.country.Hong Kong":            "Hong Kong",
+    "gcu.country.Hungary":              "Hungary",
+    "gcu.country.Iceland":              "Iceland",
+    "gcu.country.India":                "India",
+    "gcu.country.Indonesia":            "Indonesia",
+    "gcu.country.Ireland":              "Ireland",
+    "gcu.country.Israel":               "Israel",
+    "gcu.country.Italy":                "Italy",
+    "gcu.country.Japan":                "Japan",
+    "gcu.country.Jordan":               "Jordan",
+    "gcu.country.Kenya":                "Kenya",
+    "gcu.country.Kuwait":               "Kuwait",
+    "gcu.country.Laos":                 "Laos",
+    "gcu.country.Latvia":               "Latvia",
+    "gcu.country.Lithuania":            "Lithuania",
+    "gcu.country.Luxembourg":           "Luxembourg",
+    "gcu.country.Malaysia":             "Malaysia",
+    "gcu.country.Malta":                "Malta",
+    "gcu.country.Mauritius":            "Mauritius",
+    "gcu.country.Mexico":               "Mexico",
+    "gcu.country.Morocco":              "Morocco",
+    "gcu.country.Myanmar":              "Myanmar",
+    "gcu.country.Nepal":                "Nepal",
+    "gcu.country.Netherlands":          "Netherlands",
+    "gcu.country.New Zealand":          "New Zealand",
+    "gcu.country.Nigeria":              "Nigeria",
+    "gcu.country.Norway":               "Norway",
+    "gcu.country.Oman":                 "Oman",
+    "gcu.country.Pakistan":             "Pakistan",
+    "gcu.country.Peru":                 "Peru",
+    "gcu.country.Philippines":          "Philippines",
+    "gcu.country.Poland":               "Poland",
+    "gcu.country.Portugal":             "Portugal",
+    "gcu.country.Qatar":                "Qatar",
+    "gcu.country.Romania":              "Romania",
+    "gcu.country.Saudi Arabia":         "Saudi Arabia",
+    "gcu.country.Serbia":               "Serbia",
+    "gcu.country.Singapore":            "Singapore",
+    "gcu.country.Slovakia":             "Slovakia",
+    "gcu.country.Slovenia":             "Slovenia",
+    "gcu.country.South Africa":         "South Africa",
+    "gcu.country.South Korea":          "South Korea",
+    "gcu.country.Spain":                "Spain",
+    "gcu.country.Sri Lanka":            "Sri Lanka",
+    "gcu.country.Sweden":               "Sweden",
+    "gcu.country.Switzerland":          "Switzerland",
+    "gcu.country.Taiwan":               "Taiwan",
+    "gcu.country.Thailand":             "Thailand",
+    "gcu.country.Turkey":               "Turkey",
+    "gcu.country.Ukraine":              "Ukraine",
+    "gcu.country.United Arab Emirates": "United Arab Emirates",
+    "gcu.country.United Kingdom":       "United Kingdom",
+    "gcu.country.United States":        "United States",
+    "gcu.country.Uruguay":              "Uruguay",
+    "gcu.country.Vietnam":              "Vietnam"
+  };
+  function gcuT(key) { return (window.__marcoPack && window.__marcoPack[key]) || GCU_EN[key] || key; }
+  function gcuFmt(key, vars) {
+    var t = gcuT(key);
+    return t.replace(/\{(\w+)\}/g, function(_, k) { return vars[k] !== undefined ? vars[k] : ''; });
+  }
+  function gcuStr(s) { return (window.__gcuStrMap && window.__gcuStrMap[s]) || s; }
+  function gcuCountry(k) {
+    var key = 'gcu.country.' + k;
+    var val = gcuT(key); return (val !== key) ? val : k;
+  }
+  function gcuBroad(g) {
+    var key = 'gcu.broad.' + g.replace(/[^a-zA-Z0-9]/g, '_');
+    var val = gcuT(key); return (val !== key) ? val : g;
+  }
+
 function getClaimableByLabel(text) {
   const t = (text || '').toLowerCase();
   const hasEmployee = t.includes('employee');
   const hasEmployer = t.includes('employer');
-  if (hasEmployee && hasEmployer) return 'Employee &amp; Employer';
-  if (hasEmployer) return 'Employer';
-  if (hasEmployee) return 'Employee';
-  if (t.includes('beneficiar') || t.includes('family')) return 'Beneficiary';
-  return text ? escHtml(text.split(';')[0].trim().substring(0, 30)) : 'Other';
+  if (hasEmployee && hasEmployer) return gcuT('gcu.cb.both');
+  if (hasEmployer) return gcuT('gcu.cb.employer');
+  if (hasEmployee) return gcuT('gcu.cb.employee');
+  if (t.includes('beneficiar') || t.includes('family')) return gcuT('gcu.cb.beneficiary');
+  return text ? escHtml(text.split(';')[0].trim().substring(0, 30)) : gcuT('gcu.cb.other');
 }
 
 function renderClaim(c) {
@@ -601,32 +747,32 @@ function renderClaim(c) {
   const cbLabel = getClaimableByLabel(c.claimableBy);
 
   let detailsHtml = '';
-  if (c.eligible)      detailsHtml += `<div class="detail-block"><div class="detail-label">Who Is Eligible</div><div class="detail-value">${escHtml(c.eligible)}</div></div>`;
-  if (c.amount)        detailsHtml += `<div class="detail-block"><div class="detail-label">Amount / Rate</div><div class="detail-value">${escHtml(c.amount)}</div></div>`;
-  if (c.duration)      detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">Duration / Limit</div><div class="detail-value">${escHtml(c.duration)}</div></div>`;
-  if (c.claimableBy)   detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">Claimable By</div><div class="detail-value">${escHtml(c.claimableBy)}</div></div>`;
-  if (c.howToClaim)    detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">How to Claim</div><div class="detail-value">${escHtml(c.howToClaim)}</div></div>`;
-  if (c.documents)     detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">Required Documents</div><div class="detail-value">${escHtml(c.documents)}</div></div>`;
-  if (c.deadline)      detailsHtml += `<div class="detail-block"><div class="detail-label">Submission Deadline</div><div class="detail-value">${escHtml(c.deadline)}</div></div>`;
-  if (c.authority)     detailsHtml += `<div class="detail-block"><div class="detail-label">Government Authority</div><div class="detail-value">${escHtml(c.authority)}</div></div>`;
-  if (c.employerResp)  detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">Employer Responsibility</div><div class="detail-value">${escHtml(c.employerResp)}</div></div>`;
-  if (c.employeeResp)  detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">Employee Responsibility</div><div class="detail-value">${escHtml(c.employeeResp)}</div></div>`;
-  if (c.payrollImpact) detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">Payroll / HR Impact</div><div class="detail-value">${escHtml(c.payrollImpact)}</div></div>`;
-  if (c.notes)         detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">Notes</div><div class="detail-value">${escHtml(c.notes)}</div></div>`;
+  if (c.eligible)      detailsHtml += `<div class="detail-block"><div class="detail-label">${gcuT('gcu.detail.eligible')}</div><div class="detail-value">${gcuStr(c.eligible)}</div></div>`;
+  if (c.amount)        detailsHtml += `<div class="detail-block"><div class="detail-label">${gcuT('gcu.detail.amount')}</div><div class="detail-value">${gcuStr(c.amount)}</div></div>`;
+  if (c.duration)      detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">${gcuT('gcu.detail.duration')}</div><div class="detail-value">${gcuStr(c.duration)}</div></div>`;
+  if (c.claimableBy)   detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">${gcuT('gcu.detail.claimableBy')}</div><div class="detail-value">${gcuStr(c.claimableBy)}</div></div>`;
+  if (c.howToClaim)    detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">${gcuT('gcu.detail.howToClaim')}</div><div class="detail-value">${gcuStr(c.howToClaim)}</div></div>`;
+  if (c.documents)     detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">${gcuT('gcu.detail.documents')}</div><div class="detail-value">${gcuStr(c.documents)}</div></div>`;
+  if (c.deadline)      detailsHtml += `<div class="detail-block"><div class="detail-label">${gcuT('gcu.detail.deadline')}</div><div class="detail-value">${gcuStr(c.deadline)}</div></div>`;
+  if (c.authority)     detailsHtml += `<div class="detail-block"><div class="detail-label">${gcuT('gcu.detail.authority')}</div><div class="detail-value">${gcuStr(c.authority)}</div></div>`;
+  if (c.employerResp)  detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">${gcuT('gcu.detail.employerResp')}</div><div class="detail-value">${gcuStr(c.employerResp)}</div></div>`;
+  if (c.employeeResp)  detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">${gcuT('gcu.detail.employeeResp')}</div><div class="detail-value">${gcuStr(c.employeeResp)}</div></div>`;
+  if (c.payrollImpact) detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">${gcuT('gcu.detail.payrollImpact')}</div><div class="detail-value">${gcuStr(c.payrollImpact)}</div></div>`;
+  if (c.notes)         detailsHtml += `<div class="detail-block detail-full"><div class="detail-label">${gcuT('gcu.detail.notes')}</div><div class="detail-value">${gcuStr(c.notes)}</div></div>`;
 
   let sourceHtml = '';
   if (c.sourceUrl) {
     const urls = c.sourceUrl.split('\n').map(u => u.trim()).filter(Boolean);
     if (urls.length) {
-      sourceHtml = `<div class="detail-block detail-full"><div class="detail-label">Official Source</div><div class="detail-value">${
-        urls.map((u, i) => `<a href="${escHtml(u)}" target="_blank" rel="noopener" class="source-link">Source ${i + 1} &#8599;</a>`).join('')
+      sourceHtml = `<div class="detail-block detail-full"><div class="detail-label">${gcuT('gcu.detail.source')}</div><div class="detail-value">${
+        urls.map((u, i) => `<a href="${escHtml(u)}" target="_blank" rel="noopener" class="source-link">${gcuT('gcu.source.link')} ${i + 1} &#8599;</a>`).join('')
       }</div></div>`;
     }
   }
 
   return `<div class="benefit-card">
     <div class="benefit-header">
-      <span class="benefit-name">${escHtml(c.schemeName || '—')}</span>
+      <span class="benefit-name">${gcuStr(c.schemeName || '—')}</span>
       <span class="mandatory-tag ${cbClass}">${cbLabel}</span>
     </div>
     <div class="benefit-details">${detailsHtml}${sourceHtml}</div>
@@ -645,7 +791,7 @@ function getFilteredKeys() {
 
 function buildSidebar(filtered) {
   const list = document.getElementById('countryList');
-  if (!filtered.length) { list.innerHTML = '<div class="sidebar-empty">No results found</div>'; return; }
+  if (!filtered.length) { list.innerHTML = `<div class="sidebar-empty">${gcuT('gcu.sidebar.empty')}</div>`; return; }
 
   let html = '';
   const sorted = filtered.slice().sort((a, b) => a.localeCompare(b));
@@ -654,7 +800,7 @@ function buildSidebar(filtered) {
     html += `<div class="accordion-item">
       <div class="sb-row${currentKey === k ? ' active' : ''}" data-key="${escHtml(k)}">
         <span class="sb-code">${escHtml(getISO(k))}</span>
-        <span class="sb-label">${escHtml(k)}</span>
+        <span class="sb-label">${gcuCountry(k)}</span>
         <span class="sb-badge">${claims.length}</span>
       </div>
     </div>`;
@@ -693,16 +839,16 @@ function renderDetail(key) {
   if (!claims) return;
 
   const region = getRegion(key);
-  const metaParts = [region, `${claims.length} claim${claims.length !== 1 ? 's' : ''}`];
+  const metaParts = [region, gcuFmt(claims.length !== 1 ? 'gcu.meta.claims' : 'gcu.meta.claim', {n: claims.length})];
 
   const broadCount = {};
   claims.forEach(c => { const bg = getBroadGroup(c.category); broadCount[bg] = (broadCount[bg] || 0) + 1; });
   const presentCats = BROAD_ORDER.filter(g => broadCount[g]);
 
   let pillsHtml = `<div class="cat-pills">
-    <span class="cat-pill${currentBroadCat === 'all' ? ' active' : ''}" data-cat="all">All (${claims.length})</span>`;
+    <span class="cat-pill${currentBroadCat === 'all' ? ' active' : ''}" data-cat="all">${gcuT('gcu.pill.all')} (${claims.length})</span>`;
   presentCats.forEach(g => {
-    pillsHtml += `<span class="cat-pill${currentBroadCat === g ? ' active' : ''}" data-cat="${escHtml(g)}">${escHtml(g)} (${broadCount[g]})</span>`;
+    pillsHtml += `<span class="cat-pill${currentBroadCat === g ? ' active' : ''}" data-cat="${escHtml(g)}">${gcuBroad(g)} (${broadCount[g]})</span>`;
   });
   pillsHtml += '</div>';
 
@@ -720,21 +866,21 @@ function renderDetail(key) {
     if (currentBroadCat !== 'all' && currentBroadCat !== bg) return;
     Object.keys(grouped[bg]).sort().forEach(rawCat => {
       contentHtml += `<div class="cat-group">
-        <div class="cat-group-label">${escHtml(rawCat)}</div>
+        <div class="cat-group-label">${gcuStr(rawCat)}</div>
         ${grouped[bg][rawCat].map(c => renderClaim(c)).join('')}
       </div>`;
     });
   });
 
-  if (!contentHtml) contentHtml = '<div class="no-results">No claims in this category.</div>';
+  if (!contentHtml) contentHtml = `<div class="no-results">${gcuT('gcu.noCategory')}</div>`;
 
   document.getElementById('mainContent').innerHTML = `
     <div class="detail-header">
       <div>
-        <h1>${escHtml(key)}</h1>
+        <h1>${gcuCountry(key)}</h1>
         <div class="meta">${metaParts.join(' &middot; ')}</div>
       </div>
-      <div class="claim-count">${claims.length}<span>claims</span></div>
+      <div class="claim-count">${claims.length}<span>${gcuT('gcu.claimsUnit')}</span></div>
     </div>
     ${pillsHtml}
     <div id="claimContent">${contentHtml}</div>`;
@@ -751,6 +897,14 @@ function mobileCloseDrawer() {
 function toggleSidebar() { document.getElementById('sidebar').classList.toggle('expanded'); }
 
 buildSidebar(ALL_KEYS);
+
+/* Re-render on language change */
+document.addEventListener('marcolangready', function() {
+  buildSidebar(getFilteredKeys());
+  if (window.currentKey) renderDetail(window.currentKey);
+  // Re-apply static i18n to welcome state (already handled by applyPack)
+});
+
 </script>
 <script src="assets/lang/lang-loader.js"></script>
 </body>
