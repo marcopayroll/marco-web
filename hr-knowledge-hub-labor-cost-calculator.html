@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="assets/marco-favicon.png">
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Labor Cost Calculator | Marco</title>
   <style>
-    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+    @import url('assets/fonts/euclid-circular-b.css');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -430,34 +430,39 @@
     /* ════════════════════════════════════════
        CTA SECTION
     ════════════════════════════════════════ */
-    .lcc-cta-section { position: relative; overflow: hidden; background: linear-gradient(180deg, #f4f4ff 49.11%, #ffffff 110.41%); }
-    .lcc-cta-split { display: flex; align-items: stretch; min-height: 582px; }
-    .lcc-cta-left { flex: 0 0 auto; width: calc(var(--gutter) + 624px); padding: 80px 0 80px var(--gutter); display: flex; flex-direction: column; gap: 32px; }
-    .lcc-cta-right { flex: 1 1 0; min-width: 0; position: relative; overflow: hidden; }
-    .lcc-cta-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-    .lcc-cta-label { display: flex; align-items: center; gap: 8px; }
-    .lcc-cta-label-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
-    .lcc-cta-label span { font-size: 14px; font-weight: 500; line-height: 18px; color: #162351; }
-    .lcc-cta-heading { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; max-width: 496px; }
+    .section-label { display: flex; align-items: center; gap: 8px; }
+    .section-label .line { width: 16px; height: 2px; background: currentColor; flex-shrink: 0; }
+    .section-label span { font-size: 14px; font-weight: 500; line-height: 18px; }
+    .lcc-cta-section { width: 100%; overflow: hidden; background: linear-gradient(to bottom, #f4f4ff 49.112%, #fff 110.41%); }
+    .lcc-cta-section > .container { display: flex; align-items: stretch; min-height: 482px; }
+    .lcc-cta-inner {
+      flex: 1 1 auto; min-width: 0;
+      display: flex; flex-direction: column; padding: 80px 0;
+    }
+    .lcc-cta-section .section-label { color: #162351; }
+    .lcc-cta-heading {
+      font-size: 48px; font-weight: 600; line-height: 60px;
+      letter-spacing: -2.4px; margin-top: 32px;
+      font-family: var(--font);
+    }
     .lcc-cta-heading-dark { color: #162351; }
     .lcc-cta-heading-blue { color: #019de7; }
-    .lcc-cta-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #162351; max-width: 496px; }
-    @media (max-width: 1100px) {
-      .lcc-cta-left { width: calc(var(--gutter) + 480px); }
-      .lcc-cta-heading { font-size: 40px; line-height: 50px; letter-spacing: -2px; max-width: 100%; }
-      .lcc-cta-body { max-width: 100%; }
+    .lcc-cta-body {
+      font-size: 16px; font-weight: 400; line-height: 20px;
+      color: #162351; letter-spacing: -0.8px;
+      max-width: 520px; margin-top: 32px;
+      font-family: var(--font);
     }
-    @media (max-width: 860px) {
-      .lcc-cta-split { flex-direction: column-reverse; min-height: auto; }
-      .lcc-cta-left { width: 100%; padding: 60px var(--gutter) 64px; }
-      .lcc-cta-right { flex: none; height: 320px; }
-      .lcc-cta-heading { font-size: 36px; line-height: 44px; letter-spacing: -1.8px; max-width: 100%; }
-      .lcc-cta-body { max-width: 100%; }
+    .lcc-cta-wrap { margin-top: 40px; }
+    .lcc-cta-image {
+      flex: 0 0 49.17vw;
+      margin-left: 24px;
+      margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
+      position: relative; overflow: hidden;
     }
-    @media (max-width: 560px) {
-      .lcc-cta-left { padding: 48px var(--gutter) 56px; gap: 24px; }
-      .lcc-cta-heading { font-size: 28px; line-height: 36px; letter-spacing: -1.4px; }
-      .lcc-cta-right { height: 220px; }
+    .lcc-cta-image img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
     .lcc-cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 4px 24px; border-radius: 50px; font-family: var(--font); font-size: 16px; font-weight: 400; line-height: normal; letter-spacing: -0.8px; color: #fff; background: #162351; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background 0.18s ease; }
     .lcc-cta-btn:hover { background: #0185C4; }
@@ -782,10 +787,10 @@
 
 <!-- ══════════════════ CTA SECTION ══════════════════ -->
 <section class="lcc-cta-section">
-  <div class="lcc-cta-split">
-    <div class="lcc-cta-left">
-      <div class="lcc-cta-label">
-        <div class="lcc-cta-label-line"></div>
+  <div class="container">
+    <div class="lcc-cta-inner">
+      <div class="section-label">
+        <div class="line"></div>
         <span data-i18n="lcc.cta.label">NEED MORE CLARITY?</span>
       </div>
       <h2 class="lcc-cta-heading">
@@ -793,14 +798,14 @@
         <span class="lcc-cta-heading-blue" data-i18n="lcc.cta.heading.blue">Let's talk through the details.</span>
       </h2>
       <p class="lcc-cta-body" data-i18n="lcc.cta.body">Statutory rates only tell part of the story. Thresholds, bilateral agreements, visa classifications, and collective bargaining rules all affect your real cost. Our payroll specialists can walk you through an accurate, country-specific breakdown for your team.</p>
-      <div>
+      <div class="lcc-cta-wrap">
         <a href="company-contact-us.html" class="lcc-cta-btn">
           <span data-i18n="lcc.cta.btn">Contact Us</span>
           <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
         </a>
       </div>
     </div>
-    <div class="lcc-cta-right">
+    <div class="lcc-cta-image">
       <img src="assets/HR Knowledge Hub/Labor Cost Calculator/calculation 1.jpg" alt="Labor cost calculation">
     </div>
   </div>

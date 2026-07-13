@@ -203,4 +203,44 @@ window.MARCO_LANG_EN_COMPANY = {
   'contact.form.msg.placeholder': 'What do you have in mind?',
   'contact.form.submit':        'Submit',
 
+  /* ── Terms of Use ── */
+  'tou.title':       'Terms of Use',
+  'tou.updated':     'Last Updated: 10 June 2026',
+  'tou.s1.h':        'Introduction',
+  'tou.s2.h':        'Proprietary Rights',
+  'tou.s3.h':        'Acceptable Use',
+  'tou.s4.h':        'Disclaimer of Warranties and Exclusion of Liability',
+  'tou.s5.h':        'Right of Access',
+  'tou.s6.h':        'Hyperlinks from the Website to other websites',
+  'tou.s7.h':        'Governing Law and Jurisdiction',
+  'tou.s8.h':        'Contact Information',
+
+  /* ── Privacy Policy ── */
+  'pp.title':        'Privacy Policy',
+  'pp.updated':      'Last Updated: 10 June 2026',
+  'pp.s1.h':         'Introduction',
+  'pp.s2.h':         'QUESTIONS ABOUT THIS PRIVACY POLICY',
+  'pp.s3.h':         'WHAT PERSONAL DATA DOES MARCO COLLECT ABOUT YOU?',
+  'pp.s4.h':         'HOW DOES MARCO COLLECT YOUR PERSONAL DATA',
+  'pp.s5.h':         'WHAT DOES MARCO USE YOUR PERSONAL DATA FOR?',
+  'pp.s6.h':         'WHO DOES MARCO SHARE YOUR PERSONAL DATA WITH?',
+  'pp.s7.h':         'REQUESTS FOR ACCESS, CORRECTION AND/OR PORTING OF PERSONAL DATA',
+  'pp.s8.h':         'HOW DOES MARCO PROTECT YOUR PERSONAL DATA?',
+  'pp.s9.h':         'PERSON LOCATED INSIDE THE EUROPEAN ECONOMIC AREA ("EEA") AND THE UK',
+  'pp.s10.h':        'UPDATES TO THIS PRIVACY POLICY',
+  'pp.s11.h':        'Contact Information',
+  'pp.appendix.h':   'APPENDIX 1',
+  'pp.appendix.sub': '(Additional provisions applicable to individuals located inside the European Economic Area and the UK)',
+  'pp.s12.h':        'WHAT IS MARCO LAWFUL BASIS FOR PROCESSING YOUR PERSONAL DATA?',
+  'pp.s13.h':        'WILL YOUR PERSONAL DATA BE TRANSFERRED OUTSIDE OF THE EEA OR THE UK?',
+  'pp.s14.h':        'HOW LONG DOES MARCO KEEP YOUR PERSONAL DATA FOR?',
+  'pp.s15.h':        'WHAT ARE YOUR RIGHTS IN RESPECT OF YOUR PERSONAL DATA?',
+
+  /* ── Cookies Policy ── */
+  'cp.title':        'Cookies Policy',
+  'cp.s1.h':         'What are Cookies?',
+  'cp.s2.h':         'The type of Cookies Marco use',
+  'cp.s3.h':         'How to manage Cookies',
+  'cp.s4.h':         'Contact Information',
+
 };

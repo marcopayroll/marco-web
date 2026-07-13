@@ -1,33 +1,32 @@
 /* HR Knowledge Hub — Freelancer Guide (hr-knowledge-hub-freelancer-guide.html)
    EN is the source language; strings here are for reference only — never loaded at runtime. */
 window.MARCO_LANG_EN_HUB_FREELANCER_GUIDE = {
-	/* ── Banner ── */
-	'fg.banner.title':    '自由职业者指南',
-	'fg.banner.subtitle': '独立承包商资格',
+  /* ── Banner ── */
+  'fg.banner.title':    'Freelancer Guide',
+  'fg.banner.subtitle': 'Independent Contractor Eligibility',
 
-	/* ── Filter bar ── */
-	'fg.filter.label':       '筛选',
-	'fg.search.placeholder': '搜索国家/地区…',
-	'fg.filter.clear':       '清除 ✕',
+  /* ── Filter bar ── */
+  'fg.filter.label':       'Filter',
+  'fg.search.placeholder': 'Search countries…',
+  'fg.filter.clear':       'Clear ✕',
 
-	/* ── Region options ── */
-	'fg.region.all':         '所有地区',
-	'fg.region.Africa':      '非洲',
-	'fg.region.Americas':    '美洲',
-	'fg.region.Asia':        '亚洲',
-	'fg.region.Europe':      '欧洲',
-	'fg.region.Middle_East': '中东',
-	'fg.region.Oceania':     '大洋洲',
-	'fg.region.Other':       '其他',
+  /* ── Region options ── */
+  'fg.region.all':         'All regions',
+  'fg.region.Africa':      'Africa',
+  'fg.region.Americas':    'Americas',
+  'fg.region.Asia':        'Asia',
+  'fg.region.Europe':      'Europe',
+  'fg.region.Middle_East': 'Middle East',
+  'fg.region.Oceania':     'Oceania',
+  'fg.region.Other':       'Other',
 
-	/* ── Sidebar ── */
-	'fg.sidebar.header': '选择国家/地区',
-	'fg.sidebar.empty':  '没有符合搜索条件的国家/地区。',
+  /* ── Sidebar ── */
+  'fg.sidebar.header': 'SELECT A COUNTRY',
+  'fg.sidebar.empty':  'No countries match your search.',
 
-	/* ── Welcome state ── */
-	'fg.welcome.title': '选择国家/地区',
-	'fg.welcome.body':  '请从面板中选择一个国家/地区，以查看其自由职业者资格指南。',
-
+  /* ── Welcome state ── */
+  'fg.welcome.title': 'Select a Country',
+  'fg.welcome.body':  'Select a country from the panel to view its freelancer eligibility guide.',
 
   /* ── Country names ── */
   'fg.country.Argentina':                  'Argentina',

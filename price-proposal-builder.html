@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="assets/marco-favicon.png">
@@ -9,7 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
   <style>
-    @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+    @import url('assets/fonts/euclid-circular-b.css');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1111,6 +1111,71 @@
     }
     .pb-emp-input::placeholder { color: #8F98B5; }
 
+    /* Employment type radio selector (per-employee) */
+    .pb-emp-type-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pb-emp-type-label {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: #8F98B5;
+      text-transform: uppercase;
+    }
+    .pb-emp-type-row {
+      display: flex;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .pb-emp-type-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .pb-emp-type-radio {
+      width: 22px;
+      height: 22px;
+      border-radius: 50px;
+      border: 1px solid #BCC9EB;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pb-emp-type-radio-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: transparent;
+    }
+    .pb-emp-type-option[data-selected="true"] .pb-emp-type-radio-dot {
+      background: #019DE7;
+    }
+    .pb-emp-type-option[data-selected="false"] .pb-emp-type-radio-dot {
+      background: #9199A6;
+    }
+    .pb-emp-type-option-label {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+      color: #475072;
+      font-family: 'Euclid Circular B', sans-serif;
+    }
+    .pb-emp-type-option[data-selected="true"] .pb-emp-type-option-label {
+      color: #019DE7;
+    }
+    .pb-emp-type-option[data-selected="false"]:hover .pb-emp-type-radio-dot {
+      background: #BCC9EB;
+    }
+    .pb-emp-type-option[data-selected="false"]:hover .pb-emp-type-option-label {
+      color: #BCC9EB;
+    }
+
     /* Headcount row — controls + currency/freq on same line */
     .pb-headcount-row {
       display: flex;
@@ -1651,6 +1716,19 @@
     }
     .pr-table-cell.accent { color: #019de7; }
     .pr-table-cell.free-cell { color: #6bce20; }
+    .pr-table-row.body-row .pr-table-cell { height: 60px; }
+    .pr-table-cell.emp-name-cell {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 4px;
+    }
+    .pr-table-cell.emp-name-cell .emp-type-sub {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: #8F98B5;
+    }
 
 
 
@@ -1952,38 +2030,6 @@
           </div>
           <!-- Employee rows rendered by JS -->
           <div class="pb-employees-container" id="pb-employees-container"></div>
-        </div>
-
-        <!-- 3. Employment type -->
-        <div class="pb-field">
-          <label class="pb-field-label" data-i18n="pb.field.emptype">Employment type</label>
-          <div style="display:flex;flex-direction:column;gap:16px;max-width:600px;">
-            <div class="pb-emp-row pb-emp-row-1">
-              <div class="pb-emp-card" data-emp="local_employee">
-                <div class="pb-emp-card-title" data-i18n="pb.emp.local.title">Local Employee</div>
-                <div class="pb-emp-card-sub" data-i18n="pb.emp.local.sub">Citizen or permanent resident</div>
-
-              </div>
-              <div class="pb-emp-card" data-emp="foreigner">
-                <div class="pb-emp-card-title" data-i18n="pb.emp.foreigner.title">Foreigner</div>
-                <div class="pb-emp-card-sub" data-i18n="pb.emp.foreigner.sub">Valid work pass or visa holder</div>
-              </div>
-              <div class="pb-emp-card" data-emp="expat">
-                <div class="pb-emp-card-title" data-i18n="pb.emp.expat.title">Expat</div>
-                <div class="pb-emp-card-sub" data-i18n="pb.emp.expat.sub">Seconded from a parent company</div>
-              </div>
-            </div>
-            <div class="pb-emp-row">
-              <div class="pb-emp-card" data-emp="independent_contractor">
-                <div class="pb-emp-card-title" data-i18n="pb.emp.ic.title">Independent Contractor</div>
-                <div class="pb-emp-card-sub" data-i18n="pb.emp.ic.sub">Freelance or contract engagement</div>
-              </div>
-              <div class="pb-emp-card" data-emp="eor_employee">
-                <div class="pb-emp-card-title" data-i18n="pb.emp.eor.title">EOR Employee</div>
-                <div class="pb-emp-card-sub" data-i18n="pb.emp.eor.sub">Hired via Marco’s local entity</div>
-              </div>
-            </div>
-          </div>
         </div>
 
 
@@ -2345,7 +2391,7 @@
       salaryFreq: 'monthly',
       services: { marco_os: true },
       startDate: null,
-      employees: [{ salary: null, bonus: null, allowance: null }]
+      employees: [{ salary: null, bonus: null, allowance: null, empType: null }]
     };
 
     /* ── Countries list ── */
@@ -3059,21 +3105,6 @@
       setHeadcount(isNaN(n) || n < 1 ? 1 : n);
     });
 
-    /* ── Employment type ── */
-    document.querySelectorAll('.pb-emp-card').forEach(function(card) {
-      card.addEventListener('click', function() {
-        var isSelected = card.classList.contains('selected');
-        document.querySelectorAll('.pb-emp-card').forEach(function(c) { c.classList.remove('selected'); });
-        if (!isSelected) {
-          card.classList.add('selected');
-          pbState.empType = card.dataset.emp;
-        } else {
-          pbState.empType = null;
-        }
-        updateSummary();
-      });
-    });
-
     /* ── Frequency toggle (pill buttons) ── */
     document.querySelectorAll('.pb-freq-pill').forEach(function(pill) {
       pill.addEventListener('click', function() {
@@ -3123,7 +3154,7 @@
 
       for (var i = 0; i < pbState.headcount; i++) {
         var emp = pbState.employees[i];
-        if (!emp) { emp = { salary: null, bonus: null, allowance: null }; pbState.employees[i] = emp; }
+        if (!emp) { emp = { salary: null, bonus: null, allowance: null, empType: null }; pbState.employees[i] = emp; }
 
         var grossVal = getEmployeeMonthlyGross(i);
         var grossText = grossVal ? fmtGross(grossVal, cur) : '--';
@@ -3165,6 +3196,39 @@
           '</div>';
         block.appendChild(inputs);
 
+        var empTypes = [
+          { value: 'local_employee', label: 'Local Employee' },
+          { value: 'foreigner', label: 'Foreigner' },
+          { value: 'expat', label: 'Expat' },
+          { value: 'independent_contractor', label: 'Independent Contractor' },
+          { value: 'eor_employee', label: 'EOR Employee' }
+        ];
+        var typeSelector = document.createElement('div');
+        typeSelector.className = 'pb-emp-type-selector';
+        var typeLabelEl = document.createElement('div');
+        typeLabelEl.className = 'pb-emp-type-label';
+        typeLabelEl.textContent = 'EMPLOYMENT TYPE';
+        typeSelector.appendChild(typeLabelEl);
+        var row1 = document.createElement('div');
+        row1.className = 'pb-emp-type-row';
+        var row2 = document.createElement('div');
+        row2.className = 'pb-emp-type-row';
+        empTypes.forEach(function(et, j) {
+          var isSelected = emp.empType === et.value;
+          var opt = document.createElement('div');
+          opt.className = 'pb-emp-type-option';
+          opt.dataset.empIdx = i;
+          opt.dataset.empType = et.value;
+          opt.dataset.selected = isSelected ? 'true' : 'false';
+          opt.innerHTML =
+            '<div class="pb-emp-type-radio"><div class="pb-emp-type-radio-dot"></div></div>' +
+            '<div class="pb-emp-type-option-label">' + et.label + '</div>';
+          if (j < 3) { row1.appendChild(opt); } else { row2.appendChild(opt); }
+        });
+        typeSelector.appendChild(row1);
+        typeSelector.appendChild(row2);
+        block.appendChild(typeSelector);
+
         container.appendChild(block);
       }
 
@@ -3180,6 +3244,26 @@
           var field = this.dataset.field;
           pbState.employees[idx][field] = this.value;
           updateEmployeeGross(idx);
+          updateSummary();
+        });
+      });
+
+      // Attach employment type radio listeners
+      container.querySelectorAll('.pb-emp-type-option').forEach(function(opt) {
+        opt.addEventListener('click', function() {
+          var idx = parseInt(this.dataset.empIdx, 10);
+          var val = this.dataset.empType;
+          var wasSelected = this.dataset.selected === 'true';
+          // Deselect all radios for this employee
+          container.querySelectorAll('.pb-emp-type-option[data-emp-idx="' + idx + '"]').forEach(function(o) {
+            o.dataset.selected = 'false';
+          });
+          if (!wasSelected) {
+            this.dataset.selected = 'true';
+            pbState.employees[idx].empType = val;
+          } else {
+            pbState.employees[idx].empType = null;
+          }
           updateSummary();
         });
       });
@@ -3348,7 +3432,17 @@
       var salaryDisplay = fmtMoney(monthly, cur) + '/ month (total)';
       var infoRows = [
         ['Country',             pbState.country || '—'],
-        ['Employment Type',     empTypeLabels[pbState.empType] || '—'],
+        ['Employment Type',     (function() {
+          var types = [];
+          for (var t = 0; t < hc; t++) {
+            var e = pbState.employees[t];
+            if (e && e.empType && empTypeLabels[e.empType]) {
+              var label = empTypeLabels[e.empType];
+              if (types.indexOf(label) === -1) types.push(label);
+            }
+          }
+          return types.length ? types.join(', ') : '—';
+        })()],
         ['Employees',           String(hc)],
         ['Salary',              salaryDisplay],
         ['Expected Start Date', formatStartDate(document.getElementById('pb-date-input').value || pbState.startDate)],
@@ -3410,8 +3504,12 @@
         var empGrossM = empMonthlySal + empAllow + (empBonus / 12);
         var empGrossY = empGrossM * 12;
 
+        var empTypeLabel = empTypeLabels[emp.empType] || '—';
         payHtml += '<div class="pr-table-row body-row">' +
-          '<div class="pr-table-cell">Employee ' + (ei + 1) + '</div>' +
+          '<div class="pr-table-cell emp-name-cell">' +
+            '<span>Employee ' + (ei + 1) + '</span>' +
+            '<span class="emp-type-sub">' + empTypeLabel + '</span>' +
+          '</div>' +
           '<div class="pr-table-cell">' + fmtMoney(empMonthlySal, cur) + '</div>' +
           '<div class="pr-table-cell">' + fmtMoney(empAllow, cur) + '</div>' +
           '<div class="pr-table-cell">' + fmtMoney(empBonus, cur) + '</div>' +

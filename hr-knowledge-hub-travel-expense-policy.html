@@ -392,8 +392,8 @@ body {
          alt="Marco" onerror="this.style.display='none'"></a>
     <div class="banner-divider"></div>
     <div class="banner-text">
-      <div class="banner-title">Travel &amp; Expense Policy</div>
-      <div class="banner-subtitle">Global Per Diem Rates</div>
+      <div class="banner-title" data-i18n="te.banner.title">Travel &amp; Expense Policy</div>
+      <div class="banner-subtitle" data-i18n="te.banner.subtitle">Global Per Diem Rates</div>
     </div>
   </div>
 </header>
@@ -401,27 +401,27 @@ body {
 <!-- FILTER BAR -->
 <div class="filter-bar">
   <button class="btn-hamburger" id="btnMobileOpen" onclick="mobileOpenDrawer()" aria-label="Open menu">&#9776;</button>
-  <span class="filter-label">Filter</span>
+  <span class="filter-label" data-i18n="te.filter.label">Filter</span>
   <div class="search-wrap">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <input class="search-input" id="sidebarSearch" type="text"
-           placeholder="Search countries&hellip;" oninput="filterSidebar()">
+           placeholder="Search countries&hellip;" data-i18n-placeholder="te.filter.search" oninput="filterSidebar()">
   </div>
   <div class="select-wrap">
     <select id="regionFilter" onchange="filterSidebar()">
-      <option value="">All regions</option>
-      <option value="Africa">Africa</option>
-      <option value="Americas">Americas</option>
-      <option value="Asia">Asia</option>
-      <option value="Europe">Europe</option>
-      <option value="Middle East">Middle East</option>
-      <option value="Oceania">Oceania</option>
+      <option value="" data-i18n="te.filter.region.all">All regions</option>
+      <option value="Africa" data-i18n="te.filter.region.africa">Africa</option>
+      <option value="Americas" data-i18n="te.filter.region.americas">Americas</option>
+      <option value="Asia" data-i18n="te.filter.region.asia">Asia</option>
+      <option value="Europe" data-i18n="te.filter.region.europe">Europe</option>
+      <option value="Middle East" data-i18n="te.filter.region.me">Middle East</option>
+      <option value="Oceania" data-i18n="te.filter.region.oceania">Oceania</option>
     </select>
   </div>
   <button class="btn-clear" onclick="clearFilters()">
-    <span class="clear-text">Clear ✕</span>
+    <span class="clear-text" data-i18n="te.filter.clear">Clear ✕</span>
     <span class="clear-icon">✕</span>
   </button>
 </div>
@@ -434,7 +434,7 @@ body {
   <!-- SIDEBAR -->
   <nav class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <span class="sidebar-header-text">SELECT A COUNTRY</span>
+      <span class="sidebar-header-text" data-i18n="te.sidebar.header">SELECT A COUNTRY</span>
       <button class="btn-sb-toggle" onclick="toggleSidebar()" aria-label="Toggle sidebar">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M2 8H14M2 4H14M2 12H14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -453,8 +453,8 @@ body {
         <circle cx="46" cy="38" r="6" stroke="#4a9eff" stroke-width="2" fill="none"/>
         <path d="M44 38 H48 M46 36 V40" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
-      <h2>Select a Country</h2>
-      <p>Choose a country from the panel to view its per diem rates and travel expense policy.</p>
+      <h2 data-i18n="te.empty.title">Select a Country</h2>
+      <p data-i18n="te.empty.desc">Choose a country from the panel to view its per diem rates and travel expense policy.</p>
     </div>
   </main>
 
@@ -2153,74 +2153,74 @@ const PERDIEM_DATA = {
 };
 
 const COUNTRIES = [
-  { name: "Algeria", region: "Africa", code: "ALG" },
-  { name: "Argentina", region: "Americas", code: "ARG" },
-  { name: "Australia", region: "Oceania", code: "AUS" },
-  { name: "Austria", region: "Europe", code: "AUS" },
-  { name: "Bangladesh", region: "Asia", code: "BAN" },
-  { name: "Belgium", region: "Europe", code: "BEL" },
-  { name: "Brazil", region: "Americas", code: "BRA" },
-  { name: "Bulgaria", region: "Europe", code: "BUL" },
-  { name: "Canada", region: "Americas", code: "CAN" },
-  { name: "Chile", region: "Americas", code: "CHI" },
-  { name: "China", region: "Asia", code: "CHI" },
-  { name: "Colombia", region: "Americas", code: "COL" },
-  { name: "Croatia", region: "Europe", code: "CRO" },
-  { name: "Czech Republic", region: "Europe", code: "CZE" },
-  { name: "Denmark", region: "Europe", code: "DEN" },
-  { name: "Egypt", region: "Africa", code: "EGY" },
-  { name: "Finland", region: "Europe", code: "FIN" },
-  { name: "France", region: "Europe", code: "FRA" },
-  { name: "Georgia", region: "Europe", code: "GEO" },
-  { name: "Germany", region: "Europe", code: "GER" },
-  { name: "Greece", region: "Europe", code: "GRE" },
-  { name: "Hungary", region: "Europe", code: "HUN" },
-  { name: "India", region: "Asia", code: "IND" },
-  { name: "Indonesia", region: "Asia", code: "IND" },
-  { name: "Iraq", region: "Middle East", code: "IRA" },
-  { name: "Ireland", region: "Europe", code: "IRE" },
-  { name: "Italy", region: "Europe", code: "ITA" },
-  { name: "Japan", region: "Asia", code: "JAP" },
-  { name: "Jordan", region: "Middle East", code: "JOR" },
-  { name: "Kazakhstan", region: "Asia", code: "KAZ" },
-  { name: "Kyrgyzstan", region: "Asia", code: "KYR" },
-  { name: "Laos", region: "Asia", code: "LAO" },
-  { name: "Lithuania", region: "Europe", code: "LIT" },
-  { name: "Luxembourg", region: "Europe", code: "LUX" },
-  { name: "Malaysia", region: "Asia", code: "MAL" },
-  { name: "Mauritius", region: "Africa", code: "MAU" },
-  { name: "Mexico", region: "Americas", code: "MEX" },
-  { name: "Middle East", region: "Middle East", code: "MID" },
-  { name: "Morocco", region: "Africa", code: "MOR" },
-  { name: "Netherlands", region: "Europe", code: "NET" },
-  { name: "New Zealand", region: "Oceania", code: "NEW" },
-  { name: "Nigeria", region: "Africa", code: "NIG" },
-  { name: "Norway", region: "Europe", code: "NOR" },
-  { name: "Pakistan", region: "Asia", code: "PAK" },
-  { name: "Peru", region: "Americas", code: "PER" },
-  { name: "Philippines", region: "Asia", code: "PHI" },
-  { name: "Poland", region: "Europe", code: "POL" },
-  { name: "Portugal", region: "Europe", code: "POR" },
-  { name: "Romania", region: "Europe", code: "ROM" },
-  { name: "Saudi Arabia", region: "Middle East", code: "SAU" },
-  { name: "Serbia", region: "Europe", code: "SER" },
-  { name: "Singapore", region: "Asia", code: "SIN" },
-  { name: "Slovakia", region: "Europe", code: "SLO" },
-  { name: "Slovenia", region: "Europe", code: "SLO" },
-  { name: "South Africa", region: "Africa", code: "SOU" },
-  { name: "South Korea", region: "Asia", code: "SOU" },
-  { name: "Spain", region: "Europe", code: "SPA" },
-  { name: "Sweden", region: "Europe", code: "SWE" },
-  { name: "Switzerland", region: "Europe", code: "SWI" },
-  { name: "Tanzania", region: "Africa", code: "TAN" },
-  { name: "Thailand", region: "Asia", code: "THA" },
-  { name: "Turkey", region: "Europe", code: "TUR" },
-  { name: "Ukraine", region: "Europe", code: "UKR" },
-  { name: "United Arab Emirates", region: "Middle East", code: "UNI" },
-  { name: "United Kingdom", region: "Europe", code: "UNI" },
-  { name: "United States", region: "Americas", code: "UNI" },
-  { name: "Uzbekistan", region: "Asia", code: "UZB" },
-  { name: "Vietnam", region: "Asia", code: "VIE" }
+  { name: "Algeria", region: "Africa", code: "DZ" },
+  { name: "Argentina", region: "Americas", code: "AR" },
+  { name: "Australia", region: "Oceania", code: "AU" },
+  { name: "Austria", region: "Europe", code: "AT" },
+  { name: "Bangladesh", region: "Asia", code: "BD" },
+  { name: "Belgium", region: "Europe", code: "BE" },
+  { name: "Brazil", region: "Americas", code: "BR" },
+  { name: "Bulgaria", region: "Europe", code: "BG" },
+  { name: "Canada", region: "Americas", code: "CA" },
+  { name: "Chile", region: "Americas", code: "CL" },
+  { name: "China", region: "Asia", code: "CN" },
+  { name: "Colombia", region: "Americas", code: "CO" },
+  { name: "Croatia", region: "Europe", code: "HR" },
+  { name: "Czech Republic", region: "Europe", code: "CZ" },
+  { name: "Denmark", region: "Europe", code: "DK" },
+  { name: "Egypt", region: "Africa", code: "EG" },
+  { name: "Finland", region: "Europe", code: "FI" },
+  { name: "France", region: "Europe", code: "FR" },
+  { name: "Georgia", region: "Europe", code: "GE" },
+  { name: "Germany", region: "Europe", code: "DE" },
+  { name: "Greece", region: "Europe", code: "GR" },
+  { name: "Hungary", region: "Europe", code: "HU" },
+  { name: "India", region: "Asia", code: "IN" },
+  { name: "Indonesia", region: "Asia", code: "ID" },
+  { name: "Iraq", region: "Middle East", code: "IQ" },
+  { name: "Ireland", region: "Europe", code: "IE" },
+  { name: "Italy", region: "Europe", code: "IT" },
+  { name: "Japan", region: "Asia", code: "JP" },
+  { name: "Jordan", region: "Middle East", code: "JO" },
+  { name: "Kazakhstan", region: "Asia", code: "KZ" },
+  { name: "Kyrgyzstan", region: "Asia", code: "KG" },
+  { name: "Laos", region: "Asia", code: "LA" },
+  { name: "Lithuania", region: "Europe", code: "LT" },
+  { name: "Luxembourg", region: "Europe", code: "LU" },
+  { name: "Malaysia", region: "Asia", code: "MY" },
+  { name: "Mauritius", region: "Africa", code: "MU" },
+  { name: "Mexico", region: "Americas", code: "MX" },
+  { name: "Middle East", region: "Middle East", code: "ME" },
+  { name: "Morocco", region: "Africa", code: "MA" },
+  { name: "Netherlands", region: "Europe", code: "NL" },
+  { name: "New Zealand", region: "Oceania", code: "NZ" },
+  { name: "Nigeria", region: "Africa", code: "NG" },
+  { name: "Norway", region: "Europe", code: "NO" },
+  { name: "Pakistan", region: "Asia", code: "PK" },
+  { name: "Peru", region: "Americas", code: "PE" },
+  { name: "Philippines", region: "Asia", code: "PH" },
+  { name: "Poland", region: "Europe", code: "PL" },
+  { name: "Portugal", region: "Europe", code: "PT" },
+  { name: "Romania", region: "Europe", code: "RO" },
+  { name: "Saudi Arabia", region: "Middle East", code: "SA" },
+  { name: "Serbia", region: "Europe", code: "RS" },
+  { name: "Singapore", region: "Asia", code: "SG" },
+  { name: "Slovakia", region: "Europe", code: "SK" },
+  { name: "Slovenia", region: "Europe", code: "SI" },
+  { name: "South Africa", region: "Africa", code: "ZA" },
+  { name: "South Korea", region: "Asia", code: "KR" },
+  { name: "Spain", region: "Europe", code: "ES" },
+  { name: "Sweden", region: "Europe", code: "SE" },
+  { name: "Switzerland", region: "Europe", code: "CH" },
+  { name: "Tanzania", region: "Africa", code: "TZ" },
+  { name: "Thailand", region: "Asia", code: "TH" },
+  { name: "Turkey", region: "Europe", code: "TR" },
+  { name: "Ukraine", region: "Europe", code: "UA" },
+  { name: "United Arab Emirates", region: "Middle East", code: "AE" },
+  { name: "United Kingdom", region: "Europe", code: "GB" },
+  { name: "United States", region: "Americas", code: "US" },
+  { name: "Uzbekistan", region: "Asia", code: "UZ" },
+  { name: "Vietnam", region: "Asia", code: "VN" }
 ];
 
 const FLAGS = {
@@ -2245,18 +2245,29 @@ const FLAGS = {
 
 let currentCountry = null;
 
+/* ── Country name → ISO code lookup ── */
+const COUNTRY_ISO = {};
+COUNTRIES.forEach(function(c) { COUNTRY_ISO[c.name] = c.code.toLowerCase(); });
+
+/* ── Translation helper ── */
+function t(key, fallback) {
+  var pack = window.__marcoPack;
+  if (pack && pack[key] !== undefined && pack[key] !== '') return pack[key];
+  return fallback !== undefined ? fallback : '';
+}
+
 /* ── Render sidebar ── */
 function renderSidebar(list) {
   const el = document.getElementById('countryList');
   if (!list.length) {
-    el.innerHTML = '<div class="sidebar-empty">No countries match your filter.</div>';
+    el.innerHTML = '<div class="sidebar-empty">' + t('te.sidebar.empty', 'No countries match your filter.') + '</div>';
     return;
   }
   el.innerHTML = list.map((c, i) => `
     <div class="sb-row${currentCountry === c.name ? ' active' : ''}"
          onclick="selectCountry('${c.name.replace(/'/g,"\'")}', this)">
       <span class="sb-code">${c.code}</span>
-      <span class="sb-label">${c.name}</span>
+      <span class="sb-label">${t('te.country.' + c.code.toLowerCase(), c.name)}</span>
     </div>`).join('');
 }
 
@@ -2265,7 +2276,7 @@ function filterSidebar() {
   const q = document.getElementById('sidebarSearch').value.trim().toLowerCase();
   const r = document.getElementById('regionFilter').value;
   const filtered = COUNTRIES.filter(c =>
-    (!q || c.name.toLowerCase().includes(q)) &&
+    (!q || t('te.country.' + c.code.toLowerCase(), c.name).toLowerCase().includes(q) || c.name.toLowerCase().includes(q)) &&
     (!r || c.region === r)
   );
   renderSidebar(filtered);
@@ -2278,37 +2289,45 @@ function clearFilters() {
 }
 
 /* ── Build table HTML ── */
-function buildTable(headers, rates) {
+function buildTable(headers, rates, iso, sec) {
   if (!rates || !rates.length) return '';
-  const thead = '<thead><tr>' + headers.map(h => `<th>${h}</th>`).join('') + '</tr></thead>';
-  const tbody = '<tbody>' + rates.map(row =>
-    '<tr>' + row.map(cell => `<td>${cell}</td>`).join('') + '</tr>'
-  ).join('') + '</tbody>';
-  return `<div style="overflow-x:auto"><table class="fg-table">${thead}${tbody}</table></div>`;
+  var prefix = 'te.' + iso + '.' + sec + '.';
+  const thead = '<thead><tr>' + headers.map(function(h, i) {
+    return '<th>' + t(prefix + 'h.' + i, h) + '</th>';
+  }).join('') + '</tr></thead>';
+  const tbody = '<tbody>' + rates.map(function(row, ri) {
+    return '<tr>' + row.map(function(cell, ci) {
+      return '<td>' + t(prefix + 'r.' + ri + '.' + ci, cell) + '</td>';
+    }).join('') + '</tr>';
+  }).join('') + '</tbody>';
+  return '<div style="overflow-x:auto"><table class="fg-table">' + thead + tbody + '</table></div>';
 }
 
-/* ── Build source box ── */
-function buildTables(tables) {
+/* ── Build multiple tables ── */
+function buildTables(tables, iso, sec) {
   if (!tables || !tables.length) return '';
-  return '<div class="fg-multi-table">' + tables.map(function(t) {
+  var prefix = 'te.' + iso + '.' + sec + '.';
+  return '<div class="fg-multi-table">' + tables.map(function(tbl, ti) {
+    var tp = prefix + 't' + ti + '.';
     var h = '';
-    if (t.title) h += '<div class="fg-table-title">' + t.title + '</div>';
-    if (t.note) h += '<p class="fg-table-note">' + t.note + '</p>';
-    var thead = '<thead><tr>' + t.headers.map(function(x) { return '<th>' + x + '</th>'; }).join('') + '</tr></thead>';
-    var tbody = '<tbody>' + t.rows.map(function(row) {
-      return '<tr>' + row.map(function(cell) { return '<td>' + (cell || '') + '</td>'; }).join('') + '</tr>';
+    if (tbl.title) h += '<div class="fg-table-title">' + t(tp + 'title', tbl.title) + '</div>';
+    if (tbl.note) h += '<p class="fg-table-note">' + t(tp + 'note', tbl.note) + '</p>';
+    var thead = '<thead><tr>' + tbl.headers.map(function(x, i) { return '<th>' + t(tp + 'h.' + i, x) + '</th>'; }).join('') + '</tr></thead>';
+    var tbody = '<tbody>' + tbl.rows.map(function(row, ri) {
+      return '<tr>' + row.map(function(cell, ci) { return '<td>' + t(tp + 'r.' + ri + '.' + ci, cell || '') + '</td>'; }).join('') + '</tr>';
     }).join('') + '</tbody>';
     h += '<div style="overflow-x:auto"><table class="fg-table">' + thead + tbody + '</table></div>';
     return h;
   }).join('') + '</div>';
 }
 
-function buildSource(section) {
+function buildSource(section, iso, sec) {
   if (!section.legal_source && !section.reference_url) return '';
-  let html = '<div class="fg-source"><span class="fg-source-label">Legal Source</span>';
-  if (section.legal_source) html += `<span class="fg-source-text">${section.legal_source}</span>`;
+  var prefix = 'te.' + iso + '.' + sec + '.';
+  let html = '<div class="fg-source"><span class="fg-source-label">' + t('te.source.label', 'Legal Source') + '</span>';
+  if (section.legal_source) html += '<span class="fg-source-text">' + t(prefix + 'source', section.legal_source) + '</span>';
   if (section.reference_url && section.reference_url !== '#') {
-    html += `<a class="fg-source-link" href="${section.reference_url}" target="_blank" rel="noopener noreferrer">${section.reference_url}</a>`;
+    html += '<a class="fg-source-link" href="' + section.reference_url + '" target="_blank" rel="noopener noreferrer">' + section.reference_url + '</a>';
   }
   html += '</div>';
   return html;
@@ -2320,44 +2339,41 @@ function selectCountry(name, el) {
   document.querySelectorAll('.sb-row').forEach(r => r.classList.remove('active'));
   if (el) el.classList.add('active');
 
+  const iso = COUNTRY_ISO[name] || '';
   const data = PERDIEM_DATA[name];
   if (!data) {
     document.getElementById('mainContent').innerHTML =
-      '<div class="empty-state"><h2>No data available</h2><p>Per diem data for ' + name + ' is not yet available.</p></div>';
+      '<div class="empty-state"><h2>' + t('te.nodata.title', 'No data available') + '</h2><p>' + t('te.nodata.desc', 'Per diem data for ' + name + ' is not yet available.') + '</p></div>';
     return;
   }
 
-  const flag = FLAGS[name] || '';
   const dom = data.domestic;
   const intl = data.international;
 
-  let html = `
-    <div class="fg-country-header">
-      <h1>${name}</h1>
-      <div class="fg-country-meta">Travel &amp; Expense Policy &nbsp;·&nbsp; Domestic &amp; International rates &nbsp;·&nbsp; Reference year 2025–2026</div>
-    </div>
-    <div class="fg-content">`;
+  let html = '<div class="fg-country-header">' +
+      '<h1>' + name + '</h1>' +
+      '<div class="fg-country-meta">' + t('te.detail.meta', 'Travel &amp; Expense Policy &nbsp;·&nbsp; Domestic &amp; International rates &nbsp;·&nbsp; Reference year 2025–2026') + '</div>' +
+    '</div>' +
+    '<div class="fg-content">';
 
   // Domestic card
   if (dom) {
-    html += `
-      <div class="fg-card">
-        <div class="fg-section-title">${dom.section_title || 'Domestic Business Trip'}</div>
-        <p class="fg-body">${dom.description || ''}</p>
-        ${dom.tables ? buildTables(dom.tables) : buildTable(dom.headers || [], dom.rates || [])}
-        ${buildSource(dom)}
-      </div>`;
+    html += '<div class="fg-card">' +
+        '<div class="fg-section-title">' + t('te.' + iso + '.dom.title', dom.section_title || 'Domestic Business Trip') + '</div>' +
+        '<p class="fg-body">' + t('te.' + iso + '.dom.desc', dom.description || '') + '</p>' +
+        (dom.tables ? buildTables(dom.tables, iso, 'dom') : buildTable(dom.headers || [], dom.rates || [], iso, 'dom')) +
+        buildSource(dom, iso, 'dom') +
+      '</div>';
   }
 
   // International card
   if (intl) {
-    html += `
-      <div class="fg-card">
-        <div class="fg-section-title">${intl.section_title || 'International Business Trips'}</div>
-        <p class="fg-body">${intl.description || ''}</p>
-        ${intl.tables ? buildTables(intl.tables) : buildTable(intl.headers || [], intl.rates || [])}
-        ${buildSource(intl)}
-      </div>`;
+    html += '<div class="fg-card">' +
+        '<div class="fg-section-title">' + t('te.' + iso + '.intl.title', intl.section_title || 'International Business Trips') + '</div>' +
+        '<p class="fg-body">' + t('te.' + iso + '.intl.desc', intl.description || '') + '</p>' +
+        (intl.tables ? buildTables(intl.tables, iso, 'intl') : buildTable(intl.headers || [], intl.rates || [], iso, 'intl')) +
+        buildSource(intl, iso, 'intl') +
+      '</div>';
   }
 
   html += '</div>';
@@ -2389,6 +2405,12 @@ function toggleSidebar() {
 
 /* ── Init ── */
 renderSidebar(COUNTRIES);
+
+/* ── Re-render when translations load ── */
+document.addEventListener('marcolangready', function() {
+  filterSidebar();
+  if (currentCountry) selectCountry(currentCountry, document.querySelector('.sb-row.active'));
+});
 </script>
 <script src="assets/lang/lang-loader.js"></script>
 </body>
