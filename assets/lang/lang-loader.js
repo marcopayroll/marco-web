@@ -154,6 +154,15 @@
   } else if (filename.indexOf('compliance-') === 0) {
     sectionFile   = base + '-compliance.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_COMPLIANCE';
+  } else if (filename === 'company-terms-of-use.html') {
+    sectionFile   = base + '-company-terms.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_COMPANY_TERMS';
+  } else if (filename === 'company-cookies-policy.html') {
+    sectionFile   = base + '-company-cookies.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_COMPANY_COOKIES';
+  } else if (filename === 'company-privacy-policy.html') {
+    sectionFile   = base + '-company-privacy.js';
+    sectionGlobal = 'MARCO_LANG_' + L + '_COMPANY_PRIVACY';
   } else if (filename.indexOf('company-') === 0) {
     sectionFile   = base + '-company.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_COMPANY';
