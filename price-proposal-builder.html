@@ -2540,13 +2540,13 @@
           { code:'Pension', name:'Pension', rate:9.76, cap:23550, base:'gross', group:'Employer contribution' },
           { code:'Disability', name:'Disability', rate:6.5, cap:23550, base:'gross', group:'Employer contribution' },
           { code:'Accident', name:'Accident', rate:1.67, base:'gross', group:'Employer contribution' },
-          { code:'LaborFund', name:'Labour Fund FP', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'LaborFund', name:'Labour Fund FP', rate:1, base:'gross', group:'Employer contribution' },
           { code:'SolidarityFund', name:'Solidarity Fund FS', rate:1.45, base:'gross', group:'Employer contribution' },
-          { code:'GEBF', name:'FGSP', rate:0.1, base:'gross', group:'Employer contribution' },
-          { code:'PFRON', name:'PFRON', rate:2.44, base:'gross', group:'Employer contribution' },
-          { code:'ZFSS', name:'ZFSS', rate:1.27, base:'gross', group:'Employer contribution' },
+          { code:'GEBF', name:'FGŚP', rate:0.1, base:'gross', group:'Employer contribution' },
+          { code:'PFRON', name:'PFRON', fixed:3887, base:'gross', group:'Employer contribution' },
+          { code:'ZFSS', name:'ZFŚS', fixed:245, base:'gross', group:'Employer contribution' },
           { code:'PPK', name:'PPK', rate:1.5, base:'gross', group:'Employer contribution' },
-          { code:'BHP', name:'BHP', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'BHP', name:'BHP', rate:1, base:'gross', group:'Employer contribution' },
           { code:'OC', name:'OC', rate:0.9, base:'gross', group:'Employer contribution' }
         ]
       },
@@ -2554,8 +2554,9 @@
         currency: 'EUR', vat: 0,
         items: [
           { code:'Health', name:'Health Insurance', rate:16.5, base:'gross', group:'Employer contribution' },
-          { code:'SuppHealth', name:'Supplementary Health', rate:5.0, base:'gross', group:'Employer contribution' },
-          { code:'BonusHR', name:'Christmas/Holiday Bonus', rate:0, base:'gross', group:'Statutory/employee benefit' }
+          { code:'SuppHealth', name:'Supp Health', fixed:15, base:'gross', group:'Additional cost' },
+          { code:'BonusHR', name:'Christmas/Holiday Bonus', base:'gross', group:'Statutory/employee benefit' },
+          { code:'OtpremninaHR', name:'Otpremnina', rate:2.78, base:'gross', group:'Additional cost' }
         ]
       },
       'Greece': {
@@ -2565,7 +2566,7 @@
           { code:'Salary14', name:'14th Salary', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
           { code:'MainPension', name:'Main Pension', rate:13.33, cap:7761.94, base:'gross', group:'Employer contribution' },
           { code:'HealthGR', name:'Health', rate:4.05, cap:7761.94, base:'gross', group:'Employer contribution' },
-          { code:'AuxPension', name:'Auxiliary Pension', rate:3.0, cap:7761.94, base:'gross', group:'Employer contribution' },
+          { code:'AuxPension', name:'Auxiliary Pension', rate:3, cap:7761.94, base:'gross', group:'Employer contribution' },
           { code:'UnempGR', name:'Unemployment & Other', rate:1.41, cap:7761.94, base:'gross', group:'Employer contribution' }
         ]
       },
@@ -2578,11 +2579,13 @@
           { code:'Vocational', name:'Vocational Training', rate:0.6, cap:5101.2, base:'gross', group:'Employer contribution' },
           { code:'WorkAccident', name:'Work Accident', rate:1.5, cap:5101.2, base:'gross', group:'Employer contribution' },
           { code:'MEI', name:'MEI', rate:0.75, cap:5101.2, base:'gross', group:'Employer contribution' },
-          { code:'Solidarity', name:'Solidarity', rate:1.15, threshold:5101.2, base:'gross', group:'Employer contribution' },
+          { code:'Solidarity', name:'Solidarity', rate:0.96, threshold:5101.2, base:'gross', group:'Employer contribution' },
+          { code:'OccHealthES', name:'Occupational Health', fixed:10, base:'gross', group:'Additional cost' },
           { code:'PagaVerano', name:'Summer Extra Pay', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
           { code:'PagaNavidad', name:'Christmas Extra Pay', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
-          { code:'SeguroConvenio', name:'Seguro de Convenio', fixed:10.0, base:'gross', group:'Additional cost' },
-          { code:'Antiguedad', name:'Seniority Bonus', rate:0, base:'salary_only', group:'Statutory/employee benefit' }
+          { code:'SeguroConvenio', name:'Seguro de Convenio', fixed:10, base:'gross', group:'Additional cost' },
+          { code:'Antiguedad', name:'Seniority Bonus', base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'IndemnES', name:'Indemnizacion', rate:5.56, base:'gross', group:'Additional cost' }
         ]
       },
       'France': {
@@ -2595,128 +2598,529 @@
           { code:'CEG_T1', name:'CEG T1', rate:1.29, cap:4005, base:'gross', group:'Employer contribution' },
           { code:'CEG_T2', name:'CEG T2', rate:1.62, cap:32040, threshold:4005, base:'gross', group:'Employer contribution' },
           { code:'CET', name:'CET', rate:0.21, base:'gross', group:'Employer contribution' },
-          { code:'Health', name:'Health', rate:13.0, base:'gross', group:'Employer contribution' },
-          { code:'HealthSupp', name:'Health Supp', rate:6.0, base:'gross', group:'Employer contribution' },
+          { code:'Health', name:'Health', rate:13, base:'gross', group:'Employer contribution' },
+          { code:'HealthSupp', name:'Health Supp', rate:6, base:'gross', group:'Employer contribution' },
           { code:'Prevoyance', name:'Prevoyance', rate:1.5, cap:4005, base:'gross', group:'Additional cost' },
           { code:'CSA', name:'CSA', rate:0.3, base:'gross', group:'Employer contribution' },
           { code:'ForfaitSocial', name:'Forfait Social', rate:0.48, base:'gross', group:'Employer contribution' },
           { code:'Family', name:'Family', rate:5.25, base:'gross', group:'Employer contribution' },
           { code:'FNAL', name:'FNAL', rate:0.5, base:'gross', group:'Employer contribution' },
-          { code:'Unemployment', name:'Unemployment', rate:4.0, cap:16020, base:'gross', group:'Employer contribution' },
+          { code:'Unemployment', name:'Unemployment', rate:4, cap:16020, base:'gross', group:'Employer contribution' },
           { code:'AGS', name:'AGS', rate:0.25, cap:16020, base:'gross', group:'Employer contribution' },
           { code:'APEC', name:'APEC', rate:0.036, cap:16020, base:'gross', group:'Employer contribution' },
-          { code:'ProfTraining', name:'Prof Training', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'ProfTraining', name:'Prof Training', rate:1, base:'gross', group:'Employer contribution' },
+          { code:'CPF', name:'CPF', rate:1, base:'gross', group:'Employer contribution' },
           { code:'ApprenticeTax', name:'Apprenticeship Tax', rate:0.68, base:'gross', group:'Employer contribution' },
           { code:'Mobility', name:'Mobility', rate:3.2, base:'gross', group:'Employer contribution' },
-          { code:'ATMP', name:'AT/MP', rate:5.0, base:'gross', group:'Employer contribution' },
-          { code:'MedecineTravail', name:'Occupational Health', fixed:10.0, base:'gross', group:'Employer contribution' },
+          { code:'ATMP', name:'AT/MP', rate:5, base:'gross', group:'Employer contribution' },
+          { code:'MedecineTravail', name:'Occupational Health', fixed:10, base:'gross', group:'Employer contribution' },
           { code:'TaxeSalaires', name:'Payroll Tax', rate:4.25, base:'gross', group:'Employer contribution' },
           { code:'Construction', name:'Construction', rate:0.45, base:'gross', group:'Employer contribution' },
           { code:'SocialDialogue', name:'Social Dialogue', rate:0.016, base:'gross', group:'Employer contribution' },
-          { code:'Gratuity', name:'Gratuity', rate:10.0, base:'salary_only', group:'Employer contribution' },
-          { code:'PortageFee', name:'Portage Fee', rate:5.0, base:'salary_only', group:'Employer contribution' }
+          { code:'Gratuity', name:'Gratuity', rate:10, base:'salary_only', group:'Employer contribution' },
+          { code:'PortageFee', name:'Portage Fee', rate:5, base:'salary_only', group:'Employer contribution' }
         ]
       },
       'Indonesia': {
-        currency: 'IDR', vat: 11,
+        currency: 'IDR', vat: 0.11,
         items: [
           { code:'JHT', name:'JHT', rate:3.7, base:'gross', group:'Employer contribution' },
-          { code:'JP', name:'JP', rate:2.0, cap:11086300, base:'gross', group:'Employer contribution' },
-          { code:'BPJSHealth', name:'BPJS Health', rate:4.0, cap:12000000, base:'gross', group:'Employer contribution' },
+          { code:'JP', name:'JP', rate:2, cap:11086300, base:'gross', group:'Employer contribution' },
+          { code:'BPJSHealth', name:'BPJS Health', rate:4, cap:12000000, base:'gross', group:'Employer contribution' },
           { code:'JKK', name:'JKK', rate:0.89, base:'gross', group:'Employer contribution' },
           { code:'JKM', name:'JKM', rate:0.3, base:'gross', group:'Employer contribution' },
           { code:'JKP', name:'JKP', rate:0.24, base:'gross', group:'Employer contribution' },
-          { code:'DKPTKA', name:'DKPTKA', fixed:1790000, base:'gross', group:'Employer contribution' },
-          { code:'THR', name:'THR', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
+          { code:'DKPTKA', name:'DKPTKA', fixed:1790000, base:'gross', group:'Employer contribution', applies:['foreign'] },
+          { code:'THR', name:'THR', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'PesangonID', name:'Severance (Pesangon)', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
         ]
       },
       'Colombia': {
-        currency: 'COP', vat: 19,
+        currency: 'COP', vat: 0.19,
         items: [
           { code:'HealthCO', name:'Health EPS', rate:8.5, base:'gross', group:'Employer contribution' },
-          { code:'PensionCO', name:'Pension', rate:12.0, base:'gross', group:'Employer contribution' },
-          { code:'ARL', name:'ARL', rate:2.436, base:'gross', group:'Employer contribution' },
-          { code:'SENA', name:'SENA', rate:2.0, base:'gross', group:'Employer contribution' },
-          { code:'ICBF', name:'ICBF', rate:3.0, base:'gross', group:'Employer contribution' },
-          { code:'CCF', name:'CCF', rate:4.0, base:'gross', group:'Employer contribution' },
+          { code:'PensionCO', name:'Pension', rate:12, base:'gross', group:'Employer contribution' },
+          { code:'ARL', name:'ARL', rate:0.522, base:'gross', group:'Employer contribution' },
+          { code:'SENA', name:'SENA', rate:2, base:'gross', group:'Employer contribution' },
+          { code:'ICBF', name:'ICBF', rate:3, base:'gross', group:'Employer contribution' },
+          { code:'CCF', name:'CCF', rate:4, base:'gross', group:'Employer contribution' },
           { code:'PrimaCO', name:'Prima', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
           { code:'Cesantias', name:'Cesantias', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
-          { code:'InteresCes', name:'Interes Cesantias', rate:1.0, base:'salary_only', group:'Statutory/employee benefit' }
+          { code:'InteresCes', name:'Interes Cesantias', rate:1, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'VacacionesCO', name:'Vacation Bonus', rate:4.17, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'AuxTransporte', name:'Auxilio Transporte', fixed:249095, base:'gross', group:'Statutory/employee benefit' }
         ]
       },
       'Ecuador': {
-        currency: 'USD', vat: 15,
+        currency: 'USD', vat: 0.15,
         items: [
           { code:'IESS', name:'IESS Patronal', rate:11.15, base:'gross', group:'Employer contribution' },
-          { code:'IECE_SECAP', name:'IECE/SECAP', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'IECE_SECAP', name:'IECE/SECAP', rate:1, base:'gross', group:'Employer contribution' },
           { code:'Dec13EC', name:'Decimo Tercero', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
           { code:'Dec14EC', name:'Decimo Cuarto', fixed:40.17, base:'gross', group:'Statutory/employee benefit' },
           { code:'FondoReserva', name:'Fondo Reserva', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
-          { code:'ProfitShareEC', name:'Profit Sharing', rate:8.33, base:'salary_only', group:'Additional cost' }
+          { code:'ProfitShareEC', name:'Profit Sharing', rate:8.33, base:'salary_only', group:'Additional cost' },
+          { code:'DesahucioEC', name:'Desahucio', rate:2.08, base:'salary_only', group:'Additional cost' },
+          { code:'JubPatronalEC', name:'Jubilacion Patronal', rate:2, base:'salary_only', group:'Additional cost' }
         ]
       },
       'Myanmar': {
-        currency: 'USD', vat: 5,
+        currency: 'USD', vat: 0.05,
         items: [
-          { code:'SSB', name:'SSB', rate:3.0, base:'gross', group:'Employer contribution' },
-          { code:'WorkmenComp', name:'Workmen Comp', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'SSB', name:'SSB', rate:3, cap:300000, base:'gross', group:'Employer contribution' },
           { code:'SeveranceMM', name:'Severance', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
-          { code:'RiskFundMM', name:'Employment Risk Fund', rate:3.0, base:'gross', group:'Additional cost' }
+          { code:'RiskFundMM', name:'Employment Risk Fund', rate:3, base:'gross', group:'Additional cost' }
         ]
       },
       'Nigeria': {
-        currency: 'NGN', vat: 7.5,
+        currency: 'NGN', vat: 0.075,
         items: [
-          { code:'PensionNG', name:'Pension (CPS)', rate:10.0, base:'gross', group:'Employer contribution' },
-          { code:'NHIA', name:'NHIA', rate:2.0, base:'gross', group:'Employer contribution' },
-          { code:'GroupLife', name:'Group Life', rate:18.0, base:'gross', group:'Employer contribution' },
-          { code:'NSITF', name:'NSITF', rate:1.0, base:'gross', group:'Employer contribution' },
-          { code:'ITF', name:'ITF', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'PensionNG', name:'Pension (CPS)', rate:10, base:'gross', group:'Employer contribution' },
+          { code:'NHIA', name:'NHIA', rate:3.25, base:'gross', group:'Employer contribution' },
+          { code:'GroupLife', name:'Group Life', rate:18, base:'gross', group:'Employer contribution' },
+          { code:'NSITF', name:'NSITF', rate:1, base:'gross', group:'Employer contribution' },
+          { code:'ITF', name:'ITF', rate:1, base:'gross', group:'Employer contribution' },
           { code:'GratuityNG', name:'Gratuity', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
         ]
       },
       'Vietnam': {
-        currency: 'VND', vat: 10,
+        currency: 'VND', vat: 0.1,
         items: [
           { code:'SI_VN', name:'Social Insurance', rate:17.5, cap:50600000, base:'gross', group:'Employer contribution' },
-          { code:'HI_VN', name:'Health Insurance', rate:3.0, cap:50600000, base:'gross', group:'Employer contribution' },
-          { code:'UI_VN', name:'Unemployment', rate:1.0, base:'gross', group:'Employer contribution' },
-          { code:'Union_VN', name:'Trade Union', rate:2.0, base:'gross', group:'Employer contribution' }
+          { code:'HI_VN', name:'Health Insurance', rate:3, cap:50600000, base:'gross', group:'Employer contribution' },
+          { code:'UI_VN', name:'Unemployment', rate:1, cap:106200000, base:'gross', group:'Employer contribution' },
+          { code:'Union_VN', name:'Trade Union', rate:2, cap:50600000, base:'gross', group:'Employer contribution' },
+          { code:'SuppPensionVN', name:'Supp Pension', rate:11.8, base:'gross', group:'Additional cost' },
+          { code:'AddHealthVN', name:'Additional Health', rate:3.1, base:'gross', group:'Additional cost' },
+          { code:'SeveranceVN', name:'Severance', base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Brazil': {
+        currency: 'BRL', vat: 0.17,
+        items: [
+          { code:'INSSpat', name:'INSS Patronal', rate:20, base:'gross', group:'Employer contribution' },
+          { code:'Terceiros', name:'Terceiros', rate:5.8, base:'gross', group:'Employer contribution' },
+          { code:'RAT', name:'RAT/SAT', rate:2, base:'gross', group:'Employer contribution' },
+          { code:'FGTS', name:'FGTS', rate:8, base:'gross', group:'Employer contribution' },
+          { code:'Dec13BR', name:'13th Salary', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'FeriasBR', name:'Ferias', rate:11.11, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'InsuranceBR', name:'Insurance', fixed:800, base:'gross', group:'Additional cost' },
+          { code:'FGTSMulta', name:'FGTS Multa 40%', rate:3.2, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Chile': {
+        currency: 'CLP', vat: 0.19,
+        items: [
+          { code:'GratLegal', name:'Gratificacion', rate:3.35, base:'gross', group:'Employer contribution' },
+          { code:'SIS', name:'SIS', rate:1.62, base:'gross', group:'Employer contribution' },
+          { code:'WorkAccCL', name:'Work Accident', rate:0.95, base:'gross', group:'Employer contribution' },
+          { code:'UnempCL', name:'Unemployment', rate:2.4, base:'gross', group:'Employer contribution' },
+          { code:'NewPensionCL', name:'Pension Reform', rate:1, base:'gross', group:'Employer contribution' },
+          { code:'SANNA', name:'SANNA', rate:0.03, base:'gross', group:'Employer contribution' },
+          { code:'FeriadoCL', name:'Feriado Legal', rate:5.8, base:'gross', group:'Statutory/employee benefit' },
+          { code:'IndemnCL', name:'Indemnizacion', rate:8.33, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Italy': {
+        currency: 'EUR', vat: 0.22,
+        items: [
+          { code:'INPS', name:'INPS', rate:30, base:'gross', group:'Employer contribution' },
+          { code:'INAIL', name:'INAIL', rate:4.375, base:'gross', group:'Employer contribution' },
+          { code:'TFR', name:'TFR', rate:6.91, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'Dec13IT', name:'13th Salary', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'Dec14IT', name:'14th Salary', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'QUAS', name:'QUAS', fixed:370, base:'gross', group:'Additional cost' },
+          { code:'InsuranceIT', name:'Insurance', fixed:275, base:'gross', group:'Additional cost' },
+          { code:'TicketLicIT', name:'Ticket Licenziamento', fixed:54, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'India': {
+        currency: 'INR', vat: 0.18,
+        items: [
+          { code:'EPF_IN', name:'EPF', rate:3.67, cap:15000, base:'gross', group:'Employer contribution' },
+          { code:'EPS_IN', name:'EPS', rate:8.33, cap:15000, base:'gross', group:'Employer contribution' },
+          { code:'EDLI', name:'EDLI', rate:0.5, cap:15000, base:'gross', group:'Employer contribution' },
+          { code:'EPFAdmin', name:'EPF Admin', rate:0.5, base:'gross', group:'Employer contribution' },
+          { code:'WorkAccidentIN', name:'Work Accident', fixed:650, base:'gross', group:'Additional cost' },
+          { code:'ESI', name:'ESI', rate:3.25, cap:21000, base:'gross', group:'Employer contribution' },
+          { code:'ProfTaxIN', name:'Professional Tax', fixed:208, base:'gross', group:'Employer contribution' },
+          { code:'LeaveProvIN', name:'Leave Provision', rate:11.25, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'LWF_IN', name:'Labour Welfare Fund', fixed:12, base:'gross', group:'Employer contribution' },
+          { code:'GratuityIN', name:'Gratuity', rate:4.81, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'StatBonusIN', name:'Statutory Bonus', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Mexico': {
+        currency: 'MXN', vat: 0.16,
+        items: [
+          { code:'IMSS', name:'IMSS', rate:30, cap:89173, base:'gross', group:'Employer contribution' },
+          { code:'INFONAVIT', name:'INFONAVIT', rate:5, base:'gross', group:'Employer contribution' },
+          { code:'SAR', name:'SAR', rate:2, base:'gross', group:'Employer contribution' },
+          { code:'ISN', name:'ISN', rate:3, base:'gross', group:'Employer contribution' },
+          { code:'Aguinaldo', name:'Aguinaldo', rate:4.17, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'PrimaVac', name:'Prima Vacacional', rate:1.5, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'PTU', name:'PTU', rate:10, base:'salary_only', group:'Additional cost' },
+          { code:'SeveranceMX', name:'Severance Reserve', rate:9.25, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'GastosMedPens', name:'Gastos Med Pensionados', rate:1.05, cap:89173, base:'gross', group:'Employer contribution' },
+          { code:'PrimaAntig', name:'Prima de Antiguedad', rate:1.11, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Thailand': {
+        currency: 'THB', vat: 0.07,
+        items: [
+          { code:'SSF', name:'SSF', rate:5, cap:17500, base:'gross', group:'Employer contribution' },
+          { code:'WCF', name:'WCF', rate:0.4, base:'gross', group:'Employer contribution' },
+          { code:'ProvidentTH', name:'Provident Fund', rate:3, base:'gross', group:'Employer contribution' },
+          { code:'DisableTH', name:'Disable Fund', fixed:102.5, base:'gross', group:'Additional cost' },
+          { code:'MedicalTH', name:'Medical Insurance', rate:1.46, base:'gross', group:'Additional cost' },
+          { code:'SkillDevTH', name:'Skill Development Fund', rate:1, base:'gross', group:'Additional cost' },
+          { code:'SeveranceTH', name:'Severance', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'United Kingdom': {
+        currency: 'GBP', vat: 0.2,
+        items: [
+          { code:'PensionUK', name:'Pension (AE)', rate:3, base:'gross', group:'Employer contribution' },
+          { code:'NIUK', name:'National Insurance', rate:15, threshold:417, base:'gross', group:'Employer contribution' },
+          { code:'ApprenticeUK', name:'Apprentice Levy', rate:0.5, base:'gross', group:'Employer contribution' },
+          { code:'ELIUK', name:'Employer Liability Ins', rate:2, base:'gross', group:'Employer contribution' },
+          { code:'HolidayUK', name:'Holiday Pay', rate:10.77, base:'gross', group:'Statutory/employee benefit' }
+        ]
+      },
+      'United Arab Emirates': {
+        currency: 'AED', vat: 0.05,
+        items: [
+          { code:'SSUAE', name:'GPSSA', rate:15, base:'gross', group:'Employer contribution', applies:['local'] },
+          { code:'EOSUAE', name:'End of Service', rate:5.83, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'HealthUAE', name:'Health Insurance', fixed:712.5, base:'gross', group:'Employer contribution' },
+          { code:'LeaveProvUAE', name:'Annual Leave', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'EmiratisationFee', name:'Emiratisation Fee', fixed:850, base:'gross', group:'Additional cost' },
+          { code:'WorkInjuryUAE', name:'Work Injury', rate:4.2, base:'gross', group:'Employer contribution' },
+          { code:'VisaPermitUAE', name:'Visa & Permit', fixed:200, base:'gross', group:'Employer contribution' }
+        ]
+      },
+      'Australia': {
+        currency: 'AUD', vat: 0.1,
+        items: [
+          { code:'Super', name:'Superannuation', rate:12, cap:22569, base:'gross', group:'Employer contribution' },
+          { code:'PayrollTaxAU', name:'Payroll Tax', rate:5.45, base:'gross', group:'Employer contribution' },
+          { code:'WorkersCompAU', name:'Workers Comp', rate:3.63, base:'gross', group:'Employer contribution' },
+          { code:'MedicalLevyAU', name:'Medical Levy (vendor)', rate:2, base:'gross', group:'Additional cost' },
+          { code:'InsuranceAU', name:'Insurance', rate:2.36, base:'gross', group:'Additional cost' },
+          { code:'LSL_AU', name:'Long Service Leave', rate:1.67, base:'gross', group:'Statutory/employee benefit' },
+          { code:'AnnualLeaveAU', name:'Annual Leave', rate:7.69, base:'gross', group:'Statutory/employee benefit' },
+          { code:'RedundancyAU', name:'Redundancy', rate:2, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Netherlands': {
+        currency: 'EUR', vat: 0.21,
+        items: [
+          { code:'Vakantiegeld', name:'Holiday Allowance', rate:8, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'PensionNL', name:'Pension (Employer)', rate:15.66, base:'gross', group:'Employer contribution' },
+          { code:'StiPP', name:'StiPP Pension', rate:2.8, base:'gross', group:'Additional cost' },
+          { code:'WW_AWf', name:'WW (AWf)', rate:7.74, cap:6617, base:'gross', group:'Employer contribution' },
+          { code:'Aof_WIA', name:'WIA (Aof)', rate:7.63, cap:6617, base:'gross', group:'Employer contribution' },
+          { code:'ZVW', name:'ZVW', rate:6.1, cap:6617, base:'gross', group:'Employer contribution' },
+          { code:'Whk', name:'Whk', rate:1.64, cap:6617, base:'gross', group:'Employer contribution' },
+          { code:'Wko', name:'Wko', rate:0.5, base:'gross', group:'Employer contribution' },
+          { code:'Arbo', name:'Arbo', fixed:4.5, base:'gross', group:'Additional cost' },
+          { code:'TransitieNL', name:'Transitievergoeding', rate:2.78, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Romania': {
+        currency: 'RON', vat: 0.19,
+        items: [
+          { code:'CAM', name:'CAM', rate:2.25, base:'gross', group:'Employer contribution' },
+          { code:'OccHealthRO', name:'Occ Health', rate:2, base:'gross', group:'Employer contribution' },
+          { code:'UnemploymentRO', name:'Unemployment', rate:1, base:'gross', group:'Employer contribution' },
+          { code:'DisabilityRO', name:'Disability Fund', rate:0.8, base:'gross', group:'Employer contribution' },
+          { code:'CAS_Special', name:'CAS Special Conditions', rate:4, base:'gross', group:'Employer contribution' }
+        ]
+      },
+      'Kazakhstan': {
+        currency: 'KZT', vat: 0.12,
+        items: [
+          { code:'SO_KZ', name:'Social Contributions', rate:5, cap:595000, base:'gross', group:'Employer contribution' },
+          { code:'OPVR', name:'Employer Pension', rate:3.5, cap:4250000, base:'gross', group:'Employer contribution' },
+          { code:'OSMS', name:'Medical (OSMS)', rate:3, cap:3400000, base:'gross', group:'Employer contribution' },
+          { code:'OPPV', name:'Occupational Pension', rate:5, base:'gross', group:'Employer contribution' },
+          { code:'AccidentKZ', name:'Accident Insurance', rate:0.5, base:'gross', group:'Employer contribution' },
+          { code:'SocialTaxKZ', name:'Social Tax', rate:6, base:'gross', group:'Employer contribution' },
+          { code:'VacationKZ', name:'Vacation Accrual', rate:6.58, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'SeveranceKZ', name:'Severance Reserve', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Austria': {
+        currency: 'EUR', vat: 0.2,
+        items: [
+          { code:'Dec13AT', name:'13th Salary', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'Dec14AT', name:'14th Salary', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'PensionAT', name:'Pension (PV)', rate:12.55, cap:6930, base:'gross', group:'Employer contribution' },
+          { code:'HealthAT', name:'Health (ÖGK)', rate:3.78, cap:6930, base:'gross', group:'Employer contribution' },
+          { code:'AccidentAT', name:'Accident (AUVA)', rate:1.1, cap:6930, base:'gross', group:'Employer contribution' },
+          { code:'UnemployAT', name:'Unemployment (AMS)', rate:2.95, cap:6930, base:'gross', group:'Employer contribution' },
+          { code:'IESG', name:'IESG', rate:0.1, cap:6930, base:'gross', group:'Employer contribution' },
+          { code:'FLAF', name:'FLAF (DB)', rate:3.7, base:'gross', group:'Employer contribution' },
+          { code:'BMSVG', name:'BMSVG', rate:1.53, base:'gross', group:'Employer contribution' },
+          { code:'DZ_AT', name:'DZ Surcharge', rate:0.36, base:'gross', group:'Employer contribution' },
+          { code:'AddSS_AT', name:'Additional SS', rate:0.7, base:'gross', group:'Employer contribution' },
+          { code:'Kommunalsteuer', name:'Municipal Tax', rate:3, base:'gross', group:'Employer contribution' },
+          { code:'AusgleichAT', name:'Handicapped Levy', fixed:19.08, base:'gross', group:'Additional cost' },
+          { code:'WohnbauAT', name:'Wohnbaufoerderung', rate:0.5, cap:6930, base:'gross', group:'Employer contribution' }
+        ]
+      },
+      'Bangladesh': {
+        currency: 'BDT', vat: 0.15,
+        items: [
+          { code:'FestivalBonusBD', name:'Festival Bonus', rate:16.67, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'SeveranceBD', name:'Gratuity', rate:4.17, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'WPPF', name:'WPPF', rate:6.25, base:'salary_only', group:'Additional cost' },
+          { code:'SocialSecurityBD', name:'Provident Fund', rate:7.5, base:'salary_only', group:'Employer contribution' },
+          { code:'LiabilityInsBD', name:'Liability Insurance', rate:1.25, base:'gross', group:'Employer contribution' }
+        ]
+      },
+      'Turkey': {
+        currency: 'TRY', vat: 0.2,
+        items: [
+          { code:'ShortTermTR', name:'Short-term Insurance', rate:2.25, base:'gross', group:'Employer contribution' },
+          { code:'PensionTR', name:'Pension & Disability', rate:12, base:'gross', group:'Employer contribution' },
+          { code:'HealthTR', name:'General Health (GSS)', rate:7.5, base:'gross', group:'Employer contribution' },
+          { code:'UnemployTR', name:'Unemployment', rate:2, base:'gross', group:'Employer contribution' },
+          { code:'SeveranceTR', name:'Severance (Kidem)', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'YillikIzinTR', name:'Annual Leave', rate:3.84, base:'gross', group:'Statutory/employee benefit' },
+          { code:'IhbarTR', name:'Notice Pay', rate:2, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Canada': {
+        currency: 'CAD', vat: 0.05,
+        items: [
+          { code:'CPP', name:'CPP', rate:5.95, cap:6217, base:'gross', group:'Employer contribution' },
+          { code:'CPP2', name:'CPP2', rate:4, base:'gross', group:'Employer contribution' },
+          { code:'EI_CA', name:'EI', rate:2.28, cap:5742, base:'gross', group:'Employer contribution' },
+          { code:'WCB', name:'Workers Comp', rate:3, base:'gross', group:'Employer contribution' },
+          { code:'EHT', name:'Employer Health Tax', rate:1.95, base:'gross', group:'Employer contribution' },
+          { code:'VacationBC', name:'Vacation Pay', rate:4, base:'gross', group:'Statutory/employee benefit' },
+          { code:'StatHolBC', name:'Stat Holidays', rate:4.23, base:'gross', group:'Statutory/employee benefit' },
+          { code:'SickLeaveBC', name:'Paid Sick Leave', rate:1.92, base:'gross', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Hungary': {
+        currency: 'HUF', vat: 0.27,
+        items: [
+          { code:'SZOCHO', name:'SZOCHO', rate:13, base:'gross', group:'Employer contribution' },
+          { code:'RehabHU', name:'Rehabilitation', fixed:242100, base:'gross', group:'Employer contribution' },
+          { code:'HIPA_HU', name:'HIPA', rate:2, base:'gross', group:'Additional cost' },
+          { code:'InnovHU', name:'Innovation Contribution', rate:0.3, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Portugal': {
+        currency: 'EUR', vat: 0.23,
+        items: [
+          { code:'SegSocialPT', name:'Social Security', rate:23.75, base:'gross', group:'Employer contribution' },
+          { code:'Dec13PT', name:'13th Salary', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'Dec14PT', name:'14th Salary', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'OccAccidentPT', name:'Occ Accident', rate:2, base:'gross', group:'Employer contribution' },
+          { code:'OccHealthPT', name:'Occ Health', rate:1.2, base:'gross', group:'Additional cost' },
+          { code:'DerramaPT', name:'Derrama', rate:1.75, base:'gross', group:'Additional cost' },
+          { code:'CompensacaoPT', name:'Compensacao', rate:3.89, base:'gross', group:'Additional cost' },
+          { code:'FeriasPT', name:'Ferias', rate:6.11, base:'gross', group:'Statutory/employee benefit' }
+        ]
+      },
+      'DR Congo': {
+        currency: 'CDF', vat: 0.16,
+        items: [
+          { code:'PensionCD', name:'Pension (CNSS)', rate:5, base:'salary_only', group:'Employer contribution' },
+          { code:'FamilyCD', name:'Family Benefits', rate:6.5, base:'salary_only', group:'Employer contribution' },
+          { code:'WorkAccCD', name:'Work Accident', rate:1.5, base:'salary_only', group:'Employer contribution' },
+          { code:'INPP', name:'INPP Training', rate:3.5, base:'salary_only', group:'Employer contribution' },
+          { code:'ONEM', name:'ONEM', rate:0.5, base:'salary_only', group:'Employer contribution' }
+        ]
+      },
+      'Tanzania': {
+        currency: 'TZS', vat: 0.18,
+        items: [
+          { code:'NSSF_TZ', name:'NSSF', rate:10, base:'gross', group:'Employer contribution' },
+          { code:'WCF_TZ', name:'WCF', rate:0.5, base:'gross', group:'Employer contribution' },
+          { code:'SDL_TZ', name:'SDL', rate:3.5, base:'gross', group:'Employer contribution' },
+          { code:'SeveranceTZ', name:'Severance', rate:2.24, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'AnnualLeaveTZ', name:'Annual Leave', rate:7.67, base:'gross', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Czech Republic': {
+        currency: 'CZK', vat: 0.21,
+        items: [
+          { code:'PensionCZ', name:'Pension', rate:21.5, cap:195868, base:'gross', group:'Employer contribution' },
+          { code:'SicknessCZ', name:'Sickness', rate:2.1, cap:195868, base:'gross', group:'Employer contribution' },
+          { code:'EmployPolicyCZ', name:'Employment Policy', rate:1.2, cap:195868, base:'gross', group:'Employer contribution' },
+          { code:'HealthCZ', name:'Health', rate:9, base:'gross', group:'Employer contribution' },
+          { code:'WorkInjuryCZ', name:'Statutory Liability', rate:0.28, base:'gross', group:'Employer contribution' },
+          { code:'SuppHealthCZ', name:'Supp Health', rate:0.5, base:'gross', group:'Additional cost' },
+          { code:'OccSafetyCZ', name:'Occ Safety', rate:1, base:'gross', group:'Additional cost' },
+          { code:'ProfLiabCZ', name:'Prof Liability', rate:1.5, base:'gross', group:'Additional cost' },
+          { code:'SeveranceCZ', name:'Severance Reserve', rate:7.69, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Sweden': {
+        currency: 'SEK', vat: 0.25,
+        items: [
+          { code:'AlderspensionSE', name:'Old-age Pension', rate:10.21, base:'gross', group:'Employer contribution' },
+          { code:'SjukforsSE', name:'Sickness', rate:3.55, base:'gross', group:'Employer contribution' },
+          { code:'ForaldraSE', name:'Parental', rate:2, base:'gross', group:'Employer contribution' },
+          { code:'EfterlevandeSE', name:'Survivors Pension', rate:0.3, base:'gross', group:'Employer contribution' },
+          { code:'ArbetsmarknadSE', name:'Labour Market', rate:2.64, base:'gross', group:'Employer contribution' },
+          { code:'ArbetsskadaSE', name:'Work Injury', rate:0.1, base:'gross', group:'Employer contribution' },
+          { code:'LoneavgiftSE', name:'General Payroll Tax', rate:12.62, base:'gross', group:'Employer contribution' },
+          { code:'ITP_SE', name:'ITP Pension', rate:4.5, base:'gross', group:'Additional cost' },
+          { code:'SLP_SE', name:'SLP', rate:24.26, base:'salary_only', group:'Additional cost' }
+        ]
+      },
+      'Ireland': {
+        currency: 'EUR', vat: 0.23,
+        items: [
+          { code:'PRSI_IE', name:'Employer PRSI', rate:11.25, base:'gross', group:'Employer contribution' },
+          { code:'AutoEnrolIE', name:'My Future Fund', rate:1.5, cap:6667, base:'gross', group:'Employer contribution' }
+        ]
+      },
+      'Finland': {
+        currency: 'EUR', vat: 0.255,
+        items: [
+          { code:'TyEL_FI', name:'TyEL Pension', rate:17.1, base:'gross', group:'Employer contribution' },
+          { code:'SotuFI', name:'Health (Sotu)', rate:1.91, base:'gross', group:'Employer contribution' },
+          { code:'UnemployFI', name:'Unemployment', rate:0.31, base:'gross', group:'Employer contribution' },
+          { code:'TapaturmaFI', name:'Work Injury', rate:0.51, base:'gross', group:'Employer contribution' },
+          { code:'RyhmahenkiFI', name:'Group Life', rate:0.06, base:'gross', group:'Employer contribution' },
+          { code:'OccHealthFI', name:'Occupational Health', fixed:25, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'New Zealand': {
+        currency: 'NZD', vat: 0.15,
+        items: [
+          { code:'KiwiSaver', name:'KiwiSaver', rate:3.5, base:'gross', group:'Employer contribution' },
+          { code:'ACCWorkLevy', name:'ACC Work Levy', rate:0.69, cap:13053, base:'gross', group:'Employer contribution' },
+          { code:'WorkSaferLevy', name:'Working Safer Levy', rate:0.08, cap:13053, base:'gross', group:'Employer contribution' },
+          { code:'ESCT_NZ', name:'ESCT', base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Singapore': {
+        currency: 'SGD', vat: 0.09,
+        items: [
+          { code:'CPF_SG', name:'CPF', rate:17, cap:8000, base:'gross', group:'Employer contribution' },
+          { code:'SDL_SG', name:'SDL', rate:0.25, cap:4500, base:'gross', group:'Employer contribution' },
+          { code:'WICA_SG', name:'Work Injury (WICA)', rate:2, base:'gross', group:'Employer contribution' },
+          { code:'MedInsSG', name:'Medical Insurance', fixed:75, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'South Africa': {
+        currency: 'ZAR', vat: 0.15,
+        items: [
+          { code:'UIF_ZA', name:'UIF', rate:1, cap:17712, base:'gross', group:'Employer contribution' },
+          { code:'SDL_ZA', name:'SDL', rate:1, base:'gross', group:'Employer contribution' },
+          { code:'COIDA_ZA', name:'COIDA', rate:0.4, cap:55667, base:'gross', group:'Employer contribution' },
+          { code:'SeveranceZA', name:'Severance', rate:1.92, base:'gross', group:'Statutory/employee benefit' },
+          { code:'AnnualLeaveZA', name:'Annual Leave', rate:5.77, base:'gross', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Pakistan': {
+        currency: 'PKR', vat: 0.18,
+        items: [
+          { code:'EOBI_PK', name:'EOBI', fixed:2000, base:'gross', group:'Employer contribution' },
+          { code:'PESSI_PK', name:'Provincial Social Security', rate:6, cap:37000, base:'gross', group:'Employer contribution' },
+          { code:'GratuityPK', name:'Gratuity', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Taiwan': {
+        currency: 'TWD', vat: 0.05,
+        items: [
+          { code:'LaborIns_TW', name:'Labor Insurance', rate:8.75, cap:45800, base:'gross', group:'Employer contribution' },
+          { code:'OccAcc_TW', name:'Occupational Accident', rate:0.21, cap:72800, base:'gross', group:'Employer contribution' },
+          { code:'NHI_TW', name:'NHI', rate:4.84, cap:313000, base:'gross', group:'Employer contribution' },
+          { code:'NHISupp_TW', name:'NHI Supplementary', rate:2.11, base:'gross', group:'Employer contribution' },
+          { code:'LaborPension_TW', name:'Labor Pension', rate:6, cap:150000, base:'gross', group:'Employer contribution' },
+          { code:'WageArrears_TW', name:'Wage Arrears Fund', rate:0.025, cap:45800, base:'gross', group:'Employer contribution' },
+          { code:'Severance_TW', name:'Severance', rate:4.17, base:'gross', group:'Statutory/employee benefit' },
+          { code:'YearEnd_TW', name:'Year-end Bonus', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Jordan': {
+        currency: 'JOD', vat: 0.16,
+        items: [
+          { code:'SSC_Pension_JO', name:'Old-Age/Disability/Death', rate:11, cap:3733, base:'gross', group:'Employer contribution' },
+          { code:'SSC_WorkInj_JO', name:'Work Injury', rate:2, cap:3733, base:'gross', group:'Employer contribution' },
+          { code:'SSC_Matern_JO', name:'Maternity', rate:0.75, cap:3733, base:'gross', group:'Employer contribution' },
+          { code:'SSC_Unemp_JO', name:'Unemployment', rate:0.5, cap:3733, base:'gross', group:'Employer contribution' }
+        ]
+      },
+      'Morocco': {
+        currency: 'MAD', vat: 0.2,
+        items: [
+          { code:'AF_MA', name:'Family Allowances', rate:6.4, base:'gross', group:'Employer contribution' },
+          { code:'PS_MA', name:'Social Benefits', rate:8.98, cap:6000, base:'gross', group:'Employer contribution' },
+          { code:'AMO_MA', name:'AMO', rate:4.11, base:'gross', group:'Employer contribution' },
+          { code:'TFP_MA', name:'TFP', rate:1.6, base:'gross', group:'Employer contribution' },
+          { code:'Anciennete_MA', name:'Seniority Bonus', rate:5, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'AnnualLeaveMA', name:'Annual Leave', rate:6, base:'gross', group:'Statutory/employee benefit' },
+          { code:'SeveranceMA', name:'Severance', rate:4.58, base:'gross', group:'Additional cost' }
+        ]
+      },
+      'Iraq': {
+        currency: 'IQD', vat: 0,
+        items: [
+          { code:'SS_IQ', name:'Social Security', rate:12, cap:1750000, base:'gross', group:'Employer contribution' },
+          { code:'SS_Foreign_IQ', name:'Additional 8% (foreign)', rate:8, cap:1750000, base:'gross', group:'Employer contribution', applies:['foreign'] },
+          { code:'EOS_IQ', name:'End of Service', rate:4.17, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'AnnualLeaveIQ', name:'Annual Leave', rate:7.7, base:'gross', group:'Statutory/employee benefit' }
+        ]
+      },
+      'Lithuania': {
+        currency: 'EUR', vat: 0.21,
+        items: [
+          { code:'Unemp_LT', name:'Unemployment SI', rate:1.31, base:'gross', group:'Employer contribution' },
+          { code:'AccidentLT', name:'Accidents at Work', rate:0.14, base:'gross', group:'Employer contribution' },
+          { code:'GuaranteeLT', name:'Guarantee Fund', rate:0.16, base:'gross', group:'Employer contribution' },
+          { code:'LongTermLT', name:'Long-term Employment Fund', rate:0.16, base:'gross', group:'Employer contribution' },
+          { code:'AnnualLeaveLT', name:'Annual Leave', rate:7.7, base:'gross', group:'Statutory/employee benefit' },
+          { code:'SeveranceLT', name:'Severance', rate:1.67, base:'gross', group:'Additional cost' }
         ]
       },
       'Malaysia': {
         currency: 'MYR', vat: 0,
         items: [
-          { code:'EPF', name:'EPF', rate:13.0, base:'gross', group:'Employer contribution' },
+          { code:'EPF', name:'EPF', rate:13, base:'gross', group:'Employer contribution', applies:['local'] },
+          { code:'EPF_Foreign', name:'EPF Foreigner', rate:2, base:'gross', group:'Employer contribution', applies:['foreign'] },
           { code:'SOCSO', name:'SOCSO', rate:1.75, cap:6000, base:'gross', group:'Employer contribution' },
           { code:'EIS', name:'EIS', rate:0.2, cap:6000, base:'gross', group:'Employer contribution' },
-          { code:'HRDF', name:'HRDF', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'HRDF', name:'HRDF', rate:1, base:'gross', group:'Employer contribution' },
           { code:'MYInsurance', name:'Insurance', fixed:300, base:'gross', group:'Employer contribution' },
-          { code:'Severance', name:'Severance Provision', rate:4.1, base:'gross', group:'Additional cost' }
+          { code:'Severance', name:'Severance Provision', rate:4.1, base:'gross', group:'Additional cost' },
+          { code:'ForeignLevyMY', name:'Foreign Worker Levy', fixed:154, base:'gross', group:'Employer contribution', applies:['foreign'] }
         ]
       },
       'Peru': {
-        currency: 'PEN', vat: 18,
+        currency: 'PEN', vat: 0.18,
         items: [
-          { code:'EsSalud', name:'EsSalud', rate:9.0, base:'gross', group:'Employer contribution' },
+          { code:'EsSalud', name:'EsSalud', rate:9, base:'gross', group:'Employer contribution' },
           { code:'SENATI', name:'SENATI', rate:0.75, base:'gross', group:'Employer contribution' },
-          { code:'VidaLey', name:'Vida Ley', rate:0.9, base:'gross', group:'Employer contribution' },
+          { code:'VidaLey', name:'Vida Ley', rate:0.6, base:'gross', group:'Employer contribution' },
           { code:'FamilyAllowancePE', name:'Family Allowance', fixed:113, base:'gross', group:'Statutory/employee benefit' },
           { code:'GratJul', name:'Gratif Julio', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
           { code:'GratDec', name:'Gratif Navidad', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' },
-          { code:'CTS', name:'CTS', rate:9.72, base:'salary_only', group:'Statutory/employee benefit' }
+          { code:'BonifExtra', name:'Bonificacion Extraordinaria', rate:1.5, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'CTS', name:'CTS', rate:9.72, base:'salary_only', group:'Statutory/employee benefit' },
+          { code:'VacacionesPE', name:'Vacaciones', rate:8.33, base:'salary_only', group:'Statutory/employee benefit' }
         ]
       },
       'Philippines': {
         currency: 'PHP', vat: 0,
         items: [
           { code:'Salary13', name:'13th Month', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
-          { code:'SSS', name:'SSS', rate:10.0, cap:35000, addon:30, base:'gross', group:'Employer contribution' },
+          { code:'SSS', name:'SSS', rate:10, cap:35000, addon:30, base:'gross', group:'Employer contribution' },
           { code:'PhilHealth', name:'PhilHealth', rate:2.5, cap:100000, floor:250, ceiling:2500, base:'gross', group:'Employer contribution' },
-          { code:'PagIBIG', name:'Pag-IBIG', rate:2.0, cap:10000, base:'gross', group:'Employer contribution' },
-          { code:'HMO', name:'HMO', rate:4.0, base:'gross', group:'Additional cost' },
+          { code:'PagIBIG', name:'Pag-IBIG', rate:2, cap:10000, base:'gross', group:'Employer contribution' },
+          { code:'HMO', name:'HMO', rate:4, base:'gross', group:'Additional cost' },
+          { code:'WorkAccidentPH', name:'Work Accident', rate:2.17, base:'gross', group:'Additional cost' },
           { code:'RiceSubsidy', name:'Rice Subsidy', fixed:2500, base:'gross', group:'Statutory/employee benefit' },
-          { code:'Retirement', name:'Retirement Provision', rate:6.16, base:'gross', group:'Additional cost' }
+          { code:'Retirement', name:'Retirement Provision', rate:6.16, base:'gross', group:'Additional cost' },
+          { code:'ECPH', name:'EC Fund', fixed:30, base:'gross', group:'Employer contribution' }
         ]
       },
       'Japan': {
@@ -2726,22 +3130,24 @@
           { code:'Health', name:'Health', rate:4.925, cap:1390000, base:'gross', group:'Employer contribution' },
           { code:'Nursing', name:'Nursing Care', rate:0.81, cap:1390000, base:'gross', group:'Employer contribution' },
           { code:'WorkAccident', name:'Work Accident', rate:1.2, base:'gross', group:'Employer contribution' },
-          { code:'Unemployment', name:'Unemployment', rate:0.95, base:'gross', group:'Employer contribution' },
+          { code:'Unemployment', name:'Unemployment', rate:0.85, base:'gross', group:'Employer contribution' },
           { code:'ChildSupport', name:'Child Support 2026', rate:0.115, base:'gross', group:'Employer contribution' },
           { code:'ChildRearing', name:'Child-rearing', rate:0.36, cap:650000, base:'gross', group:'Employer contribution' },
           { code:'Asbestos', name:'Asbestos Levy', rate:0.002, base:'gross', group:'Employer contribution' },
-          { code:'RetirementJP', name:'Retirement Allowance', rate:8.33, base:'gross', group:'Additional cost' }
+          { code:'RetirementJP', name:'Retirement Allowance', rate:8.33, base:'gross', group:'Additional cost' },
+          { code:'DisabilityLevyJP', name:'Disability Levy', fixed:50000, base:'gross', group:'Employer contribution' }
         ]
       },
       'Germany': {
         currency: 'EUR', vat: 0,
         items: [
           { code:'Pension', name:'Pension', rate:9.3, cap:8450, base:'gross', group:'Employer contribution' },
+          { code:'SuppPensionDE', name:'Supp Pension', rate:0.5, base:'gross', group:'Additional cost' },
           { code:'Health', name:'Health', rate:7.3, cap:5812.5, base:'gross', group:'Employer contribution' },
-          { code:'SuppHealthDE', name:'Zusatzbeitrag', rate:0.85, cap:5812.5, base:'gross', group:'Employer contribution' },
+          { code:'SuppHealthDE', name:'Zusatzbeitrag', rate:1.45, cap:5812.5, base:'gross', group:'Employer contribution' },
           { code:'Nursing', name:'Nursing', rate:1.8, cap:5812.5, base:'gross', group:'Employer contribution' },
-          { code:'U1Sickness', name:'U1 Sickness', rate:4.0, base:'gross', group:'Employer contribution' },
-          { code:'U2Maternity', name:'U2 Maternity', rate:1.0, base:'gross', group:'Employer contribution' },
+          { code:'U1Sickness', name:'U1 Sickness', rate:4, base:'gross', group:'Employer contribution' },
+          { code:'U2Maternity', name:'U2 Maternity', rate:1, base:'gross', group:'Employer contribution' },
           { code:'Unemployment', name:'Unemployment', rate:1.3, cap:8450, base:'gross', group:'Employer contribution' },
           { code:'Accident', name:'Accident', rate:1.3, base:'gross', group:'Employer contribution' },
           { code:'Insolvency', name:'Insolvency', rate:0.15, base:'gross', group:'Employer contribution' },
@@ -2753,17 +3159,27 @@
       'Belgium': {
         currency: 'EUR', vat: 0,
         items: [
-          { code:'SocialSecurity', name:'Social Security', rate:32.99, base:'gross', group:'Employer contribution' },
+          { code:'SocialSecurity', name:'Social Security', rate:27, base:'gross', group:'Employer contribution' },
           { code:'WorkAccident', name:'Work Accident', rate:2.925, base:'gross', group:'Employer contribution' },
           { code:'OccHealthBE', name:'Occupational Health', rate:3.39, base:'gross', group:'Additional cost' },
           { code:'Salary13', name:'13th Month', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
           { code:'DoubleHoliday', name:'Double Holiday Pay', rate:8.333, base:'salary_only', group:'Statutory/employee benefit' },
           { code:'MealVouchers', name:'Meal Vouchers', fixed:180, base:'gross', group:'Statutory/employee benefit' },
           { code:'EcoVouchers', name:'Eco Vouchers', fixed:20.84, base:'gross', group:'Statutory/employee benefit' },
-          { code:'JC200', name:'JC200 Premium', fixed:27.57, base:'gross', group:'Statutory/employee benefit' }
+          { code:'JC200', name:'JC200 Premium', fixed:27.57, base:'gross', group:'Statutory/employee benefit' },
+          { code:'FFE_BE', name:'Closing Fund FFE', rate:0.37, base:'gross', group:'Employer contribution' }
         ]
       }
     };
+
+    /* ── Does a contribution item apply to this employee type? ──
+       item.applies: ['local'] or ['foreign']; no applies = everyone.
+       'foreigner'/'expat' employment types count as foreign; all others (or unselected) as local. */
+    function contribApplies(item, empType) {
+      if (!item.applies) return true;
+      var cat = (empType === 'foreigner' || empType === 'expat') ? 'foreign' : 'local';
+      return item.applies.indexOf(cat) !== -1;
+    }
 
     /* ── Calculate one contribution item for a single employee ── */
     function calcOneContrib(item, monthlySalary, monthlyGross) {
@@ -2805,6 +3221,7 @@
         var monthlyGross = monthlySalary + bonus + allowance;
 
         data.items.forEach(function(item) {
+          if (!contribApplies(item, emp.empType)) return;
           var amt = calcOneContrib(item, monthlySalary, monthlyGross);
           itemTotals[item.code] += amt;
           totalContrib += amt;
@@ -3540,6 +3957,7 @@
 
         contribGen.items.forEach(function(item) {
           var amt = contribGen.itemTotals[item.code];
+          if (item.applies && !amt) return; /* type-conditional item that applied to no employee */
           var rateDisplay = item.fixed ? (cur + ' ' + Number(item.fixed).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' fixed')
                          : (item.rate ? item.rate + '%' : '0%');
           if (item.cap) rateDisplay += ' (cap ' + Number(item.cap).toLocaleString('en-US') + ')';
@@ -3795,6 +4213,7 @@
 
         contribGen.items.forEach(function(item) {
           var amt = contribGen.itemTotals[item.code];
+          if (item.applies && !amt) return; /* type-conditional item that applied to no employee */
           var rateDisplay = item.fixed ? (cur + ' ' + Number(item.fixed).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' fixed')
                          : (item.rate ? item.rate + '%' : '0%');
           if (item.cap) rateDisplay += ' (cap ' + Number(item.cap).toLocaleString('en-US') + ')';
@@ -4276,7 +4695,8 @@
       });
     })();
 
-</script><script>
+</script>
+<script>
   /* ── Mobile footer accordion ── */
   (function() {
     document.querySelectorAll('[data-footer-mob-acc]').forEach(function(header) {
@@ -4285,6 +4705,7 @@
       });
     });
   })();
-</script><script src="assets/lang/lang-loader.js"></script>
+</script>
+<script src="assets/lang/lang-loader.js"></script>
 </body>
 </html>
