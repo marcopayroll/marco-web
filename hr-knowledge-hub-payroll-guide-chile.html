@@ -930,16 +930,16 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span>Payroll Guide</span>
+        <span data-i18n="pg.page.breadcrumb">Payroll Guide</span>
       </a>
       <div class="pg-hero-text-inner">
-        <h1 class="pg-hero-title">Chile</h1>
+        <h1 class="pg-hero-title" data-i18n="pg.country.chile">Chile</h1>
         <p class="pg-hero-desc">Description to be added</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated">Last Update by, 1 January 2026</p>
+      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.chile">1 January 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
@@ -951,7 +951,7 @@
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
   <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;">Chile Payroll Guide content coming soon</p>
+    <p style="color: #475072; font-size: 18px;"><span data-i18n="pg.country.chile">Chile</span> <span data-i18n="pg.page.comingsoon">Payroll Guide content coming soon</span></p>
   </div>
 </section>
 
@@ -964,17 +964,17 @@
         <div class="gs-cta-title-block">
           <div class="gs-cta-label">
             <div class="gs-cta-label-line"></div>
-            <span>GET STARTED</span>
+            <span data-i18n="pg.page.gs.label">GET STARTED</span>
           </div>
           <h2 class="gs-cta-title">
-            Need help with Payroll Compliance in
-            <span class="accent">Chile?</span>
+            <span data-i18n="pg.page.gs.title">Need help with Payroll Compliance in</span>
+            <span class="accent"><span data-i18n="pg.country.chile">Chile</span><span data-i18n="pg.page.gs.q">?</span></span>
           </h2>
         </div>
-        <p class="gs-cta-subtitle">Have any questions? We&rsquo;d love to hear from you</p>
+        <p class="gs-cta-subtitle" data-i18n="pg.page.gs.sub">Have any questions? We&rsquo;d love to hear from you</p>
       </div>
       <a href="company-contact-us.html" class="gs-cta-btn">
-        Contact us
+        <span data-i18n="pg.page.gs.contact">Contact us</span>
         <div class="gs-cta-btn-icon"><div class="gs-cta-btn-icon-inner"><img class="gs-cta-btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
       </a>
     </div>
@@ -990,14 +990,14 @@
     <div class="explore-header">
       <div class="explore-eyebrow">
         <div class="explore-eyebrow-line"></div>
-        <span class="explore-eyebrow-label">EXPLORE MORE</span>
+        <span class="explore-eyebrow-label" data-i18n="pg.page.explore.label">EXPLORE MORE</span>
       </div>
       <div class="explore-title-row">
-        <h2 class="explore-title">Other Payroll Guides</h2>
+        <h2 class="explore-title" data-i18n="pg.page.explore.title">Other Payroll Guides</h2>
         <div class="explore-controls">
           <div class="explore-search">
             <div class="explore-search-icon"><img src="assets/HR Knowledge Hub/Payroll Guide/assets/search-icon.svg" alt="" /></div>
-            <input class="explore-search-input" id="exploreSearch" type="text" placeholder="Search Country" autocomplete="off" />
+            <input class="explore-search-input" id="exploreSearch" type="text" placeholder="Search Country" data-i18n-placeholder="pg.search.placeholder" autocomplete="off" />
             <button class="explore-search-clear" id="exploreSearchClear" aria-label="Clear search">
               <img src="assets/HR Knowledge Hub/Payroll Guide/assets/x-icon.svg" alt="" />
             </button>
@@ -1016,7 +1016,7 @@
   </div>
   <div class="explore-viewport" id="exploreViewport">
     <div class="explore-track" id="exploreTrack"></div>
-    <p class="explore-empty container" id="exploreEmpty">No countries found.</p>
+    <p class="explore-empty container" id="exploreEmpty" data-i18n="pg.page.explore.empty">No countries found.</p>
   </div>
   <div class="container">
     <div class="explore-scroll-track">
@@ -1156,6 +1156,14 @@
     var searchInput  = document.getElementById('exploreSearch');
     var searchClear  = document.getElementById('exploreSearchClear');
 
+    function t(key, fallback) {
+      var p = window.__marcoPack;
+      return (p && p[key] !== undefined && p[key] !== '') ? p[key] : fallback;
+    }
+    function countrySlug(name) {
+      return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    }
+
     function buildCard(c) {
       var a = document.createElement('a');
       a.className = 'explore-card';
@@ -1167,10 +1175,10 @@
         '<div class="explore-card-thumb">' + thumbHtml + '</div>' +
         '<div class="explore-card-body">' +
           '<div class="explore-card-title-row">' +
-            '<span class="explore-card-name">' + c.name + '</span>' +
+            '<span class="explore-card-name">' + t('pg.country.' + countrySlug(c.name), c.name) + '</span>' +
             '<span class="explore-card-currency">' + c.currency + '</span>' +
           '</div>' +
-          '<span class="explore-card-date">Last Updated by, ' + (c.date || '1 January 2026') + '</span>' +
+          '<span class="explore-card-date">' + t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + countrySlug(c.name), c.date || '1 January 2026') + '</span>' +
         '</div>';
       return a;
     }
@@ -1239,6 +1247,10 @@
     }, { passive: false });
 
     render('');
+
+    document.addEventListener('marcolangready', function() {
+      render(searchInput ? searchInput.value : '');
+    });
   })();
 </script>
 

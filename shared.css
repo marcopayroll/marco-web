@@ -387,6 +387,8 @@ body {
   background-position: center;
   background-size: 16px 16px;
 }
+/* Some pages also carry an inline icon <div> — hide it so the icon never doubles */
+.explore-search .explore-search-icon { display: none; }
 .explore-search-input {
   flex: 1;
   min-width: 0;

@@ -1,74 +1,74 @@
 window.MARCO_LANG_CN_COMPANY_PRIVACY = {
 
   /* ── Hero ── */
-  'pp.title':    '',
+  'pp.title':    '隐私政策',
 
   /* ── Last Updated ── */
-  'pp.updated':  '',
+  'pp.updated':  '最后更新：2026 年 6 月 10 日',
 
   /* ── Section 1: Introduction ── */
-  'pp.s1.h':     '',
-  'pp.s1.body':  '',
+  'pp.s1.h':     '介绍',
+  'pp.s1.body':  '<p>保护您的个人数据对我们很重要。本隐私政策概述了我们如何管理我们持有的个人数据。马可全球薪资私人有限公司（简称"<strong>Marco</strong>"、"<strong>我们</strong>"）尊重个人数据的保密性和个人隐私，并致力于遵守2012年新加坡个人数据保护法（"<strong>PDPA</strong>"）和其他适用的数据保护法，包括欧盟（"<strong>EU</strong>"）通用数据保护条例（"<strong>GDPR</strong>"）（如适用）。</p><p>通过访问本网站、使用网站提供的信息或通过我们的网站索取信息，即表示您确认您已阅读、理解并同意受本隐私政策约束，包括我们的服务条款"<a href="company-terms-of-use.html">Terms-of-Use</a>"。如果您不同意我们的隐私政策，请立即停止使用。您继续使用本网站（无论是现在还是将来）即表示您已同意我们的隐私政策。</p><p>请阅读本隐私政策，以便您了解我们收集、使用和披露您个人数据的目的。</p>',
 
   /* ── Section 2: Questions ── */
-  'pp.s2.h':     '',
-  'pp.s2.body':  '',
+  'pp.s2.h':     '关于本隐私政策的问题',
+  'pp.s2.body':  '<p>如果您对本隐私政策有任何疑问，或对我们如何管理、保护和/或处理您的个人数据有任何疑问，请随时与我们联系，您可以在本隐私政策末尾找到我们的联系信息。请在主题标头中注明查询性质（例如，如果是关于访问请求，您可以在主题标头中插入"数据主体访问请求"字样）。</p>',
 
   /* ── Section 3: What data ── */
-  'pp.s3.h':     '',
-  'pp.s3.body':  '',
+  'pp.s3.h':     'Marco收集您的哪些个人数据？',
+  'pp.s3.body':  '<p>个人数据是指可以识别个人身份的任何数据，无论其真实与否；或根据该数据以及我们已经拥有或可能获得的其他信息可以识别个人身份。</p><p>您可能向我们提供的此类个人数据的示例包括（取决于您与我们互动的性质）您的姓名、身份证号码、护照号码或其他身份证号码、驾驶执照、电话号码、邮寄地址、电子邮件地址、IP地址、照片、简历，以及您以任何形式提交给我们的与您有关的任何其他信息，或以其他形式与您互动的信息。</p>',
 
   /* ── Section 4: How collected ── */
-  'pp.s4.h':     '',
-  'pp.s4.body':  '',
+  'pp.s4.h':     'Marco如何收集您的个人数据',
+  'pp.s4.body':  '<p>一般而言，我们通过以下方式收集您的个人数据：</p><ul><li>当您提交与我们服务相关的表格，或以其他方式就我们的服务与我们联系时；</li><li>当您注册或使用我们拥有或运营的网站、平台和应用程序上的任何服务时，或当您在我们拥有或运营的任何网站、平台和应用程序上注册时；</li><li>当您使用或购买我们的服务时；</li><li>当您在我们这里建立任何在线账户时；</li><li>当您要求我们联系您时；</li><li>当您回应我们对额外个人数据的请求时；</li><li>当您要求加入电子邮件或其他邮件列表时；</li><li>当您响应我们的促销或其他举措时；</li><li>当您提交工作申请时；</li><li>当我们从业务合作伙伴和第三方收到推荐时，例如您被他们推荐的情况；</li><li>当您出于任何其他原因向我们提交个人数据时；</li><li>当您浏览我们的网站时。</li></ul><p>我们可能会监控或记录电话和面向客户的互动，用于质量保证、员工培训和绩效评估以及身份验证目的，以及在接收反馈、回应您的查询、请求和投诉及其他相关目的时。此类监控或记录将按照适用法律进行。</p><p>如果我们评估认为符合我们的合法利益和/或业务改进目的，您的个人数据也可能被收集、使用和/或披露。合法利益包括防范物理和网络安全风险以及确保业务连续性，业务改进目的包括改进或增强任何商品或服务，或运营方法和流程，以及了解和理解客户的行为和偏好。在此之前，我们将采取措施确保可能对您产生的任何不利影响已被识别并消除、减少或缓解。</p><p>我们可能从其他来源接收有关您的个人数据（例如，当您授权第三方服务直接与我们的网站、平台、应用程序或服务互动以提供或接收关于您的个性化信息时）。</p><p>当您访问我们的网站时，我们的服务器会自动记录您的浏览器在访问任何其他网站时通常发送的信息。此信息可能包括您的互联网协议地址、浏览器类型、您在访问我们网站之前访问的网页以及您在我们网站上搜索的信息。与许多网站一样，我们也使用"cookies"和其他技术来收集信息。您可以通过更改浏览器选项来指示浏览器停止接受cookies或在接受您访问的网站的cookie之前提示您。但是，如果您不接受cookies，您可能无法使用我们网站的所有部分或我们服务的所有功能。有关我们使用cookies和其他技术的更多信息，请参见"<a href="company-cookies-policy.html">Cookies 政策</a>"。</p><p>Marco不会故意收集或索取16岁以下任何人的个人信息。16岁以下的儿童不是我们网站的目标受众。如果您未满16岁，请不要向我们提供任何个人信息。我们鼓励家长和法定监护人监督其子女的互联网使用情况。</p>',
 
   /* ── Section 5: What used for ── */
-  'pp.s5.h':     '',
-  'pp.s5.body':  '',
+  'pp.s5.h':     'Marco将您的个人数据用于什么目的？',
+  'pp.s5.body':  '<p>在适用的数据保护法允许的情况下，我们可能出于以下目的收集、使用和/或披露您的个人数据：</p><ol><li><strong><u>提供我们的产品和服务</u></strong> — 包括管理我们与您或您的企业的关系、与您沟通我们的产品和服务、注册成为我们网站、移动应用程序或平台的用户、申请工作；以及联系我们以寻求合作伙伴、供应商或其他商业机会。</li><li><strong><u>与营销和活动相关的通信</u></strong> — 包括通过任何方式（包括通过电子邮件、电话、短信、社交媒体、邮件或面对面）与您沟通我们认为您可能感兴趣的新闻和分析（但须在适用法律要求的范围内事先征得您的选择同意）、通知您我们的服务、网站、平台和应用程序及其功能的变更、向您提供我们提供的其他产品和服务的信息、随时向您通报行业发展、适当时维护和更新您的联系信息，以及邀请您参加活动或调查，或在符合适用数据保护法的同意或其他法律要求的情况下以其他方式与您进行营销沟通。</li><li><strong><u>改进我们的业务</u></strong> — 包括改进我们的业务，包括测试新产品和服务以及开发满足用户需求的新方法、识别我们的产品、服务、网站、平台和应用程序中的问题，以及对我们的产品、服务、网站、平台和应用程序进行研究和规划改进，并创建新的产品、服务、网站、平台和应用程序。</li><li><strong><u>管理我们的业务</u></strong> — 包括提供就业或独立承包商/自由职业者机会的信息、准雇员或独立承包商/自由职业者的入职培训、雇员入职后的管理、调查问卷和其他类似措施以改善Marco、供应商及其客户的一般招聘活动、业务执行包括与客户和供应商签订协议并管理与相关方的关系、代表客户、员工或独立承包商/自由职业者进行和管理付款、管理用户账户应付费用（如有）、向Marco的关联公司和/或附属公司提供信息、与我们的客户、投资者、潜在和现有员工沟通；以及与您与我们签订的协议有关的任何目的，包括维护客户中央数据库。</li><li><strong><u>合规检查</u></strong> — 包括履行我们的监管合规义务、"了解您的客户"检查、确认并核实您的身份、使用信用咨询机构，以及根据政府和/或执法机构制裁名单和其他法律限制进行筛选。</li><li><strong><u>信息技术系统的管理</u></strong> — 包括管理和运行我们的通信、IT和安全系统、审计（包括安全审计）和监控此类系统。</li><li><strong><u>健康与安全</u></strong> — 包括健康与安全评估和记录保存、在我们的场所提供安全可靠的环境，以及遵守相关法律义务。</li><li><strong><u>安全</u></strong> — 包括我们场所的实体安全（包括访问记录）和闭路电视录像；以及电子安全（包括登录记录和访问详情）。</li><li><strong><u>财务管理</u></strong> — 包括销售、财务、企业审计和供应商管理，以及处理客户和供应商的订单和账单。</li><li><strong><u>调查</u></strong> — 包括根据适用法律侦查、调查和预防违反政策的行为和刑事犯罪。</li><li><strong><u>法律诉讼</u></strong> — 包括确立、行使和捍卫法律权利。</li><li><strong><u>遵守法律</u></strong> — 例如遵守适用法律规定的法律和监管义务。</li><li><strong><u>预防欺诈</u></strong> — 例如侦查、预防和调查欺诈行为。</li></ol><p>（统称为"<strong>目的</strong>"）</p><p>我们这样做是为了向您提供您所要求的服务，并在适当情况下征得您的同意或基于我们的合法利益来开展业务运营。</p><p>由于我们可能收集、使用、披露或处理您个人数据的目的取决于当时的具体情况，因此此类目的可能未在上面列出。但是，我们将在获得您同意时通知您此类其他目的，除非适用法律允许在未经您同意的情况下处理您的个人数据。</p><p>为了更顺利地开展业务运营，我们也可能将您提供给我们的个人数据披露给位于新加坡境内或境外的第三方服务提供商、代理商和/或我们的附属公司或关联公司和/或其他第三方，用于上述一项或多项目的。此类第三方服务提供商、代理商和/或附属公司或关联公司和/或其他第三方将代表我们或以其他方式处理您的个人数据，用于上述一项或多项目的。</p>',
 
   /* ── Section 6: Who shared with ── */
-  'pp.s6.h':     '',
-  'pp.s6.body':  '',
+  'pp.s6.h':     'Marco与谁共享您的个人数据？',
+  'pp.s6.body':  '<p>为了向您提供我们的产品和服务，我们可能需要向第三方披露您的个人数据，以便他们代表我们进行处理。这可能包括以下类别的接收方：</p><ol><li>我们的<strong>服务提供商</strong> — 例如，负责存储和分析数据、提供客户服务、广告和支付处理的服务提供商；</li><li>我们的<strong>代理商</strong> — 可能代表我们提供部分产品和服务；</li><li>我们的<strong>关联公司</strong> — 可能代表我们提供部分产品或服务；</li><li>其他<strong>第三方服务提供商</strong> — 其服务或应用程序我们可能在我们的产品和服务上提供给您使用。</li></ol><p>Marco还可能与我们销售和营销链中的其他参与方（如集成商、订单履行商、销售代理和渠道合作伙伴）共享您的个人信息，仅限于销售、营销或提供Marco产品和服务支持的有限目的。</p><p>Marco可能会分析匿名和汇总信息，以便运营、维护、管理和改进网站和/或相关产品和服务。此汇总信息不会识别您的个人身份。我们可能会将此汇总数据分享给我们的子公司、附属公司、代理商、业务合作伙伴和其他第三方。我们也可能披露汇总用户统计数据，以便向当前和潜在业务合作伙伴及其他第三方描述服务和其他产品，用于其他合法目的。</p><p>随着我们业务的不断发展，我们可能会出售或购买其他业务或资产，其中包括任何业务资产交易。"<strong>业务资产交易</strong>"是指购买、出售、租赁、合并或合并或对组织或组织的一部分或组织的任何业务或资产的任何其他收购、处置或融资。在此类交易中，我们可能在适用的数据保护法律下无需事先获得您的同意即可向第三方披露您的个人数据。</p><p>我们可能会披露我们收集的任何个人数据，以回应传票、法院命令、法律程序、执法请求、法律索赔或政府查询，以及保护和捍卫Marco及其附属公司、用户或公众的权利、利益、安全和保障。我们还可能共享我们收集的任何个人数据，以执行适用于使用我们产品和/或服务的任何条款，行使或捍卫任何法律索赔，以及遵守任何适用法律。</p><p>如需将您的个人数据转移到新加坡境外，我们将采取措施确保接收方受到法律约束，例如：</p><ol><li>如果接收方是关联或附属组织或相关组织，则采用一套具有约束力的公司规则；</li><li>如果接收方是无关联的第三方，则采用合同或书面协议。</li></ol><p>以提供与PDPA或适用的数据保护法所提供的保护水平相当的个人数据保护标准。</p><p>我们尊重您向我们提供的个人数据的保密性。在这方面，我们只会在适用的数据保护法允许的情况下向第三方披露您的个人数据。更具体地说，未经您事先同意，我们不会将您的个人数据披露给任何第三方，除非PDPA豁免条款批准此类披露。</p><p>在与第三方共享您的个人数据时，我们将尽最大努力确保采取适当的保障措施，以保护您的个人数据在此类第三方手中的安全性和保密性。</p>',
 
   /* ── Section 7: Access / Correction ── */
-  'pp.s7.h':     '',
-  'pp.s7.body':  '',
+  'pp.s7.h':     '查阅文档、更正和/或移植个人数据的请求',
+  'pp.s7.body':  '<p>您可以随时向我们的数据保护官提交请求，以查阅、更正和/或移植目前我们持有的个人数据，或反对我们收集、使用和/或披露我们持有或控制的您的个人数据。</p><p>对于查阅个人数据的请求，我们将在提出请求后的合理时间内向您提供相关个人数据的副本。</p><p>对于更正个人数据的请求，我们将在提出请求后尽快处理您的请求。此类更正可能涉及必要的核实，其中可能包括将更正后的个人数据发送给Marco在更正日期前一年内向其披露个人数据的其他组织（除非该其他组织不需要更正后的个人数据用于任何法律或商业目的），或者如果您同意，仅发送给我们在更正日期前一年内向其披露个人数据的特定组织。</p><p>对于移植个人数据的请求，一旦我们从您那里获得足够的信息来处理请求，我们将在30个日历日内移植您的个人数据。如果我们无法在上述30个日历日内完成，我们将通知您最快可行的时间。</p><p>您无需为查阅您的个人信息（或行使任何其他权利）支付费用。但是，如果您的请求无根据或过分，我们可能会收取合理的费用用于处理您查阅、更正和/或移植个人数据的请求。您将提前收到此类费用的通知。或者，在此类情况下，我们可能会拒绝遵守此类无根据或过分的请求。</p><p>对于反对我们处理您个人数据的请求，我们将在提出请求后的合理时间内处理您的请求。此类请求可能会对您与我们的关系或我们向您提供的服务质量产生不利影响。我们将提前通知您此类影响。</p>',
 
   /* ── Section 8: How protected ── */
-  'pp.s8.h':     '',
-  'pp.s8.body':  '',
+  'pp.s8.h':     'Marco如何保护您的个人数据？',
+  'pp.s8.body':  '<p>我们将根据数据保护法采取预防措施，确保您的个人数据得到充分保护和安全。我们将做出适当的安全安排，以防止未经授权的访问、收集、使用、披露、复制、修改、泄漏、丢失、损坏和/或更改您的个人数据。</p><p>我们还将做出合理努力，确保在合理地认为(a)收集该个人数据的目的不再通过保留此类个人数据来实现；以及(b)保留不再为任何其他法律或商业目的所必需时，尽快销毁和/或匿名化我们持有或控制的个人数据。</p>',
 
   /* ── Section 9: EEA/UK ── */
-  'pp.s9.h':     '',
-  'pp.s9.body':  '',
+  'pp.s9.h':     '欧洲经济区（"EEA"）和英国境内的个人',
+  'pp.s9.body':  '<p>如果您位于EEA或英国境内，附录1中列出的规定也将适用于您的个人数据。</p>',
 
   /* ── Section 10: Updates ── */
-  'pp.s10.h':    '',
-  'pp.s10.body': '',
+  'pp.s10.h':    '本隐私政策更新',
+  'pp.s10.body': '<p>作为我们确保正确管理、保护和处理您个人数据的努力的一部分，我们将不时审查我们的政策、程序和流程。</p><p>我们可自行决定修改本隐私政策的条款。修改后的政策将在我们的网站或平台上发布，一旦发布即刻生效。如果适用法律要求，我们将在对本隐私政策做出重大修改时通知您。但是，建议您定期访问此页面以获取有关我们隐私惯例的最新信息。</p>',
 
   /* ── Section 11: Contact Information ── */
-  'pp.s11.h':    '',
-  'pp.s11.body': '',
+  'pp.s11.h':    '联系信息',
+  'pp.s11.body': '<p>Marco Payroll Global Pte. Ltd</p><p>收件人：法律部<br>8 Marina Boulevard<br>MBFC Tower 1, #11-01<br>Singapore 018981</p><p><a href="mailto:privacy@marcopayroll.com">privacy@marcopayroll.com</a></p>',
 
   /* ── Appendix 1 ── */
-  'pp.appendix.h':    '',
-  'pp.appendix.sub':  '',
-  'pp.appendix.body': '',
+  'pp.appendix.h':    '附录1',
+  'pp.appendix.sub':  '（适用于欧洲经济区和英国境内个人的附加规定）',
+  'pp.appendix.body': '<p>如果您位于欧洲经济区（"EEA"）和英国境内，以下规定适用于您的个人数据。这些规定是对本隐私政策其余部分的补充。</p><p>如果本附录1与本隐私政策的其余部分之间存在任何冲突，本附录1中包含的规定将以本附录1为准。</p>',
 
   /* ── Section 12: Lawful Basis ── */
-  'pp.s12.h':    '',
-  'pp.s12.body': '',
+  'pp.s12.h':    'Marco处理您个人数据的合法依据是什么？',
+  'pp.s12.body': '<p>我们将始终根据数据保护法处理您的个人数据，并且只有在有合法理由的情况下才会这样做。下表提供了我们收集和使用您个人数据所依据的合法依据的一些详细信息。</p><div class="pp-lawful-table"><div class="pp-lawful-row pp-lawful-row-header"><div class="pp-lawful-cell pp-lawful-cell-left"><p>目的</p></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>处理的法律依据</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(a) 提供我们的产品和服务</p><div class="pp-lawful-subtext"><p>(i) 管理我们与您或您的企业的关系；<br><br>(ii) 与您沟通我们的产品和服务；<br><br>(iii) 注册成为我们网站、移动应用程序或平台的用户；<br><br>(iv) 申请工作；<br><br>(v) 联系我们以寻求合作、供应商或其他商业机会。</p></div></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 处理与您与我们签订的任何合同有关，或在与我们签订合同之前采取措施所<strong>必需</strong>；<br><br>• 为了提供我们的产品和服务，我们有<strong>合法权益</strong>进行处理；<br><br>• 我们已事先征得<strong>您的同意</strong>进行处理（此法律依据仅用于完全自愿的处理——不适用于以任何方式进行的必要或强制性处理）。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(b) 与营销和活动相关的通信</p><div class="pp-lawful-subtext"><p>(i) 通过任何方式（包括通过电子邮件、电话、短信、社交媒体、邮件或面对面）与您交流我们认为您可能感兴趣的新闻和分析，但必须在适用法律要求的范围内事先征得您的选择同意；<br><br>(ii) 向您通报我们的服务、网站、平台和应用程序及其功能的变更；<br><br>(iii) 向您提供有关我们提供的其他产品和服务的信息；<br><br>(iv) 随时向您通报行业发展情况；<br><br>(v) 酌情维护和更新您的联系信息；<br><br>(vi) 邀请您参加活动或调查，或在符合适用数据保护法的同意或其他法律要求的情况下以其他方式与您进行营销沟通。</p></div></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 处理与您与我们签订的任何合同有关，或在与我们签订合同之前采取措施所<strong>必需</strong>；<br><br>• 在始终遵守适用法律的前提下，我们出于与您联系的目的，有<strong>合法权益</strong>进行处理；<br><br>• 我们已事先征得<strong>您的同意</strong>进行处理（此法律依据仅用于完全自愿的处理——不适用于以任何方式进行的必要或强制性处理）。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(c) 改进我们的业务</p><div class="pp-lawful-subtext"><p>(i) 改进我们的业务，包括测试新产品和服务以及开发满足用户需求的新方法；<br><br>(ii) 识别我们的产品、服务、网站、平台和应用程序中存在的问题；<br><br>(iii) 对我们的产品、服务、网站、平台和应用程序进行研究和规划改进，并创建新的产品、服务、网站、平台和应用程序。</p></div></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为了提供我们的产品和服务，我们有<strong>合法权益</strong>进行处理；<br><br>• 我们已事先征得<strong>您的同意</strong>进行处理（此法律依据仅用于完全自愿的处理——不适用于以任何方式进行的必要或强制性处理）。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(d) 管理我们的业务</p><div class="pp-lawful-subtext"><p>(i) 提供就业或独立承包商/自由职业者机会的信息；<br><br>(ii) 准雇员或独立承包商/自由职业者的入职培训；<br><br>(iii) 雇员入职后的管理；<br><br>(iv) 调查问卷和其他类似措施，以改善Marco、供应商及其客户的一般招聘活动；<br><br>(v) 业务执行，包括与客户和供应商签订协议并管理与相关方的关系；<br><br>(vi) 代表客户、员工或独立承包商/自由职业者进行和管理付款；<br><br>(vii) 管理用户账户应付费用（如有）；<br><br>(viii) 向Marco的关联公司和/或附属公司提供信息；<br><br>(ix) 与我们的客户、投资者、潜在和现有员工沟通；<br><br>(x) 与您与我们签订的协议有关的任何目的，包括维护客户中央数据库。</p></div></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 处理与您与我们签订的任何合同有关所<strong>必需</strong>；<br><br>• 为了提供我们的产品和服务，我们有<strong>合法权益</strong>进行处理；<br><br>• 我们已事先征得<strong>您的同意</strong>进行处理（此法律依据仅用于完全自愿的处理——不适用于以任何方式进行的必要或强制性处理）。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(e) 合规检查</p><div class="pp-lawful-subtext"><p>(i) 履行我们的监管合规义务；<br><br>(ii) "了解您的客户"检查；<br><br>(iii) 确认并核实您的身份；<br><br>(iv) 使用信用咨询机构；<br><br>(v) 根据政府和/或执法机构制裁名单和其他法律限制进行筛选。</p></div></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为履行<strong>法律义务</strong>而必须进行的处理；<br><br>• 处理与您与我们签订的任何合同有关所<strong>必需</strong>；<br><br>• 为了履行我们的监管和合规义务，我们有<strong>合法权益</strong>进行处理。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(f) 信息技术系统的管理</p><div class="pp-lawful-subtext"><p>(i) 管理和运行通信、信息技术和安全系统；<br><br>(ii) 审计（包括安全审计）和监控此类系统。</p></div></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为履行<strong>法律义务</strong>而必须进行的处理；<br><br>• 为了管理和维护我们的通信和IT系统，我们有<strong>合法权益</strong>进行处理。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(g) 健康与安全</p><div class="pp-lawful-subtext"><p>(i) 健康与安全评估和记录保存；<br><br>(ii) 在我们的办公场所提供安全可靠的环境；<br><br>(iii) 遵守相关法律义务。</p></div></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为履行<strong>法律义务</strong>而必须进行的处理；<br><br>• 为保护任何个人的<strong>重要利益</strong>而必须进行的处理。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(h) 安全</p><div class="pp-lawful-subtext"><p>(i) 我们场所的实体安全（包括访问记录）；<br><br>(ii) 闭路电视录像；以及电子安全（包括登录记录和访问详情）。</p></div></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为履行<strong>法律义务</strong>而必须进行的处理；<br><br>• 为了确保我们业务和办公场所的物理和电子安全，我们有<strong>合法权益</strong>进行处理。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(i) 财务管理</p><div class="pp-lawful-subtext"><p>(i) 销售、财务、企业审计和供应商管理；<br><br>(ii) 处理客户和供应商的订单和账单。</p></div></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为了管理和运营我们业务的财务事务，我们有<strong>合法权益</strong>进行处理；<br><br>• 我们已事先征得<strong>您的同意</strong>进行处理（此法律依据仅用于完全自愿的处理——不适用于以任何方式进行的必要或强制性处理）。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(j) 调查</p><p>根据适用法律，侦查、调查和预防违反政策的行为和刑事犯罪。</p></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为履行<strong>法律义务</strong>而必须进行的处理；<br><br>• 为了发现和防止违反我们政策和适用法律的行为，我们有<strong>合法权益</strong>进行处理。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(k) 法律诉讼</p><p>确立、行使和捍卫法律权利。</p></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为履行<strong>法律义务</strong>而必须进行的处理；<br><br>• 为了确立、行使或捍卫我们的法律权利，我们有<strong>合法权益</strong>进行处理。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-white"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(l) 遵守法律</p><p>遵守适用法律规定的法律和监管义务。</p></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为履行<strong>法律义务</strong>而必须进行的处理。</p></div></div><div class="pp-lawful-row pp-lawful-row-data pp-lawful-row-blue"><div class="pp-lawful-cell pp-lawful-cell-left"><p>(m) 预防欺诈</p><p>侦查、预防和调查欺诈行为。</p></div><div class="pp-lawful-cell pp-lawful-cell-right"><p>• 为履行<strong>法律义务</strong>（尤其是适用的就业法）而必须进行的处理；<br><br>• 为了侦查和防范欺诈，我们有<strong>合法权益</strong>进行处理。</p></div></div></div>',
 
   /* ── Section 13: Transfer outside EEA ── */
-  'pp.s13.h':    '',
-  'pp.s13.body': '',
+  'pp.s13.h':    '您的个人数据是否会被转移到欧盟或英国以外的地区？',
+  'pp.s13.body': '<p>由于Marco位于新加坡，您的个人数据将在EEA或英国以外（视情况而定）传输和处理。</p><p>如我们将您的个人数据从EEA或英国（视情况而定）转移到EEA或英国（视情况而定）以外的国家，我们将确保采取适当的保障措施，以提供与您的个人数据在EEA或英国（视情况而定）境内所获得的同等保护，并遵守适用的数据保护法律。</p><p>您可以联系我们，了解我们就EEA或英国（视情况而定）以外的转移所采取的保障措施的更多信息。</p>',
 
   /* ── Section 14: Retention ── */
-  'pp.s14.h':    '',
-  'pp.s14.body': '',
+  'pp.s14.h':    'Marco会将您的个人数据保存多长时间？',
+  'pp.s14.body': '<p>我们收集的个人数据将仅在与本附录第1节中提及的目的或本隐私政策中描述的目的相关的必要时间内，根据Marco的保留政策予以保留，或为遵守适用法律法规规定的法律义务而保留。</p><p>在确定您个人数据的相关保留期限时，我们将考虑一系列因素，包括与相关个人数据有关的合同义务和权利、适用法律规定的在一定期限内保留数据的法律义务、我们的合法利益、适用法律规定的时效期限、潜在争议，以及相关数据保护机构发布的指导原则。否则，我们将在没有合法理由保留您的个人数据时，安全地删除或匿名化您的个人数据。</p>',
 
   /* ── Section 15: Rights ── */
-  'pp.s15.h':    '',
-  'pp.s15.body': '',
+  'pp.s15.h':    '您在个人数据方面有哪些权利？',
+  'pp.s15.body': '<p>除本隐私政策中列出的权利外，在涉及您的个人数据时，您还拥有多项权利（受某些条件限制），详见下表：</p><p>您可以通过联系我们的数据保护官来行使这些权利中的任何一项。</p><p>在提交请求之前，请认真考虑您的请求。我们将尽快回复。</p><div class="pp-rights-table"><div class="pp-rights-row pp-rights-row-header"><div class="pp-rights-cell-left"><p>权利</p></div><div class="pp-rights-cell-right"><p>这意味着什么？</p></div></div><div class="pp-rights-row pp-rights-row-blue"><div class="pp-rights-cell-left"><p>(a) 知情权</p></div><div class="pp-rights-cell-right"><p>您有权获得清晰、透明、易懂的信息，了解我们如何使用您的个人数据以及您的权利。这就是我们在本隐私政策中向您提供信息的原因。</p></div></div><div class="pp-rights-row pp-rights-row-white"><div class="pp-rights-cell-left"><p>(b) 获取权</p></div><div class="pp-rights-cell-right"><p>您有权获得您个人数据的副本（如果我们正在处理您的数据），以及有关其使用方式的某些其他信息（类似于本隐私政策中提供的信息）。这样您就可以了解并检查我们是否按照数据保护法使用您的信息。如果提供信息可能会泄露他人的个人数据或对他人的权利造成负面影响，我们可以拒绝提供信息。</p></div></div><div class="pp-rights-row pp-rights-row-blue"><div class="pp-rights-cell-left"><p>(c) 更正权</p></div><div class="pp-rights-cell-right"><p>如果您的个人数据不准确或不完整，您可以要求我们采取合理措施予以更正。例如，如果我们有您的错误姓名或地址。</p></div></div><div class="pp-rights-row pp-rights-row-white"><div class="pp-rights-cell-left"><p>(d) 删除权</p></div><div class="pp-rights-cell-right"><p>这也被称为"被遗忘权"，简而言之，当我们没有令人信服的理由继续使用您的个人数据或其使用不合法时，您可以要求删除或移除您的个人数据。这不是一般性的删除权；存在例外情况，例如，我们需要使用您的个人数据来为法律索赔辩护。</p></div></div><div class="pp-rights-row pp-rights-row-blue"><div class="pp-rights-cell-left"><p>(e) 限制处理的权利</p></div><div class="pp-rights-cell-right"><p>当我们评估纠正请求或作为删除的替代方案时，您有权"阻止"或禁止进一步使用您的个人数据。当处理受到限制时，我们仍然可以存储您的个人数据，但不能进一步使用。我们保留已要求进一步使用其个人数据被"阻止"的人员名单，以确保在未来尊重该限制。</p></div></div><div class="pp-rights-row pp-rights-row-white"><div class="pp-rights-cell-left"><p>(f) 数据可携带权</p></div><div class="pp-rights-cell-right"><p>您有权为自己的目的在不同组织之间获取和重复使用某些个人数据。</p></div></div><div class="pp-rights-row pp-rights-row-blue"><div class="pp-rights-cell-left"><p>(g) 反对权</p></div><div class="pp-rights-cell-right"><p>您有权在任何时候以与您的特殊情况相关的理由反对某些类型的处理，前提是此类处理是为了我们或第三方追求的合法利益目的而进行的。如果我们能够证明"处理的令人信服的合法理由优先于您的利益、权利和自由"，或者我们需要此处理来确立、行使或捍卫法律索赔，我们将被允许继续处理您的个人数据。</p></div></div></div>',
 
 };

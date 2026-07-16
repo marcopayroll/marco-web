@@ -941,8 +941,8 @@
 
   <div class="container">
     <div class="cg-hero-content fade-in">
-      <h1 class="cg-hero-title">Payroll Guide</h1>
-      <p class="cg-hero-subtitle">Our dedicated guide for payroll rules and statutory requirements</p>
+      <h1 class="cg-hero-title" data-i18n="pg.hero.title">Payroll Guide</h1>
+      <p class="cg-hero-subtitle" data-i18n="pg.hero.sub">Our dedicated guide for payroll rules and statutory requirements</p>
     </div>
   </div>
 
@@ -956,7 +956,7 @@
           <path d="M27 27L21.65 21.65M25 15C25 20.5228 20.5228 25 15 25C9.47715 25 5 20.5228 5 15C5 9.47715 9.47715 5 15 5C20.5228 5 25 9.47715 25 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <div class="cg-search-row">
-          <input class="cg-search-field" id="countrySearch" type="text" placeholder="Search Country" oninput="filterCountries(); toggleClearBtn(this)">
+          <input class="cg-search-field" id="countrySearch" type="text" placeholder="Search Country" data-i18n-placeholder="pg.search.placeholder" oninput="filterCountries(); toggleClearBtn(this)">
           <button class="cg-search-clear" id="cgClearBtn" onclick="clearSearch()" type="button" aria-label="Clear search">
             <img src="assets/HR Knowledge Hub/Payroll Guide/icons/x-icon.svg" alt="clear" />
           </button>
@@ -975,12 +975,12 @@
     </div>
 
     <!-- Empty state -->
-    <div class="cg-empty" id="cgEmpty">Guides are being published progressively. Please check back soon or contact Marco for country-specific guidance.</div>
+    <div class="cg-empty" id="cgEmpty" data-i18n="pg.empty">Guides are being published progressively. Please check back soon or contact Marco for country-specific guidance.</div>
 
     <!-- View More -->
     <div class="cg-view-more-wrap" id="cgViewMoreWrap">
       <button class="cg-view-more" onclick="viewMore()">
-        View More
+        <span data-i18n="pg.viewmore">View More</span>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M5 7.5L10 12.5L15 7.5" stroke="#019DE7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -1074,9 +1074,19 @@
   function getFiltered() {
     return COUNTRIES.filter(function(c) {
       const matchName = !activeQuery || c.name.toLowerCase().includes(activeQuery);
+      const matchLocal = activeQuery && t('pg.country.' + countrySlug(c.name), c.name).toLowerCase().includes(activeQuery);
       const matchAlias = activeQuery && c.aliases && c.aliases.some(a => a.includes(activeQuery));
-      return matchName || matchAlias;
+      return matchName || matchLocal || matchAlias;
     });
+  }
+
+  /* i18n helper: reads the merged language pack (falls back to English) */
+  function t(key, fallback) {
+    var p = window.__marcoPack;
+    return (p && p[key] !== undefined && p[key] !== '') ? p[key] : fallback;
+  }
+  function countrySlug(name) {
+    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   }
 
   function buildCard(c) {
@@ -1088,14 +1098,16 @@
     var thumbHtml = c.img
       ? '<img src="' + c.img + '" alt="' + c.name + '" loading="lazy" />'
       : '';
+    var slug = countrySlug(c.name);
+    var dateEn = c.date || (c.name === 'Australia' ? '22 June 2026' : '1 January 2026');
     a.innerHTML =
       '<div class="cg-card-thumb">' + thumbHtml + '</div>' +
       '<div class="cg-card-body">' +
         '<div class="cg-card-title-row">' +
-          '<span class="cg-card-name">' + c.name + '</span>' +
+          '<span class="cg-card-name">' + t('pg.country.' + slug, c.name) + '</span>' +
           '<span class="cg-card-currency">' + c.currency + '</span>' +
         '</div>' +
-        '<span class="cg-card-date">Last Updated by, ' + (c.date || (c.name === 'Australia' ? '22 June 2026' : '1 January 2026')) + '</span>' +
+        '<span class="cg-card-date">' + t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + slug, dateEn) + '</span>' +
       '</div>';
     return a;
   }
@@ -1125,6 +1137,9 @@
 
   /* Init */
   renderGrid();
+
+  /* Re-render cards once the language pack is loaded (CN) */
+  document.addEventListener('marcolangready', renderGrid);
 
   /* ── WeChat modal ── */
   document.getElementById('wechat-modal').addEventListener('click', function() {

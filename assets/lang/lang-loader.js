@@ -144,6 +144,8 @@
   var base = 'assets/lang/' + lang;
   var sectionFile = null;
   var sectionGlobal = null;
+  var countryFile = null;
+  var countryGlobal = null;
 
   if (!filename || filename === 'index.html') {
     sectionFile   = base + '-index.js';
@@ -184,9 +186,17 @@
   } else if (filename === 'hr-knowledge-hub-labor-cost-calculator.html') {
     sectionFile   = base + '-hub-labor-cost.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB_LABOR_COST';
-  } else if (filename === 'hr-knowledge-hub-payroll-guide.html') {
-    sectionFile   = base + '-hub-payroll-guide.js';
+  } else if (filename.indexOf('hr-knowledge-hub-payroll-guide') === 0) {
+    /* List page + every country page share the payroll-guide pack.
+       Payroll-guide packs live in their own folder: assets/lang/<lang>-hub-payroll-guide/ */
+    sectionFile   = base + '-hub-payroll-guide/' + lang + '-hub-payroll-guide.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB_PAYROLL_GUIDE';
+    /* Country pages additionally load their own content pack (<lang>-pg-<country>.js) if present */
+    var pgCountry = filename.match(/^hr-knowledge-hub-payroll-guide-([a-z0-9-]+)\.html$/);
+    if (pgCountry) {
+      countryFile   = base + '-hub-payroll-guide/' + lang + '-pg-' + pgCountry[1] + '.js';
+      countryGlobal = 'MARCO_LANG_' + L + '_PG_' + pgCountry[1].toUpperCase().replace(/-/g, '_');
+    }
   } else if (filename === 'hr-knowledge-hub-freelancer-guide.html') {
     sectionFile   = base + '-hub-freelancer-guide.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB_FREELANCER_GUIDE';
@@ -225,7 +235,11 @@
     'MARCO_LANG_' + L + '_SHARED',
     function () {
       if (sectionFile) {
-        loadScript(sectionFile, sectionGlobal, null);
+        loadScript(sectionFile, sectionGlobal, function () {
+          if (countryFile) {
+            loadScript(countryFile, countryGlobal, null);
+          }
+        });
       }
     }
   );

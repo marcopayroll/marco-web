@@ -1,4 +1,35 @@
-/* HR Knowledge Hub — Memo pages (hr-knowledge-hub-memo.html, hr-knowledge-hub-memo-*.html) */
+/* HR Knowledge Hub — Memo pages (hr-knowledge-hub-memo.html, hr-knowledge-hub-memo-*.html)
+   Empty values fall back to English. Fill in translations. */
 window.MARCO_LANG_CN_HUB_MEMO = {
-
+  'memo.hero.label': '',
+  'memo.hero.title': '',
+  'memo.hero.sub': '',
+  'memo.card.payroll-fraud.time': '',
+  'memo.card.payroll-fraud.title': '',
+  'memo.card.wrongful-dismissal.time': '',
+  'memo.card.wrongful-dismissal.title': '',
+  'memo.card.poland-capital-plan.time': '',
+  'memo.card.poland-capital-plan.title': '',
+  'memo.card.italian-tfr.time': '',
+  'memo.card.italian-tfr.title': '',
+  'memo.card.netherlands-30.time': '',
+  'memo.card.netherlands-30.title': '',
+  'memo.card.scammers.time': '',
+  'memo.card.scammers.title': '',
+  'memo.card.peo.time': '',
+  'memo.card.peo.title': '',
+  'memo.card.poland-no-entity.time': '',
+  'memo.card.poland-no-entity.title': '',
+  'memo.card.ai-law.time': '',
+  'memo.card.ai-law.title': '',
+  'memo.card.rsu-esop.time': '',
+  'memo.card.rsu-esop.title': '',
+  'memo.card.gdpr.time': '',
+  'memo.card.gdpr.title': '',
+  'memo.card.at-will.time': '',
+  'memo.card.at-will.title': '',
+  'memo.card.sg-passes.time': '',
+  'memo.card.sg-passes.title': '',
+  'memo.readmore': '',
+  'memo.viewmore': '',
 };
