@@ -869,7 +869,7 @@
     'Bangladesh':'BDT','Belgium':'EUR','Brazil':'BRL','Brunei':'BND',
     'Bulgaria':'BGN','Cambodia':'KHR','Canada':'CAD','Chile':'CLP',
     'China':'CNY','Colombia':'COP','Costa Rica':'CRC','Croatia':'EUR',
-    'Czech Republic':'CZK','Democratic Republic of the Congo':'CDF',
+    'Czech Republic':'CZK','Democratic Republic of the Congo':'CDF','Ecuador':'USD','Kazakhstan':'KZT','New Zealand':'NZD','Nigeria':'NGN','Tanzania':'TZS',
     'Denmark':'DKK','Egypt':'EGP','Estonia':'EUR','Finland':'EUR',
     'France':'EUR','Georgia':'GEL','Germany':'EUR','Greece':'EUR',
     'Hong Kong':'HKD','Hungary':'HUF','Iceland':'ISK','India':'INR',
@@ -895,20 +895,21 @@
     'Bulgaria':'bg','Cambodia':'kh','Canada':'ca','Chile':'cl',
     'China':'cn','Colombia':'co','Costa Rica':'cr','Croatia':'hr',
     'Czech Republic':'cz','Democratic Republic of the Congo':'cd',
-    'Denmark':'dk','Egypt':'eg','Estonia':'ee','Finland':'fi',
+    'Denmark':'dk','Ecuador':'ec','Egypt':'eg','Estonia':'ee','Finland':'fi',
     'France':'fr','Georgia':'ge','Germany':'de','Greece':'gr',
     'Hong Kong':'hk','Hungary':'hu','Iceland':'is','India':'in',
     'Indonesia':'id','Iraq':'iq','Ireland':'ie','Israel':'il',
-    'Italy':'it','Japan':'jp','Jordan':'jo','Kenya':'ke',
+    'Italy':'it','Japan':'jp','Jordan':'jo','Kazakhstan':'kz','Kenya':'ke',
     'Kyrgyzstan':'kg','Laos':'la','Latvia':'lv','Lithuania':'lt',
     'Luxembourg':'lu','Malaysia':'my','Mexico':'mx','Mongolia':'mn',
-    'Morocco':'ma','Myanmar':'mm','Netherlands':'nl','North Macedonia':'mk',
+    'Morocco':'ma','Myanmar':'mm','Netherlands':'nl','New Zealand':'nz',
+    'Nigeria':'ng','North Macedonia':'mk',
     'Norway':'no','Pakistan':'pk','Panama':'pa','Peru':'pe',
     'Philippines':'ph','Poland':'pl','Portugal':'pt','Qatar':'qa',
     'Romania':'ro','Saudi Arabia':'sa','Serbia':'rs','Singapore':'sg',
     'Slovakia':'sk','Slovenia':'si','South Africa':'za','South Korea':'kr',
     'Spain':'es','Sweden':'se','Switzerland':'ch','Taiwan':'tw',
-    'Thailand':'th','Tunisia':'tn','Turkey':'tr','Uganda':'ug',
+    'Tanzania':'tz','Thailand':'th','Tunisia':'tn','Turkey':'tr','Uganda':'ug',
     'Ukraine':'ua','United Arab Emirates':'ae','United Kingdom':'gb',
     'United States of America':'us','Vietnam':'vn'
   };
@@ -916,99 +917,104 @@
   // Employer statutory contribution rates (%) — local / foreign national
   // Source: Marco Labor Cost Matrix (Excel research, 2025)
   var COUNTRY_RATES = {
-    'Algeria':      {'local':25.0, 'foreign':25.0},
-    'Argentina':    {'local':25.5, 'foreign':25.5},
-    'Australia':    {'local':12.0, 'foreign':12.0},
-    'Austria':      {'local':22.5, 'foreign':22.5},
-    'Bangladesh':   {'local':0.0,  'foreign':0.0 },
-    'Belgium':      {'local':25.0, 'foreign':25.0},
-    'Brazil':       {'local':28.0, 'foreign':28.0},
-    'Brunei':       {'local':9.5,  'foreign':0.0 },
-    'Bulgaria':     {'local':18.92,'foreign':18.92},
-    'Cambodia':     {'local':5.4,  'foreign':5.4 },
-    'Canada':       {'local':8.0,  'foreign':8.0 },
-    'Chile':        {'local':4.3,  'foreign':4.3 },
-    'China':        {'local':26.0, 'foreign':26.0},
-    'Colombia':     {'local':29.5, 'foreign':29.5},
-    'Costa Rica':   {'local':26.67,'foreign':26.67},
-    'Croatia':      {'local':16.5, 'foreign':16.5},
-    'Czech Republic':{'local':33.8,'foreign':33.8},
-    'Democratic Republic of the Congo':{'local':13.5,'foreign':13.5},
-    'Denmark':      {'local':1.5,  'foreign':1.5 },
-    'Egypt':        {'local':18.75,'foreign':18.75},
-    'Estonia':      {'local':33.8, 'foreign':33.8},
-    'Finland':      {'local':19.32,'foreign':19.32},
-    'France':       {'local':40.0, 'foreign':40.0},
-    'Georgia':      {'local':2.0,  'foreign':2.0 },
-    'Germany':      {'local':21.3, 'foreign':21.3},
-    'Greece':       {'local':21.79,'foreign':21.79},
-    'Hong Kong':    {'local':5.0,  'foreign':5.0 },
-    'Hungary':      {'local':13.0, 'foreign':13.0},
-    'Iceland':      {'local':14.35,'foreign':14.35},
-    'India':        {'local':13.0, 'foreign':13.0},
-    'Indonesia':    {'local':10.0, 'foreign':10.0},
-    'Iraq':         {'local':12.0, 'foreign':20.0},
-    'Ireland':      {'local':11.25,'foreign':11.25},
-    'Israel':       {'local':14.0, 'foreign':14.0},
-    'Italy':        {'local':29.0, 'foreign':29.0},
-    'Japan':        {'local':15.5, 'foreign':15.5},
-    'Jordan':       {'local':14.25,'foreign':14.25},
-    'Kenya':        {'local':7.5,  'foreign':7.5 },
-    'Kyrgyzstan':   {'local':17.25,'foreign':17.25},
-    'Laos':         {'local':6.0,  'foreign':6.0 },
-    'Latvia':       {'local':23.59,'foreign':23.59},
-    'Lithuania':    {'local':1.77, 'foreign':1.77},
-    'Luxembourg':   {'local':12.34,'foreign':12.34},
-    'Malaysia':     {'local':14.95,'foreign':3.25},
-    'Mexico':       {'local':28.0, 'foreign':28.0},
-    'Mongolia':     {'local':10.0, 'foreign':10.0},
-    'Morocco':      {'local':21.09,'foreign':21.09},
-    'Myanmar':      {'local':3.0,  'foreign':0.0 },
-    'Netherlands':  {'local':15.61,'foreign':15.61},
-    'North Macedonia':{'local':0.0,'foreign':0.0 },
-    'Norway':       {'local':16.1, 'foreign':16.1},
-    'Pakistan':     {'local':5.0,  'foreign':5.0 },
-    'Panama':       {'local':14.75,'foreign':14.75},
-    'Peru':         {'local':9.0,  'foreign':9.0 },
-    'Philippines':  {'local':10.5, 'foreign':10.5},
-    'Poland':       {'local':20.5, 'foreign':20.5},
-    'Portugal':     {'local':23.75,'foreign':23.75},
-    'Qatar':        {'local':14.0, 'foreign':0.0 },
-    'Romania':      {'local':2.25, 'foreign':2.25},
-    'Saudi Arabia': {'local':11.75,'foreign':2.0 },
-    'Serbia':       {'local':15.15,'foreign':15.15},
-    'Singapore':    {'local':17.25,'foreign':0.25},
-    'Slovakia':     {'local':35.2, 'foreign':35.2},
-    'Slovenia':     {'local':16.1, 'foreign':16.1},
-    'South Africa': {'local':2.0,  'foreign':2.0 },
-    'South Korea':  {'local':10.0, 'foreign':10.0},
-    'Spain':        {'local':30.65,'foreign':30.65},
-    'Sweden':       {'local':31.42,'foreign':31.42},
-    'Switzerland':  {'local':6.4,  'foreign':6.4 },
-    'Taiwan':       {'local':17.85,'foreign':17.85},
-    'Thailand':     {'local':5.0,  'foreign':5.0 },
-    'Tunisia':      {'local':16.57,'foreign':16.57},
-    'Turkey':       {'local':23.75,'foreign':23.75},
-    'Uganda':       {'local':10.0, 'foreign':10.0},
-    'Ukraine':      {'local':22.0, 'foreign':22.0},
-    'United Arab Emirates':{'local':15.0,'foreign':0.0 },
-    'United Kingdom':{'local':15.0,'foreign':15.0},
-    'United States of America':{'local':8.25, 'foreign':8.25},
-    'Vietnam':      {'local':21.5, 'foreign':20.0}
+    'Algeria': {'local':25, 'foreign':25},
+    'Argentina': {'local':25.5, 'foreign':25.5},
+    'Australia': {'local':21.08, 'foreign':21.08},
+    'Austria': {'local':30.27, 'foreign':30.27},
+    'Bangladesh': {'local':8.75, 'foreign':8.75},
+    'Belgium': {'local':30.3, 'foreign':30.3},
+    'Brazil': {'local':35.8, 'foreign':35.8},
+    'Brunei': {'local':9.5, 'foreign':0},
+    'Bulgaria': {'local':18.92, 'foreign':18.92},
+    'Cambodia': {'local':5.4, 'foreign':5.4},
+    'Canada': {'local':17.18, 'foreign':17.18},
+    'Chile': {'local':9.35, 'foreign':9.35},
+    'China': {'local':26, 'foreign':26},
+    'Colombia': {'local':30.02, 'foreign':30.02},
+    'Costa Rica': {'local':26.67, 'foreign':26.67},
+    'Croatia': {'local':16.5, 'foreign':16.5},
+    'Czech Republic': {'local':34.08, 'foreign':34.08},
+    'Democratic Republic of the Congo': {'local':17, 'foreign':17},
+    'Denmark': {'local':1.5, 'foreign':1.5},
+    'Ecuador': {'local':12.15, 'foreign':12.15},
+    'Egypt': {'local':18.75, 'foreign':18.75},
+    'Estonia': {'local':33.8, 'foreign':33.8},
+    'Finland': {'local':19.89, 'foreign':19.89},
+    'France': {'local':70.39, 'foreign':70.39},
+    'Georgia': {'local':2, 'foreign':2},
+    'Germany': {'local':27.6, 'foreign':27.6},
+    'Greece': {'local':21.79, 'foreign':21.79},
+    'Hong Kong': {'local':5, 'foreign':5},
+    'Hungary': {'local':13, 'foreign':13},
+    'Iceland': {'local':14.35, 'foreign':14.35},
+    'India': {'local':16.25, 'foreign':16.25},
+    'Indonesia': {'local':11.13, 'foreign':11.13},
+    'Iraq': {'local':12, 'foreign':20},
+    'Ireland': {'local':12.75, 'foreign':12.75},
+    'Israel': {'local':14, 'foreign':14},
+    'Italy': {'local':34.38, 'foreign':34.38},
+    'Japan': {'local':17.42, 'foreign':17.42},
+    'Jordan': {'local':14.25, 'foreign':14.25},
+    'Kazakhstan': {'local':23, 'foreign':23},
+    'Kenya': {'local':7.5, 'foreign':7.5},
+    'Kyrgyzstan': {'local':17.25, 'foreign':17.25},
+    'Laos': {'local':6, 'foreign':6},
+    'Latvia': {'local':23.59, 'foreign':23.59},
+    'Lithuania': {'local':1.77, 'foreign':1.77},
+    'Luxembourg': {'local':12.34, 'foreign':12.34},
+    'Malaysia': {'local':15.95, 'foreign':4.95},
+    'Mexico': {'local':41.05, 'foreign':41.05},
+    'Mongolia': {'local':10, 'foreign':10},
+    'Morocco': {'local':21.09, 'foreign':21.09},
+    'Myanmar': {'local':3, 'foreign':3},
+    'Netherlands': {'local':39.27, 'foreign':39.27},
+    'New Zealand': {'local':4.27, 'foreign':4.27},
+    'Nigeria': {'local':33.25, 'foreign':33.25},
+    'North Macedonia': {'local':0, 'foreign':0},
+    'Norway': {'local':16.1, 'foreign':16.1},
+    'Pakistan': {'local':6, 'foreign':6},
+    'Panama': {'local':14.75, 'foreign':14.75},
+    'Peru': {'local':10.35, 'foreign':10.35},
+    'Philippines': {'local':14.5, 'foreign':14.5},
+    'Poland': {'local':23.88, 'foreign':23.88},
+    'Portugal': {'local':25.75, 'foreign':25.75},
+    'Qatar': {'local':14, 'foreign':0},
+    'Romania': {'local':10.05, 'foreign':10.05},
+    'Saudi Arabia': {'local':11.75, 'foreign':2},
+    'Serbia': {'local':15.15, 'foreign':15.15},
+    'Singapore': {'local':19.25, 'foreign':19.25},
+    'Slovakia': {'local':35.2, 'foreign':35.2},
+    'Slovenia': {'local':16.1, 'foreign':16.1},
+    'South Africa': {'local':2.4, 'foreign':2.4},
+    'South Korea': {'local':10, 'foreign':10},
+    'Spain': {'local':33.11, 'foreign':33.11},
+    'Sweden': {'local':31.42, 'foreign':31.42},
+    'Switzerland': {'local':6.4, 'foreign':6.4},
+    'Taiwan': {'local':21.94, 'foreign':21.94},
+    'Tanzania': {'local':14, 'foreign':14},
+    'Thailand': {'local':8.4, 'foreign':8.4},
+    'Tunisia': {'local':16.57, 'foreign':16.57},
+    'Turkey': {'local':23.75, 'foreign':23.75},
+    'Uganda': {'local':10, 'foreign':10},
+    'Ukraine': {'local':22, 'foreign':22},
+    'United Arab Emirates': {'local':19.2, 'foreign':4.2},
+    'United Kingdom': {'local':20.5, 'foreign':20.5},
+    'United States of America': {'local':8.25, 'foreign':8.25},
+    'Vietnam': {'local':23.5, 'foreign':23.5}
   };
 
   // Countries list (79 countries, alphabetically sorted)
   var lccCountries = [
     'Algeria','Argentina','Australia','Austria','Bangladesh','Belgium','Brazil','Brunei',
     'Bulgaria','Cambodia','Canada','Chile','China','Colombia','Costa Rica','Croatia',
-    'Czech Republic','Democratic Republic of the Congo','Denmark','Egypt','Estonia',
+    'Czech Republic','Democratic Republic of the Congo','Denmark','Ecuador','Egypt','Estonia',
     'Finland','France','Georgia','Germany','Greece','Hong Kong','Hungary','Iceland',
-    'India','Indonesia','Iraq','Ireland','Israel','Italy','Japan','Jordan','Kenya',
+    'India','Indonesia','Iraq','Ireland','Israel','Italy','Japan','Jordan','Kazakhstan','Kenya',
     'Kyrgyzstan','Laos','Latvia','Lithuania','Luxembourg','Malaysia','Mexico','Mongolia',
-    'Morocco','Myanmar','Netherlands','North Macedonia','Norway','Pakistan','Panama',
+    'Morocco','Myanmar','Netherlands','New Zealand','Nigeria','North Macedonia','Norway','Pakistan','Panama',
     'Peru','Philippines','Poland','Portugal','Qatar','Romania','Saudi Arabia','Serbia',
     'Singapore','Slovakia','Slovenia','South Africa','South Korea','Spain','Sweden',
-    'Switzerland','Taiwan','Thailand','Tunisia','Turkey','Uganda','Ukraine',
+    'Switzerland','Taiwan','Tanzania','Thailand','Tunisia','Turkey','Uganda','Ukraine',
     'United Arab Emirates','United Kingdom','United States of America','Vietnam'
   ];
 
@@ -1184,6 +1190,52 @@
     return lccState.workerType === 'local' ? rates.local : rates.foreign;
   }
 
+  /* ── FX for converting statutory caps (stored in local currency) to USD ──
+     Live rate is fetched when a country is selected; static fallback below. */
+  var LCC_FX_FALLBACK = { /* local units per 1 USD (approx.) */
+    'AUD':1.52,'EUR':0.92,'CAD':1.36,'CZK':23.2,'INR':85.5,'IDR':16300,'IQD':1310,
+    'JPY':150,'JOD':0.709,'KZT':520,'MYR':4.7,'MXN':18.2,'MAD':10.0,'NZD':1.67,
+    'PKR':278,'PHP':57,'PLN':4.0,'SGD':1.35,'ZAR':18.5,'TWD':32.5,'THB':36,
+    'VND':25500,'GBP':0.79,'BRL':5.6,'CLP':950,'COP':4100,'HUF':370,'SEK':10.5,
+    'RON':4.6,'TRY':38,'AED':3.67,'NGN':1550,'TZS':2600,'CDF':2850,'PEN':3.7,
+    'KRW':1380,'DKK':6.9,'NOK':10.8,'CHF':0.88,'USD':1
+  };
+  var lccFxUsdToLocal = null; /* live USD→local rate for the selected country */
+
+  function lccGetUsdToLocal() {
+    if (lccFxUsdToLocal) return lccFxUsdToLocal;
+    var ccy = countryCurrencyMap[lccState.country];
+    return LCC_FX_FALLBACK[ccy] || 1;
+  }
+
+  /* ── Cap/threshold-aware statutory item amount ──
+     Row format: [name, desc, local%, foreign%, capLocal?, thresholdLocal?]
+     Caps are stored in the country's local currency and converted to USD here.
+     Applicable base = min(base, cap) − threshold (never below 0). */
+  function statItemAmount(it, base, isLocal) {
+    var rate = isLocal ? it[2] : (it[3] !== null && it[3] !== undefined ? it[3] : it[2]);
+    var fx = lccGetUsdToLocal();
+    var applicable = base;
+    if (it[4] != null) applicable = Math.min(applicable, it[4] / fx);
+    if (it[5] != null) applicable = Math.max(0, applicable - it[5] / fx);
+    return { rate: rate, amount: applicable * rate / 100 };
+  }
+
+  /* True when a threshold-only item is not reached at this salary */
+  function statItemBelowThreshold(it, base) {
+    return it[5] != null && base <= it[5] / lccGetUsdToLocal();
+  }
+
+  /* Total statutory contributions for a salary; falls back to the flat
+     COUNTRY_RATES percentage when no item breakdown exists. */
+  function getStatutoryTotal(base, isLocal) {
+    var items = STAT_ITEMS[lccState.country];
+    if (!items || !items.length) return base * getStatRate() / 100;
+    var total = 0;
+    items.forEach(function(it) { total += statItemAmount(it, base, isLocal).amount; });
+    return total;
+  }
+
   function getMonthlyBase() {
     var raw = lccState.salary.replace(/,/g, '');
     var n = parseFloat(raw);
@@ -1221,6 +1273,17 @@
 
   function lccSelectCountry(c) {
     lccState.country = c;
+    /* Fetch live USD→local rate for statutory cap conversion (fallback table used until it arrives) */
+    lccFxUsdToLocal = null;
+    (function(sel) {
+      var ccy = countryCurrencyMap[sel];
+      if (!ccy || ccy === 'USD') return;
+      getExchangeRate('USD', ccy).then(function(res) {
+        if (lccState.country !== sel || res.error) return;
+        lccFxUsdToLocal = res.rate;
+        lccAutoCalc(); /* refresh results with the live rate */
+      }).catch(function(){});
+    })(c);
     var iso = COUNTRY_ISO[c] || '';
     if (iso) {
       flagImg.src = 'assets/Flags/' + iso + '.svg';
@@ -1373,8 +1436,8 @@
   }
 
   function renderResult(base) {
-    var statRate    = getStatRate();
-    var statutory   = base * statRate / 100;
+    var statutory   = getStatutoryTotal(base, lccState.workerType === 'local');
+    var statRate    = statutory / base * 100;
     var benRate     = getCountryBenRate(lccState.country, lccState.workerType === 'local');
     var benefits    = base * benRate / 100;
     var total       = base + statutory + benefits;
@@ -1458,85 +1521,90 @@
   //  Source: Marco Labor Cost Matrix Excel research 2025
   // ══════════════════════════════════════════════════════
   var STAT_ITEMS = {
-    'Algeria':[['CNAS Social Insurance','Covers pensions, work injury, sickness & maternity',25.0,null]],
-    'Argentina':[['SUSS – Pension & Social Contributions','National Social Security system (SIJP + others)',19.5,null],['Obra Social – Health Insurance','Mandatory employer health fund contribution',6.0,null]],
-    'Australia':[['Superannuation Guarantee','Mandatory employer super contribution to registered fund',12.0,null]],
-    'Austria':[['Pension Insurance (ASVG)','Old-age, disability & survivors pension',12.55,null],['Health Insurance (ASVG)','Statutory health insurance contribution',3.78,null],['Accident Insurance','Work injury insurance',1.2,null],['Unemployment Insurance (ALVG)','Federal unemployment contribution',3.0,null],['Insolvency Fund & BV','Severance provision fund (BV) + insolvency levy',1.97,null]],
-    'Bangladesh':[],
-    'Belgium':[['ONSS / RSZ – National Social Security','Comprehensive social security covering all branches',25.0,null]],
-    'Brazil':[['INSS – Social Security','Covers pension, disability, sickness & family benefits',20.0,null],['FGTS – Severance Indemnity Fund','Mandatory severance savings fund for employees',8.0,null]],
-    'Brunei':[['SPK Supplementary Contributory Pension','For citizens & PRs; rate varies 8.5%–9.5% by salary tier',9.5,0.0]],
+    'Algeria':[['CNAS Social Insurance','Covers pensions, work injury, sickness & maternity',25,null]],
+    'Argentina':[['SUSS – Pension & Social Contributions','National Social Security system (SIJP + others)',19.5,null],['Obra Social – Health Insurance','Mandatory employer health fund contribution',6,null]],
+    'Australia':[['Superannuation Guarantee (SG)','Contribution base capped at AUD 22,569/month',12,null,22569,null],['Payroll Tax (state)','',5.45,null],['Workers Compensation','',3.63,null]],
+    'Austria':[['Pension (PV/PVA)','Contribution base capped at EUR 6,930/month',12.55,null,6930,null],['Health (KV/ÖGK)','Contribution base capped at EUR 6,930/month',3.78,null,6930,null],['Accident (UV/AUVA)','Contribution base capped at EUR 6,930/month',1.1,null,6930,null],['Unemployment (ALV/AMS)','Contribution base capped at EUR 6,930/month',2.95,null,6930,null],['Insolvency Fund (IESG)','Contribution base capped at EUR 6,930/month',0.1,null,6930,null],['Family Burden Equalisation Fund (FLAF/DB)','',3.7,null],['Severance Fund (BMSVG)','',1.53,null],['Chamber Surcharge (DZ/KU2)','',0.36,null],['Additional Social Security','Common practice / vendor-dependent',0.7,null],['Municipal Payroll Tax (Kommunalsteuer)','',3,null],['Housing Promotion (Wohnbauförderungsbeitrag)','Contribution base capped at EUR 6,930/month',0.5,null,6930,null]],
+    'Bangladesh':[['Provident Fund (mandatory 100+ staff)','Calculated on base salary',7.5,null],['Employer Liability Insurance','Common practice / vendor-dependent',1.25,null]],
+    'Belgium':[['Social Security (ONSS/RSZ)','',27,null],['Work Accident Insurance','',2.93,null],['Company Closure Fund (FFE/FSO)','',0.37,null]],
+    'Brazil':[['Employer Social Security (INSS)','',20,null],['Third-party (Sistema S)','',5.8,null],['Work Accident (RAT×FAP)','',2,null],['Length-of-Service Guarantee Fund (FGTS)','',8,null]],
+    'Brunei':[['SPK Supplementary Contributory Pension','For citizens & PRs; rate varies 8.5%–9.5% by salary tier',9.5,0]],
     'Bulgaria':[['Pension Fund (DZO)','State pension & disability fund',14.12,null],['Health Insurance (NZOK)','Mandatory national health insurance',4.8,null]],
-    'Cambodia':[['NSSF Occupational Risk','Work accident & occupational disease benefit',0.8,null],['NSSF Health Care','Mandatory health care contribution (Prakas 449)',2.6,null],['NSSF Pension','Pension scheme contribution',2.0,null]],
-    'Canada':[['CPP – Canada Pension Plan','On eligible earnings; employer matches employee contribution',5.95,null],['EI – Employment Insurance','1.63% × 1.4 employer factor on insurable earnings',2.05,null]],
-    'Chile':[['AFP Pension Fund','Employer pension contribution to accredited AFP',1.0,null],['Unemployment Insurance (Seguro Cesantía)','Open-ended contract rate',2.4,null],['Work Accident Insurance (ACHS/ISL)','Mutual society accident premium',0.9,null]],
-    'China':[['Pension (养老保险)','Basic urban employee pension fund',16.0,null],['Medical Insurance (医疗保险)','Basic medical insurance contribution',9.0,null],['Unemployment (失业保险)','Unemployment insurance fund',0.5,null],['Work Injury (工伤保险)','Work injury insurance (national baseline rate)',0.5,null]],
-    'Colombia':[['AFP – Pension Fund','Mandatory individual savings pension account',12.0,null],['EPS – Health Insurance','Mandatory health entity contribution',8.5,null],['SENA – Training Fund','National training authority levy',2.0,null],['ICBF – Family Welfare','Colombian Institute for Family Welfare levy',3.0,null],['ARL – Work Risk Insurance','Occupational risk insurance (premium varies by risk level)',4.0,null]],
-    'Costa Rica':[['CCSS – Health Insurance','Caja Costarricense de Seguro Social – sickness & maternity',9.25,null],['IVM – Pension (CCSS)','Old-age, disability & death insurance',5.25,null],['FODESAF – Social Development','Social development & family allowances fund',5.0,null],['INS – Work Injury','National Insurance Institute – work accidents',3.25,null],['Other Mandatory Funds','INA, IMAS, ASFA, BCR, Banco Popular contributions',3.92,null]],
-    'Croatia':[['Health Insurance (HZZO)','Mandatory employer health insurance contribution',16.5,null]],
-    'Czech Republic':[['Social Insurance (OSSZ)','Pension, sickness & state employment policy',24.8,null],['Health Insurance (VZP/others)','Mandatory health insurance to registered insurer',9.0,null]],
-    'Democratic Republic of the Congo':[['INSS – National Social Security','Pension, work accident & family benefits',13.5,null]],
+    'Cambodia':[['NSSF Occupational Risk','Work accident & occupational disease benefit',0.8,null],['NSSF Health Care','Mandatory health care contribution (Prakas 449)',2.6,null],['NSSF Pension','Pension scheme contribution',2,null]],
+    'Canada':[['Canada Pension Plan (CPP)','Contribution base capped at CAD 6,217/month',5.95,null,6217,null],['CPP2 (enhanced)','',4,null],['Employment Insurance (EI)','Contribution base capped at CAD 5,742/month',2.28,null,5742,null],['Workers Compensation (WorkSafeBC)','',3,null],['Employer Health Tax (BC EHT)','',1.95,null]],
+    'Chile':[['Legal Gratification','',3.35,null],['Disability & Survival (SIS)','',1.62,null],['Work Accident (Mutual/ISL)','',0.95,null],['Unemployment (AFC)','',2.4,null],['Employer Pension (Reform 21.735)','',1,null],['SANNA (Ley 21.063)','',0.03,null]],
+    'China':[['Pension (养老保险)','Basic urban employee pension fund',16,null],['Medical Insurance (医疗保险)','Basic medical insurance contribution',9,null],['Unemployment (失业保险)','Unemployment insurance fund',0.5,null],['Work Injury (工伤保险)','Work injury insurance (national baseline rate)',0.5,null]],
+    'Colombia':[['Health (Salud/EPS)','',8.5,null],['Pension','',12,null],['Labor Risk (ARL)','',0.52,null],['Training Tax (SENA)','',2,null],['Family Welfare (ICBF)','',3,null],['Family Fund (Caja Compensacion)','',4,null]],
+    'Costa Rica':[['CCSS – Health Insurance','Caja Costarricense de Seguro Social – sickness & maternity',9.25,null],['IVM – Pension (CCSS)','Old-age, disability & death insurance',5.25,null],['FODESAF – Social Development','Social development & family allowances fund',5,null],['INS – Work Injury','National Insurance Institute – work accidents',3.25,null],['Other Mandatory Funds','INA, IMAS, ASFA, BCR, Banco Popular contributions',3.92,null]],
+    'Croatia':[['Mandatory Health Insurance (HZZO)','',16.5,null]],
+    'Czech Republic':[['Pension Insurance (Duchodove pojisteni)','Contribution base capped at CZK 195,868/month',21.5,null,195868,null],['Sickness Insurance (Nemocenske pojisteni)','Contribution base capped at CZK 195,868/month',2.1,null,195868,null],['State Employment Policy Contribution','Contribution base capped at CZK 195,868/month',1.2,null,195868,null],['Public Health Insurance (Zdravotni pojisteni)','',9,null],['Statutory Employer Liability Ins (occupational injury)','',0.28,null]],
+    'Democratic Republic of the Congo':[['Pension (CNSS)','Calculated on base salary',5,null],['Family Benefits (CNSS)','Calculated on base salary',6.5,null],['Work Accident (CNSS)','Calculated on base salary',1.5,null],['Professional Training (INPP)','Calculated on base salary',3.5,null],['Employment Office (ONEM)','Calculated on base salary',0.5,null]],
     'Denmark':[['ATP – Labour Market Pension','Fixed DKK 198/month employer contribution',0.8,null],['AUB / Barsel / Other Levies','Various fixed-amount employer labour market levies',0.7,null]],
+    'Ecuador':[['Employer IESS','',11.15,null],['Training (IECE/SECAP)','',1,null]],
     'Egypt':[['NOSI – Social Insurance','On variable and basic wage components (capped)',18.75,null]],
-    'Estonia':[['Social Tax (sotsiaalmaks)','Covers state pension and health insurance (33%)',33.0,null],['Unemployment Insurance (TKindlustus)','Employer unemployment insurance contribution',0.8,null]],
-    'Finland':[['TyEL – Earnings-related Pension','Mandatory occupational pension',17.39,null],['Unemployment Insurance','Employer share of unemployment fund',1.09,null],['Accident & Occupational Disease','Workers\' compensation premium',0.57,null],['Sickness & Group Life','Group life and daily sickness allowance',0.27,null]],
-    'France':[['Old-Age Pension (CNAV)','Régime général pension contribution',10.66,null],['Sickness & Maternity (CNAM)','Health, maternity, disability insurance',7.0,null],['Family Benefits (CAF)','Caisse d\'allocations familiales levy',3.45,null],['Unemployment Insurance (Unédic)','Employer unemployment contribution',4.0,null],['Complementary Pension (Agirc-Arrco)','Mandatory complementary retirement scheme',6.01,null],['AT/MP – Work Accident','Work accident & occupational disease insurance',2.0,null],['Other Levies (FNAL, CSA, AGS, etc.)','Housing fund, solidarity, wage guarantee & others',6.88,null]],
-    'Georgia':[['Funded Pension','Mandatory pension savings (employer match)',2.0,null]],
-    'Germany':[['Pension Insurance (Deutsche RV)','State pension – old-age, disability & survivors',9.3,null],['Health Insurance (GKV)','Statutory health insurance + avg Zusatzbeitrag',8.2,null],['Unemployment Insurance (BA)','Federal Employment Agency contribution',1.3,null],['Long-term Care (Pflegeversicherung)','Statutory long-term care insurance',1.8,null],['Work Accident & Insolvency','Berufsgenossenschaft + UAG insolvency levy',0.7,null]],
-    'Greece':[['Main Pension (e-EFKA)','Principal pension insurance fund',13.33,null],['Health Insurance (EOPYY)','National health services organisation',4.55,null],['Unemployment (OAED)','Manpower employment organisation',3.17,null],['Other Levies','Housing fund & solidarity contributions',0.74,null]],
-    'Hong Kong':[['MPF – Mandatory Provident Fund','Employer contribution; capped at HKD 1,500/month',5.0,null]],
-    'Hungary':[['SZOCHO – Social Contribution Tax','Consolidated employer social contribution',13.0,null]],
-    'Iceland':[['Payroll Tax (Tryggingagjald)','National insurance & municipal payroll levy',6.35,null],['Mandatory Occupational Pension','Minimum employer pension contribution',8.0,null]],
-    'India':[['EPF – Employee Provident Fund','Mandatory provident fund contribution',12.0,null],['EDLI – Deposit Linked Insurance','Group life insurance linked to EPF',0.5,null],['ESI – Employee State Insurance','For employees earning ≤ INR 21,000/month',0.5,null]],
-    'Indonesia':[['BPJS Ketenagakerjaan JHT','Old-age savings benefit',3.7,null],['BPJS Ketenagakerjaan JKM','Death benefit',0.3,null],['BPJS Ketenagakerjaan JP','Pension benefit',2.0,null],['BPJS Kesehatan','National health insurance',4.0,null]],
-    'Iraq':[['Social Security Fund','Pension, disability, sickness & maternity',12.0,20.0]],
-    'Ireland':[['PRSI – Class A','Pay-related social insurance employer contribution',11.25,null]],
+    'Estonia':[['Social Tax (sotsiaalmaks)','Covers state pension and health insurance (33%)',33,null],['Unemployment Insurance (TKindlustus)','Employer unemployment insurance contribution',0.8,null]],
+    'Finland':[['Earnings-related Pension (TyEL, employer share)','',17.1,null],['Employer Health Insurance Contribution (Sairausvakuutusmaksu)','',1.91,null],['Unemployment Insurance (Tyottomyysvakuutusmaksu)','',0.31,null],['Workers Compensation Insurance (Tapaturmavakuutus)','',0.51,null],['Group Life Insurance (Ryhmahenkivakuutus)','',0.06,null]],
+    'France':[['Old-Age Pension (capped)','Contribution base capped at EUR 4,005/month',8.55,null,4005,null],['Old-Age Pension (uncapped)','',2.11,null],['Supp. Pension AGIRC-ARRCO T1','Contribution base capped at EUR 4,005/month',4.72,null,4005,null],['Supp. Pension AGIRC-ARRCO T2','Contribution base capped at EUR 32,040/month; Applies to salary above EUR 4,005/month',12.95,null,32040,4005],['General Balance CEG T1','Contribution base capped at EUR 4,005/month',1.29,null,4005,null],['General Balance CEG T2','Contribution base capped at EUR 32,040/month; Applies to salary above EUR 4,005/month',1.62,null,32040,4005],['Technical Balance (CET)','',0.21,null],['Health Insurance','',13,null],['Autonomy Solidarity (CSA)','',0.3,null],['Family Allowances','',5.25,null],['National Housing Assistance Fund (FNAL)','',0.5,null],['Unemployment Insurance','Contribution base capped at EUR 16,020/month',4,null,16020,null],['Wage Guarantee (AGS)','Contribution base capped at EUR 16,020/month',0.25,null,16020,null],['APEC (Executives)','Contribution base capped at EUR 16,020/month',0.04,null,16020,null],['Professional Training','',1,null],['CPF Contribution','',1,null],['Apprenticeship Tax (Taxe d\'apprentissage)','',0.68,null],['Versement Mobilite (Mobility Payment)','',3.2,null],['Work Accident (AT/MP)','',5,null],['Payroll Tax (Taxe sur les salaires)','',4.25,null],['Employers Participation in Construction Effort (PEEC / 1% Logement)','',0.45,null],['Social Dialogue Contribution','',0.02,null]],
+    'Georgia':[['Funded Pension','Mandatory pension savings (employer match)',2,null]],
+    'Germany':[['Pension (Rentenversicherung)','Contribution base capped at EUR 8,450/month',9.3,null,8450,null],['Health (Krankenversicherung)','Contribution base capped at EUR 5,812.5/month',7.3,null,5812.5,null],['Supplementary Health (Zusatzbeitrag)','Contribution base capped at EUR 5,812.5/month',1.45,null,5812.5,null],['Nursing Care (Pflegeversicherung)','Contribution base capped at EUR 5,812.5/month',1.8,null,5812.5,null],['Sickness Reimbursement (U1)','',4,null],['Maternity Insurance (U2)','',1,null],['Unemployment (Arbeitslosenversicherung)','Contribution base capped at EUR 8,450/month',1.3,null,8450,null],['Accident Insurance (BG)','',1.3,null],['Insolvency Levy (Insolvenzgeldumlage)','',0.15,null]],
+    'Greece':[['Main Pension (e-EFKA)','Contribution base capped at EUR 7,761.94/month',13.33,null,7761.94,null],['Health (e-EFKA)','Contribution base capped at EUR 7,761.94/month',4.05,null,7761.94,null],['Auxiliary Pension (e-EFKA / TEKA)','Contribution base capped at EUR 7,761.94/month',3,null,7761.94,null],['Unemployment & Other (DYPA)','Contribution base capped at EUR 7,761.94/month',1.41,null,7761.94,null]],
+    'Hong Kong':[['MPF – Mandatory Provident Fund','Employer contribution; capped at HKD 1,500/month',5,null]],
+    'Hungary':[['Social Contribution Tax (SZOCHO)','',13,null]],
+    'Iceland':[['Payroll Tax (Tryggingagjald)','National insurance & municipal payroll levy',6.35,null],['Mandatory Occupational Pension','Minimum employer pension contribution',8,null]],
+    'India':[['Provident Fund (EPF employer)','Contribution base capped at INR 15,000/month',3.67,null,15000,null],['Employees Pension Scheme (EPS)','Contribution base capped at INR 15,000/month',8.33,null,15000,null],['Employees Deposit-Linked Insurance (EDLI)','Contribution base capped at INR 15,000/month',0.5,null,15000,null],['EPF Admin Charges','',0.5,null],['Employees State Insurance (ESI)','Contribution base capped at INR 21,000/month',3.25,null,21000,null]],
+    'Indonesia':[['Old-Age Security (JHT, lump-sum)','',3.7,null],['Pension (Jaminan Pensiun, monthly annuity)','Contribution base capped at IDR 11,086,300/month',2,null,11086300,null],['Health (BPJS Kesehatan)','Contribution base capped at IDR 12,000,000/month',4,null,12000000,null],['Work Accident (JKK)','',0.89,null],['Death Security (Jaminan Kematian, JKM)','',0.3,null],['Job Loss (JKP)','',0.24,null]],
+    'Iraq':[['Social Security Employer (Law 18/2023)','Contribution base capped at IQD 1,750,000/month',12,null,1750000,null],['Additional 8% Contribution (foreign employees)','Contribution base capped at IQD 1,750,000/month',0,8,1750000,null]],
+    'Ireland':[['Employer PRSI Class A','',11.25,null],['Auto-Enrolment Retirement Savings (My Future Fund)','Contribution base capped at EUR 6,667/month',1.5,null,6667,null]],
     'Israel':[['National Insurance (Bituach Leumi)','Old-age, disability, survivors – tiered rate',7.5,null],['Mandatory Pension (Keren Pensia)','Mandatory occupational pension contribution',6.5,null]],
-    'Italy':[['INPS – Social Security','Pension, sickness, maternity & disability (sector-variable)',28.0,null],['INAIL – Work Accident Insurance','Mandatory work injury coverage (industry-dependent)',1.0,null]],
-    'Japan':[['EPI – Employees\' Pension Insurance','Kosei nenkin – old-age pension',9.15,null],['Health Insurance (Kenpo)','Kyokai Kenpo rate; varies by prefecture',5.1,null],['Employment Insurance','Unemployment and career development',0.85,null],['Work Accident Insurance','Rodo-sha saigai hoken; variable by industry',0.4,null]],
-    'Jordan':[['SSC – Social Security Corporation','Pension, injury & maternity contributions',14.25,null]],
-    'Kenya':[['NSSF – National Social Security Fund','Provident & pension contributions',6.0,null],['AHL – Affordable Housing Levy','Government housing fund levy',1.5,null]],
+    'Italy':[['Social Contribution (INPS)','',30,null],['Work Accident (INAIL)','',4.38,null]],
+    'Japan':[['Employees Pension (Kosei Nenkin)','Contribution base capped at JPY 650,000/month',9.15,null,650000,null],['Health Insurance','Contribution base capped at JPY 1,390,000/month',4.93,null,1390000,null],['Nursing Care Insurance','Contribution base capped at JPY 1,390,000/month',0.81,null,1390000,null],['Workers Accident (Rousai)','',1.2,null],['Employment Insurance (Koyou)','',0.85,null],['Child & Childcare Support (2026)','',0.12,null],['Child-rearing Contribution','Contribution base capped at JPY 650,000/month',0.36,null,650000,null],['Asbestos Relief Levy','',0,null]],
+    'Jordan':[['Old-Age, Disability & Death Insurance (SSC)','Contribution base capped at JOD 3,733/month',11,null,3733,null],['Work Injury Insurance (SSC)','Contribution base capped at JOD 3,733/month',2,null,3733,null],['Maternity Insurance (SSC)','Contribution base capped at JOD 3,733/month',0.75,null,3733,null],['Unemployment Insurance (SSC)','Contribution base capped at JOD 3,733/month',0.5,null,3733,null]],
+    'Kazakhstan':[['Social Contributions (SO)','Contribution base capped at KZT 595,000/month',5,null,595000,null],['Obligatory Employer Pension (OPVR)','Contribution base capped at KZT 4,250,000/month',3.5,null,4250000,null],['Obligatory Medical (OSMS/OMIC)','Contribution base capped at KZT 3,400,000/month',3,null,3400000,null],['Occupational Pension (OPPV)','',5,null],['Accident Insurance (commercial)','Common practice / vendor-dependent',0.5,null],['Social Tax','',6,null]],
+    'Kenya':[['NSSF – National Social Security Fund','Provident & pension contributions',6,null],['AHL – Affordable Housing Levy','Government housing fund levy',1.5,null]],
     'Kyrgyzstan':[['Social Fund','Pension, disability & maternity contributions',17.25,null]],
-    'Laos':[['LSSO – Social Security','National Social Security Organisation contribution',6.0,null]],
+    'Laos':[['LSSO – Social Security','National Social Security Organisation contribution',6,null]],
     'Latvia':[['VSAOI – State Social Insurance','Comprehensive social insurance contribution',23.59,null]],
-    'Lithuania':[['SoDra – Social Insurance','Social insurance contribution (employer portion)',1.77,null]],
+    'Lithuania':[['Unemployment Social Insurance (Nedarbo socialinis draudimas)','',1.31,null],['Accidents at Work & Occupational Diseases Insurance','',0.14,null],['Guarantee Fund (Garantinis fondas)','',0.16,null],['Long-term Employment Benefit Fund','',0.16,null]],
     'Luxembourg':[['Pension Insurance (CNAP)','National pension insurance fund',8.5,null],['Health Insurance (CNS)','National health fund',2.8,null],['Accident, Cash Benefits & Others','Accident insurance, maternity, occupational health',1.04,null]],
-    'Malaysia':[['EPF – Employee Provident Fund','Mandatory retirement savings; 13% for wages ≤ RM 5,000',13.0,2.0],['SOCSO – Social Security','Work injury & invalidity scheme (employer + employee)',1.75,1.25],['EIS – Employment Insurance','Short-term unemployment benefit scheme',0.2,0.0]],
-    'Mexico':[['IMSS – Social Security (IDSE)','Health, disability, pension & other benefits',19.0,null],['INFONAVIT – Housing Fund','Worker housing credit fund',5.0,null],['SAR – Retirement Savings','Government-controlled retirement savings account',2.0,null],['ISN – State Payroll Tax','Impuesto sobre Nóminas (rate varies by state, avg ~2%)',2.0,null]],
-    'Mongolia':[['Social Insurance Fund','Pension, health & work accident contributions',10.0,null]],
-    'Morocco':[['CNSS – Social Security','Family, pension & occupational risk contributions',6.4,null],['AMO – Mandatory Medical Insurance','Mandatory medical insurance (assurance maladie)',4.11,null],['CIMR – Complementary Pension','Supplementary pension scheme (widely adopted)',7.93,null],['Professional Training Tax (TFP)','Vocational training levy',1.6,null],['Other Levies','OFPPT, solidarity & other contributions',1.05,null]],
-    'Myanmar':[['SSB – Social Security Board','Health & life insurance contributions',3.0,0.0]],
-    'Netherlands':[['AWf – Unemployment (WW)','Work & Income Act unemployment fund',2.74,null],['Aof – Disability (uniform rate)','Work & Income for Work Capacity Act',6.27,null],['Wko – Disability surcharge','Employer-specific WGA surcharge',0.5,null],['Zvw – Health Insurance','Care Insurance Act employer levy',6.1,null]],
+    'Malaysia':[['Employees Provident Fund (EPF)','',13,2],['Social Security (SOCSO)','Contribution base capped at MYR 6,000/month',1.75,null,6000,null],['Employment Insurance (EIS)','Contribution base capped at MYR 6,000/month',0.2,null,6000,null],['HRD Corp Levy (PSMB Act 2001)','',1,null]],
+    'Mexico':[['Employer Social Security (IMSS)','Contribution base capped at MXN 89,173/month',30,null,89173,null],['Housing Fund (INFONAVIT)','',5,null],['Retirement Savings (SAR)','',2,null],['State Payroll Tax (ISN)','',3,null],['Retiree Medical (Gastos médicos pensionados)','Contribution base capped at MXN 89,173/month',1.05,null,89173,null]],
+    'Mongolia':[['Social Insurance Fund','Pension, health & work accident contributions',10,null]],
+    'Morocco':[['Family Allowances (Allocations Familiales)','',6.4,null],['Social Benefits (Prestations Sociales court+long terme)','Contribution base capped at MAD 6,000/month',8.98,null,6000,null],['Compulsory Health Insurance (AMO)','',4.11,null],['Vocational Training Tax (TFP)','',1.6,null]],
+    'Myanmar':[['Social Security (SSB)','Contribution base capped at USD 300,000/month',3,null,300000,null]],
+    'Netherlands':[['Sector Pension (bedrijfstakpensioenfonds)','Common practice / vendor-dependent',15.66,null],['Unemployment (WW/AWf)','Contribution base capped at EUR 6,617/month',7.74,null,6617,null],['Disability (WIA/Aof)','Contribution base capped at EUR 6,617/month',7.63,null,6617,null],['Health Insurance (ZVW)','Contribution base capped at EUR 6,617/month',6.1,null,6617,null],['Return-to-Work Fund (Whk)','Contribution base capped at EUR 6,617/month',1.64,null,6617,null],['Childcare Levy (Wko)','',0.5,null]],
+    'New Zealand':[['KiwiSaver Compulsory Employer Contribution (CEC)','',3.5,null],['ACC Work Account Levy','Contribution base capped at NZD 13,053/month',0.69,null,13053,null],['Working Safer Levy','Contribution base capped at NZD 13,053/month',0.08,null,13053,null]],
+    'Nigeria':[['Contributory Pension (CPS)','',10,null],['National Health (NHIA)','',3.25,null],['Group Life Assurance','',18,null],['Social Insurance Trust Fund (NSITF)','',1,null],['Industrial Training Fund (ITF)','',1,null]],
     'North Macedonia':[],
-    'Norway':[['AGA – National Insurance Contribution','Arbeidsgiveravgift; standard rate (regional rates vary)',14.1,null],['OTP – Mandatory Occupational Pension','Minimum pension savings contribution',2.0,null]],
-    'Pakistan':[['EOBI – Employees\' Old-Age Benefits','Fixed contribution on minimum wage basis',5.0,null]],
+    'Norway':[['AGA – National Insurance Contribution','Arbeidsgiveravgift; standard rate (regional rates vary)',14.1,null],['OTP – Mandatory Occupational Pension','Minimum pension savings contribution',2,null]],
+    'Pakistan':[['Provincial Employees Social Security (PESSI/SESSI)','Contribution base capped at PKR 37,000/month; Common practice / vendor-dependent',6,null,37000,null]],
     'Panama':[['CSS – Social Security','Comprehensive social security fund',13.25,null],['Seguro Educativo','Education insurance fund levy',1.5,null]],
-    'Peru':[['EsSalud – Health Insurance','National health insurance employer contribution',9.0,null]],
-    'Philippines':[['SSS – Social Security System','Pension, disability & death benefit contributions',6.0,null],['PhilHealth','National health insurance program',2.5,null],['Pag-IBIG Fund (HDMF)','Housing development & savings fund',2.0,null]],
-    'Poland':[['Pension Insurance (FUS)','Fundusz Ubezpieczeń Społecznych – retirement',9.76,null],['Disability Insurance (FUS)','Disability & survivors insurance',6.5,null],['Accident Insurance (ZUS)','Work accident insurance (avg ~1.67%)',1.67,null],['Labour Fund (FP)','Unemployment & active labour market programmes',2.45,null],['FGSP / FEP','Guaranteed Employee Benefits Fund & Bridging Pension',0.12,null]],
-    'Portugal':[['Social Security (Segurança Social)','Pension, unemployment, work accident & sickness',23.75,null]],
-    'Qatar':[['GPSSA – Social Insurance','Pension for Qatari nationals; mandatory employer share',14.0,0.0]],
-    'Romania':[['CAM – Work Accident Contribution','Mandatory accident & occupational disease insurance',2.25,null]],
-    'Saudi Arabia':[['GOSI – Annuity (Saudi nationals)','Old-age, disability & death insurance',9.75,0.0],['GOSI – Occupational Hazards','Work accident & occupational disease insurance',2.0,null]],
-    'Serbia':[['PIO – Pension & Disability Insurance','State pension and disability fund',10.0,null],['Health Insurance','Mandatory health insurance contribution',5.15,null]],
-    'Singapore':[['CPF – Central Provident Fund','Retirement, housing & healthcare (age ≤55 standard rate)',17.0,0.0],['SDL – Skills Development Levy','Skills training levy on all employees',0.25,null]],
-    'Slovakia':[['Pension Insurance','Old-age and disability pension funds',14.0,null],['Health Insurance','Mandatory health insurance (VŠZP + others)',10.0,null],['Sickness Insurance','Short-term sickness and maternity benefit',1.4,null],['Accident Insurance','Mandatory work accident contribution',0.8,null],['Other Funds','Unemployment, guarantee, reserve, insolvency',9.0,null]],
+    'Peru':[['National Health (EsSalud)','',9,null],['Industrial Training Tax (SENATI)','',0.75,null],['Life Insurance (Seguro de Vida Ley)','',0.6,null]],
+    'Philippines':[['Social Security (SSS)','Contribution base capped at PHP 35,000/month',10,null,35000,null],['PhilHealth (PHIC)','Contribution base capped at PHP 100,000/month',2.5,null,100000,null],['Pag-IBIG (HDMF)','Contribution base capped at PHP 10,000/month',2,null,10000,null]],
+    'Poland':[['Pension Insurance','Contribution base capped at PLN 23,550/month',9.76,null,23550,null],['Disability Insurance','Contribution base capped at PLN 23,550/month',6.5,null,23550,null],['Accident Insurance','',1.67,null],['Labour Fund (FP)','',1,null],['Solidarity Fund (FS)','',1.45,null],['Guaranteed Employee Benefits Fund (FGŚP)','',0.1,null],['Employee Capital Plan (PPK)','',1.5,null],['Occupational Health & Safety (BHP)','Common practice / vendor-dependent',1,null],['Liability Insurance (OC)','Common practice / vendor-dependent',0.9,null]],
+    'Portugal':[['Social Security (Seguranca Social)','',23.75,null],['Occupational Accident Insurance','',2,null]],
+    'Qatar':[['GPSSA – Social Insurance','Pension for Qatari nationals; mandatory employer share',14,0]],
+    'Romania':[['Work Insurance (CAM)','',2.25,null],['Occupational Health Insurance','Common practice / vendor-dependent',2,null],['Unemployment Insurance','Common practice / vendor-dependent',1,null],['Disability Fund','Common practice / vendor-dependent',0.8,null],['CAS (harsh/special work conditions)','Common practice / vendor-dependent',4,null]],
+    'Saudi Arabia':[['GOSI – Annuity (Saudi nationals)','Old-age, disability & death insurance',9.75,0],['GOSI – Occupational Hazards','Work accident & occupational disease insurance',2,null]],
+    'Serbia':[['PIO – Pension & Disability Insurance','State pension and disability fund',10,null],['Health Insurance','Mandatory health insurance contribution',5.15,null]],
+    'Singapore':[['Central Provident Fund (CPF, employer)','Contribution base capped at SGD 8,000/month',17,null,8000,null],['Skills Development Levy (SDL)','Contribution base capped at SGD 4,500/month',0.25,null,4500,null],['Work Injury Compensation Insurance (WICA)','Common practice / vendor-dependent',2,null]],
+    'Slovakia':[['Pension Insurance','Old-age and disability pension funds',14,null],['Health Insurance','Mandatory health insurance (VŠZP + others)',10,null],['Sickness Insurance','Short-term sickness and maternity benefit',1.4,null],['Accident Insurance','Mandatory work accident contribution',0.8,null],['Other Funds','Unemployment, guarantee, reserve, insolvency',9,null]],
     'Slovenia':[['Pension & Disability Insurance (ZPIZ)','Compulsory pension and disability fund',8.85,null],['Health Insurance (ZZZS)','Compulsory health insurance',6.56,null],['Other Contributions','Unemployment, parental & work injury',0.69,null]],
-    'South Africa':[['UIF – Unemployment Insurance','Unemployment Insurance Fund employer contribution',1.0,null],['SDL – Skills Development Levy','Mandatory training levy (threshold applies)',1.0,null]],
+    'South Africa':[['Unemployment Insurance Fund (UIF)','Contribution base capped at ZAR 17,712/month',1,null,17712,null],['Skills Development Levy (SDL)','',1,null],['Compensation for Occupational Injuries & Diseases (COIDA)','Contribution base capped at ZAR 55,667/month',0.4,null,55667,null]],
     'South Korea':[['NPS – National Pension','National pension scheme employer contribution',4.5,null],['NHI – National Health Insurance','Health insurance employer share',3.545,null],['LTCI – Long-term Care','Long-term care insurance (linked to NHI)',0.472,null],['Employment Insurance','Unemployment & workforce development',0.9,null],['Industrial Accident Insurance','KCOMWEL work accident coverage (variable)',0.583,null]],
-    'Spain':[['Social Security (Contingencias Comunes)','Pension, sickness, maternity & disability',23.6,null],['Unemployment (SEPE)','State Public Employment Service levy',5.5,null],['FOGASA','Wage Guarantee Fund',0.2,null],['Professional Training Fund','Fundación Estatal para la Formación en el Empleo',0.6,null],['Work Accident (AT) Surcharge','Occupational contingencies contribution',0.75,null]],
-    'Sweden':[['Arbetsgivaravgifter','Consolidated employer social contributions (all branches)',31.42,null]],
+    'Spain':[['Common Contingencies (Contingencias Comunes)','Contribution base capped at EUR 5,101.2/month',23.6,null,5101.2,null],['Unemployment (Desempleo)','Contribution base capped at EUR 5,101.2/month',5.5,null,5101.2,null],['Wage Guarantee Fund (FOGASA)','Contribution base capped at EUR 5,101.2/month',0.2,null,5101.2,null],['Vocational Training (Formación)','Contribution base capped at EUR 5,101.2/month',0.6,null,5101.2,null],['Work Accident (AT/EP)','Contribution base capped at EUR 5,101.2/month',1.5,null,5101.2,null],['Intergenerational Equity (MEI)','Contribution base capped at EUR 5,101.2/month',0.75,null,5101.2,null],['Solidarity Contribution (Cuota de Solidaridad)','Applies to salary above EUR 5,101.2/month',0.96,null,null,5101.2]],
+    'Sweden':[['Old-age Pension Contribution (Alderspensionsavgift)','',10.21,null],['Sickness Insurance (Sjukforsakringsavgift)','',3.55,null],['Parental Insurance (Foraldraforsakringsavgift)','',2,null],['Survivors Pension (Efterlevandepensionsavgift)','',0.3,null],['Labour Market Contribution (Arbetsmarknadsavgift)','',2.64,null],['Work Injury Contribution (Arbetsskadeavgift)','',0.1,null],['General Payroll Tax (Allman loneavgift)','',12.62,null]],
     'Switzerland':[['AHV/IV/EO','Old-age, disability & survivors + maternity insurance',5.3,null],['ALV – Unemployment','Federal unemployment insurance contribution',1.1,null]],
-    'Taiwan':[['Labour Insurance (BLI)','Work accident, disability & pension; 70% employer-paid',8.75,null],['Labour Pension (LC)','Individual account pension contribution',6.0,null],['National Health Insurance (NHI)','Employer share of health insurance premium',3.1,null]],
-    'Thailand':[['SSF – Social Security Fund','Covers health, accident, disability & pension',5.0,null]],
+    'Taiwan':[['Labor Insurance incl. Employment Insurance','Contribution base capped at TWD 45,800/month',8.75,null,45800,null],['Occupational Accident Insurance','Contribution base capped at TWD 72,800/month',0.21,null,72800,null],['National Health Insurance (general premium)','Contribution base capped at TWD 313,000/month',4.84,null,313000,null],['NHI Supplementary Premium (employer)','',2.11,null],['Labor Pension (new system)','Contribution base capped at TWD 150,000/month',6,null,150000,null],['Wage Arrears Payment Fund','Contribution base capped at TWD 45,800/month',0.03,null,45800,null]],
+    'Tanzania':[['National Social Security (NSSF)','',10,null],['Workers Compensation Fund (WCF)','',0.5,null],['Skills Development Levy (SDL)','',3.5,null]],
+    'Thailand':[['Social Security Fund (SSF)','Contribution base capped at THB 17,500/month',5,null,17500,null],['Work Injury (WCF)','',0.4,null],['Provident Fund (PF)','Common practice / vendor-dependent',3,null]],
     'Tunisia':[['CNSS – Social Security','Comprehensive social security contributions',16.57,null]],
-    'Turkey':[['SGK Long-term Insurance','Old-age, disability & survivors pension',11.0,null],['SGK Health Insurance','General health insurance contribution',7.5,null],['SGK Short-term Insurance','Work accident & occupational disease',2.0,null],['Unemployment Insurance (İŞKUR)','Turkish Employment Organisation fund',2.0,null],['Other Contributions','Stamp duty equivalent & solidarity fund',1.25,null]],
-    'Uganda':[['NSSF – National Social Security Fund','Retirement savings fund employer contribution',10.0,null]],
-    'Ukraine':[['USC – Unified Social Contribution','Single consolidated social contribution',22.0,null]],
-    'United Arab Emirates':[['GPSSA – Social Security (UAE Nationals)','Pension, disability & survivors for GCC nationals',15.0,0.0]],
-    'United Kingdom':[['Employer NIC – Class 1','National Insurance above Secondary Threshold (£9,100/yr)',15.0,null]],
+    'Turkey':[['Short-term Insurance (accident/sickness)','',2.25,null],['Pension/Disability/Death','',12,null],['General Health Insurance (GSS)','',7.5,null],['Unemployment Insurance','',2,null]],
+    'Uganda':[['NSSF – National Social Security Fund','Retirement savings fund employer contribution',10,null]],
+    'Ukraine':[['USC – Unified Social Contribution','Single consolidated social contribution',22,null]],
+    'United Arab Emirates':[['Social Security (GPSSA, nationals)','',15,0],['Work Injury Insurance','Common practice / vendor-dependent',4.2,null]],
+    'United Kingdom':[['Auto-Enrolment Pension','',3,null],['Employer Secondary Class 1 National Insurance','Applies to salary above GBP 417/month',15,null,null,417],['Apprenticeship Levy','',0.5,null],['Employer\'s Liability Insurance','',2,null]],
     'United States of America':[['Social Security (OASDI)','On wages up to USD 168,600 (2024 wage base)',6.2,null],['Medicare (HI)','No wage cap; additional 0.9% on wages > USD 200K is employee-only',1.45,null],['FUTA – Federal Unemployment','Effective rate after state credit; first USD 7,000 of wages',0.6,null]],
-    'Vietnam':[['Social Insurance (BHXH)','Pension, sick leave, maternity & work accident',17.5,17.0],['Health Insurance (BHYT)','National health insurance employer contribution',3.0,null],['Unemployment Insurance (BHTN)','Unemployment insurance fund',1.0,0.0]]
+    'Vietnam':[['Social Insurance (SI)','Contribution base capped at VND 50,600,000/month',17.5,null,50600000,null],['Health Insurance (HI)','Contribution base capped at VND 50,600,000/month',3,null,50600000,null],['Unemployment Insurance (UI)','Contribution base capped at VND 106,200,000/month',1,null,106200000,null],['Trade Union Fund','Contribution base capped at VND 50,600,000/month',2,null,50600000,null]]
   };
 
   // ── Per-country mandatory / quantifiable benefit items ──
@@ -1733,8 +1801,8 @@
   function renderReport(base) {
     var country   = lccState.country;
     var wt        = lccState.workerType; // 'local' | 'foreign'
-    var statRate  = getStatRate();
-    var statutory = base * statRate / 100;
+    var statutory = getStatutoryTotal(base, wt === 'local');
+    var statRate  = statutory / base * 100;
     var benRate   = getCountryBenRate(country, isLocal);
     var benefits  = base * benRate / 100;
     var total     = base + statutory + benefits;
@@ -1820,10 +1888,12 @@
         tCell('rate','td','0%') + tCell('mo','td',sym+'0') + tCell('yr','td',sym+'0','yr') + '</div>';
     } else {
       items.forEach(function(it) {
-        var rate = isLocal ? it[2] : (it[3] !== null ? it[3] : it[2]);
-        var mo   = base * rate / 100;
+        /* skip tier items that only apply above a salary threshold the base doesn't reach */
+        if (statItemBelowThreshold(it, base)) return;
+        var calc = statItemAmount(it, base, isLocal);
+        var mo   = calc.amount;
         var yr   = mo * 12;
-        var rStr = rate % 1 === 0 ? rate + '%' : rate + '%';
+        var rStr = calc.rate % 1 === 0 ? calc.rate + '%' : calc.rate + '%';
         html += '<div class="lcc-rpt-trow lcc-rpt-trow--body">' +
           '<div class="lcc-rpt-tcell lcc-rpt-tcell--name"><p class="lcc-rpt-td-name">' + it[0] + '</p>' + (it[1] ? '<p class="lcc-rpt-td-note">' + it[1] + '</p>' : '') + '</div>' +
           tCell('rate','td',rStr) + tCell('mo','td',sym+fmtNum(mo)) + tCell('yr','td',sym+fmtNum(yr),'yr') + '</div>';
@@ -2015,8 +2085,8 @@
     var base       = getMonthlyBase();
     if (!base || !country) { alert('Please generate a report first.'); return; }
 
-    var statRate   = getStatRate();
-    var statutory  = base * statRate / 100;
+    var statutory  = getStatutoryTotal(base, isLocal);
+    var statRate   = statutory / base * 100;
     var benRate    = getCountryBenRate(country, isLocal);
     var benefits   = base * benRate / 100;
     var total      = base + statutory + benefits;
@@ -2125,8 +2195,10 @@
       r++;
     } else {
       items.forEach(function(it) {
-        var rate = isLocal ? it[2] : (it[3] !== null ? it[3] : it[2]);
-        var mo = base * rate / 100;
+        if (statItemBelowThreshold(it, base)) return; /* tier not reached at this salary */
+        var calc = statItemAmount(it, base, isLocal);
+        var rate = calc.rate;
+        var mo = calc.amount;
         ws.getCell(r, 1).value = it[0]; ws.getCell(r, 2).value = rate + '%'; ws.getCell(r, 3).value = mo; ws.getCell(r, 4).value = mo * 12;
         xlStyleRow(ws, r, 4, { font: fontMain, border: borderThin, alignment: alignR, numFmt: numFmt });
         ws.getCell(r, 1).alignment = alignL;

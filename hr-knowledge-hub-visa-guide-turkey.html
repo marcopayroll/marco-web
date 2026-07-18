@@ -934,16 +934,16 @@
     <div class="pg-hero-text fade-in">
       <a class="pg-breadcrumb" href="hr-knowledge-hub-visa-guide.html">
         <img src="assets/HR Knowledge Hub/Country Guide/icons/chevron-left-icon.svg" width="16" height="16" alt="" />
-        <span>Visa Guide</span>
+        <span data-i18n="vg.page.breadcrumb">Visa Guide</span>
       </a>
       <div class="pg-hero-text-inner">
-        <h1 class="pg-hero-title">Turkey</h1>
-        <p class="pg-hero-desc">Navigate Turkey's work visa system with confidence. This guide covers work permit requirements, application processes, employer sponsorship, and the latest policy updates.</p>
+        <h1 class="pg-hero-title" data-i18n="vg.country.turkey">Turkey</h1>
+        <p class="pg-hero-desc" data-i18n="vg.page.desc.turkey">Navigate Turkey's work visa system with confidence. This guide covers work permit requirements, application processes, employer sponsorship, and the latest policy updates.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated">Last Update by, 1 January 2026</p>
+      <p class="pg-hero-last-updated"><span data-i18n="vg.page.updated">Last Update by,</span> <span data-i18n="vg.date.turkey">1 January 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
@@ -960,15 +960,15 @@
       <!-- ── LEFT: TABLE OF CONTENTS ── -->
       <aside class="article-toc">
         <div class="toc-card">
-          <p class="toc-title">Table of Contents</p>
+          <p class="toc-title" data-i18n="vg.page.toc">Table of Contents</p>
         </div>
       </aside>
 
       <!-- ── MIDDLE: ARTICLE CONTENT ── -->
       <div class="article-content">
         <div class="article-block" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 40px;gap:16px;text-align:center;">
-          <h2 class="article-h2">Turkey Visa Guide</h2>
-          <p style="font-size:16px;line-height:24px;color:#8F98B5;">Turkey Visa Guide content coming soon.</p>
+          <h2 class="article-h2"><span data-i18n="vg.country.turkey">Turkey</span> <span data-i18n="vg.page.comingsoon.h">Visa Guide</span></h2>
+          <p style="font-size:16px;line-height:24px;color:#8F98B5;"><span data-i18n="vg.country.turkey">Turkey</span> <span data-i18n="vg.page.comingsoon">Visa Guide content coming soon.</span></p>
         </div>
       </div>
 
@@ -1037,17 +1037,17 @@
         <div class="gs-cta-title-block">
           <div class="gs-cta-label">
             <div class="gs-cta-label-line"></div>
-            <span>GET STARTED</span>
+            <span data-i18n="vg.page.gs.label">GET STARTED</span>
           </div>
           <h2 class="gs-cta-title">
-            Ready to Expand in
-            <span class="accent">Turkey?</span>
+            <span data-i18n="vg.page.gs.title">Ready to Expand in</span>
+            <span class="accent"><span data-i18n="vg.country.turkey">Turkey</span><span data-i18n="vg.page.gs.q">?</span></span>
           </h2>
         </div>
-        <p class="gs-cta-subtitle">Have any questions? We&rsquo;d love to hear from you</p>
+        <p class="gs-cta-subtitle" data-i18n="vg.page.gs.sub">Have any questions? We&rsquo;d love to hear from you</p>
       </div>
       <a href="company-contact-us.html" class="gs-cta-btn">
-        Contact us
+        <span data-i18n="vg.page.gs.contact">Contact us</span>
         <div class="gs-cta-btn-icon"><div class="gs-cta-btn-icon-inner"><img class="gs-cta-btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
       </a>
     </div>
@@ -1062,13 +1062,13 @@
     <div class="explore-header">
       <div class="explore-eyebrow">
         <div class="explore-eyebrow-line"></div>
-        <span class="explore-eyebrow-label">EXPLORE MORE</span>
+        <span class="explore-eyebrow-label" data-i18n="vg.page.explore.label">EXPLORE MORE</span>
       </div>
       <div class="explore-title-row">
-        <h2 class="explore-title">Other Visa Guides</h2>
+        <h2 class="explore-title" data-i18n="vg.page.explore.title">Other Visa Guides</h2>
         <div class="explore-controls">
           <div class="explore-search">
-            <input class="explore-search-input" id="exploreSearch" type="text" placeholder="Search Country" autocomplete="off" />
+            <input class="explore-search-input" id="exploreSearch" type="text" placeholder="Search Country" data-i18n-placeholder="vg.search.placeholder" autocomplete="off" />
             <button class="explore-search-clear" id="exploreSearchClear" aria-label="Clear search">
               <img src="assets/HR Knowledge Hub/Country Guide/icons/x-icon.svg" alt="" />
             </button>
@@ -1087,7 +1087,7 @@
   </div>
   <div class="explore-viewport" id="exploreViewport">
     <div class="explore-track" id="exploreTrack"></div>
-    <p class="explore-empty container" id="exploreEmpty">No countries found.</p>
+    <p class="explore-empty container" id="exploreEmpty" data-i18n="vg.page.explore.empty">No countries found.</p>
   </div>
   <div class="container">
     <div class="explore-scroll-track">
@@ -1224,6 +1224,14 @@
     var searchInput  = document.getElementById('exploreSearch');
     var searchClear  = document.getElementById('exploreSearchClear');
 
+    function t(key, fallback) {
+      var p = window.__marcoPack;
+      return (p && p[key] !== undefined && p[key] !== '') ? p[key] : fallback;
+    }
+    function countrySlug(name) {
+      return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    }
+
     function buildCard(c) {
       var a = document.createElement('a');
       a.className = 'explore-card';
@@ -1235,10 +1243,10 @@
         '<div class="explore-card-thumb">' + thumbHtml + '</div>' +
         '<div class="explore-card-body">' +
           '<div class="explore-card-title-row">' +
-            '<span class="explore-card-name">' + c.name + '</span>' +
+            '<span class="explore-card-name">' + t('vg.country.' + countrySlug(c.name), c.name) + '</span>' +
             '<span class="explore-card-currency">' + c.currency + '</span>' +
           '</div>' +
-          '<span class="explore-card-date">Last Updated by, ' + (c.date || '1 January 2026') + '</span>' +
+          '<span class="explore-card-date">' + t('vg.card.updated', 'Last Updated by,') + ' ' + t('vg.date.' + countrySlug(c.name), c.date || '1 January 2026') + '</span>' +
         '</div>';
       return a;
     }
@@ -1275,7 +1283,7 @@
       var q = (query || '').toLowerCase().trim();
       var currentUrl = window.location.href.split('/').pop().split('?')[0].replace(/\.html$/, '');
       filtered = EXPLORE_COUNTRIES.filter(function(c) {
-        return c.url.replace(/\.html$/, '') !== currentUrl && (!q || c.name.toLowerCase().indexOf(q) !== -1);
+        return c.url.replace(/\.html$/, '') !== currentUrl && (!q || c.name.toLowerCase().indexOf(q) !== -1 || t('vg.country.' + countrySlug(c.name), c.name).toLowerCase().indexOf(q) !== -1);
       });
       track.innerHTML = '';
       filtered.forEach(function(c) { track.appendChild(buildCard(c)); });
@@ -1308,6 +1316,10 @@
     }, { passive: false });
 
     render('');
+
+    document.addEventListener('marcolangready', function() {
+      render(searchInput ? searchInput.value : '');
+    });
   })();
 </script>
 

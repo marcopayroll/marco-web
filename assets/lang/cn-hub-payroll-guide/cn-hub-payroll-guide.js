@@ -123,7 +123,7 @@ window.MARCO_LANG_CN_HUB_PAYROLL_GUIDE = {
 	'pg.date.vietnam': '2026年1月1日',
 	/* ── Country page shared chrome ── */
 	'pg.page.breadcrumb': '薪酬指南',
-	'pg.page.updated': '最后更新者：',
+	'pg.page.updated': '最后更新：',
 	'pg.page.comingsoon': '薪酬指南内容即将上线',
 	'pg.page.gs.label': '立即开始',
 	'pg.page.gs.title': '需要有关以下国家薪酬合规方面的帮助：',

@@ -180,9 +180,17 @@
   } else if (filename.indexOf('hr-knowledge-hub-country-guide-') === 0) {
     sectionFile   = base + '-hub-country.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB_COUNTRY';
-  } else if (filename.indexOf('hr-knowledge-hub-visa-guide-') === 0) {
-    sectionFile   = base + '-hub-visa.js';
+  } else if (filename.indexOf('hr-knowledge-hub-visa-guide') === 0) {
+    /* List page + every country page share the visa-guide pack.
+       Visa-guide packs live in their own folder: assets/lang/<lang>-hub-visa/ */
+    sectionFile   = base + '-hub-visa/' + lang + '-hub-visa.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB_VISA';
+    /* Country pages additionally load their own content pack (<lang>-vg-<country>.js) if present */
+    var vgCountry = filename.match(/^hr-knowledge-hub-visa-guide-([a-z0-9-]+)\.html$/);
+    if (vgCountry) {
+      countryFile   = base + '-hub-visa/' + lang + '-vg-' + vgCountry[1] + '.js';
+      countryGlobal = 'MARCO_LANG_' + L + '_VG_' + vgCountry[1].toUpperCase().replace(/-/g, '_');
+    }
   } else if (filename === 'hr-knowledge-hub-labor-cost-calculator.html') {
     sectionFile   = base + '-hub-labor-cost.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB_LABOR_COST';

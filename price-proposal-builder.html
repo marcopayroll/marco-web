@@ -3172,6 +3172,24 @@
       }
     };
 
+    /* ── FX: contribution caps/fixed amounts are stored in each country's local
+       currency; salaries are entered in USD/EUR/GBP. Approximate mid-2026 rates. ── */
+    var CONTRIB_FX_PER_USD = { /* local units per 1 USD */
+      'AUD':1.52,'EUR':0.92,'CAD':1.36,'CZK':23.2,'INR':85.5,'IDR':16300,'IQD':1310,
+      'JPY':150,'JOD':0.709,'KZT':520,'MYR':4.7,'MXN':18.2,'MAD':10.0,'NZD':1.67,
+      'PKR':278,'PHP':57,'PLN':4.0,'SGD':1.35,'ZAR':18.5,'TWD':32.5,'THB':36,
+      'VND':25500,'GBP':0.79,'BRL':5.6,'CLP':950,'COP':4100,'HUF':370,'SEK':10.5,
+      'RON':4.6,'TRY':38,'AED':3.67,'NGN':1550,'TZS':2600,'CDF':2850,'PEN':3.7,
+      'USD':1
+    };
+    var SEL_CUR_PER_USD = { 'USD':1, 'EUR':0.92, 'GBP':0.79 };
+
+    /* Convert an amount in a country's local currency to the selected proposal currency */
+    function contribToSel(amountLocal, localCcy) {
+      var perUsd = CONTRIB_FX_PER_USD[localCcy] || 1;
+      return (amountLocal / perUsd) * (SEL_CUR_PER_USD[pbState.currency] || 1);
+    }
+
     /* ── Does a contribution item apply to this employee type? ──
        item.applies: ['local'] or ['foreign']; no applies = everyone.
        'foreigner'/'expat' employment types count as foreign; all others (or unselected) as local. */
@@ -3181,20 +3199,23 @@
       return item.applies.indexOf(cat) !== -1;
     }
 
-    /* ── Calculate one contribution item for a single employee ── */
-    function calcOneContrib(item, monthlySalary, monthlyGross) {
-      if (item.fixed) return item.fixed;
+    /* ── Calculate one contribution item for a single employee ──
+       Caps, thresholds, fixed amounts, addons, floors and ceilings are stored in
+       the country's local currency and converted to the proposal currency here. */
+    function calcOneContrib(item, monthlySalary, monthlyGross, localCcy) {
+      if (item.fixed) return contribToSel(item.fixed, localCcy);
       var rate = item.rate;
       if (!rate) return 0;
       var baseAmt = item.base === 'salary_only' ? monthlySalary : monthlyGross;
       var applicable = baseAmt;
-      if (item.threshold) applicable = Math.max(0, baseAmt - item.threshold);
-      if (item.cap) applicable = Math.min(applicable, item.cap - (item.threshold || 0));
+      var thr = item.threshold ? contribToSel(item.threshold, localCcy) : 0;
+      if (thr) applicable = Math.max(0, baseAmt - thr);
+      if (item.cap) applicable = Math.min(applicable, contribToSel(item.cap, localCcy) - thr);
       if (applicable < 0) applicable = 0;
       var amount = applicable * rate / 100;
-      if (item.addon) amount += item.addon;
-      if (item.floor != null && amount < item.floor) amount = item.floor;
-      if (item.ceiling != null && amount > item.ceiling) amount = item.ceiling;
+      if (item.addon) amount += contribToSel(item.addon, localCcy);
+      if (item.floor != null && amount < contribToSel(item.floor, localCcy)) amount = contribToSel(item.floor, localCcy);
+      if (item.ceiling != null && amount > contribToSel(item.ceiling, localCcy)) amount = contribToSel(item.ceiling, localCcy);
       return amount;
     }
 
@@ -3222,13 +3243,13 @@
 
         data.items.forEach(function(item) {
           if (!contribApplies(item, emp.empType)) return;
-          var amt = calcOneContrib(item, monthlySalary, monthlyGross);
+          var amt = calcOneContrib(item, monthlySalary, monthlyGross, data.currency);
           itemTotals[item.code] += amt;
           totalContrib += amt;
         });
       }
 
-      return { total: totalContrib, itemTotals: itemTotals, items: data.items, hasData: true };
+      return { total: totalContrib, itemTotals: itemTotals, items: data.items, currency: data.currency, hasData: true };
     }
 
     /* ── Format currency ── */
@@ -3958,10 +3979,12 @@
         contribGen.items.forEach(function(item) {
           var amt = contribGen.itemTotals[item.code];
           if (item.applies && !amt) return; /* type-conditional item that applied to no employee */
-          var rateDisplay = item.fixed ? (cur + ' ' + Number(item.fixed).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' fixed')
+          if (item.threshold && !amt) return; /* salary tier not reached */
+          var ccy = contribGen.currency;
+          var rateDisplay = item.fixed ? (cur + ' ' + contribToSel(item.fixed, ccy).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' fixed')
                          : (item.rate ? item.rate + '%' : '0%');
-          if (item.cap) rateDisplay += ' (cap ' + Number(item.cap).toLocaleString('en-US') + ')';
-          if (item.threshold) rateDisplay += ' (above ' + Number(item.threshold).toLocaleString('en-US') + ')';
+          if (item.cap) rateDisplay += ' (cap ' + cur + ' ' + Math.round(contribToSel(item.cap, ccy)).toLocaleString('en-US') + ')';
+          if (item.threshold) rateDisplay += ' (above ' + cur + ' ' + Math.round(contribToSel(item.threshold, ccy)).toLocaleString('en-US') + ')';
           cHtml += '<div class="pr-table-row body-row">' +
             '<div class="pr-table-cell">' + item.name + '</div>' +
             '<div class="pr-table-cell muted">' + item.group + '</div>' +
@@ -4214,10 +4237,12 @@
         contribGen.items.forEach(function(item) {
           var amt = contribGen.itemTotals[item.code];
           if (item.applies && !amt) return; /* type-conditional item that applied to no employee */
-          var rateDisplay = item.fixed ? (cur + ' ' + Number(item.fixed).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' fixed')
+          if (item.threshold && !amt) return; /* salary tier not reached */
+          var ccy = contribGen.currency;
+          var rateDisplay = item.fixed ? (cur + ' ' + contribToSel(item.fixed, ccy).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' fixed')
                          : (item.rate ? item.rate + '%' : '0%');
-          if (item.cap) rateDisplay += ' (cap ' + Number(item.cap).toLocaleString('en-US') + ')';
-          if (item.threshold) rateDisplay += ' (above ' + Number(item.threshold).toLocaleString('en-US') + ')';
+          if (item.cap) rateDisplay += ' (cap ' + cur + ' ' + Math.round(contribToSel(item.cap, ccy)).toLocaleString('en-US') + ')';
+          if (item.threshold) rateDisplay += ' (above ' + cur + ' ' + Math.round(contribToSel(item.threshold, ccy)).toLocaleString('en-US') + ')';
           ws.getCell(r, 1).value = item.name;
           ws.getCell(r, 2).value = item.group;
           ws.getCell(r, 3).value = rateDisplay;
