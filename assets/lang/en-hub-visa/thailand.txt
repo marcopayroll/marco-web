@@ -1,0 +1,754 @@
+  'vg.thailand.s1.h': `Types of Work Visas`,
+
+  'vg.thailand.s1.b1': `
+            <p class="au-section-sub">Thailand work-related immigration matters are handled by two core authorities: the Ministry of Foreign Affairs (MFA) and overseas embassies / consulates issue Non-Immigrant Visa categories including the B work visa; the Department of Employment (DOE) under the Ministry of Labour issues the Work Permit. After entering Thailand, foreign nationals must also handle extensions and 90-day reporting with the Immigration Bureau. The Board of Investment (BOI) and OSOS / OSS one-stop centres provide accelerated channels for foreign-invested companies and high-end talent. The main 2026 work-related visas are:</p>
+            <div class="au-table-group">
+              <div class="au-table-wrap">
+                <table class="au-table">
+                  <thead>
+                    <tr>
+                      <th>Visa Type</th>
+                      <th>Who It Applies To</th>
+                      <th>Description (2026)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Non-Immigrant Visa B + Work Permit</td>
+                      <td>General foreign employees working for a Thailand-registered company</td>
+                      <td>Most common path; B visa issued by an overseas embassy (single-entry THB 2,000 / multiple-entry THB 5,000, 90 days / 1 year). After entry, apply to DOE for Work Permit within 15 days. First WP is usually 1 year and can be renewed in Thailand.</td>
+                    </tr>
+                    <tr>
+                      <td>BOI / IEAT Visa + Work Permit</td>
+                      <td>Foreign employees of BOI or IEAT promoted enterprises</td>
+                      <td>Handled through the BOI Single Window system; processing time 1&ndash;3 working days; exempt from the 4:1 Thai-to-foreign employee ratio; handled by OSOS / OSS one-stop centre.</td>
+                    </tr>
+                    <tr>
+                      <td>SMART Visa (S category)</td>
+                      <td>Tech startup founders in BOI target industries</td>
+                      <td>After the February 2025 reform, only SMART-S remains; 2-year term; exempt from separate Work Permit; must deposit THB 600,000 in a Thai bank for &ge; 3 months before application and hold &ge; 25% equity or serve as director.</td>
+                    </tr>
+                    <tr>
+                      <td>LTR Visa &mdash; Highly Skilled Professionals (HSP)</td>
+                      <td>Senior professionals / experts in target industries</td>
+                      <td>10-year term (5+5); 17% preferential personal income tax; no separate Work Permit required (digital Work Permit built in); 5-year work experience threshold removed in 2025.</td>
+                    </tr>
+                    <tr>
+                      <td>LTR Visa &mdash; Work-From-Thailand Professionals (WFTP)</td>
+                      <td>Foreign employees working remotely for large overseas companies</td>
+                      <td>10-year term; annual salary in the last 2 years &ge; USD 80,000; employer revenue threshold reduced from USD 150 million to USD 50 million in 2024; foreign-sourced income remitted into Thailand is tax-exempt.</td>
+                    </tr>
+                    <tr>
+                      <td>LTR Visa &mdash; Wealthy Global Citizens (WGC)</td>
+                      <td>High-net-worth foreign nationals</td>
+                      <td>10-year term; personal assets &ge; USD 1 million, including &ge; USD 500,000 investment in Thai assets; annual income threshold removed in 2025; foreign-sourced income remitted into Thailand is tax-exempt.</td>
+                    </tr>
+                    <tr>
+                      <td>LTR Visa &mdash; Wealthy Pensioners (WP)</td>
+                      <td>Retirees aged 50+</td>
+                      <td>10-year term; pension / passive income &ge; USD 80,000 / year, or &ge; USD 40,000 + investment in Thai assets &ge; USD 250,000; cannot work.</td>
+                    </tr>
+                    <tr>
+                      <td>APEC Business Travel Card (ABTC)</td>
+                      <td>Business travelers from APEC member economies</td>
+                      <td>5-year term; multiple entries; up to 90 days visa-free per entry; suitable for frequent business travel.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="au-marco-insight">
+              <p class="au-mi-label">Mainstream Route Focus</p>
+              <p class="au-mi-text">Non-Immigrant B + Work Permit is Thailand&rsquo;s mainstream route for regular employment and covers the vast majority of foreign employees. BOI / LTR / SMART apply to foreign-invested companies, high-end talent, and remote workers. The following focuses on Non-B + WP and LTR.</p>
+            </div>
+`,
+
+  'vg.thailand.s2.h': `Applicant Requirements`,
+
+  'vg.thailand.s2.b1': `
+            <div class="au-subsection">
+              <p class="au-section-title">1. Employee-Side Requirements</p>
+              <div class="au-subsection">
+                <p style="font-size:16px;font-weight:600;line-height:22px;color:#162351;margin:0;">(1) Non-Immigrant Visa B + Work Permit</p>
+                <ul class="au-bullet-list">
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Valid passport with remaining validity &ge; 6 months and at least 2 blank pages.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Signed employment contract with the employer; the role must be an occupation permitted for foreigners and not fall within the 27 prohibited occupations under foreign work regulations.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Education / qualifications should match the position. Bachelor degree or above + 2+ years relevant experience is recommended for DOE review.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">No restricted communicable disease: at entry / WP application stage, a Thai government hospital medical certificate is required confirming no third-stage syphilis, tuberculosis, leprosy, elephantiasis, drug addiction, chronic alcoholism, third-stage Hansen&rsquo;s disease, mental disorder, etc.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">No criminal record where required by the relevant consulate.</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="au-subsection">
+                <p style="font-size:16px;font-weight:600;line-height:22px;color:#162351;margin:0;">(2) LTR Visa &mdash; Highly Skilled Professionals (HSP)</p>
+                <ul class="au-bullet-list">
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Works in BOI target industries such as automotive, electronics, smart agriculture, digital, biotechnology, medical, future food, robotics, aviation, etc.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Annual salary in the latest year &ge; USD 80,000; if annual salary is USD 40,000&ndash;80,000, the applicant must hold a master&rsquo;s degree + 5 years of experience or have outstanding achievements in the target field.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">After the 2025 reform, the mandatory &ldquo;5 years of work experience&rdquo; threshold was removed and replaced by holistic assessment.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Personal income tax enjoys a 17% preferential rate for employment income only.</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="au-subsection">
+                <p style="font-size:16px;font-weight:600;line-height:22px;color:#162351;margin:0;">(3) LTR Visa &mdash; Work-From-Thailand Professionals (WFTP)</p>
+                <ul class="au-bullet-list">
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Annual salary in the latest 2 years &ge; USD 80,000, or USD 40,000&ndash;80,000 + master&rsquo;s degree / intellectual property / Series A funding experience.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Employed by an overseas company registered for &ge; 3 years with total revenue over the past 3 years &ge; USD 50 million (reduced from USD 150 million in 2024).</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Commercial health insurance with annual coverage &ge; USD 50,000, or Thai bank deposit &ge; USD 100,000 for &ge; 12 months.</p>
+                  </li>
+                </ul>
+              </div>
+              <div class="au-subsection">
+                <p style="font-size:16px;font-weight:600;line-height:22px;color:#162351;margin:0;">(4) SMART Visa (S Category &mdash; Startup)</p>
+                <ul class="au-bullet-list">
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Establishes / works in a technology startup in BOI target industries.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Deposits at least THB 600,000 in a Thai local bank for &ge; 3 months before application.</p>
+                  </li>
+                  <li class="au-bullet-item">
+                    <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                    <p class="au-section-sub">Holds &ge; 25% registered capital in the startup or serves as director.</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="au-subsection">
+              <p class="au-section-title">2. Employer-Side Requirements</p>
+              <ul class="au-bullet-list">
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">The company must be legally registered with Thailand&rsquo;s Ministry of Commerce (Co. Ltd. or Public Co. Ltd.); registered capital generally must be &ge; THB 2 million per foreign employee.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">Thai-to-Foreign employee ratio: for each foreign employee, the company must employ 4 Thai employees and contribute to the Social Security Office (SSO) for them.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">Latest annual corporate income tax filing (PND.50), monthly VAT filing (PND.30), and VAT registration certificate (Por Por 20) must be available.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">BOI promoted enterprises / IEAT industrial estate companies may be exempt from registered capital and 4:1 quota limits and enjoy the OSOS accelerated channel.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">The company should have healthy financial status with no major losses in recent balance sheets / income statements.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">The company must complete ThaiID verification on the e-Work Permit platform from 2025.10.13.</p>
+                </li>
+              </ul>
+              <div class="au-marco-insight">
+                <p class="au-mi-label">Important Reminder</p>
+                <p class="au-mi-text">The &ldquo;4:1&rdquo; ratio and THB 2 million registered capital are hard requirements for a general Work Permit in Thailand. Non-compliance will lead to direct rejection. BOI promoted enterprises may apply for exemptions; medium and larger foreign-invested companies should prioritise BOI eligibility assessment because this is the only official path that can legally bypass the 4:1 quota and speed WP processing to 1&ndash;3 days.</p>
+              </div>
+            </div>
+`,
+
+  'vg.thailand.s3.h': `Application Document Checklist`,
+
+  'vg.thailand.s3.b1': `
+            <div class="au-subsection">
+              <p class="au-section-title">1. Employee Documents</p>
+              <ul class="au-bullet-list">
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">1.</span>
+                  <p class="au-section-sub">Valid passport (remaining validity &ge; 6 months) + scanned personal information page.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">2.</span>
+                  <p class="au-section-sub">Passport photos (4&times;6 cm, white background, taken within the last 6 months), 3&ndash;4 copies.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">3.</span>
+                  <p class="au-section-sub">Academic certificate (bachelor degree or above) + transcript (legalized by Thai overseas embassy; some cases require Hague Apostille).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">4.</span>
+                  <p class="au-section-sub">Work experience / reference letter from previous employer proving role fit.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">5.</span>
+                  <p class="au-section-sub">Resume in English / Thai.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">6.</span>
+                  <p class="au-section-sub">Employment contract signed and stamped by the employer, including salary, position, and contract term.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">7.</span>
+                  <p class="au-section-sub">Police clearance certificate (required by some consulates; consular legalization needed).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">8.</span>
+                  <p class="au-section-sub">Medical certificate issued after entry by a Thai government hospital or certified private hospital, confirming absence of the 8 prohibited diseases.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">9.</span>
+                  <p class="au-section-sub">Marriage certificate / children&rsquo;s birth certificates if dependents accompany; must be legalized + translated into Thai.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">10.</span>
+                  <p class="au-section-sub">Proof of Non-B visa application fee payment (THB 2,000 / 5,000).</p>
+                </li>
+              </ul>
+            </div>
+            <div class="au-subsection">
+              <p class="au-section-title">2. Employer Documents</p>
+              <ul class="au-bullet-list">
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">1.</span>
+                  <p class="au-section-sub">Company Affidavit / Certificate issued by Ministry of Commerce within 3 months.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">2.</span>
+                  <p class="au-section-sub">Commercial Registration + Memorandum of Association.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">3.</span>
+                  <p class="au-section-sub">List of Shareholders.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">4.</span>
+                  <p class="au-section-sub">VAT registration certificate (Por Por 20 / VAT Certificate).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">5.</span>
+                  <p class="au-section-sub">Latest annual corporate income tax filing (PND.50) + monthly VAT filings (PND.30).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">6.</span>
+                  <p class="au-section-sub">Latest Balance Sheet and Profit &amp; Loss statement.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">7.</span>
+                  <p class="au-section-sub">Social Security Office (SSO) contribution proof showing contributions for &ge; 4 Thai employees (for non-BOI companies).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">8.</span>
+                  <p class="au-section-sub">List of foreign employees + company map showing office location.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">9.</span>
+                  <p class="au-section-sub">Job Description + recruitment justification explaining why a foreigner is needed instead of a local employee.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">10.</span>
+                  <p class="au-section-sub">Work Permit application form: first-time WP.3 from outside Thailand; WP.1 / BT.32 from inside Thailand; from 2025.10, e-Work Permit online BT.32 applies.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">11.</span>
+                  <p class="au-section-sub">Work Permit application fee: THB 3,000 for 1 year; THB 6,000 for 2 years.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="au-marco-insight">
+              <p class="au-mi-label">Tip &mdash; Document Legalisation for Thailand</p>
+              <p class="au-mi-text">Thailand document legalisation for academic / marriage / birth certificates follows: home-country Apostille / notarisation &rarr; Thai embassy legalisation abroad &rarr; legalisation by Thailand MFA Legalisation Division after entry &rarr; Thai translation. Since China joined the Hague Convention in November 2023, Chinese public documents can be Apostilled directly, but Thailand MFA Legalisation Division certification + Thai translation is still required; otherwise DOE will not accept them.</p>
+            </div>
+`,
+
+  'vg.thailand.s4.h': `Application Process`,
+
+  'vg.thailand.s4.b1': `
+            <div class="au-subsection">
+              <p class="au-section-title">Process Overview</p>
+              <div class="au-table-group">
+                <div class="au-table-wrap">
+                  <table class="au-table">
+                    <thead>
+                      <tr>
+                        <th>Step</th>
+                        <th>Action</th>
+                        <th>Responsible Party</th>
+                        <th>Estimated Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Employer and employee sign employment contract + prepare company and personal documents.</td>
+                        <td>Employer / Employee</td>
+                        <td>1&ndash;2 weeks</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Employer issues &ldquo;WP.3 employment pre-approval letter&rdquo; (general WP) / BOI submits Single Window application (BOI category).</td>
+                        <td>Employer</td>
+                        <td>WP.3 ~7 working days; BOI 1&ndash;3 working days</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Employee applies for Non-Immigrant Visa B / B-A / IB at Thai overseas embassy with WP.3 / BOI approval.</td>
+                        <td>Employee</td>
+                        <td>5&ndash;15 working days</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Employee enters Thailand with Non-B visa (90-day validity).</td>
+                        <td>Employee</td>
+                        <td>Entry day</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>Within 24 hours after entry: landlord / employer submits TM30 address report.</td>
+                        <td>Employer / Landlord</td>
+                        <td>Within 24 hours</td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>Within 15 days after entry: apply for Work Permit (WP.1 / BT.32) via DOE / e-Work Permit platform.</td>
+                        <td>Employer / Employee</td>
+                        <td>5&ndash;10 working days; BOI 1&ndash;3 days</td>
+                      </tr>
+                      <tr>
+                        <td>7</td>
+                        <td>Use WP to extend Non-B to 1 year at Immigration Bureau (within 30 days before the 90-day stay expires).</td>
+                        <td>Employee</td>
+                        <td>1 working day</td>
+                      </tr>
+                      <tr>
+                        <td>8</td>
+                        <td>Submit 90-day reporting (TM47) to Immigration Bureau every 90 days; can be done online.</td>
+                        <td>Employee</td>
+                        <td>Instant online</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="au-subsection">
+              <p class="au-section-title">Detailed Steps</p>
+              <ul class="au-bullet-list">
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">1.</span>
+                  <p class="au-section-sub">Employer prepares company documents, contract, and job description. Non-BOI companies must first confirm compliance with &ldquo;4:1 ratio + THB 2 million registered capital / foreigner&rdquo;; BOI companies submit foreign employee position applications in the BOI Single Window system (boi.go.th).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">2.</span>
+                  <p class="au-section-sub">Employer applies to DOE for the WP.3 &ldquo;employment pre-approval letter&rdquo;: upload company certificate, contract, JD, and employee passport page. DOE review takes ~7 working days. BOI cases receive a &ldquo;BOI Approval&rdquo; email directly through Single Window and notify the Thai overseas embassy.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">3.</span>
+                  <p class="au-section-sub">Employee uses WP.3 / BOI approval + personal documents to apply for Non-Immigrant Visa B (general) / B-A (investment) / IB (BOI) at the Thai embassy in the country of residence / neighbouring country. Preferably submit through Thailand e-Visa system (thaievisa.go.th). Choose 90-day single entry (THB 2,000) or 1-year multiple entry (THB 5,000).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">4.</span>
+                  <p class="au-section-sub">Employee enters Thailand with the Non-B visa. After entry, the landlord or company must submit TM30 address report within 24 hours. If not submitted, WP / 90-day reporting / visa extension may be refused.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">5.</span>
+                  <p class="au-section-sub">Within 15 days after entry: employee completes medical exam at a Thai government hospital or certified private hospital (THB 200&ndash;600). Employer submits BT.32 online through e-Work Permit (mandatory from 2025.10.13) with medical certificate + personal documents, and pays THB 3,000 / 1 year (THB 6,000 / 2 years).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">6.</span>
+                  <p class="au-section-sub">DOE review takes 5&ndash;10 working days (BOI 1&ndash;3 days). After approval, a digital Work Permit is issued. The blue &ldquo;Work Book&rdquo; has gradually stopped being issued from October 2025.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">7.</span>
+                  <p class="au-section-sub">Employee uses the WP to apply at the relevant Immigration Bureau to extend Non-B to a 1-year stay (within 30 days before expiry), paying THB 1,900 extension fee. Immigration stamps a 1-year extension.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">8.</span>
+                  <p class="au-section-sub">Submit TM47 90-day reporting online every 90 days (tm47.immigration.go.th). First report must be done offline; later reports can be online if TM30 is complete and valid TDAC digital arrival card number exists.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="au-marco-insight">
+              <p class="au-mi-label">Tip &mdash; The 15-Day Work Permit Window</p>
+              <p class="au-mi-text">The &ldquo;within 15 days&rdquo; window for WP application is strict in Thailand. It starts from entry day. Late submission may lead to fines and affect the later 1-year extension. BOI companies can compress the process to &ldquo;BOI Single Window 5 days overseas + OSOS one-stop 3&ndash;5 days after entry&rdquo;, making it the preferred route for foreign-invested / mid-sized companies. LTR / SMART Visa is processed entirely through BOI online platforms and is exempt from a separate Work Permit.</p>
+            </div>
+`,
+
+  'vg.thailand.s5.h': `Arrival Guide`,
+
+  'vg.thailand.s5.b1': `
+            <div class="au-marco-insight">
+              <p class="au-mi-label">Important Reminder</p>
+              <p class="au-mi-text">A single-entry Non-B provides only 90 days of legal stay. Work Permit application must start within 15 days after entry, and the 1-year extension must be completed within 30 days before the 90-day stay expires. TM30 address reporting must be submitted by landlord / company within 24 hours after entry; TM47 reporting is required every 90 days. Any missed step may cause fines or visa invalidation.</p>
+            </div>
+            <div class="au-subsection">
+              <p class="au-section-title">1. Work-Related</p>
+              <ul class="au-bullet-list">
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">1.</span>
+                  <p class="au-section-sub">Within 24 hours after entry: landlord / company submits TM30 address report. Submit again whenever address changes / after re-entry.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">2.</span>
+                  <p class="au-section-sub">Within 15 days after entry: complete medical check + submit e-Work Permit application. Work can only legally start after approval.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">3.</span>
+                  <p class="au-section-sub">Social Security (SSO): employer and employee contribute together; employee 5% (capped at THB 750/month) + employer 5% (capped at THB 750/month), covering medical, disability, unemployment, maternity, child allowance, and old-age benefits.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">4.</span>
+                  <p class="au-section-sub">Personal Income Tax (PIT): employer withholds monthly. 2026 brackets: 0 / 5 / 10 / 15 / 20 / 25 / 30 / 35%; annual income below THB 150,000 is tax-free; income above THB 5 million is taxed at 35%.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">5.</span>
+                  <p class="au-section-sub">Tax residency: staying in Thailand for &ge; 180 days in a year makes the individual a tax resident, taxed on Thailand-sourced income + foreign income remitted into Thailand under the 2024.1.1 rule.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">6.</span>
+                  <p class="au-section-sub">LTR HSP holders enjoy a 17% preferential income tax rate for employment income only; LTR WGC / WP / WFTP holders are exempt on foreign-sourced income remitted into Thailand.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">7.</span>
+                  <p class="au-section-sub">Submit TM47 address reporting every 90 days online or at Immigration Bureau.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">8.</span>
+                  <p class="au-section-sub">Renew Work Permit at DOE + renew 1-year stay at Immigration Bureau within 30 days before annual expiry; extension fee THB 1,900.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="au-subsection">
+              <p class="au-section-title">2. Daily Life</p>
+              <ul class="au-bullet-list">
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">1.</span>
+                  <p class="au-section-sub">Bank account: Bangkok Bank, Kasikorn Bank (KBank), SCB, Krungsri, TTB, etc. Usually requires Work Permit + passport + proof of residence. BOI / LTR holders may handle this at OSOS / OSS one-stop centres.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">2.</span>
+                  <p class="au-section-sub">Housing: DDproperty, Hipflat, FazWaz, Renthub. Bangkok BTS / MRT areas are mainstream. Deposit is usually 2 months + 1 month prepaid rent. Confirm the landlord can issue TM30 before signing.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">3.</span>
+                  <p class="au-section-sub">SIM card: AIS, TrueMove H, DTAC (merged with True in 2023). Passport + entry card required. AIS / TrueMove H monthly plans around THB 299&ndash;599 are common.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">4.</span>
+                  <p class="au-section-sub">Transport: Bangkok BTS / MRT / ARL cover core business districts. Rabbit Card (BTS) / MRT Card available. Some lines support EMV bank card tap-in from 2024. Grab / Bolt are mainstream ride-hailing options.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">5.</span>
+                  <p class="au-section-sub">Medical: Bumrungrad, BNH, Samitivej, Bangkok Hospital and other private international hospitals offer strong service. Commercial medical insurance is recommended (annual premium THB 30,000&ndash;100,000).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">6.</span>
+                  <p class="au-section-sub">Mobile payment: PromptPay is the national instant transfer system (linked to phone number / ID). TrueMoney Wallet and Rabbit LINE Pay are major e-wallets. Credit card acceptance is higher than in many Southeast Asian markets.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="au-subsection">
+              <p class="au-section-title">3. Dependent Visas</p>
+              <ul class="au-bullet-list">
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">Spouse + unmarried children under 20 may apply for Non-Immigrant Visa O (Dependent), sponsored by the main visa holder.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">Non-O dependent visa is usually valid for 1 year and renewable annually; it is tied to the main visa validity. If the main visa becomes invalid, dependents become invalid too.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">Marriage / birth certificates must be notarised in the country of origin + legalised by Thai overseas embassy + legalised by Thailand MFA Legalisation Division after entry + translated into Thai.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">If dependents want to work in Thailand, Non-O does not include work rights. They must independently convert to Non-B and have a new employer apply for Work Permit.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">LTR Visa holders may bring up to 4 dependents (spouse + children / parents). Dependents share the 10-year validity. HSP dependents may apply for Work Permit.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+                  <p class="au-section-sub">Dependents are also subject to TM30 / TM47 / 1-year extension requirements.</p>
+                </li>
+              </ul>
+            </div>
+`,
+
+  'vg.thailand.s6.h': `Existing Visa / Stay Permit: Changing Employers`,
+
+  'vg.thailand.s6.b1': `
+            <p class="au-section-sub">Thailand Non-B + Work Permit is strictly tied to a specific employer. The Work Permit clearly states the employer name, role, and address. The employee cannot directly &ldquo;transfer&rdquo; the WP to a new employer. The original WP + original Non-B extension must be cancelled, then the new employer must apply for a new WP + new visa. BOI-to-BOI transfer has a special simplified channel; LTR / SMART Visa is not tied to one single employer.</p>
+            <div class="au-subsection">
+              <p class="au-section-title">1. Core Rules</p>
+              <div class="au-table-group">
+                <div class="au-table-wrap">
+                  <table class="au-table">
+                    <thead>
+                      <tr>
+                        <th>Visa Type</th>
+                        <th>Employer Change Rule</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Non-B + WP (general company)</td>
+                        <td>Bound to the specific employer. Must cancel original WP + original Non-B extension; new employer applies for new WP and new Non-B. Either use the 21-day in-country conversion route or leave Thailand and reapply.</td>
+                      </tr>
+                      <tr>
+                        <td>BOI company &rarr; BOI company</td>
+                        <td>WP transfer can be handled directly through OSOS / Single Window without cancellation and reissuance; original visa validity is retained; usually 1&ndash;3 working days.</td>
+                      </tr>
+                      <tr>
+                        <td>BOI &rarr; non-BOI (or reverse)</td>
+                        <td>Same as ordinary cancellation + new application; no BOI acceleration; non-BOI receiving company must meet 4:1 + THB 2 million registered capital requirements.</td>
+                      </tr>
+                      <tr>
+                        <td>LTR Visa (HSP / WFTP)</td>
+                        <td>Not tied to a single employer. HSP change of employer must update BOI filing and the new employer must remain in a target industry. WFTP must keep meeting overseas employer revenue threshold.</td>
+                      </tr>
+                      <tr>
+                        <td>SMART Visa (S)</td>
+                        <td>Tied to a specific startup company; after leaving, a new visa application is required.</td>
+                      </tr>
+                      <tr>
+                        <td>Non-O dependent visa</td>
+                        <td>Follows the main visa holder&rsquo;s employer change. During the main visa holder&rsquo;s employer change, dependent visa also enters &ldquo;pending review&rdquo; status.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="au-subsection">
+              <p class="au-section-title">2. Practical Steps to Change Employers (21-Day In-Country Conversion)</p>
+              <ul class="au-bullet-list">
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">1.</span>
+                  <p class="au-section-sub">Employee signs employment contract with the new employer and confirms the new employer meets the 4:1 ratio + THB 2 million registered capital requirement (non-BOI) or is already BOI promoted.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">2.</span>
+                  <p class="au-section-sub">Employee + original employer representative submit WP.10 &ldquo;Work Permit cancellation application&rdquo; at the DOE office and return the digital WP (or old blue Work Book). The cancellation receipt is usually issued the same day.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">3.</span>
+                  <p class="au-section-sub">Employee uses the &ldquo;WP cancellation receipt&rdquo; + new employer&rsquo;s WP.3 / BOI approval to apply at Immigration Bureau for a 21-day temporary stay extension. Immigration stamps a 21-day stay, during which new WP and visa must be completed.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">4.</span>
+                  <p class="au-section-sub">New employer submits BT.32 (new WP application) in the e-Work Permit system, uploading new contract + new JD + medical certificate, and pays THB 3,000. DOE review takes 5&ndash;10 working days (BOI 1&ndash;3 days).</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">5.</span>
+                  <p class="au-section-sub">After the new WP is issued, employee goes to Immigration Bureau to convert the 21-day temporary extension into a 1-year Non-B extension (THB 1,900). Landlord must also resubmit TM30 address report.</p>
+                </li>
+                <li class="au-bullet-item">
+                  <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">6.</span>
+                  <p class="au-section-sub">In some provinces outside Bangkok, Immigration Bureau may not accept the 21-day in-country conversion and may require the employee to leave Thailand, reapply for a new Non-B at an overseas Thai embassy with the new WP.3, re-enter, and reapply for WP.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="au-subsection">
+              <p class="au-section-title">3. Key Timing Comparison</p>
+              <div class="au-table-group">
+                <div class="au-table-wrap">
+                  <table class="au-table">
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <th>Non-B + WP (general)</th>
+                        <th>BOI Company Transfer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Employer-tied?</td>
+                        <td>Strictly tied.</td>
+                        <td>Can transfer directly; no cancellation required.</td>
+                      </tr>
+                      <tr>
+                        <td>New employer requirement</td>
+                        <td>4:1 + THB 2 million registered capital.</td>
+                        <td>BOI promoted qualification.</td>
+                      </tr>
+                      <tr>
+                        <td>WP cancellation / reapplication</td>
+                        <td>Original WP must be cancelled + new application.</td>
+                        <td>No cancellation; OSOS direct transfer.</td>
+                      </tr>
+                      <tr>
+                        <td>New WP processing time</td>
+                        <td>5&ndash;10 working days.</td>
+                        <td>1&ndash;3 working days.</td>
+                      </tr>
+                      <tr>
+                        <td>In-country grace period</td>
+                        <td>21 days (mainly Bangkok; some provinces do not allow).</td>
+                        <td>Not needed; direct continuation.</td>
+                      </tr>
+                      <tr>
+                        <td>Non-B visa processing</td>
+                        <td>Reapply or extend.</td>
+                        <td>Original visa validity retained.</td>
+                      </tr>
+                      <tr>
+                        <td>TM30 resubmission</td>
+                        <td>Required.</td>
+                        <td>Required if address changes.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="au-marco-insight">
+                <p class="au-mi-label">Important Reminder &mdash; 21-Day In-Country Conversion</p>
+                <p class="au-mi-text">&ldquo;21-day in-country conversion&rdquo; is an administrative convenience, not a legal entitlement. Some provincial immigration offices, especially outside Bangkok, may require the employee to leave Thailand and reapply for a new Non-B using the new WP.3. Once the original Work Permit is cancelled, the employee loses legal work rights and must not work for the new employer before the new WP is issued; otherwise it is illegal employment (fine THB 5,000&ndash;50,000 + deportation).</p>
+              </div>
+            </div>
+            <div class="au-subsection">
+              <p class="au-section-title">4. Permanent Residence and Employer Change</p>
+              <p class="au-section-sub">Foreign nationals who have legally and continuously resided in Thailand for 3 years (holding Non-B + WP) and paid annual tax &ge; THB 100,000 may apply for Permanent Residence (PR). Thailand PR quota is 100 persons per nationality per year (Mainland China / Hong Kong counted separately). The process usually takes 12&ndash;24 months. PR holders may freely change employers, apply for one-time Re-entry Permit issuance, and apply for Thai nationality after 5 years. Although LTR holders do not hold PR, the 10-year visa + 17% tax / foreign income tax exemption usually covers the main benefits of PR, and processing takes around 20 working days, much faster than PR.</p>
+            </div>
+`,
+
+  'vg.thailand.s7.h': `Departure Guide`,
+
+  'vg.thailand.s7.b1': `
+            <ul class="au-bullet-list">
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">1.</span>
+                <p class="au-section-sub">Submit resignation notice according to the employment contract. The Labour Protection Act requires written notice at least one pay cycle in advance, usually 30 days.</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">2.</span>
+                <p class="au-section-sub">Receive severance pay under Section 118 of the Labour Protection Act: 120 days&ndash;1 year = 30 days wages; 1&ndash;3 years = 90 days; 3&ndash;6 years = 180 days; 6&ndash;10 years = 240 days; 10&ndash;20 years = 300 days; &ge; 20 years = 400 days.</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">3.</span>
+                <p class="au-section-sub">Employee + original employer go to DOE office to submit WP.10 to cancel Work Permit; return digital WP / old Work Book and obtain cancellation receipt the same day.</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">4.</span>
+                <p class="au-section-sub">Submit passport + WP cancellation receipt at Immigration Bureau. Immigration stamps &ldquo;Visa Voided / Cancelled&rdquo;. If not leaving immediately, apply for a 7-day temporary extension for packing.</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">5.</span>
+                <p class="au-section-sub">Revenue Department PIT clearance: mid-year departure requires Tax Clearance Certificate (PND.91 mid-year settlement). If employer withholding is complete and no tax is owed, exemption may apply.</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">6.</span>
+                <p class="au-section-sub">Social Security (SSO): contribution record remains in the system. Before leaving Thailand, employee may apply for one-time withdrawal of pension portion, or keep account until retirement (age 55 + &ge; 180 months contribution).</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">7.</span>
+                <p class="au-section-sub">Provident Fund, if applicable: can be withdrawn in one lump sum (subject to withholding tax) or transferred to the PF account of new employment.</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">8.</span>
+                <p class="au-section-sub">Close Thai bank account: keep it for 1 month to settle final bills / PromptPay auto-debits. Account closure must be done in person at the counter; some banks accept mail applications.</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">9.</span>
+                <p class="au-section-sub">Cancel subscriptions: phone / internet contract 1 month in advance; lease 1&ndash;2 months in advance depending on contract; cancel commercial health insurance monthly.</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">10.</span>
+                <p class="au-section-sub">Report &ldquo;move-out / departure&rdquo; under TM30. After departure, 90-day reporting automatically lapses and no further TM47 is required.</p>
+              </li>
+              <li class="au-bullet-item">
+                <span style="flex-shrink:0;font-size:14px;font-weight:600;color:#019DE7;min-width:32px;padding:2px 8px 0 12px;align-self:flex-start;">11.</span>
+                <p class="au-section-sub">If future return to Thailand is possible: keep e-Visa account + Tax ID + Social Security ID for remote tax refund or pension handling.</p>
+              </li>
+            </ul>
+`,
+
+  'vg.thailand.s8.h': `Key Policy Changes from 2023 to 2026`,
+
+  'vg.thailand.s8.b1': `
+            <p class="au-section-sub">Thailand has advanced in two directions over the past 3 years: attracting high-end talent and strengthening digital compliance. Several 2025&ndash;2026 rules are already effective:</p>
+            <div class="au-table-group">
+              <div class="au-table-wrap">
+                <table class="au-table">
+                  <thead>
+                    <tr>
+                      <th>Change Item</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>LTR Visa Launched (2022.9.1)</td>
+                      <td>10-year Long-Term Resident visa implemented; 4 categories (WGC / WP / WFTP / HSP); HSP enjoys 17% preferential income tax; WGC / WP / WFTP foreign income remitted into Thailand is exempt.</td>
+                    </tr>
+                    <tr>
+                      <td>Foreign Income Rule (2024.1.1)</td>
+                      <td>Tax residents (&ge; 180 days) are taxed on foreign income remitted into Thailand regardless of the income year; LTR holders are exempt; pre-2024 savings remain permanently exempt.</td>
+                    </tr>
+                    <tr>
+                      <td>BOI Single Window Upgraded (2024)</td>
+                      <td>BOI electronic platform integrated with DOE / Immigration Bureau; processing time stabilises at 1&ndash;3 working days; OSOS and OSS integrated into TIESC one-stop centre (opened 2025.3.17).</td>
+                    </tr>
+                    <tr>
+                      <td>LTR Rules Relaxed (2024&ndash;2025)</td>
+                      <td>WFTP overseas employer revenue threshold reduced from USD 150 million to USD 50 million; WGC annual income threshold removed (focus on USD 1 million assets + USD 500k investment); HSP 5-year experience requirement removed.</td>
+                    </tr>
+                    <tr>
+                      <td>SMART Visa Reform (2025.2.18)</td>
+                      <td>The other 4 categories (T / I / E / spouse) stopped accepting applications; only SMART-S startup remains. S applicants must deposit THB 600,000 in a Thai bank for &ge; 3 months and hold &ge; 25% equity.</td>
+                    </tr>
+                    <tr>
+                      <td>China Apostille Simplification (2023.11)</td>
+                      <td>China joined the Hague Convention: Chinese public documents such as birth / marriage / academic certificates can be Apostilled directly, but still require Thailand MFA Legalisation Division certification + Thai translation.</td>
+                    </tr>
+                    <tr>
+                      <td>e-Work Permit Mandatory (2025.10.13)</td>
+                      <td>Online e-Work Permit system became mandatory; blue &ldquo;Work Book&rdquo; stopped issuance; employer must complete ThaiID verification; offline transition period extended to 2026.7.28.</td>
+                    </tr>
+                    <tr>
+                      <td>TDAC Digital Arrival Card (2025)</td>
+                      <td>Paper TM6 arrival card cancelled; replaced by electronic TDAC (Thailand Digital Arrival Card), integrated with TM47 online 90-day reporting system.</td>
+                    </tr>
+                    <tr>
+                      <td>WP Application Fee Adjustment (2025)</td>
+                      <td>Standard WP fee unified at THB 3,000 / 1 year (THB 6,000 / 2 years); BOI category THB 1,000; extension fee THB 1,900.</td>
+                    </tr>
+                    <tr>
+                      <td>Bangkok Immigration Centralisation (2025)</td>
+                      <td>Bangkok foreign immigration services at Chaeng Wattana Building B integrate 90-day reporting / extension services. Use TM47 online system first to avoid queues.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+`,
+};

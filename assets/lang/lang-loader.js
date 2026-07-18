@@ -177,9 +177,17 @@
   } else if (filename === 'hr-knowledge-hub.html') {
     sectionFile   = base + '-hub.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB';
-  } else if (filename.indexOf('hr-knowledge-hub-country-guide-') === 0) {
-    sectionFile   = base + '-hub-country.js';
+  } else if (filename.indexOf('hr-knowledge-hub-country-guide') === 0) {
+    /* List page + every country page share the country-guide pack.
+       Country-guide packs live in their own folder: assets/lang/<lang>-hub-country/ */
+    sectionFile   = base + '-hub-country/' + lang + '-hub-country.js';
     sectionGlobal = 'MARCO_LANG_' + L + '_HUB_COUNTRY';
+    /* Country pages additionally load their own content pack (<lang>-cg-<country>.js) if present */
+    var cgCountry = filename.match(/^hr-knowledge-hub-country-guide-([a-z0-9-]+)\.html$/);
+    if (cgCountry) {
+      countryFile   = base + '-hub-country/' + lang + '-cg-' + cgCountry[1] + '.js';
+      countryGlobal = 'MARCO_LANG_' + L + '_CG_' + cgCountry[1].toUpperCase().replace(/-/g, '_');
+    }
   } else if (filename.indexOf('hr-knowledge-hub-visa-guide') === 0) {
     /* List page + every country page share the visa-guide pack.
        Visa-guide packs live in their own folder: assets/lang/<lang>-hub-visa/ */
