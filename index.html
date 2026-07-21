@@ -1294,17 +1294,18 @@
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .problems-tile-nosvc .problems-tile-nosvc-inner { bottom: 0; height: auto; transition: none; }
-      .problems-tile-nosvc:hover, .problems-tile-nosvc.is-expanded { height: 340px; }
-      .problems-tile-nosvc:hover .problems-tile-nosvc-inner { height: auto; }
-      .problems-tile-nosvc .problems-bullet-list { font-size: 12px; line-height: 16px; margin-top: 16px; padding-left: 18px; opacity: 0; transition: opacity 0.2s ease 0s; }
+      .problems-tile-nosvc:hover, .problems-tile-nosvc.is-expanded { height: 420px; }
+      .problems-tile-nosvc:hover .problems-tile-nosvc-inner,
+      .problems-tile-nosvc.is-expanded .problems-tile-nosvc-inner { height: auto; }
+      .problems-tile-nosvc .problems-bullet-list { font-size: 16px; line-height: 20px; margin-top: 16px; padding-left: 24px; opacity: 0; transition: opacity 0.2s ease 0s; }
       .problems-tile-nosvc:hover .problems-bullet-list,
       .problems-tile-nosvc.is-expanded .problems-bullet-list { opacity: 1; transition: opacity 0.25s ease 0.22s; }
       .problems-tile-nosvc .problems-solution-card--nosvc { margin-top: 16px; padding: 12px; gap: 10px; border-radius: 6px; background: #5abfef; opacity: 0; transition: opacity 0.2s ease 0s; }
       .problems-tile-nosvc:hover .problems-solution-card--nosvc,
       .problems-tile-nosvc.is-expanded .problems-solution-card--nosvc { opacity: 1; transition: opacity 0.25s ease 0.28s; }
-      .problems-tile-nosvc .problems-solution-card-label { font-size: 12px; line-height: 16px; }
+      .problems-tile-nosvc .problems-solution-card-label { font-size: 16px; font-weight: 700; line-height: 20px; }
       .problems-tile-nosvc .problems-solution-rows { gap: 4px; }
-      .problems-tile-nosvc .problems-solution-row--nosvc { font-size: 12px; line-height: 16px; padding: 8px; border-radius: 6px; background: #019de7; }
+      .problems-tile-nosvc .problems-solution-row--nosvc { font-size: 16px; line-height: 20px; padding: 8px; border-radius: 6px; background: #019de7; }
 
       /* Suppress sticky hover after click-collapse (mobile) */
       .problems-tile-onboarding.is-closing:hover,
