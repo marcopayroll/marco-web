@@ -1,7 +1,31 @@
 /* Country Guide - Argentina page content (hr-knowledge-hub-country-guide-argentina.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_ARGENTINA = {
+  'cg.argentina.kn1.label': `SMVM Statutory Minimum Wage`,
+
+  'cg.argentina.kn1.value': `ARS 357,800`,
+
+  'cg.argentina.kn1.unit': `/ mo`,
+
+  'cg.argentina.kn1.note': `From 2026/4 · Full-time 8h/day · Adjusted frequently`,
+
+  'cg.argentina.kn2.label': `Employer Additional Cost`,
+
+  'cg.argentina.kn2.value': `~27 – 32%`,
+
+  'cg.argentina.kn2.note': `Retirement + ANSES + ART + Obra Social`,
+
+  'cg.argentina.kn3.label': `Annual CPI Inflation`,
+
+  'cg.argentina.kn3.value': `40%`,
+
+  'cg.argentina.kn3.note': `2026/3 YoY (INDEC · down from 2024 peak)`,
+
   'cg.argentina.s1.h': `Cost of Living`,
+
+  'cg.argentina.s1.title': `City cost level: Buenos Aires (CABA) / Córdoba`,
+
+  'cg.argentina.s1.sub': `The following public cost data is for reference only (ARS Argentine peso · 2026/4 · 1 USD ≈ 1,050 ARS official · blue rate 1,250)`,
 
   'cg.argentina.s1.b1': `
           <div class="au-table-wrap">
@@ -65,6 +89,10 @@ window.MARCO_LANG_EN_CG_ARGENTINA = {
 `,
 
   'cg.argentina.s3.h': `Statutory Benefits`,
+
+  'cg.argentina.s3.title': `SUSS contributions (Sistema Único de Seguridad Social · 2026)`,
+
+  'cg.argentina.s3.sub': `Monthly contribution ceiling: ARS 4,045,590 (2026/5) · Filed via F.931`,
 
   'cg.argentina.s3.b1': `
           <div class="au-table-wrap">
@@ -316,6 +344,8 @@ window.MARCO_LANG_EN_CG_ARGENTINA = {
 `,
 
   'cg.argentina.s8.h': `2026 Public Holidays`,
+
+  'cg.argentina.s8.sub': `Statutory public holidays + Días No Laborables (tourism bridge holidays) · the Ministry of Interior announces the next year&#39;s schedule every December.`,
 
   'cg.argentina.s8.b1': `
           <div class="au-table-wrap">

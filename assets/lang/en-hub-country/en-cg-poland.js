@@ -1,6 +1,26 @@
 /* Country Guide - Poland page content (hr-knowledge-hub-country-guide-poland.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_POLAND = {
+  'cg.poland.kn1.label': `Statutory Minimum Gross Wage`,
+
+  'cg.poland.kn1.value': `PLN 4,806`,
+
+  'cg.poland.kn1.unit': `/ mo`,
+
+  'cg.poland.kn1.note': `+3% from 2026 · approx. EUR 1,115 · PLN 31.40 / hr`,
+
+  'cg.poland.kn2.label': `Employer Social Security Cost`,
+
+  'cg.poland.kn2.value': `~19–22%`,
+
+  'cg.poland.kn2.note': `ZUS social security + Labour Fund + PPK`,
+
+  'cg.poland.kn3.label': `Personal Income Tax`,
+
+  'cg.poland.kn3.value': `12/32%`,
+
+  'cg.poland.kn3.note': `Two progressive PIT brackets`,
+
   'cg.poland.s1.h': `Cost of Living`,
 
   'cg.poland.s1.b1': `

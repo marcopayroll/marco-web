@@ -1,7 +1,31 @@
 /* Country Guide - Austria page content (hr-knowledge-hub-country-guide-austria.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_AUSTRIA = {
+  'cg.austria.kn1.label': `Industry Minimum Wage (CBA weighted)`,
+
+  'cg.austria.kn1.value': `€1,800+`,
+
+  'cg.austria.kn1.unit': `/ mo`,
+
+  'cg.austria.kn1.note': `No statutory minimum wage · set by CBA · 14-salary system`,
+
+  'cg.austria.kn2.label': `Employer Add-on Cost`,
+
+  'cg.austria.kn2.value': `~28–31%`,
+
+  'cg.austria.kn2.note': `Social security + municipal tax + family fund + severance fund`,
+
+  'cg.austria.kn3.label': `Annual CPI Inflation`,
+
+  'cg.austria.kn3.value': `3.2%`,
+
+  'cg.austria.kn3.note': `2026/3 YoY (Statistik Austria)`,
+
   'cg.austria.s1.h': `Cost of Living`,
+
+  'cg.austria.s1.title': `Urban Cost Level – Vienna / Salzburg`,
+
+  'cg.austria.s1.sub': `The following public consumption data is for reference only (EUR euro &middot; early 2026)`,
 
   'cg.austria.s1.b1': `
           <div class="au-table-wrap">
@@ -22,6 +46,8 @@ window.MARCO_LANG_EN_CG_AUSTRIA = {
 `,
 
   'cg.austria.s2.h': `Salary Benchmark`,
+
+  'cg.austria.s2.title': `No statutory minimum wage · set by 800+ industry CBAs`,
 
   'cg.austria.s2.b1': `
           <li class="au-bullet-item">
@@ -58,6 +84,12 @@ window.MARCO_LANG_EN_CG_AUSTRIA = {
 `,
 
   'cg.austria.s3.h': `Statutory Benefits`,
+
+  'cg.austria.s3.title': `Social security contributions (based on gross salary · monthly ceiling €6,930)`,
+
+  'cg.austria.s3.title2': `Total employer add-on cost (incl. social security + municipal tax + FLAF + severance fund, etc.)`,
+
+  'cg.austria.s3.sub': `Around 28 &ndash; 31% of gross salary (annualized cost is higher under the CBA 14-salary system).`,
 
   'cg.austria.s3.b1': `
           <div class="au-table-wrap">
@@ -266,6 +298,8 @@ window.MARCO_LANG_EN_CG_AUSTRIA = {
 `,
 
   'cg.austria.s8.h': `2026 Public Holidays`,
+
+  'cg.austria.s8.sub': `Austria has 13 statutory public holidays; holiday work is paid +100% or time off in lieu &middot; no substitute holiday when falling on weekends.`,
 
   'cg.austria.s8.b1': `
           <div class="au-table-wrap">

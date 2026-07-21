@@ -1,6 +1,26 @@
 /* Country Guide - Peru page content (hr-knowledge-hub-country-guide-peru.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_PERU = {
+  'cg.peru.kn1.label': `Statutory Minimum Wage`,
+
+  'cg.peru.kn1.value': `PEN 1,130`,
+
+  'cg.peru.kn1.unit': `/ mo`,
+
+  'cg.peru.kn1.note': `From Jan 2025 +10% · approx. USD 305`,
+
+  'cg.peru.kn2.label': `Direct Employer Social Security`,
+
+  'cg.peru.kn2.value': `9%`,
+
+  'cg.peru.kn2.note': `EsSalud health insurance`,
+
+  'cg.peru.kn3.label': `Total Employer Add-on Cost`,
+
+  'cg.peru.kn3.value': `35–40%`,
+
+  'cg.peru.kn3.note': `Includes Gratificaciones + CTS, etc.`,
+
   'cg.peru.s1.h': `Cost of Living`,
 
   'cg.peru.s1.b1': `

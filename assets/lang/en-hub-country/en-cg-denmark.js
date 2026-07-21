@@ -1,6 +1,26 @@
 /* Country Guide - Denmark page content (hr-knowledge-hub-country-guide-denmark.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_DENMARK = {
+  'cg.denmark.kn1.label': `CBA minimum hourly wage reference`,
+
+  'cg.denmark.kn1.value': `~DKK 130`,
+
+  'cg.denmark.kn1.unit': `/ hr`,
+
+  'cg.denmark.kn1.note': `No statutory minimum wage · set by collective agreements`,
+
+  'cg.denmark.kn2.label': `Employer Social Security Cost`,
+
+  'cg.denmark.kn2.value': `~DKK 10–15K`,
+
+  'cg.denmark.kn2.unit': `/ yr`,
+
+  'cg.denmark.kn2.note': `Fixed amount / year · not a wage percentage`,
+
+  'cg.denmark.kn3.label': `Top Marginal Tax Rate`,
+
+  'cg.denmark.kn3.note': `Including 8% AM tax (one of the highest in the EU)`,
+
   'cg.denmark.s1.h': `Cost of Living`,
 
   'cg.denmark.s1.b1': `

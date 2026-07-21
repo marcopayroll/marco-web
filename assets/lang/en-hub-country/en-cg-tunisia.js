@@ -1,6 +1,26 @@
 /* Country Guide - Tunisia page content (hr-knowledge-hub-country-guide-tunisia.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_TUNISIA = {
+  'cg.tunisia.kn1.label': `Statutory Minimum Wage (SMIG)`,
+
+  'cg.tunisia.kn1.value': `TND 528`,
+
+  'cg.tunisia.kn1.unit': `/ mo`,
+
+  'cg.tunisia.kn1.note': `48h system · 40h system TND 448`,
+
+  'cg.tunisia.kn2.label': `Employer Social Cost`,
+
+  'cg.tunisia.kn2.value': `~17%`,
+
+  'cg.tunisia.kn2.note': `CNSS 16.57% + unemployment 0.5%`,
+
+  'cg.tunisia.kn3.label': `Personal Income Tax (IRPP)`,
+
+  'cg.tunisia.kn3.value': `0–35%`,
+
+  'cg.tunisia.kn3.note': `Progressive brackets`,
+
   'cg.tunisia.s1.h': `Cost of Living`,
 
   'cg.tunisia.s1.b1': `

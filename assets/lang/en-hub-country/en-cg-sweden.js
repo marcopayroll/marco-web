@@ -1,6 +1,26 @@
 /* Country Guide - Sweden page content (hr-knowledge-hub-country-guide-sweden.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_SWEDEN = {
+  'cg.sweden.kn1.label': `CBA Minimum Monthly Salary Reference`,
+
+  'cg.sweden.kn1.value': `~SEK 25K`,
+
+  'cg.sweden.kn1.unit': `/ mo`,
+
+  'cg.sweden.kn1.note': `No statutory minimum wage — set by collective agreements`,
+
+  'cg.sweden.kn2.label': `Employer Social Security Cost`,
+
+  'cg.sweden.kn2.value': `31.42%`,
+
+  'cg.sweden.kn2.note': `Pension + health + parental + work injury, etc.`,
+
+  'cg.sweden.kn3.label': `Top Marginal Tax Rate`,
+
+  'cg.sweden.kn3.value': `~52%`,
+
+  'cg.sweden.kn3.note': `Municipal ~32% + state 20%`,
+
   'cg.sweden.s1.h': `Cost of Living`,
 
   'cg.sweden.s1.b1': `

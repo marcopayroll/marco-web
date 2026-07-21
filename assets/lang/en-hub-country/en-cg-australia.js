@@ -1,7 +1,31 @@
 /* Country Guide - Australia page content (hr-knowledge-hub-country-guide-australia.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_AUSTRALIA = {
+  'cg.australia.kn1.label': `NMW Statutory Minimum Wage`,
+
+  'cg.australia.kn1.value': `A$ 24.95`,
+
+  'cg.australia.kn1.unit': `/ hr`,
+
+  'cg.australia.kn1.note': `FY 2025–26 · A$ 948/week (38h) · +3.5% from July 2025`,
+
+  'cg.australia.kn2.label': `Employer On-cost`,
+
+  'cg.australia.kn2.value': `~14–18%`,
+
+  'cg.australia.kn2.note': `Super 12% + Workers Comp + Payroll Tax + Leave Loading`,
+
+  'cg.australia.kn3.label': `Annual CPI Inflation`,
+
+  'cg.australia.kn3.value': `2.4%`,
+
+  'cg.australia.kn3.note': `Mar 2026 YoY (ABS · RBA target 2–3%)`,
+
   'cg.australia.s1.h': `Cost of Living`,
+
+  'cg.australia.s1.title': `Urban Consumption Level – Sydney / Melbourne`,
+
+  'cg.australia.s1.sub': `The following public consumption data is for reference only (A$ AUD · early 2026 · 1 AUD approx. 0.66 USD)`,
 
   'cg.australia.s1.b1': `
           <div class="au-table-wrap">
@@ -23,6 +47,8 @@ window.MARCO_LANG_EN_CG_AUSTRALIA = {
 `,
 
   'cg.australia.s2.h': `Salary Benchmark`,
+
+  'cg.australia.s2.sub': `Australia uses 121 Modern Awards for industry minimum wages. The NMW applies only to employees not covered by an Award (approx. 0.7%).`,
 
   'cg.australia.s2.b1': `
           <li class="au-bullet-item">
@@ -59,6 +85,8 @@ window.MARCO_LANG_EN_CG_AUSTRALIA = {
 `,
 
   'cg.australia.s3.h': `Statutory Benefits`,
+
+  'cg.australia.s3.sub': `Australia has no single unified social security contribution. Employers must pay Super (retirement) + Workers Comp + Payroll Tax (state-level).`,
 
   'cg.australia.s3.b1': `
           <div class="au-table-wrap">
@@ -300,6 +328,8 @@ window.MARCO_LANG_EN_CG_AUSTRALIA = {
 `,
 
   'cg.australia.s8.h': `2026 Public Holidays`,
+
+  'cg.australia.s8.sub': `7 national holidays + 4–6 state holidays (NSW example below). Holidays falling on Sunday are usually substituted on Monday.`,
 
   'cg.australia.s8.b1': `
           <div class="au-table-wrap">

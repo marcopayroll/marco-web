@@ -1,7 +1,33 @@
-/* Country Guide - United-Kingdom page content (hr-knowledge-hub-country-guide-united-kingdom.html) */
+/* Country Guide - United Kingdom page content (hr-knowledge-hub-country-guide-united-kingdom.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_UNITED_KINGDOM = {
+  'cg.united-kingdom.kn1.label': `National Living Wage (21+)`,
+
+  'cg.united-kingdom.kn1.value': `£12.71`,
+
+  'cg.united-kingdom.kn1.unit': `/ hr`,
+
+  'cg.united-kingdom.kn1.note': `From April 2026 (+4.1%)`,
+
+  'cg.united-kingdom.kn2.label': `Median Full-Time Salary`,
+
+  'cg.united-kingdom.kn2.value': `£39,039`,
+
+  'cg.united-kingdom.kn2.unit': `/ yr`,
+
+  'cg.united-kingdom.kn2.note': `ONS ASHE April 2025`,
+
+  'cg.united-kingdom.kn3.label': `CPI Inflation Rate`,
+
+  'cg.united-kingdom.kn3.value': `3.4%`,
+
+  'cg.united-kingdom.kn3.note': `Q4 2025 Average`,
+
   'cg.united-kingdom.s1.h': `Cost of Living`,
+
+  'cg.united-kingdom.s1.title': `City Cost Levels London / Manchester`,
+
+  'cg.united-kingdom.s1.sub': `The following are publicly available cost data for reference only (GBP)`,
 
   'cg.united-kingdom.s1.b1': `
           <div class="au-table-wrap">
@@ -61,6 +87,8 @@ window.MARCO_LANG_EN_CG_UNITED_KINGDOM = {
 `,
 
   'cg.united-kingdom.s3.h': `Statutory Benefits`,
+
+  'cg.united-kingdom.s3.sub': `Main statutory employer social security costs in the UK: National Insurance + Workplace Pension`,
 
   'cg.united-kingdom.s3.b1': `
           <div class="au-table-wrap">
@@ -298,6 +326,8 @@ window.MARCO_LANG_EN_CG_UNITED_KINGDOM = {
 `,
 
   'cg.united-kingdom.s8.h': `2026 Public Holidays`,
+
+  'cg.united-kingdom.s8.sub': `*Official public holidays observed nationally (known as &ldquo;Bank Holidays&rdquo; in the United Kingdom).`,
 
   'cg.united-kingdom.s8.b1': `
           <div class="au-table-wrap">

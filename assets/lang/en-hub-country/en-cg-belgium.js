@@ -1,7 +1,31 @@
 /* Country Guide - Belgium page content (hr-knowledge-hub-country-guide-belgium.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_BELGIUM = {
+  'cg.belgium.kn1.label': `National Minimum Monthly Wage (GMMI)`,
+
+  'cg.belgium.kn1.value': `€2,111`,
+
+  'cg.belgium.kn1.unit': `/ mo`,
+
+  'cg.belgium.kn1.note': `2026 est. (CAO 43 · indexation + step increase)`,
+
+  'cg.belgium.kn2.label': `Employer Add-on Cost`,
+
+  'cg.belgium.kn2.value': `~27–33%`,
+
+  'cg.belgium.kn2.note': `ONSS 25% + 13th salary + double holiday pay`,
+
+  'cg.belgium.kn3.label': `Annual CPI Inflation`,
+
+  'cg.belgium.kn3.value': `2.5%`,
+
+  'cg.belgium.kn3.note': `2026/3 YoY (Statbel · automatic wage indexation)`,
+
   'cg.belgium.s1.h': `Cost of Living`,
+
+  'cg.belgium.s1.title': `Urban Cost Level – Brussels / Antwerp / Ghent / Liège`,
+
+  'cg.belgium.s1.sub': `The following public cost data is for reference only (&euro; EUR &middot; early 2026 &middot; 1 EUR &asymp; 1.10 USD)`,
 
   'cg.belgium.s1.b1': `
           <div class="au-table-wrap">
@@ -65,6 +89,10 @@ window.MARCO_LANG_EN_CG_BELGIUM = {
 `,
 
   'cg.belgium.s3.h': `Statutory Benefits`,
+
+  'cg.belgium.s3.title': `Employer add-on total cost (local employee · as % of base salary)`,
+
+  'cg.belgium.s3.sub': `ONSS/RSZ social security (mainly employer-paid) + mandatory 13th salary + double holiday pay + sector collective agreements (CCT/CAO) add-on benefits`,
 
   'cg.belgium.s3.b1': `
           <div class="au-table-wrap">
@@ -296,6 +324,8 @@ window.MARCO_LANG_EN_CG_BELGIUM = {
 `,
 
   'cg.belgium.s8.h': `2026 Public Holidays`,
+
+  'cg.belgium.s8.sub': `10 federal statutory holidays &middot; if falling on weekend, employer must arrange replacement rest within 6 weeks (jour de remplacement).`,
 
   'cg.belgium.s8.b1': `
           <div class="au-table-wrap">

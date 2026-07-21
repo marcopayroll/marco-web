@@ -1,6 +1,26 @@
 /* Country Guide - Thailand page content (hr-knowledge-hub-country-guide-thailand.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_THAILAND = {
+  'cg.thailand.kn1.label': `Daily Minimum Wage (Bangkok)`,
+
+  'cg.thailand.kn1.value': `THB 400`,
+
+  'cg.thailand.kn1.unit': `/ day`,
+
+  'cg.thailand.kn1.note': `By province 337–400 · approx. USD 11.5`,
+
+  'cg.thailand.kn2.label': `Employer SSF`,
+
+  'cg.thailand.kn2.value': `5%`,
+
+  'cg.thailand.kn2.note': `Cap THB 17,500 from 2026`,
+
+  'cg.thailand.kn3.label': `Personal Income Tax`,
+
+  'cg.thailand.kn3.value': `0–35%`,
+
+  'cg.thailand.kn3.note': `8 progressive brackets`,
+
   'cg.thailand.s1.h': `Cost of Living`,
 
   'cg.thailand.s1.b1': `

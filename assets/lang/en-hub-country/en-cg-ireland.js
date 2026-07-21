@@ -1,6 +1,22 @@
 /* Country Guide - Ireland page content (hr-knowledge-hub-country-guide-ireland.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_IRELAND = {
+  'cg.ireland.kn1.label': `Statutory minimum wage (20+)`,
+
+  'cg.ireland.kn1.value': `€14.15`,
+
+  'cg.ireland.kn1.unit': `/ hr`,
+
+  'cg.ireland.kn1.note': `+4.6% (from Jan 2026)`,
+
+  'cg.ireland.kn2.label': `Employer PRSI`,
+
+  'cg.ireland.kn2.note': `Weekly pay > €552 (9% below this)`,
+
+  'cg.ireland.kn3.label': `Personal Income Tax`,
+
+  'cg.ireland.kn3.note': `Two bands + USC + PRSI`,
+
   'cg.ireland.s1.h': `Cost of Living`,
 
   'cg.ireland.s1.b1': `

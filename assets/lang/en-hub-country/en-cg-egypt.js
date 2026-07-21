@@ -1,6 +1,22 @@
 /* Country Guide - Egypt page content (hr-knowledge-hub-country-guide-egypt.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_EGYPT = {
+  'cg.egypt.kn1.label': `Private-sector Min Monthly Wage`,
+
+  'cg.egypt.kn1.value': `EGP 7,000`,
+
+  'cg.egypt.kn1.unit': `/ mo`,
+
+  'cg.egypt.kn1.note': `From March 2025 (~USD 140)`,
+
+  'cg.egypt.kn2.label': `Employer Social Insurance Cost`,
+
+  'cg.egypt.kn2.note': `On social insurance wage base`,
+
+  'cg.egypt.kn3.label': `Personal Income Tax`,
+
+  'cg.egypt.kn3.note': `Progressive 7 brackets`,
+
   'cg.egypt.s1.h': `Cost of Living`,
 
   'cg.egypt.s1.b1': `

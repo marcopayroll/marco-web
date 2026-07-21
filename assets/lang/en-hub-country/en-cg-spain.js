@@ -1,6 +1,26 @@
 /* Country Guide - Spain page content (hr-knowledge-hub-country-guide-spain.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_SPAIN = {
+  'cg.spain.kn1.label': `SMI Legal Minimum Wage`,
+
+  'cg.spain.kn1.value': `EUR 1,221`,
+
+  'cg.spain.kn1.unit': `/ mo`,
+
+  'cg.spain.kn1.note': `From 2026 +3.1% · 14 salaries · annual EUR 17,094`,
+
+  'cg.spain.kn2.label': `Employer Add-on Cost`,
+
+  'cg.spain.kn2.value': `~32–36%`,
+
+  'cg.spain.kn2.note': `Social Security 30.65% + AT/EP + FOGASA + FP`,
+
+  'cg.spain.kn3.label': `Annual CPI Inflation`,
+
+  'cg.spain.kn3.value': `2.7%`,
+
+  'cg.spain.kn3.note': `2026/3 YoY · INE · 2026 forecast 2.5%`,
+
   'cg.spain.s1.h': `Cost of Living`,
 
   'cg.spain.s1.b1': `

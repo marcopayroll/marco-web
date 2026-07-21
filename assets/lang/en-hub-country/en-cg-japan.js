@@ -1,6 +1,26 @@
 /* Country Guide - Japan page content (hr-knowledge-hub-country-guide-japan.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_JAPAN = {
+  'cg.japan.kn1.label': `Weighted Avg. Minimum Wage`,
+
+  'cg.japan.kn1.value': `JPY 1,121`,
+
+  'cg.japan.kn1.unit': `/ hr`,
+
+  'cg.japan.kn1.note': `From Oct 2025 +6.3% · varies by prefecture`,
+
+  'cg.japan.kn2.label': `Employer Social Cost`,
+
+  'cg.japan.kn2.value': `~15–16%`,
+
+  'cg.japan.kn2.note': `Shakai Hoken + labor insurance share`,
+
+  'cg.japan.kn3.label': `Personal Income Tax`,
+
+  'cg.japan.kn3.value': `5–45%`,
+
+  'cg.japan.kn3.note': `7 brackets + Juminzei ~10%`,
+
   'cg.japan.s1.h': `Cost of Living`,
 
   'cg.japan.s1.b1': `

@@ -1,7 +1,31 @@
 /* Country Guide - Algeria page content (hr-knowledge-hub-country-guide-algeria.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_ALGERIA = {
+  'cg.algeria.kn1.label': `Statutory Minimum Monthly Wage (SNMG)`,
+
+  'cg.algeria.kn1.value': `DZD 24,000`,
+
+  'cg.algeria.kn1.unit': `/ mo`,
+
+  'cg.algeria.kn1.note': `From Jan 2026 +20% (approx. USD 175)`,
+
+  'cg.algeria.kn2.label': `Employer Social Security Cost`,
+
+  'cg.algeria.kn2.value': `26%`,
+
+  'cg.algeria.kn2.note': `CNAS social security (% of gross salary)`,
+
+  'cg.algeria.kn3.label': `Individual Income Tax IRG`,
+
+  'cg.algeria.kn3.value': `0–35%`,
+
+  'cg.algeria.kn3.note': `6 progressive brackets`,
+
   'cg.algeria.s1.h': `Cost of Living`,
+
+  'cg.algeria.s1.title': `Urban consumption level – Algiers / Oran`,
+
+  'cg.algeria.s1.sub': `The following public consumption data is for reference only (DZD Algerian dinar &middot; 1 USD approx. 137 DZD &middot; official exchange rate)`,
 
   'cg.algeria.s1.b1': `
           <div class="au-table-wrap">
@@ -62,6 +86,8 @@ window.MARCO_LANG_EN_CG_ALGERIA = {
 
   'cg.algeria.s3.h': `Statutory Benefits`,
 
+  'cg.algeria.s3.title': `CNAS social security contributions (based on gross salary)`,
+
   'cg.algeria.s3.b1': `
           <div class="au-table-wrap">
             <table class="au-table">
@@ -111,6 +137,10 @@ window.MARCO_LANG_EN_CG_ALGERIA = {
 `,
 
   'cg.algeria.s4.h': `Personal Income Tax (IRG)`,
+
+  'cg.algeria.s4.title': `Income Tax (IRG · Impôt sur le Revenu Global)`,
+
+  'cg.algeria.s4.sub': `6 progressive brackets (0&ndash;35%); employer withholds and remits monthly at source.`,
 
   'cg.algeria.s4.b1': `
           <div class="au-table-wrap">
@@ -184,6 +214,8 @@ window.MARCO_LANG_EN_CG_ALGERIA = {
 `,
 
   'cg.algeria.s6.h': `Employment Contract`,
+
+  'cg.algeria.s6.title': `Contrat de Travail`,
 
   'cg.algeria.s6.b1': `
           <div class="au-table-wrap">
@@ -266,6 +298,8 @@ window.MARCO_LANG_EN_CG_ALGERIA = {
 `,
 
   'cg.algeria.s8.h': `2026 Public Holidays`,
+
+  'cg.algeria.s8.sub': `Algerian public holidays include fixed-date holidays and Islamic calendar floating holidays; work on holidays is paid at +200% or compensated with time off.`,
 
   'cg.algeria.s8.b1': `
           <div class="au-table-wrap">

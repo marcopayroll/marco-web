@@ -1,6 +1,26 @@
 /* Country Guide - Malaysia page content (hr-knowledge-hub-country-guide-malaysia.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_MALAYSIA = {
+  'cg.malaysia.kn1.label': `Statutory Minimum Wage`,
+
+  'cg.malaysia.kn1.value': `RM 1,700`,
+
+  'cg.malaysia.kn1.unit': `/ mo`,
+
+  'cg.malaysia.kn1.note': `From Feb 2025 · covers local and foreign employees`,
+
+  'cg.malaysia.kn2.label': `Employer Add-on Cost`,
+
+  'cg.malaysia.kn2.value': `~18–22%`,
+
+  'cg.malaysia.kn2.note': `EPF + SOCSO + EIS + HRDF + benefits`,
+
+  'cg.malaysia.kn3.label': `Annual CPI Inflation`,
+
+  'cg.malaysia.kn3.value': `1.8%`,
+
+  'cg.malaysia.kn3.note': `Mar 2026 YoY · DOSM · 2026 est. 2.0%`,
+
   'cg.malaysia.s1.h': `Cost of Living`,
 
   'cg.malaysia.s1.b1': `

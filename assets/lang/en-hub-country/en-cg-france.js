@@ -1,6 +1,26 @@
 /* Country Guide - France page content (hr-knowledge-hub-country-guide-france.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_FRANCE = {
+  'cg.france.kn1.label': `Minimum Wage SMIC 2026`,
+
+  'cg.france.kn1.value': `€12.02`,
+
+  'cg.france.kn1.unit': `/ hr`,
+
+  'cg.france.kn1.note': `€1,823.03 / month (gross)`,
+
+  'cg.france.kn2.label': `All-sector Median Salary`,
+
+  'cg.france.kn2.value': `€3,825`,
+
+  'cg.france.kn2.unit': `/ mo`,
+
+  'cg.france.kn2.note': `€45,900 / year`,
+
+  'cg.france.kn3.label': `Inflation Rate`,
+
+  'cg.france.kn3.note': `End-2025 data`,
+
   'cg.france.s1.h': `Cost of Living`,
 
   'cg.france.s1.b1': `

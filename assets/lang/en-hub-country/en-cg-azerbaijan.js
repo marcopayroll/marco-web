@@ -1,7 +1,31 @@
 /* Country Guide - Azerbaijan page content (hr-knowledge-hub-country-guide-azerbaijan.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_AZERBAIJAN = {
+  'cg.azerbaijan.kn1.label': `Statutory Minimum Wage (Monthly)`,
+
+  'cg.azerbaijan.kn1.value': `AZN 400`,
+
+  'cg.azerbaijan.kn1.unit': `/ mo`,
+
+  'cg.azerbaijan.kn1.note': `From 2024/1 (+12.5%) · maintained in 2026`,
+
+  'cg.azerbaijan.kn2.label': `Employer On-cost`,
+
+  'cg.azerbaijan.kn2.value': `~22–25%`,
+
+  'cg.azerbaijan.kn2.note': `Social security 15–22% + MHI 1% + SUF 0.5%`,
+
+  'cg.azerbaijan.kn3.label': `Annual CPI Inflation`,
+
+  'cg.azerbaijan.kn3.value': `2.9%`,
+
+  'cg.azerbaijan.kn3.note': `2026/3 YoY (Stat · CBA target 4%)`,
+
   'cg.azerbaijan.s1.h': `Cost of Living`,
+
+  'cg.azerbaijan.s1.title': `City Cost Level – Baku`,
+
+  'cg.azerbaijan.s1.sub': `The following public cost data is for reference only (AZN Azerbaijani manat &middot; early 2026 &middot; 1 AZN &asymp; 0.59 USD &middot; pegged to USD)`,
 
   'cg.azerbaijan.s1.b1': `
           <div class="au-table-wrap">
@@ -23,6 +47,8 @@ window.MARCO_LANG_EN_CG_AZERBAIJAN = {
 `,
 
   'cg.azerbaijan.s2.h': `Salary Benchmark`,
+
+  'cg.azerbaijan.s2.title': `Azerbaijan’s economy is led by oil and gas · non-oil sectors (IT / finance) are growing rapidly`,
 
   'cg.azerbaijan.s2.b1': `
           <li class="au-bullet-item">
@@ -59,6 +85,12 @@ window.MARCO_LANG_EN_CG_AZERBAIJAN = {
 `,
 
   'cg.azerbaijan.s3.h': `Statutory Benefits`,
+
+  'cg.azerbaijan.s3.title': `Employer on-cost (local employee · as % of base salary)`,
+
+  'cg.azerbaijan.s3.sub': `Unified social security SSPF (DSMF) &middot; medical insurance MHI &middot; unemployment SUF &middot; three-tier contribution &middot; monthly withholding`,
+
+  'cg.azerbaijan.s3.sub2': `SSPF 11&ndash;22% &middot; MHI 0.5&ndash;1% &middot; SUF 0.5% &middot; no other mandatory items (work injury included in social security)`,
 
   'cg.azerbaijan.s3.b1': `
           <div class="au-table-wrap">
@@ -293,6 +325,8 @@ window.MARCO_LANG_EN_CG_AZERBAIJAN = {
 `,
 
   'cg.azerbaijan.s8.h': `2026 Public Holidays`,
+
+  'cg.azerbaijan.s8.sub': `Azerbaijan has one of the highest numbers of holidays (including Novruz 5 days &middot; Eid 2 days &times; 2) &middot; holidays falling on weekends are automatically substituted.`,
 
   'cg.azerbaijan.s8.b1': `
           <div class="au-table-wrap">

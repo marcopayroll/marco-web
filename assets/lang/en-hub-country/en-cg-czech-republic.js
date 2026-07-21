@@ -1,6 +1,26 @@
-/* Country Guide - Czech-Republic page content (hr-knowledge-hub-country-guide-czech-republic.html) */
+/* Country Guide - Czech Republic page content (hr-knowledge-hub-country-guide-czech-republic.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_CZECH_REPUBLIC = {
+  'cg.czech-republic.kn1.label': `Statutory minimum gross wage (monthly)`,
+
+  'cg.czech-republic.kn1.value': `CZK 22,400`,
+
+  'cg.czech-republic.kn1.unit': `/ mo`,
+
+  'cg.czech-republic.kn1.note': `+7.7% (~€890) · CZK 134.40 / hour`,
+
+  'cg.czech-republic.kn2.label': `Employer social security cost`,
+
+  'cg.czech-republic.kn2.value': `33.8%`,
+
+  'cg.czech-republic.kn2.note': `Social security 24.8% + health 9%`,
+
+  'cg.czech-republic.kn3.label': `Personal income tax`,
+
+  'cg.czech-republic.kn3.value': `15/23%`,
+
+  'cg.czech-republic.kn3.note': `Two progressive brackets`,
+
   'cg.czech-republic.s1.h': `Cost of Living`,
 
   'cg.czech-republic.s1.b1': `

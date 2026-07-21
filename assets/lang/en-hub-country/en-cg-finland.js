@@ -1,6 +1,22 @@
 /* Country Guide - Finland page content (hr-knowledge-hub-country-guide-finland.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_FINLAND = {
+  'cg.finland.kn1.label': `CBA Minimum Hourly Wages`,
+
+  'cg.finland.kn1.value': `€10–12`,
+
+  'cg.finland.kn1.unit': `/ hr`,
+
+  'cg.finland.kn1.note': `No statutory minimum wage · set by TES`,
+
+  'cg.finland.kn2.label': `Employer Social Security Cost`,
+
+  'cg.finland.kn2.note': `TyEL pension + health + unemployment + accident`,
+
+  'cg.finland.kn3.label': `Top Marginal Tax Rate`,
+
+  'cg.finland.kn3.note': `State + municipal + church tax`,
+
   'cg.finland.s1.h': `Cost of Living`,
 
   'cg.finland.s1.b1': `

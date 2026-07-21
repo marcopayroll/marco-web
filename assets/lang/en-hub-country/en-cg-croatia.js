@@ -1,6 +1,26 @@
 /* Country Guide - Croatia page content (hr-knowledge-hub-country-guide-croatia.html) */
 /* EN is the source language; reference only - never loaded at runtime. */
 window.MARCO_LANG_EN_CG_CROATIA = {
+  'cg.croatia.kn1.label': `Statutory minimum gross monthly wage`,
+
+  'cg.croatia.kn1.value': `€1,050`,
+
+  'cg.croatia.kn1.unit': `/ mo`,
+
+  'cg.croatia.kn1.note': `2026: +8.2% (2025: €970)`,
+
+  'cg.croatia.kn2.label': `Employer social security cost`,
+
+  'cg.croatia.kn2.value': `16.5%`,
+
+  'cg.croatia.kn2.note': `Health insurance (incl. work injury)`,
+
+  'cg.croatia.kn3.label': `CPI inflation`,
+
+  'cg.croatia.kn3.value': `~3.4%`,
+
+  'cg.croatia.kn3.note': `End-2025 data`,
+
   'cg.croatia.s1.h': `Cost of Living`,
 
   'cg.croatia.s1.b1': `
