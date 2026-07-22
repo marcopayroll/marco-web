@@ -65,7 +65,7 @@ body {
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 .nav-container {
-  width: min(100% - 48px, 1440px); margin-inline: auto;
+  width: min(100% - 128px, 1440px); margin-inline: auto;
   display: flex; align-items: center; justify-content: space-between; padding: 24px 0;
 }
 .nav-tabbar { display: flex; align-items: flex-start; gap: 40px; flex-shrink: 0; }
@@ -82,7 +82,7 @@ body {
   height: 2px; background: #fff; border-radius: 9999px; pointer-events: none;
 }
 .nav-tab-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; flex-shrink: 0; }
-.nav-tab-inner span { font-size: 14px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
+.nav-tab-inner span { font-size: 16px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
 .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
 .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
 .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
@@ -121,8 +121,8 @@ body {
 .nav-lang-dropdown .nav-lang-dd-label { font-family: var(--font); font-size: 12px; font-weight: 600; line-height: 20px; color: #162351; }
 .nav-signin {
   background: var(--blue-main); color: #fff; font-family: var(--font);
-  font-size: 12px; font-weight: 600; border-radius: 50px;
-  padding: 14px 24px; height: 32px; width: 100px;
+  font-size: 14px; font-weight: 600; border-radius: 50px;
+  padding: 14px 24px; height: 40px; width: 100px;
   display: flex; align-items: center; justify-content: center;
   white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0;
   text-decoration: none; transition: background 0.18s ease;
@@ -299,7 +299,21 @@ body {
 .nav-mob-signin-wrap { flex-shrink: 0; }
 .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
 .nav-mob-signin:hover { background: #0185C4; }
-@media (max-width: 1100px) {
+/* ── Web Nav 2: compact desktop nav ── */
+@media (max-width: 1200px) {
+  .nav-container { width: 100%; padding: 24px 60px; margin-inline: 0; box-sizing: border-box; }
+  .nav-tabbar { gap: 16px; }
+  .nav-menu { gap: 4px; }
+  .nav-right { gap: 8px; }
+}
+/* ── Web Nav 3: tighter desktop nav, no Sign In ── */
+@media (max-width: 1020px) {
+  .nav-container { padding: 24px 32px; }
+  .nav-tabbar { gap: 12px; }
+  .nav-tab-inner span { font-size: 14px; }
+  .nav-signin-wrapper { display: none; }
+}
+@media (max-width: 800px) {
   .nav { z-index: 300; width: 100vw; }
   .nav.nav-panel-open { background-image: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%); }
   .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }

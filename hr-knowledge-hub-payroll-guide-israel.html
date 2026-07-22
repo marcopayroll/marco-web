@@ -54,7 +54,7 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
     .nav-container {
-      width: min(100% - 48px, 1440px);
+      width: min(100% - 128px, 1440px);
       margin-inline: auto;
       display: flex;
       align-items: center;
@@ -173,11 +173,11 @@
       background: var(--blue-main);
       color: #fff;
       font-family: var(--font);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       border-radius: 50px;
       padding: 14px 24px;
-      height: 32px;
+      height: 40px;
       width: 100px;
       display: flex;
       align-items: center;
@@ -465,7 +465,7 @@
       display: block;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .pg-hero { min-height: auto; }
       .pg-hero-img { display: none; }
       .pg-hero-inner { padding-top: 160px; padding-bottom: 48px; }
@@ -601,7 +601,7 @@
     }
 
     /* ════════════════════════════════════════
-       TABLET NAV (≤1100px)
+       TABLET NAV (≤800px)
     ════════════════════════════════════════ */
     .nav-mobile-right { display: none; align-items: center; gap: 32px; }
     .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; padding-top: 10px; padding-bottom: 10px; }
@@ -646,7 +646,7 @@
     .nav-mob-signin-wrap { flex-shrink: 0; }
     .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
     .nav-mob-signin:hover { background: #0185C4; }
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .nav { z-index: 300; width: 100vw; }
       .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }
       .nav-menu { display: none; }
@@ -663,7 +663,7 @@
       .nav-mobile-overlay { top: 64px; height: calc(100vh - 64px); }
       .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
     }
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
       .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
       .footer-top { margin-bottom: 60px; }

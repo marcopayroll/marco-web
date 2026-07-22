@@ -57,7 +57,7 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
     .nav-container {
-      width: min(100% - 48px, 1440px);
+      width: min(100% - 128px, 1440px);
       margin-inline: auto;
       display: flex;
       align-items: center;
@@ -127,7 +127,7 @@
       flex-shrink: 0;
     }
     .nav-tab-inner span {
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 500;
       color: #e5e7eb;
       white-space: nowrap;
@@ -179,11 +179,11 @@
       background: var(--blue-main);
       color: #fff;
       font-family: var(--font);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       border-radius: 50px;
       padding: 14px 24px;
-      height: 32px;
+      height: 40px;
       width: 100px;
       display: flex;
       align-items: center;
@@ -351,30 +351,39 @@
       50%       { transform: translateY(-18px); }
     }
 
+    /* Visual group: laptop + blobs move together */
+    .os-hero-visual {
+      position: relative;
+      z-index: 2;
+      width: 660px;
+      max-width: calc(100% - 80px);
+      margin: 40px auto 0;
+    }
+
     /* Decorative blobs */
     .os-blob {
       position: absolute;
       pointer-events: none;
-      z-index: 1;
+      z-index: 0;
     }
     .os-hero-label.fade-in    { transition-delay: 0s; }
     .os-hero-title.fade-in    { transition-delay: 0.15s; }
     .os-hero-desc.fade-in     { transition-delay: 0.3s; }
-    .os-hero-laptop.fade-in   { transition-delay: 0.45s; }
+    .os-hero-visual.fade-in   { transition-delay: 0.45s; }
 
     .os-blob-right { animation: blob-float 5s ease-in-out infinite; }
     .os-blob-left  { animation: blob-float 6.5s ease-in-out infinite; }
     .os-blob-right {
       width: 151px;
       height: 151px;
-      left: calc(50% + 233px);
-      top: 500px;
+      right: -54px;
+      top: 14px;
     }
     .os-blob-left {
       width: 227px;
       height: 227px;
-      right: calc(50% + 194px);
-      top: 697px;
+      left: -91px;
+      top: 53%;
     }
     .os-blob img {
       width: 100%;
@@ -437,10 +446,8 @@
     /* Laptop image */
     .os-hero-laptop {
       position: relative;
-      z-index: 2;
-      width: 660px;
-      max-width: calc(100% - 80px);
-      margin-top: 40px;
+      z-index: 1;
+      width: 100%;
       flex-shrink: 0;
     }
     .os-hero-laptop img {
@@ -537,7 +544,7 @@
     .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
 
     /* ════════════════════════════════════════
-       TABLET NAV (≤1100px)
+       TABLET NAV (≤800px)
     ════════════════════════════════════════ */
     .nav-mobile-right { display: none; align-items: center; gap: 32px; }
     .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; padding-top: 10px; padding-bottom: 10px; }
@@ -581,7 +588,7 @@
     .nav-mob-signin-wrap { flex-shrink: 0; }
     .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
     .nav-mob-signin:hover { background: #0185C4; }
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .nav { z-index: 300; width: 100vw; }
       .nav.nav-panel-open { background-image: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%); }
       .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }
@@ -599,7 +606,7 @@
       .nav-mobile-overlay { top: 64px; height: calc(100vh - 64px); }
       .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
     }
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
       .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
       .footer-top { margin-bottom: 60px; }
@@ -645,21 +652,44 @@
       .footer { display: none; }
       .footer-mobile { display: block; }
     }
-    @media (max-width: 767px) {
+    @media (max-width: 960px) {
+      body { min-width: unset; }
+    }
+    /* ── Tablet hero ── */
+    @media (max-width: 800px) {
+      .os-hero { min-height: 700px; padding-top: 140px; padding-bottom: 80px; max-width: 100vw; }
+      .os-hero-text { width: 644px; max-width: calc(100% - 64px); gap: 12px; }
+      .os-hero-label span { font-size: 12px; line-height: 16px; }
+      .os-hero-copy { gap: 24px; }
+      .os-hero-title { font-size: 48px; line-height: 60px; font-weight: 600; letter-spacing: -2.4px; }
+      .os-hero-desc { font-size: 12px; line-height: 16px; }
+      .os-hero-visual { width: 330px; max-width: none; margin-top: 40px; }
+      .os-blob-left {
+        width: 140px; height: 140px;
+        left: -17%; right: auto; top: 43%;
+      }
+      .os-blob-right {
+        width: 100px; height: 100px;
+        right: -13%; left: auto; top: 12.5%;
+      }
+    }
+
+    /* ── Mobile hero ── */
+    @media (max-width: 440px) {
       .os-hero { min-height: unset; padding-top: 102px; padding-bottom: 48px; max-width: 100vw; }
       .os-hero-text { width: 342px; max-width: calc(100% - 48px); gap: 12px; }
       .os-hero-label span { font-size: 12px; line-height: 16px; }
       .os-hero-copy { gap: 24px; }
       .os-hero-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
       .os-hero-desc { font-size: 12px; line-height: 16px; }
-      .os-hero-laptop { width: 240px; max-width: none; margin-top: 24px; }
+      .os-hero-visual { width: 240px; max-width: none; margin-top: 24px; }
       .os-blob-left {
         width: 100px; height: 100px;
-        right: auto; left: 46px; top: 428px;
+        left: -12%; right: auto; top: 43%;
       }
       .os-blob-right {
         width: 60px; height: 60px;
-        left: calc(50% + 80px); top: 381px;
+        right: -5%; left: auto; top: 10%;
       }
     }
 
@@ -746,7 +776,7 @@
     .os-payroll-text {
       position: relative;
       z-index: 2;
-      max-width: 520px;
+      max-width: min(520px, calc(50vw - var(--gutter)));
       padding-top: 57px; /* 80px section padding + 57px = 137px from section top */
       display: flex;
       flex-direction: column;
@@ -864,6 +894,129 @@
       animation: screen-float 5.5s ease-in-out infinite 1s;
     }
 
+    /* ── Tablet payroll ── */
+    @media (max-width: 800px) {
+      .os-payroll {
+        padding: 60px 0 80px;
+        min-height: 500px;
+        --gutter: 32px;
+      }
+      .os-payroll-text {
+        max-width: min(434px, calc(62.5vw + 21px - var(--gutter) - 16px));
+        padding-top: 0;
+        gap: 12px;
+      }
+      .os-payroll-text .section-label span {
+        font-size: 10px;
+        line-height: 14px;
+        font-weight: 500;
+      }
+      .os-payroll-text .section-label .line {
+        width: 16px;
+      }
+      .os-payroll-title {
+        font-size: 32px;
+        line-height: 40px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+      .os-payroll-bullets {
+        margin-top: 12px;
+      }
+      .os-payroll-bullet p {
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 400;
+      }
+      .os-payroll-dashed {
+        left: calc(25% + 39px);
+        top: 262px;
+        width: 626px;
+        height: 281px;
+      }
+      .os-screen {
+        width: 228px;
+        height: 130px;
+      }
+      .os-screen-1 {
+        left: calc(62.5% + 21px);
+        top: 169px;
+      }
+      .os-screen-2 {
+        left: calc(37.5% + 44px);
+        top: 280px;
+      }
+      .os-screen-3 {
+        left: calc(62.5% - 4px);
+        top: 349px;
+      }
+    }
+
+    /* ── Mobile payroll ── */
+    @media (max-width: 440px) {
+      .os-payroll {
+        padding: 32px 0 60px;
+        min-height: auto;
+        --gutter: 24px;
+      }
+      .os-payroll-text {
+        max-width: 342px;
+        padding-top: 0;
+        gap: 12px;
+        margin-bottom: 200px;
+      }
+      .os-payroll-text .section-label span {
+        font-size: 10px;
+        line-height: 14px;
+        font-weight: 500;
+      }
+      .os-payroll-text .section-label .line {
+        width: 12px;
+      }
+      .os-payroll-title {
+        font-size: 32px;
+        line-height: 40px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+      .os-payroll-bullets {
+        margin-top: 12px;
+      }
+      .os-payroll-bullet p {
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 400;
+      }
+      .os-payroll-dashed {
+        left: 62px;
+        top: auto;
+        bottom: -23px;
+        width: 398px;
+        height: 178px;
+      }
+      .os-screen {
+        width: 147px;
+        height: 84px;
+      }
+      .os-screen-1 {
+        left: calc(50% + 24px);
+        top: auto;
+        bottom: 143px;
+      }
+      .os-screen-2 {
+        left: calc(25% + 11.5px);
+        top: auto;
+        bottom: 71px;
+      }
+      .os-screen-3 {
+        left: calc(50% + 7px);
+        top: auto;
+        bottom: 26px;
+        width: 148px;
+        height: 85px;
+      }
+    }
+
     /* ════════════════════════════════════════
        MARCO DATA CLOUD
     ════════════════════════════════════════ */
@@ -933,9 +1086,9 @@
       word-break: break-word;
     }
     @media (max-width: 1280px) { .datacloud-title { font-size: 28px; line-height: 36px; } }
-    @media (max-width: 1100px) { .datacloud-title { font-size: 26px; line-height: 34px; } }
+    @media (max-width: 800px) { .datacloud-title { font-size: 26px; line-height: 34px; } }
     @media (max-width: 1024px) { .datacloud-title { font-size: 24px; line-height: 32px; } .datacloud-right { padding: 60px 0; } }
-    @media (max-width: 960px) {
+    @media (max-width: 800px) {
       .datacloud-body { flex-direction: column; min-height: unset; }
       .datacloud-left { flex: none; width: calc(100% + 2 * max(var(--gutter), (100vw - 1224px) / 2)); margin-left: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2)); margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2)); height: 260px; position: relative; }
       .datacloud-right { padding: 48px 0; }
@@ -1117,9 +1270,6 @@
 
 <!-- ════════════════ HERO — MARCO OS ════════════════ -->
 <section class="os-hero">
-  <div class="os-blob os-blob-right"><img src="assets/Resources/marco-os-blob-right.png" alt="" /></div>
-  <div class="os-blob os-blob-left"><img src="assets/Resources/marco-os-blob-left.png" alt="" /></div>
-
   <div class="os-hero-text">
     <div class="os-hero-label fade-in">
       <span data-i18n="marcos.hero.label">Marco OS</span>
@@ -1130,8 +1280,12 @@
     </div>
   </div>
 
-  <div class="os-hero-laptop fade-in">
-    <img src="assets/Resources/marco-os-laptop.png" alt="Marco OS Platform" />
+  <div class="os-hero-visual fade-in">
+    <div class="os-blob os-blob-left"><img src="assets/Resources/marco-os-blob-left.png" alt="" /></div>
+    <div class="os-blob os-blob-right"><img src="assets/Resources/marco-os-blob-right.png" alt="" /></div>
+    <div class="os-hero-laptop">
+      <img src="assets/Resources/marco-os-laptop.png" alt="Marco OS Platform" />
+    </div>
   </div>
 </section>
 

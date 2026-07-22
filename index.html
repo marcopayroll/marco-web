@@ -51,7 +51,7 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
     .nav-container {
-      width: min(100% - 48px, 1440px); margin-inline: auto;
+      width: min(100% - 128px, 1440px); margin-inline: auto;
       display: flex; align-items: center; justify-content: space-between; padding: 24px 0;
     }
     .nav-tabbar { display: flex; align-items: flex-start; gap: 40px; flex-shrink: 0; }
@@ -68,7 +68,7 @@
       height: 2px; background: #fff; border-radius: 9999px; pointer-events: none;
     }
     .nav-tab-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; flex-shrink: 0; }
-    .nav-tab-inner span { font-size: 12px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
+    .nav-tab-inner span { font-size: 16px; font-weight: 500; color: #e5e7eb; white-space: nowrap; line-height: 20px; }
     .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
     .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
     .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
@@ -107,8 +107,8 @@
     .nav-lang-dropdown .nav-lang-dd-label { font-family: var(--font); font-size: 12px; font-weight: 600; line-height: 20px; color: #162351; }
     .nav-signin {
       background: var(--blue-main); color: #fff; font-family: var(--font);
-      font-size: 12px; font-weight: 600; border-radius: 50px;
-      padding: 14px 24px; height: 32px; width: 100px;
+      font-size: 14px; font-weight: 600; border-radius: 50px;
+      padding: 14px 24px; height: 40px; width: 100px;
       display: flex; align-items: center; justify-content: center;
       white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0;
       text-decoration: none; transition: background 0.18s ease;
@@ -285,7 +285,7 @@
     .nav-mob-signin-wrap { flex-shrink: 0; }
     .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
     .nav-mob-signin:hover { background: #0185C4; }
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .nav { z-index: 300; width: 100vw; }
       .nav.nav-panel-open { background-image: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%); }
       .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }
@@ -386,9 +386,9 @@
     .btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
 
     /* ════════════════════════════════════════
-       HERO — TABLET (≤1100px)
+       HERO — TABLET (≤800px)
     ════════════════════════════════════════ */
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .hero { height: 400px; }
       .hero-title-br { display: block; }
       .hero-container .container { padding-top: 140px; }
@@ -753,8 +753,8 @@
        PROBLEMS — RESPONSIVE
     ════════════════════════════════════════ */
 
-    /* ≤ 1100px — Tablet compact grid (Figma node 5453-5803) */
-    @media (max-width: 1100px) {
+    /* ≤ 800px — Tablet compact grid (Figma node 5453-5803) */
+    @media (max-width: 800px) {
       :root {
         --row-h:      120px;
         --tile-pad-h: 32px;
@@ -1436,8 +1436,8 @@
       width: 24px;
     }
 
-    /* ── Services — Tablet (≤1100px, Figma 5480-7660) ── */
-    @media (max-width: 1100px) {
+    /* ── Services — Tablet (≤800px, Figma 5480-7660) ── */
+    @media (max-width: 800px) {
       .services { padding: 32px 0; }
       .services .container { width: calc(100% - 64px); max-width: none; }
       .services-header { max-width: 506px; gap: 12px; margin-bottom: 60px; }
@@ -1658,7 +1658,7 @@
     @media (max-width: 1280px) {
       .tech-title { font-size: 56px; line-height: 68px; }
     }
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .tech-title { font-size: 48px; line-height: 60px; }
       .tech-accordion-item { padding: 20px 24px; }
       .tech-accordion-title { font-size: 18px; line-height: 24px; }
@@ -1670,7 +1670,7 @@
       .tech-accordion-desc { font-size: 14px; line-height: 18px; }
     }
     /* ── Tablet: text + spacing adjustments (layout stays fluid two-column) ── */
-    @media (min-width: 768px) and (max-width: 960px) {
+    @media (max-width: 800px) {
       .technology { padding: 32px 0; }
       .tech-header { gap: 12px; margin-bottom: 32px; }
       .tech-heading { gap: 24px; }
@@ -1684,7 +1684,7 @@
     }
 
     /* ── Mobile: single column stack ── */
-    @media (max-width: 767px) {
+    @media (max-width: 440px) {
       .technology { --gutter: 24px; }
       .tech-header { gap: 12px; margin-bottom: 32px; }
       .tech-heading { gap: 16px; }
@@ -1790,7 +1790,7 @@
     @media (max-width: 1280px) {
       .datacloud-title { font-size: 28px; line-height: 36px; }
     }
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .datacloud-title { font-size: 26px; line-height: 34px; }
     }
     @media (max-width: 1024px) {
@@ -1798,7 +1798,7 @@
       .datacloud-right { padding: 60px 0; }
     }
     /* ── Tablet: two-column layout per Figma (768px frame) ── */
-    @media (min-width: 768px) and (max-width: 960px) {
+    @media (max-width: 800px) {
       .datacloud { --gutter: 32px; }
       .datacloud-body {
         flex-direction: row;
@@ -1824,7 +1824,7 @@
     }
 
     /* ── Mobile: image background with text overlay ── */
-    @media (max-width: 767px) {
+    @media (max-width: 440px) {
       .datacloud { position: relative; background-image: none; --gutter: 24px; }
       .datacloud-body {
         flex-direction: column;
@@ -1919,7 +1919,7 @@
     }
 
     /* ── Stats mobile ── */
-    @media (max-width: 767px) {
+    @media (max-width: 440px) {
       .stats { padding: 32px 0; --gutter: 24px; }
       .stats-card { gap: 8px; }
       .stats-number { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
@@ -1995,14 +1995,14 @@
     @media (max-width: 1280px) {
       .cta-title { font-size: 42px; line-height: 52px; }
     }
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .cta-title { font-size: 36px; line-height: 46px; }
     }
     @media (max-width: 1024px) {
       .cta-title { font-size: 32px; line-height: 42px; }
       .cta-left { padding: 60px 0; }
     }
-    @media (max-width: 960px) {
+    @media (max-width: 800px) {
       .cta-body { flex-direction: column; min-height: unset; }
       .cta-right {
         flex: none;
@@ -2017,7 +2017,7 @@
     }
 
     /* ── CTA mobile: image background with text overlay ── */
-    @media (max-width: 767px) {
+    @media (max-width: 440px) {
       .cta-section { --gutter: 24px; position: relative; background: none; overflow: hidden; }
       .cta-body { flex-direction: column; min-height: unset; }
       .cta-right {
@@ -2090,7 +2090,7 @@
     .footer-legal { display: flex; gap: 40px; align-items: center; }
     .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
     .footer-legal a:hover { text-decoration: underline; }
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .footer { padding: 60px 32px 32px; width: 100%; max-width: 100%; box-sizing: border-box; }
       .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
       .footer-top { margin-bottom: 60px; }
@@ -2857,7 +2857,7 @@
     var tiles = document.querySelectorAll('.problems-grid > .problems-tile');
     tiles.forEach(function(tile) {
       tile.addEventListener('click', function() {
-        if (window.innerWidth > 1100) return;
+        if (window.innerWidth > 800) return;
         var isExpanded = tile.classList.contains('is-expanded');
         tiles.forEach(function(t) {
           t.classList.remove('is-expanded');
