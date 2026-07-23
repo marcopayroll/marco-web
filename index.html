@@ -7,9 +7,6 @@
   <title>Marco | Scale Your Global Workforce</title>
   <!-- Preload all Marco OS accordion images so they are ready before first click -->
   <link rel="preload" as="image" href="assets/Home/home-payroll-people.webp" type="image/webp" />
-  <link rel="preload" as="image" href="assets/Home/home-api.webp"            type="image/webp" />
-  <link rel="preload" as="image" href="assets/Marco OS Screens/home-bi.png"  type="image/png" />
-  <link rel="preload" as="image" href="assets/Home/home-mobility.webp"       type="image/webp" />
   <style>
     @import url('assets/fonts/euclid-circular-b.css');
 
@@ -1808,18 +1805,21 @@
       }
       .datacloud-left {
         flex: none;
-        width: 376px;
+        width: 49%;
         margin-left: calc(-1 * var(--gutter));
         margin-right: 0;
-        height: 308px;
+        align-self: stretch;
       }
       .datacloud-right {
         flex: 1;
         padding: 32px 0;
-        gap: 24px;
+        gap: 30px;
       }
-      .datacloud-title { font-size: 20px; line-height: 26px; font-weight: 600; }
-      .datacloud-desc { font-size: 10px; line-height: 14px; letter-spacing: 0; }
+      .datacloud-header { gap: 12px; }
+      .datacloud .section-label .line { width: 16px; }
+      .datacloud .section-label span { font-size: 10px; font-weight: 500; line-height: 14px; }
+      .datacloud-title { font-size: 20px; line-height: 26px; font-weight: 600; letter-spacing: 0; }
+      .datacloud-desc { font-size: 10px; line-height: 14px; font-weight: 400; letter-spacing: 0; color: #8F98B5; text-align: justify; }
       .datacloud-desc-list { padding-left: 15px; gap: 20px; }
     }
 
@@ -1918,6 +1918,14 @@
       letter-spacing: 0.3px;
     }
 
+    /* ── Stats tablet ── */
+    @media (max-width: 800px) {
+      .stats { padding: 30px 0; }
+      .stats-card { gap: 8px; }
+      .stats-number { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .stats-label { font-size: 8px; line-height: 12px; font-weight: 500; letter-spacing: 0; }
+    }
+
     /* ── Stats mobile ── */
     @media (max-width: 440px) {
       .stats { padding: 32px 0; --gutter: 24px; }
@@ -2003,17 +2011,36 @@
       .cta-left { padding: 60px 0; }
     }
     @media (max-width: 800px) {
-      .cta-body { flex-direction: column; min-height: unset; }
+      .cta-section { --gutter: 32px; }
+      .cta-body {
+        flex-direction: row;
+        align-items: stretch;
+        min-height: unset;
+      }
+      .cta-left {
+        flex: 1;
+        min-width: 0;
+        padding: 32px 0;
+        gap: 24px;
+        padding-right: 16px;
+      }
+      .cta-heading-block { gap: 12px; }
+      .cta-section .section-label .line { width: 16px; height: 1px; }
+      .cta-section .section-label span { font-size: 8px; line-height: 12px; font-weight: 500; }
+      .cta-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .cta-desc { font-size: 10px; line-height: 14px; }
+      .cta-buttons { gap: 16px; flex-wrap: wrap; }
+      .cta-section .cta-btn--primary,
+      .cta-section .cta-btn--secondary {
+        font-size: 12px; line-height: 16px; height: 32px; padding: 4px 16px;
+      }
       .cta-right {
         flex: none;
-        width: calc(100% + 2 * max(var(--gutter), (100vw - 1224px) / 2));
-        margin-left: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
-        margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
-        height: 260px;
-        position: relative;
+        width: 49%;
+        margin-left: 0;
+        margin-right: calc(-1 * var(--gutter));
+        align-self: stretch;
       }
-      .cta-left { padding: 48px 0; }
-      .cta-title { font-size: 36px; line-height: 46px; }
     }
 
     /* ── CTA mobile: image background with text overlay ── */
@@ -2515,7 +2542,7 @@
           <div class="tech-accordion-body">
             <div class="tech-accordion-body-inner">
               <p class="tech-accordion-desc" data-i18n="tech.bi.desc">Empower your workforce strategy with data-driven insights.</p>
-              <img class="tech-visual-card" src="assets/Marco OS Screens/home-bi.png" alt="Marco OS — Business Insights" loading="lazy" />
+              <img class="tech-visual-card" src="assets/Marco OS Screens/home-bi.webp" alt="Marco OS — Business Insights" loading="lazy" />
               <div class="tech-feature-list">
                 <div class="tech-feature-row">
                   <svg class="tech-feature-icon" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6 11.5L13 4.5" stroke="#019DE7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2570,7 +2597,7 @@
         <div class="tech-visuals">
           <img class="tech-visual is-active" data-panel="payroll"  src="assets/Home/home-payroll-people.webp" alt="Marco OS — Payroll &amp; People" loading="eager" />
           <img class="tech-visual"           data-panel="api"      src="assets/Home/home-api.webp"            alt="Marco OS — API Integrations"    loading="eager" />
-          <img class="tech-visual"           data-panel="insights" src="assets/Marco OS Screens/home-bi.png"  alt="Marco OS — Business Insights"   loading="eager" />
+          <img class="tech-visual"           data-panel="insights" src="assets/Marco OS Screens/home-bi.webp"  alt="Marco OS — Business Insights"   loading="eager" />
           <img class="tech-visual"           data-panel="mobility" src="assets/Home/home-mobility.webp"       alt="Marco OS — Borderless Mobility" loading="eager" />
         </div>
       </div>
