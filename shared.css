@@ -300,18 +300,23 @@ body {
 .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
 .nav-mob-signin:hover { background: #0185C4; }
 /* ── Web Nav 2: compact desktop nav ── */
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
   .nav-container { width: 100%; padding: 24px 60px; margin-inline: 0; box-sizing: border-box; }
   .nav-tabbar { gap: 16px; }
   .nav-menu { gap: 4px; }
   .nav-right { gap: 8px; }
 }
 /* ── Web Nav 3: tighter desktop nav, no Sign In ── */
-@media (max-width: 1020px) {
+@media (max-width: 1100px) {
   .nav-container { padding: 24px 32px; }
   .nav-tabbar { gap: 12px; }
   .nav-tab-inner span { font-size: 14px; }
   .nav-signin-wrapper { display: none; }
+}
+/* ── Web Nav 4: smallest desktop nav, 12px tab text ── */
+@media (max-width: 900px) {
+  .nav-tab-inner span { font-size: 12px; }
+  .nav-chevron svg { width: 12px; height: 12px; }
 }
 @media (max-width: 800px) {
   .nav { z-index: 300; width: 100vw; }

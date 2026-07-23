@@ -1666,18 +1666,48 @@
       .tech-accordion-title { font-size: 16px; line-height: 22px; }
       .tech-accordion-desc { font-size: 14px; line-height: 18px; }
     }
-    /* ── Tablet: text + spacing adjustments (layout stays fluid two-column) ── */
+    /* ── Tablet: thumbnail moves inside accordion, right panel hidden ── */
     @media (max-width: 800px) {
-      .technology { padding: 32px 0; }
+      .technology { padding: 32px 0; --gutter: 32px; }
       .tech-header { gap: 12px; margin-bottom: 32px; }
       .tech-heading { gap: 24px; }
       .tech-title { font-size: 32px; line-height: 40px; }
       .tech-subtitle { font-size: 12px; line-height: 20px; }
-      .tech-left { gap: 12px; }
-      .tech-accordion-item { padding: 16px 12px; }
+      .tech-body { flex-direction: column; gap: 12px; }
+      .tech-left { width: 100%; gap: 12px; }
+      .tech-right { display: none; }
+      .tech-accordion-item { padding: 12px 12px 16px; }
+      .tech-accordion-item.active .tech-accordion-title { font-size: 16px; line-height: 20px; font-weight: 700; color: var(--blue-main); }
       .tech-accordion-title { font-size: 16px; line-height: 20px; }
-      .tech-accordion-desc { font-size: 12px; line-height: 20px; }
-      .tech-feature-text { font-size: 12px; line-height: 20px; }
+      .tech-accordion-desc { font-size: 12px; line-height: 16px; margin-top: 8px; }
+      .tech-accordion-body-inner {
+        display: grid;
+        grid-template-columns: 1fr 45%;
+        grid-template-rows: auto 1fr;
+        gap: 0 16px;
+      }
+      .tech-accordion-desc {
+        grid-column: 1 / -1;
+        grid-row: 1;
+      }
+      .tech-feature-list {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: center;
+      }
+      .tech-visual-card {
+        display: block;
+        grid-column: 2;
+        grid-row: 2;
+        width: 100%;
+        aspect-ratio: 320 / 220;
+        object-fit: cover;
+        border-radius: 4px;
+        margin: 0;
+        align-self: end;
+      }
+      .tech-feature-text { font-size: 10px; line-height: 14px; font-weight: 500; }
+      .tech-feature-list { gap: 15px; margin-top: 8px; }
     }
 
     /* ── Mobile: single column stack ── */
@@ -1692,20 +1722,35 @@
       .tech-left { width: 100%; gap: 12px; }
       .tech-right { display: none; }
       .tech-accordion-item { padding: 16px; border-radius: 8px; }
-      .tech-accordion-item.active .tech-accordion-title { font-size: 20px; line-height: 26px; font-weight: 600; }
+      .tech-accordion-item.active .tech-accordion-title { font-size: 20px; line-height: 26px; font-weight: 600; color: var(--blue-main); }
       .tech-accordion-title { font-size: 16px; line-height: 20px; font-weight: 500; }
-      .tech-accordion-desc { font-size: 16px; line-height: 20px; }
-      .tech-feature-row { gap: 16px; }
-      .tech-feature-text { font-size: 14px; line-height: 18px; font-weight: 400; }
-      .tech-feature-list { gap: 15px; }
+      .tech-accordion-body-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .tech-accordion-desc {
+        font-size: 16px; line-height: 20px; font-weight: 400;
+        grid-column: unset; grid-row: unset;
+      }
       .tech-visual-card {
         display: block;
+        grid-column: unset; grid-row: unset;
         width: 100%;
         aspect-ratio: 4096 / 2816;
         object-fit: cover;
         border-radius: 4px;
-        margin: 16px 0;
+        margin: 0;
+        align-self: unset;
       }
+      .tech-feature-list {
+        gap: 15px;
+        grid-column: unset; grid-row: unset;
+        align-self: unset;
+        margin-top: 0;
+      }
+      .tech-feature-row { gap: 16px; }
+      .tech-feature-text { font-size: 14px; line-height: 18px; font-weight: 400; }
     }
 
     /* ════════════════════════════════════════
