@@ -27,7 +27,7 @@
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
+      min-width: 800px;
     }
 
     .container {
@@ -300,10 +300,10 @@
       min-height: 500px;
     }
     .whatthis > .container {
-      display: flex; gap: 128px; align-items: flex-start;
+      display: flex; gap: 80px; align-items: flex-start;
     }
     .whatthis-left {
-      flex: 0 0 704px; display: flex; flex-direction: column; gap: 24px;
+      flex: 1 1 0; min-width: 0; max-width: 704px; display: flex; flex-direction: column; gap: 24px;
       padding: 80px 0;
     }
     .whatthis-left .section-label { color: var(--text-main); }
@@ -319,7 +319,7 @@
     .whatthis-body p + p { margin-top: 20px; }
     .whatthis-body strong { font-weight: 700; }
     .whatthis-right {
-      flex: 0 0 392px; padding-top: 63px; padding-bottom: 80px;
+      flex: 0 1 392px; min-width: 240px; padding-top: 63px; padding-bottom: 80px;
       display: flex; flex-direction: column; gap: 8px;
     }
     .feature-box {
@@ -477,8 +477,8 @@
       background-image: linear-gradient(90.28deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
       padding: 80px 0;
     }
-    .entity > .container { display: flex; gap: 104px; align-items: flex-start; }
-    .entity-left { flex: 0 0 624px; display: flex; flex-direction: column; gap: 24px; }
+    .entity > .container { display: flex; flex-direction: column; gap: 0; }
+    .entity-left { display: flex; flex-direction: column; gap: 24px; }
     .entity .section-label { color: var(--blue-main); }
     .entity-title-wrap { display: flex; flex-direction: column; gap: 24px; }
     .entity-title {
@@ -502,17 +502,17 @@
       display: flex; gap: 80px; align-items: center;
     }
     .entity-region {
-      font-size: 16px; font-weight: 400; line-height: 20px;
-      color: #fff; letter-spacing: -0.8px; width: 60px; flex-shrink: 0;
+      font-size: 32px; font-weight: 700; line-height: 40px;
+      color: #fff; width: 140px; flex-shrink: 0;
     }
     .entity-countries {
-      font-size: 16px; font-weight: 400; line-height: 20px;
-      color: var(--text-tertiary); letter-spacing: -0.8px; width: 360px;
+      font-size: 16px; font-weight: 400; line-height: 24px;
+      color: var(--text-tertiary); letter-spacing: -0.8px; flex: 1;
     }
     .entity-count {
-      font-size: 32px; font-weight: 700; line-height: 40px; color: #fff; white-space: nowrap;
+      font-size: 40px; font-weight: 700; line-height: 48px; color: #fff; white-space: nowrap;
     }
-    .entity-right { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+    .entity-right { display: none; }
     .layer-card {
       background: #162351; border: 1px solid #646d79;
       border-radius: 8px; padding: 20px;
@@ -718,6 +718,95 @@
     .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
   
     /* ════════════════════════════════════════
+       WEB VIEW RESPONSIVE (≤1280px)
+    ════════════════════════════════════════ */
+    @media (max-width: 1280px) {
+      /* Hero */
+      .hero-title { font-size: 52px; line-height: 64px; }
+
+      /* What This Service Is */
+      .whatthis > .container { gap: 48px; }
+      .whatthis-title { font-size: 40px; line-height: 50px; }
+
+      /* Full Cycle Coverage */
+      .fullcycle-title { font-size: 52px; line-height: 64px; }
+      .fullcycle-box { height: auto; min-height: 200px; }
+
+      /* Monthly Cycle */
+      .cycle-title { font-size: 52px; line-height: 64px; }
+
+      /* Own Entity Network */
+      .entity-title { font-size: 52px; line-height: 64px; }
+
+      /* Compliance */
+      .compdata-title { font-size: 52px; line-height: 64px; }
+
+      /* Implementation */
+      .implementation-title { font-size: 52px; line-height: 64px; }
+
+      /* The Marco Difference */
+      .difference-left { flex: 0 0 auto; max-width: 480px; }
+      .difference-title { font-size: 40px; line-height: 50px; }
+
+      /* Get Started */
+      .getstarted-title { font-size: 40px; }
+      .getstarted-image { flex: 0 0 45vw; }
+    }
+
+    @media (max-width: 1024px) {
+      /* Hero */
+      .hero { height: 520px; }
+      .hero > .container { padding-top: 150px; }
+      .hero-title { font-size: 44px; line-height: 56px; }
+      .hero-content { max-width: 600px; }
+
+      /* What This Service Is */
+      .whatthis > .container { gap: 32px; }
+      .whatthis-right { min-width: 240px; }
+      .whatthis-title { font-size: 36px; line-height: 46px; }
+
+      /* Full Cycle Coverage */
+      .fullcycle-title { font-size: 44px; line-height: 56px; }
+      .fullcycle-box { padding: 20px; min-height: 220px; }
+      .fullcycle-box-title { font-size: 18px; line-height: 24px; }
+      .fullcycle-box-body { font-size: 14px; line-height: 18px; }
+
+      /* Monthly Cycle */
+      .cycle-title { font-size: 44px; line-height: 56px; }
+      .cycle-step-title { font-size: 14px; line-height: 18px; }
+      .cycle-step-desc { font-size: 11px; line-height: 15px; }
+
+      /* Own Entity Network */
+      .entity-title { font-size: 44px; line-height: 56px; }
+      .entity-region { font-size: 24px; line-height: 32px; width: 110px; }
+      .entity-row-left { gap: 40px; }
+      .entity-count { font-size: 32px; line-height: 40px; }
+
+      /* Compliance */
+      .compdata-title { font-size: 44px; line-height: 56px; }
+      .cert-card { height: auto; min-height: 200px; padding: 24px; }
+
+      /* Implementation */
+      .implementation-title { font-size: 44px; line-height: 56px; }
+      .phase-card { min-height: 180px; }
+
+      /* The Marco Difference — stack */
+      .difference > .container { flex-direction: column; gap: 24px; }
+      .difference-left { flex: none; max-width: none; }
+      .difference-right { padding-top: 0; }
+      .difference-title { font-size: 36px; line-height: 46px; }
+
+      /* Get Started */
+      .getstarted-title { font-size: 36px; }
+      .getstarted > .container { position: relative; }
+      .getstarted-inner { max-width: 50%; }
+      .getstarted-image {
+        position: absolute; top: 0; bottom: 0; right: calc(-1 * var(--gutter));
+        width: 45%; margin: 0; flex: none;
+      }
+    }
+
+    /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
     .nav-mobile-right { display: none; align-items: center; gap: 32px; }
@@ -848,7 +937,7 @@
         <span data-i18n="gp.hero.title.line1">Global Managed</span><br>
         <span class="muted" data-i18n="gp.hero.title.muted">Payroll</span>&nbsp;<span class="accent" data-i18n="gp.hero.title.accent">Infrastructure</span>
       </h1>
-      <p class="hero-body"><strong data-i18n="gp.hero.body.strong">One platform. 21 owned entities. Every market handled.</strong>&nbsp;<span data-i18n="gp.hero.body.rest">Marco runs the full payroll cycle: calculation, statutory filings, payment disbursement, and GL reporting across all your countries, simultaneously.</span></p>
+      <p class="hero-body" data-i18n="gp.hero.body">Run compliant multi-country payroll through one platform and one accountable service model. Marco manages payroll calculation, statutory filings, salary payments and financial reporting across your global workforce.</p>
     </div>
   </div>
 </section>
@@ -863,8 +952,8 @@
       </div>
       <h2 class="whatthis-title"><span class="accent" data-i18n="gp.what.title.accent">Payroll</span><span data-i18n="gp.what.title.rest"> that runs your way, in every market.</span></h2>
       <div class="whatthis-body">
-        <p data-i18n="gp.what.body.p1">Global Managed Payroll is Marco's core service for multinationals who need consolidated, compliant payroll processing across multiple countries without running separate vendors, teams, or platforms per market.</p>
-        <p><span data-i18n="gp.what.body.p2.pre">Marco's model is different from aggregator networks. We operate through </span><strong data-i18n="gp.what.body.p2.strong">owned legal entities</strong><span data-i18n="gp.what.body.p2.post"> in 21 countries, meaning every filing, payment, and statutory contribution runs through a Marco entity. Not a third-party partner. The same platform. The same standards. Every country.</span></p>
+        <p data-i18n="gp.what.body.p1">Consolidate multi-country payroll without managing separate vendors, systems or local teams.</p>
+        <p data-i18n="gp.what.body.p2">Marco combines local payroll expertise, owned entities and one centralized platform to deliver a consistent payroll experience across every supported country.</p>
       </div>
     </div>
     <div class="whatthis-right fade-in">
@@ -924,20 +1013,20 @@
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">01</span>
-            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box1.title">Payroll Calendar &amp; Cutoff Management</p>
-            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box1.body">Pay frequency, pay cycle, change cutoff, pay day, and holiday/weekend rule configuration. Set once, enforced consistently across every entity.</p>
+            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box1.title">Payroll Calendar and Cutoffs</p>
+            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box1.body">Pay cycles, data cutoffs, payment dates and holiday rules are agreed and managed for every payroll.</p>
           </div>        </div>
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">02</span>
-            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box2.title">Change Data Consolidation</p>
-            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box2.body">Employee detail updates, bank changes, overtime, absences, pay changes, time-off and expense data consolidated from your HRIS into a single input stream.</p>
+            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box2.title">Payroll Data Consolidation</p>
+            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box2.body">Employee changes, bank details, variable pay, overtime, absences, leave and expenses are consolidated into one controlled input process.</p>
           </div>        </div>
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">03</span>
             <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box3.title">Joiner &amp; Leaver Processing</p>
-            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box3.body">Onboarding before the 20th joins the standard payroll cycle. Marco handles social-benefit registration on entry and de-registration on exit. No local chasing required.</p>
+            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box3.body">New hires and leavers are processed in payroll, including required registrations and de-registrations.</p>
           </div>        </div>
       </div>
       <!-- Row 2 -->
@@ -945,20 +1034,20 @@
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">04</span>
-            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box4.title">Payroll Approval Workflow</p>
-            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box4.body">Maker-Checker-Approver model. Marco prepares and reviews; your Local HR, Regional HR, or designated approver signs off. Full audit trail maintained.</p>
+            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box4.title">Approval Workflow</p>
+            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box4.body">Payroll follows a Maker-Checker-Approver process with documented review, client approval and a complete audit trail.</p>
           </div>        </div>
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">05</span>
             <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box5.title">Statutory Reporting &amp; Filings</p>
-            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box5.body">Withholding tax per local tax calendar, social security fund per statutory schedule, and annual tax filing where required. Statutory reports and deduction slips delivered.</p>
+            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box5.body">Payroll taxes, social-security contributions and required statutory reports are prepared and submitted according to local deadlines.</p>
           </div>        </div>
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">06</span>
-            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box6.title">Payment &amp; Bank-File Services</p>
-            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box6.body">Bank-file generation and salary disbursement handled by Marco. Payslip format defined at onboarding. Salary and statutory payments processed on schedule, every cycle.</p>
+            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box6.title">Payments and Payslips</p>
+            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box6.body">Bank files, salary disbursement support, statutory payments and employee payslips are delivered according to the agreed schedule.</p>
           </div>        </div>
       </div>
       <!-- Row 3 -->
@@ -966,8 +1055,8 @@
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">07</span>
-            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box7.title">GL &amp; Financial Reporting</p>
-            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box7.body">Payroll-to-GL handover with defined report schedules and approver matrices. GL format aligned to your finance system and integrated with your global ERP.</p>
+            <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box7.title">GL and Payroll Reporting</p>
+            <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box7.body">Receive payroll reports, statutory records and GL outputs aligned with your finance and ERP requirements.</p>
           </div>        </div>
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
@@ -1075,8 +1164,8 @@
         <div class="entity-title-wrap" style="margin-top:12px;">
           <h2 class="entity-title"><span data-i18n="gp.entity.title.pre">Not a partner network</span><br><span class="accent" data-i18n="gp.entity.title.accent">Our own entities</span></h2>
           <div class="entity-body">
-            <p data-i18n="gp.entity.body.p1">Most global payroll providers operate through networks of local partners. Marco doesn't. We hold owned legal entities in 21 countries, meaning every payroll runs through a Marco-controlled entity with consistent quality, accountability, and compliance standards.</p>
-            <p style="margin-top:20px;" data-i18n="gp.entity.body.p2">That's the difference between a platform and a directory.</p>
+            <p data-i18n="gp.entity.body.p1">Many global payroll providers depend on unrelated local vendors. Marco operates through its own legal entities across key markets.</p>
+            <p style="margin-top:20px;" data-i18n="gp.entity.body.p2">This gives clients clearer accountability, more consistent service standards and stronger operational control across their payroll program.</p>
           </div>
         </div>
       </div>
