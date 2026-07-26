@@ -374,7 +374,7 @@
     .article-bullet-item { display: flex; gap: 8px; align-items: flex-start; }
     .article-bullet-dot { width: 22px; height: 22px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
     .article-bullet-dot::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--blue-main); display: block; }
-    .article-link { color: var(--text-main); text-decoration: underline; font-size: 14px; line-height: 22px; font-weight: 400; }
+    .article-link { color: var(--blue-main); text-decoration: underline; font-size: 14px; line-height: 22px; font-weight: 400; }
     .article-list-title-row { display: flex; gap: 4px; align-items: flex-start; }
     .article-list-label { width: 20px; flex-shrink: 0; font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); }
     .article-list-title { flex: 1; font-size: 14px; font-weight: 600; line-height: 22px; color: var(--text-main); }
@@ -382,6 +382,71 @@
     .article-divider { height: 1px; background: #CDD5E0; }
     .article-footnotes { display: flex; flex-direction: column; gap: 16px; }
     .article-footnotes p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-secondary); margin: 0; }
+
+    /* Tables */
+    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+    .compare-table th {
+      background: #1D4783;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      padding: 8px 16px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    .compare-table th:first-child { border-top-left-radius: 6px; }
+    .compare-table th:last-child { border-top-right-radius: 6px; }
+    .compare-table td {
+      background: #FFFFFF;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+      color: var(--text-main);
+      padding: 16px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .compare-table tr.row-alt td { background: #E4EFFF; }
+    .compare-table tr:last-child td:first-child { border-bottom-left-radius: 8px; }
+    .compare-table tr:last-child td:last-child { border-bottom-right-radius: 8px; }
+
+    /* Callout box */
+    .article-callout {
+      background: #E4EFFF;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-callout-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      color: var(--blue-main);
+      margin: 0;
+    }
+    .article-callout p:not(.article-callout-title) {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #8F98B5;
+      margin: 0;
+    }
+
+    /* Sub-heading */
+    .article-sub-heading { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
+
+    /* Numbered steps */
+    .article-step { display: flex; flex-direction: column; gap: 4px; }
+    .article-step-title { display: flex; gap: 4px; align-items: flex-start; }
+    .article-step-num { width: 20px; flex-shrink: 0; font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); }
+    .article-step-label { flex: 1; font-size: 14px; font-weight: 600; line-height: 22px; color: var(--text-main); }
+    .article-step-body { padding-left: 24px; font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
+
+    /* Article image */
+    .article-img { width: 100%; border-radius: 8px; display: block; }
 
     /* CTA buttons */
     .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 130px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
@@ -526,7 +591,7 @@
       <div>
         <h1 class="hero-title">Malaysia - How to Opt Out of LINDUNG 24 JAM</h1>
       </div>
-      <!-- Content to be added -->
+      <p class="hero-desc">LINDUNG 24 JAM is now voluntary for local employees. Follow this step-by-step guide to opt out online via the LINDUNG Faedah Portal or submit a paper form to HR.</p>
     </div>
 
     <!-- Author row -->
@@ -550,29 +615,180 @@
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container">
-    <div class="article-layout">
-      <!-- TOC sidebar -->
-      <aside class="article-toc">
-        <!-- Content to be added -->
-      </aside>
+  <div class="container article-layout">
 
-      <!-- Article content -->
-      <div class="article-content">
-        <!-- Content to be added -->
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-introduction" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-introduction"></div></div>
+            <span class="toc-text" id="toc-text-introduction">Introduction</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-option1" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-option1"></div></div>
+            <span class="toc-text" id="toc-text-option1">Option 1 - Online</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-option2" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-option2"></div></div>
+            <span class="toc-text" id="toc-text-option2">Option 2 - Paper Form</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- Section 1: Introduction -->
+      <div class="article-block" id="section-introduction">
+        <h2 class="article-h2">Introduction</h2>
+        <div class="article-paras">
+          <p class="article-p">LINDUNG 24 JAM is now voluntary for local employees. If you wish to opt out, follow the steps below.</p>
+          <p class="article-p"><strong>This is a self-service process.</strong> Individual employees will submit the opt-out themselves — HR is not able to do this on your behalf. Once submitted, you will need to send the signed notice to HR.</p>
+          <div class="article-callout">
+            <p class="article-callout-title">Before you start</p>
+            <p>have your NRIC and email ready. Opting out is entirely your choice — review the benefits before deciding.</p>
+          </div>
+        </div>
       </div>
 
-      <!-- CTA buttons -->
-      <div class="article-cta">
-        <!-- Back to Top -->
-        <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
-            <path class="cta-stroke" d="M24.5 15.5H15.5M20 24.5V17.5M23.5 21L20 17.5L16.5 21" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+      <!-- Section 2: Option 1 -->
+      <div class="article-block" id="section-option1">
+        <h2 class="article-h2">Option 1 - Online (Opt Out via LINDUNG Faedah Portal)</h2>
+        <div class="article-paras">
+
+          <!-- Step 1 -->
+          <div class="article-step">
+            <div class="article-step-title">
+              <span class="article-step-num">1.</span>
+              <span class="article-step-label">Log In</span>
+            </div>
+            <p class="article-step-body">Go to lindungfaedah.perkeso.gov.my and log in (or register first if new).</p>
+          </div>
+          <img class="article-img" src="assets/HR Knowledge Hub/Memo/images/lindung-1.png" alt="LINDUNG Faedah Portal login page" />
+
+          <!-- Step 2 -->
+          <div class="article-step">
+            <div class="article-step-title">
+              <span class="article-step-num">2.</span>
+              <span class="article-step-label">Review &amp; Declare</span>
+            </div>
+            <p class="article-step-body">Open <strong>SKIM LINDUNG 24 JAM</strong>, review the benefits, then tick <strong>&ldquo;I CHOOSE NOT TO PARTICIPATE&rdquo;</strong> under Employee's Declaration.</p>
+          </div>
+          <img class="article-img" src="assets/HR Knowledge Hub/Memo/images/lindung-2.png" alt="Employee's Declaration checkbox" />
+
+          <!-- Step 3 -->
+          <div class="article-step">
+            <div class="article-step-title">
+              <span class="article-step-num">3.</span>
+              <span class="article-step-label">Confirm &amp; Submit</span>
+            </div>
+            <p class="article-step-body">Confirm your decision was voluntary, click <strong>Hantar (Send)</strong>, then confirm again on the pop-up. Wait for the <strong>&ldquo;Berjaya&rdquo;</strong> success message.</p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="article-step">
+            <div class="article-step-title">
+              <span class="article-step-num">4.</span>
+              <span class="article-step-label">Download, Sign &amp; Send to HR</span>
+            </div>
+            <p class="article-step-body">Download the Notice, print it, sign it, and send the signed copy to the HR team — this is what stops the deduction.</p>
+          </div>
+
+          <!-- Quick Recap -->
+          <h3 class="article-sub-heading">Option 1 Quick Recap</h3>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>STEP</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1. Log in</td>
+                <td>lindungfaedah.perkeso.gov.my</td>
+              </tr>
+              <tr class="row-alt">
+                <td>2. Review &amp; declare</td>
+                <td>Tick opt-out declaration</td>
+              </tr>
+              <tr>
+                <td>3. Confirm &amp; submit</td>
+                <td>Click Hantar, confirm pop-up</td>
+              </tr>
+              <tr class="row-alt">
+                <td>4. Download &amp; sign</td>
+                <td>Send signed copy to HR</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="article-callout">
+            <p class="article-callout-title">Signed notice must reach HR</p>
+            <p>The online declaration alone doesn't stop payroll deductions. Employees are responsible for delivering the signed copy.</p>
+          </div>
+        </div>
       </div>
+
+      <!-- Section 3: Option 2 -->
+      <div class="article-block" id="section-option2">
+        <h2 class="article-h2">Option 2 - Paper Form</h2>
+        <div class="article-paras">
+          <p class="article-p">Download the <a class="article-link" href="https://www.perkeso.gov.my/images/lindung/lindung-24-jam/130726-NOTIS_PELEPASAN_LIABILITI_LINDUNG_24_JAM.pdf" target="_blank" rel="noopener noreferrer">Notis Pelepasan Liabiliti (PDF)</a>, fill it in yourself, sign it, and hand it to HR — they'll forward it to PERKESO for you.</p>
+        </div>
+      </div>
+
+      <!-- Closing -->
+      <div class="article-paras">
+        <p class="article-p">Please reach out to the HR team should you require assistance or have any questions about opting out of LINDUNG 24 JAM.</p>
+      </div>
+
     </div>
+
+    <!-- CTA Buttons -->
+    <div class="article-cta">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <!-- WeChat -->
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <!-- Copy Link -->
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <!-- Back to Top -->
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 15.5H15.5M20 24.5V17.5M23.5 21L20 17.5L16.5 21" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
   </div>
 </section>
 
@@ -789,7 +1005,11 @@
     this.classList.remove('active');
   });
 
-  var tocSections = [];
+  var tocSections = [
+    { key: 'introduction', id: 'section-introduction' },
+    { key: 'option1', id: 'section-option1' },
+    { key: 'option2', id: 'section-option2' }
+  ];
 
   function updateToc() {
     var scrollPos = window.scrollY + 160;
