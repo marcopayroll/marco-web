@@ -753,7 +753,7 @@ window.MARCO_LANG_EN_SERVICES = {
   'hro.os.body1':               'Marco OS gives your central HR and finance teams a single view of every employee across every country where Marco manages your HR operations. No country silos. No separate logins. No spreadsheet consolidation.',
   'hro.os.body2':               'Employee records, leave balances, payroll history, expense records, and compliance documentation all centralized and accessible in real time.',
   'hro.os.cta1':                'Explore Marco OS',
-  'hro.os.cta2':                'Contact Us',
+  'hro.os.cta2':                'Contact us',
 
   /* The Marco Difference */
   'hro.diff.label':             'THE MARCO DIFFERENCE',
@@ -1041,6 +1041,6 @@ window.MARCO_LANG_EN_SERVICES = {
   'sdm.gs.title.main':              'Interested in working ',
   'sdm.gs.title.accent':            'with Marco?',
   'sdm.gs.body':                    'If you have questions about how Marco structures EOR delivery in your market, or want to discuss a specific arrangement, reach out and our team will come back to you.',
-  'sdm.gs.cta':                     'Contact Us',
+  'sdm.gs.cta':                     'Contact us',
 
 };

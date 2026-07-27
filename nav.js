@@ -181,10 +181,10 @@
     '            <div class="nav-dropdown-divider"></div>',
     '            <div class="nav-dropdown-list">',
     '              <a class="nav-about-item" href="company-vision-values.html"><div class="nav-about-item-icon"><img src="assets/Company/vision-&-values-icon.svg" alt=""></div><div class="nav-about-item-text"><span class="nav-about-item-title" data-i18n="nav.dd.vision.title">Vision &amp; Values</span><span class="nav-about-item-desc" data-i18n="nav.dd.vision.desc">Our purpose and guiding principles</span></div></a>',
-    '              <a class="nav-about-item" href="company-journey.html"><div class="nav-about-item-icon"><img src="assets/Company/our-journey-icon.svg" alt=""></div><div class="nav-about-item-text"><span class="nav-about-item-title" data-i18n="nav.dd.journey.title">Marco\'s Journey</span><span class="nav-about-item-desc" data-i18n="nav.dd.journey.desc">The story behind Marco</span></div></a>',
+    '              <a class="nav-about-item" href="company-journey.html"><div class="nav-about-item-icon"><img src="assets/Company/our-journey-icon.svg" alt=""></div><div class="nav-about-item-text"><span class="nav-about-item-title" data-i18n="nav.dd.journey.title">Our Journey</span><span class="nav-about-item-desc" data-i18n="nav.dd.journey.desc">The story behind Marco</span></div></a>',
     '              <a class="nav-about-item" href="company-entity-network.html"><div class="nav-about-item-icon"><img src="assets/Company/entity-network-icon.svg" alt=""></div><div class="nav-about-item-text"><span class="nav-about-item-title" data-i18n="nav.dd.entity.title">Entity Network</span><span class="nav-about-item-desc" data-i18n="nav.dd.entity.desc">Global entities and operational service centers</span></div></a>',
     '              <a class="nav-about-item" href="company-organization.html"><div class="nav-about-item-icon"><img src="assets/Company/organization-icon.svg" alt=""></div><div class="nav-about-item-text"><span class="nav-about-item-title" data-i18n="nav.dd.org.title">Organization</span><span class="nav-about-item-desc" data-i18n="nav.dd.org.desc">Leadership and structure</span></div></a>',
-    '              <a class="nav-about-item" href="company-contact-us.html"><div class="nav-about-item-icon"><img src="assets/Company/contact-us-icon.svg" alt=""></div><div class="nav-about-item-text"><span class="nav-about-item-title" data-i18n="nav.dd.contact.title">Contact Us</span><span class="nav-about-item-desc" data-i18n="nav.dd.contact.desc">Get in touch with the Marco team</span></div></a>',
+    '              <a class="nav-about-item" href="company-contact-us.html"><div class="nav-about-item-icon"><img src="assets/Company/contact-us-icon.svg" alt=""></div><div class="nav-about-item-text"><span class="nav-about-item-title" data-i18n="nav.dd.contact.title">Contact us</span><span class="nav-about-item-desc" data-i18n="nav.dd.contact.desc">Get in touch with the Marco team</span></div></a>',
     '            </div>',
     '          </div>',
     '        </div>',
@@ -306,10 +306,10 @@
     '      <div class="nav-mob-header" data-mob-acc><span class="nav-mob-header-label" data-i18n="nav.company">Company</span><div class="nav-mob-chevron"><svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>',
     '      <div class="nav-mob-body">',
     '        <a class="nav-mob-sub-item" href="company-vision-values.html"><div class="nav-mob-sub-icon"><img src="assets/Company/vision-&-values-icon.svg" alt=""></div><div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.vision.title">Vision &amp; Values</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.vision.desc">Our purpose and guiding principles</span></div></a>',
-    '        <a class="nav-mob-sub-item" href="company-journey.html"><div class="nav-mob-sub-icon"><img src="assets/Company/our-journey-icon.svg" alt=""></div><div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.journey.title">Marco\'s Journey</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.journey.desc">The story behind Marco</span></div></a>',
+    '        <a class="nav-mob-sub-item" href="company-journey.html"><div class="nav-mob-sub-icon"><img src="assets/Company/our-journey-icon.svg" alt=""></div><div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.journey.title">Our Journey</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.journey.desc">The story behind Marco</span></div></a>',
     '        <a class="nav-mob-sub-item" href="company-entity-network.html"><div class="nav-mob-sub-icon"><img src="assets/Company/entity-network-icon.svg" alt=""></div><div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.entity.title">Entity Network</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.entity.desc">Global entities and operational service centers</span></div></a>',
     '        <a class="nav-mob-sub-item" href="company-organization.html"><div class="nav-mob-sub-icon"><img src="assets/Company/organization-icon.svg" alt=""></div><div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.org.title">Organization</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.org.desc">Leadership and structure</span></div></a>',
-    '        <a class="nav-mob-sub-item" href="company-contact-us.html"><div class="nav-mob-sub-icon"><img src="assets/Company/contact-us-icon.svg" alt=""></div><div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.contact.title">Contact Us</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.contact.desc">Get in touch with the Marco team</span></div></a>',
+    '        <a class="nav-mob-sub-item" href="company-contact-us.html"><div class="nav-mob-sub-icon"><img src="assets/Company/contact-us-icon.svg" alt=""></div><div class="nav-mob-sub-text"><span class="nav-mob-sub-title" data-i18n="nav.dd.contact.title">Contact us</span><span class="nav-mob-sub-desc" data-i18n="nav.dd.contact.desc">Get in touch with the Marco team</span></div></a>',
     '      </div>',
     '    </div>',
 
@@ -414,6 +414,28 @@
         d.setAttribute('aria-hidden', 'true');
       });
       if (mTrigger) mTrigger.classList.remove('is-open');
+    });
+
+    /* Auto-reposition dropdowns: align-left to tab, flip to align-right if overflow */
+    var DD_MARGIN = 32;
+    document.querySelectorAll('.nav-tab').forEach(function (tab) {
+      var dd = tab.querySelector('[class*="-dropdown"]');
+      if (!dd) return;
+      tab.addEventListener('mouseenter', function () {
+        dd.style.left = '0';
+        dd.style.right = 'auto';
+        var ddRect = dd.getBoundingClientRect();
+        var vw = window.innerWidth;
+        if (ddRect.right > vw - DD_MARGIN) {
+          dd.style.left = 'auto';
+          dd.style.right = '0';
+          var flippedRect = dd.getBoundingClientRect();
+          if (flippedRect.left < DD_MARGIN) {
+            dd.style.left = '0';
+            dd.style.right = 'auto';
+          }
+        }
+      });
     });
   });
 })();

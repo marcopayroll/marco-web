@@ -67,7 +67,7 @@ window.MARCO_LANG_EN_COMPANY = {
   'journey.os.title.pre':       'Marco OS',
   'journey.os.body':            'Marco OS is the single platform behind every service Marco delivers — handling payroll calculation, people management, expense processing, and global mobility in one connected system. It integrates with the tools businesses already use, feeds real-time workforce data back to the teams that need it, and keeps every country\'s compliance rules built in, so clients don\'t have to manage them separately.',
   'journey.os.btn1':            'Explore Marco OS',
-  'journey.os.btn2':            'Contact Us',
+  'journey.os.btn2':            'Contact us',
 
   'journey.next.label':         'WHAT COMES NEXT',
   'journey.next.title.pre':     'The next chapter of ',
@@ -80,7 +80,7 @@ window.MARCO_LANG_EN_COMPANY = {
   'journey.next.btn2':          'Our Values',
 
   /* ── Journey Timeline ── */
-  'journey.tl.label':           "Marco's Journey",
+  'journey.tl.label':           "Our Journey",
 
   'journey.tl.y2020.phase':     'LAUNCH',
   'journey.tl.y2020.b1':        'Founded in Beijing',
@@ -152,7 +152,7 @@ window.MARCO_LANG_EN_COMPANY = {
   'org.cta.title.pre':          'Join the team that is redefining global',
   'org.cta.title.em':           'work',
   'org.cta.body':               'We are always looking for people who bring genuine expertise, a global mindset, and the character to operate at the intersection of complex problems and real human impact.',
-  'org.cta.btn1':               'Contact Us',
+  'org.cta.btn1':               'Contact us',
   'org.cta.btn2':               'Our Values',
 
   /* ── Entity Network ── */
@@ -182,7 +182,7 @@ window.MARCO_LANG_EN_COMPANY = {
   'entity.cta.title.post':      'behind the infrastructure',
   'entity.cta.body':            'The entities and service centers are the operational foundation. The organization page introduces the teams that run them.',
   'entity.cta.btn1':            'Organization',
-  'entity.cta.btn2':            'Marco\'s Journey',
+  'entity.cta.btn2':            'Our Journey',
 
   /* ── Contact Us ── */
   'contact.hero.label':         'CONTACT US',

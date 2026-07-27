@@ -44,11 +44,11 @@ window.MARCO_LANG_CN_COMPANY = {
 	'vv.cta.title.line2':         '以谦逊的态度服务',
 	'vv.cta.title.line3':         '以自信的姿态前行',
 	'vv.cta.body':                '这三个价值观不是愿景式的表达，而是实际运营中的原则。当没有标准答案、没有先例、也没有容易的选择时，它们定义了 Marco 如何做决定。无论在哪个国家、使用哪种货币、进行哪一次对话，这都是 Marco 坚持的立场。',
-	'vv.cta.btn1':                '阅读 Marco 的发展历程',
+	'vv.cta.btn1':                '阅读我们的发展历程',
 	'vv.cta.btn2':                '认识团队',
 
 	/* ── Company Journey ── */
-	'journey.hero.label':         'MARCO 的发展历程',
+	'journey.hero.label':         '我们的发展历程',
 	'journey.hero.title.pre':     '​',
 	'journey.hero.title.em':      'Marco',
 	'journey.hero.title.post':    '是如何建立起来的',
@@ -80,7 +80,7 @@ window.MARCO_LANG_CN_COMPANY = {
 	'journey.next.btn2':          '我们的价值观',
 
 	/* ── Journey Timeline ── */
-	'journey.tl.label':           'Marco 的发展历程',
+	'journey.tl.label':           '我们的发展历程',
 
 	'journey.tl.y2020.phase':     '启航',
 	'journey.tl.y2020.b1':        '在北京正式成立',
@@ -182,7 +182,7 @@ window.MARCO_LANG_CN_COMPANY = {
 	'entity.cta.title.post':      '团队',
 	'entity.cta.body':            '实体和服务中心是 Marco 的运营基础。组织页面将介绍真正运行这些基础设施的团队。',
 	'entity.cta.btn1':            '组织架构',
-	'entity.cta.btn2':            'Marco 的发展历程',
+	'entity.cta.btn2':            '我们的发展历程',
 
 	/* ── Contact Us ── */
 	'contact.hero.label':         '联系我们',

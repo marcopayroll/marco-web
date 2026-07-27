@@ -112,6 +112,6 @@ window.MARCO_LANG_EN_HUB_LABOR_COST = {
   'lcc.cta.heading.dark': 'Numbers are a start.',
   'lcc.cta.heading.blue': 'Let\'s talk through the details.',
   'lcc.cta.body':         'Statutory rates only tell part of the story. Thresholds, bilateral agreements, visa classifications, and collective bargaining rules all affect your real cost. Our payroll specialists can walk you through an accurate, country-specific breakdown for your team.',
-  'lcc.cta.btn':          'Contact Us',
+  'lcc.cta.btn':          'Contact us',
 
 };
