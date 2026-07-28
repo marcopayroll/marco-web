@@ -144,13 +144,16 @@
     }
 
     /* Hero content — pushed below transparent nav */
-    .hero-content {
+    .hero-inner {
       position: relative;
       z-index: 1;
-      padding-top: 180px;
       width: calc(100% - 2 * var(--gutter));
+      max-width: 1224px;
+      margin-inline: auto;
+    }
+    .hero-content {
+      padding-top: 180px;
       max-width: 704px;
-      margin-left: var(--gutter);
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -614,17 +617,19 @@
   </div>
 
   <!-- Content -->
-  <div class="hero-content">
-    <div class="hero-label">
-      <div class="hero-label-line"></div>
-      <span data-i18n="vl.hero.label">VENDOR LIST</span>
-    </div>
-    <div class="hero-body">
-      <h1 class="hero-title">
-        <span class="hero-title-white" data-i18n="vl.hero.title.part1">Approved </span><span class="hero-title-blue" data-i18n="vl.hero.title.part2">Vendor</span>
-        <span class="hero-title-grey" data-i18n="vl.hero.title.part3">Directory</span>
-      </h1>
-      <p class="hero-subtitle" data-i18n="vl.hero.subtitle">Marco's curated network of approved partners across HRIS, banking, legal, technology, and benefits — each assessed for security, compliance, and global capability.</p>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-label">
+        <div class="hero-label-line"></div>
+        <span data-i18n="vl.hero.label">VENDOR LIST</span>
+      </div>
+      <div class="hero-body">
+        <h1 class="hero-title">
+          <span class="hero-title-white" data-i18n="vl.hero.title.part1">Approved </span><span class="hero-title-blue" data-i18n="vl.hero.title.part2">Vendor</span>
+          <span class="hero-title-grey" data-i18n="vl.hero.title.part3">Directory</span>
+        </h1>
+        <p class="hero-subtitle" data-i18n="vl.hero.subtitle">Marco's curated network of approved partners across HRIS, banking, legal, technology, and benefits — each assessed for security, compliance, and global capability.</p>
+      </div>
     </div>
   </div>
 </section>

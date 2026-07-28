@@ -597,6 +597,8 @@
     .explore-track { display: flex; gap: 40px; padding-left: max(var(--gutter), calc((100% - 1224px) / 2)); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
     .explore-card { flex: 0 0 340px; width: 340px; background: #fff; border-radius: 6px; box-shadow: 0 16px 16px rgba(12,12,13,0.1), 0 4px 2px rgba(12,12,13,0.05); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
     .explore-card:hover { transform: translateY(-4px); box-shadow: 0 20px 24px rgba(12,12,13,0.14), 0 8px 10px rgba(12,12,13,0.08); }
+    .explore-card[data-locked="true"] { filter: grayscale(100%); opacity: 0.6; pointer-events: none; cursor: default; }
+    .explore-card[data-locked="true"]:hover { transform: none; box-shadow: 0 16px 16px rgba(12,12,13,0.1), 0 4px 2px rgba(12,12,13,0.05); }
     .explore-card-thumb { width: 100%; height: 200px; flex-shrink: 0; overflow: hidden; background: #d4ccf5; }
     .explore-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .explore-card-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; height: 100px; flex-shrink: 0; box-sizing: border-box; }
@@ -663,10 +665,9 @@
     .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
     .au-table-wrap { overflow-x: auto; }
     .au-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-family: var(--font); }
-    .au-table th { background: #162351; color: #fff; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; padding: 10px 12px; vertical-align: middle; }
-    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); padding: 8px 12px; vertical-align: top; border-bottom: 1px solid #CDD5E0; }
-    .au-table tbody tr:nth-child(even) td { background: #F7F9FF; }
-    .au-table tbody tr:last-child td { border-bottom: none; }
+    .au-table th { background: #1D4783; color: #fff; font-size: 14px; font-weight: 700; line-height: 20px; text-align: left; padding: 8px 12px; vertical-align: middle; }
+    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: #475072; padding: 8px 12px; vertical-align: top; border-bottom: 0.5px solid #E7E7E7; }
+    .au-table tbody tr:nth-child(even) td { background: #ECF2FB; }
 
     /* ════════════════ GET STARTED ════════════════ */
     .gs-cta {
@@ -762,12 +763,12 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title" data-i18n="pg.country.canada">Canada</h1>
-        <p class="pg-hero-desc">Description to be added</p>
+        <p class="pg-hero-desc" data-i18n="pg.canada.desc">Complete operational guide to Canada payroll &mdash; covering CRA Business Number registration, CPP / CPP2 / EI contributions, federal and provincial income tax withholding, Quebec dual-filing (T4 + RL-1), WCB / WSIB workers&rsquo; compensation, and statutory leave entitlements under federal and provincial Employment Standards Acts.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.canada">1 January 2026</span></p>
+      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.canada">28 July 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
@@ -778,8 +779,369 @@
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;"><span data-i18n="pg.country.canada">Canada</span> <span data-i18n="pg.page.comingsoon">Payroll Guide content coming soon</span></p>
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-scope" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
+            <span class="toc-text" id="toc-text-scope" data-i18n="pg.canada.s1.h">Scope &amp; Application</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-setup" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
+            <span class="toc-text" id="toc-text-setup" data-i18n="pg.canada.s2.h">Payroll Set-up</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-calculation" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
+            <span class="toc-text" id="toc-text-calculation" data-i18n="pg.canada.s3.h">Payroll Calculation</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-processing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
+            <span class="toc-text" id="toc-text-processing" data-i18n="pg.canada.s4.h">Payroll Processing &amp; Compliance</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- ── Section 1: Scope & Application ── -->
+      <div class="article-block" id="section-scope">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.canada.s1.h">Scope &amp; Application</h2>
+        </div>
+        <div data-i18n-html="pg.canada.s1.b1">
+          <p class="au-table-title">This document applies to:</p>
+          <div class="au-bullet-list" style="margin-top:16px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Companies that have established a local legal entity in Canada (Federal Inc. / Provincial Inc. / Extra-Provincial Registration / Branch).</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Employees directly hired by the local entity, subject to the federal Canada Labour Code or provincial Employment Standards Act (13 provinces/territories + federal dual-track system).</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Payroll compliance based on the ITA (Income Tax Act), CPP Act, EI Act, and regulations from CRA / Service Canada / Provincial Ministries.</span>
+            </div>
+          </div>
+        </div>
+        <p class="article-p" data-i18n-html="pg.canada.s1.b2">This framework covers how companies complete Payroll Set-up in Canada (CRA Business Number + RP / RT / RC accounts + provincial registration + WCB / WSIB registration), monthly payroll calculation (federal + provincial income tax + CPP / CPP2 + EI + provincial QPP / QPIP / EHT, etc.), monthly/quarterly filing and remittance (PD7A remittance form), and annual compliance management (T4 form due early March, ROE separation registration).</p>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s1.b3">
+          <p class="au-table-title">2026 Key Numbers</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:65%"></colgroup>
+              <thead><tr><th>Item</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td>CPP Base Rate</td><td>5.95% &times; 2 (employee + employer; max $4,230.45)</td></tr>
+                <tr><td>CPP2 Enhanced Rate</td><td>4.0% &times; 2 ($74,600 &ndash; $85,000 range; max $416)</td></tr>
+                <tr><td>EI Employee Rate</td><td>1.63% (max $1,123.07; employer &times; 1.4)</td></tr>
+                <tr><td>YMPE Ceiling</td><td>CAD 74,600 (CPP first tier)</td></tr>
+                <tr><td>YAMPE Ceiling</td><td>CAD 85,000 (CPP second tier)</td></tr>
+                <tr><td>Federal Lowest Tax Rate</td><td>14% (2026 permanent reduction, previously 15%)</td></tr>
+                <tr><td>Basic Personal Amount</td><td>CAD 16,452 (2026 federal)</td></tr>
+                <tr><td>T4 Deadline</td><td>Mar 2 (2025 income year; following year 2/28 or 3/2)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-marco-insight" data-i18n-html="pg.canada.s1.b4">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three key characteristics of Canadian Payroll: (1) Federal + provincial dual-track system &mdash; federal tax is remitted through CRA as a one-stop process, but Quebec is the exception (QPP / QPIP / Quebec Income Tax must be filed separately with Revenu Qu&eacute;bec; employees receive both a T4 and an RL-1); (2) CPP has been a two-tier system since 2024 (CPP1 + CPP2): earnings exceeding YMPE $74,600 enter CPP2, with employer/employee each paying 4% up to YAMPE $85,000; (3) Workers&rsquo; compensation insurance (WCB / WSIB / CNESST) is entirely employer-funded, with industry risk classification rates ranging from 0.2% to 8%+, and must be registered separately by province.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 2: Payroll Set-up ── -->
+      <div class="article-block" id="section-setup">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.canada.s2.h">Payroll Set-up</h2>
+          <p class="au-section-sub" data-i18n="pg.canada.s2.sub">How to establish legal payroll capability in Canada</p>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s2.b1">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Entity, CRA Business Number &amp; Provincial Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:20%"><col style="width:16%"><col style="width:16%"><col style="width:48%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Company Registration (Federal/Provincial Inc.)</td><td>Canada local entity</td><td>Yes</td><td>Federal via Corporations Canada or provincial Corporate Registry</td></tr>
+                <tr><td>CRA Business Number (BN)</td><td>Canada local entity</td><td>Yes</td><td>9 digits + sub-account suffix; register online via BRO</td></tr>
+                <tr><td>RP Account (Payroll Account)</td><td>Canada local entity</td><td>Yes</td><td>For employee payroll withholding; must be opened before the first employee&rsquo;s start date</td></tr>
+                <tr><td>RT Account (GST/HST)</td><td>Canada local entity</td><td>Depends on revenue</td><td>Mandatory if annual revenue &gt; CAD 30,000</td></tr>
+                <tr><td>WCB / WSIB / CNESST</td><td>Canada local entity</td><td>Yes</td><td>By province; industry risk classification; employer-only contribution</td></tr>
+                <tr><td>Quebec Registration Number (NEQ)</td><td>Applicable if employing Quebec employees</td><td>Yes</td><td>Registraire des entreprises + RQ number</td></tr>
+                <tr><td>Written Employment Contract</td><td>Employer + Employee</td><td>Recommended</td><td>Not mandatory in most provinces, but highly recommended in practice</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s2.b2">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> CPP + CPP2 + EI + Provincial Premiums (2026)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:22%"><col style="width:22%"><col style="width:22%"><col style="width:34%"></colgroup>
+              <thead><tr><th>Item</th><th>Employee Contribution</th><th>Employer Contribution</th><th>Base / Ceiling</th></tr></thead>
+              <tbody>
+                <tr><td>CPP1 (Base)</td><td>5.95%</td><td>5.95%</td><td>$3,500 &ndash; $74,600; max $4,230.45/person</td></tr>
+                <tr><td>CPP2 (Enhanced)</td><td>4.0%</td><td>4.0%</td><td>$74,600 &ndash; $85,000; max $416/person</td></tr>
+                <tr><td>EI (Federal, Canada excluding Quebec)</td><td>1.63%</td><td>1.4 &times; employee rate</td><td>$0 &ndash; $68,900; employee max $1,123.07</td></tr>
+                <tr><td>QPP (Quebec, replaces CPP)</td><td>6.4%</td><td>6.4%</td><td>Quebec employees; includes 5.4% base + 1% enhanced</td></tr>
+                <tr><td>QPIP (Quebec Parental Insurance)</td><td>2026 reduced by approx. &ndash;8%</td><td>Employer &asymp; 1.4 &times; employee rate</td><td>Quebec only; MIE $98,000</td></tr>
+                <tr><td>EHT (Ontario)</td><td>&mdash;</td><td>&le; 1.95%</td><td>Employer-only contribution; applies when annual payroll &gt; $1M; threshold varies by province</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 3: Payroll Calculation ── -->
+      <div class="article-block" id="section-calculation">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.canada.s3.h">Payroll Calculation</h2>
+          <p class="au-section-sub" data-i18n="pg.canada.s3.sub">How salary, tax, and employee entitlements are calculated</p>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s3.b1">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Salary, Minimum Wage &amp; Vacation Pay</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule / 2026 Values</th></tr></thead>
+              <tbody>
+                <tr><td>Pay Cycle</td><td>Bi-weekly is the most common; Weekly / Semi-monthly / Monthly are also compliant</td></tr>
+                <tr><td>Minimum Wage</td><td>By province: BC $18.25 (effective 2026/6/1) / ON $17.95 (effective 2026/10/1) / QC $16.60 (effective 2026/5/1) / AB $15.00</td></tr>
+                <tr><td>Annual Leave Vacation Pay</td><td>&ge; 4% (2 weeks), increasing to 6% (3 weeks); incremental based on years of service</td></tr>
+                <tr><td>Overtime</td><td>Typically 1.5&times;; ON &gt; 44h / BC &gt; 40h / Federal &gt; 40h</td></tr>
+                <tr><td>Public Holiday Stat Holiday Pay</td><td>Calculated by provincial formula: ON = 4 weeks&rsquo; earnings &divide; 20; BC = earnings in prior 30 days &divide; working days</td></tr>
+                <tr><td>13th Month</td><td>Not statutory; at employer&rsquo;s discretion; performance bonuses are common rather than a guaranteed 13th month salary</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s3.b2">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Statutory Leave Entitlements</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:22%"><col style="width:38%"><col style="width:40%"></colgroup>
+              <thead><tr><th>Item</th><th>Duration / Period</th><th>Pay Ratio / Source</th></tr></thead>
+              <tbody>
+                <tr><td>Annual Leave Vacation</td><td>2&ndash;3 weeks/year (based on years of service)</td><td>100% / Employer; calculated at 4% / 6% of wages</td></tr>
+                <tr><td>Public Holidays</td><td>5 federal + 5&ndash;9 provincial days</td><td>100% / Employer; calculated by provincial formula</td></tr>
+                <tr><td>Sick Leave</td><td>&ge; 3 days (many provinces mandate 5&ndash;10 paid days)</td><td>100% / Employer; ON has 3 unpaid days + employer-defined policy</td></tr>
+                <tr><td>Maternity Leave</td><td>17&ndash;18 weeks</td><td>55% via EI, max $63,300 / 18-month option</td></tr>
+                <tr><td>Paternity Leave (QC)</td><td>5 weeks (QC RQAP)</td><td>70% / QPIP; federal EI parental leave sharing</td></tr>
+                <tr><td>Parental Leave</td><td>Standard 35w / Extended 61w</td><td>EI 55% (max) or 33% (extended)</td></tr>
+                <tr><td>Bereavement / Marriage / Voting Leave</td><td>3&ndash;5 days per occurrence</td><td>Some provinces; refer to provincial ESA for details</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s3.b3">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Federal Income Tax &mdash; 2026 Brackets</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:14%"><col style="width:56%"></colgroup>
+              <thead><tr><th>Annual Taxable Income (CAD)</th><th>Rate</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>&le; 58,523</td><td>14%</td><td>2026 permanent reduction (previously 15%)</td></tr>
+                <tr><td>58,523 &ndash; 117,045</td><td>20.5%</td><td>&mdash;</td></tr>
+                <tr><td>117,045 &ndash; 181,440</td><td>26%</td><td>&mdash;</td></tr>
+                <tr><td>181,440 &ndash; 258,482</td><td>29%</td><td>&mdash;</td></tr>
+                <tr><td>&gt; 258,482</td><td>33%</td><td>Highest bracket</td></tr>
+                <tr><td>Basic Personal Amount</td><td>CAD 16,452</td><td>Clawed back above $177,882</td></tr>
+                <tr><td>Provincial Tax</td><td>4% &ndash; 25.75%</td><td>By province; BC / ON / AB / QC each differ; employer withholds simultaneously</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="article-p" data-i18n-html="pg.canada.s3.b4">Federal + Provincial Tax Calculation Process: (1) Gross Pay minus RPP / RRSP / Union Dues / Childcare = Net Income; (2) Minus Basic Personal Amount = Taxable Income; (3) Apply federal 5-bracket progressive rates + provincial rates (e.g., BC 5.06% &ndash; 20.5%; ON 5.05% &ndash; 13.16%; AB flat 10% + progressive; QC 15% &ndash; 25.75%); (4) Apply tax credits for CPP / EI / charitable donations, etc. CRA publishes the T4127 Payroll Deductions Formulas and the TOD online calculator for reference.</p>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s3.b5">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> CPP, CPP2 &amp; EI &mdash; 2026 Operational Detail</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:30%"><col style="width:40%"></colgroup>
+              <thead><tr><th>Item</th><th>2026 Values</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>CPP YMPE / YAMPE</td><td>$74,600 / $85,000</td><td>Two-tier system; YAMPE is 14% higher than YMPE</td></tr>
+                <tr><td>CPP1 Employee + Employer</td><td>5.95% / 5.95%</td><td>Max $4,230.45/person/year</td></tr>
+                <tr><td>CPP2 Employee + Employer</td><td>4.00% / 4.00%</td><td>$74,600 &ndash; $85,000 range; max $416/person</td></tr>
+                <tr><td>EI Employee (excluding Quebec)</td><td>1.63%</td><td>Max $1,123.07; MIE = $68,900</td></tr>
+                <tr><td>EI Employer (excluding Quebec)</td><td>2.282% (1.4&times;)</td><td>Adjustable via industry EI premium reduction program</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-marco-insight" data-i18n-html="pg.canada.s3.b6">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three commonly underestimated details in Canadian Payroll: (1) Quebec is a &ldquo;dual-filing&rdquo; province &mdash; employees receive both a T4 and an RL-1; employers must remit to both CRA and Revenu Qu&eacute;bec; (2) CPP2 was introduced in 2024; annual salary exceeding $74,600 enters the second tier, with employee/employer each paying an additional 4%; (3) EHT (Employer Health Tax) exists in ON / QC / MB / BC / NL and is employer-only; in ON it applies at 1.95% when annual payroll exceeds $1M.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 4: Payroll Processing & Compliance ── -->
+      <div class="article-block" id="section-processing">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.canada.s4.h">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub" data-i18n="pg.canada.s4.sub">Monthly execution, filing and payment, and accounting treatment</p>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s4.b1">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Payroll Payment Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:22%"><col style="width:40%"><col style="width:38%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payment Frequency</td><td>Bi-weekly / Weekly most common</td><td>By provincial ESA; ON requires at least once per month</td></tr>
+                <tr><td>Payment Method + Currency</td><td>Direct deposit &middot; CAD</td><td>Cheque is compliant but rare; foreign currency requires employee written consent</td></tr>
+                <tr><td>Pay Stub</td><td>Mandatory</td><td>Must itemize gross pay, deduction details, net pay; YTD cumulative totals</td></tr>
+                <tr><td>Wage Deduction Limit</td><td>By province; typically &le; 30% of net pay</td><td>Requires employee written consent (unless statutory deduction)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s4.b2">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Monthly Remittance to CRA &amp; Revenu Qu&eacute;bec</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:18%"><col style="width:13%"><col style="width:13%"><col style="width:24%"><col style="width:32%"></colgroup>
+              <thead><tr><th>Filing Item</th><th>Responsible Party</th><th>Frequency</th><th>Deadline</th><th>Remittance Institution</th></tr></thead>
+              <tbody>
+                <tr><td>PD7A Federal Remittance</td><td>Employer</td><td>By payroll size</td><td>15th of following month / 25th of each month / quarterly</td><td>CRA (includes federal tax + CPP + EI)</td></tr>
+                <tr><td>TPZ-1015 Quebec Remittance</td><td>Employer</td><td>By payroll size</td><td>15th of following month / 25th of each month</td><td>Revenu Qu&eacute;bec (includes QC tax + QPP + QPIP)</td></tr>
+                <tr><td>ROE Record of Employment</td><td>Employer &rarr; ESDC</td><td>Within 5 days of separation</td><td>Online submission</td><td>Service Canada</td></tr>
+                <tr><td>WCB / WSIB / CNESST</td><td>Employer</td><td>Monthly / Quarterly</td><td>By province</td><td>BC WorkSafe / ON WSIB / QC CNESST</td></tr>
+                <tr><td>EHT (Provincial)</td><td>Employer</td><td>Monthly / Quarterly</td><td>By province</td><td>ON Ministry of Finance, etc.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s4.b3">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Journal Mapping Rules (ASPE / IFRS)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:45%"><col style="width:55%"></colgroup>
+              <thead><tr><th>Item</th><th>Account (ASPE / IFRS Standards)</th></tr></thead>
+              <tbody>
+                <tr><td>Salary + Bonus + Vacation Pay</td><td>Employee Benefits Expense / Wages</td></tr>
+                <tr><td>CPP / CPP2 / EI Employer Portion</td><td>Employer Contributions Expense</td></tr>
+                <tr><td>WCB / WSIB Premiums</td><td>Workers&rsquo; Compensation Expense</td></tr>
+                <tr><td>EHT (Employer Health Tax)</td><td>Payroll Taxes Expense</td></tr>
+                <tr><td>Federal + Provincial Tax Withheld</td><td>Liability &mdash; Government Remittances Payable</td></tr>
+                <tr><td>Net Salary Payable</td><td>Bank &mdash; RBC / TD / BMO / Scotia / CIBC</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s4.b4">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Annual Filings</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:22%"><col style="width:16%"><col style="width:22%"><col style="width:40%"></colgroup>
+              <thead><tr><th>Item</th><th>Responsible Party</th><th>Deadline</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>T4 + T4 Summary</td><td>Employer &rarr; CRA</td><td>February 28 of following year (2026: 3/2)</td><td>All employees&rsquo; annual income + deduction details</td></tr>
+                <tr><td>RL-1 (Quebec)</td><td>Employer &rarr; Revenu Qu&eacute;bec</td><td>Last business day of February of following year</td><td>Quebec employees&rsquo; provincial tax form</td></tr>
+                <tr><td>T4A (Other Income)</td><td>Employer &rarr; CRA</td><td>February 28 of following year</td><td>Non-employment income: allowances / self-employment / pensions</td></tr>
+                <tr><td>WCB / WSIB Annual Return</td><td>Employer</td><td>By province (typically March&ndash;April)</td><td>Annual actual payroll reconciliation</td></tr>
+                <tr><td>EHT Annual Return (Ontario)</td><td>Employer</td><td>March 15 of following year</td><td>Annual EHT net reconciliation</td></tr>
+                <tr><td>Corporate T2 Tax Return</td><td>Employer / Company</td><td>6 months after fiscal year-end</td><td>Federal Corporate Income Tax Return</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.canada.s4.b5">
+          <p class="au-table-title"><span class="au-table-num">v.</span> Termination &amp; Foreign Workers</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:22%"><col style="width:40%"><col style="width:38%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Notice Period</td><td>1&ndash;8 weeks based on years of service</td><td>Varies by provincial ESA; ON = 1 week/year, capped at 8 weeks</td></tr>
+                <tr><td>Severance Pay (ON)</td><td>1 week per year of service</td><td>Mandatory when annual payroll &gt; $2.5M or &ge; 50 employees</td></tr>
+                <tr><td>Unused Vacation Cash-out</td><td>Mandatory</td><td>Calculated based on accumulated unused vacation pay at 4% / 6%</td></tr>
+                <tr><td>ROE Record of Employment</td><td>Within 5 days of separation</td><td>Submit online to Service Canada; includes Reason Code</td></tr>
+                <tr><td>Final Pay Deadline</td><td>By provincial ESA</td><td>ON must pay on the regular pay date; BC requires immediate payment</td></tr>
+                <tr><td>Foreign Worker Visa</td><td>Work Permit (LMIA) / GTS</td><td>Open work permit / employer-specific; must renew before visa expiry</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-marco-insight" data-i18n-html="pg.canada.s4.b6">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three key changes to Canadian Payroll in 2026: (1) Federal lowest tax rate permanently reduced from 15% to 14%, BPA increased to $16,452, saving employees approximately $400&ndash;840 annually; (2) CPP YMPE increased to $74,600 / YAMPE $85,000, with CPP2 entering its third full year; (3) Quebec QPIP rate reduced by approximately &ndash;8%, but QPP remains unchanged &mdash; Quebec employers are advised to re-verify RL-1 withholding calculations.</p>
+        </div>
+      </div>
+
+    </div><!-- /.article-content -->
+
+    <!-- CTA Buttons -->
+    <div class="article-cta">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <!-- WeChat -->
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <!-- Download -->
+      <button class="cta-btn" id="payrollDownloadBtn" aria-label="Download" onclick="downloadPayrollGuidePDF(event)">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 21.5V23.5C24.5 23.7652 24.3946 24.0196 24.2071 24.2071C24.0196 24.3946 23.7652 24.5 23.5 24.5H16.5C16.2348 24.5 15.9804 24.3946 15.7929 24.2071C15.6054 24.0196 15.5 23.7652 15.5 23.5V21.5M22.5 19L20 21.5L17.5 19M20 21.5V15.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <!-- Copy Link -->
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <!-- Back to Top -->
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 15.5H15.5M20 24.5V17.5M23.5 21L20 17.5L16.5 21" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
   </div>
 </section>
 
@@ -992,10 +1354,14 @@
       return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     }
 
+    var UNLOCKED_COUNTRIES = ['Argentina', 'Australia', 'Brazil', 'Canada'];
+
     function buildCard(c) {
+      var isLocked = UNLOCKED_COUNTRIES.indexOf(c.name) === -1;
       var a = document.createElement('a');
       a.className = 'explore-card';
-      a.href = c.url || '#';
+      a.href = isLocked ? '#' : (c.url || '#');
+      if (isLocked) a.dataset.locked = 'true';
       var thumbHtml = c.img
         ? '<img src="' + c.img + '" alt="' + c.name + '" loading="lazy" />'
         : '';
@@ -1006,7 +1372,7 @@
             '<span class="explore-card-name">' + t('pg.country.' + countrySlug(c.name), c.name) + '</span>' +
             '<span class="explore-card-currency">' + c.currency + '</span>' +
           '</div>' +
-          '<span class="explore-card-date">' + t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + countrySlug(c.name), c.date || '1 January 2026') + '</span>' +
+          '<span class="explore-card-date">' + (isLocked ? 'Content Coming Soon' : t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + countrySlug(c.name), c.date || '1 January 2026')) + '</span>' +
         '</div>';
       return a;
     }

@@ -380,6 +380,16 @@
       transform: translateY(-4px);
       box-shadow: 0 20px 40px rgba(12,12,13,0.14), 0 4px 8px rgba(12,12,13,0.08);
     }
+    .cg-card[data-locked="true"] {
+      filter: grayscale(100%);
+      opacity: 0.6;
+      pointer-events: none;
+      cursor: default;
+    }
+    .cg-card[data-locked="true"]:hover {
+      transform: none;
+      box-shadow: 0 16px 16px rgba(12,12,13,0.10), 0 4px 2px rgba(12,12,13,0.05);
+    }
     .cg-card-thumb {
       width: 100%;
       height: 200px;
@@ -824,7 +834,7 @@
     // Americas
     { name: "Argentina",     currency: "ARS", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/argentina 2.jpg" , url: "hr-knowledge-hub-payroll-guide-argentina.html", date: "24 June 2026" },
     { name: "Brazil",        currency: "BRL", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/brazil.png" , url: "hr-knowledge-hub-payroll-guide-brazil.html", date: "27 July 2026" },
-    { name: "Canada",        currency: "CAD", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/canada.jpg" , url: "hr-knowledge-hub-payroll-guide-canada.html" },
+    { name: "Canada",        currency: "CAD", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/canada.jpg" , url: "hr-knowledge-hub-payroll-guide-canada.html", date: "28 July 2026" },
     { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/chile.png" , url: "hr-knowledge-hub-payroll-guide-chile.html" },
     { name: "Colombia",      currency: "COP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/colombia 1.png" , url: "hr-knowledge-hub-payroll-guide-colombia.html" },
     { name: "Mexico",        currency: "MXN", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/mexico.webp" , url: "hr-knowledge-hub-payroll-guide-mexico.html" },
@@ -839,7 +849,7 @@
     { name: "Hong Kong",     currency: "HKD", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/hong kong.jpg" , url: "hr-knowledge-hub-payroll-guide-hong-kong.html" },
     { name: "India",         currency: "INR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/india.png" , url: "hr-knowledge-hub-payroll-guide-india.html" },
     { name: "Indonesia",     currency: "IDR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/indonesia.webp" , url: "hr-knowledge-hub-payroll-guide-indonesia.html" },
-    { name: "Japan",         currency: "JPY", region: "Asia Pacific", img: "" , url: "hr-knowledge-hub-payroll-guide-japan.html" },
+    { name: "Japan",         currency: "JPY", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/japan.jpg" , url: "hr-knowledge-hub-payroll-guide-japan.html" },
     { name: "Malaysia",      currency: "MYR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/malaysia.webp" , url: "hr-knowledge-hub-payroll-guide-malaysia.html" },
     { name: "New Zealand",   currency: "NZD", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/new-zealand.jpg" , url: "hr-knowledge-hub-payroll-guide-new-zealand.html" },
     { name: "Pakistan",      currency: "PKR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/pakistan.png" , url: "hr-knowledge-hub-payroll-guide-pakistan.html" },
@@ -907,17 +917,24 @@
     return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   }
 
+  var UNLOCKED_COUNTRIES = ['Argentina', 'Australia', 'Brazil', 'Canada'];
+
   function buildCard(c) {
+    var isLocked = UNLOCKED_COUNTRIES.indexOf(c.name) === -1;
     var a = document.createElement('a');
-    a.href = c.url || '#';
+    a.href = isLocked ? '#' : (c.url || '#');
     a.className = 'cg-card';
     a.dataset.name = c.name.toLowerCase();
     a.dataset.region = c.region;
+    if (isLocked) a.dataset.locked = 'true';
     var thumbHtml = c.img
       ? '<img src="' + c.img + '" alt="' + c.name + '" loading="lazy" />'
       : '';
     var slug = countrySlug(c.name);
     var dateEn = c.date || (c.name === 'Australia' ? '22 June 2026' : '1 January 2026');
+    var dateText = isLocked
+      ? 'Content Coming Soon'
+      : t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + slug, dateEn);
     a.innerHTML =
       '<div class="cg-card-thumb">' + thumbHtml + '</div>' +
       '<div class="cg-card-body">' +
@@ -925,7 +942,7 @@
           '<span class="cg-card-name">' + t('pg.country.' + slug, c.name) + '</span>' +
           '<span class="cg-card-currency">' + c.currency + '</span>' +
         '</div>' +
-        '<span class="cg-card-date">' + t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + slug, dateEn) + '</span>' +
+        '<span class="cg-card-date">' + dateText + '</span>' +
       '</div>';
     return a;
   }
