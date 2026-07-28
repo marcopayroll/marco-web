@@ -89,7 +89,7 @@ window.MARCO_LANG_EN_SHARED = {
   /* ── Nav dropdown — Company ── */
   "nav.dd.vision.title": "Vision & Values",
   "nav.dd.vision.desc": "Our purpose and guiding principles",
-  "nav.dd.journey.title": "Our Journey",
+  "nav.dd.journey.title": "Marco's Journey",
   "nav.dd.journey.desc": "The story behind Marco",
   "nav.dd.entity.title": "Entity Network",
   "nav.dd.entity.desc": "Global entities and operational service centers",
@@ -159,7 +159,7 @@ window.MARCO_LANG_EN_SHARED = {
   "link.proposal": "Proposal Builder",
   "link.vv":     "Vision & Value",
   "link.vision": "Vision & Values",
-  "link.journey": "Our Journey",
+  "link.journey": "Marco's Journey",
   "link.en":     "Entity Network",
   "link.entity": "Entity Network",
   "link.org": "Organization",

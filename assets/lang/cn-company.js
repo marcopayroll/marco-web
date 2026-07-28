@@ -80,7 +80,7 @@ window.MARCO_LANG_CN_COMPANY = {
 	'journey.next.btn2':          '我们的价值观',
 
 	/* ── Journey Timeline ── */
-	'journey.tl.label':           '我们的发展历程',
+	'journey.tl.label':           'Marco 的发展历程',
 
 	'journey.tl.y2020.phase':     '启航',
 	'journey.tl.y2020.b1':        '在北京正式成立',

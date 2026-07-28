@@ -4,7 +4,7 @@
   <link rel="icon" type="image/png" href="assets/marco-favicon.png">
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Poland's Employee Capital Plan | Marco</title>
+  <title>Vietnam Payroll & Tax Update | Marco</title>
   <style>
     @import url('assets/fonts/euclid-circular-b.css');
 
@@ -96,7 +96,7 @@
     .hero {
       position: relative;
       height: 600px;
-      background: #E3DAFF;
+      background: #DAF3FF;
       overflow: hidden;
     }
     .hero-container {
@@ -174,7 +174,7 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: #3D577E;
+      background: #1D4783;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -218,7 +218,7 @@
     /* ════════════════════════════════════════
        MORE FROM MARCO
     ════════════════════════════════════════ */
-    .more-section { background: #E3DAFF; padding: 80px 0; overflow-x: clip; }
+    .more-section { background: #DAF3FF; padding: 80px 0; overflow-x: clip; }
     .more-header { display: flex; flex-direction: column; gap: 16px; }
     .more-eyebrow { display: flex; align-items: center; gap: 8px; }
     .more-eyebrow-line { width: 16px; height: 2px; background: var(--text-main); flex-shrink: 0; }
@@ -295,15 +295,11 @@
     .article-intro { display: flex; flex-direction: column; gap: 16px; }
     .article-intro p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
     .article-block { display: flex; flex-direction: column; gap: 24px; }
-    .article-h2 { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
+    .article-h2 { font-size: 20px; font-weight: 600; line-height: 26px; color: #1D4783; margin: 0; }
     .article-paras { display: flex; flex-direction: column; gap: 16px; }
     .article-p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
     .article-list-item { display: flex; flex-direction: column; gap: 4px; }
     .article-list-item .article-p { padding-left: 24px; }
-    .article-bullet-item { display: flex; gap: 8px; align-items: flex-start; }
-    .article-bullet-dot { width: 22px; height: 22px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .article-bullet-dot::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--blue-main); display: block; }
-    .article-link { color: var(--text-main); text-decoration: underline; font-size: 14px; line-height: 22px; font-weight: 400; }
     .article-list-title-row { display: flex; gap: 4px; align-items: flex-start; }
     .article-list-label { width: 20px; flex-shrink: 0; font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); }
     .article-list-title { flex: 1; font-size: 14px; font-weight: 600; line-height: 22px; color: var(--text-main); }
@@ -311,6 +307,78 @@
     .article-divider { height: 1px; background: #CDD5E0; }
     .article-footnotes { display: flex; flex-direction: column; gap: 16px; }
     .article-footnotes p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-secondary); margin: 0; }
+
+    /* Salary info boxes */
+    .salary-boxes { display: flex; gap: 16px; }
+    .salary-box { flex: 1; background: #F0F4FA; border-radius: 8px; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+    .salary-box-label { font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.5px; }
+    .salary-box-value { font-size: 20px; font-weight: 700; line-height: 26px; color: var(--text-main); }
+    .salary-box.highlight { background: #E4EFFF; }
+    .salary-box.highlight .salary-box-value { color: var(--blue-main); }
+
+    /* Tables */
+    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+    .compare-table th {
+      background: #E5E7EB;
+      color: #475072;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      padding: 8px 16px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    .compare-table th:first-child { border-top-left-radius: 6px; }
+    .compare-table th:last-child { border-top-right-radius: 6px; }
+    .compare-table td {
+      background: #FFFFFF;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+      color: #162351;
+      padding: 16px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .compare-table tr.row-alt td { background: #F6F6F6; }
+    .compare-table.table-dark th { background: #1D4783; color: #FFFFFF; }
+    .compare-table.table-dark tr.row-alt td { background: #ECF2FB; }
+    .compare-table td.val-highlight { color: var(--blue-main); font-weight: 600; }
+    .article-sub-h3 { font-size: 16px; font-weight: 500; line-height: 20px; color: #475072; margin: 0; }
+
+    /* Callout box */
+    .article-callout {
+      background: #E4EFFF;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-callout-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      color: var(--blue-main);
+      margin: 0;
+    }
+    .article-callout p:not(.article-callout-title) {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #8F98B5;
+      margin: 0;
+    }
+    .article-callout p.article-callout-line { font-size: 14px; font-weight: 400; line-height: 20px; color: #475072; margin: 0; }
+    .article-callout-line strong { font-weight: 700; color: #019DE7; }
+    .article-callout p.article-callout-summary { font-size: 14px; font-weight: 400; line-height: 20px; color: #162351; margin: 0; }
+    .article-callout-summary strong { font-weight: 700; }
+    .article-callout.callout-summary { gap: 16px; }
+
+    /* Bullet list */
+    .article-bullet-list { display: flex; flex-direction: column; gap: 16px; padding-left: 0; list-style: none; }
+    .article-bullet-item { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); }
+    .article-bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue-main); flex-shrink: 0; margin-top: 8px; }
 
     /* CTA buttons */
     .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 130px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
@@ -326,7 +394,7 @@
     .cta-back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .cta-back-to-top.visible { opacity: 1; pointer-events: auto; }
 
-  
+
     /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
@@ -404,7 +472,7 @@
       .footer-bottom { font-size: 12px; line-height: 16px; }
       .footer-legal { gap: 24px; }
     }
-  
+
     /* ════════════════════════════════════════
        MOBILE FOOTER (≤440px)
     ════════════════════════════════════════ */
@@ -453,19 +521,19 @@
         <span>MEMO</span>
       </a>
       <div>
-        <h1 class="hero-title">Poland's Employee Capital Plan</h1>
+        <h1 class="hero-title">Vietnam Payroll &amp; Tax Update</h1>
       </div>
-      <p class="hero-desc">Poland's Employee Capital Plan helps employees save for retirement through employee, employer, and state contributions. Learn how PPK enrolment, opt-outs, contributions, and withdrawals work.</p>
+      <p class="hero-desc">Key changes to Vietnam's statutory base salary and PIT filing requirements effective from mid-2026, including updated social insurance contribution caps and the shift from monthly to quarterly tax declarations.</p>
     </div>
 
     <!-- Author row -->
     <div class="hero-meta">
     <div class="hero-divider"></div>
     <div class="hero-author">
-      <div class="hero-author-avatar">M</div>
+      <div class="hero-author-avatar">JL</div>
       <div class="hero-author-info">
         <span class="hero-author-label">AUTHOR</span>
-        <span class="hero-author-name">Marta</span>
+        <span class="hero-author-name">Janice Liew</span>
       </div>
     </div>
   </div>
@@ -473,7 +541,7 @@
 
   <!-- Thumbnail image -->
   <div class="hero-image">
-    <img src="assets/HR Knowledge Hub/Memo/images/stock-10.png" alt="Poland's Employee Capital Plan" />
+    <img src="assets/HR Knowledge Hub/Memo/images/vietnam-1.jpg" alt="Vietnam Payroll &amp; Tax Update" />
   </div>
 </section>
 
@@ -486,39 +554,24 @@
       <div class="toc-card">
         <p class="toc-title">Table of Contents</p>
         <div class="toc-list">
-          <a href="#section-what" class="toc-item">
-            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-what"></div></div>
-            <span class="toc-text" id="toc-text-what">PPK – What is it?</span>
+          <a href="#section-introduction" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot toc-active" id="toc-dot-introduction"></div></div>
+            <span class="toc-text toc-active" id="toc-text-introduction">Introduction</span>
           </a>
           <div class="toc-divider-line"></div>
-          <a href="#section-resignation" class="toc-item">
-            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-resignation"></div></div>
-            <span class="toc-text" id="toc-text-resignation">Resignation from PPK – how to resign?</span>
+          <a href="#section-salary-increase" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-salary-increase"></div></div>
+            <span class="toc-text" id="toc-text-salary-increase">Statutory Base Salary Increase</span>
           </a>
           <div class="toc-divider-line"></div>
-          <a href="#section-contributions" class="toc-item">
-            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-contributions"></div></div>
-            <span class="toc-text" id="toc-text-contributions">PPK contributions</span>
+          <a href="#section-pit-filing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-pit-filing"></div></div>
+            <span class="toc-text" id="toc-text-pit-filing">PIT Filing: Monthly to Quarterly</span>
           </a>
           <div class="toc-divider-line"></div>
-          <a href="#section-management" class="toc-item">
-            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-management"></div></div>
-            <span class="toc-text" id="toc-text-management">PPK management agreement</span>
-          </a>
-          <div class="toc-divider-line"></div>
-          <a href="#section-exempt" class="toc-item">
-            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-exempt"></div></div>
-            <span class="toc-text" id="toc-text-exempt">Which entities are exempt from the PPK program?</span>
-          </a>
-          <div class="toc-divider-line"></div>
-          <a href="#section-early-withdrawal" class="toc-item">
-            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-early-withdrawal"></div></div>
-            <span class="toc-text" id="toc-text-early-withdrawal">Early withdrawal of funds from PPK</span>
-          </a>
-          <div class="toc-divider-line"></div>
-          <a href="#section-withdrawal-60" class="toc-item">
-            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-withdrawal-60"></div></div>
-            <span class="toc-text" id="toc-text-withdrawal-60">Withdrawal of money after the age of 60</span>
+          <a href="#section-summary" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-summary"></div></div>
+            <span class="toc-text" id="toc-text-summary">Summary</span>
           </a>
         </div>
       </div>
@@ -527,112 +580,178 @@
     <!-- Article Content -->
     <div class="article-content">
 
-      <!-- Section 1 -->
-      <div class="article-block" id="section-what">
-        <h2 class="article-h2">PPK – What is it?</h2>
+      <!-- Introduction -->
+      <div class="article-block" id="section-introduction">
+        <h2 class="article-h2">Introduction</h2>
         <div class="article-paras">
-          <p class="article-p">Employee Capital Plans (PPK), is a program intended to allow staff to save money for the future. This is a so-called additional pension fund, where staff who reach the age of 60 will have better financial security. This is a way to save money, which constitutes staff member's private capital. The operation of PPK consists of accumulating funds in a staff member's dedicated account, which can then be withdrawn after reaching the age of 60. If staff don't reach the age of 60, the money is inherited by statute or by testamentary inheritance and transferred to the individuals' relatives.</p>
+          <p class="article-p">The Vietnamese Government and Ministry of Finance have issued the following updates affecting payroll and tax compliance in Vietnam.</p>
         </div>
       </div>
 
-      <!-- Section 2 -->
-      <div class="article-block" id="section-resignation">
-        <h2 class="article-h2">Resignation from PPK – how to resign?</h2>
+      <!-- Statutory Base Salary Increase -->
+      <div class="article-block" id="section-salary-increase">
+        <h2 class="article-h2">Statutory Base Salary Increase</h2>
         <div class="article-paras">
-          <p class="article-p">Each staff member under 55 years old, is automatically enrolled in the program. However, there is an option to opt out by making a written declaration. Nevertheless, participation in the program is renewed every 4 years. This means that every 4 years, staff must submit a declaration of resignation and the employer is obliged to inform staff about the possibility of participating in PPK every 4 years. The employer who receives a declaration of resignation from the participant, is obliged to inform the financial institution about the resignation within 7 days.</p>
-          <a href="https://www.mojeppk.pl/pliki/repozytorium-plikow/materialy-do-pobrania/pdf/Deklaracja_o_rezygnacji_z_dokonywania_wplat_do_ppk_EN.pdf" class="article-link" target="_blank" rel="noopener noreferrer">Sample declaration of resignation from PPK</a>
+          <div class="salary-boxes">
+            <div class="salary-box">
+              <span class="salary-box-label">Previous</span>
+              <span class="salary-box-value">VND 2,340,000</span>
+            </div>
+            <div class="salary-box highlight">
+              <span class="salary-box-label">New</span>
+              <span class="salary-box-value">VND 2,530,000</span>
+            </div>
+            <div class="salary-box">
+              <span class="salary-box-label">Effective</span>
+              <span class="salary-box-value">1 Jul 2026</span>
+            </div>
+          </div>
+
+          <p class="article-p"><strong>Legal basis:</strong> Decree No. 161/2026/ND-CP, issued 15 May 2026. The base salary is also the reference used to calculate maximum Social Insurance and Health Insurance contribution caps.</p>
+
+          <p class="article-p">The maximum monthly salary cap for Social Insurance (SI), Health Insurance (HI), and Trade Union (TU) contributions – covering both employer (ER) and employee (EE) portions – will be revised as follows:</p>
+
+          <p class="article-sub-h3">Before 1 July 2026</p>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Capped Salary</th>
+                <th>ER Portion</th>
+                <th>EE Portion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Social Insurance</td>
+                <td>VND 46,800,000</td>
+                <td>8,190,000</td>
+                <td>3,744,000</td>
+              </tr>
+              <tr class="row-alt">
+                <td>Health Insurance</td>
+                <td>VND 46,800,000</td>
+                <td>1,404,000</td>
+                <td>702,000</td>
+              </tr>
+              <tr>
+                <td>Trade Union</td>
+                <td>VND 46,800,000</td>
+                <td>936,000</td>
+                <td>234,000</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="article-sub-h3" style="color: #162351;">From 1 July 2026 Onwards</p>
+          <table class="compare-table table-dark">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Capped Salary</th>
+                <th>ER Portion</th>
+                <th>EE Portion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Social Insurance</td>
+                <td>VND 50,600,000</td>
+                <td class="val-highlight">8,855,000</td>
+                <td class="val-highlight">4,048,000</td>
+              </tr>
+              <tr class="row-alt">
+                <td>Health Insurance</td>
+                <td>VND 50,600,000</td>
+                <td class="val-highlight">1,518,000</td>
+                <td class="val-highlight">759,000</td>
+              </tr>
+              <tr>
+                <td>Trade Union</td>
+                <td>VND 50,600,000</td>
+                <td class="val-highlight">1,012,000</td>
+                <td class="val-highlight">253,000</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="article-p">Note: SI and HI contributions are capped at 20 times the base salary. Employee trade union dues are capped at 10% of the statutory base salary.</p>
         </div>
       </div>
 
-      <!-- Section 3 -->
-      <div class="article-block" id="section-contributions">
-        <h2 class="article-h2">PPK contributions</h2>
+      <!-- PIT Filing: Monthly to Quarterly -->
+      <div class="article-block" id="section-pit-filing">
+        <h2 class="article-h2">PIT Filing: Monthly to Quarterly</h2>
         <div class="article-paras">
-          <p class="article-p">Staff:</p>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">Basic amount – 2% of salary</p>
+          <p class="article-p">Monthly PIT declarations on salary and wage income have been abolished and replaced with quarterly filing.</p>
+
+          <p class="article-p">The maximum monthly salary cap for Social Insurance (SI), Health Insurance (HI), and Trade Union (TU) contributions – covering both employer (ER) and employee (EE) portions – will be revised as follows:</p>
+
+          <div class="article-callout">
+            <p class="article-callout-line"><strong>Legal basis:</strong> Resolution 66.16/2026/NQ-CP (7 April 2026) and Ministry of Finance Decision No. 1109/QD-CT</p>
+            <p class="article-callout-line"><strong>Effective date:</strong> 8 May 2026</p>
+            <p class="article-callout-line"><strong>New deadline:</strong> Last day of the first month following the relevant quarter</p>
           </div>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">Optional: additional – an amount not exceeding 2%</p>
-          </div>
-          <p class="article-p">Employer:</p>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">Basic amount – 1.5% of employee's salary</p>
-          </div>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">Optional: additional – 2.5%</p>
-          </div>
-          <p class="article-p">Country</p>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">Welcome fee – PLN 250, if staff are using the program for at least 3 full calendar months. The employer receives the welcome fee after the end of the quarter in the staff member's PPK account within 30 days. The welcome fee applies to each person once.</p>
-          </div>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">Annual surcharge – PLN 240. The condition of payment to the PPK account must be at least 3.5%, 6 times the minimum wage applicable in the year which the payment is due. The annual subsidy appears on the participant's account by April 15 of the following year, after the year it is granted.</p>
+
+          <p class="article-p">April, May, and June 2026 filings are consolidated into the Q2 2026 quarterly return.</p>
+
+          <p class="article-sub-h3">For Returns Where April 2026 Was Already Filed</p>
+
+          <p class="article-p">For taxpayers whose April 2026 monthly tax return has already been accepted by the tax authority:</p>
+
+          <div class="article-bullet-list">
+            <div class="article-bullet-item">
+              <div class="article-bullet-dot"></div>
+              <span>When filing the Quarter 2/2026 return, report only the tax obligations arising in May and June 2026.</span>
+            </div>
+            <div class="article-bullet-item">
+              <div class="article-bullet-dot"></div>
+              <span>Do not include amounts already reported for April 2026, to avoid duplicate tax liabilities.</span>
+            </div>
+            <div class="article-bullet-item">
+              <div class="article-bullet-dot"></div>
+              <span>If errors are discovered in the April 2026 monthly return, submit an amended April 2026 return in accordance with applicable regulations.</span>
+            </div>
+            <div class="article-bullet-item">
+              <div class="article-bullet-dot"></div>
+              <span>Any PIT payable for April 2026 (if applicable) must be paid by the due date for the Quarter 2/2026 return – 31 July 2026.</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Section 4 -->
-      <div class="article-block" id="section-management">
-        <h2 class="article-h2">PPK management agreement</h2>
+      <!-- Summary -->
+      <div class="article-block" id="section-summary">
+        <h2 class="article-h2">Summary</h2>
         <div class="article-paras">
-          <p class="article-p">The company concludes a PPK contract with one of the financial institutions.</p>
-          <a href="https://www.mojeppk.pl/lista-instytucji-finansowych.html" class="article-link" target="_blank" rel="noopener noreferrer">List of financial institutions</a>
+          <div class="article-callout callout-summary">
+            <p class="article-callout-summary"><strong>Base salary</strong> rises to VND 2,530,000 from <strong>1 July 2026</strong>, increasing the Social Insurance (SI), Health Insurance (HI) and Trade Union (TU) contribution caps for all employers.</p>
+            <p class="article-callout-summary"><strong>PIT filing</strong> moves from monthly to quarterly from <strong>8 May 2026</strong>. April 2026 obligations are reported within the Q2 2026 return, with payment due by <strong>31 July 2026</strong>.</p>
+          </div>
+
+          <table class="compare-table table-dark">
+            <thead>
+              <tr>
+                <th>Change</th>
+                <th>Effective Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Base salary → VND 2,530,000</td>
+                <td>1 July 2026</td>
+              </tr>
+              <tr class="row-alt">
+                <td>PIT filing: monthly → quarterly</td>
+                <td>8 May 2026</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="article-p">Our team remains available should you have any questions.</p>
         </div>
       </div>
 
-      <!-- Section 5 -->
-      <div class="article-block" id="section-exempt">
-        <h2 class="article-h2">Which entities are exempt from the PPK program?</h2>
-        <div class="article-paras">
-          <p class="article-p">Micro-entrepreneurs:</p>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">The entrepreneur employs on average of fewer than 10 staff per year</p>
-          </div>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">The annual net turnover from the sale of goods and services of the enterprise does not exceed the PLN equivalent of EUR 2 million. Alternatively, the total assets of the balance sheet prepared at the end of one of these years, does not exceed the PLN equivalent of EUR 2 million.</p>
-          </div>
-          <p class="article-p">However, despite meeting the above criteria, the most important condition for exemption from the introduction of PPK in a company, is the resignation from the program of all staff employed in a given organisation. Therefore, if even one of the company's staff wants to participate in the PPK program, the employer will be obliged to implement the program in the employing entity.</p>
-          <p class="article-p">Natural persons not conducting business activity</p>
-          <p class="article-p">Self-employed people, uniformed services, and farmers</p>
-        </div>
-      </div>
-
-      <!-- Section 6 -->
-      <div class="article-block" id="section-early-withdrawal">
-        <h2 class="article-h2">Early withdrawal of funds from PPK</h2>
-        <div class="article-paras">
-          <p class="article-p">If you decide to withdraw money from PPK without giving a reason, the amount of savings accumulated in the PPK account will be reduced by the money paid by the state (welcome fee and annual subsidies). This is 30% of the amounts paid by the employer and capital gains tax on the remaining funds from the employer's contributions, and own contributions. In such circumstances, you can only withdraw all the funds in your account (not part of them).</p>
-          <p class="article-p">In special circumstances, you can withdraw funds without any deductions, even if you are under 60 years old. In case of serious illness (including spouse or child), you can withdraw up to 25% of your savings from your account.</p>
-          <p class="article-p">You can also withdraw all the money in your account for housing purposes, to cover contributions to take out a mortgage. Importantly, payment for housing purposes without any deductions can only be made by program participants who are under 45 years old. This must be on the date of submitting the application for payment of funds and it is treated as a type of loan that must be repaid. According to the provisions of the PPK Act, the repayment should start no later than 5 years from the date of payment, and the participant has 15 years to repay the entire "borrowed" amount.</p>
-        </div>
-      </div>
-
-      <!-- Section 7 -->
-      <div class="article-block" id="section-withdrawal-60">
-        <h2 class="article-h2">Withdrawal of money after the age of 60</h2>
-        <div class="article-paras">
-          <p class="article-p">Payment of funds after staff turns 60, takes place by default in the following way:</p>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">Staff receives 25% of the value of the accumulated funds in the form of a one-time payment</p>
-          </div>
-          <div class="article-bullet-item">
-            <div class="article-bullet-dot"></div>
-            <p class="article-p">Staff receive 75% of the accumulated funds in the form of installments (at least PLN 120).</p>
-          </div>
-          <p class="article-p">It is also possible to pay the entire amount in 120 installments.</p>
-          <p class="article-p">Either of these options allows you to avoid paying 19% capital gains tax.</p>
-        </div>
-      </div>
     </div>
 
     <!-- CTA Buttons -->
@@ -702,17 +821,6 @@
   <div class="more-viewport" id="moreViewport">
       <div class="more-track" id="moreTrack">
         <div class="more-card">
-          <a href="hr-knowledge-hub-memo-vietnam-payroll-tax-update.html" class="more-card-overlay" aria-label="Vietnam Payroll &amp; Tax Update"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/vietnam-1.jpg" alt="Vietnam Payroll &amp; Tax Update" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">3 min read</span>
-              <p class="more-card-title">Vietnam Payroll &amp; Tax Update</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-vietnam-payroll-tax-update.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-        <div class="more-card">
           <a href="hr-knowledge-hub-memo-malaysia-lindung-opt-out.html" class="more-card-overlay" aria-label="Malaysia - How to Opt Out of LINDUNG 24 JAM"></a>
           <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/malaysia-2.jpg" alt="Malaysia - How to Opt Out of LINDUNG 24 JAM" /></div>
           <div class="more-card-body">
@@ -734,13 +842,12 @@
             <a href="hr-knowledge-hub-memo-malaysia-lindung-update.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
         </div>
-
         <div class="more-card">
           <a href="hr-knowledge-hub-memo-payroll-fraud.html" class="more-card-overlay" aria-label="Payroll Fraud: A Global Threat"></a>
           <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-5.webp" alt="Payroll Fraud: A Global Threat" /></div>
           <div class="more-card-body">
             <div class="more-card-meta">
-              <span class="more-card-read-time">4 min read</span>
+              <span class="more-card-read-time">3 min read</span>
               <p class="more-card-title">Payroll Fraud: A Global Threat</p>
             </div>
             <a href="hr-knowledge-hub-memo-payroll-fraud.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -756,6 +863,18 @@
               <p class="more-card-title">Over $3.1m awarded to finance veteran for wrongful dismissal</p>
             </div>
             <a href="hr-knowledge-hub-memo-wrongful-dismissal.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <a href="hr-knowledge-hub-memo-poland-employee-capital-plan.html" class="more-card-overlay" aria-label="Poland's Employee Capital Plan"></a>
+          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-10.png" alt="Poland's Employee Capital Plan" /></div>
+          <div class="more-card-body">
+            <div class="more-card-meta">
+              <span class="more-card-read-time">4 min read</span>
+              <p class="more-card-title">Poland's Employee Capital Plan</p>
+            </div>
+            <a href="hr-knowledge-hub-memo-poland-employee-capital-plan.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           </div>
         </div>
 
@@ -900,13 +1019,10 @@
   });
 
   var tocSections = [
-    { id: 'section-what', key: 'what' },
-    { id: 'section-resignation', key: 'resignation' },
-    { id: 'section-contributions', key: 'contributions' },
-    { id: 'section-management', key: 'management' },
-    { id: 'section-exempt', key: 'exempt' },
-    { id: 'section-early-withdrawal', key: 'early-withdrawal' },
-    { id: 'section-withdrawal-60', key: 'withdrawal-60' }
+    { id: 'section-introduction', key: 'introduction' },
+    { id: 'section-salary-increase', key: 'salary-increase' },
+    { id: 'section-pit-filing', key: 'pit-filing' },
+    { id: 'section-summary', key: 'summary' }
   ];
 
   function updateToc() {
@@ -969,9 +1085,9 @@
     var CARDS_PER_PAGE = 3;
     var CARD_WIDTH = 380;
     var GAP = 40;
-    var PAGE_SCROLL = CARD_WIDTH + GAP; // 420px per click (1 card)
+    var PAGE_SCROLL = CARD_WIDTH + GAP;
     var TOTAL_CARDS = 15;
-    var NUM_PAGES = TOTAL_CARDS - CARDS_PER_PAGE + 1; // 10 positions
+    var NUM_PAGES = TOTAL_CARDS - CARDS_PER_PAGE + 1;
     var currentPage = 0;
 
     var track = document.getElementById('moreTrack');
@@ -1010,7 +1126,6 @@
       if (currentPage < NUM_PAGES - 1) { currentPage++; updateMore(); }
     });
 
-    // Block horizontal trackpad/wheel scroll on the viewport
     viewport.addEventListener('wheel', function(e) {
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault();
     }, { passive: false });

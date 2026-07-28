@@ -80,7 +80,7 @@ window.MARCO_LANG_EN_COMPANY = {
   'journey.next.btn2':          'Our Values',
 
   /* ── Journey Timeline ── */
-  'journey.tl.label':           "Our Journey",
+  'journey.tl.label':           "Marco's Journey",
 
   'journey.tl.y2020.phase':     'LAUNCH',
   'journey.tl.y2020.b1':        'Founded in Beijing',
@@ -182,7 +182,7 @@ window.MARCO_LANG_EN_COMPANY = {
   'entity.cta.title.post':      'behind the infrastructure',
   'entity.cta.body':            'The entities and service centers are the operational foundation. The organization page introduces the teams that run them.',
   'entity.cta.btn1':            'Organization',
-  'entity.cta.btn2':            'Our Journey',
+  'entity.cta.btn2':            'Marco\'s Journey',
 
   /* ── Contact Us ── */
   'contact.hero.label':         'CONTACT US',

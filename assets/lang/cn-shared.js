@@ -89,7 +89,7 @@ window.MARCO_LANG_CN_SHARED = {
   /* ── Nav dropdown — Company ── */
   "nav.dd.vision.title": "愿景与价值观",
   "nav.dd.vision.desc": "了解我们的使命与核心原则",
-  "nav.dd.journey.title": "我们的发展历程",
+  "nav.dd.journey.title": "Marco 的发展历程",
   "nav.dd.journey.desc": "了解 Marco 背后的成长故事",
   "nav.dd.entity.title": "实体网络",
   "nav.dd.entity.desc": "全球实体与运营服务中心布局",
@@ -161,7 +161,7 @@ window.MARCO_LANG_CN_SHARED = {
   "link.proposal": "方案生成器",
   "link.vv":     "愿景与价值观",
   "link.vision": "愿景与价值观",
-  "link.journey": "我们的发展历程",
+  "link.journey": "Marco 的发展历程",
   "link.en":     "实体网络",
   "link.entity": "实体网络",
   "link.org": "组织架构",
