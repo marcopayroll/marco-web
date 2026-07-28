@@ -835,7 +835,7 @@
     { name: "Argentina",     currency: "ARS", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/argentina 2.jpg" , url: "hr-knowledge-hub-payroll-guide-argentina.html", date: "24 June 2026" },
     { name: "Brazil",        currency: "BRL", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/brazil.png" , url: "hr-knowledge-hub-payroll-guide-brazil.html", date: "27 July 2026" },
     { name: "Canada",        currency: "CAD", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/canada.jpg" , url: "hr-knowledge-hub-payroll-guide-canada.html", date: "28 July 2026" },
-    { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/chile.png" , url: "hr-knowledge-hub-payroll-guide-chile.html" },
+    { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/chile.png" , url: "hr-knowledge-hub-payroll-guide-chile.html", date: "28 July 2026" },
     { name: "Colombia",      currency: "COP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/colombia 1.png" , url: "hr-knowledge-hub-payroll-guide-colombia.html" },
     { name: "Mexico",        currency: "MXN", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/mexico.webp" , url: "hr-knowledge-hub-payroll-guide-mexico.html" },
     { name: "Peru",          currency: "PEN", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/peru.jpg" , url: "hr-knowledge-hub-payroll-guide-peru.html" },
@@ -917,7 +917,7 @@
     return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   }
 
-  var UNLOCKED_COUNTRIES = ['Argentina', 'Australia', 'Brazil', 'Canada'];
+  var UNLOCKED_COUNTRIES = ['Argentina', 'Australia', 'Brazil', 'Canada', 'Chile'];
 
   function buildCard(c) {
     var isLocked = UNLOCKED_COUNTRIES.indexOf(c.name) === -1;

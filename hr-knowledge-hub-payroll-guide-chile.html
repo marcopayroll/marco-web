@@ -665,10 +665,13 @@
     .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
     .au-table-wrap { overflow-x: auto; }
     .au-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-family: var(--font); }
-    .au-table th { background: #162351; color: #fff; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; padding: 10px 12px; vertical-align: middle; }
-    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); padding: 8px 12px; vertical-align: top; border-bottom: 1px solid #CDD5E0; }
-    .au-table tbody tr:nth-child(even) td { background: #F7F9FF; }
+    .au-table th { background: #1D4783; color: #fff; font-size: 14px; font-weight: 700; line-height: 20px; text-align: left; padding: 8px 12px; vertical-align: middle; }
+    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: #475072; padding: 8px 12px; vertical-align: top; border-bottom: 0.5px solid #E7E7E7; }
+    .au-table tbody tr:nth-child(even) td { background: #ECF2FB; }
     .au-table tbody tr:last-child td { border-bottom: none; }
+    .au-table-subtitle { font-size: 14px; font-weight: 500; line-height: 22px; color: var(--text-secondary); margin: 0; }
+    .au-note-box { font-size: 13px; font-weight: 400; line-height: 20px; color: var(--text-secondary); background: #F7F9FF; border: 1px solid #CDD5E0; border-radius: 4px; padding: 10px 12px; margin: 0; }
+    .au-bold-label { font-size: 14px; font-weight: 600; line-height: 22px; color: var(--text-main); margin: 0; }
 
     /* ════════════════ GET STARTED ════════════════ */
     .gs-cta {
@@ -764,12 +767,12 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title" data-i18n="pg.country.chile">Chile</h1>
-        <p class="pg-hero-desc">Description to be added</p>
+        <p class="pg-hero-desc" data-i18n="pg.chile.desc">Complete operational guide to Chile payroll &mdash; covering RUT tax registration, Previred social security submissions (AFP pensions / Fonasa-Isapre health / AFC unemployment), UF and UTM inflation-adjusted salary ceilings, monthly income tax withholding (Impuesto Único), Gratificación statutory profit-sharing, and termination settlements (Finiquito) under the Labour Code.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.chile">1 January 2026</span></p>
+      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.chile">28 July 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
@@ -780,8 +783,432 @@
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;"><span data-i18n="pg.country.chile">Chile</span> <span data-i18n="pg.page.comingsoon">Payroll Guide content coming soon</span></p>
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-scope" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
+            <span class="toc-text" id="toc-text-scope" data-i18n="pg.chile.s1.h">Scope &amp; Application</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-setup" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
+            <span class="toc-text" id="toc-text-setup" data-i18n="pg.chile.s2.h">Payroll Set-up</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-calculation" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
+            <span class="toc-text" id="toc-text-calculation" data-i18n="pg.chile.s3.h">Payroll Calculation</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-processing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
+            <span class="toc-text" id="toc-text-processing" data-i18n="pg.chile.s4.h">Payroll Processing &amp; Compliance</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- ── Section 1: Scope & Application ── -->
+      <div class="article-block" id="section-scope">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.chile.s1.h">Scope &amp; Application</h2>
+        </div>
+        <div data-i18n-html="pg.chile.s1.b1">
+          <p class="au-table-title">This document applies to:</p>
+          <div class="au-bullet-list" style="margin-top:16px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Companies that have established a local legal entity in Chile (SpA / Ltda. / S.A.).</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Employees directly hired by the local entity, subject to the Labour Code (C&oacute;digo del Trabajo).</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Payroll compliance based on Chilean tax law (Ley sobre Impuesto a la Renta) and social security regulations (D.L. 3500 pensions / Ley 18.933 health insurance).</span>
+            </div>
+          </div>
+        </div>
+        <p class="article-p" data-i18n-html="pg.chile.s1.b2">This framework covers how companies complete Payroll Set-up, salary calculation, monthly filing and payment, and annual compliance management in Chile.</p>
+
+        <div class="au-marco-insight" data-i18n-html="pg.chile.s1.b3">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Chilean Payroll operates on the UF (Unidad de Fomento, inflation-adjusted unit) as the core measurement standard. Social security contribution ceilings, Gratificaci&oacute;n ceilings, tax thresholds, and other statutory limits are all expressed in UF values, which fluctuate daily. As of 2026, the Tope Imponible has been adjusted to 90 UF (pensions/health insurance) and 135.2 UF (unemployment insurance). Payroll systems must dynamically convert based on the current day&rsquo;s UF value.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 2: Payroll Set-up ── -->
+      <div class="article-block" id="section-setup">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.chile.s2.h">Payroll Set-up</h2>
+          <p class="au-section-sub" data-i18n="pg.chile.s2.sub">How to establish legal payroll capability in Chile</p>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s2.b1">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Social Security &amp; Tax Registration (Previred &middot; AFP &middot; SII Registration)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:18%"><col style="width:13%"><col style="width:44%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>RUT (Tax Registration Number)</td><td>Chile local entity</td><td>Yes</td><td>Register with SII (Servicio de Impuestos Internos)</td></tr>
+                <tr><td>Previred Registration</td><td>Chile local entity</td><td>Yes</td><td>Unified social security contribution platform; required for all monthly payments</td></tr>
+                <tr><td>Direcci&oacute;n del Trabajo Registration</td><td>Chile local entity</td><td>Yes</td><td>Labour Department employer registration; electronic employment contracts filing</td></tr>
+                <tr><td>Employee RUT / RUN</td><td>Employee</td><td>Yes</td><td>ID number; used for all social security and tax filing</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s2.b2">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> AFP &amp; Isapre / Fonasa Selection</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:18%"><col style="width:13%"><col style="width:44%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>AFP (Pension Fund)</td><td>Employee&rsquo;s choice</td><td>Yes</td><td>Employee selects one AFP (e.g., Habitat/Cuprum/ProVida, etc.)</td></tr>
+                <tr><td>Fonasa (Public Health Insurance)</td><td>Employee&rsquo;s choice</td><td>Either/or</td><td>Public health insurance; flat 7% rate</td></tr>
+                <tr><td>Isapre (Private Health Insurance)</td><td>Employee&rsquo;s choice</td><td>Either/or</td><td>Private health insurance; &ge; 7% (may be higher); plan customizable</td></tr>
+                <tr><td>AFC (Unemployment Insurance)</td><td>Auto-registered</td><td>Yes</td><td>Automatically registered via AFC Chile</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s2.b3">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Bank Account &amp; Compliance</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:15%"><col style="width:55%"></colgroup>
+              <thead><tr><th>Item</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payroll Bank Account</td><td>Yes</td><td>Local CLP account</td></tr>
+                <tr><td>Liquidaci&oacute;n de Sueldo (Payslip)</td><td>Yes</td><td>Statutory obligation; must itemize all Haberes and Descuentos</td></tr>
+                <tr><td>Reglamento Interno</td><td>Yes (&ge; 10 employees)</td><td>Companies with &ge; 10 employees must establish and file internal regulations with the Labour Department</td></tr>
+                <tr><td>Comit&eacute; Paritario</td><td>Yes (&ge; 25 employees)</td><td>&ge; 25 employees must establish labour-management joint safety committee</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 3: Payroll Calculation ── -->
+      <div class="article-block" id="section-calculation">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.chile.s3.h">Payroll Calculation</h2>
+          <p class="au-section-sub" data-i18n="pg.chile.s3.sub">How salary and employee entitlements are calculated</p>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s3.b1">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Salary, Minimum Wage &amp; Working Hours</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Pay Method</td><td>Monthly salary (Sueldo Mensual) is the primary method</td></tr>
+                <tr><td>Pay Cycle</td><td>Calendar month; maximum of once per month</td></tr>
+                <tr><td>Statutory Working Hours</td><td>45 hours per week (post-labour reform, gradually reducing to 40 hours by 2028)</td></tr>
+                <tr><td>Overtime (Horas Extras)</td><td>Hourly rate &times; 1.5 (+50%); requires written agreement and maximum 2 hours per day</td></tr>
+                <tr><td>Ingreso M&iacute;nimo Mensual</td><td>CLP $500,000/month (2024); monitor annual adjustments</td></tr>
+                <tr><td>Gratificaci&oacute;n Legal</td><td>Statutory profit distribution: Art. 50 method pays 25% of monthly salary per month, or Art. 47 method pays 30% of annual taxable profit (capped at 4.75 IMM per person per year)</td></tr>
+                <tr><td>Decimal Handling</td><td>Round to CLP $1 (Chilean peso has no decimal places)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s3.b2">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Leave Entitlements (Feriado Anual &amp; Statutory Leave)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Annual Leave (Feriado Anual)</td><td>After 1 year of service: 15 working days (consecutive, with Saturdays counted within)</td></tr>
+                <tr><td>Feriado Progresivo</td><td>+1 day for each 3 years of service (with same or different employer); applies from 13th year onwards</td></tr>
+                <tr><td>Leave Accumulation</td><td>Maximum accumulation of 2 years of unused annual leave</td></tr>
+                <tr><td>Public Holidays (Feriados)</td><td>16 days/year (including Fiestas Patrias national holidays, Christmas, etc.)</td></tr>
+                <tr><td>Sick Leave (Licencia M&eacute;dica)</td><td>First 3 days unpaid (Carencia); from day 4 onwards Fonasa/Isapre pays a Subsidio</td></tr>
+                <tr><td>Maternity Leave (Pre/Postnatal)</td><td>6 weeks pre-natal + 12 weeks post-natal = 18 weeks + Postnatal Parental 12/18 weeks</td></tr>
+                <tr><td>Paternity Leave</td><td>5 days paid</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-marco-insight" data-i18n-html="pg.chile.s3.b2-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Chilean annual leave is 15 working days but operates under a &ldquo;consecutive leave&rdquo; system where Saturdays count as leave days (even if work is not required), making the actual calendar time available approximately 3 weeks. Employers must grant annual leave after the employee completes 1 year, but it may be split (with at least one period &ge; 10 consecutive days). Unused annual leave may accumulate for a maximum of 2 years; beyond that, employers face penalty risks.</p>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s3.b3">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Social Security Contributions (Cotizaciones Previsionales) &mdash; January 2026 onwards</p>
+          <p class="au-bold-label">Remuneración Imponible (Taxable Remuneration) Definition:</p>
+          <div class="au-bullet-list" style="margin-top:12px; margin-bottom:16px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Taxable remuneration = Fixed salary + bonuses + commissions + other taxable allowances</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Monthly ceiling: Tope Imponible (floats by UF value)</span>
+            </div>
+          </div>
+          <p class="au-bold-label">Employee Social Security Withholdings:</p>
+          <div class="au-table-wrap" style="margin-top:12px;">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:18%"><col style="width:54%"></colgroup>
+              <thead><tr><th>Item</th><th>Rate</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>AFP (Pension Fund)</td><td>~11.5%&ndash;12.5%</td><td>10% mandatory savings + AFP management fee (varies by AFP, approx. 1.5%&ndash;2.5%)</td></tr>
+                <tr><td>Salud (Health Insurance)</td><td>7%</td><td>Fonasa or Isapre (Isapre may be &gt; 7%; difference paid by employee)</td></tr>
+                <tr><td>AFC Employee Share</td><td>0.6%</td><td>Unemployment insurance employee contribution (indefinite-term contracts)</td></tr>
+                <tr><td>Tope AFP / Salud</td><td colspan="2">90 UF/month as of 2026</td></tr>
+                <tr><td>Tope AFC</td><td colspan="2">135.2 UF/month as of 2026</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="au-bold-label" style="margin-top:24px;">Employer Social Security Contributions:</p>
+          <div class="au-table-wrap" style="margin-top:12px;">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:18%"><col style="width:54%"></colgroup>
+              <thead><tr><th>Item</th><th>Rate</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>AFC Employer Share</td><td>2.4%</td><td>Unemployment insurance employer contribution (indefinite-term contracts)</td></tr>
+                <tr><td>AFC (Fixed-term contracts)</td><td>3%</td><td>Employer bears full amount for fixed-term contracts (employee does not contribute)</td></tr>
+                <tr><td>SIS (Occupational Injury/Survivor Insurance)</td><td>1.54%</td><td>Adjusted to 1.54% as of January 2026; employer-funded</td></tr>
+                <tr><td>Mutual (Occupational Insurance)</td><td>0.95% + add-ons</td><td>Base 0.95% + industry add-on (0%&ndash;3.4%); employer-funded</td></tr>
+                <tr><td>SANNA (Severe Child Illness Insurance)</td><td>0.03%</td><td>Ley 21.063; employer-funded</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-marco-insight" data-i18n-html="pg.chile.s3.b3-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Starting 2026, the Tope Imponible increased from 81.6 UF to 90 UF (AFP/health insurance) and 135.2 UF (AFC unemployment insurance); the SIS rate was adjusted from 1.53% to 1.54%. The UF value fluctuates daily (approximately CLP $38,800 in early 2026); payroll must convert the monthly Tope based on the UF value on the last day of the pay month. Chilean pension reform (Reforma Previsional) is ongoing, and additional employer contributions may be gradually introduced.</p>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s3.b4">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Personal Income Tax (Impuesto &Uacute;nico de Segunda Categor&iacute;a) &mdash; Monthly Income Tax Withholding</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:12%"><col style="width:58%"></colgroup>
+              <thead><tr><th>Monthly Taxable Income (UTM)</th><th>Rate</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>&le; 13.5 UTM</td><td>Exempt</td><td>Approximately CLP $930,000/month or below is tax-exempt</td></tr>
+                <tr><td>13.5 &ndash; 30 UTM</td><td>4%</td><td>&mdash;</td></tr>
+                <tr><td>30 &ndash; 50 UTM</td><td>8%</td><td>&mdash;</td></tr>
+                <tr><td>50 &ndash; 70 UTM</td><td>13.5%</td><td>&mdash;</td></tr>
+                <tr><td>70 &ndash; 90 UTM</td><td>23%</td><td>&mdash;</td></tr>
+                <tr><td>90 &ndash; 120 UTM</td><td>30.4%</td><td>&mdash;</td></tr>
+                <tr><td>&gt; 120 UTM</td><td>35%</td><td>Maximum marginal tax rate (reduced from 40% as of 2024)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="au-bullet-list" style="margin-top:16px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Taxable income = Remuneración Imponible - AFP - Salud (calculated after statutory deductions)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>UTM (Unidad Tributaria Mensual, monthly tax unit) is published monthly by SII; payroll must reference the current month&rsquo;s UTM value</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Employers withhold (Retención) on a monthly basis; no annual reconciliation &mdash; employees may self-file for tax refunds if applicable</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s3.b5">
+          <p class="au-table-title"><span class="au-table-num">v.</span> Gratificación Legal (Statutory Profit-Sharing Obligation)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:72%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Art. 47 Method</td><td>Annual taxable profit &times; 30%, distributed to employees based on salary proportion (capped at 4.75 IMM/person/year)</td></tr>
+                <tr><td>Art. 50 Method (Most Common)</td><td>Monthly payment of monthly salary &times; 25%, regardless of company profitability (employer guarantee)</td></tr>
+                <tr><td>Monthly Ceiling</td><td>Art. 50 monthly ceiling = 4.75 IMM &divide; 12 (approximately CLP $198,000/month)</td></tr>
+                <tr><td>Social Security Treatment</td><td>Gratificación is included in Remuneración Imponible and subject to social security and tax</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="au-bullet-list" style="margin-top:16px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>The vast majority of employers choose the Art. 50 method (25% monthly guarantee) because it is predictable and does not depend on annual profit.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 4: Payroll Processing & Compliance ── -->
+      <div class="article-block" id="section-processing">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.chile.s4.h">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub" data-i18n="pg.chile.s4.sub">Monthly execution, filing and payment, and accounting treatment</p>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s4.b1">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Payroll Payment Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:22%"><col style="width:40%"><col style="width:38%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payment Frequency</td><td>Monthly</td><td>Maximum once per month; can agree on mid-month advance payment</td></tr>
+                <tr><td>Payment Method</td><td>Bank transfer</td><td>Transferencia Bancaria to employee account</td></tr>
+                <tr><td>Liquidaci&oacute;n de Sueldo</td><td>Statutory obligation</td><td>Must itemize Haberes (income items) and Descuentos (deduction items)</td></tr>
+                <tr><td>Record Retention</td><td>5 years</td><td>Required by labour law and tax law</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s4.b2">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Monthly Filing &amp; Payment &mdash; Previred</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:18%"><col style="width:13%"><col style="width:13%"><col style="width:24%"><col style="width:32%"></colgroup>
+              <thead><tr><th>Filing Item</th><th>Responsible Party</th><th>Frequency</th><th>Deadline</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Previred Social Security Payment</td><td>Employer</td><td>Monthly</td><td>10&ndash;13 of following month</td><td>Combined submission: AFP + Health insurance + AFC + SIS + Mutual via Previred</td></tr>
+                <tr><td>F29 (Income Tax)</td><td>Employer</td><td>Monthly</td><td>12th of following month</td><td>Submit and remit monthly withheld income tax (Impuesto &Uacute;nico) to SII</td></tr>
+                <tr><td>Libro de Remuneraciones</td><td>Employer</td><td>Monthly</td><td>&mdash;</td><td>Electronic payroll register; must be updated monthly</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="au-bold-label" style="margin-top:16px;">Previred Core Notes:</p>
+          <div class="au-bullet-list" style="margin-top:12px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Previred is Chile&rsquo;s unified social security contribution platform that consolidates payments for AFP + Salud + AFC + SIS + Mutual + SANNA</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Late payment incurs interest and penalties; employer bears personal liability for unpaid social security contributions</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s4.b3">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Journal Mapping Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:45%"><col style="width:55%"></colgroup>
+              <thead><tr><th>Item</th><th>Account</th></tr></thead>
+              <tbody>
+                <tr><td>Sueldo Bruto + Gratificaci&oacute;n</td><td>&rarr; Gasto de Remuneraciones (Expense)</td></tr>
+                <tr><td>Employer AFC + SIS + Mutual + SANNA</td><td>&rarr; Gasto de Remuneraciones (Expense)</td></tr>
+                <tr><td>Employee AFP + Salud + AFC + Impuesto</td><td>&rarr; Retenciones por Pagar (Liability)</td></tr>
+                <tr><td>Sueldo L&iacute;quido (Net Pay)</td><td>&rarr; Banco</td></tr>
+                <tr><td>Provisi&oacute;n Indemnizaci&oacute;n</td><td>&rarr; Provisiones (Provision)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-table-group" data-i18n-html="pg.chile.s4.b4">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Annual Compliance &amp; Termination</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:22%"><col style="width:16%"><col style="width:22%"><col style="width:40%"></colgroup>
+              <thead><tr><th>Item</th><th>Responsible Party</th><th>Deadline</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>DJ1887 (Annual Payroll Return)</td><td>Employer</td><td>March of following year</td><td>Submit annual employee payroll and withholding summary to SII</td></tr>
+                <tr><td>Certificado de Sueldos</td><td>Employer</td><td>March of following year</td><td>Provide annual income certificate to each employee</td></tr>
+                <tr><td>Ingreso M&iacute;nimo Update</td><td>&mdash;</td><td>Typically March&ndash;May each year</td><td>Minimum wage annual adjustment</td></tr>
+                <tr><td>UF / UTM Update</td><td>&mdash;</td><td>Daily / Monthly</td><td>UF fluctuates daily; UTM published monthly by SII</td></tr>
+                <tr><td>Tope Imponible Update</td><td>&mdash;</td><td>As per policy</td><td>As of 2026: 90 UF / 135.2 UF</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="au-table-group" style="margin-top:24px;">
+            <p class="au-table-title">Termination Settlement (Finiquito):</p>
+            <div class="au-table-wrap">
+              <table class="au-table">
+                <colgroup><col style="width:25%"><col style="width:75%"></colgroup>
+                <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+                <tbody>
+                  <tr><td>Notice Period (Aviso Previo)</td><td>30 days written notice; failure to provide notice requires payment of 1 month compensation-in-lieu</td></tr>
+                  <tr><td>Indemnización por Años de Servicio</td><td>1 month salary for each full year of service (capped at 11 years = 11 months); monthly salary capped at 90 UF</td></tr>
+                  <tr><td>Applicable Circumstances</td><td>Mandatory when dismissal is for business needs (Art. 161); other circumstances subject to contract terms</td></tr>
+                  <tr><td>Unused Annual Leave Cash-out</td><td>Unused Feriado Anual must be fully paid out (Feriado Proporcional)</td></tr>
+                  <tr><td>Finiquito Execution</td><td>Must be executed at a notary public or labour office (Inspección del Trabajo); payment required within 10 working days</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="au-marco-insight" data-i18n-html="pg.chile.s4.b5">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">The monthly salary ceiling for Chilean Indemnizaci&oacute;n (severance) is also 90 UF as of 2026, meaning the severance calculation base is capped at 90 UF. For highly compensated employees, actual severance may be less than monthly salary &times; years of service. The Finiquito (termination settlement document) must be executed at a notary public or labour authority (Inspecci&oacute;n del Trabajo) to be valid; otherwise the employer faces the risk of double payment.</p>
+        </div>
+      </div>
+
+    </div><!-- /.article-content -->
+
+    <!-- CTA Buttons -->
+    <div class="article-cta">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <!-- WeChat -->
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <!-- Download -->
+      <button class="cta-btn" id="payrollDownloadBtn" aria-label="Download" onclick="downloadPayrollGuidePDF(event)">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 21.5V23.5C24.5 23.7652 24.3946 24.0196 24.2071 24.2071C24.0196 24.3946 23.7652 24.5 23.5 24.5H16.5C16.2348 24.5 15.9804 24.3946 15.7929 24.2071C15.6054 24.0196 15.5 23.7652 15.5 23.5V21.5M22.5 19L20 21.5L17.5 19M20 21.5V15.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <!-- Copy Link -->
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <!-- Back to Top -->
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 15.5H15.5M20 24.5V17.5M23.5 21L20 17.5L16.5 21" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
   </div>
 </section>
 
