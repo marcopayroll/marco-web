@@ -664,11 +664,10 @@
     .au-table-title { display: flex; gap: 8px; align-items: flex-start; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0; }
     .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
     .au-table-wrap { overflow-x: auto; }
-    .au-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-family: var(--font); }
-    .au-table th { background: #162351; color: #fff; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; padding: 10px 12px; vertical-align: middle; }
-    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); padding: 8px 12px; vertical-align: top; border-bottom: 1px solid #CDD5E0; }
-    .au-table tbody tr:nth-child(even) td { background: #F7F9FF; }
-    .au-table tbody tr:last-child td { border-bottom: none; }
+    .au-table { border-collapse: collapse; width: 100%; table-layout: auto; min-width: 480px; font-family: var(--font); }
+    .au-table th { background: #1D4783; color: #fff; font-size: 14px; font-weight: 700; line-height: 20px; text-align: left; padding: 8px 12px; vertical-align: middle; }
+    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: #475072; padding: 8px 12px; vertical-align: top; overflow-wrap: break-word; word-break: break-word; border-bottom: 0.5px solid #E7E7E7; }
+    .au-table tbody tr:nth-child(even) td { background: #ECF2FB; }
 
     /* ════════════════ GET STARTED ════════════════ */
     .gs-cta {
@@ -764,12 +763,12 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title" data-i18n="pg.country.france">France</h1>
-        <p class="pg-hero-desc">Description to be added</p>
+        <p class="pg-hero-desc">A complete guide to running payroll in France &mdash; covering URSSAF registration, Convention Collective compliance, Cotisations Sociales, income tax withholding (PAS), and monthly DSN filing obligations.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.france">1 January 2026</span></p>
+      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.france">29 July 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
@@ -780,9 +779,385 @@
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;"><span data-i18n="pg.country.france">France</span> <span data-i18n="pg.page.comingsoon">Payroll Guide content coming soon</span></p>
-  </div>
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-scope" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
+            <span class="toc-text" id="toc-text-scope">Scope &amp; Application</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-setup" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
+            <span class="toc-text" id="toc-text-setup">Payroll Set-up</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-calculation" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
+            <span class="toc-text" id="toc-text-calculation">Payroll Calculation</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-processing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
+            <span class="toc-text" id="toc-text-processing">Payroll Processing &amp; Compliance</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- ── Section 1: Scope & Application ── -->
+      <div class="article-block" id="section-scope">
+        <div class="au-section-header">
+          <h2 class="article-h2">Scope &amp; Application</h2>
+          <p class="au-section-sub">Legal Basis / Code du Travail &middot; URSSAF &middot; Convention Collective &middot; DSN</p>
+        </div>
+        <p class="article-p">This document applies to:</p>
+        <div class="au-bullet-list" style="margin-top:16px;">
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Companies that have established a local legal entity in France (SAS / SARL / SA)</span>
+          </div>
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Employees directly hired by the local entity, subject to the Labour Code (Code du Travail) and applicable industry collective agreement (Convention Collective)</span>
+          </div>
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Payroll compliance based on the Social Security Code (Code de la S&eacute;curit&eacute; Sociale) and income tax law</span>
+          </div>
+        </div>
+        <p class="article-p" style="margin-top:20px;">This framework covers how companies complete Payroll Set-up, salary calculation, monthly filing and payment, and annual compliance management in France.</p>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">French Payroll revolves around Cotisations Sociales (social security contributions) &mdash; the employer social security burden accounts for approximately 40%&ndash;45% of Gross Salary, among the highest levels globally. Additionally, every company must apply an industry collective agreement (Convention Collective) that specifies minimum wage classifications, working hours, leave, bonuses, and other terms that may exceed statutory standards. This agreement is a critical prerequisite for payroll calculation.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 2: Payroll Set-up ── -->
+      <div class="article-block" id="section-setup">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Set-up</h2>
+          <p class="au-section-sub">How to establish legal payroll capability in France / URSSAF &middot; Convention Collective &middot; Compliance</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> URSSAF &amp; Tax Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:22%"><col style="width:12%"><col style="width:38%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>URSSAF Registration</td><td>France local entity</td><td>Yes</td><td>Social security contribution authority; upon registration, obtain employer account under SIRET number</td></tr>
+                <tr><td>DPAE (Onboarding Declaration)</td><td>Employer</td><td>Yes</td><td>D&eacute;claration Pr&eacute;alable &agrave; l&rsquo;Embauche (Prior Declaration of Hiring) must be submitted to URSSAF before employee starts work</td></tr>
+                <tr><td>Pr&eacute;l&egrave;vement &agrave; la Source</td><td>Employer</td><td>Yes</td><td>Income tax withholding (PAS); mandatory since 2019</td></tr>
+                <tr><td>Employee Num&eacute;ro de S&eacute;curit&eacute; Sociale</td><td>Employee</td><td>Yes</td><td>Social security number (NIR, 13 digits); provided at onboarding</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Convention Collective &amp; Complementary Schemes</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:22%"><col style="width:16%"><col style="width:34%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Convention Collective (CCN)</td><td>Employer</td><td>Yes</td><td>Confirm applicable industry collective agreement by IDCC code</td></tr>
+                <tr><td>Mutuelle (Supplemental Health Insurance)</td><td>Employer</td><td>Yes</td><td>Statutorily mandatory; employer must cover at least 50% of premium</td></tr>
+                <tr><td>Pr&eacute;voyance (Supplemental Risk Protection)</td><td>Employer</td><td>Yes (Cadre only)</td><td>Mandatory for management/executive staff (Cadre); for non-Cadre, subject to CCN</td></tr>
+                <tr><td>Retraite Compl&eacute;mentaire</td><td>Employer</td><td>Yes</td><td>Supplemental pension; remitted via AGIRC-ARRCO</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Bank Account &amp; Compliance</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:14%"><col style="width:56%"></colgroup>
+              <thead><tr><th>Item</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payroll Bank Account</td><td>Yes</td><td>Local EUR account</td></tr>
+                <tr><td>Bulletin de Paie (Payslip)</td><td>Yes</td><td>Statutory obligation; format and content strictly regulated</td></tr>
+                <tr><td>Registre du Personnel</td><td>Yes</td><td>Employee roster; records onboarding, separation, and other personnel information</td></tr>
+                <tr><td>M&eacute;decine du Travail</td><td>Yes</td><td>Occupational health service; arrange Visite d&rsquo;Information before onboarding</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 3: Payroll Calculation ── -->
+      <div class="article-block" id="section-calculation">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Calculation</h2>
+          <p class="au-section-sub">How salary and employee entitlements are calculated / Salary &middot; Leave &middot; Cotisations Sociales</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Salary Calculation &amp; Working Hours</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Pay Method</td><td>Mensualized (Mensualis&eacute;): annual salary &divide; 12 or agreed monthly salary</td></tr>
+                <tr><td>Statutory Working Hours</td><td>35 hours/week (Dur&eacute;e L&eacute;gale), 151.67 hours/month</td></tr>
+                <tr><td>Calculation Method</td><td>Monthly salary &divide; 151.67 &times; actual hours worked; or by calendar/working days</td></tr>
+                <tr><td>Overtime</td><td>36&ndash;43 hours: +25%; 44 hours onwards: +50%</td></tr>
+                <tr><td>RTT (Time-off Compensation)</td><td>For companies with actual working hours &gt; 35 hours/week, compensation through RTT days</td></tr>
+                <tr><td>SMIC (Minimum Wage)</td><td>&euro;11.65/hour (2024); monthly gross approximately &euro;1,766.92</td></tr>
+                <tr><td>Decimal Handling</td><td>Round to 2 decimal places (EUR Cents)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Leave Entitlements (Cong&eacute;s Pay&eacute;s &amp; Statutory Leave)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Annual Leave (Cong&eacute;s Pay&eacute;s)</td><td>25 working days/year (= 5 weeks); accrues at 2.08 days/month</td></tr>
+                <tr><td>Annual Leave Pay</td><td>Higher of &ldquo;normal salary&rdquo; or &ldquo;1/10 of previous period salary&rdquo;</td></tr>
+                <tr><td>RTT Leave</td><td>Depends on company working hour arrangement; typically 8&ndash;12 days/year</td></tr>
+                <tr><td>Public Holidays</td><td>11 days/year statutory; May 1 (Labour Day) is the only mandatorily paid public holiday</td></tr>
+                <tr><td>Sick Leave</td><td>Paid by Social Security as IJSS (from day 4: 50% daily wage); CCN or employer may top up</td></tr>
+                <tr><td>Maternity Leave (Cong&eacute; Maternit&eacute;)</td><td>1st&ndash;2nd child: 6 weeks pre-natal + 10 weeks post-natal = 16 weeks; paid by CPAM</td></tr>
+                <tr><td>Paternity Leave (Cong&eacute; Paternit&eacute;)</td><td>25 calendar days (includes 3-day birth leave); paid by CPAM</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">French annual leave calculation uses two methods: by &ldquo;actual working days&rdquo; or &ldquo;working days&rdquo; (Jours Ouvr&eacute;s vs Jours Ouvrables). Most companies use Jours Ouvr&eacute;s (25 days/year). The leave accrual period runs from June 1 to May 31 of the following year &mdash; not a calendar year. Payroll must set up an independent leave cycle accordingly.</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Social Security Contributions (Cotisations Sociales) &mdash; Main Schemes (2024 Rates, Based on Gross Salary)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:34%"><col style="width:14%"><col style="width:14%"><col style="width:38%"></colgroup>
+              <thead><tr><th>Item</th><th>Employer</th><th>Employee</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Maladie (Health Insurance)</td><td>7.00%</td><td>&mdash;</td><td>Reduced rate applies for earnings &le; 2.5 SMIC</td></tr>
+                <tr><td>Vieillesse Plafonn&eacute;e (Pension Capped)</td><td>8.55%</td><td>6.90%</td><td>Contribution base ceiling: PMSS (&euro;3,864/month, 2024)</td></tr>
+                <tr><td>Vieillesse D&eacute;plafonn&eacute;e (Pension Uncapped)</td><td>2.02%</td><td>0.40%</td><td>All gross income</td></tr>
+                <tr><td>Allocations Familiales (Family Allowance)</td><td>3.45%</td><td>&mdash;</td><td>Reduced rate applies for earnings &le; 3.5 SMIC</td></tr>
+                <tr><td>Ch&ocirc;mage (Unemployment Insurance)</td><td>4.05%</td><td>&mdash;</td><td>Contribution base ceiling: 4&times; PMSS</td></tr>
+                <tr><td>AGIRC-ARRCO T1 (Supplemental Pension)</td><td>4.72%</td><td>3.15%</td><td>Base &le; 1&times; PMSS</td></tr>
+                <tr><td>AGIRC-ARRCO T2 (Supplemental Pension)</td><td>12.95%</td><td>8.64%</td><td>Base 1&ndash;8&times; PMSS</td></tr>
+                <tr><td>CSG / CRDS</td><td>&mdash;</td><td>9.70%</td><td>Based on 98.25% Gross + Employer Mutuelle</td></tr>
+                <tr><td>AT/MP (Occupational Injury)</td><td>Variable</td><td>&mdash;</td><td>Industry risk coefficient, typically 0.9%&ndash;5%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="article-p" style="margin-top:12px; font-size:14px; color:#475072;"><strong>Total employer burden approximately 40%&ndash;45%</strong> (including Mutuelle / Pr&eacute;voyance); employee burden approximately 22%&ndash;25% (including CSG/CRDS)</p>
+          <p class="article-p" style="margin-top:12px; font-size:14px; color:#475072;"><strong>Key Reductions:</strong></p>
+          <div class="au-bullet-list" style="margin-top:8px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span style="font-size:14px; color:#475072;">R&eacute;duction G&eacute;n&eacute;rale (Fillon Reduction): For employees earning &le; 1.6 SMIC, employer enjoys a tapering social security reduction</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span style="font-size:14px; color:#475072;">PMSS (Monthly social security ceiling): &euro;3,864/month (2024); affects multiple contribution base caps</span>
+            </div>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">The French Bulletin de Paie (payslip) is among the most complex globally &mdash; typically containing 30&ndash;50 lines of contribution detail. In 2018, the government implemented a &ldquo;simplified payslip&rdquo; reform, compressing line items to approximately 15 main categories. However, the underlying calculation logic remains unchanged; payroll systems must still calculate each item individually. R&eacute;duction Fillon reduction has significant impact on low-wage employees, potentially reducing the employer&rsquo;s effective rate by 10&ndash;15 percentage points.</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Personal Income Tax (Pr&eacute;l&egrave;vement &agrave; la Source) &mdash; PAS &mdash; Income Tax Withholding</p>
+          <p class="article-p" style="margin-bottom:12px;">Effective from 2019: Monthly source withholding system</p>
+          <div class="au-bullet-list">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span><strong>Progressive rates:</strong> 0% (&le; &euro;11,294) / 11% (up to &euro;28,797) / 30% (up to &euro;82,341) / 41% (up to &euro;177,106) / 45% (above)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span><strong>Tax rate source:</strong> DGFiP (tax authority) sends each employee&rsquo;s personalized rate (Taux Personnalis&eacute;) monthly via DSN</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span><strong>New hires:</strong> If no DGFiP rate available, use Taux Neutre (neutral tax rate table)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span><strong>Employer role:</strong> Employer only executes withholding; does not participate in employee tax calculation &mdash; rate is determined directly by tax authority</span>
+            </div>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">v.</span> Pay Slip (Bulletin de Paie) Structure</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:65%"></colgroup>
+              <thead><tr><th>Item</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td>Salaire Brut (Gross Salary)</td><td>Base salary + overtime + allowances + bonuses</td></tr>
+                <tr><td>Cotisations Patronales</td><td>Total employer social security contributions (not deducted from employee salary)</td></tr>
+                <tr><td>Cotisations Salariales</td><td>Total employee social security contributions (deducted from Gross)</td></tr>
+                <tr><td>Net Imposable (Taxable Net Income)</td><td>Gross &minus; Cotisations Salariales + non-deductible CSG portion</td></tr>
+                <tr><td>PAS (Income Tax Withholding)</td><td>Net Imposable &times; DGFiP personalized tax rate</td></tr>
+                <tr><td>Net &agrave; Payer (Net Take-Home)</td><td>Net Imposable &minus; PAS + reimbursements/allowances</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 4: Payroll Processing & Compliance ── -->
+      <div class="article-block" id="section-processing">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub">Monthly execution, filing and payment, and accounting treatment / DSN &middot; Journal &middot; Annual</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Payroll Payment Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:25%"><col style="width:50%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payment Frequency</td><td>Monthly</td><td>Statutory minimum once per month; management (Cadre) paid monthly</td></tr>
+                <tr><td>Payment Method</td><td>Bank transfer / Cheque</td><td>Bank transfer (Virement Bancaire) is primary method</td></tr>
+                <tr><td>Bulletin de Paie</td><td>Statutory obligation</td><td>Format strictly regulated by law; must retain electronic or paper copy</td></tr>
+                <tr><td>Record Retention</td><td>5 years</td><td>Required by labour law; social security records recommended to retain longer</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Monthly Filing &amp; Payment (DSN) &mdash; D&eacute;claration Sociale Nominative</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:22%"><col style="width:18%"><col style="width:14%"><col style="width:16%"><col style="width:30%"></colgroup>
+              <thead><tr><th>Filing Item</th><th>Responsible Party</th><th>Frequency</th><th>Deadline</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>DSN Reporting</td><td>Employer</td><td>Monthly</td><td>5th or 15th of pay month</td><td>Unified electronic filing, replaces all prior forms (&ge; 50 employees by 5th; &lt; 50 employees by 15th)</td></tr>
+                <tr><td>URSSAF Social Security Payment</td><td>Employer</td><td>Monthly / Quarterly</td><td>With DSN</td><td>&ge; 50 employees monthly; &lt; 50 employees may be quarterly</td></tr>
+                <tr><td>AGIRC-ARRCO</td><td>Employer</td><td>Monthly</td><td>With DSN</td><td>Supplemental pension remitted together with DSN</td></tr>
+                <tr><td>PAS Income Tax</td><td>Employer</td><td>Monthly</td><td>With DSN</td><td>Withheld income tax remitted to DGFiP via DSN</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="article-p" style="margin-top:12px; font-size:14px; color:#475072;"><strong>Note:</strong> DSN is France&rsquo;s sole social security + tax filing channel (replacing DADS-U since 2017); late payment penalties start at &euro;7.50 per person.</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Journal Mapping Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:45%"><col style="width:55%"></colgroup>
+              <thead><tr><th>Item</th><th>Account</th></tr></thead>
+              <tbody>
+                <tr><td>Salaire Brut</td><td>Payroll Expense (641)</td></tr>
+                <tr><td>Charges Patronales (~40%&ndash;45%)</td><td>Payroll Expense (645)</td></tr>
+                <tr><td>Cotisations Salariales + PAS</td><td>Payroll Liability (43x)</td></tr>
+                <tr><td>Net &agrave; Payer</td><td>Cash / Bank (512)</td></tr>
+                <tr><td>Provision Cong&eacute;s Pay&eacute;s</td><td>Payroll Expense / Provision (428)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Annual Compliance</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:22%"><col style="width:18%"><col style="width:32%"></colgroup>
+              <thead><tr><th>Item</th><th>Responsible Party</th><th>Deadline</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>SMIC Update</td><td>&mdash;</td><td>January 1 each year</td><td>Statutory minimum wage annual adjustment; must update in payroll</td></tr>
+                <tr><td>PMSS Update</td><td>&mdash;</td><td>January 1 each year</td><td>Social security contribution ceiling annual adjustment</td></tr>
+                <tr><td>DSN Annual Data</td><td>Employer</td><td>&mdash;</td><td>No separate annual report; all data completed through monthly DSN filings</td></tr>
+                <tr><td>Cong&eacute;s Pay&eacute;s Period Carryover</td><td>Employer</td><td>May 31</td><td>Leave accrual period ends; unused leave carries over or is forfeited</td></tr>
+                <tr><td>Participation / Int&eacute;ressement</td><td>Employer</td><td>Annually</td><td>Statutory profit-sharing (Participation) for companies &ge; 50 employees</td></tr>
+                <tr><td>Entretien Professionnel</td><td>Employer</td><td>Every 2 years</td><td>Statutory professional development review; affects training obligations</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">v.</span> Termination (Rupture du Contrat)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Notice Period (Pr&eacute;avis)</td><td>CDI (permanent): 1&ndash;3 months (depends on CCN and tenure); probation period has shortened statutory period</td></tr>
+                <tr><td>Statutory Severance (Indemnit&eacute; L&eacute;gale)</td><td>1/4 monthly salary per year of service (first 10 years) + 1/3 monthly salary per year (from 10 years onwards)</td></tr>
+                <tr><td>CCN Severance</td><td>Collective agreement may specify higher standards; higher of CCN or statutory amount applies</td></tr>
+                <tr><td>Rupture Conventionnelle</td><td>Negotiated termination: mutual agreement + DREETS approval; severance &ge; statutory standard</td></tr>
+                <tr><td>Unused Annual Leave Cash-out</td><td>Unused Cong&eacute;s Pay&eacute;s must be fully paid out (ICCP)</td></tr>
+                <tr><td>Termination Documents</td><td>Must provide Certificat de Travail + Attestation P&ocirc;le Emploi + Solde de Tout Compte</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Rupture Conventionnelle (negotiated termination) is a unique French mechanism for &ldquo;friendly separation&rdquo; &mdash; both parties mutually agree to terminate a CDI (permanent contract) and requires DREETS (formerly DIRECCTE) approval. Severance cannot be less than the statutory standard. This mechanism allows the employee to claim unemployment benefits and is the most common method of non-fault termination in France. Employer must allow 15 days statutory withdrawal period + 15 working days for administrative approval.</p>
+        </div>
+      </div>
+
+    </div><!-- end .article-content -->
+
+    <!-- CTA sidebar -->
+    <div class="article-cta">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <!-- WeChat -->
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <!-- Download -->
+      <button class="cta-btn" id="payrollDownloadBtn" aria-label="Download" onclick="downloadPayrollGuidePDF(event)">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 21.5V23.5C24.5 23.7652 24.3946 24.0196 24.2071 24.2071C24.0196 24.3946 23.7652 24.5 23.5 24.5H16.5C16.2348 24.5 15.9804 24.3946 15.7929 24.2071C15.6054 24.0196 15.5 23.7652 15.5 23.5V21.5M22.5 19L20 21.5L17.5 19M20 21.5V15.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <!-- Copy Link -->
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <!-- Back to Top -->
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M20 25V15M20 15L15.5 19.5M20 15L24.5 19.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div><!-- end .article-cta -->
+
+  </div><!-- end .container.article-layout -->
 </section>
 
 
@@ -904,6 +1279,50 @@
       });
     });
   })();
+</script>
+<script>
+  /* ── Article TOC + Back-to-top + Copy link ── */
+  var tocSections = [
+    { id: 'section-scope',       key: 'scope'       },
+    { id: 'section-setup',       key: 'setup'       },
+    { id: 'section-calculation', key: 'calculation' },
+    { id: 'section-processing',  key: 'processing'  }
+  ];
+
+  function updateToc() {
+    var scrollPos = window.scrollY + 160;
+    var current = tocSections[0].key;
+    for (var i = 0; i < tocSections.length; i++) {
+      var el = document.getElementById(tocSections[i].id);
+      if (el && el.offsetTop <= scrollPos) current = tocSections[i].key;
+    }
+    tocSections.forEach(function(s) {
+      var dot  = document.getElementById('toc-dot-'  + s.key);
+      var text = document.getElementById('toc-text-' + s.key);
+      if (dot && text) {
+        dot.classList.toggle('toc-active',  s.key === current);
+        text.classList.toggle('toc-active', s.key === current);
+      }
+    });
+  }
+
+  function updateBackToTop() {
+    var btn = document.getElementById('backToTop');
+    if (btn) btn.classList.toggle('visible', window.scrollY > 300);
+  }
+
+  window.addEventListener('scroll', function() { updateToc(); updateBackToTop(); }, { passive: true });
+  updateToc();
+
+  var copyBtn = document.getElementById('copyLinkBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      navigator.clipboard.writeText(window.location.href).then(function() {
+        copyBtn.classList.add('copied');
+        setTimeout(function() { copyBtn.classList.remove('copied'); }, 2000);
+      });
+    });
+  }
 </script>
 <script src="payroll-guide-carousel.js"></script>
 

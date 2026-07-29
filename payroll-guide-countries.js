@@ -1,6 +1,9 @@
 // Central data source for Payroll Guide countries
 // Sorted alphabetically A-Z
 // Use this file in both the main list page and country explore carousels
+
+// Add country names here to unlock their cards across all pages
+var PAYROLL_GUIDE_UNLOCKED_COUNTRIES = ['Argentina', 'Australia', 'Brazil', 'Canada', 'Chile', 'Côte d\'Ivoire', 'France', 'Germany', 'Hong Kong', 'India', 'Japan'];
 const PAYROLL_GUIDE_COUNTRIES_DATA = [
   { name: "Algeria",       currency: "DZD", region: "Africa",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/algeria.jpg", link: "hr-knowledge-hub-payroll-guide-algeria.html" },
   { name: "Argentina",     currency: "ARS", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/argentina 2.jpg", link: "hr-knowledge-hub-payroll-guide-argentina.html", date: "24 June 2026" },
@@ -23,16 +26,16 @@ const PAYROLL_GUIDE_COUNTRIES_DATA = [
   { name: "Denmark",       currency: "DKK", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/denmark.webp", link: "hr-knowledge-hub-payroll-guide-denmark.html" },
   { name: "Egypt",         currency: "EGP", region: "Middle East",  img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/egypt 1.jpeg", link: "hr-knowledge-hub-payroll-guide-egypt.html" },
   { name: "Finland",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/finland.jpg", link: "hr-knowledge-hub-payroll-guide-finland.html" },
-  { name: "France",        currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/france.jpg", link: "hr-knowledge-hub-payroll-guide-france.html" },
-  { name: "Germany",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/germany 2.webp", link: "hr-knowledge-hub-payroll-guide-germany.html" },
-  { name: "Hong Kong",     currency: "HKD", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/hong kong.jpg", link: "hr-knowledge-hub-payroll-guide-hong-kong.html" },
+  { name: "France",        currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/france.jpg", link: "hr-knowledge-hub-payroll-guide-france.html", date: "29 July 2026" },
+  { name: "Germany",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/germany 2.webp", link: "hr-knowledge-hub-payroll-guide-germany.html", date: "29 July 2026" },
+  { name: "Hong Kong",     currency: "HKD", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/hong kong.jpg", link: "hr-knowledge-hub-payroll-guide-hong-kong.html", date: "29 July 2026" },
   { name: "Hungary",       currency: "HUF", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/hungary.webp", link: "hr-knowledge-hub-payroll-guide-hungary.html" },
-  { name: "India",         currency: "INR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/india.png", link: "hr-knowledge-hub-payroll-guide-india.html" },
+  { name: "India",         currency: "INR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/india.png", link: "hr-knowledge-hub-payroll-guide-india.html", date: "29 July 2026" },
   { name: "Indonesia",     currency: "IDR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/indonesia.webp", link: "hr-knowledge-hub-payroll-guide-indonesia.html" },
   { name: "Ireland",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/ireland.jpeg", link: "hr-knowledge-hub-payroll-guide-ireland.html" },
   { name: "Israel",        currency: "ILS", region: "Middle East",  img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/israel.webp", link: "hr-knowledge-hub-payroll-guide-israel.html" },
   { name: "Italy",         currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/italy.jpeg", link: "hr-knowledge-hub-payroll-guide-italy.html" },
-  { name: "Japan",         currency: "JPY", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/japan.jpg", link: "hr-knowledge-hub-payroll-guide-japan.html" },
+  { name: "Japan",         currency: "JPY", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/japan.jpg", link: "hr-knowledge-hub-payroll-guide-japan.html", date: "29 July 2026" },
   { name: "Kenya",         currency: "KES", region: "Africa",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/kenya.avif", link: "hr-knowledge-hub-payroll-guide-kenya.html" },
   { name: "Malaysia",      currency: "MYR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/malaysia.webp", link: "hr-knowledge-hub-payroll-guide-malaysia.html" },
   { name: "Mexico",        currency: "MXN", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/mexico.webp", link: "hr-knowledge-hub-payroll-guide-mexico.html" },

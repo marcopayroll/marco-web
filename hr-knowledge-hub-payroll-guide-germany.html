@@ -664,11 +664,10 @@
     .au-table-title { display: flex; gap: 8px; align-items: flex-start; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0; }
     .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
     .au-table-wrap { overflow-x: auto; }
-    .au-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-family: var(--font); }
-    .au-table th { background: #162351; color: #fff; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; padding: 10px 12px; vertical-align: middle; }
-    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); padding: 8px 12px; vertical-align: top; border-bottom: 1px solid #CDD5E0; }
-    .au-table tbody tr:nth-child(even) td { background: #F7F9FF; }
-    .au-table tbody tr:last-child td { border-bottom: none; }
+    .au-table { border-collapse: collapse; width: 100%; table-layout: auto; min-width: 480px; font-family: var(--font); }
+    .au-table th { background: #1D4783; color: #fff; font-size: 14px; font-weight: 700; line-height: 20px; text-align: left; padding: 8px 12px; vertical-align: middle; }
+    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: #475072; padding: 8px 12px; vertical-align: top; overflow-wrap: break-word; word-break: break-word; border-bottom: 0.5px solid #E7E7E7; }
+    .au-table tbody tr:nth-child(even) td { background: #ECF2FB; }
 
     /* ════════════════ GET STARTED ════════════════ */
     .gs-cta {
@@ -764,12 +763,12 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title" data-i18n="pg.country.germany">Germany</h1>
-        <p class="pg-hero-desc">Description to be added</p>
+        <p class="pg-hero-desc">A complete guide to running payroll in Germany &mdash; covering Handelsregister registration, five mandatory social insurances (Pflichtversicherungen), Lohnsteuer withholding across six tax classes, ELSTER monthly reporting, and 2026 updated rates for MiLoG, Grundfreibetrag, and BBG ceilings.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.germany">1 January 2026</span></p>
+      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.germany">29 July 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
@@ -780,9 +779,395 @@
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;"><span data-i18n="pg.country.germany">Germany</span> <span data-i18n="pg.page.comingsoon">Payroll Guide content coming soon</span></p>
-  </div>
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-scope" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
+            <span class="toc-text" id="toc-text-scope">Scope &amp; Application</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-setup" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
+            <span class="toc-text" id="toc-text-setup">Payroll Set-up</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-calculation" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
+            <span class="toc-text" id="toc-text-calculation">Payroll Calculation</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-processing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
+            <span class="toc-text" id="toc-text-processing">Payroll Processing &amp; Compliance</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- ── Section 1: Scope & Application ── -->
+      <div class="article-block" id="section-scope">
+        <div class="au-section-header">
+          <h2 class="article-h2">Scope &amp; Application</h2>
+          <p class="au-section-sub">Scope and Legal Basis / EStG &middot; SGB &middot; BGB &middot; MiLoG &middot; KSchG</p>
+        </div>
+        <p class="article-p">This document applies to:</p>
+        <div class="au-bullet-list" style="margin-top:16px;">
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Companies that have established a local legal entity in Germany (GmbH minimum capital &euro;25,000 / UG &euro;1 / AG minimum &euro;50,000), registered in the Handelsregister</span>
+          </div>
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Employees directly hired by the local entity, subject to the Civil Code (BGB) + Termination Protection Law (KSchG) + Minimum Wage Law (MiLoG)</span>
+          </div>
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Payroll compliance based on EStG (income tax), SGB (Social Code volumes V/VI/III/XI), and regulations from Finanzamt / Krankenkasse / DRV / Bundesagentur f&uuml;r Arbeit</span>
+          </div>
+        </div>
+        <p class="article-p" style="margin-top:20px;">This framework covers how companies complete Payroll Set-up in Germany (Finanzamt tax registration, Betriebsnummer employer number, Krankenkasse health insurance registration, Steuer-ID / Sozialversicherungsnummer employee identification), monthly salary calculation (Lohnsteuer + Solidarit&auml;tszuschlag + Kirchensteuer + 5 major social insurances), ELSTER / DE&Uuml;V monthly reporting, and Lohnsteuerjahresausgleich annual reconciliation.</p>
+        <div class="au-data-cards-wrap">
+          <p class="au-data-cards-label">2026 KEY NUMBERS</p>
+          <div class="au-data-cards-grid">
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">Minimum Wage MiLoG</span>
+                <span class="au-dc-value">&euro;13.90/hr</span>
+                <span class="au-dc-note">as of 2026/1, +0.92%</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Grundfreibetrag</span>
+                <span class="au-dc-value">&euro;12,348</span>
+                <span class="au-dc-note">tax exemption threshold, +&euro;252</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Income Tax Brackets</span>
+                <span class="au-dc-value">0% &ndash; 45%</span>
+                <span class="au-dc-note">progressive + Soli 5.5%</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Krankenversicherung</span>
+                <span class="au-dc-value">14.6% + Zusatz</span>
+                <span class="au-dc-note">health insurance + add-on ~1.7%</span>
+              </div>
+            </div>
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">Rentenversicherung</span>
+                <span class="au-dc-value">18.6%</span>
+                <span class="au-dc-note">pension, shared equally</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Pflegeversicherung</span>
+                <span class="au-dc-value">3.4% / 4.0%</span>
+                <span class="au-dc-note">long-term care / 23+ childless +0.6%</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Arbeitslosen</span>
+                <span class="au-dc-value">2.6%</span>
+                <span class="au-dc-note">unemployment insurance</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">BBG Ceiling</span>
+                <span class="au-dc-value">&euro;96,600</span>
+                <span class="au-dc-note">pension/unemployment ceiling</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three key characteristics of German Payroll: (1) Six Lohnsteuerklassen tax classes (I single, II single parent, III/V married couples, IV married equal, VI second employer) determine Lohnsteuer withholding intensity; (2) Five major social insurances are administered by different institutions &mdash; Krankenkasse health insurance companies (employee choice), DRV pension insurance, BA unemployment insurance, Pflegekasse long-term care, BG occupational injury insurance (employer-only); (3) The contribution base ceiling Beitragsbemessungsgrenze is unified in 2026 at &euro;96,600 (pension/unemployment), &euro;66,150 (health/long-term care).</p>
+        </div>
+      </div>
+
+      <!-- ── Section 2: Payroll Set-up ── -->
+      <div class="article-block" id="section-setup">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Set-up</h2>
+          <p class="au-section-sub">How to establish legal payroll capability in Germany / Entity &middot; Finanzamt &middot; 5 Insurances</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Entity, Tax &amp; Employer Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:22%"><col style="width:12%"><col style="width:38%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Handelsregister Commercial Registration</td><td>Germany local entity</td><td>Yes</td><td>Apply to local court after notarization by Notar; GmbH minimum capital &euro;25,000</td></tr>
+                <tr><td>Finanzamt Tax Registration</td><td>Germany local entity</td><td>Yes</td><td>Submit Fragebogen zur steuerlichen Erfassung within 8 weeks; obtain Steuernummer</td></tr>
+                <tr><td>Betriebsnummer Employer Number</td><td>Germany local entity</td><td>Yes</td><td>Apply to Bundesagentur f&uuml;r Arbeit (BA); 8-digit number</td></tr>
+                <tr><td>Krankenkasse Health Insurance Registration</td><td>Germany local entity</td><td>Yes</td><td>Employer must register each employee with their chosen Krankenkasse (bilateral choice)</td></tr>
+                <tr><td>Employee Steuer-ID + SV-Nummer</td><td>Employee</td><td>Yes</td><td>11-digit Steuer-ID is unique for lifetime; 12-digit Sozialversicherungsnummer</td></tr>
+                <tr><td>Arbeitsvertrag Employment Contract</td><td>Employer + Employee</td><td>Yes</td><td>Nachweisgesetz (Proof Law) requires written documentation of key terms; expanded scope since 2022</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Five Major Social Insurances (Pflichtversicherungen)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:14%"><col style="width:28%"><col style="width:30%"></colgroup>
+              <thead><tr><th>Insurance (2026)</th><th>Total Rate</th><th>Employee / Employer Split</th><th>Contribution Base Ceiling (BBG)</th></tr></thead>
+              <tbody>
+                <tr><td>Krankenversicherung (Health)</td><td>14.6% + Zusatz ~1.7%</td><td>Employee/Employer split equally</td><td>Monthly &euro;5,512.50 (annual &euro;66,150)</td></tr>
+                <tr><td>Pflegeversicherung (Long-term Care)</td><td>3.4% (23+ childless 4.0%)</td><td>Employee/Employer split equally (all contribute if childless)</td><td>Monthly &euro;5,512.50</td></tr>
+                <tr><td>Rentenversicherung (Pension)</td><td>18.6%</td><td>9.3% + 9.3%</td><td>Monthly &euro;8,050 (annual &euro;96,600, unified East/West)</td></tr>
+                <tr><td>Arbeitslosenversicherung (Unemployment)</td><td>2.6%</td><td>1.3% + 1.3%</td><td>Monthly &euro;8,050</td></tr>
+                <tr><td>Unfallversicherung (Occupational Injury)</td><td>Industry-specific (BG)</td><td>100% Employer</td><td>No ceiling</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Bank Account &amp; Record Retention</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:20%"><col style="width:50%"></colgroup>
+              <thead><tr><th>Item</th><th>Requirement</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>EUR Local Bank Account</td><td>Mandatory</td><td>SEPA transfer; typically paid end of month / beginning of next month</td></tr>
+                <tr><td>Lohn/Gehaltsabrechnung Payslip</td><td>Mandatory (&sect;108 GewO)</td><td>Must itemize gross salary, tax, social insurance, net salary</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 3: Payroll Calculation ── -->
+      <div class="article-block" id="section-calculation">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Calculation</h2>
+          <p class="au-section-sub">How salary, tax, and employee entitlements are calculated / Salary &middot; Leave</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Salary, Minimum Wage &amp; Bonuses</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule / 2026 Values</th></tr></thead>
+              <tbody>
+                <tr><td>Pay Cycle</td><td>Monthly (most common); typically paid end of month / beginning of next month</td></tr>
+                <tr><td>Minimum Wage MiLoG</td><td>&euro;13.90/hour (as of 2026/1, previously &euro;12.82); 40h &times; 4.33 weeks &asymp; &euro;2,409/month</td></tr>
+                <tr><td>13. Monatsgehalt / Weihnachtsgeld</td><td>Not statutory; most Tarifvertrag agreements specify 50&ndash;100% monthly Christmas bonus</td></tr>
+                <tr><td>Urlaubsgeld Vacation Allowance</td><td>Not statutory; common in industry agreements (50% monthly salary)</td></tr>
+                <tr><td>&Uuml;berstunden Overtime</td><td>BGB &sect;612 default compensation; many Tarifvertrag specify +25% / +50%</td></tr>
+                <tr><td>Minijob Marginal Employment</td><td>&le; &euro;556/month; employer contribution ~28%; employee exempt from social insurance + tax</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Statutory Leave Entitlements</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+              <thead><tr><th>Item</th><th>Duration / Period</th><th>Pay Ratio / Source</th></tr></thead>
+              <tbody>
+                <tr><td>Annual Leave Urlaub</td><td>20 days (5-day week) / 24 days (6-day week)</td><td>100% / Employer</td></tr>
+                <tr><td>Public Holidays Gesetzliche Feiertage</td><td>9&ndash;13 days (varies by federal state)</td><td>100% / Employer</td></tr>
+                <tr><td>Sick Leave Lohnfortzahlung (First 6 weeks)</td><td>First 6 weeks</td><td>100% / Employer (U1 reimbursement for companies &lt; 30 employees)</td></tr>
+                <tr><td>Sick Leave Krankengeld (After 6 weeks)</td><td>Up to 78 weeks / 3 years</td><td>Approximately 70% Gross / Krankenkasse</td></tr>
+                <tr><td>Maternity Leave Mutterschutz</td><td>6 weeks pre + 8 weeks post (multiple births 12 weeks post)</td><td>100% / Krankenkasse + Employer makes up difference</td></tr>
+                <tr><td>Parental Leave Elternzeit + Elterngeld</td><td>Until child age 3; Elterngeld 12&ndash;14 months</td><td>65% net salary (&le; &euro;1,800/month) / Bundesagentur</td></tr>
+                <tr><td>Care Leave Pflegezeit</td><td>Up to 10 days emergency + 6 months long-term care</td><td>Partially paid (10 days) / unpaid (long-term)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Personal Income Tax (Lohnsteuer) &mdash; &sect;32a EStG</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:40%"><col style="width:15%"><col style="width:45%"></colgroup>
+              <thead><tr><th>Annual Taxable Income (zu versteuerndes Einkommen)</th><th>Rate</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>&euro;0 &ndash; &euro;12,348</td><td>0%</td><td>Grundfreibetrag 2026 tax exemption</td></tr>
+                <tr><td>&euro;12,349 &ndash; &euro;17,005</td><td>14% &ndash; 24%</td><td>Progressionszone I &mdash; formula progressive</td></tr>
+                <tr><td>&euro;17,006 &ndash; &euro;68,480</td><td>24% &ndash; 42%</td><td>Progressionszone II &mdash; formula progressive</td></tr>
+                <tr><td>&euro;68,481 &ndash; &euro;277,825</td><td>42%</td><td>Spitzensteuersatz top tax rate</td></tr>
+                <tr><td>&euro;277,826 and above</td><td>45%</td><td>Reichensteuer wealth tax</td></tr>
+                <tr><td><strong>Additional: Solidarit&auml;tszuschlag</strong></td><td><strong>+5.5%</strong></td><td>On income tax amount; for annual taxable income &gt; ~&euro;66,761</td></tr>
+                <tr><td><strong>Additional: Kirchensteuer</strong></td><td><strong>+8&ndash;9%</strong></td><td>On income tax amount; only for Katholisch / Evangelisch members</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="article-p" style="margin-top:12px; font-size:14px; color:#475072;"><strong>Lohnsteuerklassen (Tax Classes):</strong> I (single), II (single parent), III/V (married couples; III primary earner, V secondary), IV (married equal), IV+Faktor (fair split), VI (second employer). Employer withholds Lohnsteuer immediately based on employee&rsquo;s Steuer-ID query in ELStAM database for the corresponding tax class.</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Five Mandatory Social Insurances (2026)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:34%"><col style="width:16%"><col style="width:16%"><col style="width:34%"></colgroup>
+              <thead><tr><th>Scheme</th><th>Employee</th><th>Employer</th><th>BBG Ceiling</th></tr></thead>
+              <tbody>
+                <tr><td>Krankenversicherung Base</td><td>7.30%</td><td>7.30%</td><td>Monthly &euro;5,512.50</td></tr>
+                <tr><td>Krankenversicherung Add-on</td><td>~0.85%</td><td>~0.85%</td><td>Monthly &euro;5,512.50</td></tr>
+                <tr><td>Pflegeversicherung Long-term Care</td><td>1.70&ndash;2.30%</td><td>1.70%</td><td>Monthly &euro;5,512.50</td></tr>
+                <tr><td>Rentenversicherung Pension</td><td>9.30%</td><td>9.30%</td><td>Monthly &euro;8,050 (West/East unified)</td></tr>
+                <tr><td>Arbeitslosenversicherung Unemployment</td><td>1.30%</td><td>1.30%</td><td>Monthly &euro;8,050</td></tr>
+                <tr><td>Unfallversicherung Occupational Injury</td><td>&mdash;</td><td>Industry-specific (0.5&ndash;9%)</td><td>No ceiling</td></tr>
+                <tr><td><strong>Typical Office Combined</strong></td><td><strong>~20.5%</strong></td><td><strong>~20.5% + Occupational Injury</strong></td><td>&mdash;</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three commonly underestimated details in German Payroll: (1) Krankenkasse health insurance is chosen by the employee (AOK / TK / Barmer, etc., 90+ companies); employer must separately register each employee with their chosen fund; (2) Pflegeversicherung has a &ldquo;childless surcharge&rdquo; (Kinderlose Zuschlag) &mdash; employees 23+ without children pay an additional 0.6%; after 2023/7 reform, a &ldquo;child consideration reduction&rdquo; (Kinder-Ber&uuml;cksichtigung) was added (decreasing monthly for 2+ children); (3) Lohnsteuer is not simply withheld and tax-refunded at year-end &mdash; employees must proactively submit Lohnsteuerm&auml;&szlig;igung to claim salary/commute/dependent deductions in advance; otherwise the full year&rsquo;s amount is over-withheld and refunded later.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 4: Payroll Processing & Compliance ── -->
+      <div class="article-block" id="section-processing">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub">Monthly execution, filing and payment, and accounting treatment / Monthly Filings &amp; Journal</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Payroll Payment Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:30%"><col style="width:45%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payment Frequency</td><td>At least once monthly</td><td>BGB &sect;614 ex post principle; typically end of month / beginning of next month</td></tr>
+                <tr><td>Payment Method + Currency</td><td>SEPA Transfer &middot; EUR</td><td>Cash is allowed in principle but extremely rare; foreign currency settlement not permitted</td></tr>
+                <tr><td>Entgeltabrechnung Payslip</td><td>Mandatory (&sect;108 GewO)</td><td>Must itemize gross salary, tax, social insurance, net salary; electronic or paper</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Monthly Tax &amp; Insurance Reporting</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:26%"><col style="width:18%"><col style="width:16%"><col style="width:16%"><col style="width:24%"></colgroup>
+              <thead><tr><th>Filing Item</th><th>Responsible Party</th><th>Frequency</th><th>Deadline</th><th>Remittance Institution</th></tr></thead>
+              <tbody>
+                <tr><td>ELSTER Lohnsteueranmeldung</td><td>Employer</td><td>Monthly / Quarterly</td><td>10th of following month</td><td>Finanzamt</td></tr>
+                <tr><td>Beitragsnachweis Social Security Monthly Return</td><td>Employer</td><td>Monthly</td><td>Last 3 working days of month</td><td>Krankenkasse + DRV</td></tr>
+                <tr><td>DE&Uuml;V-Meldungen</td><td>Employer</td><td>Event-triggered</td><td>Onboarding / separation / changes &le; 6 weeks</td><td>Respective Krankenkasse</td></tr>
+                <tr><td>U1 / U2 Employer Reimbursement</td><td>Employer</td><td>With social insurance payment</td><td>Monthly</td><td>Krankenkasse</td></tr>
+                <tr><td>BG Occupational Insurance</td><td>Employer</td><td>Annual estimate</td><td>February 15 annually</td><td>Industry Berufsgenossenschaft</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Journal Mapping Rules (SKR 04 Recommended)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:45%"><col style="width:55%"></colgroup>
+              <thead><tr><th>Item</th><th>Account</th></tr></thead>
+              <tbody>
+                <tr><td>Bruttolohn + Sonderzahlungen</td><td>Personalaufwand &mdash; L&ouml;hne und Geh&auml;lter (6020)</td></tr>
+                <tr><td>Arbeitgeberanteile SV (~20%)</td><td>Personalaufwand &mdash; Gesetzliche Sozialaufwendungen (6110)</td></tr>
+                <tr><td>BG / Unfallversicherung</td><td>Personalaufwand &mdash; Beitr&auml;ge zur Berufsgenossenschaft (6120)</td></tr>
+                <tr><td>Lohnsteuer + Soli + KiSt Withheld</td><td>Verbindlichkeiten &mdash; gegen&uuml;ber Finanzamt (3730)</td></tr>
+                <tr><td>SV-Beitr&auml;ge AN-Anteil Withheld</td><td>Verbindlichkeiten &mdash; Krankenkasse (3740)</td></tr>
+                <tr><td>Net Pay</td><td>Bank (1200)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Annual Filings</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:22%"><col style="width:16%"><col style="width:34%"></colgroup>
+              <thead><tr><th>Item</th><th>Responsible Party</th><th>Deadline</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Lohnsteuerbescheinigung</td><td>Employer &rarr; Employee + Finanzamt</td><td>End of February</td><td>Annual tax summary for each employee; electronic submission via ELSTER</td></tr>
+                <tr><td>Lohnsteuer-Jahresausgleich</td><td>Employer (optional)</td><td>December salary</td><td>Conditional automatic reconciliation; employee may opt out for ESt return</td></tr>
+                <tr><td>Einkommensteuerkl&auml;rung</td><td>Employee</td><td>July 31</td><td>ESt comprehensive income return; employer not obligated but often assists via ELSTER</td></tr>
+                <tr><td>BG Occupational Insurance Annual Settlement</td><td>Employer</td><td>February 15</td><td>Adjust BG premium based on prior year actual wages</td></tr>
+                <tr><td>SV-Jahresmeldung</td><td>Employer</td><td>February 15</td><td>Annual social insurance report per employee for Bruttolohn</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">v.</span> Termination &amp; Foreign Workers</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:30%"><col style="width:40%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Notice Period K&uuml;ndigungsfrist (&sect;622 BGB)</td><td>4 weeks minimum</td><td>Increases with tenure: &lt; 2 years 4 weeks; &ge; 20 years 7 months; employer unilateral</td></tr>
+                <tr><td>K&uuml;ndigungsschutz Dismissal Protection</td><td>Applies to companies &ge; 10 employees (KSchG)</td><td>Dismissal must be socially justified: economic / personal / conduct-based</td></tr>
+                <tr><td>Abfindung Severance</td><td>Not statutory</td><td>&sect;1a KSchG recommends 0.5 monthly salary/year; practice typically 0.5&ndash;1.5 months</td></tr>
+                <tr><td>Unused Annual Leave Cash-out</td><td>Mandatory</td><td>Calculated based on net daily wage</td></tr>
+                <tr><td>Arbeitszeugnis Reference Letter</td><td>Mandatory</td><td>Must be objective, goodwill-based; indirect evaluation codes widely understood in industry</td></tr>
+                <tr><td>Foreign Worker Aufenthaltstitel</td><td>Conditional</td><td>EU / EEA citizens exempt from visas; non-EU require Arbeitserlaubnis</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three key changes to German Payroll in 2026: (1) MiLoG minimum wage increased from &euro;12.82 to &euro;13.90 as of 2026/1 (+8.4%, determined by Mindestlohnkommission); (2) Grundfreibetrag tax exemption threshold increased from &euro;12,096 to &euro;12,348 (+&euro;252); all Lohnsteuer formula parameters adjusted accordingly; (3) Beitragsbemessungsgrenze contribution base ceiling unified: pension/unemployment &euro;96,600 (West/East unified as of 2025), health/long-term care &euro;66,150.</p>
+        </div>
+      </div>
+
+    </div><!-- end .article-content -->
+
+    <!-- CTA sidebar -->
+    <div class="article-cta">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <!-- WeChat -->
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <!-- Download -->
+      <button class="cta-btn" id="payrollDownloadBtn" aria-label="Download" onclick="downloadPayrollGuidePDF(event)">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 21.5V23.5C24.5 23.7652 24.3946 24.0196 24.2071 24.2071C24.0196 24.3946 23.7652 24.5 23.5 24.5H16.5C16.2348 24.5 15.9804 24.3946 15.7929 24.2071C15.6054 24.0196 15.5 23.7652 15.5 23.5V21.5M22.5 19L20 21.5L17.5 19M20 21.5V15.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <!-- Copy Link -->
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <!-- Back to Top -->
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M20 25V15M20 15L15.5 19.5M20 15L24.5 19.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div><!-- end .article-cta -->
+
+  </div><!-- end .container.article-layout -->
 </section>
 
 
@@ -904,6 +1289,50 @@
       });
     });
   })();
+</script>
+<script>
+  /* ── Article TOC + Back-to-top + Copy link ── */
+  var tocSections = [
+    { id: 'section-scope',       key: 'scope'       },
+    { id: 'section-setup',       key: 'setup'       },
+    { id: 'section-calculation', key: 'calculation' },
+    { id: 'section-processing',  key: 'processing'  }
+  ];
+
+  function updateToc() {
+    var scrollPos = window.scrollY + 160;
+    var current = tocSections[0].key;
+    for (var i = 0; i < tocSections.length; i++) {
+      var el = document.getElementById(tocSections[i].id);
+      if (el && el.offsetTop <= scrollPos) current = tocSections[i].key;
+    }
+    tocSections.forEach(function(s) {
+      var dot  = document.getElementById('toc-dot-'  + s.key);
+      var text = document.getElementById('toc-text-' + s.key);
+      if (dot && text) {
+        dot.classList.toggle('toc-active',  s.key === current);
+        text.classList.toggle('toc-active', s.key === current);
+      }
+    });
+  }
+
+  function updateBackToTop() {
+    var btn = document.getElementById('backToTop');
+    if (btn) btn.classList.toggle('visible', window.scrollY > 300);
+  }
+
+  window.addEventListener('scroll', function() { updateToc(); updateBackToTop(); }, { passive: true });
+  updateToc();
+
+  var copyBtn = document.getElementById('copyLinkBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      navigator.clipboard.writeText(window.location.href).then(function() {
+        copyBtn.classList.add('copied');
+        setTimeout(function() { copyBtn.classList.remove('copied'); }, 2000);
+      });
+    });
+  }
 </script>
 <script src="payroll-guide-carousel.js"></script>
 

@@ -664,11 +664,10 @@
     .au-table-title { display: flex; gap: 8px; align-items: flex-start; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0; }
     .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
     .au-table-wrap { overflow-x: auto; }
-    .au-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-family: var(--font); }
-    .au-table th { background: #162351; color: #fff; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; padding: 10px 12px; vertical-align: middle; }
-    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); padding: 8px 12px; vertical-align: top; border-bottom: 1px solid #CDD5E0; }
-    .au-table tbody tr:nth-child(even) td { background: #F7F9FF; }
-    .au-table tbody tr:last-child td { border-bottom: none; }
+    .au-table { border-collapse: collapse; width: 100%; table-layout: auto; min-width: 480px; font-family: var(--font); }
+    .au-table th { background: #1D4783; color: #fff; font-size: 14px; font-weight: 700; line-height: 20px; text-align: left; padding: 8px 12px; vertical-align: middle; }
+    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: #475072; padding: 8px 12px; vertical-align: top; overflow-wrap: break-word; word-break: break-word; border-bottom: 0.5px solid #E7E7E7; }
+    .au-table tbody tr:nth-child(even) td { background: #ECF2FB; }
 
     /* ════════════════ GET STARTED ════════════════ */
     .gs-cta {
@@ -764,12 +763,12 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title" data-i18n="pg.country.india">India</h1>
-        <p class="pg-hero-desc">Description to be added</p>
+        <p class="pg-hero-desc">A complete guide to running payroll in India — covering EPF and ESI registration, CTC salary structure, TDS withholding under Section 192, professional tax by state, and annual compliance including Form 24Q, Form 16, and the April–March financial year cycle.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.india">1 January 2026</span></p>
+      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.india">29 July 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
@@ -780,9 +779,365 @@
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;"><span data-i18n="pg.country.india">India</span> <span data-i18n="pg.page.comingsoon">Payroll Guide content coming soon</span></p>
-  </div>
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-scope" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
+            <span class="toc-text" id="toc-text-scope">Scope &amp; Application</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-setup" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
+            <span class="toc-text" id="toc-text-setup">Payroll Set-up</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-calculation" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
+            <span class="toc-text" id="toc-text-calculation">Payroll Calculation</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-processing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
+            <span class="toc-text" id="toc-text-processing">Payroll Processing &amp; Compliance</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- ── Section 1: Scope & Application ── -->
+      <div class="article-block" id="section-scope">
+        <div class="au-section-header">
+          <h2 class="article-h2">Scope &amp; Application</h2>
+          <p class="au-section-sub">Scope and Legal Basis / Income Tax Act &middot; EPF &amp; MP Act &middot; ESI Act &middot; Shops &amp; Establishments Acts</p>
+        </div>
+        <p class="article-p">This document applies to:</p>
+        <div class="au-bullet-list" style="margin-top:16px;">
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Companies that have established a local legal entity in India (Private Limited Company / LLP)</span>
+          </div>
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Employees directly hired by the local entity, subject to federal and state labour laws</span>
+          </div>
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Payroll compliance based on the Income Tax Act, EPF &amp; MP Act, ESI Act, and various state Shops &amp; Establishments Acts</span>
+          </div>
+        </div>
+        <p class="article-p" style="margin-top:20px;">This framework covers how companies complete Payroll Set-up, salary calculation, monthly filing and payment, and annual compliance management in India.</p>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Indian Payroll complexity is extremely high &mdash; federal and state laws run in parallel, and the salary structure (CTC breakdown) directly impacts tax and social security costs. The four Labour Codes passed in 2020 aim to unify and replace the current 29 labour laws, but state-level implementation timelines vary. Companies must monitor both current law and new code developments simultaneously.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 2: Payroll Set-up ── -->
+      <div class="article-block" id="section-setup">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Set-up</h2>
+          <p class="au-section-sub">How to establish legal payroll capability in India / EPF &middot; ESI &middot; TAN &middot; State Registration</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Social Insurance &amp; Provident Fund Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:22%"><col style="width:12%"><col style="width:38%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>EPF Registration</td><td>India local entity</td><td>Yes (&ge; 20 employees)</td><td>Register with EPFO; voluntary registration for &lt; 20 employees</td></tr>
+                <tr><td>ESI Registration</td><td>India local entity</td><td>Yes (&ge; 10 employees)</td><td>Register with ESIC; applies to employees with monthly salary &le; &#8377;21,000</td></tr>
+                <tr><td>Employee UAN</td><td>Employer to organize</td><td>Yes</td><td>Universal Account Number; unique EPF identifier</td></tr>
+                <tr><td>Employee ESI IP Number</td><td>Employer to organize</td><td>Yes</td><td>Insured Person Number; ESI identifier</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Income Tax &amp; Professional Tax Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:22%"><col style="width:12%"><col style="width:38%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>TAN (Tax Deduction Account Number)</td><td>India local entity</td><td>Yes</td><td>TDS (Tax Deducted at Source) registration number</td></tr>
+                <tr><td>PAN (Permanent Account Number)</td><td>Company + Employee</td><td>Yes</td><td>Tax identification number</td></tr>
+                <tr><td>Professional Tax Registration</td><td>India local entity</td><td>Varies by state</td><td>Independent state-level levy (e.g., Maharashtra, Karnataka)</td></tr>
+                <tr><td>Employee Aadhaar</td><td>Employee</td><td>Yes</td><td>Linked to EPF/ESI; KYC compliance</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> State-Level Compliance &amp; Bank Account</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:15%"><col style="width:50%"></colgroup>
+              <thead><tr><th>Item</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Shops &amp; Establishments Registration</td><td>Yes</td><td>State-level regulation; register in state where business operates</td></tr>
+                <tr><td>Labour Welfare Fund (LWF)</td><td>Varies by state</td><td>Some states require contribution; rates very low (&#8377; tens per person per half-year)</td></tr>
+                <tr><td>Payroll Bank Account</td><td>Yes</td><td>Local INR account</td></tr>
+                <tr><td>Pay Slip</td><td>Yes</td><td>Statutory obligation; monthly itemized pay statement required</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 3: Payroll Calculation ── -->
+      <div class="article-block" id="section-calculation">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Calculation</h2>
+          <p class="au-section-sub">How salary and employee entitlements are calculated / CTC &middot; EPF &middot; ESI &middot; TDS</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Salary Structure &amp; Cost to Company (CTC)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:65%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>CTC (Cost to Company)</td><td>Total employment cost = Gross Salary + Employer EPF/ESI + Gratuity provision + other benefits</td></tr>
+                <tr><td>Gross Salary</td><td>Basic + HRA + Special Allowance + other allowances</td></tr>
+                <tr><td>Basic Salary</td><td>Typically 40%&ndash;50% of CTC; forms the base for EPF/Gratuity calculation</td></tr>
+                <tr><td>HRA (House Rent Allowance)</td><td>Typically 40%&ndash;50% of Basic; eligible for Section 10(13A) tax exemption</td></tr>
+                <tr><td>Special Allowance</td><td>Fully taxable flexible allowance</td></tr>
+                <tr><td>Minimum Wage</td><td>Determined independently by state and occupation (Minimum Wages Act)</td></tr>
+                <tr><td>Calculation Method</td><td>Monthly salary &divide; calendar days in month &times; actual working days (or &divide; 30 fixed base)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">In Indian salary structure, Basic Salary proportion directly impacts EPF/Gratuity costs and employee tax burden &mdash; the higher the Basic percentage, the higher EPF contributions (increasing employer cost), but employees receive better retirement protection. The new Labour Code on Wages proposes Basic &ge; 50% of CTC; once implemented, this will significantly increase employer social security costs.</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Statutory Leave Entitlements</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:65%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Earned Leave (Annual Leave)</td><td>Varies by state; typically 1 day per 20 days worked (approximately 15&ndash;21 days/year)</td></tr>
+                <tr><td>Sick Leave</td><td>Varies by state; typically 7&ndash;12 days/year</td></tr>
+                <tr><td>Casual Leave</td><td>Varies by state; typically 7&ndash;12 days/year</td></tr>
+                <tr><td>Public Holidays</td><td>Republic Day, Independence Day, Gandhi Jayanti are federal holidays; remainder determined by state</td></tr>
+                <tr><td>Maternity Leave</td><td>26 weeks paid (first two children); 12 weeks from third child onwards</td></tr>
+                <tr><td>Paternity Leave</td><td>No federal statutory provision; some employers provide voluntarily</td></tr>
+                <tr><td>Annual Leave Cash-out</td><td>Earned Leave may be carried forward and monetized (subject to state law and company policy)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> EPF (Employees&rsquo; Provident Fund)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:18%"><col style="width:18%"><col style="width:34%"></colgroup>
+              <thead><tr><th>Item</th><th>Employer</th><th>Employee</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>EPF (Provident Fund)</td><td>3.67%</td><td>12%</td><td>Based on Basic + DA</td></tr>
+                <tr><td>EPS (Pension Scheme)</td><td>8.33%</td><td>&mdash;</td><td>8.33% of employer&rsquo;s 12% contribution allocated to EPS (ceiling &#8377;15,000 base)</td></tr>
+                <tr><td>EDLI (Life Insurance)</td><td>0.50%</td><td>&mdash;</td><td>Ceiling &#8377;15,000 base</td></tr>
+                <tr><td>EPF Admin Charge</td><td>0.50%</td><td>&mdash;</td><td>Administrative fee</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="article-p" style="margin-top:12px; font-size:14px; color:#475072;"><strong>Total employer EPF: 13% of Basic + DA (including admin fee); employee: 12% of Basic + DA.</strong> Monthly salary exceeding &#8377;15,000 employees may still voluntarily participate (Voluntary PF); contribution ceiling applies to EPS portion only (&#8377;15,000 base), while EPF portion may use actual Basic.</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> ESI (Employees&rsquo; State Insurance)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:18%"><col style="width:46%"><col style="width:18%"><col style="width:18%"></colgroup>
+              <thead><tr><th>Item</th><th>Employer</th><th>Employee</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>ESI Contribution</td><td>3.25%</td><td>0.75%</td><td>Based on Gross Salary</td></tr>
+                <tr><td>Applicability</td><td>Applies to employees with monthly salary &le; &#8377;21,000; covers medical, sick leave, maternity, occupational injury</td><td>&mdash;</td><td>&mdash;</td></tr>
+                <tr><td>Contribution Periods</td><td>Two contribution periods: April&ndash;September / October&ndash;March</td><td>&mdash;</td><td>&mdash;</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">v.</span> Personal Income Tax (TDS) &mdash; Section 192</p>
+          <p class="article-p" style="margin-top:8px; font-size:14px; color:#475072;"><strong>New Tax Regime (Default, FY 2024&ndash;25):</strong></p>
+          <div class="au-bullet-list" style="margin-top:8px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span style="font-size:14px; color:#475072;">0% (&le; &#8377;3 lakh)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span style="font-size:14px; color:#475072;">5% (&#8377;3 lakh &ndash; &#8377;7 lakh)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span style="font-size:14px; color:#475072;">10% (&#8377;7 lakh &ndash; &#8377;10 lakh)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span style="font-size:14px; color:#475072;">15% (&#8377;10 lakh &ndash; &#8377;12 lakh)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span style="font-size:14px; color:#475072;">20% (&#8377;12 lakh &ndash; &#8377;15 lakh)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span style="font-size:14px; color:#475072;">30% (above &#8377;15 lakh)</span>
+            </div>
+          </div>
+          <p class="article-p" style="margin-top:12px; font-size:14px; color:#475072;"><strong>Old Tax Regime (Optional):</strong> Retains Section 80C/80D/HRA deductions; rates 5%&ndash;30%</p>
+          <p class="article-p" style="margin-top:8px; font-size:14px; color:#475072;"><strong>Withholding Process:</strong> Employer estimates annual taxable income and apportions TDS evenly across 12 months</p>
+          <p class="article-p" style="margin-top:8px; font-size:14px; color:#475072;"><strong>Surcharge:</strong> Annual income exceeding &#8377;50 lakh incurs additional 10%&ndash;25% surcharge; Health &amp; Education Cess 4% applies</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">vi.</span> Professional Tax (State-Level)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:70%"></colgroup>
+              <thead><tr><th>State</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>General Limit</td><td>&#8377;2,500/year maximum (constitutionally mandated)</td></tr>
+                <tr><td>Maharashtra</td><td>Monthly salary &gt; &#8377;10,000: &#8377;200/month (&#8377;300 in 2 months)</td></tr>
+                <tr><td>Karnataka</td><td>Monthly salary &gt; &#8377;15,000: &#8377;200/month</td></tr>
+                <tr><td>Payment</td><td>Employer deducts and remits monthly to state government</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 4: Payroll Processing & Compliance ── -->
+      <div class="article-block" id="section-processing">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub">Monthly execution, filing and payment, and accounting treatment / Monthly Filings &amp; Journal</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Payroll Payment Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:30%"><col style="width:45%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payment Frequency</td><td>Monthly</td><td>State regulations require payment by 7th or 10th of following month</td></tr>
+                <tr><td>Payment Method</td><td>Bank Transfer</td><td>NEFT / IMPS / UPI mandated by law</td></tr>
+                <tr><td>Pay Slip</td><td>Statutory obligation</td><td>Monthly statement required; must include EPF/ESI/TDS details</td></tr>
+                <tr><td>Record Retention</td><td>3 years (Payment of Wages Act)</td><td>Some states require longer retention</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Monthly Filing &amp; Payment</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:22%"><col style="width:18%"><col style="width:14%"><col style="width:16%"><col style="width:30%"></colgroup>
+              <thead><tr><th>Filing Item</th><th>Responsible Party</th><th>Frequency</th><th>Deadline</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>EPF Contribution</td><td>Employer</td><td>Monthly</td><td>15th of following month</td><td>Remit via EPFO unified portal online</td></tr>
+                <tr><td>ESI Contribution</td><td>Employer</td><td>Monthly</td><td>15th of following month</td><td>Remit via ESIC portal online</td></tr>
+                <tr><td>TDS Income Tax</td><td>Employer</td><td>Monthly</td><td>7th of following month</td><td>Remit via Challan 26AS online to Income Tax Department</td></tr>
+                <tr><td>Professional Tax</td><td>Employer</td><td>Monthly</td><td>Varies by state</td><td>Deduct and remit to state government</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Journal Mapping Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:55%"><col style="width:45%"></colgroup>
+              <thead><tr><th>Item</th><th>Account</th></tr></thead>
+              <tbody>
+                <tr><td>Gross Salary (Basic + HRA + Allowances)</td><td>Payroll Expense</td></tr>
+                <tr><td>Employer EPF (13%) + ESI (3.25%)</td><td>Payroll Expense</td></tr>
+                <tr><td>Gratuity Provision (4.81%)</td><td>Payroll Expense</td></tr>
+                <tr><td>Employee EPF + ESI + TDS + PT</td><td>Payroll Liability</td></tr>
+                <tr><td>Net Pay</td><td>Cash / Bank</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Annual Compliance (Financial Year: April &ndash; March)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:20%"><col style="width:16%"><col style="width:36%"></colgroup>
+              <thead><tr><th>Item</th><th>Responsible Party</th><th>Deadline</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>TDS Quarterly Return (24Q)</td><td>Employer</td><td>31 days after quarter-end</td><td>Form 24Q; quarterly TDS summary by employee</td></tr>
+                <tr><td>Form 16 (Annual Tax Certificate)</td><td>Employer</td><td>June 15</td><td>Provide annual TDS certificate to each employee</td></tr>
+                <tr><td>EPF Annual Return</td><td>Employer</td><td>April 25</td><td>Prior year EPF contribution summary</td></tr>
+                <tr><td>ESI Half-Year Return</td><td>Employer</td><td>May 11 / November 11</td><td>Half-year contribution summary</td></tr>
+                <tr><td>Gratuity Provision Update</td><td>Employer</td><td>Annually</td><td>Actuarial assessment or formula-based provision update</td></tr>
+                <tr><td>Minimum Wage Update</td><td>&mdash;</td><td>Varies by state</td><td>Monitor state Gazette notifications</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Gratuity applies to employees with 5+ years of service: each year of service = last month&rsquo;s salary (Basic + DA) &times; 15/26. Maximum &#8377;20 lakh. Companies must conduct actuarial assessments per AS 15 / Ind AS 19 and recognize provisions in financial statements. This is a substantial hidden employment cost often overlooked.</p>
+        </div>
+      </div>
+
+    </div><!-- end .article-content -->
+
+    <!-- CTA sidebar -->
+    <div class="article-cta">
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <button class="cta-btn" id="payrollDownloadBtn" aria-label="Download" onclick="downloadPayrollGuidePDF(event)">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 21.5V23.5C24.5 23.7652 24.3946 24.0196 24.2071 24.2071C24.0196 24.3946 23.7652 24.5 23.5 24.5H16.5C16.2348 24.5 15.9804 24.3946 15.7929 24.2071C15.6054 24.0196 15.5 23.7652 15.5 23.5V21.5M22.5 19L20 21.5L17.5 19M20 21.5V15.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta-in)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta-in"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M20 25V15M20 15L15.5 19.5M20 15L24.5 19.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div><!-- end .article-cta -->
+
+  </div><!-- end .container.article-layout -->
 </section>
 
 
@@ -903,6 +1258,53 @@
         header.closest('.footer-mob-row').classList.toggle('is-open');
       });
     });
+  })();
+</script>
+<script>
+  /* ── TOC scroll highlight ── */
+  (function() {
+    var tocSections = [
+      { id: 'section-scope',       dot: 'toc-dot-scope',       text: 'toc-text-scope' },
+      { id: 'section-setup',       dot: 'toc-dot-setup',       text: 'toc-text-setup' },
+      { id: 'section-calculation', dot: 'toc-dot-calculation', text: 'toc-text-calculation' },
+      { id: 'section-processing',  dot: 'toc-dot-processing',  text: 'toc-text-processing' }
+    ];
+    function setActive(index) {
+      tocSections.forEach(function(s, i) {
+        var dot  = document.getElementById(s.dot);
+        var text = document.getElementById(s.text);
+        if (!dot || !text) return;
+        if (i === index) {
+          dot.classList.add('active');
+          text.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+          text.classList.remove('active');
+        }
+      });
+    }
+    function onScroll() {
+      var scrollY = window.scrollY || window.pageYOffset;
+      var offset  = 120;
+      var active  = 0;
+      tocSections.forEach(function(s, i) {
+        var el = document.getElementById(s.id);
+        if (el && el.getBoundingClientRect().top + scrollY - offset <= scrollY) active = i;
+      });
+      setActive(active);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    var copyBtn = document.getElementById('copyLinkBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function() {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          copyBtn.classList.add('copied');
+          setTimeout(function() { copyBtn.classList.remove('copied'); }, 2000);
+        });
+      });
+    }
   })();
 </script>
 <script src="payroll-guide-carousel.js"></script>

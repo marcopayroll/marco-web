@@ -7,7 +7,7 @@
   var currentPage = 0;
   var filtered = [];
 
-  var UNLOCKED_COUNTRIES = ['Argentina', 'Australia', 'Brazil', 'Canada', 'Chile', 'Côte d\'Ivoire'];
+  var UNLOCKED_COUNTRIES = PAYROLL_GUIDE_UNLOCKED_COUNTRIES;
 
   var EXPLORE_COUNTRIES = PAYROLL_GUIDE_COUNTRIES_DATA;
 
@@ -83,8 +83,9 @@
 
   function render(query) {
     var q = normalize(query || '');
+    var currentUrl = window.location.href.split('/').pop().split('?')[0].replace(/\.html$/, '');
     filtered = EXPLORE_COUNTRIES.filter(function(c) {
-      return !q || normalize(c.name).indexOf(q) !== -1 || normalize(t('pg.country.' + countrySlug(c.name), c.name)).indexOf(q) !== -1;
+      return c.link.replace(/\.html$/, '') !== currentUrl && (!q || normalize(c.name).indexOf(q) !== -1 || normalize(t('pg.country.' + countrySlug(c.name), c.name)).indexOf(q) !== -1);
     });
     track.innerHTML = '';
     filtered.forEach(function(c) { track.appendChild(buildCard(c)); });

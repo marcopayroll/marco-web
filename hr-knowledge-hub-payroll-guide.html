@@ -855,7 +855,7 @@
     return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
   }
 
-  var UNLOCKED_COUNTRIES = ['Argentina', 'Australia', 'Brazil', 'Canada', 'Chile', 'Côte d\'Ivoire'];
+  var UNLOCKED_COUNTRIES = PAYROLL_GUIDE_UNLOCKED_COUNTRIES;
 
   function buildCard(c) {
     var isLocked = UNLOCKED_COUNTRIES.indexOf(c.name) === -1;

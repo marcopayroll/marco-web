@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="assets/marco-favicon.png">
@@ -195,7 +195,7 @@
        HERO — Australia Payroll Guide
     ════════════════════════════════════════ */
     .pg-hero {
-      background: #DAF3FF;
+      background: #FFDCD8;
       position: relative;
       overflow: hidden;
       min-height: 540px;
@@ -572,7 +572,7 @@
     /* ════════════════════════════════════════
        EXPLORE MORE
     ════════════════════════════════════════ */
-    .explore-section { background: #DAF3FF; padding: 80px 0 60px; overflow-x: clip; }
+    .explore-section { background: #FFDCD8; padding: 80px 0 60px; overflow-x: clip; }
     .explore-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
     .explore-eyebrow { display: flex; align-items: center; gap: 8px; }
     .explore-eyebrow-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
@@ -664,16 +664,16 @@
     .au-table-title { display: flex; gap: 8px; align-items: flex-start; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0; }
     .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
     .au-table-wrap { overflow-x: auto; }
-    .au-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-family: var(--font); }
-    .au-table th { background: #162351; color: #fff; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; padding: 10px 12px; vertical-align: middle; }
-    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); padding: 8px 12px; vertical-align: top; border-bottom: 1px solid #CDD5E0; }
-    .au-table tbody tr:nth-child(even) td { background: #F7F9FF; }
+    .au-table { border-collapse: collapse; width: 100%; table-layout: auto; min-width: 480px; font-family: var(--font); }
+    .au-table th { background: #1D4783; color: #fff; font-size: 14px; font-weight: 700; line-height: 20px; text-align: left; padding: 8px 12px; vertical-align: middle; }
+    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: #475072; padding: 8px 12px; vertical-align: top; overflow-wrap: break-word; word-break: break-word; border-bottom: 0.5px solid #E7E7E7; }
+    .au-table tbody tr:nth-child(even) td { background: #ECF2FB; }
     .au-table tbody tr:last-child td { border-bottom: none; }
 
     /* ════════════════ GET STARTED ════════════════ */
     .gs-cta {
       overflow: hidden;
-      background: linear-gradient(to bottom, #F0FAFF 49.1%, #ffffff 110.4%);
+      background: linear-gradient(to bottom, #FFF4F3 49.1%, #ffffff 110.4%);
     }
     .gs-cta-inner {
       display: flex;
@@ -741,7 +741,11 @@
       object-fit: cover; object-position: center;
       display: block;
     }
-    .gs-cta-inner { padding-right: max(var(--gutter), calc((100% - 1224px) / 2)); }
+    @media (max-width: 800px) {
+      .gs-cta-inner { padding-right: max(var(--gutter), calc((100% - 1224px) / 2)); }
+      .gs-cta-left { flex-basis: 100%; }
+      .gs-cta-thumb { display: none; }
+    }
   </style>
   <link rel="stylesheet" href="shared.css">
 </head>
@@ -760,25 +764,406 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title" data-i18n="pg.country.japan">Japan</h1>
-        <p class="pg-hero-desc">Description to be added</p>
+        <p class="pg-hero-desc">A complete guide to running payroll in Japan &mdash; covering four-office registration (&#31295;&#21153;&#32666;, &#24180;&#37329;&#20107;&#21153;&#25152;, &#12495;&#12525;&#12540;&#12527;&#12540;&#12463;, &#21247;&#22522;&#32666;), &#26631;&#28310;&#22577;&#916;&#26376;&#39069; social insurance grades, progressive income tax with 2.1% Special Reconstruction levy, &#24180;&#26411;&#35519;&#25972; year-end tax adjustment, and 2026 reforms including the new &#23376;&#12393;&#12418;&#12539;&#23376;&#32946;&#12390;&#25320;&#20986;&#37329; childcare contribution and revised health insurance premium rates.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.japan">1 January 2026</span></p>
+      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.japan">29 July 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
-    
+    <img src="assets/HR Knowledge Hub/Payroll Guide/thumbnails/japan.jpg" alt="Japan" />
   </div>
 </section>
 
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;"><span data-i18n="pg.country.japan">Japan</span> <span data-i18n="pg.page.comingsoon">Payroll Guide content coming soon</span></p>
-  </div>
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-scope" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
+            <span class="toc-text" id="toc-text-scope">Scope &amp; Application</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-setup" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
+            <span class="toc-text" id="toc-text-setup">Payroll Set-up</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-calculation" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
+            <span class="toc-text" id="toc-text-calculation">Payroll Calculation</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-processing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
+            <span class="toc-text" id="toc-text-processing">Payroll Processing &amp; Compliance</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- ── Section 1: Scope & Application ── -->
+      <div class="article-block" id="section-scope">
+        <div class="au-section-header">
+          <h2 class="article-h2">Scope &amp; Application</h2>
+          <p class="au-section-sub">Scope and Legal Basis / &#21247;&#20687;&#22522;&#28310;&#27861; &middot; &#25152;&#24471;&#31295;&#27861; &middot; &#20581;&#24247;&#20445;&#38522;&#27861; &middot; &#21382;&#29983;&#24180;&#37329;&#20445;&#38522;&#27861;</p>
+        </div>
+        <p class="article-p">This document applies to:</p>
+        <div class="au-bullet-list" style="margin-top:16px;">
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Companies that have established a local legal entity in Japan (&#26682;&#24335;&#20250;&#31038; KK / &#21512;&#21516;&#20250;&#31038; GK / &#21512;&#36039;&#20250;&#31038;), with obtained &#27861;&#20154;&#30058;&#21495; (13-digit)</span>
+          </div>
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Employees directly hired by the local entity, subject to the Labour Standards Act (&#21247;&#20687;&#22522;&#28310;&#27861;) and applicable employment rules (&#23601;&#26989;&#35215;&#21063;)</span>
+          </div>
+          <div class="au-bullet-item">
+            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+            <span>Payroll compliance based on Labour Standards Act, Income Tax Act, Health Insurance Act, Employees&rsquo; Pension Insurance Act, Employment Insurance Act, Workers&rsquo; Compensation Insurance Act, and regulations from &#22269;&#31295;&#24202; (National Tax Agency) / &#24180;&#37329;&#20107;&#21153;&#25152; (Pension Office)</span>
+          </div>
+        </div>
+        <p class="article-p" style="margin-top:20px;">This framework covers how companies complete Payroll Set-up in Japan (registration at four offices: &#31295;&#21153;&#32666; tax office, &#24180;&#37329;&#20107;&#21153;&#25152; pension office, &#12495;&#12525;&#12540;&#12527;&#12540;&#12463; employment office, &#21247;&#22522;&#32666; labour standards office; &#12510;&#12452;&#12490;&#12531;&#12496;&#12540; employee identification), monthly salary calculation (withholding income tax, resident tax, social insurance), monthly filing, &#24180;&#26411;&#35519;&#25972; (year-end tax adjustment), and &#36864;&#32077;&#37329; (severance settlement).</p>
+        <div class="au-data-cards-wrap">
+          <p class="au-data-cards-label">2026 KEY NUMBERS</p>
+          <div class="au-data-cards-grid">
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">Minimum Wage (Tokyo)</span>
+                <span class="au-dc-value">&yen;1,226/hr</span>
+                <span class="au-dc-note">Okinawa minimum &yen;1,023</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Tax Exemption Threshold</span>
+                <span class="au-dc-value">&yen;1,780,000</span>
+                <span class="au-dc-note">2026 tax reform increase</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Income Tax Brackets</span>
+                <span class="au-dc-value">5% &ndash; 45%</span>
+                <span class="au-dc-note">+ Special Reconstruction Tax 2.1%</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Resident Tax</span>
+                <span class="au-dc-value">10%</span>
+                <span class="au-dc-note">previous year income, collected from June onwards</span>
+              </div>
+            </div>
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">Health Insurance (Tokyo)</span>
+                <span class="au-dc-value">9.85%</span>
+                <span class="au-dc-note">employee/employer split equally</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Employees&rsquo; Pension</span>
+                <span class="au-dc-value">18.30%</span>
+                <span class="au-dc-note">employee/employer split equally</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Employment Insurance</span>
+                <span class="au-dc-value">1.55%</span>
+                <span class="au-dc-note">Employee 0.55% + Employer 1.00%</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Childcare Insurance</span>
+                <span class="au-dc-value">0.23%</span>
+                <span class="au-dc-note">new from 2026/4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three key characteristics of Japanese Payroll: (1) Social insurance &ldquo;three-piece set&rdquo; + labour insurance &ldquo;two-piece set&rdquo; &mdash; Health Insurance / Employees&rsquo; Pension / Long-term Care Insurance managed by &#24180;&#37329;&#20107;&#21153;&#25152; (Pension Office) + &#20581;&#24247;&#20445;&#38522;&#32068;&#21512; (Health Insurance Association); Employment Insurance / Workers&rsquo; Compensation Insurance managed by &#12495;&#12525;&#12540;&#12527;&#12540;&#12463; (Employment Office) + &#21247;&#22522;&#32666; (Labour Standards Office); registration required at 4 separate offices; (2) Resident tax is not withheld and calculated by employer but notified by local government based on prior year income; employer must withhold monthly from June onwards of following year; (3) &#24180;&#26411;&#35519;&#25972; (Year-End Tax Adjustment) is a uniquely Japanese tax checkpoint &mdash; employer reconciles each employee&rsquo;s full-year income tax in December and makes multi-payment or refunds.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 2: Payroll Set-up ── -->
+      <div class="article-block" id="section-setup">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Set-up</h2>
+          <p class="au-section-sub">How to establish legal payroll capability in Japan / Entity &middot; Tax Office &middot; 4 Insurances</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Entity, Tax &amp; 4-Office Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:20%"><col style="width:12%"><col style="width:40%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>&#27861;&#21153;&#23616; Corporate Registration</td><td>Japan local entity</td><td>Yes</td><td>Apply to &#27861;&#21153;&#23616; (Legal Affairs Bureau); KK minimum registration capital &yen;1 (practice typically &yen;1M); obtain &#27861;&#20154;&#30058;&#21495; (13-digit)</td></tr>
+                <tr><td>&#31295;&#21153;&#32666; Corporate Tax Registration</td><td>Japan local entity</td><td>Yes</td><td>Submit within 2 months of establishment; include &ldquo;&#32989;&#19982;&#25903;&#25भ&#20107;&#21153;&#25152;&#31561;&#12398;&#38283;&#35373;&#23626;&#20986;&#26360;&rdquo; (notification of payroll office opening)</td></tr>
+                <tr><td>&#24180;&#37329;&#20107;&#21153;&#25152; Health &amp; Pension Insurance Enrollment</td><td>Japan local entity</td><td>Yes</td><td>Mandatory for 5+ employees or all corporations; Social Insurance Office (&#24180;&#37329;&#20107;&#21153;&#25152;)</td></tr>
+                <tr><td>&#12495;&#12525;&#12540;&#12527;&#12540;&#12463; Employment Insurance</td><td>Japan local entity</td><td>Yes</td><td>Register within 10 days of hiring first employee</td></tr>
+                <tr><td>&#21247;&#20687;&#22522;&#28310;&#30417;&#30563;&#32666; Workers&rsquo; Compensation Insurance</td><td>Japan local entity</td><td>Yes</td><td>Register within 10 days of hiring first employee</td></tr>
+                <tr><td>&#12510;&#12452;&#12490;&#12531;&#12496;&#12540; Collection</td><td>Employee</td><td>Yes</td><td>12-digit individual number (My Number); required for withholding income tax; foreign workers also required</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Insurance &amp; Severance Schemes</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:20%"><col style="width:45%"></colgroup>
+              <thead><tr><th>Item</th><th>Mandatory / Voluntary</th><th>Notes (2026)</th></tr></thead>
+              <tbody>
+                <tr><td>Health Insurance + Long-term Care (40+)</td><td>Mandatory</td><td>Tokyo 9.85%; split equally between employee/employer; Long-term Care 1.62% (additional levy for ages 40&ndash;64)</td></tr>
+                <tr><td>Employees&rsquo; Pension Insurance</td><td>Mandatory</td><td>18.30%; split equally; managed centrally by &#24180;&#37329;&#20107;&#21153;&#25152;</td></tr>
+                <tr><td>Childcare / Child-rearing Contribution</td><td>Mandatory (employer)</td><td>0.36% (practical); employer-borne; employee contribution 0.115% as of 2026/4</td></tr>
+                <tr><td>Employment Insurance / Workers&rsquo; Compensation</td><td>Mandatory</td><td>Employment 1.55% (employee 0.55% + employer 1.00%); Workers&rsquo; Compensation 0.25%&ndash;8.8% (employer full)</td></tr>
+                <tr><td>Severance / Defined Contribution Pension DC</td><td>Non-statutory / customary</td><td>No statutory requirement; most companies have severance + 401k provisions in &#23601;&#26989;&#35215;&#21063; (employment rules)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Bank Account &amp; Record Retention</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:20%"><col style="width:50%"></colgroup>
+              <thead><tr><th>Item</th><th>Requirement</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>JPY Local Bank Account</td><td>Mandatory</td><td>Salary paid by electronic transfer in Japanese yen; typically on 25th or last day of month</td></tr>
+                <tr><td>&#32989;&#19982;&#26126;&#32048;&#26360; Payslip</td><td>Required every payment</td><td>Labour Standards Act &sect;24 mandates; itemize gross salary, withholding tax, social insurance, net salary</td></tr>
+                <tr><td>Payroll &amp; Personnel File Retention</td><td>Mandatory 5 years</td><td>Labour Standards Act &sect;109; tax-related 7 years (certified accounting 10 years)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 3: Payroll Calculation ── -->
+      <div class="article-block" id="section-calculation">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Calculation</h2>
+          <p class="au-section-sub">How salary, tax, and employee entitlements are calculated / Salary &middot; Leave</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Salary Calculation &amp; Bonuses</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:65%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule / 2026 Values</th></tr></thead>
+              <tbody>
+                <tr><td>Pay Cycle</td><td>Monthly (most common); Labour Standards Act requires at least once monthly</td></tr>
+                <tr><td>Minimum Wage (by Prefecture)</td><td>National average &yen;1,118; Tokyo &yen;1,226 / Okinawa &yen;1,023 (post-2025/10 revision)</td></tr>
+                <tr><td>&#26631;&#28310;&#22577;&#916;&#26376;&#39069; Standard Remuneration Monthly Amount</td><td>Social insurance contribution base; 2026 Health Insurance 50 grades / Pension 32 grades</td></tr>
+                <tr><td>&#36062;&#19982; Bonus (Shoyo)</td><td>Not statutory; customarily paid in summer (June) + winter (December), typically 1&ndash;3 months salary</td></tr>
+                <tr><td>Overtime Increment (&#27432;&#26989;&#21106;&#22686;)</td><td>+25% (weekday) / +35% (night 22:00&ndash;05:00) / +35% (holidays)</td></tr>
+                <tr><td>Excess Overtime (60+ hours/month)</td><td>Small/medium enterprises 2023/4 onwards: +50% for portion exceeding 60 hours</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Statutory Leave Entitlements</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:38%"><col style="width:32%"><col style="width:30%"></colgroup>
+              <thead><tr><th>Item</th><th>Duration / Period</th><th>Pay Ratio / Source</th></tr></thead>
+              <tbody>
+                <tr><td>&#24180;&#27425;&#26377;&#32989;&#20241;&#26222; Annual Paid Leave (6+ months service)</td><td>10 days minimum; maximum 20 days (6.5+ years service)</td><td>100% / Employer</td></tr>
+                <tr><td>Mandatory Annual Leave Taking</td><td>Employer must ensure employee takes minimum 5 days/year</td><td>100% / Employer</td></tr>
+                <tr><td>&#22269;&#27665;&#12398;&#31455;&#26085; National Holidays</td><td>16 days/year (includes New Year, Golden Week)</td><td>100% / Employer</td></tr>
+                <tr><td>Pre/Postnatal Leave (&#30002;&#21069;&#30002;&#24460;&#20241;&#26989;)</td><td>6 weeks pre-natal + 8 weeks post-natal (multiple births 14+8)</td><td>66.67% / Health Insurance (maternity allowance)</td></tr>
+                <tr><td>Childbirth One-time Allowance (&#20986;&#30002;&#32946;&#20581;&#19968;&#26178;&#37329;)</td><td>&yen;500,000 per child (as of 2023/4)</td><td>Health Insurance</td></tr>
+                <tr><td>Childcare Leave (&#32946;&#20816;&#20241;&#26989;)</td><td>Until child age 1 (special extension to age 2)</td><td>67% (first 6 months) / 50% (thereafter) / Employment Insurance</td></tr>
+                <tr><td>Paternity Leave on Birth (&#20986;&#29983;&#26178;&#32946;&#20816;&#20241;&#26989;)</td><td>4 weeks within 8 weeks of birth (can split into 2 periods)</td><td>67% / Employment Insurance; 80% as of 2025/4 under special conditions</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Personal Income Tax (National + Inhabitant Tax)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:45%"><col style="width:55%"></colgroup>
+              <thead><tr><th>Annual Taxable Income (&#35611;&#31295;&#25152;&#24471;)</th><th>National Tax Rate + Special Reconstruction Tax (&times; 2.1%)</th></tr></thead>
+              <tbody>
+                <tr><td>&le; &yen;1,950,000</td><td>5% &times; 1.021 = 5.105%</td></tr>
+                <tr><td>&yen;1.95M &ndash; &yen;3.3M</td><td>10% &times; 1.021 = 10.21%</td></tr>
+                <tr><td>&yen;3.3M &ndash; &yen;6.95M</td><td>20% &times; 1.021 = 20.42%</td></tr>
+                <tr><td>&yen;6.95M &ndash; &yen;9M</td><td>23% &times; 1.021 = 23.48%</td></tr>
+                <tr><td>&yen;9M &ndash; &yen;18M</td><td>33% &times; 1.021 = 33.69%</td></tr>
+                <tr><td>&yen;18M &ndash; &yen;40M</td><td>40% &times; 1.021 = 40.84%</td></tr>
+                <tr><td>&gt; &yen;40M</td><td>45% &times; 1.021 = 45.945%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="article-p" style="margin-top:12px; font-size:14px; color:#475072;"><strong>Additional: Resident Tax (&#20住&#27665;&#31295;)</strong> &mdash; 10% flat tax (Municipal Tax 6% + Prefectural Tax 4%) + Resident Per Capita Tax approximately &yen;5,000/year. Not calculated by employer in real-time; local government notifies based on prior year income; employer withholds monthly from June of following year through May of year after.</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Social Insurance &amp; Labour Insurance</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:14%"><col style="width:14%"><col style="width:44%"></colgroup>
+              <thead><tr><th>Insurance</th><th>Employee</th><th>Employer</th><th>Notes (2026)</th></tr></thead>
+              <tbody>
+                <tr><td>Health Insurance (Tokyo)</td><td>4.925%</td><td>4.925%</td><td>Varies by prefecture; monthly income ceiling &yen;1,390,000</td></tr>
+                <tr><td>Long-term Care Insurance (40+)</td><td>0.81%</td><td>0.81%</td><td>2026 increases to 1.62% total; additional levy for ages 40&ndash;64</td></tr>
+                <tr><td>Employees&rsquo; Pension</td><td>9.15%</td><td>9.15%</td><td>Monthly income ceiling &yen;650,000; &#26標;&#28310;&#22577;&#916;&#26376;&#39069; 32 grades</td></tr>
+                <tr><td>Childcare Contribution (new 2026/4)</td><td>0.115%</td><td>0.115%</td><td>New provision; withheld together with health insurance</td></tr>
+                <tr><td>Employment Insurance</td><td>0.55%</td><td>1.00%</td><td>Construction industry employers 1.15%; actual cost calculation</td></tr>
+                <tr><td>Workers&rsquo; Compensation Insurance</td><td>&mdash;</td><td>0.25%&ndash;8.8%</td><td>Industry-specific; employer-borne fully; actual cost calculation</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three commonly underestimated details in Japanese Payroll: (1) Social insurance contribution base is fixed &#26631;&#28310;&#22577;&#916;&#26376;&#39069; (Standard Remuneration Monthly Amount) on 50/32-grade tables, updated once annually in July (&#23450;&#26178;&#27770;&#23450;); applied for full year &mdash; this causes timing lag when salary changes after premium determination; (2) &#36062;&#19982; (bonuses) also incur social insurance, but Employees&rsquo; Pension bonus ceiling &yen;1.5M per payment, Health Insurance annual combined &yen;5.73M; (3) Resident tax is employee-exempt in first year (year of hire), withholding begins June of following year &mdash; foreign workers often experience &ldquo;surprise&rdquo; resident tax collection in second year; HR must provide advance notice.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 4: Payroll Processing & Compliance ── -->
+      <div class="article-block" id="section-processing">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub">Monthly execution, filing and payment, and accounting treatment / Monthly Filings &amp; Journal</p>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Payroll Payment Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:30%"><col style="width:42%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payment Frequency</td><td>At least once monthly (&#27589;&#26376;1&#22238;&#20197;&#19978;)</td><td>Labour Standards Act &sect;24; typically 25th or month-end (&#26376;&#26411;&#25255;&#12356;)</td></tr>
+                <tr><td>Payment Method + Currency</td><td>Electronic transfer &middot; JPY</td><td>Cash allowed in principle; employee consent required for transfer; foreign currency settlement not permitted in principle</td></tr>
+                <tr><td>&#32989;&#19982;&#26126;&#32048; Payslip + Wage Deduction</td><td>Mandatory (Labour Standards Act &sect;24)</td><td>Wage deduction &ldquo;&#36083;&#37329;&#12363;&#12425;&#12398;&#25247;&#38500;&rdquo; requires agreement (&#21327;&#23450;&#26360;); may not exceed statutory items</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Monthly Tax &amp; Insurance Reporting</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:26%"><col style="width:16%"><col style="width:13%"><col style="width:16%"><col style="width:29%"></colgroup>
+              <thead><tr><th>Filing Item</th><th>Responsible Party</th><th>Frequency</th><th>Deadline</th><th>Remittance Institution</th></tr></thead>
+              <tbody>
+                <tr><td>Withholding Income Tax (&#25152;&#24471;&#31295;&#28304;&#27849;&#24363;&#21462;)</td><td>Employer</td><td>Monthly</td><td>10th of following month</td><td>&#31295;&#21153;&#32666; (Tax Office)</td></tr>
+                <tr><td>Resident Tax Special Collection (&#20303;&#27665;&#31295;&#29305;&#21035;&#24363;&#21462;)</td><td>Employer</td><td>Monthly</td><td>10th of following month</td><td>&#24066;&#21306;&#30753;&#26449;&#25152; (Municipal Office)</td></tr>
+                <tr><td>Social Insurance (Health + Pension + Long-term Care)</td><td>Employer</td><td>Monthly</td><td>Last day of following month</td><td>&#24180;&#37329;&#20107;&#21153;&#25152; / &#20581;&#20445;&#32068;&#21512; (Pension Office / Health Insurance Association)</td></tr>
+                <tr><td>Employment Insurance</td><td>Employer</td><td>Annual estimate (April&ndash;June)</td><td>July 10 annually</td><td>&#21247;&#20687;&#23616; (Labour Bureau)</td></tr>
+                <tr><td>Workers&rsquo; Compensation Insurance</td><td>Employer</td><td>Annual estimate</td><td>July 10 annually</td><td>&#21247;&#20687;&#23616; (Labour Bureau)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Journal Mapping Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:55%"><col style="width:45%"></colgroup>
+              <thead><tr><th>Item</th><th>Account</th></tr></thead>
+              <tbody>
+                <tr><td>Gross Salary + Allowances + &#36062;&#19982; Bonus</td><td>Payroll Expense &mdash; &#32989;&#26009;&#25163;&#24403; / &#36062;&#19982;</td></tr>
+                <tr><td>Employer Legal Benefits (~15%&ndash;16%)</td><td>Payroll Expense &mdash; &#27861;&#23450;&#31119;&#21033;&#36027;</td></tr>
+                <tr><td>Withholding Income Tax + Reconstruction Tax</td><td>Payroll Liability &mdash; &#38928;&#12426;&#37329; (&#25152;&#24471;&#31295;)</td></tr>
+                <tr><td>Resident Tax Special Collection (&#20303;&#27665;&#31295;)</td><td>Payroll Liability &mdash; &#38928;&#12426;&#37329; (&#20303;&#27665;&#31295;)</td></tr>
+                <tr><td>Social Insurance (employee portion) Withheld</td><td>Payroll Liability &mdash; &#38928;&#12426;&#37329; (&#31038;&#20445;)</td></tr>
+                <tr><td>Net Take-home (&#25163;&#21462;&#12426;)</td><td>Cash / Bank &mdash; &#29694;&#37329; / &#26222;&#36890;&#37504;&#37329;</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Year-End Tax Adjustment &amp; Annual Filings</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:18%"><col style="width:16%"><col style="width:36%"></colgroup>
+              <thead><tr><th>Item</th><th>Responsible Party</th><th>Deadline</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>&#24180;&#26411;&#35519;&#25972; Year-End Tax Adjustment</td><td>Employer</td><td>December payroll</td><td>Employee submits &#25230;&#養; (dependent) / &#20445;&#38522;&#26009;&#25247;&#38500; (insurance deduction) declaration; employer reconciles and makes multi-payment or refunds</td></tr>
+                <tr><td>&#28304;&#27849;&#24363;&#21462;&#31080; Withholding Tax Certificate</td><td>Employer &rarr; Employee + Tax Office</td><td>January 31</td><td>Full-year withholding record certificate</td></tr>
+                <tr><td>&#32989;&#19982;&#25903;&#25불&#22577;&#21578;&#26360; Salary Payment Report</td><td>Employer &rarr; Municipal Office</td><td>January 31</td><td>For local government to calculate resident tax collection from June</td></tr>
+                <tr><td>&#27861;&#23450;&#35519;&#26360;&#21512;&#35336;&#34920; Legal Report Summary</td><td>Employer &rarr; Tax Office</td><td>January 31</td><td>Comprehensive statement of all employees&rsquo; salary and remuneration</td></tr>
+                <tr><td>&#31639;&#23450;&#22522;&#30784;&#23626; / &#26376;&#39069;&#22793;&#26356;&#23626;</td><td>Employer &rarr; Pension Office</td><td>July 10 annually</td><td>&#26631;&#28310;&#22577;&#916;&#26376;&#39069; annual review (&#23450;&#26178;&#27770;&#23450;) + ad-hoc revisions</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">v.</span> Termination &amp; Foreign Workers</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:30%"><col style="width:42%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>&#35299;&#38500;&#20104;&#21578; Termination Notice Period</td><td>30 days minimum</td><td>Labour Standards Act &sect;20; if insufficient, pay &ldquo;termination notice allowance&rdquo; (&#35299;&#38500;&#20104;&#21578;&#25163;&#24403;) to cover difference</td></tr>
+                <tr><td>&#36864;&#32077;&#37329; Severance</td><td>No statutory requirement</td><td>Determined by &#23601;&#26989;&#35215;&#21063; (employment rules); typical formula: Basic Salary &times; Years of Service &times; Coefficient</td></tr>
+                <tr><td>&#36864;&#32077;&#25152;&#24471;&#25247;&#38500; Severance Tax Deduction</td><td>Mandatory</td><td>Within 20 years &yen;400,000/year + above 20 years &yen;700,000/year; 1/2 taxable</td></tr>
+                <tr><td>Unused Annual Leave Buy-out</td><td>Generally not allowed</td><td>May buy-out at separation if permitted by &#23601;&#26989;&#35215;&#21063;</td></tr>
+                <tr><td>Dispute Resolution</td><td>Labour Standards Office / Labour Tribunal</td><td>&ldquo;Unfair dismissal&rdquo; claims within 1 year of dismissal</td></tr>
+                <tr><td>Foreign Worker Residency Tax</td><td>183-day / 5-year dual test</td><td>Non-residents within 5 years exempt from foreign-source income tax; subject to RAU exceptions</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three key changes to Japanese Payroll in 2026: (1) 2026 tax reform increases personal income tax exemption threshold from &yen;1,030,000 to &yen;1,780,000, with corresponding adjustments to spouse allowance and other deductions; (2) As of 2026/4, new &ldquo;&#23376;&#12393;&#12418;&#12539;&#23376;&#32946;&#12390;&#25320;&#20986;&#37329;&rdquo; (Childcare Contribution) with employee share 0.115% + employer share 0.115%, mandatory for all employees, withheld together with health insurance; (3) Health insurance premium rates 2026/3 revision: Tokyo 9.91% &rarr; 9.85%, 40 prefectures nationwide reduced; Long-term Care 1.59% &rarr; 1.62%.</p>
+        </div>
+      </div>
+
+    </div><!-- end .article-content -->
+
+    <!-- CTA sidebar -->
+    <div class="article-cta">
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <button class="cta-btn" id="payrollDownloadBtn" aria-label="Download" onclick="downloadPayrollGuidePDF(event)">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 21.5V23.5C24.5 23.7652 24.3946 24.0196 24.2071 24.2071C24.0196 24.3946 23.7652 24.5 23.5 24.5H16.5C16.2348 24.5 15.9804 24.3946 15.7929 24.2071C15.6054 24.0196 15.5 23.7652 15.5 23.5V21.5M22.5 19L20 21.5L17.5 19M20 21.5V15.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta-jp)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta-jp"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M20 25V15M20 15L15.5 19.5M20 15L24.5 19.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div><!-- end .article-cta -->
+
+  </div><!-- end .container.article-layout -->
 </section>
 
 
@@ -803,6 +1188,9 @@
         <span data-i18n="pg.page.gs.contact">Contact us</span>
         <div class="gs-cta-btn-icon"><div class="gs-cta-btn-icon-inner"><img class="gs-cta-btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
       </a>
+    </div>
+    <div class="gs-cta-thumb">
+      <img src="assets/HR Knowledge Hub/Payroll Guide/thumbnails/japan.jpg" alt="Japan" />
     </div>
   </div>
 </section>
@@ -897,6 +1285,48 @@
       });
     });
   })();
+</script>
+<script>
+  // TOC scroll highlighting
+  var tocSections = [
+    { id: 'section-scope',       dot: 'toc-dot-scope',       text: 'toc-text-scope' },
+    { id: 'section-setup',       dot: 'toc-dot-setup',       text: 'toc-text-setup' },
+    { id: 'section-calculation', dot: 'toc-dot-calculation', text: 'toc-text-calculation' },
+    { id: 'section-processing',  dot: 'toc-dot-processing',  text: 'toc-text-processing' },
+  ];
+  function updateTOC() {
+    var scrollY = window.scrollY + 120;
+    var active = null;
+    for (var i = 0; i < tocSections.length; i++) {
+      var el = document.getElementById(tocSections[i].id);
+      if (el && el.offsetTop <= scrollY) active = i;
+    }
+    tocSections.forEach(function(s, i) {
+      var dot  = document.getElementById(s.dot);
+      var text = document.getElementById(s.text);
+      if (!dot || !text) return;
+      if (i === active) {
+        dot.classList.add('active');
+        text.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+        text.classList.remove('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', updateTOC);
+  updateTOC();
+
+  // Copy link button
+  var copyBtn = document.getElementById('copyLinkBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      navigator.clipboard.writeText(window.location.href).then(function() {
+        copyBtn.classList.add('copied');
+        setTimeout(function() { copyBtn.classList.remove('copied'); }, 1500);
+      });
+    });
+  }
 </script>
 <script src="payroll-guide-carousel.js"></script>
 
