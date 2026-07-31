@@ -7,8 +7,6 @@
   var currentPage = 0;
   var filtered = [];
 
-  var UNLOCKED_COUNTRIES = PAYROLL_GUIDE_UNLOCKED_COUNTRIES;
-
   var EXPLORE_COUNTRIES = PAYROLL_GUIDE_COUNTRIES_DATA;
 
   var track        = document.getElementById('exploreTrack');
@@ -33,14 +31,15 @@
   }
 
   function buildCard(c) {
-    var isLocked = UNLOCKED_COUNTRIES.indexOf(c.name) === -1;
     var a = document.createElement('a');
     a.className = 'explore-card';
-    a.href = isLocked ? '#' : (c.link || '#');
-    if (isLocked) a.dataset.locked = 'true';
+    a.href = c.link || '#';
     var thumbHtml = c.img
       ? '<img src="' + c.img + '" alt="' + c.name + '" loading="lazy" />'
       : '';
+    var dateText = c.date
+      ? t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + countrySlug(c.name), c.date)
+      : 'Content Coming Soon';
     a.innerHTML =
       '<div class="explore-card-thumb">' + thumbHtml + '</div>' +
       '<div class="explore-card-body">' +
@@ -48,7 +47,7 @@
           '<span class="explore-card-name">' + t('pg.country.' + countrySlug(c.name), c.name) + '</span>' +
           '<span class="explore-card-currency">' + c.currency + '</span>' +
         '</div>' +
-        '<span class="explore-card-date">' + (isLocked ? 'Content Coming Soon' : t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + countrySlug(c.name), c.date || '1 January 2026')) + '</span>' +
+        '<span class="explore-card-date">' + dateText + '</span>' +
       '</div>';
     return a;
   }
@@ -85,6 +84,7 @@
     var q = normalize(query || '');
     var currentUrl = window.location.href.split('/').pop().split('?')[0].replace(/\.html$/, '');
     filtered = EXPLORE_COUNTRIES.filter(function(c) {
+      if (!c.date) return false;
       return c.link.replace(/\.html$/, '') !== currentUrl && (!q || normalize(c.name).indexOf(q) !== -1 || normalize(t('pg.country.' + countrySlug(c.name), c.name)).indexOf(q) !== -1);
     });
     track.innerHTML = '';

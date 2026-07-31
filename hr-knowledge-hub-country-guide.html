@@ -897,6 +897,7 @@
 
   function getFiltered() {
     return COUNTRIES.filter(function(c) {
+      if (!c.date) return false;
       const matchName = !activeQuery || c.name.toLowerCase().includes(activeQuery);
       const matchLocal = activeQuery && t('cg.country.' + countrySlug(c.name), c.name).toLowerCase().includes(activeQuery);
       const matchAlias = activeQuery && c.aliases && c.aliases.some(a => a.includes(activeQuery));
@@ -929,7 +930,7 @@
           '<span class="cg-card-name">' + t('cg.country.' + countrySlug(c.name), c.name) + '</span>' +
           '<span class="cg-card-currency">' + c.currency + '</span>' +
         '</div>' +
-        '<span class="cg-card-date">' + t('cg.card.updated', 'Last Updated by,') + ' ' + t('cg.date.' + countrySlug(c.name), c.date || '1 January 2026') + '</span>' +
+        '<span class="cg-card-date">' + (function(){ var d = t('cg.date.' + countrySlug(c.name), c.date || 'Content Coming Soon'); return d === 'Content Coming Soon' ? d : t('cg.card.updated', 'Last Updated by,') + ' ' + d; })() + '</span>' +
       '</div>';
     return a;
   }

@@ -831,6 +831,7 @@
   function getFiltered() {
     const q = normalize(activeQuery);
     return COUNTRIES.filter(function(c) {
+      if (!c.date) return false;
       const matchName = !q || normalize(c.name).includes(q);
       const matchLocal = q && normalize(t('vg.country.' + countrySlug(c.name), c.name)).includes(q);
       const matchAlias = q && c.aliases && c.aliases.some(a => normalize(a).includes(q));

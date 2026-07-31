@@ -380,16 +380,6 @@
       transform: translateY(-4px);
       box-shadow: 0 20px 40px rgba(12,12,13,0.14), 0 4px 8px rgba(12,12,13,0.08);
     }
-    .cg-card[data-locked="true"] {
-      filter: grayscale(100%);
-      opacity: 0.6;
-      pointer-events: none;
-      cursor: default;
-    }
-    .cg-card[data-locked="true"]:hover {
-      transform: none;
-      box-shadow: 0 16px 16px rgba(12,12,13,0.10), 0 4px 2px rgba(12,12,13,0.05);
-    }
     .cg-card-thumb {
       width: 100%;
       height: 200px;
@@ -835,6 +825,7 @@
   function getFiltered() {
     const q = normalize(activeQuery);
     return COUNTRIES.filter(function(c) {
+      if (!c.date) return false;
       const matchName = !q || normalize(c.name).includes(q);
       const matchLocal = q && normalize(t('pg.country.' + countrySlug(c.name), c.name)).includes(q);
       const matchAlias = q && c.aliases && c.aliases.some(a => normalize(a).includes(q));
@@ -855,24 +846,19 @@
     return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
   }
 
-  var UNLOCKED_COUNTRIES = PAYROLL_GUIDE_UNLOCKED_COUNTRIES;
-
   function buildCard(c) {
-    var isLocked = UNLOCKED_COUNTRIES.indexOf(c.name) === -1;
     var a = document.createElement('a');
-    a.href = isLocked ? '#' : (c.link || '#');
+    a.href = c.link || '#';
     a.className = 'cg-card';
     a.dataset.name = c.name.toLowerCase();
     a.dataset.region = c.region;
-    if (isLocked) a.dataset.locked = 'true';
     var thumbHtml = c.img
       ? '<img src="' + c.img + '" alt="' + c.name + '" loading="lazy" />'
       : '';
     var slug = countrySlug(c.name);
-    var dateEn = c.date || (c.name === 'Australia' ? '22 June 2026' : '1 January 2026');
-    var dateText = isLocked
-      ? 'Content Coming Soon'
-      : t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + slug, dateEn);
+    var dateText = c.date
+      ? t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + slug, c.date)
+      : 'Content Coming Soon';
     a.innerHTML =
       '<div class="cg-card-thumb">' + thumbHtml + '</div>' +
       '<div class="cg-card-body">' +

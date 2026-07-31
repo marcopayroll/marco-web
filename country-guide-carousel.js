@@ -81,6 +81,7 @@
     var q = normalize(query || '');
     var currentUrl = window.location.href.split('/').pop().split('?')[0].replace(/\.html$/, '');
     filtered = EXPLORE_COUNTRIES.filter(function(c) {
+      if (!c.date || c.date === 'Content Coming Soon') return false;
       return c.url.replace(/\.html$/, '') !== currentUrl && (!q || normalize(c.name).indexOf(q) !== -1 || normalize(t('cg.country.' + countrySlug(c.name), c.name)).indexOf(q) !== -1);
     });
     track.innerHTML = '';
