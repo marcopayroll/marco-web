@@ -8,743 +8,11 @@
   <!-- PDF libraries: html2canvas captures live DOM, jsPDF creates the PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="payroll-guide.css">
   <style>
-    @import url('assets/fonts/euclid-circular-b.css');
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { overflow-anchor: none; }
-
     :root {
-      --blue-main:     #019DE7;
-      --blue-dark:     #003751;
-      --blue-darkest:  #162351;
-      --blue-lighter:  #8DD3F4;
-      --text-main:     #162351;
-      --text-secondary:#475072;
-      --text-tertiary: #8F98B5;
-      --font: 'Euclid Circular B', 'Inter', sans-serif;
-      --gutter:        clamp(64px, 7.5vw, 108px);
-      --nav-gutter:    clamp(32px, 4.44vw, 64px);
-      --footer-gutter: clamp(40px, 5.56vw, 80px);
-    }
-
-    body {
-      font-family: var(--font);
-      background: #0F1E46;
-      color: var(--text-main);
-      min-width: 960px;
-      overflow-x: hidden;
-    }
-
-    .container {
-      width: calc(100% - 2 * var(--gutter));
-      max-width: 1224px;
-      margin-inline: auto;
-    }
-
-    /* ════════════════════════════════════════
-       NAV
-    ════════════════════════════════════════ */
-    .nav {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      z-index: 100;
-      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    }
-    .nav-container {
-      width: min(100% - 128px, 1440px);
-      margin-inline: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 0;
-    }
-    .nav-tabbar {
-      display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      flex-shrink: 0;
-    }
-    .nav-logo {
-      width: 152px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-      text-decoration: none;
-    }
-    .nav-logo-inner {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 684 / 108;
-    }
-    .nav-logo-inner img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .nav-menu {
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-      flex-shrink: 0;
-    }
-    .nav-tab {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding-top: 16px;
-      align-items: flex-start;
-      flex-shrink: 0;
-      position: relative;
-    }
-    .nav-tab:hover::after {
-      content: '';
-      position: absolute;
-      bottom: -16px;
-      left: 4px;
-      right: 4px;
-      height: 2px;
-      background: #fff;
-      pointer-events: none;
-    }
-    .nav-tab-inner {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 0 4px;
-      flex-shrink: 0;
-    }
-    .nav-tab-inner span {
-      font-size: 12px;
-      font-weight: 500;
-      color: #e5e7eb;
-      white-space: nowrap;
-      line-height: 20px;
-    }
-    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
-    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
-    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
-    .nav-right {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      flex-shrink: 0;
-    }
-    .nav-lang {
-      display: flex;
-      flex-direction: column;
-      padding-top: 16px;
-      padding-bottom: 14px;
-      align-items: flex-start;
-      flex-shrink: 0;
-      position: relative;
-      cursor: pointer;
-    }
-    .nav-lang-flag {
-      position: relative;
-      width: 20px;
-      height: 20px;
-      border-radius: 50px;
-      border: 1px solid #e5e7eb;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .nav-lang-flag img {
-      position: absolute;
-      top: 0;
-      left: -20.01%;
-      width: 175.44%;
-      height: 100%;
-      max-width: none;
-    }
-    .nav-lang-inner span {
-      font-size: 12px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 20px;
-    }
-    .nav-signin {
-      background: var(--blue-main);
-      color: #fff;
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 50px;
-      padding: 14px 24px;
-      height: 40px;
-      width: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
-      cursor: pointer;
-      border: none;
-      flex-shrink: 0;
-      text-decoration: none;
-      transition: background 0.18s ease;
-    }
-    .nav-signin:hover { background: #0185C4; }
-
-    /* ════════════════════════════════════════
-       HERO — Australia Payroll Guide
-    ════════════════════════════════════════ */
-    .pg-hero {
-      background: #E3DAFF;
-      position: relative;
-      overflow: hidden;
-      min-height: 540px;
-    }
-
-    .pg-hero-inner {
-      padding-top: 180px;
-      padding-bottom: 60px;
-      padding-right: calc(min(628px, 44vw) - var(--gutter) + 24px);
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pg-hero-text {
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .pg-hero-text-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .pg-breadcrumb {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: #019de7;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 18px;
-      width: fit-content;
-      padding: 4px 0;
-    }
-    .pg-breadcrumb span { text-decoration: none; transition: text-decoration-color 0.15s ease; }
-    .pg-breadcrumb:hover span { text-decoration: underline; text-decoration-color: #019DE7; text-underline-offset: 2px; text-decoration-thickness: 1.6px; }
-    .pg-breadcrumb svg { flex-shrink: 0; }
-
-    .pg-hero-title {
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 60px;
-      letter-spacing: -2.4px;
-      color: #162351;
-    }
-
-    .pg-hero-desc {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: #475072;
-    }
-
-    .pg-hero-meta {
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      margin-top: 70px;
-    }
-
-    .pg-hero-divider {
-      height: 1px;
-      background: #cdd5e0;
-      width: 100%;
-      flex-shrink: 0;
-    }
-
-    .pg-hero-last-updated {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: #475072;
-    }
-
-    .pg-hero-img {
-      position: absolute;
-      right: 0;
-      top: var(--nav-h, 98px);
-      bottom: 0;
-      width: min(628px, 44vw);
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .pg-hero-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    @media (max-width: 800px) {
-      .pg-hero { min-height: auto; }
-      .pg-hero-img { display: none; }
-      .pg-hero-inner { padding-top: 160px; padding-bottom: 48px; padding-right: 0; }
-      .pg-hero-text { width: 100%; max-width: 600px; }
-      .pg-hero-meta { width: 100%; max-width: 600px; margin-top: 40px; }
-    }
-
-    @media (max-width: 440px) {
-      .pg-hero-inner { padding-top: 120px; padding-bottom: 40px; }
-      .pg-hero-title { font-size: 32px; line-height: 42px; letter-spacing: -1.5px; }
-      .pg-hero-desc { font-size: 15px; }
-      .pg-hero-meta { margin-top: 32px; }
-    }
-
-    /* ════════════════════════════════════════
-       FOOTER
-    ════════════════════════════════════════ */
-    .footer {
-      width: 100%;
-      overflow: hidden;
-      background-image: linear-gradient(90.352deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
-      padding: 60px 0 58px;
-    }
-    .footer > .container { display: flex; flex-direction: column; }
-    .footer-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 56px;
-    }
-    .footer-logo {
-      width: 199.5px;
-      flex-shrink: 0;
-      text-decoration: none;
-    }
-    .footer-logo img { width: 100%; height: auto; display: block; }
-    .footer-social {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 80px;
-      flex-shrink: 0;
-    }
-    .footer-social-icon {
-      width: 24px;
-      height: 24px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
-    .footer-nav {
-      display: flex;
-      gap: 24px;
-      justify-content: space-between;
-      margin-bottom: 40px;
-    }
-    .footer-col {
-      flex: 1 1 0;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .footer-col-header {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: normal;
-      color: var(--text-tertiary);
-    }
-    .footer-col-links {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .footer-col-links a,
-    .footer-col-links span {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: normal;
-      color: #fff;
-      text-decoration: none;
-      display: block;
-    }
-    .footer-col-links a:hover { text-decoration: underline; }
-    .footer-divider {
-      height: 1px;
-      background: rgba(205,213,224,0.25);
-      margin-bottom: 32px;
-    }
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      white-space: nowrap;
-    }
-    .footer-legal {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
-    .footer-legal a:hover { text-decoration: underline; }
-
-    /* ── WECHAT MODAL ── */
-    .wechat-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-    }
-    .wechat-modal.active { opacity: 1; pointer-events: auto; }
-    .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
-
-    /* ── FADE-IN ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
-    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) {
-      .fade-in { opacity: 1; transform: none; transition: none; }
-    }
-
-    /* ════════════════════════════════════════
-       TABLET NAV (≤800px)
-    ════════════════════════════════════════ */
-    .nav-mobile-right { display: none; align-items: center; gap: 32px; }
-    .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; padding-top: 10px; padding-bottom: 10px; }
-    .nav-mobile-lang.is-open::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
-    .nav-mobile-lang .nav-lang-flag { width: 16px; height: 16px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; position: relative; }
-    .nav-mobile-lang .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
-    .nav-mobile-lang span { font-family: var(--font); font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
-    .nav-hamburger { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; cursor: pointer; background: none; border: none; padding: 0; flex-shrink: 0; }
-    .nav-hamburger-icon-tablet { display: block; width: 24px; height: 24px; }
-    .nav-hamburger-icon-mobile { display: none; }
-    .nav-hamburger img { transition: transform 0.3s ease; }
-    .nav-hamburger.is-open img { transform: rotate(90deg); }
-    .nav-mobile-overlay { position: fixed; top: 80px; left: 0; width: 100vw; height: calc(100vh - 80px); background: rgba(0,0,0,0.6); z-index: 190; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
-    .nav-mobile-overlay.is-open { opacity: 1; pointer-events: auto; }
-    .nav-mobile-panel {
-      position: fixed; top: 80px; left: calc(100vw - min(100vw, 390px)); width: min(100vw, 390px); height: calc(100vh - 80px);
-      background: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%);
-      z-index: 200; overflow-y: auto; box-sizing: border-box;
-      transform: translateX(100%); transition: transform 0.3s ease;
-      display: flex; flex-direction: column; padding: 24px; justify-content: space-between;
-    }
-    .nav-mobile-panel.is-open { transform: translateX(0); }
-    .nav-mob-acc { display: flex; flex-direction: column; gap: 16px; }
-    .nav-mob-row { }
-    .nav-mob-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; cursor: pointer; user-select: none; gap: 8px; }
-    .nav-mob-header-label { font-family: var(--font); font-size: 16px; font-weight: 500; color: #fff; line-height: 20px; }
-    .nav-mob-chevron { display: flex; align-items: center; flex-shrink: 0; }
-    .nav-mob-chevron svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
-    .nav-mob-row.is-open .nav-mob-chevron svg { transform: rotate(180deg); }
-    .nav-mob-body { display: flex; flex-direction: column; gap: 16px; padding: 0 20px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.35s ease, opacity 0.25s ease, padding-top 0.35s ease; }
-    .nav-mob-row.is-open .nav-mob-body { max-height: 700px; opacity: 1; padding-top: 16px; }
-    .nav-mob-sub-item { display: flex; gap: 8px; align-items: center; text-decoration: none; }
-    .nav-mob-sub-icon { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-mob-sub-icon img { width: 100%; height: 100%; display: block; }
-    .nav-mob-sub-title { font-family: var(--font); font-size: 14px; font-weight: 500; color: #fff; display: block; line-height: 18px; transition: color 0.12s ease; }
-    .nav-mob-sub-desc { display: none; }
-    .nav-mob-sub-desc-noicon { display: none; }
-    .nav-mob-sub-item:hover .nav-mob-sub-title { color: #019DE7; }
-    .nav-mob-sub-item-noicon { display: block; padding: 0; text-decoration: none; }
-    .nav-mob-sub-title-noicon { font-family: var(--font); font-size: 14px; font-weight: 500; color: #fff; display: block; line-height: 18px; transition: color 0.12s ease; }
-    .nav-mob-sub-item-noicon:hover .nav-mob-sub-title-noicon { color: #019DE7; }
-    .nav-mob-signin-wrap { flex-shrink: 0; }
-    .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
-    .nav-mob-signin:hover { background: #0185C4; }
-    @media (max-width: 800px) {
-      .nav { z-index: 300; width: 100vw; }
-      .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }
-      .nav-menu { display: none; }
-      .nav-right { display: none; }
-      .nav-mobile-right { display: flex; }
-      .nav-lang-dropdown { top: calc(100% + 16px); }
-    }
-    @media (max-width: 440px) {
-      .nav-container { padding: 16px 24px; }
-      .nav-logo { width: 101px; height: 32px; }
-      .nav-hamburger { width: 20px; height: 20px; }
-      .nav-hamburger-icon-tablet { display: none; }
-      .nav-hamburger-icon-mobile { display: block; width: 20px; height: 20px; }
-      .nav-mobile-overlay { top: 64px; height: calc(100vh - 64px); }
-      .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
-    }
-    @media (max-width: 800px) {
-      .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
-      .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
-      .footer-top { margin-bottom: 60px; }
-      .footer-logo { width: 171px; }
-      .footer-nav { flex-wrap: wrap; column-gap: 24px; row-gap: 60px; margin-bottom: 60px; }
-      .footer-col { flex: 1 1 calc(33.333% - 16px); max-width: calc(33.333% - 16px); }
-      .footer-col-header { font-size: 12px; line-height: 16px; }
-      .footer-col-links a, .footer-col-links span { font-size: 12px; line-height: 16px; }
-      .footer-divider { margin-bottom: 32px; }
-      .footer-bottom { font-size: 12px; line-height: 16px; }
-      .footer-legal { gap: 24px; }
-    }
-
-    /* ════════════════════════════════════════
-       MOBILE FOOTER (≤440px)
-    ════════════════════════════════════════ */
-    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100vw; box-sizing: border-box; }
-    .footer-mob-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px 24px 0; }
-    .footer-mob-logo { display: block; width: 142px; height: 40px; flex-shrink: 0; text-decoration: none; }
-    .footer-mob-logo img { width: 142px; height: 40px; display: block; object-fit: contain; }
-    .footer-mob-social { display: flex; align-items: center; gap: 26px; padding-top: 8px; flex-shrink: 0; }
-    .footer-mob-social-link { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; }
-    .footer-mob-social-link img { width: 24px; height: 24px; display: block; }
-    .footer-mob-social-wechat { width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .footer-mob-social-wechat img { width: 24px; height: 24px; display: block; }
-    .footer-mob-acc { display: flex; flex-direction: column; padding: 32px 24px 0; }
-    .footer-mob-row { border-bottom: 1px solid #8f98b5; }
-    .footer-mob-row-header { display: flex; gap: 16px; align-items: center; padding: 24px 0; cursor: pointer; user-select: none; }
-    .footer-mob-row-label { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; flex: 1; }
-    .footer-mob-row-chevron { display: flex; align-items: center; flex-shrink: 0; }
-    .footer-mob-row-chevron svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
-    .footer-mob-row.is-open .footer-mob-row-chevron svg { transform: rotate(180deg); }
-    .footer-mob-row-body { max-height: 0; overflow: hidden; opacity: 0; display: flex; flex-direction: column; gap: 24px; padding: 0; transition: max-height 0.35s ease, opacity 0.25s ease, padding-bottom 0.35s ease; }
-    .footer-mob-row.is-open .footer-mob-row-body { max-height: 800px; opacity: 1; padding-bottom: 24px; }
-    .footer-mob-row-body a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #fff; text-decoration: none; display: block; }
-    .footer-mob-row-body a:hover { color: #019DE7; }
-    .footer-mob-legal { display: flex; flex-direction: column; gap: 32px; padding: 60px 24px 32px; }
-    .footer-mob-legal-links { display: flex; flex-direction: column; gap: 16px; }
-    .footer-mob-legal-links a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #b2b6c8; text-decoration: none; }
-    .footer-mob-legal-links a:hover { color: #fff; }
-    .footer-mob-copyright { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #b2b6c8; }
-    @media (max-width: 440px) {
-      .footer { display: none; }
-      .footer-mobile { display: block; }
-    }
-
-    .nav-lang { position: relative; cursor: pointer; }
-    .nav-lang-dropdown {
-      position: absolute; top: calc(100% + 25px); left: 50%;
-      width: 90px; background: #fff; border-radius: 8px;
-      box-shadow: 0 4px 5px rgba(0,0,0,0.1), 0 4px 15px rgba(0,0,0,0.15);
-      padding: 8px; display: flex; flex-direction: column; gap: 8px;
-      z-index: 200;
-      opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-4px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-    .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
-    .nav-lang:hover .nav-lang-dropdown,
-    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
-    .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
-    .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
-    .nav-lang-dd-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 4px 8px; border-radius: 4px; cursor: pointer;
-      border: 1px solid transparent; transition: background 0.12s ease, border-color 0.12s ease;
-    }
-    .nav-lang-dd-row.is-active { background: #ECF2FB; border-color: #BCC9EB; }
-    .nav-lang-dd-row:hover { background: #ECF2FB; border-color: #BCC9EB; }
-    .nav-lang-dd-flag { position: relative; width: 20px; height: 20px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; }
-    .nav-lang-dd-flag img { position: absolute; top: 0; height: 100%; max-width: none; }
-    .nav-lang-dd-flag.flag-en img { left: -20.01%; width: 175.44%; }
-    .nav-lang-dd-flag.flag-cn img { left: 1.79%; width: 150%; }
-    .nav-lang-dropdown .nav-lang-dd-label { font-family: var(--font); font-size: 12px; font-weight: 600; line-height: 20px; color: #162351; }
-
-    /* ════════════════════════════════════════
-       EXPLORE MORE
-    ════════════════════════════════════════ */
-    .explore-section { background: #E3DAFF; padding: 80px 0 60px; overflow-x: clip; }
-    .explore-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
-    .explore-eyebrow { display: flex; align-items: center; gap: 8px; }
-    .explore-eyebrow-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
-    .explore-eyebrow-label { font-size: 14px; font-weight: 500; line-height: 18px; color: #162351; }
-    .explore-title-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .explore-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; color: #162351; white-space: nowrap; flex-shrink: 0; margin: 0; }
-    .explore-controls { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
-    .explore-search { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid #bcc9eb; border-radius: 12px; padding: 12px; width: 320px; height: 50px; flex-shrink: 0; box-sizing: border-box; }
-    .explore-search-icon { width: 16px; height: 16px; flex-shrink: 0; }
-    .explore-search-icon img { width: 100%; height: 100%; display: block; }
-    .explore-search-input { flex: 1; min-width: 0; border: none; outline: none; font-family: var(--font); font-size: 16px; font-weight: 400; line-height: 20px; color: #162351; background: transparent; }
-    .explore-search-input::placeholder { color: #8f98b5; }
-    .explore-search-clear { width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; background: none; border: none; padding: 0; display: none; }
-    .explore-search-clear.visible { display: block; }
-    .explore-search-clear img { width: 100%; height: 100%; display: block; }
-    .explore-chevrons { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
-    .explore-chev-btn { width: 50px; height: 50px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; transition: filter 0.2s ease; }
-    .explore-chev-btn:not(:disabled):hover { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25)); }
-    .explore-chev-btn:disabled { cursor: default; }
-    .explore-chev-btn img { width: 50px; height: 50px; display: block; }
-    .explore-viewport { width: 100%; padding: 20px 0; overflow: visible; }
-    .explore-track { display: flex; gap: 40px; padding-left: max(var(--gutter), calc((100% - 1224px) / 2)); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
-    .explore-card { flex: 0 0 340px; width: 340px; background: #fff; border-radius: 6px; box-shadow: 0 16px 16px rgba(12,12,13,0.1), 0 4px 2px rgba(12,12,13,0.05); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
-    .explore-card:hover { transform: translateY(-4px); box-shadow: 0 20px 24px rgba(12,12,13,0.14), 0 8px 10px rgba(12,12,13,0.08); }
-    .explore-card[data-locked="true"] { filter: grayscale(100%); opacity: 0.6; pointer-events: none; cursor: default; }
-    .explore-card[data-locked="true"]:hover { transform: none; box-shadow: 0 16px 16px rgba(12,12,13,0.1), 0 4px 2px rgba(12,12,13,0.05); }
-    .explore-card-thumb { width: 100%; height: 200px; flex-shrink: 0; overflow: hidden; background: #d4ccf5; }
-    .explore-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .explore-card-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; height: 100px; flex-shrink: 0; box-sizing: border-box; }
-    .explore-card-title-row { display: flex; align-items: center; gap: 16px; }
-    .explore-card-name { font-size: 16px; font-weight: 700; line-height: 20px; color: #162351; white-space: nowrap; }
-    .explore-card-currency { background: #ecf2fb; padding: 4px 6px; border-radius: 4px; font-size: 12px; font-weight: 700; line-height: 16px; color: #475072; white-space: nowrap; }
-    .explore-card-date { font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; }
-    .explore-empty { padding: 40px 0 0; font-family: var(--font); font-size: 16px; color: #8f98b5; display: none; }
-    .explore-scroll-track { height: 6px; background: #cdd5e0; border-radius: 10px; margin-top: 40px; position: relative; overflow: hidden; }
-    .explore-scroll-thumb { height: 6px; background: #3d4148; border-radius: 10px; position: absolute; left: 0; top: 0; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-
-    /* ════════════════ ARTICLE SECTION ════════════════ */
-    .article-section { background: #fff; padding: 60px 0 120px; }
-    .article-layout { display: flex; align-items: flex-start; }
-    .article-toc { width: 280px; flex-shrink: 0; margin-right: 32px; position: sticky; top: 130px; }
-    .toc-card { background: #fff; border-radius: 8px; padding: 16px 16px 32px 16px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.10); display: flex; flex-direction: column; gap: 40px; }
-    .toc-title { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
-    .toc-list { display: flex; flex-direction: column; gap: 24px; }
-    .toc-item { display: flex; gap: 8px; align-items: center; text-decoration: none; }
-    .toc-dot-wrap { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .toc-dot { width: 8px; height: 8px; border-radius: 50%; background: #9199A6; flex-shrink: 0; transition: background 0.2s ease; }
-    .toc-dot.toc-active { background: var(--blue-main); }
-    .toc-text { flex: 1; font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); transition: color 0.2s ease, font-size 0.2s ease, font-weight 0.2s ease; }
-    .toc-text.toc-active { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
-    .toc-divider-line { height: 1px; background: #CDD5E0; width: 100%; }
-    .article-content { flex: 1; min-width: 0; max-width: 832px; margin-right: 40px; display: flex; flex-direction: column; gap: 40px; }
-    .article-block { display: flex; flex-direction: column; gap: 24px; }
-    .article-h2 { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
-    .article-p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
-    .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 130px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
-    .cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; }
-    .cta-btn .cta-ring { transition: fill 0.2s ease, stroke 0.2s ease; }
-    .cta-btn .cta-fill { transition: fill 0.2s ease; }
-    .cta-btn .cta-stroke { transition: stroke 0.2s ease, stroke-width 0.2s ease; }
-    .cta-btn:hover .cta-ring { fill: #3D4148; stroke: #3D4148; }
-    .cta-btn:hover .cta-fill { fill: #fff; }
-    .cta-btn:hover .cta-stroke { stroke: #fff; stroke-width: 1.5px; }
-    .cta-btn.cta-copied .cta-ring { fill: var(--blue-main); stroke: var(--blue-main); }
-    .cta-btn.cta-copied .cta-stroke { stroke: #fff; }
-    .cta-back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .cta-back-to-top.visible { opacity: 1; pointer-events: auto; }
-    /* ── AU Article specific ── */
-    .au-section-header { display: flex; flex-direction: column; gap: 8px; }
-    .au-section-header .article-h2 { font-size: 32px; font-weight: 700; line-height: 40px; color: #1D4783; }
-    .au-section-sub { font-size: 14px; font-weight: 400; line-height: 24px; color: var(--text-secondary); margin: 0; }
-    .au-section-sep { font-size: 14px; font-weight: 400; line-height: 24px; color: var(--text-secondary); margin: 0; }
-    .au-bullet-list { display: flex; flex-direction: column; gap: 16px; }
-    .au-bullet-item { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); }
-    .au-bullet-dot-wrap { width: 22px; flex-shrink: 0; padding-top: 7px; }
-    .au-bullet-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-main); }
-    .au-data-cards-wrap { border-left: 6px solid var(--blue-main); background: #E4EFFF; padding: 16px 32px 24px; }
-    .au-data-cards-label { font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0 0 32px; }
-    .au-data-cards-grid { display: flex; flex-direction: column; gap: 32px; }
-    .au-data-cards-row { display: flex; gap: 24px; }
-    .au-data-card { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
-    .au-dc-name { font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-main); }
-    .au-dc-value { font-size: 24px; font-weight: 600; line-height: 32px; color: var(--blue-main); }
-    .au-dc-note { font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-secondary); }
-    .au-marco-insight { background: #E4EFFF; border-left: 6px solid var(--blue-main); padding: 16px 32px 24px; display: flex; flex-direction: column; gap: 16px; }
-    .au-mi-label { font-size: 16px; font-weight: 600; line-height: 24px; color: var(--blue-main); margin: 0; }
-    .au-mi-text { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
-    .au-table-group { display: flex; flex-direction: column; gap: 16px; }
-    .au-table-title { display: flex; gap: 8px; align-items: flex-start; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0; }
-    .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
-    .au-table-wrap { overflow-x: auto; }
-    .au-table { border-collapse: collapse; width: 100%; table-layout: auto; min-width: 480px; font-family: var(--font); }
-    .au-table th { background: #162351; color: #fff; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; padding: 10px 12px; vertical-align: middle; }
-    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); padding: 8px 12px; vertical-align: top; overflow-wrap: break-word; word-break: break-word; border-bottom: 1px solid #CDD5E0; }
-    .au-table tbody tr:nth-child(even) td { background: #F7F9FF; }
-    .au-table tbody tr:last-child td { border-bottom: none; }
-
-    /* ════════════════ GET STARTED ════════════════ */
-    .gs-cta {
-      overflow: hidden;
-      background: linear-gradient(to bottom, #F7F4FF 49.1%, #ffffff 110.4%);
-    }
-    .gs-cta-inner {
-      display: flex;
-      align-items: stretch;
-      gap: 24px;
-      padding-left: max(var(--gutter), calc((100% - 1224px) / 2));
-    }
-    .gs-cta-left {
-      flex: 1 1 0;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-      padding: 80px 0;
-    }
-    .gs-cta-text {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-    .gs-cta-title-block {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .gs-cta-label { display: flex; align-items: center; gap: 8px; }
-    .gs-cta-label-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
-    .gs-cta-label span { font-family: var(--font); font-size: 14px; font-weight: 500; color: #162351; line-height: 18px; }
-    .gs-cta-title {
-      font-family: var(--font);
-      font-size: clamp(40px, calc(0.8vw + 36.48px), 48px);
-      font-weight: 600; line-height: 1.25;
-      color: #162351; letter-spacing: -2.4px; margin: 0;
-    }
-    .gs-cta-title .accent { color: #019de7; }
-    .gs-cta-subtitle {
-      font-family: var(--font);
-      font-size: clamp(12px, calc(0.4vw + 10.24px), 16px);
-      font-weight: 400;
-      color: #162351; line-height: 20px; margin: 0;
-    }
-    .gs-cta-btn {
-      align-self: flex-start;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      height: 48px; padding: 4px 24px; border-radius: 50px;
-      font-family: var(--font); font-size: 16px; font-weight: 400;
-      line-height: normal; letter-spacing: -0.8px; color: #fff;
-      background: #162351; border: none; cursor: pointer; text-decoration: none;
-      white-space: nowrap; flex-shrink: 0; transition: background 0.18s ease;
-    }
-    .gs-cta-btn:hover { background: #0185c4; }
-    .gs-cta-btn-icon { position: relative; overflow: hidden; flex-shrink: 0; width: 20px; height: 20px; }
-    .gs-cta-btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
-    .gs-cta-btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
-    .gs-cta-thumb {
-      flex: 1 1 0;
-      min-width: 0;
-      overflow: hidden;
-      position: relative;
-    }
-    .gs-cta-thumb img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      display: block;
-    }
-    @media (max-width: 800px) {
-      .gs-cta-inner { padding-right: max(var(--gutter), calc((100% - 1224px) / 2)); }
-      .gs-cta-left { flex-basis: 100%; }
-      .gs-cta-thumb { display: none; }
+      --hero-bg: #E3DAFF;
+      --cta-bg: linear-gradient(to bottom, #F7F4FF 49.1%, #ffffff 110.4%);
     }
   </style>
   <link rel="stylesheet" href="shared.css">
@@ -764,12 +32,12 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title" data-i18n="pg.country.malaysia">Malaysia</h1>
-        <p class="pg-hero-desc">Description to be added</p>
+        <p class="pg-hero-desc">A complete guide to running payroll in Malaysia &mdash; covering EPF, SOCSO, and EIS registration, monthly salary proration logic, PCB progressive income tax withholding (0%&ndash;30%), statutory leave accrual and cash-out rules, and annual compliance including the EA Form and LHDN reconciliation.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.malaysia">1 January 2026</span></p>
+      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.malaysia">31 July 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
@@ -780,9 +48,485 @@
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;"><span data-i18n="pg.country.malaysia">Malaysia</span> <span data-i18n="pg.page.comingsoon">Payroll Guide content coming soon</span></p>
-  </div>
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-scope" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
+            <span class="toc-text" id="toc-text-scope">Scope &amp; Application</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-setup" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
+            <span class="toc-text" id="toc-text-setup">Payroll Set-up</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-calculation" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
+            <span class="toc-text" id="toc-text-calculation">Payroll Calculation</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-processing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
+            <span class="toc-text" id="toc-text-processing">Payroll Processing &amp; Compliance</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Body -->
+    <div class="article-content">
+
+      <!-- SCOPE -->
+      <div class="article-block" id="section-scope">
+        <div class="au-section-header">
+          <h2 class="article-h2">Scope &amp; Application</h2>
+          <p class="au-section-sub">Scope and Legal Basis / EPF &middot; SOCSO &middot; EIS &middot; LHDN</p>
+        </div>
+
+        <p class="au-section-sep">This document applies to:</p>
+        <div class="au-bullet-list">
+          <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Companies that have established a local legal entity in Malaysia</span></div>
+          <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Employees directly hired by the local entity</span></div>
+          <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Payroll compliance based on Malaysian law</span></div>
+        </div>
+
+        <p class="au-section-sep"><strong>This framework covers:</strong> how companies complete Payroll Set-up, salary calculation, monthly filing and payment, and annual compliance management in Malaysia.</p>
+      </div>
+
+      <!-- PART I: SET-UP -->
+      <div class="article-block" id="section-setup">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Set-up</h2>
+          <p class="au-section-sub">How to establish legal payroll capability in Malaysia</p>
+        </div>
+
+        <!-- 01 Social Security Registration -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">01</span> Social Security Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Account Holder</th>
+                  <th>Mandatory</th>
+                  <th>Applicable Employees</th>
+                  <th>Operational Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>EPF</td>
+                  <td>Malaysia local entity</td>
+                  <td>Yes</td>
+                  <td>Local employees / Foreign employees (subject to contract)</td>
+                  <td>Complete registration upon employee onboarding</td>
+                </tr>
+                <tr>
+                  <td>SOCSO</td>
+                  <td>Malaysia local entity</td>
+                  <td>Yes</td>
+                  <td>Local employees</td>
+                  <td>Occupational injury and social security protection</td>
+                </tr>
+                <tr>
+                  <td>EIS</td>
+                  <td>Malaysia local entity</td>
+                  <td>Yes</td>
+                  <td>Local employees</td>
+                  <td>Employment insurance</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 02 Tax & PCB Registration -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">02</span> Tax &amp; PCB Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Account Holder</th>
+                  <th>Mandatory</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>LHDN Employer Tax Number</td>
+                  <td>Malaysia local entity</td>
+                  <td>Yes</td>
+                  <td>For tax filing purposes</td>
+                </tr>
+                <tr>
+                  <td>PCB Withholding Status</td>
+                  <td>Malaysia local entity</td>
+                  <td>Yes</td>
+                  <td>For monthly personal income tax withholding</td>
+                </tr>
+                <tr>
+                  <td>Employee Tax Number</td>
+                  <td>Employee</td>
+                  <td>Varies</td>
+                  <td>Not mandatory but recommended</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 03 Payroll Bank Account -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">03</span> Payroll Bank Account</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Requirement</th>
+                  <th>Operational Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Payroll Bank Account</td>
+                  <td>Local bank account</td>
+                  <td>Recommend separating from operations account</td>
+                </tr>
+                <tr>
+                  <td>Payroll Payment Records</td>
+                  <td>Must retain</td>
+                  <td>For audit and tax verification purposes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 04 Employee Insurance -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">04</span> Employee Insurance</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Mandatory</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Statutory Occupational / Medical Insurance</td>
+                  <td>Varies by applicable regulation</td>
+                  <td>Typically associated with SOCSO</td>
+                </tr>
+                <tr>
+                  <td>Supplemental Commercial Insurance</td>
+                  <td>No</td>
+                  <td>Subject to company benefits policy</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- PART II: CALCULATION -->
+      <div class="article-block" id="section-calculation">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Calculation</h2>
+          <p class="au-section-sub">How salary and employee entitlements are calculated</p>
+        </div>
+
+        <!-- 01 Salary Calculation & Proration -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">01</span> Salary Calculation &amp; Proration Logic</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Item</th><th>Rule</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Pay Method</td><td>Monthly salary</td></tr>
+                <tr><td>Pay Cycle</td><td>Calendar month</td></tr>
+                <tr><td>Proration Scenarios</td><td>Onboarding month, separation month, unpaid leave</td></tr>
+                <tr><td>Proration Base</td><td>Actual working days in the month</td></tr>
+                <tr><td>Daily Salary Calculation</td><td>Monthly salary &divide; actual working days in month</td></tr>
+                <tr><td>Fixed Days</td><td>Not applicable</td></tr>
+                <tr><td>Rounding</td><td>Typically retain 2 decimal places</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="au-section-sep"><strong>Working Days Definition:</strong></p>
+        <div class="au-bullet-list">
+          <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Typically Monday to Friday</span></div>
+          <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Exclude weekends and statutory public holidays</span></div>
+          <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Monthly working days variable (generally 22&ndash;23 days)</span></div>
+        </div>
+
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Malaysian law does not prescribe a unified proration formula; proration logic should be based on employment contract and company Payroll Policy, applied consistently.</p>
+        </div>
+
+        <!-- 02 Leave -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">02</span> Employee Leave Accrual, Utilisation &amp; Settlement</p>
+
+          <p class="au-section-sep"><strong>Leave Accrual:</strong></p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Item</th><th>Rule</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Leave Composition</td><td>Statutory annual leave + additional leave per contract</td></tr>
+                <tr><td>Accrual Method</td><td>Accumulate based on proportion of service</td></tr>
+                <tr><td>Accrual Frequency</td><td>Monthly</td></tr>
+                <tr><td>Calculation Formula</td><td>Annual leave available &divide; 12</td></tr>
+                <tr><td>Less Than One Year</td><td>Accrue pro-rata</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="au-section-sep"><strong>Leave Utilisation:</strong></p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Item</th><th>Rule</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Annual Leave</td><td>Paid; does not affect salary</td></tr>
+                <tr><td>Unpaid Leave</td><td>Triggers salary proration; handled per Working Days rule</td></tr>
+                <tr><td>Employee Can Only Use</td><td>Already accrued leave balance</td></tr>
+                <tr><td>Deduction After Use</td><td>Balance reduced in real-time</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="au-section-sep"><strong>Leave Settlement:</strong></p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Item</th><th>Rule</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Mandatory Settlement</td><td>Yes</td></tr>
+                <tr><td>Unused Annual Leave</td><td>Cash-out payment</td></tr>
+                <tr><td>Cash-out Base</td><td>Employee daily wage</td></tr>
+                <tr><td>Payment Timing</td><td>Included in final paycheck</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Leave cash-out is a mandatory settlement item; separation is merely the settlement timing point, not the starting point of calculation logic.</p>
+        </div>
+
+        <!-- 03 Statutory Contributions -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">03</span> Statutory Contributions Breakdown</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Item</th><th>Employer</th><th>Employee</th><th>Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>EPF</td><td>12% / 13%</td><td>11%</td><td>Related to salary range and age</td></tr>
+                <tr><td>SOCSO</td><td>1.75%</td><td>0.5%</td><td>Occupational injury and disability protection</td></tr>
+                <tr><td>EIS</td><td>0.2%</td><td>0.2%</td><td>Unemployment protection</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 04 PCB Income Tax -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">04</span> Individual Income Tax Calculation (PCB)</p>
+          <p class="au-section-sep"><strong>Simplified Calculation Logic:</strong></p>
+          <div class="au-bullet-list">
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Annualize monthly salary</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Deduct statutory reliefs (such as EPF)</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Calculate annual tax amount using tax rate table</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Apportion as monthly PCB</span></div>
+          </div>
+          <p class="au-section-sep"><strong>Key Features:</strong></p>
+          <div class="au-bullet-list">
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Progressive rates: 0%&ndash;30%</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Tax base: Annual taxable income</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Withholding method: Monthly PCB</span></div>
+          </div>
+        </div>
+
+        <div class="au-marco-insight">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">PCB is a pre-withholding mechanism for annual tax liability, not the final tax amount.</p>
+        </div>
+      </div>
+
+      <!-- PART III: PROCESSING -->
+      <div class="article-block" id="section-processing">
+        <div class="au-section-header">
+          <h2 class="article-h2">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub">Monthly execution, filing and payment, and accounting treatment</p>
+        </div>
+
+        <!-- 01 Monthly Payroll Payment -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">01</span> Monthly Payroll Payment</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Item</th><th>Rule</th><th>Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Payment Frequency</td><td>Monthly</td><td>As per employment contract</td></tr>
+                <tr><td>Pay Date</td><td>Company-determined</td><td>Recommend fixed date</td></tr>
+                <tr><td>Payment Amount</td><td>Net Salary</td><td>Already deducted for taxes and fees</td></tr>
+                <tr><td>Payslip</td><td>Mandatory</td><td>Must provide</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 02 Monthly Social Insurance Filing -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">02</span> Monthly Social Insurance Filing &amp; Payment</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Filing Item</th><th>Filer</th><th>Frequency</th><th>Statutory Deadline</th><th>Operational Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>EPF</td><td>Employer</td><td>Monthly</td><td>15th of following month</td><td>File based on salary payment month</td></tr>
+                <tr><td>SOCSO</td><td>Employer</td><td>Monthly</td><td>15th of following month</td><td>Includes occupational injury and general social protection</td></tr>
+                <tr><td>EIS</td><td>Employer</td><td>Monthly</td><td>15th of following month</td><td>Filed concurrently with SOCSO</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="au-section-sep"><strong>Operational Key Points:</strong></p>
+          <div class="au-bullet-list">
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Contribution amounts calculated based on salary in contribution month</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Late payment incurs penalties and interest</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>EPF, SOCSO, EIS are mandatory contributions</span></div>
+          </div>
+        </div>
+
+        <!-- 03 Monthly PCB Filing -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">03</span> Monthly Income Tax (PCB) Filing &amp; Payment</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Filing Item</th><th>Filer</th><th>Frequency</th><th>Statutory Deadline</th><th>Operational Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>PCB</td><td>Employer</td><td>Monthly</td><td>15th of following month</td><td>File and remit via LHDN system</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="au-section-sep"><strong>Operational Key Points:</strong></p>
+          <div class="au-bullet-list">
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Remittance amount calculated based on accrued salary for the month</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Late or missed payment incurs penalties and interest</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>PCB is mandatory withholding and remittance item</span></div>
+            <div class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Delay or omission constitutes tax non-compliance</span></div>
+          </div>
+        </div>
+
+        <!-- 04 Journal -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">04</span> Payroll Journal Mapping Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Item</th><th>Account</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Gross Salary</td><td>Payroll Expense</td></tr>
+                <tr><td>Employer Contributions</td><td>Payroll Expense</td></tr>
+                <tr><td>Employee Deductions</td><td>Payroll Liability</td></tr>
+                <tr><td>Net Pay</td><td>Cash / Bank</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 05 Annual Reconciliation -->
+        <div class="au-table-group">
+          <p class="au-table-title"><span class="au-table-num">05</span> Annual Tax &amp; Statutory Reconciliation</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <thead>
+                <tr><th>Item</th><th>Responsible Party</th><th>Deadline</th><th>Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>EA Form / Annual PCB Summary</td><td>Employer</td><td>Before end of February following year</td><td>Provide employee annual income and tax withheld information</td></tr>
+                <tr><td>Social Insurance Annual Reconciliation</td><td>Employer</td><td>After year-end</td><td>Ensure full-year filing and payment consistency</td></tr>
+                <tr><td>Employee Personal Tax Filing</td><td>Employee</td><td>Typically April&ndash;May</td><td>Employee completes annual filing independently</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end .article-content -->
+
+    <!-- Sidebar CTA -->
+    <div class="article-cta">
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+          <path class="cta-fill" d="M25.6154 25.9997C25.2063 25.8175 24.831 25.5442 24.4315 25.5025C24.0335 25.4609 23.6152 25.6905 23.1988 25.7331C21.9305 25.8629 20.7942 25.5094 19.8573 24.6429C18.0754 22.9947 18.33 20.4675 20.3916 19.1169C22.2239 17.9165 24.911 18.3166 26.2029 19.9823C27.3302 21.4357 27.1977 23.3651 25.8215 24.5861C25.4232 24.9395 25.2799 25.2303 25.5354 25.6961C25.5826 25.7821 25.588 25.891 25.6154 25.9997ZM20.9588 21.4911C21.2192 21.4914 21.4337 21.2875 21.4435 21.0303C21.454 20.758 21.2349 20.5295 20.9622 20.5284C20.6922 20.5272 20.4661 20.7588 20.4755 21.0271C20.4843 21.2834 20.7003 21.4908 20.9588 21.4911ZM23.9606 20.5295C23.708 20.5277 23.4933 20.7346 23.483 20.9899C23.472 21.2629 23.6842 21.4871 23.9544 21.4878C24.2157 21.4887 24.4222 21.2911 24.4317 21.031C24.4419 20.7573 24.2296 20.5314 23.9606 20.5295Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <button class="cta-btn" id="payrollDownloadBtn" aria-label="Download" onclick="downloadPayrollGuidePDF(event)">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 21.5V23.5C24.5 23.7652 24.3946 24.0196 24.2071 24.2071C24.0196 24.3946 23.7652 24.5 23.5 24.5H16.5C16.2348 24.5 15.9804 24.3946 15.7929 24.2071C15.6054 24.0196 15.5 23.7652 15.5 23.5V21.5M22.5 19L20 21.5L17.5 19M20 21.5V15.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta-my)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta-my"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M20 25V15M20 15L15.5 19.5M20 15L24.5 19.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div><!-- end .article-cta -->
+
+  </div><!-- end .container.article-layout -->
 </section>
 
 
