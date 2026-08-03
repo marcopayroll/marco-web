@@ -17,7 +17,7 @@ const VISA_GUIDE_COUNTRIES_DATA = [
   { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/chile.png", link: "hr-knowledge-hub-visa-guide-chile.html", date: "29 June 2026" },
   { name: "China",         currency: "CNY", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/china.jpg", link: "hr-knowledge-hub-visa-guide-china.html" },
   { name: "Colombia",      currency: "COP", region: "Americas",     img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/colombia 1.png", link: "hr-knowledge-hub-visa-guide-colombia.html" },
-  { name: "Côte d'Ivoire", currency: "XOF", region: "Africa",       img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/Cote D Ivoire 2.jpg", link: "hr-knowledge-hub-visa-guide-cote-d-ivoire.html", date: "3 August 2026" },
+  { name: "Côte d'Ivoire", slug: "cote-d-ivoire", currency: "XOF", region: "Africa",       img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/Cote D Ivoire 2.jpg", link: "hr-knowledge-hub-visa-guide-cote-d-ivoire.html", date: "3 August 2026" },
   { name: "Croatia",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/croatia 1.jpg", link: "hr-knowledge-hub-visa-guide-croatia.html" },
   { name: "Czech Republic",currency: "CZK", region: "Europe",       img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/czech republic.webp", link: "hr-knowledge-hub-visa-guide-czech-republic.html" },
   { name: "Denmark",       currency: "DKK", region: "Europe",       img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/denmark.webp", link: "hr-knowledge-hub-visa-guide-denmark.html" },

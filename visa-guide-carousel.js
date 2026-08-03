@@ -23,8 +23,11 @@
     var p = window.__marcoPack;
     return (p && p[key] !== undefined && p[key] !== '') ? p[key] : fallback;
   }
-  function countrySlug(name) {
-    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  function countrySlug(nameOrCountry) {
+    if (nameOrCountry && typeof nameOrCountry === 'object') {
+      return nameOrCountry.slug || nameOrCountry.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    }
+    return nameOrCountry.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   }
   function normalize(str) {
     return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
@@ -41,10 +44,10 @@
       '<div class="explore-card-thumb">' + thumbHtml + '</div>' +
       '<div class="explore-card-body">' +
         '<div class="explore-card-title-row">' +
-          '<span class="explore-card-name">' + t('vg.country.' + countrySlug(c.name), c.name) + '</span>' +
+          '<span class="explore-card-name">' + t('vg.country.' + countrySlug(c), c.name) + '</span>' +
           '<span class="explore-card-currency">' + c.currency + '</span>' +
         '</div>' +
-        '<span class="explore-card-date">' + t('vg.card.updated', 'Last Updated by,') + ' ' + t('vg.date.' + countrySlug(c.name), c.date || '1 January 2026') + '</span>' +
+        '<span class="explore-card-date">' + t('vg.card.updated', 'Last Updated by,') + ' ' + t('vg.date.' + countrySlug(c), c.date || '1 January 2026') + '</span>' +
       '</div>';
     return a;
   }
@@ -82,7 +85,7 @@
     var currentUrl = window.location.href.split('/').pop().split('?')[0].replace(/\.html$/, '');
     filtered = EXPLORE_COUNTRIES.filter(function(c) {
       if (!c.date) return false;
-      return c.link.replace(/\.html$/, '') !== currentUrl && (!q || normalize(c.name).indexOf(q) !== -1 || normalize(t('vg.country.' + countrySlug(c.name), c.name)).indexOf(q) !== -1);
+      return c.link.replace(/\.html$/, '') !== currentUrl && (!q || normalize(c.name).indexOf(q) !== -1 || normalize(t('vg.country.' + countrySlug(c), c.name)).indexOf(q) !== -1);
     });
     track.innerHTML = '';
     filtered.forEach(function(c) { track.appendChild(buildCard(c)); });

@@ -848,8 +848,11 @@
   function normalize(str) {
     return str.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
   }
-  function countrySlug(name) {
-    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  function countrySlug(nameOrCountry) {
+    if (nameOrCountry && typeof nameOrCountry === 'object') {
+      return nameOrCountry.slug || nameOrCountry.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    }
+    return nameOrCountry.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   }
 
   function buildCard(c) {
@@ -865,10 +868,10 @@
       '<div class="cg-card-thumb">' + thumbHtml + '</div>' +
       '<div class="cg-card-body">' +
         '<div class="cg-card-title-row">' +
-          '<span class="cg-card-name">' + t('vg.country.' + countrySlug(c.name), c.name) + '</span>' +
+          '<span class="cg-card-name">' + t('vg.country.' + countrySlug(c), c.name) + '</span>' +
           '<span class="cg-card-currency">' + c.currency + '</span>' +
         '</div>' +
-        '<span class="cg-card-date">' + t('vg.card.updated', 'Last Updated by,') + ' ' + t('vg.date.' + countrySlug(c.name), c.date || '1 January 2026') + '</span>' +
+        '<span class="cg-card-date">' + t('vg.card.updated', 'Last Updated by,') + ' ' + t('vg.date.' + countrySlug(c), c.date || '1 January 2026') + '</span>' +
       '</div>';
     return a;
   }
