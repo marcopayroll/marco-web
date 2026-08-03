@@ -1,3 +1,31 @@
+/* ════════════════════════════════════════════════════════════════
+   VISA GUIDE — UNIFIED DESIGN SYSTEM
+   Shared by ALL hr-knowledge-hub-visa-guide-*.html pages.
+   Each page sets only two CSS variables in its own <style> block:
+     :root { --vg-hero-bg: <color>; --vg-cta-bg: <color>; }
+   Everything else is controlled here.
+════════════════════════════════════════════════════════════════ */
+
+/* ── Container color tokens ──
+   Edit these to instantly restyle all Note / Important Reminder /
+   Marco Insight containers across every visa guide page.         */
+:root {
+  /* Marco Insight (default blue) */
+  --container-insight-border: #019DE7;
+  --container-insight-bg:     #E4EFFF;
+  --container-insight-label:  #019DE7;
+
+  /* Note (yellow) */
+  --container-note-border:    #FFC935;
+  --container-note-bg:        #FFFAEF;
+  --container-note-label:     #FFC935;
+
+  /* Important Reminder (red) */
+  --container-important-border: #FF1D1D;
+  --container-important-bg:     #FFF4F3;
+  --container-important-label:  #FF1D1D;
+}
+
 /* ════════════════════════════════════════
    HERO
 ════════════════════════════════════════ */
@@ -172,7 +200,7 @@
 .article-content { flex: 1; min-width: 0; max-width: 832px; margin-right: 40px; display: flex; flex-direction: column; gap: 60px; counter-reset: section-counter; }
 .article-block { display: flex; flex-direction: column; gap: 24px; }
 .article-h2 { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
-.article-p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
+.article-p { font-size: 16px; font-weight: 400; line-height: 20px; color: #8F98B5; margin: 0; }
 .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 130px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
 .cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; }
 .cta-btn .cta-ring { transition: fill 0.2s ease, stroke 0.2s ease; }
@@ -191,10 +219,11 @@
 .au-section-header .article-h2::before { content: counter(section-counter) ". "; }
 .au-section-content { display: flex; flex-direction: column; gap: 4px; }
 .au-section-title { font-size: 20px; font-weight: 600; line-height: 26px; color: #162351; margin: 0; }
-.au-section-sub { font-size: 16px; font-weight: 400; line-height: 24px; color: var(--text-secondary); margin: 0; }
+.au-visa-type { font-size: 16px; font-weight: 600; line-height: 22px; color: #162351; margin: 0; }
+.au-section-sub { font-size: 16px; font-weight: 400; line-height: 20px; color: #8F98B5; margin: 0; }
 .au-subsection { display: flex; flex-direction: column; gap: 16px; }
 .au-bullet-list { display: flex; flex-direction: column; gap: 8px; }
-.au-bullet-item { display: flex; gap: 6px; align-items: center; font-size: 16px; font-weight: 400; line-height: 20px; color: #475072; }
+.au-bullet-item { display: flex; gap: 6px; align-items: flex-start; font-size: 16px; font-weight: 400; line-height: 20px; color: #475072; }
 .au-bullet-dot-wrap { flex-shrink: 0; padding: 6px 12px; display: flex; align-items: center; }
 .au-bullet-dot { width: 8px; height: 8px; border-radius: 8px; background: #019DE7; }
 .cg-key-numbers { display: flex; gap: 20px; }
@@ -204,8 +233,12 @@
 .cg-kn-value { font-size: 32px; font-weight: 700; line-height: 40px; color: #162351; }
 .cg-kn-unit { font-size: 16px; font-weight: 400; line-height: 20px; color: #8F98B5; }
 .cg-kn-note { font-size: 12px; font-weight: 400; line-height: 16px; color: #8F98B5; margin: 0; }
-.au-marco-insight { background: #E4EFFF; border-left: 6px solid var(--blue-main); padding: 16px 32px 24px; display: flex; flex-direction: column; gap: 16px; }
-.au-mi-label { font-size: 16px; font-weight: 600; line-height: 24px; color: var(--blue-main); margin: 0; }
+.au-marco-insight { background: var(--container-insight-bg); border-left: 6px solid var(--container-insight-border); padding: 16px 32px 24px; display: flex; flex-direction: column; gap: 16px; }
+.au-marco-insight.note { background: var(--container-note-bg); border-left-color: var(--container-note-border); }
+.au-marco-insight.important { background: var(--container-important-bg); border-left-color: var(--container-important-border); }
+.au-mi-label { font-size: 16px; font-weight: 600; line-height: 24px; color: var(--container-insight-label); margin: 0; }
+.au-marco-insight.note .au-mi-label { color: var(--container-note-label); }
+.au-marco-insight.important .au-mi-label { color: var(--container-important-label); }
 .au-mi-text { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
 .au-table-group { display: flex; flex-direction: column; gap: 16px; }
 .au-content-block { display: flex; flex-direction: column; gap: 40px; }
