@@ -20,7 +20,7 @@ const PAYROLL_GUIDE_COUNTRIES_DATA = [
   { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/chile.png", link: "hr-knowledge-hub-payroll-guide-chile.html", date: "28 July 2026" },
   { name: "China",         currency: "CNY", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/china.jpg", link: "hr-knowledge-hub-payroll-guide-china.html" },
   { name: "Colombia",      currency: "COP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/colombia 1.png", link: "hr-knowledge-hub-payroll-guide-colombia.html" },
-  { name: "Côte d'Ivoire", currency: "XOF", region: "Africa",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/Cote D Ivoire 2.jpg", link: "hr-knowledge-hub-payroll-guide-cote-d-ivoire.html", date: "29 July 2026" },
+  { name: "Côte d'Ivoire", slug: "cote-d-ivoire", currency: "XOF", region: "Africa",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/Cote D Ivoire 2.jpg", link: "hr-knowledge-hub-payroll-guide-cote-d-ivoire.html", date: "29 July 2026" },
   { name: "Croatia",       currency: "EUR", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/croatia 1.jpg", link: "hr-knowledge-hub-payroll-guide-croatia.html" },
   { name: "Czech Republic",currency: "CZK", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/czech republic.webp", link: "hr-knowledge-hub-payroll-guide-czech-republic.html" },
   { name: "Denmark",       currency: "DKK", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/denmark.webp", link: "hr-knowledge-hub-payroll-guide-denmark.html" },

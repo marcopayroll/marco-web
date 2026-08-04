@@ -26,7 +26,7 @@ window.MARCO_LANG_CN_PG_ARGENTINA = {
 	  'pg.argentina.s1.b2': `本框架说明企业如何在阿根廷完成薪酬设置、薪资计算、每月申报与缴款，以及年度合规管理。`,
 
 	  'pg.argentina.s1.b3': `
-			  <p class="au-mi-label">MARCO 洞察</p>
+			  <p class="au-mi-label">MARCO INSIGHT</p>
 			  <p class="au-mi-text">阿根廷的薪酬管理深受行业集体劳动协议（Convenio Colectivo de Trabajo，CCT）影响。最低工资、奖金结构及福利可能因行业而存在较大差异。企业应首先确认适用的 CCT。</p>
 	`,
 
@@ -125,7 +125,7 @@ window.MARCO_LANG_CN_PG_ARGENTINA = {
 	`,
 
 	  'pg.argentina.s3.b3': `
-			  <p class="au-mi-label">MARCO 洞察</p>
+			  <p class="au-mi-label">MARCO INSIGHT</p>
 			  <p class="au-mi-text">在阿根廷的高通胀环境下，最低工资（SMVM）及 CCT 工资标准会频繁调整，有时甚至每月调整。薪酬系统必须具备快速响应薪资调整的能力。</p>
 	`,
 
@@ -183,7 +183,7 @@ window.MARCO_LANG_CN_PG_ARGENTINA = {
 	`,
 
 	  'pg.argentina.s3.b8': `
-			  <p class="au-mi-label">MARCO 洞察</p>
+			  <p class="au-mi-label">MARCO INSIGHT</p>
 			  <p class="au-mi-text">阿根廷的 SAC（Aguinaldo）按照半年期间内最高月薪的 50% 计算，而不是按照固定天数计算。员工离职时，还必须结算与代通知金相关的 SAC 比例，因此计算过程更加复杂。</p>
 	`,
 
@@ -249,7 +249,7 @@ window.MARCO_LANG_CN_PG_ARGENTINA = {
 	`,
 
 	  'pg.argentina.s3.b11': `
-			  <p class="au-mi-label">MARCO 洞察</p>
+			  <p class="au-mi-label">MARCO INSIGHT</p>
 			  <p class="au-mi-text">阿根廷 Ganancias 所得税采用年度累计计算方式（Acumulativo）。每月计算时必须累计全年收入及已缴税款。发放 SAC 的 6 月和 12 月通常会产生较高税额，因此应提前进行规划。</p>
 	`,
 
@@ -351,7 +351,7 @@ window.MARCO_LANG_CN_PG_ARGENTINA = {
 	`,
 
 	  'pg.argentina.s4.b6': `
-			  <p class="au-mi-label">MARCO 洞察</p>
+			  <p class="au-mi-label">MARCO INSIGHT</p>
 			  <p class="au-mi-text">阿根廷的高通胀及频繁的 CCT / SMVM 工资调整，使薪酬合规管理极为复杂。企业应维护每月合规检查清单，并密切关注 AFIP、劳动主管部门及行业工会发布的最新通知。</p>
 	`,
 	};

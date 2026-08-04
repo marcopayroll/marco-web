@@ -838,8 +838,11 @@
     var p = window.__marcoPack;
     return (p && p[key] !== undefined && p[key] !== '') ? p[key] : fallback;
   }
-  function countrySlug(name) {
-    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  function countrySlug(nameOrCountry) {
+    if (nameOrCountry && typeof nameOrCountry === 'object') {
+      return nameOrCountry.slug || nameOrCountry.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    }
+    return nameOrCountry.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   }
 
   function normalize(str) {
@@ -855,7 +858,7 @@
     var thumbHtml = c.img
       ? '<img src="' + c.img + '" alt="' + c.name + '" loading="lazy" />'
       : '';
-    var slug = countrySlug(c.name);
+    var slug = countrySlug(c);
     var dateText = c.date
       ? t('pg.card.updated', 'Last Updated by,') + ' ' + t('pg.date.' + slug, c.date)
       : 'Content Coming Soon';
