@@ -20,7 +20,6 @@ body {
   font-family: var(--font);
   background: #0F1E46;
   color: var(--text-main);
-  min-width: 960px;
   overflow-x: hidden;
 }
 
@@ -121,18 +120,41 @@ body {
   object-fit: cover;
   display: block;
 }
+/* ────────────── HERO — TABLET (Figma 5862:27949) ────────────── */
 @media (max-width: 800px) {
-  .pg-hero { min-height: auto; }
-  .pg-hero-img { display: none; }
-  .pg-hero-inner { padding-top: 160px; padding-bottom: 48px; padding-right: 0; }
-  .pg-hero-text { width: 100%; max-width: 600px; }
-  .pg-hero-meta { width: 100%; max-width: 600px; margin-top: 40px; }
+  .pg-hero { --gutter: 32px; min-height: 440px; height: 440px; }
+  .pg-hero-img {
+    top: 80px; right: 0; bottom: auto; left: auto;
+    width: calc(50% - 8px); max-width: 376px;
+    height: 360px;
+  }
+  .pg-hero-inner {
+    padding-top: 112px; padding-bottom: 32px;
+    padding-right: calc(50% + 8px); /* half + 8px gap = matches thumb left edge */
+    height: 100%;
+  }
+  .pg-hero-text { width: 100%; max-width: 344px; gap: 12px; }
+  .pg-hero-text-inner { gap: 12px; }
+  .pg-hero-title { font-size: 40px; font-weight: 700; line-height: 48px; letter-spacing: -2px; }
+  .pg-hero-desc { font-size: 14px; line-height: 18px; }
+  .pg-hero-last-updated { font-size: 14px; line-height: 18px; }
+  .pg-hero-meta {
+    width: 100%; max-width: 344px; margin-top: auto; gap: 12px;
+  }
 }
+
+/* ────────────── HERO — MOBILE (Figma 5864:31296) ────────────── */
 @media (max-width: 440px) {
-  .pg-hero-inner { padding-top: 120px; padding-bottom: 40px; }
-  .pg-hero-title { font-size: 32px; line-height: 42px; letter-spacing: -1.5px; }
-  .pg-hero-desc { font-size: 15px; }
-  .pg-hero-meta { margin-top: 32px; }
+  .pg-hero { --gutter: 24px; min-height: 400px; height: 400px; }
+  .pg-hero-img { display: none; }
+  .pg-hero-inner {
+    padding-top: 112px; padding-bottom: 32px; padding-right: 0;
+    height: 100%;
+  }
+  .pg-hero-text { max-width: none; }
+  .pg-hero-meta { max-width: none; margin-top: auto; }
+  .pg-hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+  .pg-hero-desc { font-size: 16px; line-height: 20px; letter-spacing: -0.8px; }
 }
 
 /* ════════════════════════════════════════
@@ -268,7 +290,7 @@ body {
 /* ════════════════ ARTICLE SECTION ════════════════ */
 .article-section { background: #fff; padding: 60px 0 120px; }
 .article-layout { display: flex; align-items: flex-start; }
-.article-toc { width: 280px; flex-shrink: 0; margin-right: 32px; position: sticky; top: 130px; }
+.article-toc { width: 220px; flex-shrink: 0; margin-right: 32px; position: sticky; top: 130px; }
 .toc-card { background: #fff; border-radius: 8px; padding: 16px 16px 32px 16px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.10); display: flex; flex-direction: column; gap: 40px; }
 .toc-title { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
 .toc-list { display: flex; flex-direction: column; gap: 24px; }
@@ -322,6 +344,14 @@ body {
 .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
 .au-table-wrap { overflow-x: auto; }
 .au-table { border-collapse: collapse; width: 100%; table-layout: fixed; font-family: var(--font); }
+.au-table th,
+.au-table td {
+  /* Long words break with a hyphen and continue on the next line */
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
 .au-table th { background: #1D4783; color: #fff; font-size: 14px; font-weight: 700; line-height: 18px; text-align: left; padding: 8px 12px; vertical-align: middle; }
 .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: #475072; padding: 8px 12px; vertical-align: top; border-bottom: 0.5px solid #E7E7E7; }
 .au-table tbody tr:nth-child(even) td { background: #ECF2FB; }
@@ -330,6 +360,254 @@ body {
 .cg-reg-item { background: #ECF2FB; border-left: 4px solid #019DE7; border-radius: 4px 0 0 4px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
 .cg-reg-title { font-size: 16px; font-weight: 500; line-height: 20px; color: #475072; margin: 0; }
 .cg-reg-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #8F98B5; margin: 0; }
+
+/* ────────────── ARTICLE — TABLET (Figma 5862:28026) ────────────── */
+@media (max-width: 800px) {
+  .article-section { --gutter: 32px; padding: 0 0 60px; }
+
+  /* Layout: TOC bar spans the top, content + CTA rail sit in a row below */
+  .article-layout {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+    grid-template-areas:
+      "toc toc"
+      "content cta";
+    column-gap: 32px;
+    row-gap: 32px;
+    align-items: start;
+  }
+
+  /* TOC as a full-width top bar (bleeds edge-to-edge, sticky under nav) */
+  .article-toc {
+    display: block;
+    grid-area: toc;
+    margin-right: 0;
+    /* Extend past container gutter to viewport edges */
+    margin-inline: calc(-1 * var(--gutter));
+    width: calc(100% + 2 * var(--gutter));
+    /* Stick to the top just below the 80px nav bar */
+    position: sticky;
+    top: 80px;
+    z-index: 15;
+    overflow: visible;
+  }
+  .toc-card {
+    display: flex; flex-direction: column; width: 100%;
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid #CDD5E0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 12px 32px;
+    gap: 0;
+    z-index: auto;
+    overflow: visible;
+    transition: none;
+  }
+  .toc-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 16px; font-weight: 500; line-height: 20px;
+    color: #162351;
+    cursor: pointer;
+    margin: 0;
+    /* Reset earlier compact-state overrides */
+    text-align: left;
+  }
+  .toc-title::before { content: none; }
+  .toc-title::after {
+    content: '';
+    display: block;
+    width: 24px; height: 24px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23162351' stroke-width='2' stroke-linecap='round'><line x1='4' y1='7' x2='20' y2='7'/><line x1='4' y1='12' x2='20' y2='12'/><line x1='4' y1='17' x2='20' y2='17'/></svg>") no-repeat center / contain;
+    flex-shrink: 0;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+  .article-toc.is-expanded .toc-title::after {
+    transform: rotate(90deg);
+  }
+
+  /* Collapsed state: hide list & backdrop */
+  .article-toc:not(.is-expanded) .toc-list { display: none; }
+  .article-toc::before { display: none; }
+
+  /* Expanded state — matches Figma 5869:34750 */
+  .article-toc.is-expanded .toc-card {
+    gap: 24px;
+  }
+  .article-toc.is-expanded .toc-list {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+    gap: 16px;
+  }
+  .article-toc.is-expanded .toc-item {
+    justify-content: flex-start;
+    gap: 8px;
+    text-decoration: none;
+  }
+  .article-toc.is-expanded .toc-text {
+    display: block;
+    flex: 1;
+    font-size: 12px; font-weight: 400; line-height: 16px;
+    color: #8F98B5;
+  }
+  .article-toc.is-expanded .toc-text.toc-active {
+    font-size: 14px; font-weight: 500; line-height: 18px;
+    color: #162351;
+  }
+  .article-toc.is-expanded .toc-divider-line {
+    display: block;
+    height: 1px; background: #CDD5E0; width: 100%;
+  }
+
+  /* Main content */
+  .article-content {
+    grid-area: content;
+    max-width: none; margin-right: 0;
+    gap: 40px;
+  }
+
+  /* CTA rail — sticky below the sticky TOC bar (nav 80 + toc 49 + 32 gap) */
+  .article-cta {
+    grid-area: cta;
+    position: sticky;
+    top: 161px;
+  }
+  .article-block { gap: 16px; }
+
+  /* Section headers — smaller heading, still bordered blue */
+  .au-section-header { gap: 8px; }
+  .au-section-header .article-h2 {
+    font-size: 20px; font-weight: 600; line-height: 26px;
+  }
+
+  /* Sub-titles */
+  .au-section-title { font-size: 16px; font-weight: 700; line-height: 20px; }
+  .au-section-sub { font-size: 14px; line-height: 18px; color: #8F98B5; }
+
+  /* Body paragraphs */
+  .article-p { font-size: 14px; line-height: 18px; }
+
+  /* Bullet lists */
+  .au-bullet-list { gap: 8px; }
+  .au-bullet-item { font-size: 14px; line-height: 18px; }
+  .au-bullet-dot-wrap { padding: 6px 12px; }
+  .au-bullet-dot { width: 8px; height: 8px; }
+
+  /* Key numbers cards — compact */
+  .cg-key-numbers { gap: 20px; }
+  .cg-kn-card { padding: 8px; gap: 8px; }
+  .cg-kn-label { font-size: 12px; line-height: 16px; }
+  .cg-kn-value { font-size: 20px; line-height: 26px; }
+  .cg-kn-unit { font-size: 12px; line-height: 16px; }
+  .cg-kn-note { font-size: 12px; line-height: 16px; }
+
+  /* Tables */
+  .au-table-group { gap: 12px; }
+  .au-table-title { font-size: 16px; font-weight: 700; line-height: 20px; }
+  .au-table th { font-size: 12px; font-weight: 500; line-height: 16px; padding: 8px 12px; }
+  .au-table td { font-size: 12px; line-height: 16px; padding: 8px 12px; }
+
+  /* Table notes */
+  .cg-table-note { font-size: 12px; line-height: 16px; }
+
+  /* Regulation cards — smaller text */
+  .cg-reg-list { gap: 8px; }
+  .cg-reg-item { padding: 16px; }
+  .cg-reg-title { font-size: 14px; line-height: 18px; }
+  .cg-reg-body { font-size: 14px; line-height: 18px; }
+
+  /* Marco insight */
+  .au-marco-insight { padding: 16px; }
+  .au-mi-label { font-size: 14px; line-height: 18px; }
+  .au-mi-text { font-size: 14px; line-height: 18px; }
+
+  /* Right sticky CTA rail — icon size 32×32 with border */
+  .article-cta { width: 40px; gap: 24px; }
+}
+
+/* ────────────── ARTICLE — MOBILE (Figma 5864:31341) ────────────── */
+@media (max-width: 440px) {
+  .article-section { --gutter: 24px; padding: 32px 0 60px; }
+  /* Undo the tablet grid; use single-column flex on mobile */
+  .article-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    grid-template-columns: none;
+    grid-template-areas: none;
+    column-gap: 0;
+    row-gap: 0;
+  }
+
+  /* Hide sidebar TOC on mobile */
+  .article-toc { display: none; }
+
+  /* Full-width main content */
+  .article-content { max-width: none; margin-right: 0; width: 100%; gap: 40px; }
+  .article-block { gap: 16px; }
+
+  /* Section headers */
+  .au-section-header { gap: 8px; }
+  .au-section-header .article-h2 {
+    font-size: 20px; font-weight: 600; line-height: 26px;
+  }
+
+  /* Sub-titles */
+  .au-section-title { font-size: 16px; font-weight: 700; line-height: 20px; }
+  .au-section-sub { font-size: 14px; line-height: 18px; color: #8F98B5; }
+
+  /* Body paragraphs */
+  .article-p { font-size: 14px; line-height: 18px; }
+
+  /* Bullet lists */
+  .au-bullet-list { gap: 8px; }
+  .au-bullet-item { font-size: 14px; line-height: 18px; }
+
+  /* Key Numbers — stacked (1 per row) */
+  .cg-key-numbers { flex-direction: column; gap: 8px; }
+  .cg-kn-card { padding: 8px; gap: 8px; }
+  .cg-kn-label { font-size: 12px; line-height: 16px; }
+  .cg-kn-value { font-size: 20px; line-height: 26px; }
+  .cg-kn-unit { font-size: 12px; line-height: 16px; }
+  .cg-kn-note { font-size: 12px; line-height: 16px; }
+
+  /* Tables */
+  .au-table-group { gap: 12px; }
+  .au-table-title { font-size: 16px; font-weight: 700; line-height: 20px; }
+  .au-table th { font-size: 12px; font-weight: 500; line-height: 16px; padding: 8px; }
+  .au-table td { font-size: 12px; line-height: 16px; padding: 8px; }
+
+  /* Table notes */
+  .cg-table-note { font-size: 12px; line-height: 16px; }
+
+  /* Regulation cards */
+  .cg-reg-list { gap: 8px; }
+  .cg-reg-item { padding: 16px; }
+  .cg-reg-title { font-size: 14px; line-height: 18px; }
+  .cg-reg-body { font-size: 14px; line-height: 18px; }
+
+  /* Marco insight */
+  .au-marco-insight { padding: 16px; }
+  .au-mi-label { font-size: 14px; line-height: 18px; }
+  .au-mi-text { font-size: 14px; line-height: 18px; }
+
+  /* Action icons: horizontal row at the bottom of the content */
+  .article-cta {
+    width: 100%;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: flex-start;
+    align-items: center;
+    position: static;
+    margin-top: 32px;
+  }
+  .cta-btn { width: 32px; height: 32px; }
+}
 
 /* ════════════════ GET STARTED CTA ════════════════ */
 .gs-cta {

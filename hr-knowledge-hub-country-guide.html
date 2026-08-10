@@ -28,7 +28,6 @@
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
       overflow-x: hidden;
     }
 
@@ -235,12 +234,13 @@
     }
     .cg-hero-abstract {
       position: absolute;
-      right: -11.25%;
+      /* Fluid values between tablet (vw=800: width 625, right -140, y-offset 100)
+         and desktop (vw=1440: width 800, right -162, y-offset 117) so the
+         transition at the tablet breakpoint is seamless. */
+      right: clamp(-162px, calc(-140px + (100vw - 800px) * -22 / 640), -140px);
       top: 50%;
-      transform: translateY(calc(-50% - 117px));
-      width: 55.56%;
-      max-width: 800px;
-      min-width: 480px;
+      transform: translateY(calc(-50% - clamp(100px, calc(100px + (100vw - 800px) * 17 / 640), 117px)));
+      width: clamp(625px, calc(625px + (100vw - 800px) * 175 / 640), 800px);
       pointer-events: none;
       user-select: none;
     }
@@ -254,10 +254,7 @@
       z-index: 1;
       padding-bottom: 80px;
       padding-top: 120px; /* hero padding-top(100) + this(120) = 220px from screen top */
-      /* Override standard container to 1016px — matches search bar width */
-      max-width: 1016px;
-      width: min(100% - 48px, 1016px);
-      margin-inline: auto;
+      /* Uses shared .container gutter so title aligns with search bar & cards */
     }
     .cg-hero-content {
       /* Left side of the 1016px container — text stays left-aligned */
@@ -322,6 +319,7 @@
     }
     .cg-search-row {
       flex: 1;
+      min-width: 0;
       display: flex;
       align-items: center;
       border-bottom: 1px solid #E2E2E2;
@@ -329,6 +327,8 @@
     }
     .cg-search-field {
       flex: 1;
+      min-width: 0;
+      width: 0;
       border: none;
       outline: none;
       padding: 0;
@@ -607,6 +607,101 @@
     .cg-search-clear:hover { opacity: 1; }
     .cg-search-clear img { width: 16px; height: 16px; display: block; }
     .cg-search-clear.visible { display: flex; }
+
+    /* ────────────── HERO — TABLET (Figma 5863:29748) ────────────── */
+    @media (max-width: 800px) {
+      .cg-hero { padding-top: 80px; height: 400px; }
+      .cg-search-float { top: 354px; } /* 46px above hero bottom */
+      .cg-hero > .container {
+        padding-top: 120px; padding-bottom: 0;
+      }
+      .cg-hero-content { max-width: 502px; }
+      .cg-hero-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .cg-hero-subtitle { font-size: 16px; line-height: 20px; color: #8F98B5; margin-top: 16px; }
+      .cg-hero-abstract {
+        left: 39.32%; right: -17.45%; width: auto;
+        max-width: none; min-width: 0;
+        top: calc(50% - 100px); transform: translateY(-50%);
+        aspect-ratio: 1 / 1;
+      }
+      .cg-hero-abstract img { width: 100%; height: 100%; }
+
+      /* Shared 32px gutter across hero, search bar and content on tablet */
+      .cg-hero, .cg-content { --gutter: 32px; }
+
+      /* Search bar — tablet (Figma 5863:29857) */
+      .cg-search-box { padding: 16px 20px; gap: 16px; }
+      .cg-search-icon { width: 20px; height: 20px; }
+      .cg-search-row { padding: 8px 10px; }
+      .cg-search-field { font-size: 16px; line-height: 1.5; }
+
+      /* Card grid — tablet (Figma 5863:29866 / 5863:29868) */
+      .cg-content { padding: 80px 0; }
+      .cg-grid { gap: 24px 16px; } /* row-gap 24, column-gap 16 */
+      .cg-card { flex: 0 0 calc((100% - 32px) / 3); }
+      .cg-card-thumb { height: 160px; }
+      .cg-card-body { padding: 12px; gap: 8px; min-height: 88px; }
+      .cg-card-title-row { gap: 8px; }
+      .cg-card-date { font-size: 12px; line-height: 16px; }
+
+      /* View More — tablet: 60px above (from last card row), 80px below (content bottom padding) */
+      .cg-view-more-wrap { margin-top: 60px; }
+      .cg-view-more { padding: 16px 24px; gap: 16px; }
+      .cg-view-more svg { width: 20px; height: 20px; }
+    }
+
+    /* ────────────── HERO — MOBILE (Figma 5863:30085) ────────────── */
+    @media (max-width: 440px) {
+      .cg-hero { padding-top: 70px; height: 360px; }
+      .cg-search-float { top: 328px; } /* 32px above hero bottom */
+      .cg-hero > .container { padding-top: 120px; }
+      .cg-hero-content { max-width: 342px; }
+      .cg-hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+      .cg-hero-subtitle { font-size: 16px; line-height: 20px; color: #8F98B5; margin-top: 16px; }
+      .cg-hero-abstract {
+        left: 14.1%; right: -42.31%; width: auto;
+        max-width: none; min-width: 0;
+        top: calc(50% - 124px); transform: translateY(-50%);
+        aspect-ratio: 1 / 1;
+      }
+
+      /* Shared 24px gutter across hero, search bar and content on mobile */
+      .cg-hero, .cg-content { --gutter: 24px; }
+
+      /* Search bar — mobile (Figma 5863:30366) */
+      .cg-search-box { padding: 16px 12px; gap: 16px; }
+      .cg-search-icon { width: 20px; height: 20px; }
+      .cg-search-row { padding: 4px 8px; }
+      .cg-search-field { font-size: 16px; line-height: 1.5; }
+    }
+
+    /* ────────────── CARD CONTENT — MOBILE (Figma 5863:30374 / 5863:30376) ────────────── */
+    @media (max-width: 600px) {
+      /* Content-only 24px gutter (hero keeps its own until vw ≤ 440) */
+      .cg-content { --gutter: 24px; padding: 60px 0; }
+      .cg-grid { gap: 24px 16px; } /* row-gap 24, column-gap 16 */
+      .cg-card { flex: 0 0 calc((100% - 16px) / 2); } /* 2 columns */
+      .cg-card-thumb { height: 120px; }
+      .cg-card-body { padding: 12px; gap: 4px; min-height: 88px; }
+      .cg-card-title-row { gap: 8px; }
+      .cg-card-name { font-size: 14px; line-height: 18px; }
+      .cg-card-currency { font-size: 10px; line-height: 14px; padding: 4px 6px; }
+      .cg-card-date { font-size: 12px; line-height: 16px; }
+
+      /* View More — mobile */
+      .cg-view-more-wrap { margin-top: 40px; }
+      .cg-view-more { padding: 16px 24px; gap: 16px; }
+      .cg-view-more svg { width: 20px; height: 20px; }
+    }
+
+    /* ────────────── CARD CONTENT — VERY-SMALL MOBILE (Figma 5864:31125 / 5864:31127) ────────────── */
+    @media (max-width: 350px) {
+      .cg-content { --gutter: 24px; padding: 60px 0; }
+      .cg-grid { gap: 16px; } /* single column, 16px vertical gap */
+      .cg-card { flex: 0 0 100%; } /* 1 column */
+      .cg-card-thumb { height: 120px; }
+      .cg-card-body { padding: 8px 12px 12px; gap: 4px; min-height: 70px; }
+    }
   
     /* ════════════════════════════════════════
        TABLET NAV (≤800px)

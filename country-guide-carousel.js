@@ -120,3 +120,58 @@
     render(searchInput ? searchInput.value : '');
   });
 })();
+
+/* ── Standardized TOC labels across every country page ── */
+(function() {
+  var TOC_LABELS = {
+    'toc-text-cost':        'Cost of Living',
+    'toc-text-salary':      'Salary Benchmark',
+    'toc-text-benefits':    'Statutory Benefits',
+    'toc-text-tax':         'Income Tax',
+    'toc-text-hours':       'Working Hours',
+    'toc-text-contract':    'Employment Contracts',
+    'toc-text-leave':       'Leave Entitlements',
+    'toc-text-holidays':    '2026 Public Holiday',
+    'toc-text-regulations': 'Key Regulations'
+  };
+  function applyLabels() {
+    Object.keys(TOC_LABELS).forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = TOC_LABELS[id];
+      el.removeAttribute('data-i18n');  // prevent lang loader from overriding
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyLabels);
+  } else {
+    applyLabels();
+  }
+  // Re-apply after lang loader finishes, in case it ran between our removal and load
+  document.addEventListener('marcolangready', applyLabels);
+})();
+
+/* ── Tablet TOC top-bar: click-to-expand toggle ── */
+(function() {
+  function init() {
+    var toc = document.querySelector('.article-toc');
+    if (!toc) return;
+    var title = toc.querySelector('.toc-title');
+    if (!title) return;
+    title.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toc.classList.toggle('is-expanded');
+    });
+    // Collapse when a TOC link is clicked (after navigation)
+    toc.querySelectorAll('.toc-item').forEach(function(link) {
+      link.addEventListener('click', function() {
+        toc.classList.remove('is-expanded');
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

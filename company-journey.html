@@ -24,11 +24,12 @@
       --footer-gutter: clamp(40px, 5.56vw, 80px);
     }
 
+    html, body { overflow-x: hidden; }
     body {
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
+      min-width: 320px;
     }
 
     .container {
@@ -220,7 +221,9 @@
     .hero-section {
       position: relative;
       width: 100%;
-      height: 600px;
+      min-height: 600px;
+      height: auto;
+      padding-bottom: 80px;
       overflow: hidden;
       background-image: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
     }
@@ -277,8 +280,8 @@
     }
     .impact-grid {
       display: grid;
-      grid-template-columns: 644px 1fr;
-      gap: 108px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: clamp(40px, 6vw, 108px);
       align-items: start;
     }
     .impact-copy {
@@ -289,9 +292,9 @@
     }
     .impact-copy .section-label span { color: var(--text-main); }
     .impact-copy h2 {
-      font-size: 52px;
+      font-size: clamp(32px, calc(4.167vw - 1.33px), 52px);
       font-weight: 700;
-      line-height: 66px;
+      line-height: clamp(40px, calc(5.417vw - 3.33px), 66px);
       letter-spacing: -1.56px;
       color: var(--text-main);
       margin: 0 0 24px;
@@ -307,7 +310,7 @@
     }
     .impact-stats {
       display: grid;
-      grid-template-columns: 240px 200px;
+      grid-template-columns: 1fr 1fr;
       gap: 39px 32px;
       padding-top: 22px;
     }
@@ -317,9 +320,9 @@
       gap: 16px;
     }
     .stat-number {
-      font-size: 52px;
+      font-size: clamp(40px, calc(2.5vw + 20px), 52px);
       font-weight: 600;
-      line-height: 66px;
+      line-height: clamp(48px, calc(3.75vw + 18px), 66px);
       letter-spacing: -1.56px;
       color: var(--blue-main);
     }
@@ -337,6 +340,46 @@
       }
       .impact-copy { max-width: 680px; }
       .impact-stats { max-width: 680px; }
+    }
+    /* ── IMPACT TABLET ── */
+    /* Figma 5518:6794 (768px frame): copy left:32 w:360, stats left:calc(50%+60px) top:82 w:292 */
+    @media (max-width: 800px) {
+      .impact-section { height: auto; padding: 32px 0; }
+      .impact-section .impact-grid { width: 100%; max-width: none; margin-inline: 0; padding-left: 32px; padding-right: 32px; box-sizing: border-box; display: flex; flex-direction: row; gap: 0; align-items: flex-start; }
+      .impact-copy { flex: 1; min-width: 0; max-width: 360px; gap: 12px; }
+      .impact-copy h2 { font-size: 32px; line-height: 40px; letter-spacing: 0; margin: 0 0 24px; }
+      .impact-copy p { max-width: none; }
+      /* margin-left = calc(50%section + 60px − 32px padding − 360px copy) = calc(50% + 60px − 32px − 360px) */
+      /* where 50% is of the flex container. At 768px container(704px): 352+60-32-360=20... */
+      /* Recalc: stats at calc(50%section+60px). 50%section = 50%container+32px. */
+      /* margin = (50%container+32+60) - 360 = calc(50% - 268px). At 704px: 352-268=84... */
+      /* Direct: gap from copy-right(392) to stats-left(444) = 52px at 768px section. */
+      /* In flex container terms: margin-left = (50%container + 92px) - 360px = calc(50% - 268px) */
+      .impact-stats { flex: none; width: 292px; display: flex; flex-wrap: wrap; gap: 32px 12px; max-width: none; padding-top: 50px; grid-template-columns: unset; margin-left: clamp(16px, calc(50% - 300px), 52px); }
+      .stat-card { width: 140px; flex: none; gap: 16px; }
+      .stat-number { font-size: 40px; font-weight: 700; line-height: 48px; letter-spacing: -2px; }
+      .stat-label { font-size: 12px; font-weight: 500; line-height: 16px; }
+    }
+    /* ── IMPACT 640 ── */
+    /* Figma 5849:12261 (640px frame): copy left:32 w:296, stats left:calc(62.5%+43px) top:37 w:165 */
+    @media (max-width: 640px) {
+      .impact-copy { max-width: 296px; }
+      /* stats-left in container = calc(62.5%section+43px-32px) = calc(62.5%container+62.5%*32px+11px) */
+      /* margin = stats-left-in-container - 296px = calc(62.5%container + 20px + 11px - 296px) = calc(62.5% - 265px) */
+      /* At 640px container(576px): 62.5%*576=360. 360-265=95px. Actual needed: 443-32-296=115px. */
+      /* Recheck: 62.5%*576=360. Need 115. So offset = 360-115=245. margin = calc(62.5% - 245px). */
+      .impact-stats { width: 165px; min-width: 165px; flex-direction: column; flex-wrap: nowrap; gap: 32px; padding-top: 5px; margin-left: clamp(16px, calc(62.5% - 245px), 115px); }
+      .stat-card { width: 100%; flex: none; }
+    }
+    /* ── IMPACT MOBILE ── */
+    @media (max-width: 440px) {
+      .impact-section { padding: 32px 0; }
+      .impact-section .impact-grid { flex-direction: column; gap: 32px; padding-left: 24px; padding-right: 24px; }
+      .impact-copy { flex: none; width: 100%; max-width: none; }
+      .impact-copy h2 { font-size: 32px; line-height: 40px; letter-spacing: 0; margin: 0 0 32px; }
+      .impact-stats { width: 100%; min-width: unset; flex-direction: row; flex-wrap: wrap; gap: 16px 0; padding-top: 0; margin-left: 0; }
+      .stat-card { flex: 1 1 50%; width: auto; min-width: 0; gap: 12px; }
+      .stat-number { font-size: 32px; line-height: 40px; letter-spacing: 0; }
     }
 
     /* ════════════════════════════════════════
@@ -549,6 +592,59 @@
       letter-spacing: -0.8px;
     }
 
+    /* ── JOURNEY RESPONSIVE ── */
+    .journey-scroll-mobile { display: none; }
+    .journey-nav-mobile    { display: none; }
+    .timeline-line-mob {
+      position: absolute;
+      left: 24px; right: 0;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.55);
+      z-index: 0;
+      display: none;
+    }
+
+    @media (max-width: 800px) {
+      .journey-section { padding-top: 32px; padding-bottom: 40px; }
+      .journey-scroll-wrapper { margin-top: 28px; }
+      .journey-section .container.journey-cards {
+        width: 100%;
+        max-width: none;
+        margin-inline: 0;
+        padding: 0 60px;
+        box-sizing: border-box;
+        gap: 24px;
+      }
+      .journey-card { gap: 12px; }
+      .journey-year { font-size: 40px; line-height: 48px; letter-spacing: -2px; }
+      .journey-dot { padding: 4px; }
+      .journey-dot-inner { width: 12px; height: 12px; }
+      .journey-phase-name { font-size: 12px; line-height: 16px; }
+      .journey-bullets { gap: 16px; }
+      .journey-bullet p { font-size: 14px; line-height: 18px; letter-spacing: 0; }
+      .timeline-line-p1 { top: 68px; left: 32px; }
+      .timeline-line-p2 { top: 68px; right: 32px; }
+    }
+
+    @media (max-width: 640px) {
+      .journey-section { padding-top: 32px; padding-bottom: 32px; }
+      .journey-scroll-desktop { display: none; }
+      .journey-nav-desktop { display: none; }
+      .journey-scroll-mobile { display: block; }
+      .journey-nav-mobile { display: flex; }
+      .journey-scroll-wrapper { margin-top: 24px; }
+      .journey-section .journey-cards { padding: 0 24px; gap: 16px; }
+      .journey-card { gap: 12px; }
+      .journey-year { font-size: 32px; line-height: 40px; letter-spacing: 0; }
+      .journey-bullets { gap: 8px; }
+      .journey-bullet p { font-size: 12px; line-height: 16px; letter-spacing: 0; }
+      .timeline-line-mob { display: block; top: 60px; }
+      /* panel 2: line comes from left edge (continues from p1) */
+      .journey-scroll-mobile .journey-panel:nth-child(2) .timeline-line-mob { left: 0; }
+      /* panel 3: line comes from left, ends at last dot (24px from right) */
+      .journey-scroll-mobile .journey-panel:nth-child(3) .timeline-line-mob { left: 0; right: 24px; }
+    }
+
     /* ════════════════════════════════════════
        THE PLATFORM — MARCO OS
     ════════════════════════════════════════ */
@@ -556,48 +652,90 @@
       width: 100%;
       background-image: var(--gradient-light);
       overflow: hidden;
-      padding: 60px 0;
     }
     .platform-row {
       display: flex;
       align-items: flex-start;
+      gap: clamp(16px, calc(16px + (100vw - 768px) * 112 / 672), 128px);
     }
-    .platform-text {
-      flex: 0 0 624px;
-      padding-top: 20px;
+    .platform-left {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 600px;
+      padding-top: 77px;
+      padding-bottom: 60px;
       display: flex;
       flex-direction: column;
     }
-    .platform-text .section-label { margin-bottom: 32px; }
-    .platform-text .section-label span { color: var(--text-main); }
+    .platform-top {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 32px;
+    }
+    .platform-top .section-label { margin-bottom: 32px; }
+    .platform-top .section-label span { color: var(--text-main); }
     .platform-heading {
       font-size: 48px;
       font-weight: 600;
       line-height: 60px;
       letter-spacing: -2.4px;
       color: var(--blue-main);
-      margin-bottom: 33px;
     }
     .platform-body {
       font-size: 16px;
       font-weight: 400;
       line-height: 20px;
       color: var(--text-main);
-      max-width: 600px;
       margin-bottom: 60px;
     }
     .platform-cta {
       display: flex;
-      gap: 16px;
+      flex-wrap: wrap;
+      gap: 12px 16px;
       align-items: center;
     }
     .platform-images {
-      flex: 0 0 600px;
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 496px;
+      margin-top: clamp(60px, calc(68px - (100vw - 768px) * 8 / 672), 68px);
+      aspect-ratio: 496 / 403;
+      overflow: hidden;
     }
     .platform-images img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
       display: block;
+    }
+
+    /* ── PLATFORM TABLET ── */
+    @media (max-width: 800px) {
+      .platform { --gutter: 32px; padding: 0; }
+      .platform-left { padding-top: 32px; padding-bottom: 32px; }
+      .platform-top { margin-bottom: 32px; }
+      .platform-top .section-label { margin-bottom: 12px; }
+      .platform-heading { font-size: 40px; line-height: 48px; letter-spacing: -2px; }
+      .platform-body { max-width: none; margin-bottom: 32px; letter-spacing: -0.8px; }
+      .platform-cta .cta-btn--primary,
+      .platform-cta .cta-btn--secondary {
+        height: 32px; padding: 4px 16px;
+        font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+      }
+      .platform-cta .btn-icon { width: 16px; height: 16px; }
+    }
+
+    /* ── PLATFORM MOBILE ── */
+    @media (max-width: 440px) {
+      .platform { --gutter: 24px; padding: 32px 0; }
+      .platform-row { display: block; }
+      .platform-left { display: block; padding: 0; max-width: none; }
+      .platform-images { display: none; }
+      .platform-top { margin-bottom: 32px; }
+      .platform-top .section-label { margin-bottom: 12px; }
+      .platform-heading { font-size: 40px; line-height: 48px; letter-spacing: -2px; }
+      .platform-body { max-width: none; margin-bottom: 32px; letter-spacing: -0.8px; }
     }
 
     /* ════════════════════════════════════════
@@ -824,6 +962,23 @@
     .nav-mob-signin-wrap { flex-shrink: 0; }
     .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
     .nav-mob-signin:hover { background: #0185C4; }
+    /* ── HERO TABLET ── */
+    @media (max-width: 800px) {
+      .hero-section { min-height: 440px; padding-bottom: 32px; }
+      .hero-section .container { padding-top: 120px; width: 100%; max-width: none; margin-inline: 0; padding-left: 32px; padding-right: 32px; box-sizing: border-box; }
+      .hero-content { max-width: 524px; gap: 12px; }
+      .hero-content .section-label .line { width: 12px; }
+      .hero-content .section-label span { font-size: 12px; line-height: 16px; }
+      .hero-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .hero-body { font-size: 16px; line-height: 20px; margin-top: 12px; }
+    }
+    /* ── HERO MOBILE ── */
+    @media (max-width: 440px) {
+      .hero-section { min-height: 440px; }
+      .hero-section .container { padding-top: 130px; padding-left: 24px; padding-right: 24px; }
+      .hero-content { max-width: none; }
+      .hero-title { font-size: 40px; font-weight: 600; line-height: 48px; letter-spacing: -2px; }
+    }
     @media (max-width: 800px) {
       .nav { z-index: 300; width: 100vw; }
       .nav.nav-panel-open { background-image: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%); }
@@ -983,7 +1138,7 @@
     </div>
   </div>
 
-  <div class="journey-scroll-wrapper">
+  <div class="journey-scroll-wrapper journey-scroll-desktop">
   <div class="journey-scroll-track">
 
     <!-- ── Panel 1: 2020 · 2022 · 2023 ── -->
@@ -1115,12 +1270,147 @@
     </div>
 
   </div>
-  </div><!-- /.journey-scroll-wrapper -->
+  </div><!-- /.journey-scroll-desktop -->
 
-  <!-- Pagination dots -->
-  <div class="journey-nav">
+  <!-- Mobile scroll: 3 panels × 2 cards (hidden above 440px) -->
+  <div class="journey-scroll-wrapper journey-scroll-mobile">
+  <div class="journey-scroll-track">
+
+    <!-- Mobile Panel 1: 2020 · 2022 -->
+    <div class="journey-panel">
+      <div class="timeline-line-mob"></div>
+      <div class="journey-cards">
+        <div class="journey-card">
+          <p class="journey-year">2020</p>
+          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
+          <div class="journey-content">
+            <div class="journey-phase">
+              <p class="journey-phase-name" data-i18n="journey.tl.y2020.phase">LAUNCH</p>
+              <div class="journey-phase-line"></div>
+            </div>
+            <div class="journey-bullets">
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2020.b1">Founded in Beijing</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2020.b2">First EOR employee placed</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2020.b3">First work visa secured: Vietnam</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2020.b4">First European work visa: Netherlands</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2020.b5">First global client signed</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2020.b6">Marco OS 1.0 released</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="journey-card">
+          <p class="journey-year">2022</p>
+          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
+          <div class="journey-content">
+            <div class="journey-phase">
+              <p class="journey-phase-name" data-i18n="journey.tl.y2022.phase">OPERATE</p>
+              <div class="journey-phase-line"></div>
+            </div>
+            <div class="journey-bullets">
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2022.b1">Overseas headcount structure redesigned</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2022.b2">Cross-border entity transfers standardized</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2022.b3">Reimbursement &amp; leave management built into platform</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2022.b4">Marco OS 2.0 released</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Panel 2: 2023 · 2024 -->
+    <div class="journey-panel">
+      <div class="timeline-line-mob"></div>
+      <div class="journey-cards">
+        <div class="journey-card">
+          <p class="journey-year">2023</p>
+          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
+          <div class="journey-content">
+            <div class="journey-phase">
+              <p class="journey-phase-name" data-i18n="journey.tl.y2023.phase">UPGRADE</p>
+              <div class="journey-phase-line"></div>
+            </div>
+            <div class="journey-bullets">
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2023.b1">30+ active clients reached</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2023.b2">Dalian service center opened</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2023.b3">Singapore established as global HQ</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2023.b4">Work-visa support expanded to 50+ countries</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2023.b5">First UK payroll go-live</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2023.b6">Marco OS 3.0 released</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="journey-card">
+          <p class="journey-year">2024</p>
+          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
+          <div class="journey-content">
+            <div class="journey-phase">
+              <p class="journey-phase-name" data-i18n="journey.tl.y2024.phase">GROW</p>
+              <div class="journey-phase-line"></div>
+            </div>
+            <div class="journey-bullets">
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2024.b1">45+ active clients reached</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2024.b2">Customer success structure upgraded</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2024.b3">Kuala Lumpur service center opened</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2024.b4">Marco OS 4.0 released</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Panel 3: 2025 · 2026 -->
+    <div class="journey-panel">
+      <div class="timeline-line-mob"></div>
+      <div class="journey-cards">
+        <div class="journey-card">
+          <p class="journey-year">2025</p>
+          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
+          <div class="journey-content">
+            <div class="journey-phase">
+              <p class="journey-phase-name" data-i18n="journey.tl.y2025.phase">RENEW</p>
+              <div class="journey-phase-line"></div>
+            </div>
+            <div class="journey-bullets">
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2025.b1">70+ active clients reached</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2025.b2">21 owned entities across AMER, EMEA, APAC</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2025.b3">Los Angeles service centre opened</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2025.b4">Marco MasterCard launched</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="journey-card">
+          <p class="journey-year">2026</p>
+          <div class="journey-dot"><div class="journey-dot-inner"></div></div>
+          <div class="journey-content">
+            <div class="journey-phase">
+              <p class="journey-phase-name" data-i18n="journey.tl.y2026.phase">TRANSFORM</p>
+              <div class="journey-phase-line"></div>
+            </div>
+            <div class="journey-bullets">
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2026.b1">Marco Copilot AI launched</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2026.b2">Marco Engine introduced — a unified processing layer powering payroll, expenses, leave, billing, and financial reporting across all markets</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2026.b3">Registered as a Money Services Business in Canada</p></div>
+              <div class="journey-bullet"><div class="journey-bullet-point"><div class="journey-bullet-dot"></div></div><p data-i18n="journey.tl.y2026.b4">Marco OS 6.0 released</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div><!-- /.journey-scroll-mobile -->
+
+  <!-- Desktop/tablet pagination dots (2) -->
+  <div class="journey-nav journey-nav-desktop">
     <button class="journey-nav-dot active" aria-label="2020–2023"></button>
     <button class="journey-nav-dot" aria-label="2024–2026"></button>
+  </div>
+
+  <!-- Mobile pagination dots (3) -->
+  <div class="journey-nav journey-nav-mobile">
+    <button class="journey-nav-dot active" aria-label="2020–2022"></button>
+    <button class="journey-nav-dot" aria-label="2023–2024"></button>
+    <button class="journey-nav-dot" aria-label="2025–2026"></button>
   </div>
 
 </section>
@@ -1128,25 +1418,29 @@
 <!-- ════════════════ THE PLATFORM — MARCO OS ════════════════ -->
 <section class="platform">
   <div class="container platform-row">
-    <div class="platform-text fade-in">
-      <div class="section-label">
-        <div class="line" style="background:var(--text-main)"></div>
-        <span style="color:var(--text-main)" data-i18n="journey.os.label">THE PLATFORM</span>
+    <div class="platform-left">
+      <div class="platform-top fade-in">
+        <div class="section-label">
+          <div class="line" style="background:var(--text-main)"></div>
+          <span style="color:var(--text-main)" data-i18n="journey.os.label">THE PLATFORM</span>
+        </div>
+        <p class="platform-heading" data-i18n="journey.os.title.pre">Marco OS</p>
       </div>
-      <p class="platform-heading" data-i18n="journey.os.title.pre">Marco OS</p>
-      <p class="platform-body" data-i18n="journey.os.body">Marco OS is the single platform behind every service Marco delivers — handling payroll calculation, people management, expense processing, and global mobility in one connected system. It integrates with the tools businesses already use, feeds real-time workforce data back to the teams that need it, and keeps every country's compliance rules built in, so clients don't have to manage them separately.</p>
-      <div class="platform-cta">
-        <a href="marco-os.html" class="cta-btn cta-btn--primary">
-          <span data-i18n="journey.os.btn1">Explore Marco OS</span>
-          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
-        </a>
-        <button class="cta-btn cta-btn--secondary">
-          <span data-i18n="journey.os.btn2">Contact us</span>
-          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
-        </button>
+      <div class="platform-body-wrap fade-in">
+        <p class="platform-body" data-i18n="journey.os.body">Marco OS is the single platform behind every service Marco delivers — handling payroll calculation, people management, expense processing, and global mobility in one connected system. It integrates with the tools businesses already use, feeds real-time workforce data back to the teams that need it, and keeps every country's compliance rules built in, so clients don't have to manage them separately.</p>
+        <div class="platform-cta">
+          <a href="marco-os.html" class="cta-btn cta-btn--primary">
+            <span data-i18n="journey.os.btn1">Explore Marco OS</span>
+            <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
+          </a>
+          <button class="cta-btn cta-btn--secondary">
+            <span data-i18n="journey.os.btn2">Contact us</span>
+            <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
+          </button>
+        </div>
       </div>
     </div>
-    <div class="platform-images fade-in">
+    <div class="platform-images">
       <img src="assets/Company/journey-marco-os-screens-png.png" alt="Marco OS Screens" />
     </div>
   </div>
@@ -1274,39 +1568,52 @@
 
 <script>
   (function () {
-    const wrapper = document.querySelector('.journey-scroll-wrapper');
-    const navDots = document.querySelectorAll('.journey-nav-dot');
-    const panels  = wrapper ? Array.from(wrapper.querySelectorAll('.journey-panel')) : [];
-    if (!wrapper || !navDots.length || !panels.length) return;
+    function initCarousel(wrapper, nav) {
+      if (!wrapper || !nav) return null;
+      const dots   = Array.from(nav.querySelectorAll('.journey-nav-dot'));
+      const panels = Array.from(wrapper.querySelectorAll('.journey-panel'));
+      if (!dots.length || !panels.length) return null;
 
-    let currentIndex = 0;
+      let currentIndex = 0;
 
-    function goToSlide(index) {
-      currentIndex = Math.max(0, Math.min(index, panels.length - 1));
-      wrapper.scrollTo({ left: currentIndex * wrapper.clientWidth, behavior: 'smooth' });
-      syncDots(currentIndex);
-    }
-
-    function syncDots(index) {
-      navDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-    }
-
-    // ── Nav dot clicks ──────────────────────────────────────────
-    navDots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
-
-    // ── Sync dots on scroll (CSS snap handles trackpad/touch) ───
-    wrapper.addEventListener('scroll', () => {
-      const nearest = Math.round(wrapper.scrollLeft / wrapper.clientWidth);
-      if (nearest !== currentIndex) {
-        currentIndex = nearest;
-        syncDots(nearest);
+      function syncDots(index) {
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
       }
-    }, { passive: true });
 
-    // ── Keyboard arrows ─────────────────────────────────────────
-    document.querySelector('.journey-section').addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
-      if (e.key === 'ArrowLeft')  goToSlide(currentIndex - 1);
+      function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, panels.length - 1));
+        wrapper.scrollTo({ left: currentIndex * wrapper.clientWidth, behavior: 'smooth' });
+        syncDots(currentIndex);
+      }
+
+      dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+
+      wrapper.addEventListener('scroll', () => {
+        const nearest = Math.round(wrapper.scrollLeft / wrapper.clientWidth);
+        if (nearest !== currentIndex) { currentIndex = nearest; syncDots(nearest); }
+      }, { passive: true });
+
+      return (key) => {
+        if (key === 'ArrowRight') goToSlide(currentIndex + 1);
+        if (key === 'ArrowLeft')  goToSlide(currentIndex - 1);
+      };
+    }
+
+    const section = document.querySelector('.journey-section');
+    if (!section) return;
+
+    const desktopKeys = initCarousel(
+      section.querySelector('.journey-scroll-desktop'),
+      section.querySelector('.journey-nav-desktop')
+    );
+    const mobileKeys = initCarousel(
+      section.querySelector('.journey-scroll-mobile'),
+      section.querySelector('.journey-nav-mobile')
+    );
+
+    section.addEventListener('keydown', (e) => {
+      const handler = window.innerWidth <= 640 ? mobileKeys : desktopKeys;
+      if (handler) handler(e.key);
     });
   })();
 
