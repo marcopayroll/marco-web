@@ -1,9 +1,16 @@
 /* ── Explore More carousel — Visa Guide ── */
 (function() {
-  var CARD_WIDTH = 340;
-  var GAP = 40;
+  function getMetrics() {
+    var vw = window.innerWidth;
+    if (vw <= 440) return { CARD_WIDTH: 224, GAP: 16, CARDS_PER_VIEW: 1 };
+    if (vw <= 800) return { CARD_WIDTH: 224, GAP: 16, CARDS_PER_VIEW: 3 };
+    return { CARD_WIDTH: 340, GAP: 40, CARDS_PER_VIEW: 3 };
+  }
+  var m = getMetrics();
+  var CARD_WIDTH = m.CARD_WIDTH;
+  var GAP = m.GAP;
   var PAGE_SCROLL = CARD_WIDTH + GAP;
-  var CARDS_PER_VIEW = 3;
+  var CARDS_PER_VIEW = m.CARDS_PER_VIEW;
   var currentPage = 0;
   var filtered = [];
 
@@ -121,5 +128,21 @@
 
   document.addEventListener('marcolangready', function() {
     render(searchInput ? searchInput.value : '');
+  });
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      var next = getMetrics();
+      if (next.CARD_WIDTH !== CARD_WIDTH || next.GAP !== GAP || next.CARDS_PER_VIEW !== CARDS_PER_VIEW) {
+        CARD_WIDTH = next.CARD_WIDTH;
+        GAP = next.GAP;
+        PAGE_SCROLL = CARD_WIDTH + GAP;
+        CARDS_PER_VIEW = next.CARDS_PER_VIEW;
+        currentPage = 0;
+        updateCarousel();
+      }
+    }, 150);
   });
 })();

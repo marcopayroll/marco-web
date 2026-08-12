@@ -158,7 +158,7 @@
     .nav-mob-signin-wrap { flex-shrink: 0; }
     .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
     .nav-mob-signin:hover { background: #0185C4; }
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .nav { z-index: 300; width: 100vw; }
       .nav.nav-panel-open { background-image: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%); }
       .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }
@@ -261,7 +261,7 @@
     /* ════════════════════════════════════════
        HERO — TABLET (≤800px)
     ════════════════════════════════════════ */
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .hero { height: 400px; }
       .hero-title-br { display: block; }
       .hero-container .container { padding-top: 140px; }
@@ -319,16 +319,16 @@
     }
     .problems-text {
       position: absolute;
-      left: var(--gutter);
-      top: 80px;
-      width: min(312px, calc(33.333% - var(--gutter) - 32px));
+      left: var(--tile-pad-h);
+      top: 32px;
+      width: calc(33.333% - var(--tile-pad-h) * 2);
       z-index: 2;
       pointer-events: none;
     }
     .problems-title {
-      font-size: clamp(40px, calc(14.12px + 2.353vw), 48px);
+      font-size: 48px;
       font-weight: 600;
-      line-height: 1.25;
+      line-height: 60px;
       letter-spacing: -0.05em;
       color: var(--text-main);
     }
@@ -336,10 +336,10 @@
       margin-top: 32px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      font-size: clamp(12px, calc(-0.94px + 1.176vw), 16px);
+      gap: 16px;
+      font-size: 16px;
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 20px;
       color: var(--text-tertiary);
     }
     .problems-grid {
@@ -358,6 +358,7 @@
       padding: var(--label-top) var(--tile-pad-h) 20px;
       display: flex;
       flex-direction: column;
+      gap: 16px;
     }
     .problems-tile-label {
       font-size: 20px;
@@ -368,7 +369,7 @@
 
     /* ── Expandable tile (Onboarding — expands UP) ──────────── */
     .problems-tile-onboarding {
-      overflow: visible; /* allow inner div to grow beyond cell boundary */
+      overflow: visible;
     }
     .problems-tile-inner {
       position: absolute;
@@ -386,7 +387,6 @@
     .problems-bullet-list {
       list-style: disc;
       padding-left: 16px;
-      margin-top: 12px;
       font-size: 14px;
       font-weight: 400;
       line-height: 18px;
@@ -401,7 +401,6 @@
     .problems-bullet-list li { margin-bottom: 0; }
     /* Solution card */
     .problems-solution-card {
-      margin-top: 20px;
       background: #5abfef;
       border-radius: 8px;
       padding: 12px;
@@ -457,7 +456,6 @@
       transition: opacity 0.25s ease 0.22s;
     }
     .problems-solution-card--timeoff {
-      margin-top: 20px;
       background: #5abfef;
       border-radius: 8px;
       padding: 12px;
@@ -502,7 +500,6 @@
       transition: opacity 0.25s ease 0.22s;
     }
     .problems-solution-card--nosvc {
-      margin-top: 20px;
       background: #5abfef;
       border-radius: 8px;
       padding: 12px;
@@ -547,7 +544,6 @@
       transition: opacity 0.25s ease 0.22s;
     }
     .problems-solution-card--expense {
-      margin-top: 20px;
       background: #1d4783;
       border-radius: 8px;
       padding: 12px;
@@ -573,7 +569,7 @@
 
     /* ── Expandable tile (Late Payroll — expands DOWN) ──────────── */
     .problems-tile-payroll {
-      overflow: visible; /* allow inner div to grow downward beyond cell boundary */
+      overflow: visible;
     }
     .problems-tile-payroll-inner {
       position: absolute;
@@ -587,7 +583,6 @@
     .problems-tile-payroll:hover .problems-tile-payroll-inner {
       height: calc(var(--row-h) * 2);
     }
-    /* Bullet list — payroll */
     .problems-tile-payroll .problems-bullet-list {
       opacity: 0;
       transition: opacity 0.2s ease 0s;
@@ -596,9 +591,7 @@
       opacity: 1;
       transition: opacity 0.25s ease 0.22s;
     }
-    /* Solution card — payroll */
     .problems-solution-card--payroll {
-      margin-top: 20px;
       background: #1d4783;
       border-radius: 8px;
       padding: 12px;
@@ -626,254 +619,245 @@
        PROBLEMS — RESPONSIVE
     ════════════════════════════════════════ */
 
-    /* ≤ 800px — Tablet compact grid (Figma node 5453-5803) */
-    @media (max-width: 800px) {
+    /* ≤ 1100px — Tablet compact grid */
+    @media (max-width: 1100px) {
       :root {
-        --row-h:      120px;
-        --tile-pad-h: 32px;
-        --label-top:  32px;
+        --row-h:      160px;
+        --tile-pad-h: 24px;
+        --label-top:  24px;
       }
 
       .problems-text {
-        left: 32px;
-        top: 32px;
-        width: min(196px, calc(33.333% - 64px));
+        left: 24px;
+        top: 24px;
+        width: calc(33.333% - 48px);
       }
 
       .problems-title {
-        font-size: clamp(20px, calc(12px + 1.818vw), 32px);
+        font-size: 32px;
         font-weight: 700;
-        line-height: 1.25;
+        line-height: 40px;
         letter-spacing: 0;
       }
 
       .problems-desc {
         margin-top: 16px;
-        font-size: clamp(8px, calc(2.22px + 1.111vw), 12px);
+        font-size: 12px;
         line-height: 16px;
         gap: 8px;
         color: #8F98B5;
       }
 
       .problems-tile-label {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
-        line-height: 16px;
+        line-height: 18px;
       }
 
-      /* No Service inner — restore transition for dropdown */
+      /* No Service inner */
       .problems-tile-nosvc-inner {
-        height: 120px;
+        height: 160px;
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      /* No Service dropdown: expands to 240px (2 rows) on hover */
       .problems-tile-nosvc:hover .problems-tile-nosvc-inner {
-        height: 240px;
+        height: 320px;
       }
-
-      /* No Service expanded content — tablet specs (Figma 5455-6037) */
       .problems-tile-nosvc .problems-bullet-list {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        line-height: 16px;
         margin-top: 8px;
-        padding-left: 12px;
+        padding-left: 16px;
       }
       .problems-tile-nosvc .problems-solution-card--nosvc {
         margin-top: 8px;
-        padding: 4px;
+        padding: 8px;
         gap: 4px;
         border-radius: 4px;
       }
       .problems-tile-nosvc .problems-solution-card-label {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
       }
-      .problems-tile-nosvc .problems-solution-rows {
-        gap: 4px;
-      }
+      .problems-tile-nosvc .problems-solution-rows { gap: 4px; }
       .problems-tile-nosvc .problems-solution-row--nosvc {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 10px;
+        line-height: 14px;
         padding: 4px;
         border-radius: 4px;
       }
 
-      /* Expense inner — restore transition for drop-up */
+      /* Expense inner */
       .problems-tile-expense-inner {
-        height: 120px;
+        height: 160px;
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      /* Expense drop-up: expands to 240px (2 rows) on hover */
       .problems-tile-expense:hover .problems-tile-expense-inner {
-        height: 240px;
+        height: 320px;
       }
-
-      /* Expense expanded content — tablet specs (Figma 5455-6014) */
       .problems-tile-expense .problems-bullet-list {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        line-height: 16px;
         margin-top: 8px;
-        padding-left: 12px;
+        padding-left: 16px;
       }
       .problems-tile-expense .problems-solution-card--expense {
         margin-top: 8px;
-        padding: 4px;
+        padding: 8px;
         gap: 4px;
+        border-radius: 4px;
       }
       .problems-tile-expense .problems-solution-card-label {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
       }
-      .problems-tile-expense .problems-solution-rows {
-        gap: 4px;
-      }
+      .problems-tile-expense .problems-solution-rows { gap: 4px; }
       .problems-tile-expense .problems-solution-row--expense {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 10px;
+        line-height: 14px;
         padding: 4px;
         border-radius: 4px;
       }
 
-      /* Time-Off inner — restore transition for dropdown */
+      /* Time-Off inner */
       .problems-tile-timeoff-inner {
-        height: 120px;
+        height: 160px;
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      /* Time-Off dropdown: expands to 240px (2 rows) on hover */
       .problems-tile-timeoff:hover .problems-tile-timeoff-inner {
-        height: 240px;
+        height: 320px;
       }
-
-      /* Time-Off expanded content — tablet specs (Figma 5455-5991) */
       .problems-tile-timeoff .problems-bullet-list {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        line-height: 16px;
         margin-top: 8px;
-        padding-left: 12px;
+        padding-left: 16px;
       }
       .problems-tile-timeoff .problems-solution-card--timeoff {
         margin-top: 8px;
-        padding: 4px;
+        padding: 8px;
         gap: 4px;
         border-radius: 4px;
       }
       .problems-tile-timeoff .problems-solution-card-label {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
       }
-      .problems-tile-timeoff .problems-solution-rows {
-        gap: 4px;
-      }
+      .problems-tile-timeoff .problems-solution-rows { gap: 4px; }
       .problems-tile-timeoff .problems-solution-row--timeoff {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 10px;
+        line-height: 14px;
         padding: 4px;
         border-radius: 4px;
       }
 
-      /* Payroll inner — restore transition for dropdown */
+      /* Payroll inner */
       .problems-tile-payroll-inner {
-        height: 120px;
+        height: 160px;
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      /* Payroll dropdown: expands to 240px (2 rows) on hover */
       .problems-tile-payroll:hover .problems-tile-payroll-inner {
-        height: 240px;
+        height: 320px;
       }
-
-      /* Payroll expanded content — tablet specs (Figma 5455-5909) */
       .problems-tile-payroll .problems-bullet-list {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        line-height: 16px;
         margin-top: 8px;
-        padding-left: 12px;
+        padding-left: 16px;
       }
       .problems-tile-payroll .problems-solution-card--payroll {
         margin-top: 8px;
-        padding: 4px;
+        padding: 8px;
         gap: 4px;
         border-radius: 4px;
       }
       .problems-tile-payroll .problems-solution-card-label {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
       }
-      .problems-tile-payroll .problems-solution-rows {
-        gap: 4px;
-      }
+      .problems-tile-payroll .problems-solution-rows { gap: 4px; }
       .problems-tile-payroll .problems-solution-row--payroll {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 10px;
+        line-height: 14px;
         padding: 4px;
         border-radius: 4px;
       }
 
-      /* Onboarding inner — restore transition, base height 120px */
+      /* Onboarding inner */
       .problems-tile-inner {
-        height: 120px;
+        height: 160px;
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      /* Onboarding drop-up: expands to 240px (2 rows) on hover */
       .problems-tile-onboarding:hover .problems-tile-inner {
-        height: 240px;
+        height: 320px;
       }
-
-      /* Onboarding expanded content — tablet specs (Figma 5454-5832) */
       .problems-tile-onboarding .problems-bullet-list {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        line-height: 16px;
         margin-top: 8px;
-        padding-left: 12px;
+        padding-left: 16px;
       }
       .problems-tile-onboarding .problems-solution-card {
         margin-top: 8px;
-        padding: 4px;
+        padding: 8px;
         gap: 4px;
         border-radius: 4px;
       }
       .problems-tile-onboarding .problems-solution-card-label {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px;
       }
-      .problems-tile-onboarding .problems-solution-rows {
-        gap: 4px;
-      }
+      .problems-tile-onboarding .problems-solution-rows { gap: 4px; }
       .problems-tile-onboarding .problems-solution-row {
-        font-size: 8px;
-        line-height: 12px;
+        font-size: 10px;
+        line-height: 14px;
         padding: 4px;
         border-radius: 4px;
       }
 
       /* ── Tablet click-to-expand (mirrors :hover) ── */
-      .problems-tile-onboarding.is-expanded .problems-tile-inner         { height: 240px; }
-      .problems-tile-payroll.is-expanded .problems-tile-payroll-inner     { height: 240px; }
-      .problems-tile-timeoff.is-expanded .problems-tile-timeoff-inner     { height: 240px; }
-      .problems-tile-expense.is-expanded .problems-tile-expense-inner     { height: 240px; }
-      .problems-tile-nosvc.is-expanded .problems-tile-nosvc-inner         { height: 240px; }
+      .problems-tile-onboarding.is-expanded .problems-tile-inner         { height: 320px; }
+      .problems-tile-payroll.is-expanded .problems-tile-payroll-inner     { height: 320px; }
+      .problems-tile-timeoff.is-expanded .problems-tile-timeoff-inner     { height: 320px; }
+      .problems-tile-expense.is-expanded .problems-tile-expense-inner     { height: 320px; }
+      .problems-tile-nosvc.is-expanded .problems-tile-nosvc-inner         { height: 320px; }
+
+      .problems-tile-onboarding.is-expanded .problems-bullet-list,
+      .problems-tile-payroll.is-expanded .problems-bullet-list,
+      .problems-tile-timeoff.is-expanded .problems-bullet-list,
+      .problems-tile-expense.is-expanded .problems-bullet-list,
+      .problems-tile-nosvc.is-expanded .problems-bullet-list {
+        opacity: 1;
+        transition: opacity 0.25s ease 0.22s;
+      }
+      .problems-tile-onboarding.is-expanded .problems-solution-card,
+      .problems-tile-payroll.is-expanded .problems-solution-card--payroll,
+      .problems-tile-timeoff.is-expanded .problems-solution-card--timeoff,
+      .problems-tile-expense.is-expanded .problems-solution-card--expense,
+      .problems-tile-nosvc.is-expanded .problems-solution-card--nosvc {
+        opacity: 1;
+        transition: opacity 0.25s ease 0.28s;
+      }
 
       /* Suppress sticky hover after click-collapse (tablet) */
-      .problems-tile-onboarding.is-closing:hover .problems-tile-inner       { height: 120px; }
-      .problems-tile-payroll.is-closing:hover .problems-tile-payroll-inner   { height: 120px; }
-      .problems-tile-timeoff.is-closing:hover .problems-tile-timeoff-inner   { height: 120px; }
-      .problems-tile-expense.is-closing:hover .problems-tile-expense-inner   { height: 120px; }
-      .problems-tile-nosvc.is-closing:hover .problems-tile-nosvc-inner       { height: 120px; }
+      .problems-tile-onboarding.is-closing:hover .problems-tile-inner       { height: 160px; }
+      .problems-tile-payroll.is-closing:hover .problems-tile-payroll-inner   { height: 160px; }
+      .problems-tile-timeoff.is-closing:hover .problems-tile-timeoff-inner   { height: 160px; }
+      .problems-tile-expense.is-closing:hover .problems-tile-expense-inner   { height: 160px; }
+      .problems-tile-nosvc.is-closing:hover .problems-tile-nosvc-inner       { height: 160px; }
     }
 
     /* ≤ 440px — Mobile single-column stack (Figma node 5435-7031) */
     @media (max-width: 440px) {
-      /* Section: clear gradient — text box + tiles have own BG */
       .problems {
         background: #fff;
         overflow: visible;
       }
 
-      /* Text box: static flow, full width, 240px, gradient per Figma */
       .problems-text {
         position: static;
         width: 100%;
@@ -905,18 +889,15 @@
         color: #8F98B5;
       }
 
-      /* Grid: single-column flex stack */
       .problems-grid {
         display: flex;
         flex-direction: column;
       }
 
-      /* Hide empty placeholder tiles */
       .problems-grid > .problems-tile:empty {
         display: none;
       }
 
-      /* All content tiles: full width, 100px */
       .problems-grid > .problems-tile {
         width: 100%;
         height: 100px;
@@ -924,21 +905,18 @@
         position: relative;
       }
 
-      /* Reorder to match Figma top-to-bottom sequence */
       .problems-tile-onboarding { order: 1; }
       .problems-tile-payroll    { order: 2; }
       .problems-tile-timeoff    { order: 3; }
       .problems-tile-expense    { order: 4; }
       .problems-tile-nosvc      { order: 5; }
 
-      /* Colors per Figma */
       .problems-tile-onboarding { background: #019DE7; }
       .problems-tile-payroll    { background: #162351; }
       .problems-tile-timeoff    { background: #019DE7; }
       .problems-tile-expense    { background: #162351; }
       .problems-tile-nosvc      { background: #019DE7; }
 
-      /* Label: 20px SemiBold, 32px from top/bottom, 24px from left */
       .problems-tile-content {
         padding: 32px 24px;
       }
@@ -949,7 +927,6 @@
         color: #fff;
       }
 
-      /* Lock all inner wrappers to 100px, no transitions */
       .problems-tile-inner,
       .problems-tile-payroll-inner,
       .problems-tile-timeoff-inner,
@@ -959,33 +936,30 @@
         transition: none;
       }
 
-      /* Disable hover expansions on mobile */
-      /* Onboarding inner uses auto (fills parent via top:0/bottom:0) — parent overflow clips it */
       .problems-tile-onboarding:hover .problems-tile-inner { height: auto; }
-      /* All implemented tiles now have their own expand rules */
 
-      /* ── Onboarding: tap-to-expand dropdown (Figma 5435-7046) ── */
+      /* ── Onboarding: tap-to-expand (Figma 5435-7046) ── */
       .problems-tile-onboarding {
         cursor: pointer;
         height: 100px;
         overflow: hidden;
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      /* Re-anchor inner to top so content expands downward */
       .problems-tile-onboarding .problems-tile-inner {
         top: 0;
         bottom: 0;
         height: auto;
         transition: none;
       }
-
       .problems-tile-onboarding:hover,
       .problems-tile-onboarding.is-expanded {
-        height: 384px;
+        height: auto;
       }
-
-      /* Bullet list: 16px Regular, 24px indent, fade in on expand */
+      .problems-tile-onboarding:hover .problems-tile-inner,
+      .problems-tile-onboarding.is-expanded .problems-tile-inner {
+        position: static;
+        height: auto;
+      }
       .problems-tile-onboarding .problems-bullet-list {
         font-size: 16px;
         line-height: 20px;
@@ -998,8 +972,6 @@
         opacity: 1;
         transition: opacity 0.25s ease 0.22s;
       }
-
-      /* Solution card: bg #5ABFEF, 8px padding, 6px radius */
       .problems-tile-onboarding .problems-solution-card {
         margin-top: 16px;
         padding: 8px;
@@ -1025,7 +997,7 @@
         border-radius: 6px;
       }
 
-      /* ── Payroll: tap/hover dropdown (Figma 5435-7073) ── */
+      /* ── Payroll (Figma 5435-7073) ── */
       .problems-tile-payroll {
         cursor: pointer;
         height: 100px;
@@ -1039,12 +1011,10 @@
       }
       .problems-tile-payroll:hover,
       .problems-tile-payroll.is-expanded {
-        height: 412px;
+        height: auto;
       }
-      /* Inner fills parent on expand */
       .problems-tile-payroll:hover .problems-tile-payroll-inner,
-      .problems-tile-payroll.is-expanded .problems-tile-payroll-inner { height: auto; }
-
+      .problems-tile-payroll.is-expanded .problems-tile-payroll-inner { height: auto; position: static; }
       .problems-tile-payroll .problems-bullet-list {
         font-size: 16px;
         line-height: 20px;
@@ -1084,7 +1054,8 @@
         border-radius: 6px;
       }
 
-      /* ── Time-Off: tap/hover dropdown (Figma 5435-7112) ── */
+      /* ── Time-Off (Figma 5435-7112) ── */
+      .problems-tile-timeoff .problems-tile-label { font-weight: 700; }
       .problems-tile-timeoff {
         cursor: pointer;
         height: 100px;
@@ -1098,11 +1069,10 @@
       }
       .problems-tile-timeoff:hover,
       .problems-tile-timeoff.is-expanded {
-        height: 392px;
+        height: auto;
       }
       .problems-tile-timeoff:hover .problems-tile-timeoff-inner,
-      .problems-tile-timeoff.is-expanded .problems-tile-timeoff-inner { height: auto; }
-
+      .problems-tile-timeoff.is-expanded .problems-tile-timeoff-inner { height: auto; position: static; }
       .problems-tile-timeoff .problems-bullet-list {
         font-size: 16px;
         line-height: 20px;
@@ -1142,15 +1112,16 @@
         border-radius: 6px;
       }
 
-      /* ── Expense expand (Figma 5435-7151) ── */
+      /* ── Expense (Figma 5435-7151) ── */
+      .problems-tile-expense .problems-tile-label { font-weight: 700; }
       .problems-tile-expense {
         cursor: pointer; height: 100px; overflow: hidden;
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .problems-tile-expense .problems-tile-expense-inner { top: 0; bottom: 0; height: auto; transition: none; }
-      .problems-tile-expense:hover, .problems-tile-expense.is-expanded { height: 392px; }
+      .problems-tile-expense:hover, .problems-tile-expense.is-expanded { height: auto; }
       .problems-tile-expense:hover .problems-tile-expense-inner,
-      .problems-tile-expense.is-expanded .problems-tile-expense-inner { height: auto; }
+      .problems-tile-expense.is-expanded .problems-tile-expense-inner { height: auto; position: static; }
       .problems-tile-expense .problems-bullet-list { font-size: 16px; line-height: 20px; margin-top: 16px; padding-left: 24px; opacity: 0; transition: opacity 0.2s ease 0s; }
       .problems-tile-expense:hover .problems-bullet-list,
       .problems-tile-expense.is-expanded .problems-bullet-list { opacity: 1; transition: opacity 0.25s ease 0.22s; }
@@ -1161,15 +1132,16 @@
       .problems-tile-expense .problems-solution-rows { gap: 4px; }
       .problems-tile-expense .problems-solution-row--expense { font-size: 16px; line-height: 20px; padding: 8px; border-radius: 6px; }
 
-      /* ── No Service expand (Figma 5435-7191) ── */
+      /* ── No Service (Figma 5435-7191) ── */
+      .problems-tile-nosvc .problems-tile-label { font-weight: 700; }
       .problems-tile-nosvc {
         cursor: pointer; height: 100px; overflow: hidden;
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .problems-tile-nosvc .problems-tile-nosvc-inner { bottom: 0; height: auto; transition: none; }
-      .problems-tile-nosvc:hover, .problems-tile-nosvc.is-expanded { height: 420px; }
+      .problems-tile-nosvc:hover, .problems-tile-nosvc.is-expanded { height: auto; }
       .problems-tile-nosvc:hover .problems-tile-nosvc-inner,
-      .problems-tile-nosvc.is-expanded .problems-tile-nosvc-inner { height: auto; }
+      .problems-tile-nosvc.is-expanded .problems-tile-nosvc-inner { height: auto; position: static; }
       .problems-tile-nosvc .problems-bullet-list { font-size: 16px; line-height: 20px; margin-top: 16px; padding-left: 24px; opacity: 0; transition: opacity 0.2s ease 0s; }
       .problems-tile-nosvc:hover .problems-bullet-list,
       .problems-tile-nosvc.is-expanded .problems-bullet-list { opacity: 1; transition: opacity 0.25s ease 0.22s; }
@@ -1310,7 +1282,7 @@
     }
 
     /* ── Services — Tablet (≤800px, Figma 5480-7660) ── */
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .services { padding: 32px 0; }
       .services .container { width: calc(100% - 64px); max-width: none; }
       .services-header { max-width: 506px; gap: 12px; margin-bottom: 60px; }
@@ -1530,7 +1502,7 @@
     @media (max-width: 1280px) {
       .tech-title { font-size: 56px; line-height: 68px; }
     }
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .tech-title { font-size: 48px; line-height: 60px; }
       .tech-accordion-item { padding: 20px 24px; }
       .tech-accordion-title { font-size: 18px; line-height: 24px; }
@@ -1542,7 +1514,7 @@
       .tech-accordion-desc { font-size: 14px; line-height: 18px; }
     }
     /* ── Tablet: thumbnail moves inside accordion, right panel hidden ── */
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .technology { padding: 32px 0; --gutter: 32px; }
       .tech-header { gap: 12px; margin-bottom: 32px; }
       .tech-heading { gap: 24px; }
@@ -1707,7 +1679,7 @@
     @media (max-width: 1280px) {
       .datacloud-title { font-size: 28px; line-height: 36px; }
     }
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .datacloud-title { font-size: 26px; line-height: 34px; }
     }
     @media (max-width: 1024px) {
@@ -1715,7 +1687,7 @@
       .datacloud-right { padding: 60px 0; }
     }
     /* ── Tablet: two-column layout per Figma (768px frame) ── */
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .datacloud { --gutter: 32px; }
       .datacloud-body {
         flex-direction: row;
@@ -1839,7 +1811,7 @@
     }
 
     /* ── Stats tablet ── */
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .stats { padding: 30px 0; }
       .stats-card { gap: 8px; }
       .stats-number { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
@@ -1923,14 +1895,14 @@
     @media (max-width: 1280px) {
       .cta-title { font-size: 42px; line-height: 52px; }
     }
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .cta-title { font-size: 36px; line-height: 46px; }
     }
     @media (max-width: 1024px) {
       .cta-title { font-size: 32px; line-height: 42px; }
       .cta-left { padding: 60px 0; }
     }
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .cta-section { --gutter: 32px; }
       .cta-body {
         flex-direction: row;
@@ -2037,7 +2009,7 @@
     .footer-legal { display: flex; gap: 40px; align-items: center; }
     .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
     .footer-legal a:hover { text-decoration: underline; }
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
       .footer { padding: 60px 32px 32px; width: 100%; max-width: 100%; box-sizing: border-box; }
       .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
       .footer-top { margin-bottom: 60px; }
@@ -2148,7 +2120,7 @@
 <!-- ════════════════ PROBLEMS ════════════════ -->
 <section class="problems">
 
-  <!-- Text overlay — constrained to left gutter -->
+  <!-- Row 1–2, Col 1: Title card (absolutely positioned) -->
   <div class="problems-text fade-in">
     <h2 class="problems-title" data-i18n="problems.title">Facing these problems?</h2>
     <div class="problems-desc">
@@ -2160,7 +2132,7 @@
   <!-- Full-width 3×4 tile grid -->
   <div class="problems-grid">
 
-    <!-- Row 1 -->
+    <!-- Row 1: (title overlaid) | empty | Late Payroll -->
     <div class="problems-tile"></div>
     <div class="problems-tile"></div>
     <div class="problems-tile problems-tile-payroll">
@@ -2184,7 +2156,7 @@
       </div>
     </div>
 
-    <!-- Row 2 -->
+    <!-- Row 2: (title overlaid) | Onboarding | empty -->
     <div class="problems-tile"></div>
     <div class="problems-tile problems-tile-onboarding">
       <div class="problems-tile-inner">
@@ -2208,7 +2180,7 @@
     </div>
     <div class="problems-tile"></div>
 
-    <!-- Row 3 -->
+    <!-- Row 3: Time-Off | empty | Only System -->
     <div class="problems-tile problems-tile-timeoff">
       <div class="problems-tile-timeoff-inner">
         <div class="problems-tile-content">
@@ -2251,7 +2223,7 @@
       </div>
     </div>
 
-    <!-- Row 4 -->
+    <!-- Row 4: empty | Chaotic Expense | empty -->
     <div class="problems-tile"></div>
     <div class="problems-tile problems-tile-expense">
       <div class="problems-tile-expense-inner">
@@ -2804,7 +2776,7 @@
     var tiles = document.querySelectorAll('.problems-grid > .problems-tile');
     tiles.forEach(function(tile) {
       tile.addEventListener('click', function() {
-        if (window.innerWidth > 800) return;
+        if (window.innerWidth > 1100) return;
         var isExpanded = tile.classList.contains('is-expanded');
         tiles.forEach(function(t) {
           t.classList.remove('is-expanded');

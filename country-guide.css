@@ -287,8 +287,47 @@ body {
 .explore-scroll-track { height: 6px; background: #cdd5e0; border-radius: 10px; margin-top: 40px; position: relative; overflow: hidden; }
 .explore-scroll-thumb { height: 6px; background: #3d4148; border-radius: 10px; position: absolute; left: 0; top: 0; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
 
+/* ────────────── EXPLORE — TABLET (Figma 5863:28800) ────────────── */
+@media (max-width: 800px) {
+  .explore-section { --gutter: 32px; padding: 32px 0; }
+  .explore-header { gap: 16px; margin-bottom: 32px; }
+  .explore-eyebrow-line { width: 12px; }
+  .explore-eyebrow-label { font-size: 12px; line-height: 16px; }
+  .explore-title-row { flex-direction: column; align-items: stretch; gap: 32px; }
+  .explore-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; white-space: normal; }
+  .explore-controls { justify-content: space-between; gap: 16px; }
+  .explore-search {
+    width: 320px; height: 32px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    gap: 16px;
+  }
+  .explore-search-input { font-size: 14px; line-height: 18px; }
+  .explore-chevrons { gap: 16px; }
+  .explore-chev-btn, .explore-chev-btn img { width: 32px; height: 32px; }
+
+  .explore-viewport { padding: 0; }
+  .explore-track { gap: 16px; }
+  .explore-card { flex: 0 0 224px; width: 224px; }
+  .explore-card-thumb { height: 160px; }
+  .explore-card-body { padding: 12px; gap: 8px; height: 88px; }
+  .explore-card-title-row { gap: 8px; }
+  .explore-card-name { font-size: 16px; line-height: 20px; }
+  .explore-card-currency { font-size: 12px; line-height: 16px; padding: 4px 6px; }
+  .explore-card-date { font-size: 12px; line-height: 16px; }
+
+  .explore-scroll-track { margin-top: 32px; }
+}
+
+/* ────────────── EXPLORE — MOBILE (Figma 5876:34885) ────────────── */
+@media (max-width: 440px) {
+  .explore-section { --gutter: 24px; }
+  .explore-search { width: 240px; }
+  .explore-chevrons { gap: 12px; }
+}
+
 /* ════════════════ ARTICLE SECTION ════════════════ */
-.article-section { background: #fff; padding: 60px 0 120px; }
+.article-section { background: #fff; padding: 60px 0 120px; position: relative; }
 .article-layout { display: flex; align-items: flex-start; }
 .article-toc { width: 220px; flex-shrink: 0; margin-right: 32px; position: sticky; top: 130px; }
 .toc-card { background: #fff; border-radius: 8px; padding: 16px 16px 32px 16px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.10); display: flex; flex-direction: column; gap: 40px; }
@@ -333,7 +372,14 @@ body {
 .cg-kn-card { flex: 1 0 0; min-width: 0; background: #ECF2FB; border: 1px solid #CDD5E0; border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
 .cg-kn-label { font-size: 12px; font-weight: 500; line-height: 16px; color: #8F98B5; margin: 0; }
 .cg-kn-value-row { display: flex; gap: 4px; align-items: center; }
-.cg-kn-value { font-size: 32px; font-weight: 700; line-height: 40px; color: #162351; }
+.cg-kn-value {
+  font-family: 'Inter', sans-serif;
+  /* Fluid: 20/26 at vw=768 → 32/40 at vw=1440, clamped either side */
+  font-size: clamp(20px, calc(20px + (100vw - 768px) * 12 / 672), 32px);
+  line-height: clamp(26px, calc(26px + (100vw - 768px) * 14 / 672), 40px);
+  font-weight: 700;
+  color: #162351;
+}
 .cg-kn-unit { font-size: 16px; font-weight: 400; line-height: 20px; color: #8F98B5; }
 .cg-kn-note { font-size: 12px; font-weight: 400; line-height: 16px; color: #8F98B5; margin: 0; }
 .au-marco-insight { background: #E4EFFF; border-left: 6px solid var(--blue-main); padding: 16px 32px 24px; display: flex; flex-direction: column; gap: 16px; }
@@ -365,14 +411,14 @@ body {
 @media (max-width: 800px) {
   .article-section { --gutter: 32px; padding: 0 0 60px; }
 
-  /* Layout: TOC bar spans the top, content + CTA rail sit in a row below */
+  /* Layout: single column — TOC bar on top, content, CTA row centered below */
   .article-layout {
     display: grid;
-    grid-template-columns: 1fr 40px;
+    grid-template-columns: 1fr;
     grid-template-areas:
-      "toc toc"
-      "content cta";
-    column-gap: 32px;
+      "toc"
+      "content"
+      "cta";
     row-gap: 32px;
     align-items: start;
   }
@@ -430,9 +476,25 @@ body {
     transform: rotate(90deg);
   }
 
-  /* Collapsed state: hide list & backdrop */
+  /* Collapsed state: hide list */
   .article-toc:not(.is-expanded) .toc-list { display: none; }
-  .article-toc::before { display: none; }
+
+  /* Dim backdrop over the article-section only (hero stays untouched).
+     Absolute positioning keeps it scoped to the article-section box. */
+  .article-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: -1;
+  }
+  .article-section:has(.article-toc.is-expanded)::before {
+    opacity: 1;
+    z-index: 14; /* below sticky TOC (z-index 15), above content */
+  }
 
   /* Expanded state — matches Figma 5869:34750 */
   .article-toc.is-expanded .toc-card {
@@ -469,13 +531,20 @@ body {
     grid-area: content;
     max-width: none; margin-right: 0;
     gap: 40px;
+    width: 100%;
   }
 
-  /* CTA rail — sticky below the sticky TOC bar (nav 80 + toc 49 + 32 gap) */
+  /* CTA rail — horizontal row centered below the content */
   .article-cta {
     grid-area: cta;
-    position: sticky;
-    top: 161px;
+    position: static;
+    flex-direction: row;
+    width: 100%;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    margin-top: 32px;
   }
   .article-block { gap: 16px; }
 
@@ -502,7 +571,6 @@ body {
   .cg-key-numbers { gap: 20px; }
   .cg-kn-card { padding: 8px; gap: 8px; }
   .cg-kn-label { font-size: 12px; line-height: 16px; }
-  .cg-kn-value { font-size: 20px; line-height: 26px; }
   .cg-kn-unit { font-size: 12px; line-height: 16px; }
   .cg-kn-note { font-size: 12px; line-height: 16px; }
 
@@ -526,8 +594,6 @@ body {
   .au-mi-label { font-size: 14px; line-height: 18px; }
   .au-mi-text { font-size: 14px; line-height: 18px; }
 
-  /* Right sticky CTA rail — icon size 32×32 with border */
-  .article-cta { width: 40px; gap: 24px; }
 }
 
 /* ────────────── ARTICLE — MOBILE (Figma 5864:31341) ────────────── */
@@ -572,7 +638,6 @@ body {
   .cg-key-numbers { flex-direction: column; gap: 8px; }
   .cg-kn-card { padding: 8px; gap: 8px; }
   .cg-kn-label { font-size: 12px; line-height: 16px; }
-  .cg-kn-value { font-size: 20px; line-height: 26px; }
   .cg-kn-unit { font-size: 12px; line-height: 16px; }
   .cg-kn-note { font-size: 12px; line-height: 16px; }
 
@@ -596,12 +661,12 @@ body {
   .au-mi-label { font-size: 14px; line-height: 18px; }
   .au-mi-text { font-size: 14px; line-height: 18px; }
 
-  /* Action icons: horizontal row at the bottom of the content */
+  /* Action icons: horizontal row centered below the content */
   .article-cta {
     width: 100%;
     flex-direction: row;
     gap: 16px;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     position: static;
     margin-top: 32px;
@@ -651,8 +716,95 @@ body {
 .gs-cta-btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
 .gs-cta-thumb { flex: 1; min-width: 0; overflow: hidden; }
 .gs-cta-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+/* ────────────── GET STARTED — TABLET (Figma 5863:28871) ────────────── */
 @media (max-width: 800px) {
-  .gs-cta-inner { padding-right: max(var(--gutter), calc((100% - 1224px) / 2)); }
-  .gs-cta-left { flex-basis: 100%; }
-  .gs-cta-thumb { display: none; }
+  .gs-cta { --gutter: 32px; }
+  .gs-cta-inner {
+    align-items: flex-start;
+    gap: 16px;
+    padding-left: var(--gutter);
+    padding-right: 0;
+  }
+  .gs-cta-left {
+    flex: 1 1 344px;
+    max-width: 344px;
+    min-width: 0;
+    padding: 32px 0;
+    gap: 32px;
+  }
+  .gs-cta-text { gap: 32px; }
+  .gs-cta-title-block { gap: 16px; }
+  .gs-cta-label-line { width: 12px; }
+  .gs-cta-label span { font-size: 12px; line-height: 16px; }
+  .gs-cta-title { font-size: 40px; font-weight: 600; line-height: 48px; letter-spacing: -2px; }
+  .gs-cta-subtitle { font-size: 16px; line-height: 20px; }
+
+  /* Small CTA button variant on tablet */
+  .gs-cta-btn {
+    height: 32px; padding: 4px 16px; gap: 4px;
+    font-size: 12px; line-height: 16px; letter-spacing: 0;
+  }
+  .gs-cta-btn-icon { width: 16px; height: 16px; }
+
+  /* Thumbnail spans right half; height matches the section */
+  .gs-cta-thumb {
+    flex: 0 0 auto;
+    width: calc(50% - 8px);
+    max-width: 376px;
+    align-self: stretch;
+    display: block;
+  }
+  .gs-cta-inner { align-items: stretch; }
+}
+
+/* ────────────── GET STARTED — MOBILE (Figma 5864:32065) ────────────── */
+@media (max-width: 440px) {
+  .gs-cta { --gutter: 24px; position: relative; overflow: hidden; background: none; }
+  .gs-cta-inner {
+    display: block;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+  /* Full-bleed thumbnail behind everything, with dark overlay */
+  .gs-cta-thumb {
+    position: absolute;
+    inset: 0;
+    width: auto; max-width: none; height: auto;
+    z-index: 0;
+    display: block;
+  }
+  .gs-cta-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gs-cta-thumb::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+  }
+
+  .gs-cta-left {
+    position: relative;
+    z-index: 1;
+    padding: 32px var(--gutter);
+    max-width: none; flex: none;
+    gap: 32px;
+  }
+  .gs-cta-text { gap: 32px; }
+  .gs-cta-title-block { gap: 16px; }
+  .gs-cta-label-line { background: #fff; width: 12px; }
+  .gs-cta-label span { color: #fff; font-size: 12px; line-height: 16px; }
+  .gs-cta-title { color: #fff; font-size: 40px; font-weight: 600; line-height: 48px; letter-spacing: -2px; }
+  .gs-cta-title .accent { color: #019DE7; }
+  .gs-cta-subtitle { color: #fff; font-size: 16px; line-height: 20px; }
+
+  /* Clear/outlined CTA button on mobile */
+  .gs-cta-btn {
+    height: 32px; padding: 4px 16px; gap: 4px;
+    font-size: 12px; line-height: 16px; letter-spacing: 0;
+    background: transparent;
+    border: 1px solid #fff; color: #fff;
+  }
+  .gs-cta-btn:hover { background: rgba(255,255,255,0.1); }
+  .gs-cta-btn-icon { width: 16px; height: 16px; }
+  .gs-cta-btn-icon-img { filter: brightness(0) invert(1); }
 }
