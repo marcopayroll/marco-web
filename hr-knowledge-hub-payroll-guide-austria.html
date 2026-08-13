@@ -294,19 +294,42 @@
       display: block;
     }
 
+    /* ────────────── HERO — TABLET ────────────── */
     @media (max-width: 800px) {
-      .pg-hero { min-height: auto; }
-      .pg-hero-img { display: none; }
-      .pg-hero-inner { padding-top: 160px; padding-bottom: 48px; padding-right: 0; }
-      .pg-hero-text { width: 100%; max-width: 600px; }
-      .pg-hero-meta { width: 100%; max-width: 600px; margin-top: 40px; }
+      .pg-hero { --gutter: 32px; min-height: 440px; }
+      .pg-hero-img {
+        top: 80px; right: 0; bottom: 0; left: auto;
+        width: calc(50% - 8px); max-width: 376px;
+      }
+      .pg-hero-inner {
+        padding-top: 112px; padding-bottom: 32px;
+        padding-right: calc(50% + 8px);
+        min-height: 440px;
+        gap: 32px;
+      }
+      .pg-hero-text { width: 100%; max-width: 344px; gap: 12px; }
+      .pg-hero-text-inner { gap: 12px; }
+      .pg-hero-title { font-size: 40px; font-weight: 700; line-height: 48px; letter-spacing: -2px; }
+      .pg-hero-desc { font-size: 14px; line-height: 18px; }
+      .pg-hero-last-updated { font-size: 14px; line-height: 18px; }
+      .pg-hero-meta {
+        width: 100%; max-width: 344px; margin-top: auto; gap: 12px;
+      }
     }
 
+    /* ────────────── HERO — MOBILE ────────────── */
     @media (max-width: 440px) {
-      .pg-hero-inner { padding-top: 120px; padding-bottom: 40px; }
-      .pg-hero-title { font-size: 32px; line-height: 42px; letter-spacing: -1.5px; }
-      .pg-hero-desc { font-size: 15px; }
-      .pg-hero-meta { margin-top: 32px; }
+      .pg-hero { --gutter: 24px; min-height: 400px; }
+      .pg-hero-img { display: none; }
+      .pg-hero-inner {
+        padding-top: 112px; padding-bottom: 32px; padding-right: 0;
+        min-height: 400px;
+        gap: 32px;
+      }
+      .pg-hero-text { max-width: none; }
+      .pg-hero-meta { max-width: none; margin-top: auto; }
+      .pg-hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+      .pg-hero-desc { font-size: 16px; line-height: 20px; letter-spacing: -0.8px; }
     }
 
     /* ════════════════════════════════════════
@@ -895,16 +918,7 @@
   );
   revealElements.forEach(function(el) { revealObserver.observe(el); });
 </script>
-<script>
-  /* ── Mobile footer accordion ── */
-  (function() {
-    document.querySelectorAll('[data-footer-mob-acc]').forEach(function(header) {
-      header.addEventListener('click', function() {
-        header.closest('.footer-mob-row').classList.toggle('is-open');
-      });
-    });
-  })();
-</script>
+
 <script src="payroll-guide-carousel.js"></script>
 
 <script>
@@ -1104,6 +1118,28 @@
   });
 
   updateToc();
+  // TOC expand/collapse toggle
+  (function() {
+    var toc = document.querySelector('.article-toc');
+    if (!toc) return;
+    var title = toc.querySelector('.toc-title');
+    if (!title) return;
+    title.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toc.classList.toggle('is-expanded');
+    });
+    document.addEventListener('click', function(e) {
+      if (toc.classList.contains('is-expanded') && !toc.contains(e.target)) {
+        toc.classList.remove('is-expanded');
+      }
+    });
+    toc.querySelectorAll('.toc-item').forEach(function(link) {
+      link.addEventListener('click', function() {
+        toc.classList.remove('is-expanded');
+      });
+    });
+  })();
+
 
   // Copy link
   var copyBtn = document.getElementById('copyLinkBtn');

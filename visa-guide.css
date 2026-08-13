@@ -130,11 +130,11 @@
 }
 
 /* ────────────── HERO — TABLET ────────────── */
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .pg-hero { --gutter: 32px; min-height: 440px; height: 440px; }
   .pg-hero-img {
     top: 80px; right: 0; bottom: auto; left: auto;
-    width: calc(50% - 8px); max-width: 376px;
+    width: calc(50% - 8px); max-width: 442px;
     height: 360px;
   }
   .pg-hero-inner {
@@ -142,18 +142,18 @@
     padding-right: calc(50% + 8px);
     height: 100%;
   }
-  .pg-hero-text { width: 100%; max-width: 344px; gap: 12px; }
+  .pg-hero-text { width: 100%; max-width: 410px; gap: 12px; }
   .pg-hero-text-inner { gap: 12px; }
   .pg-hero-title { font-size: 40px; font-weight: 700; line-height: 48px; letter-spacing: -2px; }
   .pg-hero-desc { font-size: 14px; line-height: 18px; }
   .pg-hero-last-updated { font-size: 14px; line-height: 18px; }
   .pg-hero-meta {
-    width: 100%; max-width: 344px; margin-top: auto; gap: 12px;
+    width: 100%; max-width: 410px; margin-top: auto; gap: 12px;
   }
 }
 
 /* ────────────── HERO — MOBILE ────────────── */
-@media (max-width: 440px) {
+@media (max-width: 500px) {
   .pg-hero { --gutter: 24px; min-height: 400px; height: 400px; }
   .pg-hero-img { display: none; }
   .pg-hero-inner {
@@ -360,7 +360,7 @@
   display: block;
 }
 /* ────────────── GET STARTED — TABLET ────────────── */
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .gs-cta { --gutter: 32px; }
   .gs-cta-inner {
     align-items: stretch;
@@ -370,7 +370,7 @@
   }
   .gs-cta-left {
     flex: 1 1 344px;
-    max-width: 344px;
+    max-width: 410px;
     min-width: 0;
     padding: 32px 0;
     gap: 32px;
@@ -389,14 +389,14 @@
   .gs-cta-thumb {
     flex: 0 0 auto;
     width: calc(50% - 8px);
-    max-width: 376px;
+    max-width: 442px;
     align-self: stretch;
     display: block;
   }
 }
 
 /* ────────────── GET STARTED — MOBILE ────────────── */
-@media (max-width: 440px) {
+@media (max-width: 500px) {
   .gs-cta { --gutter: 24px; position: relative; overflow: hidden; background: none; }
   .gs-cta-inner {
     display: block;
@@ -446,7 +446,7 @@
 /* ════════════════════════════════════════
    MOBILE FOOTER (≤440px)
 ════════════════════════════════════════ */
-.footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100vw; box-sizing: border-box; }
+.footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100%; box-sizing: border-box; }
 .footer-mob-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px 24px 0; }
 .footer-mob-logo { display: block; width: 142px; height: 40px; flex-shrink: 0; text-decoration: none; }
 .footer-mob-logo img { width: 142px; height: 40px; display: block; object-fit: contain; }
@@ -471,13 +471,13 @@
 .footer-mob-legal-links a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #b2b6c8; text-decoration: none; }
 .footer-mob-legal-links a:hover { color: #fff; }
 .footer-mob-copyright { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #b2b6c8; }
-@media (max-width: 440px) {
+@media (max-width: 500px) {
   .footer { display: none; }
   .footer-mobile { display: block; }
 }
 
 /* ────────────── EXPLORE — TABLET ────────────── */
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .explore-section { --gutter: 32px; padding: 32px 0; }
   .explore-header { gap: 16px; margin-bottom: 32px; }
   .explore-eyebrow-line { width: 12px; }
@@ -498,13 +498,13 @@
 }
 
 /* ────────────── EXPLORE — MOBILE ────────────── */
-@media (max-width: 440px) {
+@media (max-width: 500px) {
   .explore-section { --gutter: 24px; }
   .explore-chevrons { gap: 12px; }
 }
 
 /* ────────────── ARTICLE — TABLET ────────────── */
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .article-section { --gutter: 32px; padding: 0 0 60px; position: relative; }
 
   /* Layout: single column — TOC bar on top, content, CTA row centered below */
@@ -527,7 +527,7 @@
     margin-inline: calc(-1 * var(--gutter));
     width: calc(100% + 2 * var(--gutter));
     position: sticky;
-    top: 80px;
+    top: var(--nav-h, 80px);
     z-index: 15;
     overflow: visible;
   }
@@ -569,8 +569,26 @@
     transform: rotate(90deg);
   }
 
-  /* Collapsed state: hide list */
-  .article-toc:not(.is-expanded) .toc-list { display: none; }
+  /* Collapsed → expanded overlay animation */
+  .toc-card {
+    position: relative;
+  }
+  .toc-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 32px;
+    background: #fff;
+    border-bottom: 1px solid #CDD5E0;
+    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+  }
 
   /* Dim backdrop on article-section when expanded */
   .article-section::before {
@@ -588,13 +606,11 @@
     z-index: 14;
   }
 
-  /* Expanded state */
-  .article-toc.is-expanded .toc-card { gap: 24px; }
+  /* Expanded state — overlays content, doesn't push it */
   .article-toc.is-expanded .toc-list {
-    display: flex;
-    flex-direction: column;
-    padding: 16px 0;
-    gap: 16px;
+    max-height: 600px;
+    opacity: 1;
+    padding: 16px 32px;
   }
   .article-toc.is-expanded .toc-item {
     justify-content: flex-start;
@@ -682,8 +698,8 @@
 }
 
 /* ────────────── ARTICLE — MOBILE ────────────── */
-@media (max-width: 440px) {
-  .article-section { --gutter: 24px; padding: 32px 0 60px; }
+@media (max-width: 500px) {
+  .article-section { --gutter: 24px; padding: 0 0 60px; }
   .article-layout {
     display: flex;
     flex-direction: column;
@@ -691,11 +707,13 @@
     grid-template-columns: none;
     grid-template-areas: none;
     column-gap: 0;
-    row-gap: 0;
+    row-gap: 32px;
   }
 
-  /* Hide sidebar TOC on mobile */
-  .article-toc { display: none; }
+  .article-toc { top: var(--nav-h, 72px); }
+  .toc-card { padding: 12px 24px; }
+  .toc-list { padding: 0 24px; }
+  .article-toc.is-expanded .toc-list { padding: 16px 24px; }
 
   .article-content { max-width: none; margin-right: 0; width: 100%; gap: 40px; }
   .article-block { gap: 16px; }

@@ -651,16 +651,7 @@
   );
   revealElements.forEach(function(el) { revealObserver.observe(el); });
 </script>
-<script>
-  /* ── Mobile footer accordion ── */
-  (function() {
-    document.querySelectorAll('[data-footer-mob-acc]').forEach(function(header) {
-      header.addEventListener('click', function() {
-        header.closest('.footer-mob-row').classList.toggle('is-open');
-      });
-    });
-  })();
-</script>
+
 <script src="country-guide-countries.js"></script>
 <script src="country-guide-carousel.js"></script>
 

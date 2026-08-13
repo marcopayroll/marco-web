@@ -3,8 +3,8 @@
   /* Responsive card size — matches CSS breakpoints in country-guide.css */
   function getMetrics() {
     var vw = window.innerWidth;
-    if (vw <= 440) return { CARD_WIDTH: 224, GAP: 16, CARDS_PER_VIEW: 1 };
-    if (vw <= 800) return { CARD_WIDTH: 224, GAP: 16, CARDS_PER_VIEW: 3 };
+    if (vw <= 500) return { CARD_WIDTH: 224, GAP: 16, CARDS_PER_VIEW: 1 };
+    if (vw <= 900) return { CARD_WIDTH: 224, GAP: 16, CARDS_PER_VIEW: 3 };
     return { CARD_WIDTH: 340, GAP: 40, CARDS_PER_VIEW: 3 };
   }
   var m = getMetrics();
@@ -187,7 +187,11 @@
       e.stopPropagation();
       toc.classList.toggle('is-expanded');
     });
-    // Collapse when a TOC link is clicked (after navigation)
+    document.addEventListener('click', function(e) {
+      if (toc.classList.contains('is-expanded') && !toc.contains(e.target)) {
+        toc.classList.remove('is-expanded');
+      }
+    });
     toc.querySelectorAll('.toc-item').forEach(function(link) {
       link.addEventListener('click', function() {
         toc.classList.remove('is-expanded');
