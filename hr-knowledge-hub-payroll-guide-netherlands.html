@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="assets/marco-favicon.png">
@@ -32,7 +32,7 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title" data-i18n="pg.country.netherlands">Netherlands</h1>
-        <p class="pg-hero-desc">A practical guide to Netherlands payroll compliance — covering B.V. entity set-up, wage tax (loonbelasting) and national insurance withholding, employer contributions (AWf, Aof, Zvw), vakantiegeld 8%, statutory sick pay continuity for up to 2 years, the 30% Ruling for incoming talent, and annual Loonaangifte filings with the Belastingdienst.</p>
+        <p class="pg-hero-desc" data-i18n="pg.netherlands.desc">A practical guide to Netherlands payroll compliance &mdash; covering B.V. entity set-up, wage tax (loonbelasting) and national insurance withholding, employer contributions (AWf, Aof, Zvw), vakantiegeld 8%, statutory sick pay continuity for up to 2 years, the 30% Ruling for incoming talent, and annual Loonaangifte filings with the Belastingdienst.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
@@ -57,22 +57,22 @@
         <div class="toc-list">
           <a href="#section-scope" class="toc-item">
             <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
-            <span class="toc-text" id="toc-text-scope">Scope &amp; Application</span>
+            <span class="toc-text" id="toc-text-scope" data-i18n-html="pg.netherlands.s1.h">Scope &amp; Application</span>
           </a>
           <div class="toc-divider-line"></div>
           <a href="#section-setup" class="toc-item">
             <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
-            <span class="toc-text" id="toc-text-setup">Payroll Set-up</span>
+            <span class="toc-text" id="toc-text-setup" data-i18n-html="pg.netherlands.s2.h">Payroll Set-up</span>
           </a>
           <div class="toc-divider-line"></div>
           <a href="#section-calculation" class="toc-item">
             <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
-            <span class="toc-text" id="toc-text-calculation">Payroll Calculation</span>
+            <span class="toc-text" id="toc-text-calculation" data-i18n-html="pg.netherlands.s3.h">Payroll Calculation</span>
           </a>
           <div class="toc-divider-line"></div>
           <a href="#section-processing" class="toc-item">
             <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
-            <span class="toc-text" id="toc-text-processing">Payroll Processing &amp; Compliance</span>
+            <span class="toc-text" id="toc-text-processing" data-i18n-html="pg.netherlands.s4.h">Payroll Processing &amp; Compliance</span>
           </a>
         </div>
       </div>
@@ -84,26 +84,77 @@
       <!-- ── Section 1: Scope & Application ── -->
       <div class="article-block" id="section-scope">
         <div class="au-section-header">
-          <h2 class="article-h2">Scope &amp; Application</h2>
-          <p class="au-section-sub">Applicable Scope and Legal Basis / Wet op de loonbelasting &middot; Sociale Verzekeringswetten &middot; Zvw</p>
+          <h2 class="article-h2" data-i18n="pg.netherlands.s1.h">Scope &amp; Application</h2>
+          <p class="au-section-sub" data-i18n-html="pg.netherlands.s1.sub">Applicable Scope and Legal Basis / Wet op de loonbelasting &middot; Sociale Verzekeringswetten &middot; Zvw</p>
         </div>
-        <p class="article-p">This document applies to:</p>
-        <div class="au-bullet-list">
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>Companies that have established a local legal entity in the Netherlands (B.V. &mdash; Besloten Vennootschap)</span>
-          </div>
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>Employees directly employed by the Dutch local entity, subject to the Dutch Civil Code Book 7 (Burgerlijk Wetboek Boek 7)</span>
-          </div>
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>Payroll compliance based on the Wage Tax Act (Wet op de loonbelasting), Social Insurance Acts, and the Health Insurance Act (Zvw)</span>
+        <div data-i18n-html="pg.netherlands.s1.b1">
+          <p class="article-p">This document applies to:</p>
+          <div class="au-bullet-list" style="margin-top:16px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Companies that have established a local legal entity in the Netherlands (B.V. &mdash; Besloten Vennootschap)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Employees directly employed by the Dutch local entity, subject to the Dutch Civil Code Book 7 (Burgerlijk Wetboek Boek 7)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Payroll compliance based on the Wage Tax Act (Wet op de loonbelasting), Social Insurance Acts, and the Health Insurance Act (Zvw)</span>
+            </div>
           </div>
         </div>
-        <p class="article-p">This framework explains: how companies complete Payroll Set-up, salary calculation, monthly execution, and annual compliance management in the Netherlands.</p>
-        <div class="au-marco-insight">
+        <p class="article-p" style="margin-top:20px;" data-i18n="pg.netherlands.s1.b2">This framework explains how companies complete Payroll Set-up in the Netherlands (KvK + Belastingdienst registration + mandatory insurance), monthly payroll calculation (loonbelasting + national insurance + employer social premiums + vakantiegeld), monthly filing and payment (Loonaangifte to the Belastingdienst), and annual compliance management (Jaaropgave + WKR settlement).</p>
+        <div class="au-data-cards-wrap" data-i18n-html="pg.netherlands.s1.b3">
+          <p class="au-data-cards-label">2026 KEY NUMBERS</p>
+          <div class="au-data-cards-grid">
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">Minimum Wage</span>
+                <span class="au-dc-value">EUR 14.71/hour</span>
+                <span class="au-dc-note">Age 21+; effective January 2026</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Vakantiegeld</span>
+                <span class="au-dc-value">8%</span>
+                <span class="au-dc-note">Statutory holiday allowance; accrued monthly</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Zvw Healthcare</span>
+                <span class="au-dc-value">6.10%</span>
+                <span class="au-dc-note">Employer-borne; cap EUR 79,412/year</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">National Insurance</span>
+                <span class="au-dc-value">27.65%</span>
+                <span class="au-dc-note">AOW + Anw + Wlz; Bracket 1 only</span>
+              </div>
+            </div>
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">Employer Total Burden</span>
+                <span class="au-dc-value">&asymp; 17% &ndash; 23%</span>
+                <span class="au-dc-note">AWf + Aof + Whk + Zvw combined</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Sick Pay Continuation</span>
+                <span class="au-dc-value">Up to 2 years</span>
+                <span class="au-dc-note">Minimum 70% of salary; most CAOs 100%/70%</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Transition Payment</span>
+                <span class="au-dc-value">1/3 month/year</span>
+                <span class="au-dc-note">Transitievergoeding; no cap since 2020</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">30% Ruling</span>
+                <span class="au-dc-value">Up to 5 years</span>
+                <span class="au-dc-note">Salary threshold EUR 48,013/year</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="au-marco-insight" data-i18n-html="pg.netherlands.s1.b4">
           <p class="au-mi-label">MARCO INSIGHT</p>
           <p class="au-mi-text">The Netherlands Payroll system is multi-layered, operating under a PAYE withholding regime. Employers must withhold wage tax (loonbelasting) and national insurance contributions (volksverzekeringen) from employee salaries on a monthly basis, while also bearing employer-side employee insurance (werknemersverzekeringen) and healthcare contributions (Zvw reduced to 6.10% in 2026, with total employer burden approximately 17&ndash;23% of salary). In addition, there is a statutory mandatory 8% holiday allowance (vakantiegeld), minimum 20 days annual leave, and sick pay continuation for up to 2 years. Special attention must be paid to industry collective labour agreements (CAO) which may impose additional obligations.</p>
         </div>
@@ -112,10 +163,10 @@
       <!-- ── Section 2: Payroll Set-up ── -->
       <div class="article-block" id="section-setup">
         <div class="au-section-header">
-          <h2 class="article-h2">Payroll Set-up</h2>
-          <p class="au-section-sub">How to establish legal payroll capability in the Netherlands / KvK &middot; Belastingdienst &middot; Insurance &amp; Pension</p>
+          <h2 class="article-h2" data-i18n="pg.netherlands.s2.h">Payroll Set-up</h2>
+          <p class="au-section-sub" data-i18n-html="pg.netherlands.s2.sub">How to establish legal payroll capability in the Netherlands / KvK &middot; Belastingdienst &middot; Insurance &amp; Pension</p>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s2.b1">
           <p class="au-table-title"><span class="au-table-num">i.</span> KvK &amp; Belastingdienst Registration</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -131,7 +182,7 @@
             </table>
           </div>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s2.b2">
           <p class="au-table-title"><span class="au-table-num">ii.</span> Mandatory Insurance &amp; Pension</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -146,7 +197,7 @@
             </table>
           </div>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s2.b3">
           <p class="au-table-title"><span class="au-table-num">iii.</span> Bank Account &amp; Record Keeping</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -166,10 +217,10 @@
       <!-- ── Section 3: Payroll Calculation ── -->
       <div class="article-block" id="section-calculation">
         <div class="au-section-header">
-          <h2 class="article-h2">Payroll Calculation</h2>
-          <p class="au-section-sub">How salary, tax, and employee entitlements are calculated / Salary &middot; Leave &middot; Loonbelasting &middot; Employer Contributions</p>
+          <h2 class="article-h2" data-i18n="pg.netherlands.s3.h">Payroll Calculation</h2>
+          <p class="au-section-sub" data-i18n-html="pg.netherlands.s3.sub">How salary, tax, and employee entitlements are calculated / Salary &middot; Leave &middot; Loonbelasting &middot; Employer Contributions</p>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s3.b1">
           <p class="au-table-title"><span class="au-table-num">i.</span> Salary Calculation &amp; Components</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -188,22 +239,24 @@
             </table>
           </div>
         </div>
-        <p class="article-p"><strong>Wage (Loon) Components:</strong></p>
-        <div class="au-bullet-list">
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>Base salary, overtime pay, shift allowances, commission, bonuses</span>
-          </div>
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>Holiday allowance (8% vakantiegeld), accrued monthly, paid annually or monthly</span>
-          </div>
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>13th month (if stipulated by contract / CAO)</span>
+        <div data-i18n-html="pg.netherlands.s3.b2">
+          <p class="article-p"><strong>Wage (Loon) Components:</strong></p>
+          <div class="au-bullet-list">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Base salary, overtime pay, shift allowances, commission, bonuses</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Holiday allowance (8% vakantiegeld), accrued monthly, paid annually or monthly</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>13th month (if stipulated by contract / CAO)</span>
+            </div>
           </div>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s3.b3">
           <p class="au-table-title"><span class="au-table-num">ii.</span> Statutory Leave Entitlements</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -222,7 +275,7 @@
             </table>
           </div>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s3.b4">
           <p class="au-table-title"><span class="au-table-num">iii.</span> Loonbelasting &amp; Volksverzekeringen (Employee Side)</p>
           <p class="article-p">The Netherlands operates a PAYE system. Employers withhold wage tax and national insurance contributions from employee salaries each month and remit them to the tax authority (Belastingdienst).</p>
           <p class="au-table-title">2026 Combined Wage Tax + National Insurance Rates (Below Retirement Age):</p>
@@ -237,7 +290,7 @@
               </tbody>
             </table>
           </div>
-        <p class="au-table-title">National Insurance (Volksverzekeringen) Breakdown:</p>
+          <p class="au-table-title">National Insurance (Volksverzekeringen) Breakdown:</p>
           <div class="au-table-wrap">
             <table class="au-table">
               <colgroup><col style="width:35%"><col style="width:20%"><col style="width:45%"></colgroup>
@@ -251,11 +304,11 @@
             </table>
           </div>
         </div>
-        <div class="au-marco-insight">
+        <div class="au-marco-insight" data-i18n-html="pg.netherlands.s3.b5">
           <p class="au-mi-label">MARCO INSIGHT</p>
           <p class="au-mi-text">Unlike Hong Kong, the Netherlands operates a full PAYE withholding system. Employers must calculate, withhold, and remit wage tax and national insurance contributions monthly. National insurance is levied only on Bracket 1 income (up to EUR 38,883). Tax credits (algemene heffingskorting up to EUR 3,115, arbeidskorting up to EUR 5,685) significantly reduce the effective tax burden and are automatically factored in through the wage tax tables.</p>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s3.b6">
           <p class="au-table-title"><span class="au-table-num">iv.</span> Werknemersverzekeringen &amp; Zvw (Employer Side)</p>
           <p class="article-p">The following contributions are borne entirely by the employer and may not be deducted from employee salaries. 2026 maximum contribution base: EUR 79,412/year.</p>
           <div class="au-table-wrap">
@@ -280,10 +333,10 @@
       <!-- ── Section 4: Payroll Processing & Compliance ── -->
       <div class="article-block" id="section-processing">
         <div class="au-section-header">
-          <h2 class="article-h2">Payroll Processing &amp; Compliance</h2>
-          <p class="au-section-sub">Monthly execution, filing and payment, and accounting treatment / Loonaangifte &middot; Annual Filing &middot; Termination &middot; 30% Ruling</p>
+          <h2 class="article-h2" data-i18n="pg.netherlands.s4.h">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub" data-i18n-html="pg.netherlands.s4.sub">Monthly execution, filing and payment, and accounting treatment / Loonaangifte &middot; Annual Filing &middot; Termination &middot; 30% Ruling</p>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s4.b1">
           <p class="au-table-title"><span class="au-table-num">i.</span> Payroll Payment Rules</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -300,7 +353,7 @@
             </table>
           </div>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s4.b2">
           <p class="au-table-title"><span class="au-table-num">ii.</span> Loonaangifte (Wage Tax Filing)</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -316,7 +369,7 @@
             </table>
           </div>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s4.b3">
           <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Journal Mapping Rules</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -334,8 +387,8 @@
             </table>
           </div>
         </div>
-        <p class="article-p">Note: Unlike Hong Kong, the Netherlands operates a PAYE system, so the journal always includes a Payroll Tax Liability account. Employer-side social insurance adds approximately 17&ndash;23% in additional costs.</p>
-        <div class="au-table-group">
+        <p class="article-p" data-i18n="pg.netherlands.s4.b4">Note: Unlike Hong Kong, the Netherlands operates a PAYE system, so the journal always includes a Payroll Tax Liability account. Employer-side social insurance adds approximately 17&ndash;23% in additional costs.</p>
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s4.b5">
           <p class="au-table-title"><span class="au-table-num">iv.</span> Annual Filing &amp; Reporting</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -351,26 +404,28 @@
             </table>
           </div>
         </div>
-        <p class="article-p"><strong>Work-related Costs Scheme (WKR / Werkkostenregeling):</strong></p>
-        <div class="au-bullet-list">
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>Tax-free allowance: 2% of the first EUR 400,000 of total wage bill, 1.8% on the excess</span>
-          </div>
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>Covers tax-free benefits: employee events, mobile phones, parking, gifts, etc.</span>
-          </div>
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>Amounts exceeding the tax-free allowance are subject to 80% final levy payable by the employer</span>
-          </div>
-          <div class="au-bullet-item">
-            <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
-            <span>Specific exemptions (e.g. travel allowance EUR 0.23/km, professional training) do not count against the allowance</span>
+        <div data-i18n-html="pg.netherlands.s4.b6">
+          <p class="article-p"><strong>Work-related Costs Scheme (WKR / Werkkostenregeling):</strong></p>
+          <div class="au-bullet-list">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Tax-free allowance: 2% of the first EUR 400,000 of total wage bill, 1.8% on the excess</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Covers tax-free benefits: employee events, mobile phones, parking, gifts, etc.</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Amounts exceeding the tax-free allowance are subject to 80% final levy payable by the employer</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Specific exemptions (e.g. travel allowance EUR 0.23/km, professional training) do not count against the allowance</span>
+            </div>
           </div>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s4.b7">
           <p class="au-table-title"><span class="au-table-num">v.</span> Termination Settlement</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -388,11 +443,11 @@
             </table>
           </div>
         </div>
-        <div class="au-marco-insight">
+        <div class="au-marco-insight" data-i18n-html="pg.netherlands.s4.b8">
           <p class="au-mi-label">MARCO INSIGHT</p>
           <p class="au-mi-text">Employee protection in the Netherlands is very strict. The transition payment (transitievergoeding) applies to nearly all termination scenarios, including non-renewal of fixed-term contracts. The formula is 1/3 monthly salary per full year of service, calculated from the first day of employment. Unlike Hong Kong&rsquo;s severance pay / long service payment system, the Netherlands has no service year cap (the monetary cap was removed in 2020). Employers must also strictly comply with procedural requirements: terminations without UWV or court approval can be reversed.</p>
         </div>
-        <div class="au-table-group">
+        <div class="au-table-group" data-i18n-html="pg.netherlands.s4.b9">
           <p class="au-table-title"><span class="au-table-num">vi.</span> 30% Ruling &mdash; Special Tax Facility for Incoming Employees</p>
           <div class="au-table-wrap">
             <table class="au-table">
@@ -409,7 +464,7 @@
             </table>
           </div>
         </div>
-        <div class="au-marco-insight">
+        <div class="au-marco-insight" data-i18n-html="pg.netherlands.s4.b10">
           <p class="au-mi-label">MARCO INSIGHT</p>
           <p class="au-mi-text">The 30% Ruling can still deliver significant tax savings for employers recruiting international talent, but the benefit is being tightened. Since 2025, the partial foreign taxpayer status option has been abolished (transitional rules apply until end of 2026). From 2027, the benefit percentage will be reduced from 30% to 27%. Additionally, the 2026 ETK regime has been tightened: certain extraterritorial cost items such as utility bills and home-country phone calls have lost their tax-exempt status. Employers must ensure all eligibility documentation is complete and may only apply the ruling in Payroll after receiving Belastingdienst approval.</p>
         </div>
@@ -460,41 +515,6 @@
 
   </div><!-- end .container.article-layout -->
 </section>
-
-<script>
-  var tocSections = [
-    { id: 'section-scope',       dot: 'toc-dot-scope',       text: 'toc-text-scope' },
-    { id: 'section-setup',       dot: 'toc-dot-setup',       text: 'toc-text-setup' },
-    { id: 'section-calculation', dot: 'toc-dot-calculation', text: 'toc-text-calculation' },
-    { id: 'section-processing',  dot: 'toc-dot-processing',  text: 'toc-text-processing' },
-  ];
-  function updateTOC() {
-    var scrollY = window.scrollY + window.innerHeight * 0.35;
-    var active = null;
-    tocSections.forEach(function(s) {
-      var el = document.getElementById(s.id);
-      if (el && el.getBoundingClientRect().top + window.scrollY <= scrollY) active = s;
-    });
-    tocSections.forEach(function(s) {
-      var dot  = document.getElementById(s.dot);
-      var text = document.getElementById(s.text);
-      var on = active && active.id === s.id;
-      if (dot)  dot.classList.toggle('active', on);
-      if (text) text.classList.toggle('active', on);
-    });
-  }
-  window.addEventListener('scroll', updateTOC);
-  updateTOC();
-  var copyBtn = document.getElementById('copyLinkBtn');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', function() {
-      navigator.clipboard.writeText(window.location.href).then(function() {
-        copyBtn.classList.add('copied');
-        setTimeout(function() { copyBtn.classList.remove('copied'); }, 2000);
-      });
-    });
-  }
-</script>
 
 
 <!-- ════════════════ GET STARTED ════════════════ -->
@@ -676,11 +696,12 @@
       var sectionCSSY = [0];
       var heroBottom = (heroEl.getBoundingClientRect().bottom + window.scrollY) - wrapperDocTop;
       if (heroBottom > 10) sectionCSSY.push(heroBottom);
-      wrapper.querySelectorAll('.article-block').forEach(function(el) {
+      wrapper.querySelectorAll('.article-block, .au-table-group, .au-subsection, .au-marco-insight, .au-data-cards-wrap, .au-bullet-list, .cg-reg-list, .cg-key-numbers').forEach(function(el) {
         var top = (el.getBoundingClientRect().top + window.scrollY) - wrapperDocTop;
         if (top > 10) sectionCSSY.push(top);
       });
       sectionCSSY.sort(function(a, b) { return a - b; });
+      sectionCSSY = sectionCSSY.filter(function(v, i, a) { return i === 0 || v !== a[i - 1]; });
 
       /* Capture the wrapper — scrollY:0 because wrapper is at document top */
       var canvas = await html2canvas(wrapper, {
@@ -714,11 +735,22 @@
       while (startCSS < cssH) {
         var idealEnd = startCSS + pageCSS;
         if (idealEnd >= cssH) { slices.push({ start: startCSS, end: cssH }); break; }
-        var safeZone  = startCSS + pageCSS * 0.65;
+        var safeZone = startCSS + pageCSS * 0.55;
         var bestBreak = null;
-        for (var si = 0; si < sectionCSSY.length; si++) {
+        /* Find the LAST break point before idealEnd that is after safeZone — maximises content per page */
+        for (var si = sectionCSSY.length - 1; si >= 0; si--) {
           var sy = sectionCSSY[si];
-          if (sy > safeZone && sy < idealEnd) { bestBreak = sy; break; }
+          if (sy >= idealEnd) continue;
+          if (sy <= safeZone) break;
+          bestBreak = sy;
+          break;
+        }
+        /* Fallback: last break point before idealEnd even if below safeZone — avoids cutting mid-block */
+        if (bestBreak === null) {
+          for (var si = sectionCSSY.length - 1; si >= 0; si--) {
+            var sy = sectionCSSY[si];
+            if (sy > startCSS && sy < idealEnd) { bestBreak = sy; break; }
+          }
         }
         var cutAt = bestBreak !== null ? bestBreak : idealEnd;
         slices.push({ start: startCSS, end: cutAt });

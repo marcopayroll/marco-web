@@ -386,6 +386,7 @@ window.MARCO_LANG_CN_PRICE = {
 	'price.payroll.proc.val.p':  '每份工资单 10 美元',
 
 	/* ── Version validity dates ── */
+	'price.validity.2026.3.1':   '2026年7月1日 至 2026年9月30日',
 	'price.validity.2026.2.3':   '2026年4月1日 至 2026年6月30日',
 	'price.validity.2026.2.2':   '2026年4月1日 至 2026年6月30日',
 	'price.validity.2026.2.1':   '2026年4月1日 至 2026年6月30日',

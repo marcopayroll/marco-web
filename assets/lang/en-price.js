@@ -386,6 +386,7 @@ window.MARCO_LANG_EN_PRICE = {
 	'price.payroll.proc.val.p':  'USD 10/ Payslip',
 
 	/* ── Version validity dates ── */
+	'price.validity.2026.3.1':   '1 July 2026 to 30 September 2026',
 	'price.validity.2026.2.3':   '1 April 2026 to 30 June 2026',
 	'price.validity.2026.2.2':   '1 April 2026 to 30 June 2026',
 	'price.validity.2026.2.1':   '1 April 2026 to 30 June 2026',

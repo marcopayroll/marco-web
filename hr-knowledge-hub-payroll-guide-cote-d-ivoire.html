@@ -652,11 +652,12 @@
       var sectionCSSY = [0];
       var heroBottom = (heroEl.getBoundingClientRect().bottom + window.scrollY) - wrapperDocTop;
       if (heroBottom > 10) sectionCSSY.push(heroBottom);
-      wrapper.querySelectorAll('.article-block, .au-table-group, .au-marco-insight, .au-section-sep').forEach(function(el) {
+      wrapper.querySelectorAll('.article-block, .au-table-group, .au-subsection, .au-marco-insight, .au-data-cards-wrap, .au-bullet-list, .cg-reg-list, .cg-key-numbers').forEach(function(el) {
         var top = (el.getBoundingClientRect().top + window.scrollY) - wrapperDocTop;
         if (top > 10) sectionCSSY.push(top);
       });
       sectionCSSY.sort(function(a, b) { return a - b; });
+      sectionCSSY = sectionCSSY.filter(function(v, i, a) { return i === 0 || v !== a[i - 1]; });
 
       /* Capture the wrapper — scrollY:0 because wrapper is at document top */
       var canvas = await html2canvas(wrapper, {
@@ -690,11 +691,22 @@
       while (startCSS < cssH) {
         var idealEnd = startCSS + pageCSS;
         if (idealEnd >= cssH) { slices.push({ start: startCSS, end: cssH }); break; }
-        var safeZone  = startCSS + pageCSS * 0.65;
+        var safeZone = startCSS + pageCSS * 0.55;
         var bestBreak = null;
-        for (var si = 0; si < sectionCSSY.length; si++) {
+        /* Find the LAST break point before idealEnd that is after safeZone — maximises content per page */
+        for (var si = sectionCSSY.length - 1; si >= 0; si--) {
           var sy = sectionCSSY[si];
-          if (sy > safeZone && sy < idealEnd) { bestBreak = sy; }
+          if (sy >= idealEnd) continue;
+          if (sy <= safeZone) break;
+          bestBreak = sy;
+          break;
+        }
+        /* Fallback: last break point before idealEnd even if below safeZone — avoids cutting mid-block */
+        if (bestBreak === null) {
+          for (var si = sectionCSSY.length - 1; si >= 0; si--) {
+            var sy = sectionCSSY[si];
+            if (sy > startCSS && sy < idealEnd) { bestBreak = sy; break; }
+          }
         }
         var cutAt = bestBreak !== null ? bestBreak : idealEnd;
         slices.push({ start: startCSS, end: cutAt });

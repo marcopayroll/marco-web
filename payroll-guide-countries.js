@@ -17,7 +17,7 @@ const PAYROLL_GUIDE_COUNTRIES_DATA = [
   { name: "Bulgaria",      currency: "BGN", region: "Europe",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/bulgaria.jpg", link: "hr-knowledge-hub-payroll-guide-bulgaria.html" },
   { name: "Cambodia",      currency: "KHR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/cambodia.jpg", link: "hr-knowledge-hub-payroll-guide-cambodia.html" },
   { name: "Canada",        currency: "CAD", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/canada.jpg", link: "hr-knowledge-hub-payroll-guide-canada.html", date: "28 July 2026" },
-  { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/chile.png", link: "hr-knowledge-hub-payroll-guide-chile.html", date: "28 July 2026" },
+  { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/chile 2.webp", link: "hr-knowledge-hub-payroll-guide-chile.html", date: "28 July 2026" },
   { name: "China",         currency: "CNY", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/china.jpg", link: "hr-knowledge-hub-payroll-guide-china.html" },
   { name: "Colombia",      currency: "COP", region: "Americas",     img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/colombia 1.png", link: "hr-knowledge-hub-payroll-guide-colombia.html" },
   { name: "Côte d'Ivoire", slug: "cote-d-ivoire", currency: "XOF", region: "Africa",       img: "assets/HR Knowledge Hub/Payroll Guide/thumbnails/Cote D Ivoire 2.jpg", link: "hr-knowledge-hub-payroll-guide-cote-d-ivoire.html", date: "29 July 2026" },

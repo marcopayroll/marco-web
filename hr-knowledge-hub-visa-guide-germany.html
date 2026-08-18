@@ -691,7 +691,7 @@
       var heroBottom = (heroEl.getBoundingClientRect().bottom + window.scrollY) - wrapperDocTop;
       if (heroBottom > 10) sectionCSSY.push(heroBottom);
       /* Collect break points at every content block boundary — sections, table groups, subsections */
-      wrapper.querySelectorAll('.article-block, .au-table-group, .au-subsection, .cg-reg-list, .cg-key-numbers').forEach(function(el) {
+      wrapper.querySelectorAll('.article-block, .au-table-group, .au-subsection, .au-marco-insight, .au-data-cards-wrap, .au-bullet-list, .cg-reg-list, .cg-key-numbers').forEach(function(el) {
         var top = (el.getBoundingClientRect().top + window.scrollY) - wrapperDocTop;
         if (top > 10) sectionCSSY.push(top);
       });

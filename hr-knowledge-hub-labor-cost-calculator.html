@@ -98,8 +98,8 @@
        HERO
     ════════════════════════════════════════ */
     .hero { position: relative; overflow: hidden; height: 600px; background: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); }
-    .hero-bg-pattern { position: absolute; top: 0; right: 0; height: 100%; z-index: 0; pointer-events: none; }
-    .hero-bg-pattern img { height: 100%; width: auto; display: block; object-fit: contain; object-position: right center; }
+    .hero-bg-pattern { position: absolute; top: 0; right: -24px; width: 901px; height: 600px; z-index: 0; pointer-events: none; opacity: 0.5; overflow: clip; border-radius: 40px; }
+    .hero-bg-pattern img { width: 100%; height: 100%; display: block; object-fit: cover; }
     .hero-inner { position: relative; z-index: 1; width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; height: 100%; }
     .hero-content { padding-top: 180px; max-width: 704px; display: flex; flex-direction: column; gap: 12px; }
     .hero-body { display: flex; flex-direction: column; gap: 24px; width: 100%; }
@@ -110,6 +110,27 @@
     .hero-title-white { color: #ffffff; }
     .hero-title-blue  { color: var(--blue-main); }
     .hero-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; color: #ffffff; max-width: 644px; }
+
+    /* ── Hero tablet (≤1000px) ── */
+    @media (max-width: 1000px) {
+      .hero { height: 440px; }
+      .hero-bg-pattern { right: auto; left: calc(25% + 4px); width: 661px; height: 440px; }
+      .hero-inner { width: calc(100% - 64px); max-width: none; }
+      .hero-content { padding-top: 160px; max-width: 524px; }
+      .hero-body { gap: 16px; }
+      .hero-label-line { width: 12px; }
+      .hero-label span { font-size: 12px; line-height: 16px; letter-spacing: 0; }
+      .hero-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+    }
+
+    /* ── Hero mobile (≤440px) ── */
+    @media (max-width: 440px) {
+      .hero { height: 400px; }
+      .hero-bg-pattern { right: auto; left: 0; width: 601px; height: 400px; }
+      .hero-inner { width: calc(100% - 48px); }
+      .hero-content { padding-top: 150px; max-width: 342px; }
+      .hero-title { font-size: 32px; line-height: 40px; letter-spacing: 0; }
+    }
 
     /* ════════════════════════════════════════
        LCC SECTION
@@ -277,6 +298,77 @@
     .lcc-summary-value { font-size: 20px; font-weight: 600; line-height: 26px; color: #fff; }
     .lcc-summary-label { font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; }
 
+    /* ── LCC section compact desktop (≤1200px) ── */
+    @media (max-width: 1200px) {
+      .lcc-body { gap: 80px; }
+      .lcc-input-panel { width: 302px; }
+      .lcc-worker-card { height: 100px; padding: 16px 12px; }
+    }
+
+    /* ── LCC section buttons (≤1100px) ── */
+    @media (max-width: 1100px) {
+      .lcc-btn-primary,
+      .lcc-btn-secondary { height: 40px; font-size: 14px; line-height: 18px; padding: 8px 12px; }
+    }
+
+    /* ── LCC section tablet (≤1000px) ── */
+    @media (max-width: 1000px) {
+      body { min-width: 0; }
+      .lcc-section { padding: 32px 0 60px; }
+      .lcc-outer { width: calc(100% - 64px); max-width: none; }
+      .lcc-section-label .lcc-label-line { width: 12px; }
+      .lcc-section-label span { font-size: 12px; line-height: 16px; }
+      .lcc-title-h1 { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+      .lcc-body { gap: 16px; }
+      .lcc-input-panel { width: 36%; flex-shrink: 0; overflow: hidden; }
+      .lcc-amount-input { min-width: 0; }
+      .lcc-form-rows { gap: 32px; }
+      .lcc-worker-card { padding: 8px; }
+      .lcc-currency-box { width: 60px; }
+      .lcc-result-card { padding: 12px; min-height: auto; flex: 1; min-width: 0; }
+      .lcc-result-content { gap: 16px; }
+      .lcc-result-total-label { font-size: 12px; line-height: 16px; }
+      .lcc-result-total-amount { font-size: 32px; line-height: 40px; }
+      .lcc-result-total-per { font-size: 14px; line-height: 18px; }
+      .lcc-result-meta-country { font-size: 12px; line-height: 16px; }
+      .lcc-result-meta-rate { font-size: 32px; }
+      .lcc-result-meta-desc { font-size: 12px; line-height: 16px; }
+      .lcc-bar-label-text { font-size: 12px; line-height: 16px; }
+      .lcc-bar-amount { font-size: 14px; line-height: 18px; }
+      .lcc-bar-track { height: 8px; }
+      .lcc-bar-row { gap: 8px; }
+      .lcc-summary-label { font-size: 12px; line-height: 16px; }
+    }
+
+    /* ── LCC section narrow tablet (≤800px) ── */
+    @media (max-width: 800px) {
+      .lcc-summary { flex-wrap: wrap; gap: 16px 24px; }
+      .lcc-summary-card { flex: 1 1 calc(50% - 12px); min-width: calc(50% - 12px); }
+    }
+
+    /* ── LCC section stacked (≤700px) ── */
+    @media (max-width: 700px) {
+      .lcc-body { flex-direction: column; gap: 32px; }
+      .lcc-input-panel { display: contents; }
+      .lcc-form-rows { order: 1; width: 100%; }
+      .lcc-divider { order: 2; width: 100%; }
+      .lcc-result-card { order: 3; width: 100%; }
+      .lcc-buttons { order: 4; width: 100%; }
+      .lcc-hint-block { min-height: 0; }
+      .lcc-hint-block:not(:has(p:not(:empty))) { display: none; }
+      .lcc-summary { flex-wrap: nowrap; gap: 16px; }
+      .lcc-summary-card { flex: 1; min-width: 0; }
+    }
+
+    /* ── LCC section mobile (≤440px) ── */
+    @media (max-width: 440px) {
+      .lcc-outer { width: calc(100% - 48px); }
+      .lcc-title-h1 { font-size: 40px; line-height: 48px; letter-spacing: -2px; }
+      .lcc-worker-card { height: 100px; }
+      .lcc-summary { flex-wrap: wrap; gap: 16px 24px; }
+      .lcc-summary-card { flex: 1 1 calc(50% - 12px); min-width: calc(50% - 12px); }
+    }
+
     /* ════════════════════════════════════════
        LABOR COST REPORT SECTION
     ════════════════════════════════════════ */
@@ -331,7 +423,7 @@
     .lcc-rpt-trow--total { background: #e4efff; }
     .lcc-rpt-tcell { padding: 8px 20px; min-height: 50px; display: flex; flex-direction: column; justify-content: center; }
     .lcc-rpt-tcell--name { flex: 1 0 0; min-width: 0; }
-    .lcc-rpt-tcell--rate, .lcc-rpt-tcell--mo, .lcc-rpt-tcell--yr { width: 240px; flex-shrink: 0; }
+    .lcc-rpt-tcell--rate, .lcc-rpt-tcell--mo, .lcc-rpt-tcell--yr { width: 20%; min-width: 80px; flex-shrink: 1; }
     .lcc-rpt-th { font-size: 14px; font-weight: 500; line-height: 18px; color: #8f98b5; }
     .lcc-rpt-td-name { font-size: 14px; font-weight: 500; line-height: 18px; color: #162351; }
     .lcc-rpt-td-note { font-size: 10px; font-weight: 400; line-height: 14px; color: #8f98b5; margin-top: 1px; }
@@ -353,6 +445,41 @@
     /* Disclaimer */
     .lcc-rpt-disclaimer { font-size: 10px; font-weight: 400; line-height: 14px; color: #8f98b5; }
     .error-highlight { outline: 2px solid #ff4d4d !important; transition: outline 0.2s; }
+
+    /* ── Report section responsive ── */
+    @media (max-width: 1200px) {
+      .lcc-report-inner { padding: 0 var(--gutter); }
+    }
+    @media (max-width: 1000px) {
+      .lcc-report-inner { padding: 0 32px; }
+      .lcc-report-section { padding: 40px 0 40px; }
+      .lcc-rpt-h2 { font-size: 32px; line-height: 40px; letter-spacing: -1.6px; }
+      .lcc-rpt-cards { flex-wrap: wrap; }
+      .lcc-rpt-card { flex: 1 1 calc(33.333% - 11px); min-width: calc(33.333% - 11px); }
+      .lcc-rpt-tcell { padding: 8px 12px; }
+    }
+    @media (max-width: 700px) {
+      .lcc-report-inner { padding: 0 24px; }
+      .lcc-report-section { padding: 32px 0; }
+      .lcc-rpt-hdr { flex-direction: column; gap: 32px; margin-bottom: 32px; }
+      .lcc-rpt-title-block { gap: 12px; }
+      .lcc-rpt-h2 { font-size: 40px; line-height: 48px; letter-spacing: -2px; }
+      .lcc-rpt-subtitle { margin-top: 4px; }
+      .lcc-rpt-download-btn { width: 164px; font-size: 12px; line-height: 16px; }
+      .lcc-rpt-cards { flex-wrap: wrap; gap: 16px; }
+      .lcc-rpt-card { flex: 1 1 calc(50% - 8px); min-width: calc(50% - 8px); }
+      .lcc-rpt-table-title { font-size: 20px; line-height: 26px; margin-bottom: 24px; }
+      .lcc-rpt-table-wrap { overflow-x: auto; overflow-y: visible; }
+      .lcc-rpt-trow { min-width: 552px; }
+      .lcc-rpt-tcell { padding: 8px 12px; min-height: 50px; }
+      .lcc-rpt-tcell--rate { width: 80px; min-width: 80px; flex-shrink: 0; }
+      .lcc-rpt-tcell--mo, .lcc-rpt-tcell--yr { width: 120px; min-width: 120px; flex-shrink: 0; }
+      .lcc-rpt-th, .lcc-rpt-td-name, .lcc-rpt-td-val, .lcc-rpt-td-yr, .lcc-rpt-td-total { font-size: 12px; line-height: 16px; }
+    }
+    @media (max-width: 440px) {
+      .lcc-report-inner { padding: 0 24px; }
+    }
+
     /* Print styles */
     @media print { .nav, .hero, .lcc-section, .footer, .lcc-rpt-download-wrap { display: none !important; } .lcc-report-section { display: block !important; padding: 20px 0; } }
 
@@ -398,6 +525,48 @@
     .lcc-cta-btn .btn-icon { position: relative; overflow: hidden; flex-shrink: 0; width: 20px; height: 20px; }
     .lcc-cta-btn .btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
     .lcc-cta-btn .btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
+
+    /* ── CTA section tablet (≤1000px) ── */
+    @media (max-width: 1000px) {
+      .lcc-cta-section > .container { min-height: auto; width: 100%; max-width: none; margin-inline: 0; padding: 0 32px; box-sizing: border-box; }
+      .lcc-cta-inner { padding: 32px 0; }
+      .lcc-cta-section .section-label .line { width: 12px; }
+      .lcc-cta-section .section-label span { font-size: 12px; line-height: 16px; }
+      .lcc-cta-heading { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; margin-top: 16px; }
+      .lcc-cta-body { max-width: 460px; margin-top: 32px; letter-spacing: 0; }
+      .lcc-cta-wrap { margin-top: 32px; }
+      .lcc-cta-btn {
+        height: 32px; padding: 4px 16px; gap: 4px;
+        font-size: 12px; line-height: 16px; letter-spacing: 0;
+      }
+      .lcc-cta-btn .btn-icon { width: 16px; height: 16px; }
+      .lcc-cta-image { flex: 0 0 calc(50% - 8px); margin-left: 16px; margin-right: calc(-1 * var(--gutter)); }
+    }
+    /* ── CTA section mobile (≤440px) ── */
+    @media (max-width: 440px) {
+      .lcc-cta-section { background: none; }
+      .lcc-cta-section > .container { position: relative; width: 100%; max-width: none; overflow: hidden; padding: 0; margin-inline: 0; }
+      .lcc-cta-image {
+        position: absolute; inset: 0; flex: none;
+        margin: 0; z-index: 0;
+      }
+      .lcc-cta-image::after {
+        content: ''; position: absolute; inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .lcc-cta-inner {
+        position: relative; z-index: 1;
+        padding: 32px 24px;
+      }
+      .lcc-cta-section .section-label { color: #fff; }
+      .lcc-cta-heading { font-size: 40px; line-height: 48px; letter-spacing: -2px; }
+      .lcc-cta-heading-dark { color: #fff; }
+      .lcc-cta-body { color: #fff; max-width: none; }
+      .lcc-cta-btn {
+        background: transparent; border: 1px solid #fff;
+      }
+      .lcc-cta-btn:hover { background: rgba(255, 255, 255, 0.15); }
+    }
 
     /* ════════════════════════════════════════
        FOOTER
@@ -547,7 +716,7 @@
 
 <!-- ══════════════════ HERO ══════════════════ -->
 <section class="hero">
-  <div class="hero-bg-pattern"><img src="assets/Background Assets/abstract line 4.svg" alt="" /></div>
+  <div class="hero-bg-pattern"><img src="assets/Background Assets/swirl bg 1.svg" alt="" /></div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-label"><div class="hero-label-line"></div><span data-i18n="lcc.hero.label">LABOR COST CALCULATOR</span></div>

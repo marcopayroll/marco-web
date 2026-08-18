@@ -622,7 +622,7 @@ table {
       <div class="version-block">
         <div class="version-label" data-i18n="price.version.label">Version</div>
         <div class="version-dropdown" id="versionDropdown">
-          <span class="version-dropdown-label" id="versionDropdownLabel">2026.2</span>
+          <span class="version-dropdown-label" id="versionDropdownLabel">2026.3.1</span>
           <span class="version-dropdown-chevron">▼</span>
           <div class="version-menu" id="versionMenu"></div>
         </div>
@@ -646,7 +646,7 @@ table {
    STATE
 ══════════════════════════════════════════ */
 const state = {
-  version: '2026.2.2',
+  version: '2026.3.1',
   category: 'Customer Pricing',
   section: 'Payroll'
 };
@@ -655,12 +655,32 @@ const state = {
    NAV STRUCTURE
 ══════════════════════════════════════════ */
 const versionValidity = {
+  '2026.3.1': '1 July 2026 to 30 September 2026',
   '2026.2.2': '1 April 2026 to 30 June 2026',
   '2026.2.1': '1 April 2026 to 30 June 2026',
   '2026.1': '1 January 2026 to 31 March 2026'
 };
 
 const navStructure = {
+  '2026.3.1': {
+    subtitle: 'Managed payroll pricing for global teams',
+    categories: {
+      'Customer Pricing': [
+        'Payroll',
+        'Expense Processing',
+        'Payment Processing/ Management',
+        'Marco OS',
+        'Additional HRO services',
+      ],
+      'Partner Pricing': [
+        'Payroll',
+        'Expense Processing',
+        'Payment Processing/ Management',
+        'Marco OS',
+        'Additional HRO services',
+      ]
+    }
+  },
   '2026.2.2': {
     subtitle: 'Managed payroll pricing for global teams',
     categories: {
@@ -1159,6 +1179,18 @@ const contentRenderers = {
   '2026.2.2|Partner Pricing|Payment Processing/ Management': () => contentRenderers['2026.2.1|Partner Pricing|Payment Processing/ Management'](),
   '2026.2.2|Partner Pricing|Marco OS':                      () => contentRenderers['2026.2.1|Partner Pricing|Marco OS'](),
   '2026.2.2|Partner Pricing|Additional HRO services':       () => contentRenderers['2026.2.1|Partner Pricing|Additional HRO services'](),
+
+  // 2026.3.1 — duplicate of 2026.2.2
+  '2026.3.1|Customer Pricing|Payroll':                       () => contentRenderers['2026.2.2|Customer Pricing|Payroll'](),
+  '2026.3.1|Customer Pricing|Expense Processing':             () => contentRenderers['2026.2.2|Customer Pricing|Expense Processing'](),
+  '2026.3.1|Customer Pricing|Payment Processing/ Management': () => contentRenderers['2026.2.2|Customer Pricing|Payment Processing/ Management'](),
+  '2026.3.1|Customer Pricing|Marco OS':                       () => contentRenderers['2026.2.2|Customer Pricing|Marco OS'](),
+  '2026.3.1|Customer Pricing|Additional HRO services':        () => contentRenderers['2026.2.2|Customer Pricing|Additional HRO services'](),
+  '2026.3.1|Partner Pricing|Payroll':                         () => contentRenderers['2026.2.2|Partner Pricing|Payroll'](),
+  '2026.3.1|Partner Pricing|Expense Processing':               () => contentRenderers['2026.2.2|Partner Pricing|Expense Processing'](),
+  '2026.3.1|Partner Pricing|Payment Processing/ Management':  () => contentRenderers['2026.2.2|Partner Pricing|Payment Processing/ Management'](),
+  '2026.3.1|Partner Pricing|Marco OS':                        () => contentRenderers['2026.2.2|Partner Pricing|Marco OS'](),
+  '2026.3.1|Partner Pricing|Additional HRO services':         () => contentRenderers['2026.2.2|Partner Pricing|Additional HRO services'](),
 
   '2026.1|Customer Pricing|Payroll': () => contentRenderers['2026.2.1|Customer Pricing|Payroll'](),
   '2026.1|Customer Pricing|Expense Processing': () => contentRenderers['2026.2.1|Customer Pricing|Expense Processing'](),

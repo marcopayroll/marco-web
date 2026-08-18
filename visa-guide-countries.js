@@ -14,7 +14,7 @@ const VISA_GUIDE_COUNTRIES_DATA = [
   { name: "Bulgaria",      currency: "BGN", region: "Europe",       img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/bulgaria.jpg", link: "hr-knowledge-hub-visa-guide-bulgaria.html" },
   { name: "Cambodia",      currency: "KHR", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/cambodia.jpg", link: "hr-knowledge-hub-visa-guide-cambodia.html" },
   { name: "Canada",        currency: "CAD", region: "Americas",     img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/canada.jpg", link: "hr-knowledge-hub-visa-guide-canada.html" },
-  { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/chile.png", link: "hr-knowledge-hub-visa-guide-chile.html", date: "29 June 2026" },
+  { name: "Chile",         currency: "CLP", region: "Americas",     img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/chile 2.webp", link: "hr-knowledge-hub-visa-guide-chile.html", date: "29 June 2026" },
   { name: "China",         currency: "CNY", region: "Asia Pacific", img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/china.jpg", link: "hr-knowledge-hub-visa-guide-china.html" },
   { name: "Colombia",      currency: "COP", region: "Americas",     img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/colombia 1.png", link: "hr-knowledge-hub-visa-guide-colombia.html" },
   { name: "Côte d'Ivoire", slug: "cote-d-ivoire", currency: "XOF", region: "Africa",       img: "assets/HR Knowledge Hub/Visa Guide/thumbnails/Cote D Ivoire 2.jpg", link: "hr-knowledge-hub-visa-guide-cote-d-ivoire.html", date: "3 August 2026" },

@@ -637,7 +637,7 @@ table {
       <div class="version-block">
         <div class="version-label" data-i18n="price.version.label">Version</div>
         <div class="version-dropdown" id="versionDropdown">
-          <span class="version-dropdown-label" id="versionDropdownLabel">2026.2</span>
+          <span class="version-dropdown-label" id="versionDropdownLabel">2026.3.1</span>
           <span class="version-dropdown-chevron">▼</span>
           <div class="version-menu" id="versionMenu"></div>
         </div>
@@ -661,7 +661,7 @@ table {
    STATE
 ══════════════════════════════════════════ */
 const state = {
-  version: '2026.2.3',
+  version: '2026.3.1',
   category: 'Fixed Price',
   section: 'Employer of Record (EOR)'
 };
@@ -670,6 +670,7 @@ const state = {
    NAV STRUCTURE
 ══════════════════════════════════════════ */
 const versionValidity = {
+  '2026.3.1': '1 July 2026 to 30 September 2026',
   '2026.2.3': '1 April 2026 to 30 June 2026',
   '2026.2.2': '1 April 2026 to 30 June 2026',
   '2026.2.1': '1 April 2026 to 30 June 2026',
@@ -677,6 +678,25 @@ const versionValidity = {
 };
 
 const navStructure = {
+  '2026.3.1': {
+    subtitle: 'Service pricing for global workforce administration',
+    categories: {
+      'Fixed Price': [
+        'Employer of Record (EOR)',
+        'IC Management',
+        'Expense Processing',
+        'Marco OS',
+        'Global Mobility'
+      ],
+      'Percentage Price': [
+        'Employer of Record (EOR)',
+        'IC Management',
+        'Expense Processing',
+        'Marco OS',
+        'Global Mobility'
+      ]
+    }
+  },
   '2026.2.3': {
     subtitle: 'Service pricing for global workforce administration',
     categories: {
@@ -1484,6 +1504,19 @@ const contentRenderers = {
   '2026.2.3|Percentage Price|Expense Processing':       () => contentRenderers['2026.2.1|Customer Pricing|Expense Processing'](),
   '2026.2.3|Percentage Price|Marco OS':                 () => contentRenderers['2026.2.1|Customer Pricing|Marco OS'](),
   '2026.2.3|Percentage Price|Global Mobility':          () => contentRenderers['2026.2.1|Customer Pricing|Global Mobility'](),
+
+  // 2026.3.1 — duplicate of 2026.2.3
+  '2026.3.1|Fixed Price|Employer of Record (EOR)':      () => contentRenderers['2026.2.3|Fixed Price|Employer of Record (EOR)'](),
+  '2026.3.1|Fixed Price|IC Management':                 () => contentRenderers['2026.2.3|Fixed Price|IC Management'](),
+  '2026.3.1|Fixed Price|Expense Processing':            () => contentRenderers['2026.2.3|Fixed Price|Expense Processing'](),
+  '2026.3.1|Fixed Price|Marco OS':                      () => contentRenderers['2026.2.3|Fixed Price|Marco OS'](),
+  '2026.3.1|Fixed Price|Global Mobility':                () => contentRenderers['2026.2.3|Fixed Price|Global Mobility'](),
+
+  '2026.3.1|Percentage Price|Employer of Record (EOR)': () => contentRenderers['2026.2.3|Percentage Price|Employer of Record (EOR)'](),
+  '2026.3.1|Percentage Price|IC Management':            () => contentRenderers['2026.2.3|Percentage Price|IC Management'](),
+  '2026.3.1|Percentage Price|Expense Processing':       () => contentRenderers['2026.2.3|Percentage Price|Expense Processing'](),
+  '2026.3.1|Percentage Price|Marco OS':                 () => contentRenderers['2026.2.3|Percentage Price|Marco OS'](),
+  '2026.3.1|Percentage Price|Global Mobility':          () => contentRenderers['2026.2.3|Percentage Price|Global Mobility'](),
 
   '2026.2.2|Customer Pricing|Employer of Record (EOR)': () => contentRenderers['2026.2.1|Customer Pricing|Employer of Record (EOR)'](),
   '2026.2.2|Customer Pricing|IC Management':            () => contentRenderers['2026.2.1|Customer Pricing|IC Management'](),
