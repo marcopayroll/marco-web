@@ -5,7 +5,7 @@ window.MARCO_LANG_EN_CG_TAIWAN = {
 
   'cg.taiwan.kn1.value': `NT$ 29,500`,
 
-  'cg.taiwan.kn1.unit': `/ Month`,
+  'cg.taiwan.kn1.unit': `/ mo`,
 
   'cg.taiwan.kn1.note': `Effective 2026/1, +3.18% (Previously NT$ 196)`,
 

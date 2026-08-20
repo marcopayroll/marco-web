@@ -1,13 +1,13 @@
 window.MARCO_LANG_EN_CG_USA_SOUTH_CAROLINA = {
   'cg.usa-south-carolina.kn1.label': 'Minimum Wage (2026)',
   'cg.usa-south-carolina.kn1.value': '$ 7.25',
-  'cg.usa-south-carolina.kn1.unit': '/ Hour',
+  'cg.usa-south-carolina.kn1.unit': '/ hr',
   'cg.usa-south-carolina.kn1.note': 'No state minimum, adopts federal standard',
   'cg.usa-south-carolina.kn2.label': 'Employer Statutory Additional Cost',
-  'cg.usa-south-carolina.kn2.value': '~8 &ndash; 12%',
+  'cg.usa-south-carolina.kn2.value': '~8-12%',
   'cg.usa-south-carolina.kn2.note': 'FICA 7.65% + FUTA 0.6% + SUTA + Work Injury',
   'cg.usa-south-carolina.kn3.label': 'State Personal Income Tax',
-  'cg.usa-south-carolina.kn3.value': '0 &ndash; 6.2%',
+  'cg.usa-south-carolina.kn3.value': '0-6.2%',
   'cg.usa-south-carolina.kn3.note': 'Progressive, top tier 6.2% (Being reduced annually)',
 
   'cg.usa-south-carolina.s1.h': 'Cost of Living',

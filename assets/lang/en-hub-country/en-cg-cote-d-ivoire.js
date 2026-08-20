@@ -5,7 +5,7 @@ window.MARCO_LANG_EN_CG_COTE_D_IVOIRE = {
 
   'cg.cote-d-ivoire.kn1.value': `FCFA 75,000`,
 
-  'cg.cote-d-ivoire.kn1.unit': `/ Month`,
+  'cg.cote-d-ivoire.kn1.unit': `/ mo`,
 
   'cg.cote-d-ivoire.kn1.note': `Since 2023/1 maintained, Agriculture SMAG 60,000`,
 

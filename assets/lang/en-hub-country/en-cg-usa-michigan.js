@@ -1,10 +1,10 @@
 window.MARCO_LANG_EN_CG_USA_MICHIGAN = {
   'cg.usa-michigan.kn1.label': 'Minimum Wage (2026)',
   'cg.usa-michigan.kn1.value': '$ 13.73',
-  'cg.usa-michigan.kn1.unit': '/ Hour',
+  'cg.usa-michigan.kn1.unit': '/ hr',
   'cg.usa-michigan.kn1.note': '2026/1 effective (2027 rising to $15.00)',
   'cg.usa-michigan.kn2.label': 'Employer Statutory Additional Cost',
-  'cg.usa-michigan.kn2.value': '~8 &ndash; 12%',
+  'cg.usa-michigan.kn2.value': '~8-12%',
   'cg.usa-michigan.kn2.note': 'FICA 7.65% + FUTA 0.6% + SUTA + Work Injury',
   'cg.usa-michigan.kn3.label': 'State Personal Income Tax',
   'cg.usa-michigan.kn3.value': '4.25%',

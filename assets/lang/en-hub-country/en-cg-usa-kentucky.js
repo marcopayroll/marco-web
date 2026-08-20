@@ -1,10 +1,10 @@
 window.MARCO_LANG_EN_CG_USA_KENTUCKY = {
   'cg.usa-kentucky.kn1.label': 'Minimum Wage (2026)',
   'cg.usa-kentucky.kn1.value': '$ 7.25',
-  'cg.usa-kentucky.kn1.unit': '/ Hour',
+  'cg.usa-kentucky.kn1.unit': '/ hr',
   'cg.usa-kentucky.kn1.note': 'No state minimum, adopts federal standard',
   'cg.usa-kentucky.kn2.label': 'Employer Statutory Additional Cost',
-  'cg.usa-kentucky.kn2.value': '~8 &ndash; 12%',
+  'cg.usa-kentucky.kn2.value': '~8-12%',
   'cg.usa-kentucky.kn2.note': 'FICA 7.65% + FUTA 0.6% + SUTA + Work Injury',
   'cg.usa-kentucky.kn3.label': 'State Personal Income Tax',
   'cg.usa-kentucky.kn3.value': '3.5%',

@@ -1,10 +1,10 @@
 window.MARCO_LANG_EN_CG_USA_ILLINOIS = {
   'cg.usa-illinois.kn1.label': 'Minimum Wage (2026)',
   'cg.usa-illinois.kn1.value': '$ 15.00',
-  'cg.usa-illinois.kn1.unit': '/ Hour',
+  'cg.usa-illinois.kn1.unit': '/ hr',
   'cg.usa-illinois.kn1.note': '2025/1 reached, Chicago $16.60',
   'cg.usa-illinois.kn2.label': 'Employer Statutory Additional Cost',
-  'cg.usa-illinois.kn2.value': '~8 &ndash; 12%',
+  'cg.usa-illinois.kn2.value': '~8-12%',
   'cg.usa-illinois.kn2.note': 'FICA 7.65% + FUTA 0.6% + SUTA + Work Injury',
   'cg.usa-illinois.kn3.label': 'State Personal Income Tax',
   'cg.usa-illinois.kn3.value': '4.95%',

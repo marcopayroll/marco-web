@@ -1,10 +1,10 @@
 window.MARCO_LANG_EN_CG_USA_NEVADA = {
   'cg.usa-nevada.kn1.label': 'Minimum Wage (2026)',
   'cg.usa-nevada.kn1.value': '$ 12.00',
-  'cg.usa-nevada.kn1.unit': '/ Hour',
+  'cg.usa-nevada.kn1.unit': '/ hr',
   'cg.usa-nevada.kn1.note': '2024/7 unified (Abolished previous $11/$12 two-tier system)',
   'cg.usa-nevada.kn2.label': 'Employer Statutory Additional Cost',
-  'cg.usa-nevada.kn2.value': '~8 &ndash; 12%',
+  'cg.usa-nevada.kn2.value': '~8-12%',
   'cg.usa-nevada.kn2.note': 'FICA 7.65% + FUTA 0.6% + SUTA + Work Injury',
   'cg.usa-nevada.kn3.label': 'State Personal Income Tax',
   'cg.usa-nevada.kn3.value': 'None',
