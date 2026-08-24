@@ -1,51 +1,376 @@
+/* Country Guide - USA - Illinois page content (hr-knowledge-hub-country-guide-usa-illinois.html) */
+/* EN is the source language; reference only — never loaded at runtime. */
 window.MARCO_LANG_EN_CG_USA_ILLINOIS = {
-  'cg.usa-illinois.kn1.label': 'Minimum Wage (2026)',
-  'cg.usa-illinois.kn1.value': '$ 15.00',
-  'cg.usa-illinois.kn1.unit': '/ hr',
-  'cg.usa-illinois.kn1.note': '2025/1 reached, Chicago $16.60',
-  'cg.usa-illinois.kn2.label': 'Employer Statutory Additional Cost',
-  'cg.usa-illinois.kn2.value': '~8-12%',
-  'cg.usa-illinois.kn2.note': 'FICA 7.65% + FUTA 0.6% + SUTA + Work Injury',
-  'cg.usa-illinois.kn3.label': 'State Personal Income Tax',
-  'cg.usa-illinois.kn3.value': '4.95%',
-  'cg.usa-illinois.kn3.note': 'Unified flat tax rate, no local income tax',
+  'cg.usa-illinois.kn1.label': `Minimum Wage (2026)`,
 
-  'cg.usa-illinois.s1.h': 'Cost of Living',
-  'cg.usa-illinois.s1.title': 'City consumption level: Chicago / Aurora / Naperville',
-  'cg.usa-illinois.s1.sub': 'Based on publicly available consumption data, for reference only (US$ US Dollar, 2026 early)',
-  'cg.usa-illinois.s1.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:55%"><col style="width:45%"></colgroup><thead><tr><th>Consumption Item</th><th>Reference Price (USD)</th></tr></thead><tbody><tr><td>Fast Food Meal Set</td><td>Approx. $ 10 &ndash; 12</td></tr><tr><td>Public Transit Monthly Pass (Chicago CTA)</td><td>Approx. $ 75</td></tr><tr><td>City Center 1 Bedroom (Chicago Loop)</td><td>Approx. $ 2,000 &ndash; 2,800 / Month</td></tr><tr><td>Suburban 1 Bedroom (Naperville)</td><td>Approx. $ 1,400 &ndash; 1,900 / Month</td></tr><tr><td>Single Person Minimum Monthly Expenses</td><td>Approx. $ 1,400 &ndash; 2,000 (Excluding Rent)</td></tr><tr><td>Single Person Decent Living (Including Rent, Month)</td><td>Approx. $ 3,200 &ndash; 4,800</td></tr></tbody></table></div>',
+  'cg.usa-illinois.kn1.value': `$ 15.00`,
 
-  'cg.usa-illinois.s2.h': 'Salary Benchmark',
-  'cg.usa-illinois.s2.sub': 'Illinois effective 2025/1 minimum wage $15.00/hour (Chicago $16.60), state flat tax 4.95%. Finance / Logistics hub.',
-  'cg.usa-illinois.s2.b1': '<ul class="au-bullet-list"><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Illinois household income median approximately $80,000/year. Chicago finance / Futures / Headquarters economy (Boeing former HQ)</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>USA no 13 salary. Year-end bonus (Bonus) based on company performance. 401(k) retirement matching is the mainstream benefit</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Finance (CME Chicago Board of Trade), Logistics/Aviation (O&rsquo;Hare Airport), Manufacturing (Caterpillar / John Deere) as pillars</span></li></ul>',
-  'cg.usa-illinois.s2.b2': '<p class="au-table-title">Median Salary &mdash; By Job Level Reference (Gross Salary, Month)</p><div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:35%"><col style="width:35%"><col style="width:30%"></colgroup><thead><tr><th>Job Level</th><th>Monthly Salary (USD, Gross)</th><th>Description</th></tr></thead><tbody><tr><td>Fresh Graduate</td><td>$ 3,800 &ndash; 5,500</td><td>Entry-level, industry-dependent</td></tr><tr><td>Mid-Level (3 &ndash; 5 Years Experience)</td><td>$ 5,500 &ndash; 8,500</td><td>Professional/Technical, White-collar</td></tr><tr><td>Senior / Management Level</td><td>$ 8,500 &ndash; 14,000</td><td>Management / Senior Engineering</td></tr><tr><td>Director / Senior Executive</td><td>$ 16,000 &ndash; 40,000+</td><td>VP / C-Level</td></tr></tbody></table></div><p class="cg-table-note">Note: Chicago (Finance / Futures / HQ) salaries significantly higher than statewide. Chicago city minimum wage $16.60, higher than state standard.</p>',
+  'cg.usa-illinois.kn1.unit': `/ hr`,
 
-  'cg.usa-illinois.s3.h': 'Statutory Benefits',
-  'cg.usa-illinois.s3.sub': 'Federal social insurance (FICA) employer-employee split contribution + Federal/State unemployment insurance (FUTA/SUTA, employer sole contribution) + Work injury insurance',
-  'cg.usa-illinois.s3.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:30%"><col style="width:15%"><col style="width:15%"><col style="width:40%"></colgroup><thead><tr><th>Item</th><th>Employer</th><th>Employee</th><th>Description</th></tr></thead><tbody><tr><td>Social Security</td><td>6.2%</td><td>6.2%</td><td>2026 wage cap approx. $183,600 (annually indexed)</td></tr><tr><td>Medicare</td><td>1.45%</td><td>1.45%</td><td>No cap, employees &gt; $200k additional 0.9%</td></tr><tr><td>FUTA Federal Unemployment Tax</td><td>0.6%</td><td>&ndash;</td><td>First $7,000, nominal 6.0% with state credit offset to 5.4%</td></tr><tr><td>SUTA IL State Unemployment Tax</td><td>0.55 - 7.85%</td><td>&ndash;</td><td>First approx. $14,000 wages, new employer 3.95%</td></tr><tr><td>Workers&rsquo; Comp Work Injury Insurance</td><td>~0.5 - 2.5%</td><td>&ndash;</td><td>All employees mandatory, by industry risk rate</td></tr><tr><td>401(k) Retirement (Voluntary)</td><td>Typically match 3-6%</td><td>Up to cap</td><td>Employer match is mainstream benefit, 2026 cap approx. $24,000</td></tr><tr><td>Health Insurance Group Medical</td><td>Employer share</td><td>Employee share</td><td>50+ employees ACA mandatory, monthly approx. $400-700/person</td></tr></tbody></table></div><p class="cg-table-note">USA has no statutory paid annual leave / sick leave (federal level). FICA combined: employer 7.65% + employee 7.65%. Illinois 2024 mandatory paid leave (any reason).</p>',
-  'cg.usa-illinois.s3.b2': '<p class="au-table-title">Employer Statutory Additional Cost Summary (Illinois, as % of Base Salary)</p><p class="au-section-sub">FICA 7.65%, FUTA 0.6%, SUTA 0.55 - 7.85%, Work Injury ~0.5 - 2.5%</p><p class="au-section-sub">Employer statutory additional cost is approximately 8 - 12% of base salary (excluding voluntary 401(k) match and group medical insurance)</p>',
-  'cg.usa-illinois.s3.b3': '<p class="au-table-title">Common Employer Benefits (Non-Mandatory)</p><ul class="au-bullet-list"><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>PTO Paid Time Off: No federal mandate, employer discretion, typically 10-15 days/year (increases with tenure)</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>401(k) Retirement: Employer match 3-6% of salary, pre-tax contribution, mainstream core benefit</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Group Medical / Dental / Vision: 50+ employees ACA mandatory, employer shares premium</span></li></ul>',
+  'cg.usa-illinois.kn1.note': `2025/1 reached, Chicago $16.60`,
 
-  'cg.usa-illinois.s4.h': 'Personal Income Tax',
-  'cg.usa-illinois.s4.sub': 'Federal progressive 7 tiers (employer monthly withholding W-4) + State income tax. Fiscal year 1/1 - 12/31, April filing.',
-  'cg.usa-illinois.s4.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:40%"><col style="width:20%"><col style="width:40%"></colgroup><thead><tr><th>Annual Taxable Income (Federal, Single)</th><th>Tax Rate</th><th>Description</th></tr></thead><tbody><tr><td>$ 0 - 12,400</td><td>10%</td><td>Federal lowest tier (Single, 2026 estimate)</td></tr><tr><td>$ 12,400 - 50,400</td><td>12%</td><td>Low income tier</td></tr><tr><td>$ 50,400 - 105,700</td><td>22%</td><td>Middle class main tier</td></tr><tr><td>$ 105,700 - 201,775</td><td>24%</td><td>Upper-middle income</td></tr><tr><td>$ 201,775 - 256,225</td><td>32%</td><td>High income</td></tr><tr><td>$ 256,225 - 640,600</td><td>35%</td><td>Sub-highest tier</td></tr><tr><td>&gt; $ 640,600</td><td>37%</td><td>Highest federal marginal rate</td></tr></tbody></table></div>',
-  'cg.usa-illinois.s4.b2': '<p class="au-section-title">State Income Tax IL &mdash; Flat 4.95%</p><ul class="au-bullet-list"><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Illinois individual tax unified flat 4.95% (Non-progressive, constitutionally prohibited from progressive), no local income tax</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>2020 progressive tax referendum rejected, maintaining single tax rate, personal exemption approx. $2,775</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Sales tax: State 6.25% + Local (Chicago combined approx. 10.25%, one of the highest in the US)</span></li></ul>',
+  'cg.usa-illinois.kn2.label': `Employer Statutory Additional Cost`,
 
-  'cg.usa-illinois.s5.h': 'Working Hours',
-  'cg.usa-illinois.s5.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup><thead><tr><th>Item</th><th>Statutory Regulation</th><th>Description</th></tr></thead><tbody><tr><td>Weekly Standard Working Hours</td><td>40 Hours (FLSA)</td><td>Fair Labor Standards Act, overtime pay required beyond 40h</td></tr><tr><td>Overtime (Overtime)</td><td>1.5&times; Hourly Rate</td><td>Beyond 40h/week, non-exempt employees (Non-Exempt) mandatory</td></tr><tr><td>Exempt Employees (Exempt)</td><td>No overtime pay</td><td>Annual salary &ge; $43,888 (2026) Management/Professional positions, no OT</td></tr><tr><td>Daily Working Hours Cap</td><td>No federal cap</td><td>By 40h/week calculation, IL state no additional daily cap</td></tr><tr><td>Weekly Rest Day</td><td>No federal mandate</td><td>Determined by employer / contract</td></tr><tr><td>Meal / Rest Breaks</td><td>No federal mandate</td><td>Illinois: 7.5h consecutive, 20-minute meal break (One Day Rest in Seven Act)</td></tr><tr><td>Minor Workers (&lt; 18)</td><td>Hours restricted</td><td>FLSA child labor provisions, strictly restricted under 16</td></tr><tr><td>Remote / Flexible Work</td><td>No unified law</td><td>Contract-based, widespread for white-collar post-pandemic</td></tr></tbody></table></div>',
-  'cg.usa-illinois.s5.b2': '<p class="au-section-title">Overtime (Overtime), FLSA (Fair Labor Standards Act)</p><ul class="au-bullet-list"><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Non-Exempt Employees (Non-Exempt): Beyond 40h/week must pay 1.5&times; regular hourly rate, mandatory</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Exempt Employees (Exempt): Management / Professional / Administrative + annual salary &ge; $43,888 (2026), no OT calculated</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Illinois overtime follows federal FLSA 1.5&times;, beyond 40h/week, state law consistent</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Most US states do not mandate daily overtime calculation. Only California and a few states calculate by 8h/day. IL calculates by 40h/week</span></li></ul>',
+  'cg.usa-illinois.kn2.value': `~8-12%`,
 
-  'cg.usa-illinois.s6.h': 'Employment Contracts',
-  'cg.usa-illinois.s6.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:25%"><col style="width:40%"><col style="width:35%"></colgroup><thead><tr><th>Contract Type</th><th>Duration</th><th>Description</th></tr></thead><tbody><tr><td>At-Will Employment</td><td>Default form</td><td>Employer / Employee can terminate at any time without cause (IL applicable)</td></tr><tr><td>W-2 Employee</td><td>Formal employment</td><td>Employer withholds tax + pays FICA / FUTA / SUTA</td></tr><tr><td>1099 Independent Contractor</td><td>Independent contract</td><td>Self-reports tax, misclassification (Misclassification) strictly penalized</td></tr><tr><td>Fixed-Term Contract</td><td>Contract-specified term</td><td>Less common, more seen for senior executives / specific projects</td></tr><tr><td>Offer Letter Employment Letter</td><td>Non-formal contract</td><td>USA rarely uses written employment contracts, Offer Letter + Handbook as primary</td></tr><tr><td>Non-Compete (Non-Compete)</td><td>Restricted (Low-wage prohibited)</td><td>FTC proposed nationwide ban (pending), IL current regulations</td></tr><tr><td>Probation Period Probation</td><td>Typically 90 days</td><td>Under At-Will, probation period has no meaningful legal significance</td></tr></tbody></table></div><p class="cg-table-note">USA except Montana, all states default to At-Will employment. No mandatory written employment contract. Anti-discrimination / Retaliation protected by federal and state law.</p>',
-  'cg.usa-illinois.s6.b2': '<p class="au-table-title">Termination Protection and Compensation</p><ul class="au-bullet-list"><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>At-Will: No advance notice or severance required. Employer can terminate at any time (except violations of anti-discrimination / retaliation / contract terms)</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>WARN Act: 100+ employees, large-scale layoffs (50+ people) must provide 60 days written advance notice</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>COBRA: Post-termination, employees can self-pay to continue group medical coverage for 18 months (20+ employee employers)</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Severance (Severance): Not statutory, voluntary / policy-based, typically signed in exchange for release agreement</span></li></ul>',
+  'cg.usa-illinois.kn2.note': `FICA 7.65% + FUTA 0.6% + SUTA + Work Injury`,
 
-  'cg.usa-illinois.s7.h': 'Leave Entitlements',
-  'cg.usa-illinois.s7.b1': '<div class="au-table-wrap"><table class="au-table" style="table-layout:auto"><thead><tr><th style="width:20%">Leave Type</th><th style="width:50%">Regulation</th><th style="width:30%">Applicable Conditions</th></tr></thead><tbody><tr><td>Annual Leave / PTO</td><td>No federal mandate</td><td>Employer discretion, typically 10-15 days/year (increases with tenure)</td></tr><tr><td>Sick Leave (Sick Leave)</td><td>State mandatory paid</td><td>Effective 2024, approx. 40h annually, any reason</td></tr><tr><td>FMLA Family Medical Leave</td><td>12 Weeks, Unpaid</td><td>50+ employees, 12 months &amp; 1,250h service, job-protected</td></tr><tr><td>Maternity Leave (Maternity)</td><td>No federal paid</td><td>FMLA 12 weeks unpaid, IL no state paid maternity leave</td></tr><tr><td>Paternity Leave (Paternity)</td><td>No federal paid</td><td>FMLA covered, employer voluntary paid leave increasing</td></tr><tr><td>Military / Jury Duty Leave</td><td>Federal protection</td><td>USERRA military leave, Jury Duty must be granted</td></tr><tr><td>Statutory Public Holidays</td><td>11 Federal Holidays</td><td>Private sector not mandatory paid, most white-collar enjoy paid holidays</td></tr></tbody></table></div>',
+  'cg.usa-illinois.kn3.label': `State Personal Income Tax`,
 
-  'cg.usa-illinois.s8.h': 'Public Holidays 2026',
-  'cg.usa-illinois.s8.sub': 'Total 11 federal holidays (Banks / Government holidays). Private employers not mandatory paid. IL additionally designates several state holidays.',
-  'cg.usa-illinois.s8.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:28%"><col style="width:48%"><col style="width:24%"></colgroup><thead><tr><th>Date</th><th>Holiday Name</th><th>Description</th></tr></thead><tbody><tr><td>01 / 01 (Thursday)</td><td>New Year&rsquo;s Day / New Year</td><td>Federal holiday</td></tr><tr><td>01 / 19 (Monday)</td><td>MLK Day / Martin Luther King Day</td><td>January third Monday</td></tr><tr><td>02 / 16 (Monday)</td><td>Presidents&rsquo; Day / Presidents Day</td><td>February third Monday</td></tr><tr><td>05 / 25 (Monday)</td><td>Memorial Day / Memorial Day</td><td>May last Monday</td></tr><tr><td>06 / 19 (Friday)</td><td>Juneteenth / Juneteenth</td><td>Federal holiday (Since 2021)</td></tr><tr><td>07 / 03 (Friday)</td><td>Independence Day / Independence Day (Deferred)</td><td>Originally 7/4 Saturday, deferred to Friday</td></tr><tr><td>09 / 07 (Monday)</td><td>Labor Day / Labor Day</td><td>September first Monday</td></tr><tr><td>10 / 12 (Monday)</td><td>Columbus Day / Columbus Day</td><td>October second Monday</td></tr><tr><td>11 / 11 (Wednesday)</td><td>Veterans Day / Veterans Day</td><td>Federal holiday</td></tr><tr><td>11 / 26 (Thursday)</td><td>Thanksgiving / Thanksgiving</td><td>November fourth Thursday</td></tr><tr><td>12 / 25 (Friday)</td><td>Christmas Day / Christmas</td><td>Federal holiday</td></tr></tbody></table></div><p class="cg-table-note">Federal holidays only bind federal institutions and banks. Private enterprises may decide at their own discretion whether to grant time off / paid leave. IL additionally designates several state holidays (Lincoln&rsquo;s Birthday / Election Day, etc.)</p>',
+  'cg.usa-illinois.kn3.value': `4.95%`,
 
-  'cg.usa-illinois.s9.h': 'Key Regulations',
-  'cg.usa-illinois.s9.b1': '<div class="cg-reg-item"><p class="cg-reg-title">FLSA Fair Labor Standards Act &mdash; Fair Labor Standards Act</p><p class="cg-reg-body">Federal core labor law, stipulating minimum wage $7.25 / Overtime 1.5&times; / Child labor / Time records. Enforced by US DOL. IL applies federal standards.</p></div><div class="cg-reg-item"><p class="cg-reg-title">FMLA Family &amp; Medical Leave Act &mdash; Family Medical Leave Act</p><p class="cg-reg-body">50+ employee employers, eligible employees entitled to 12 weeks unpaid leave per year (Childbirth / Serious illness / Care). Job-protected with medical coverage. Violations carry personal liability.</p></div><div class="cg-reg-item"><p class="cg-reg-title">Title VII / ADA / ADEA &mdash; Federal Anti-Discrimination Laws</p><p class="cg-reg-body">Prohibits employment discrimination based on race / gender / religion / age (40+) / disability / pregnancy. EEOC enforcement. Applies to 15+ employees.</p></div><div class="cg-reg-item"><p class="cg-reg-title">IL Paid Leave for All Workers Act (2024) &mdash; All Employees Paid Leave Act</p><p class="cg-reg-body">Effective 2024/1, virtually all employees entitled to up to 40h paid leave annually, any reason permitted. Accrued at 1h per 40h worked.</p></div><div class="cg-reg-item"><p class="cg-reg-title">IL Secure Choice + Day &amp; Temp Labor &mdash; Retirement + Temporary Worker Protection</p><p class="cg-reg-body">5+ employees without a retirement plan must enroll in Secure Choice state retirement savings. Temporary workers entitled to equal pay for equal work (2024 strengthened).</p></div><div class="cg-reg-item"><p class="cg-reg-title">ACA / COBRA / IRCA &mdash; Medical Insurance and Employment Compliance</p><p class="cg-reg-body">ACA: 50+ full-time employee employers must provide medical insurance. COBRA: Post-termination continuation coverage 18 months. IRCA: I-9 form verifying work authorization (E-Verify non-mandatory).</p></div>'
+  'cg.usa-illinois.kn3.note': `Unified flat tax rate, no local income tax`,
+
+  'cg.usa-illinois.s1.h': `Cost of Living`,
+
+  'cg.usa-illinois.s1.title': `City consumption level: Chicago / Aurora / Naperville`,
+
+  'cg.usa-illinois.s1.sub': `Based on publicly available consumption data, for reference only (US$ US Dollar, 2026 early)`,
+
+  'cg.usa-illinois.s1.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:55%"><col style="width:45%"></colgroup>
+              <thead>
+                <tr><th>Consumption Item</th><th>Reference Price (USD)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Fast Food Meal Set</td><td>Approx. $ 10 &ndash; 12</td></tr>
+                <tr><td>Public Transit Monthly Pass (Chicago CTA)</td><td>Approx. $ 75</td></tr>
+                <tr><td>City Center 1 Bedroom (Chicago Loop)</td><td>Approx. $ 2,000 &ndash; 2,800 / Month</td></tr>
+                <tr><td>Suburban 1 Bedroom (Naperville)</td><td>Approx. $ 1,400 &ndash; 1,900 / Month</td></tr>
+                <tr><td>Single Person Minimum Monthly Expenses</td><td>Approx. $ 1,400 &ndash; 2,000 (Excluding Rent)</td></tr>
+                <tr><td>Single Person Decent Living (Including Rent, Month)</td><td>Approx. $ 3,200 &ndash; 4,800</td></tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.usa-illinois.s2.h': `Salary Benchmark`,
+
+  'cg.usa-illinois.s2.sub': `Illinois effective 2025/1 minimum wage $15.00/hour (Chicago $16.60), state flat tax 4.95%. Finance / Logistics hub.`,
+
+  'cg.usa-illinois.s2.b1': `
+          <ul class="au-bullet-list">
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Illinois household income median approximately $80,000/year. Chicago finance / Futures / Headquarters economy (Boeing former HQ)</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>USA no 13 salary. Year-end bonus (Bonus) based on company performance. 401(k) retirement matching is the mainstream benefit</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Finance (CME Chicago Board of Trade), Logistics/Aviation (O&rsquo;Hare Airport), Manufacturing (Caterpillar / John Deere) as pillars</span>
+            </li>
+          </ul>
+`,
+
+  'cg.usa-illinois.s2.b2': `
+          <p class="au-table-title">Median Salary &mdash; By Job Level Reference (Gross Salary, Month)</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:35%"><col style="width:30%"></colgroup>
+              <thead>
+                <tr><th>Job Level</th><th>Monthly Salary (USD, Gross)</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Fresh Graduate</td><td>$ 3,800 &ndash; 5,500</td><td>Entry-level, industry-dependent</td></tr>
+                <tr><td>Mid-Level (3 &ndash; 5 Years Experience)</td><td>$ 5,500 &ndash; 8,500</td><td>Professional/Technical, White-collar</td></tr>
+                <tr><td>Senior / Management Level</td><td>$ 8,500 &ndash; 14,000</td><td>Management / Senior Engineering</td></tr>
+                <tr><td>Director / Senior Executive</td><td>$ 16,000 &ndash; 40,000+</td><td>VP / C-Level</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cg-table-note">Note: Chicago (Finance / Futures / HQ) salaries significantly higher than statewide. Chicago city minimum wage $16.60, higher than state standard.</p>
+`,
+
+  'cg.usa-illinois.s3.h': `Statutory Benefits`,
+
+  'cg.usa-illinois.s3.sub': `Federal social insurance (FICA) employer-employee split contribution + Federal/State unemployment insurance (FUTA/SUTA, employer sole contribution) + Work injury insurance`,
+
+  'cg.usa-illinois.s3.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:15%"><col style="width:15%"><col style="width:40%"></colgroup>
+              <thead>
+                <tr><th>Item</th><th>Employer</th><th>Employee</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Social Security</td><td>6.2%</td><td>6.2%</td><td>2026 wage cap approx. $183,600 (annually indexed)</td></tr>
+                <tr><td>Medicare</td><td>1.45%</td><td>1.45%</td><td>No cap, employees &gt; $200k additional 0.9%</td></tr>
+                <tr><td>FUTA Federal Unemployment Tax</td><td>0.6%</td><td>&ndash;</td><td>First $7,000, nominal 6.0% with state credit offset to 5.4%</td></tr>
+                <tr><td>SUTA IL State Unemployment Tax</td><td>0.55 - 7.85%</td><td>&ndash;</td><td>First approx. $14,000 wages, new employer 3.95%</td></tr>
+                <tr><td>Workers&rsquo; Comp Work Injury Insurance</td><td>~0.5 - 2.5%</td><td>&ndash;</td><td>All employees mandatory, by industry risk rate</td></tr>
+                <tr><td>401(k) Retirement (Voluntary)</td><td>Typically match 3-6%</td><td>Up to cap</td><td>Employer match is mainstream benefit, 2026 cap approx. $24,000</td></tr>
+                <tr><td>Health Insurance Group Medical</td><td>Employer share</td><td>Employee share</td><td>50+ employees ACA mandatory, monthly approx. $400-700/person</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cg-table-note">USA has no statutory paid annual leave / sick leave (federal level). FICA combined: employer 7.65% + employee 7.65%. Illinois 2024 mandatory paid leave (any reason).</p>
+`,
+
+  'cg.usa-illinois.s3.b2': `
+          <p class="au-table-title">Employer Statutory Additional Cost Summary (Illinois, as % of Base Salary)</p>
+          <p class="au-section-sub">FICA 7.65%, FUTA 0.6%, SUTA 0.55 - 7.85%, Work Injury ~0.5 - 2.5%</p>
+          <p class="au-section-sub">Employer statutory additional cost is approximately 8 - 12% of base salary (excluding voluntary 401(k) match and group medical insurance)</p>
+`,
+
+  'cg.usa-illinois.s3.b3': `
+          <p class="au-table-title">Common Employer Benefits (Non-Mandatory)</p>
+          <ul class="au-bullet-list">
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>PTO Paid Time Off: No federal mandate, employer discretion, typically 10-15 days/year (increases with tenure)</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>401(k) Retirement: Employer match 3-6% of salary, pre-tax contribution, mainstream core benefit</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Group Medical / Dental / Vision: 50+ employees ACA mandatory, employer shares premium</span>
+            </li>
+          </ul>
+`,
+
+  'cg.usa-illinois.s4.h': `Personal Income Tax`,
+
+  'cg.usa-illinois.s4.sub': `Federal progressive 7 tiers (employer monthly withholding W-4) + State income tax. Fiscal year 1/1 - 12/31, April filing.`,
+
+  'cg.usa-illinois.s4.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:40%"><col style="width:20%"><col style="width:40%"></colgroup>
+              <thead>
+                <tr><th>Annual Taxable Income (Federal, Single)</th><th>Tax Rate</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>$ 0 - 12,400</td><td>10%</td><td>Federal lowest tier (Single, 2026 estimate)</td></tr>
+                <tr><td>$ 12,400 - 50,400</td><td>12%</td><td>Low income tier</td></tr>
+                <tr><td>$ 50,400 - 105,700</td><td>22%</td><td>Middle class main tier</td></tr>
+                <tr><td>$ 105,700 - 201,775</td><td>24%</td><td>Upper-middle income</td></tr>
+                <tr><td>$ 201,775 - 256,225</td><td>32%</td><td>High income</td></tr>
+                <tr><td>$ 256,225 - 640,600</td><td>35%</td><td>Sub-highest tier</td></tr>
+                <tr><td>&gt; $ 640,600</td><td>37%</td><td>Highest federal marginal rate</td></tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.usa-illinois.s4.b2': `
+          <p class="au-section-title">State Income Tax IL &mdash; Flat 4.95%</p>
+          <ul class="au-bullet-list">
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Illinois individual tax unified flat 4.95% (Non-progressive, constitutionally prohibited from progressive), no local income tax</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>2020 progressive tax referendum rejected, maintaining single tax rate, personal exemption approx. $2,775</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Sales tax: State 6.25% + Local (Chicago combined approx. 10.25%, one of the highest in the US)</span>
+            </li>
+          </ul>
+`,
+
+  'cg.usa-illinois.s5.h': `Working Hours`,
+
+  'cg.usa-illinois.s5.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+              <thead>
+                <tr><th>Item</th><th>Statutory Regulation</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Weekly Standard Working Hours</td><td>40 Hours (FLSA)</td><td>Fair Labor Standards Act, overtime pay required beyond 40h</td></tr>
+                <tr><td>Overtime (Overtime)</td><td>1.5&times; Hourly Rate</td><td>Beyond 40h/week, non-exempt employees (Non-Exempt) mandatory</td></tr>
+                <tr><td>Exempt Employees (Exempt)</td><td>No overtime pay</td><td>Annual salary &ge; $43,888 (2026) Management/Professional positions, no OT</td></tr>
+                <tr><td>Daily Working Hours Cap</td><td>No federal cap</td><td>By 40h/week calculation, IL state no additional daily cap</td></tr>
+                <tr><td>Weekly Rest Day</td><td>No federal mandate</td><td>Determined by employer / contract</td></tr>
+                <tr><td>Meal / Rest Breaks</td><td>No federal mandate</td><td>Illinois: 7.5h consecutive, 20-minute meal break (One Day Rest in Seven Act)</td></tr>
+                <tr><td>Minor Workers (&lt; 18)</td><td>Hours restricted</td><td>FLSA child labor provisions, strictly restricted under 16</td></tr>
+                <tr><td>Remote / Flexible Work</td><td>No unified law</td><td>Contract-based, widespread for white-collar post-pandemic</td></tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.usa-illinois.s5.b2': `
+          <p class="au-section-title">Overtime (Overtime), FLSA (Fair Labor Standards Act)</p>
+          <ul class="au-bullet-list">
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Non-Exempt Employees (Non-Exempt): Beyond 40h/week must pay 1.5&times; regular hourly rate, mandatory</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Exempt Employees (Exempt): Management / Professional / Administrative + annual salary &ge; $43,888 (2026), no OT calculated</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Illinois overtime follows federal FLSA 1.5&times;, beyond 40h/week, state law consistent</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Most US states do not mandate daily overtime calculation. Only California and a few states calculate by 8h/day. IL calculates by 40h/week</span>
+            </li>
+          </ul>
+`,
+
+  'cg.usa-illinois.s6.h': `Employment Contracts`,
+
+  'cg.usa-illinois.s6.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:40%"><col style="width:35%"></colgroup>
+              <thead>
+                <tr><th>Contract Type</th><th>Duration</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>At-Will Employment</td><td>Default form</td><td>Employer / Employee can terminate at any time without cause (IL applicable)</td></tr>
+                <tr><td>W-2 Employee</td><td>Formal employment</td><td>Employer withholds tax + pays FICA / FUTA / SUTA</td></tr>
+                <tr><td>1099 Independent Contractor</td><td>Independent contract</td><td>Self-reports tax, misclassification (Misclassification) strictly penalized</td></tr>
+                <tr><td>Fixed-Term Contract</td><td>Contract-specified term</td><td>Less common, more seen for senior executives / specific projects</td></tr>
+                <tr><td>Offer Letter Employment Letter</td><td>Non-formal contract</td><td>USA rarely uses written employment contracts, Offer Letter + Handbook as primary</td></tr>
+                <tr><td>Non-Compete (Non-Compete)</td><td>Restricted (Low-wage prohibited)</td><td>FTC proposed nationwide ban (pending), IL current regulations</td></tr>
+                <tr><td>Probation Period Probation</td><td>Typically 90 days</td><td>Under At-Will, probation period has no meaningful legal significance</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cg-table-note">USA except Montana, all states default to At-Will employment. No mandatory written employment contract. Anti-discrimination / Retaliation protected by federal and state law.</p>
+`,
+
+  'cg.usa-illinois.s6.b2': `
+          <p class="au-table-title">Termination Protection and Compensation</p>
+          <ul class="au-bullet-list">
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>At-Will: No advance notice or severance required. Employer can terminate at any time (except violations of anti-discrimination / retaliation / contract terms)</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>WARN Act: 100+ employees, large-scale layoffs (50+ people) must provide 60 days written advance notice</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>COBRA: Post-termination, employees can self-pay to continue group medical coverage for 18 months (20+ employee employers)</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Severance (Severance): Not statutory, voluntary / policy-based, typically signed in exchange for release agreement</span>
+            </li>
+          </ul>
+`,
+
+  'cg.usa-illinois.s7.h': `Leave Entitlements`,
+
+  'cg.usa-illinois.s7.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table" style="table-layout:auto">
+              <thead>
+                <tr><th style="width:20%">Leave Type</th><th style="width:50%">Regulation</th><th style="width:30%">Applicable Conditions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Annual Leave / PTO</td>
+                  <td>No federal mandate</td>
+                  <td>Employer discretion, typically 10-15 days/year (increases with tenure)</td>
+                </tr>
+                <tr>
+                  <td>Sick Leave (Sick Leave)</td>
+                  <td>State mandatory paid</td>
+                  <td>Effective 2024, approx. 40h annually, any reason</td>
+                </tr>
+                <tr>
+                  <td>FMLA Family Medical Leave</td>
+                  <td>12 Weeks, Unpaid</td>
+                  <td>50+ employees, 12 months &amp; 1,250h service, job-protected</td>
+                </tr>
+                <tr>
+                  <td>Maternity Leave (Maternity)</td>
+                  <td>No federal paid</td>
+                  <td>FMLA 12 weeks unpaid, IL no state paid maternity leave</td>
+                </tr>
+                <tr>
+                  <td>Paternity Leave (Paternity)</td>
+                  <td>No federal paid</td>
+                  <td>FMLA covered, employer voluntary paid leave increasing</td>
+                </tr>
+                <tr>
+                  <td>Military / Jury Duty Leave</td>
+                  <td>Federal protection</td>
+                  <td>USERRA military leave, Jury Duty must be granted</td>
+                </tr>
+                <tr>
+                  <td>Statutory Public Holidays</td>
+                  <td>11 Federal Holidays</td>
+                  <td>Private sector not mandatory paid, most white-collar enjoy paid holidays</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.usa-illinois.s8.h': `Public Holidays 2026`,
+
+  'cg.usa-illinois.s8.sub': `Total 11 federal holidays (Banks / Government holidays). Private employers not mandatory paid. IL additionally designates several state holidays.`,
+
+  'cg.usa-illinois.s8.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28%"><col style="width:48%"><col style="width:24%"></colgroup>
+              <thead>
+                <tr><th>Date</th><th>Holiday Name</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>01 / 01 (Thursday)</td><td>New Year&rsquo;s Day / New Year</td><td>Federal holiday</td></tr>
+                <tr><td>01 / 19 (Monday)</td><td>MLK Day / Martin Luther King Day</td><td>January third Monday</td></tr>
+                <tr><td>02 / 16 (Monday)</td><td>Presidents&rsquo; Day / Presidents Day</td><td>February third Monday</td></tr>
+                <tr><td>05 / 25 (Monday)</td><td>Memorial Day / Memorial Day</td><td>May last Monday</td></tr>
+                <tr><td>06 / 19 (Friday)</td><td>Juneteenth / Juneteenth</td><td>Federal holiday (Since 2021)</td></tr>
+                <tr><td>07 / 03 (Friday)</td><td>Independence Day / Independence Day (Deferred)</td><td>Originally 7/4 Saturday, deferred to Friday</td></tr>
+                <tr><td>09 / 07 (Monday)</td><td>Labor Day / Labor Day</td><td>September first Monday</td></tr>
+                <tr><td>10 / 12 (Monday)</td><td>Columbus Day / Columbus Day</td><td>October second Monday</td></tr>
+                <tr><td>11 / 11 (Wednesday)</td><td>Veterans Day / Veterans Day</td><td>Federal holiday</td></tr>
+                <tr><td>11 / 26 (Thursday)</td><td>Thanksgiving / Thanksgiving</td><td>November fourth Thursday</td></tr>
+                <tr><td>12 / 25 (Friday)</td><td>Christmas Day / Christmas</td><td>Federal holiday</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cg-table-note">Federal holidays only bind federal institutions and banks. Private enterprises may decide at their own discretion whether to grant time off / paid leave. IL additionally designates several state holidays (Lincoln&rsquo;s Birthday / Election Day, etc.)</p>
+`,
+
+  'cg.usa-illinois.s9.h': `Key Regulations`,
+
+  'cg.usa-illinois.s9.b1': `
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">FLSA Fair Labor Standards Act &mdash; Fair Labor Standards Act</p>
+            <p class="cg-reg-body">Federal core labor law, stipulating minimum wage $7.25 / Overtime 1.5&times; / Child labor / Time records. Enforced by US DOL. IL applies federal standards.</p>
+          </div>
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">FMLA Family &amp; Medical Leave Act &mdash; Family Medical Leave Act</p>
+            <p class="cg-reg-body">50+ employee employers, eligible employees entitled to 12 weeks unpaid leave per year (Childbirth / Serious illness / Care). Job-protected with medical coverage. Violations carry personal liability.</p>
+          </div>
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">Title VII / ADA / ADEA &mdash; Federal Anti-Discrimination Laws</p>
+            <p class="cg-reg-body">Prohibits employment discrimination based on race / gender / religion / age (40+) / disability / pregnancy. EEOC enforcement. Applies to 15+ employees.</p>
+          </div>
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">IL Paid Leave for All Workers Act (2024) &mdash; All Employees Paid Leave Act</p>
+            <p class="cg-reg-body">Effective 2024/1, virtually all employees entitled to up to 40h paid leave annually, any reason permitted. Accrued at 1h per 40h worked.</p>
+          </div>
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">IL Secure Choice + Day &amp; Temp Labor &mdash; Retirement + Temporary Worker Protection</p>
+            <p class="cg-reg-body">5+ employees without a retirement plan must enroll in Secure Choice state retirement savings. Temporary workers entitled to equal pay for equal work (2024 strengthened).</p>
+          </div>
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">ACA / COBRA / IRCA &mdash; Medical Insurance and Employment Compliance</p>
+            <p class="cg-reg-body">ACA: 50+ full-time employee employers must provide medical insurance. COBRA: Post-termination continuation coverage 18 months. IRCA: I-9 form verifying work authorization (E-Verify non-mandatory).</p>
+          </div>
+`,
 };

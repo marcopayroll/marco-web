@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="assets/marco-favicon.png">
@@ -24,7 +24,6 @@
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
       overflow-x: hidden;
     }
 
@@ -90,160 +89,8 @@
     .nav-lang-dropdown .nav-lang-dd-label { font-family: var(--font); font-size: 12px; font-weight: 600; line-height: 20px; color: #162351; }
     .nav-signin { background: var(--blue-main); color: #fff; font-family: var(--font); font-size: 12px; font-weight: 600; border-radius: 50px; padding: 14px 24px; height: 32px; width: 100px; display: flex; align-items: center; justify-content: center; white-space: nowrap; cursor: pointer; border: none; flex-shrink: 0; text-decoration: none; transition: background 0.18s ease; }
     .nav-signin:hover { background: #0185C4; }
-    /* ════════════════════════════════════════
-       HERO
-    ════════════════════════════════════════ */
-    .hero {
-      position: relative;
-      height: 600px;
-      background: #FFDCD8;
-      overflow: hidden;
-    }
-    .hero-container {
-      position: absolute;
-      top: 0; bottom: 0;
-      left: 0; right: 0;
-      width: calc(100% - 2 * var(--gutter));
-      max-width: 1224px;
-      margin-inline: auto;
-    }
-    .hero-left {
-      position: absolute;
-      left: 0;
-      top: 180px;
-      width: calc(100% - 628px + var(--gutter) - 104px);
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .hero-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-    }
-    .hero-back img {
-      width: 16px;
-      height: 16px;
-      display: block;
-      flex-shrink: 0;
-    }
-    .hero-back span {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 18px;
-      color: var(--blue-main);
-    }
-    .hero-back span { transition: text-decoration-color 0.15s ease; }
-    .hero-back:hover span { text-decoration: underline; text-decoration-color: #019DE7; text-underline-offset: 2px; text-decoration-thickness: 1.6px; }
-    .hero-title {
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 60px;
-      letter-spacing: -0.05em;
-      color: var(--text-main);
-    }
-    .hero-desc {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: var(--text-secondary);
-    }
-    .hero-meta {
-      position: absolute;
-      left: 0;
-      top: 504px;
-      width: calc(100% - 628px + var(--gutter) - 104px);
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .hero-divider {
-      height: 1px;
-      background: #CDD5E0;
-      width: 100%;
-    }
-    .hero-author {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .hero-author-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #B24444;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      font-weight: 500;
-      line-height: 14px;
-      color: #fff;
-      flex-shrink: 0;
-    }
-    .hero-author-info {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .hero-author-label {
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 16px;
-      color: var(--text-tertiary);
-    }
-    .hero-author-name {
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 16px;
-      color: var(--text-main);
-    }
-    .hero-image {
-      position: absolute;
-      right: 0;
-      top: 96px;
-      left: min(calc(100vw - 628px), calc(50vw + 92px));
-      height: calc(100% - 96px);
-    }
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* ════════════════════════════════════════
-       MORE FROM MARCO
-    ════════════════════════════════════════ */
-    .more-section { background: #FFDCD8; padding: 80px 0; overflow-x: clip; }
-    .more-header { display: flex; flex-direction: column; gap: 16px; }
-    .more-eyebrow { display: flex; align-items: center; gap: 8px; }
-    .more-eyebrow-line { width: 16px; height: 2px; background: var(--text-main); flex-shrink: 0; }
-    .more-eyebrow-label { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
-    .more-title-row { display: flex; align-items: center; justify-content: space-between; }
-    .more-title { font-family: var(--font); font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; color: var(--text-main); margin: 0; }
-    .more-chevrons { display: flex; gap: 24px; align-items: center; flex-shrink: 0; }
-    .more-chevron-btn { width: 50px; height: 50px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; transition: filter 0.2s ease; }
-    .more-chevron-btn:not(:disabled):hover { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25)); }
-    .more-chevron-btn:disabled { cursor: default; }
-    .more-chevron-btn img { width: 50px; height: 50px; display: block; }
-    .more-viewport { width: 100%; padding: 20px 0; margin-top: calc(60px - 20px); margin-bottom: -20px; }
-    .more-track { display: flex; gap: 40px; padding-left: max(var(--gutter), calc((100% - 1224px) / 2)); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-    .more-card { flex: 0 0 380px; width: 380px; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px 0 rgba(0,0,0,0.10); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; text-decoration: none; position: relative; }
-    .more-card-overlay { position: absolute; inset: 0; z-index: 0; cursor: pointer; }
-    .more-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14), 0 8px 12px rgba(0,0,0,0.12); }
-    .more-card-thumb { height: 320px; flex-shrink: 0; overflow: hidden; }
-    .more-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .more-card-body { background: #FFFFFF; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; height: 148px; flex-shrink: 0; box-sizing: border-box; }
-    .more-card-meta { display: flex; flex-direction: column; gap: 8px; }
-    .more-card-read-time { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: #8F98B5; }
-    .more-card-title { font-family: var(--font); font-size: 16px; font-weight: 700; line-height: 20px; color: var(--text-main); margin: 0; }
-    .more-card-cta { display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 4px 16px; background: #fff; border: 1px solid #003751; border-radius: 50px; font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-main); text-decoration: none; white-space: nowrap; flex-shrink: 0; align-self: flex-start; position: relative; z-index: 1; }
-    .more-scroll-track { height: 6px; background: #CDD5E0; border-radius: 10px; margin-top: 60px; position: relative; overflow: hidden; }
-    .more-scroll-thumb { height: 6px; background: #3D4148; border-radius: 10px; position: absolute; left: 0; top: 0; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    /* HERO and MORE FROM MARCO (Recommended Reads) styles now live in
+       memo-article.css, shared across all memo article pages. */
 
     /* ════════════════════════════════════════
        FOOTER
@@ -273,25 +120,12 @@
 
     /* ════════════════════════════════════════
        ARTICLE SECTION
+       Layout (section/layout wrapper, TOC row, content-wrapper flex/width,
+       CTA buttons — including the ≤900px/≤500px responsive behavior) now
+       lives in memo-article.css, shared across all memo article pages.
+       Only this article's own content typography (intro/h2/paragraphs/
+       lists/footnotes) stays inline below, since it varies per article.
     ════════════════════════════════════════ */
-    .article-section { background: #fff; padding: 60px 0 120px; }
-    .article-layout { display: flex; align-items: flex-start; }
-
-    /* TOC */
-    .article-toc { width: 280px; flex-shrink: 0; margin-right: 32px; position: sticky; top: 130px; }
-    .toc-card { background: #fff; border-radius: 8px; padding: 16px 16px 32px 16px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.10); display: flex; flex-direction: column; gap: 40px; }
-    .toc-title { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
-    .toc-list { display: flex; flex-direction: column; gap: 24px; }
-    .toc-item { display: flex; gap: 8px; align-items: center; text-decoration: none; }
-    .toc-dot-wrap { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .toc-dot { width: 8px; height: 8px; border-radius: 50%; background: #9199A6; flex-shrink: 0; transition: background 0.2s ease; }
-    .toc-dot.toc-active { background: var(--blue-main); }
-    .toc-text { flex: 1; font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); transition: color 0.2s ease, font-size 0.2s ease, font-weight 0.2s ease; }
-    .toc-text.toc-active { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
-    .toc-divider-line { height: 1px; background: #CDD5E0; width: 100%; }
-
-    /* Article content */
-    .article-content { flex: 1; min-width: 0; max-width: 832px; margin-right: 40px; display: flex; flex-direction: column; gap: 40px; }
     .article-intro { display: flex; flex-direction: column; gap: 16px; }
     .article-intro p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
     .article-block { display: flex; flex-direction: column; gap: 24px; }
@@ -309,20 +143,6 @@
     .article-divider { height: 1px; background: #CDD5E0; }
     .article-footnotes { display: flex; flex-direction: column; gap: 16px; }
     .article-footnotes p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-secondary); margin: 0; }
-
-    /* CTA buttons */
-    .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 130px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
-    .cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; }
-    .cta-btn .cta-ring { transition: fill 0.2s ease, stroke 0.2s ease; }
-    .cta-btn .cta-fill { transition: fill 0.2s ease; }
-    .cta-btn .cta-stroke { transition: stroke 0.2s ease, stroke-width 0.2s ease; }
-    .cta-btn:hover .cta-ring { fill: #3D4148; stroke: #3D4148; }
-    .cta-btn:hover .cta-fill { fill: #fff; }
-    .cta-btn:hover .cta-stroke { stroke: #fff; stroke-width: 1.5px; }
-    .cta-btn.cta-copied .cta-ring { fill: var(--blue-main); stroke: var(--blue-main); }
-    .cta-btn.cta-copied .cta-stroke { stroke: #fff; }
-    .cta-back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .cta-back-to-top.visible { opacity: 1; pointer-events: auto; }
 
   
     /* ════════════════════════════════════════
@@ -436,6 +256,7 @@
       .footer-mobile { display: block; }
     }
   </style>
+  <link rel="stylesheet" href="memo-article.css">
   <link rel="stylesheet" href="shared.css">
 </head>
 <body data-nav-bg="fixed">
@@ -612,187 +433,9 @@
   </div>
 
   <div class="more-viewport" id="moreViewport">
-      <div class="more-track" id="moreTrack">
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-vietnam-payroll-tax-update.html" class="more-card-overlay" aria-label="Vietnam Payroll &amp; Tax Update"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/vietnam-1.jpg" alt="Vietnam Payroll &amp; Tax Update" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">3 min read</span>
-              <p class="more-card-title">Vietnam Payroll &amp; Tax Update</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-vietnam-payroll-tax-update.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-malaysia-lindung-opt-out.html" class="more-card-overlay" aria-label="Malaysia - How to Opt Out of LINDUNG 24 JAM"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/malaysia-2.jpg" alt="Malaysia - How to Opt Out of LINDUNG 24 JAM" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">3 min read</span>
-              <p class="more-card-title">Malaysia - How to Opt Out of LINDUNG 24 JAM</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-malaysia-lindung-opt-out.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-malaysia-lindung-update.html" class="more-card-overlay" aria-label="Malaysia - LINDUNG 24 JAM Update: Now Voluntary for Local Employees"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/malaysia-1.webp" alt="Malaysia - LINDUNG 24 JAM Update: Now Voluntary for Local Employees" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">3 min read</span>
-              <p class="more-card-title">Malaysia - LINDUNG 24 JAM Update: Now Voluntary for Local Employees</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-malaysia-lindung-update.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-payroll-fraud.html" class="more-card-overlay" aria-label="Payroll Fraud: A Global Threat"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-5.webp" alt="Payroll Fraud: A Global Threat" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">3 min read</span>
-              <p class="more-card-title">Payroll Fraud: A Global Threat</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-payroll-fraud.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-wrongful-dismissal.html" class="more-card-overlay" aria-label="Over $3.1m awarded to finance veteran for wrongful dismissal"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-19.jpg" alt="Over $3.1m awarded to finance veteran for wrongful dismissal" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">3 min read</span>
-              <p class="more-card-title">Over $3.1m awarded to finance veteran for wrongful dismissal</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-wrongful-dismissal.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-poland-employee-capital-plan.html" class="more-card-overlay" aria-label="Poland’s Employee Capital Plan"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-10.png" alt="Poland’s Employee Capital Plan" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">4 min read</span>
-              <p class="more-card-title">Poland’s Employee Capital Plan</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-poland-employee-capital-plan.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-italian-severance-payment-tfr.html" class="more-card-overlay" aria-label="The Italian Severance Payment (TFR) Explained"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-7.jpg" alt="The Italian Severance Payment (TFR) Explained" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">7 min read</span>
-              <p class="more-card-title">The Italian Severance Payment (TFR) Explained</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-italian-severance-payment-tfr.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-netherlands-30-ruling.html" class="more-card-overlay" aria-label="30% Ruling in the Netherlands"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-11.webp" alt="30% Ruling in the Netherlands" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">5 min read</span>
-              <p class="more-card-title">30% Ruling in the Netherlands</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-netherlands-30-ruling.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-scammers-go-back-to-basics.html" class="more-card-overlay" aria-label="Catch the Unsuspecting: Scammers Go Back to Basics"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-4.jpg" alt="Catch the Unsuspecting: Scammers Go Back to Basics" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">2 min read</span>
-              <p class="more-card-title">Catch the Unsuspecting: Scammers Go Back to Basics</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-scammers-go-back-to-basics.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-peo.html" class="more-card-overlay" aria-label="Professional Employer Organisations &amp; its Origin"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-1.jpg" alt="Professional Employer Organisations &amp; its Origin" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">3 min read</span>
-              <p class="more-card-title">Professional Employer Organisations &amp; its Origin</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-peo.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-ai-law.html" class="more-card-overlay" aria-label="World’s First AI Law is Right on HR’s Doorstep"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-21.jpg" alt="World’s First AI Law is Right on HR’s Doorstep" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">4 min read</span>
-              <p class="more-card-title">World’s First AI Law is Right on HR’s Doorstep</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-ai-law.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-rsu-vs-esop-taxation.html" class="more-card-overlay" aria-label="RSU vs ESOP Taxation: What are the Differences and Which One is Better?"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-20.jpg" alt="RSU vs ESOP Taxation: What are the Differences and Which One is Better?" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">4 min read</span>
-              <p class="more-card-title">RSU vs ESOP Taxation: What are the Differences and Which One is Better?</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-rsu-vs-esop-taxation.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-gdpr.html" class="more-card-overlay" aria-label="General Data Protection Regulation (GDPR)"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-18.jpg" alt="General Data Protection Regulation (GDPR)" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">4 min read</span>
-              <p class="more-card-title">General Data Protection Regulation (GDPR)</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-gdpr.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-at-will-employment-us.html" class="more-card-overlay" aria-label="Are You Certain Your Staff Are Employed “At-Will” in the US?"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-15.jpg" alt="Are You Certain Your Staff Are Employed “At-Will” in the US?" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">4 min read</span>
-              <p class="more-card-title">Are You Certain Your Staff Are Employed “At-Will” in the US?</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-at-will-employment-us.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-        <div class="more-card">
-          <a href="hr-knowledge-hub-memo-singapore-work-passes.html" class="more-card-overlay" aria-label="Comparing Singapore’s Employment Pass, S-Pass and Work Permits"></a>
-          <div class="more-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-13.jpg" alt="Comparing Singapore’s Employment Pass, S-Pass and Work Permits" /></div>
-          <div class="more-card-body">
-            <div class="more-card-meta">
-              <span class="more-card-read-time">2 min read</span>
-              <p class="more-card-title">Comparing Singapore’s Employment Pass, S-Pass and Work Permits</p>
-            </div>
-            <a href="hr-knowledge-hub-memo-singapore-work-passes.html" class="more-card-cta">Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </div>
-
-      </div>
+    <div class="more-track" id="moreTrack"></div>
   </div>
+
 
   <div class="container">
     <div class="more-scroll-track">
@@ -871,71 +514,12 @@
   }
   window.addEventListener('scroll', updateBackToTop);
   updateBackToTop();
-
-  // ── Copy link ──
-  var copyBtn = document.getElementById('copyLinkBtn');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', function() {
-      navigator.clipboard.writeText(window.location.href).then(function() {
-        copyBtn.classList.add('copied');
-        setTimeout(function() { copyBtn.classList.remove('copied'); }, 2000);
-      });
-    });
-  }
-
-  // ── More From Marco carousel ──
-  (function() {
-    var CARDS_PER_PAGE = 3;
-    var CARD_WIDTH = 380;
-    var GAP = 40;
-    var PAGE_SCROLL = CARD_WIDTH + GAP;
-    var TOTAL_CARDS = 15;
-    var NUM_PAGES = TOTAL_CARDS - CARDS_PER_PAGE + 1;
-    var currentPage = 0;
-
-    var track = document.getElementById('moreTrack');
-    var chevLeft = document.getElementById('moreChevLeft');
-    var chevRight = document.getElementById('moreChevRight');
-    var chevLeftImg = document.getElementById('moreChevLeftImg');
-    var chevRightImg = document.getElementById('moreChevRightImg');
-    var scrollThumb = document.getElementById('moreScrollThumb');
-    var viewport = document.getElementById('moreViewport');
-
-    function updateMore() {
-      track.style.transform = 'translateX(-' + (currentPage * PAGE_SCROLL) + 'px)';
-
-      var thumbPct = 100 / NUM_PAGES;
-      scrollThumb.style.width = thumbPct + '%';
-      scrollThumb.style.left = (currentPage * thumbPct) + '%';
-
-      var atStart = currentPage === 0;
-      var atEnd = currentPage === NUM_PAGES - 1;
-
-      chevLeft.disabled = atStart;
-      chevLeftImg.src = atStart
-        ? 'assets/HR Knowledge Hub/Memo/assets/chevron-left-inactive.svg'
-        : 'assets/HR Knowledge Hub/Memo/assets/chevron-left-active.svg';
-
-      chevRight.disabled = atEnd;
-      chevRightImg.src = atEnd
-        ? 'assets/HR Knowledge Hub/Memo/assets/chevron-right-inactive.svg'
-        : 'assets/HR Knowledge Hub/Memo/assets/chevron-right-active.svg';
-    }
-
-    chevLeft.addEventListener('click', function() {
-      if (currentPage > 0) { currentPage--; updateMore(); }
-    });
-    chevRight.addEventListener('click', function() {
-      if (currentPage < NUM_PAGES - 1) { currentPage++; updateMore(); }
-    });
-
-    viewport.addEventListener('wheel', function(e) {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault();
-    }, { passive: false });
-
-    updateMore();
-  })();
+  // Copy-link button and TOC expand/collapse toggle are now handled by
+  // memo-article.js (shared across all memo article pages).
 </script>
+<script>var MEMO_CURRENT_ARTICLE = 'hr-knowledge-hub-memo-employment-without-entity-poland.html';</script>
+<script src="memo-articles-data.js"></script>
+<script src="memo-article.js"></script>
 <script src="assets/lang/lang-loader.js"></script>
 </body>
 </html>

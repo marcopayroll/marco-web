@@ -24,7 +24,6 @@
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
       overflow-x: hidden;
     }
 
@@ -97,11 +96,17 @@
     /* ════════════════════════════════════════
        HERO
     ════════════════════════════════════════ */
-    .hero { position: relative; overflow: hidden; height: 480px; background: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); }
+    /* min-height (not height): the section stays a fixed 480px by default,
+       but if hero-title/hero-subtitle wrap an extra line and need more
+       room than that, the section grows to hug the content instead of
+       clipping it — hero-content's own padding-bottom becomes the visible
+       gap once that happens. .hero-inner/.hero-bg-pattern's height:100%
+       still resolves correctly against whichever height wins. */
+    .hero { position: relative; overflow: hidden; min-height: 480px; background: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%); }
     .hero-bg-pattern { position: absolute; top: 0; right: 0; height: 100%; z-index: 0; pointer-events: none; }
     .hero-bg-pattern img { height: 100%; width: auto; display: block; object-fit: contain; object-position: right center; }
     .hero-inner { position: relative; z-index: 1; width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; height: 100%; }
-    .hero-content { padding-top: 180px; max-width: 704px; display: flex; flex-direction: column; gap: 12px; }
+    .hero-content { padding-top: 180px; padding-bottom: 32px; max-width: 704px; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; }
     .hero-body { display: flex; flex-direction: column; gap: 24px; width: 100%; }
     .hero-label { display: flex; align-items: center; gap: 8px; }
     .hero-label-line { width: 16px; height: 2px; background: var(--blue-main); flex-shrink: 0; }
@@ -113,25 +118,25 @@
        CONTENT SECTION
     ════════════════════════════════════════ */
     .memo-content { background: linear-gradient(to bottom, #f4f4ff 0%, #ffffff 55%); padding: 80px 0 100px; }
-    .memo-grid { width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; display: flex; flex-direction: column; }
-    .memo-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 42px; }
-    .memo-row + .memo-row { margin-top: 32px; }
-    .memo-card { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.10), 0 4px 5px rgba(0,0,0,0.15); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative; }
+    .memo-grid { width: calc(100% - 2 * var(--gutter)); max-width: 1224px; margin-inline: auto; display: flex; flex-wrap: wrap; gap: 32px 42px; }
+    .memo-card { flex: 0 0 calc((100% - 2 * 42px) / 3); min-width: 0; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.10), 0 4px 5px rgba(0,0,0,0.15); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative; }
     .memo-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14), 0 8px 12px rgba(0,0,0,0.12); }
     .memo-card-overlay { position: absolute; inset: 0; z-index: 0; cursor: pointer; }
     .memo-read-more { position: relative; z-index: 1; }
     .memo-card-thumb { height: 320px; flex-shrink: 0; overflow: hidden; }
     .memo-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .memo-card-body { background: #FFFFFF; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; min-height: 148px; flex-shrink: 0; }
+    .memo-card-body { background: #FFFFFF; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; min-height: 148px; flex: 1 0 auto; }
     .memo-card-meta { display: flex; flex-direction: column; gap: 8px; }
     .memo-card-read-time { font-size: 12px; font-weight: 400; line-height: 16px; color: #8f98b5; }
-    .memo-card-title { font-size: 16px; font-weight: 700; line-height: 20px; color: #162351; }
+    .memo-card-title {
+      font-size: 16px; font-weight: 700; line-height: 20px; color: #162351;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+      overflow: hidden; text-overflow: ellipsis;
+    }
     .memo-read-more { display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 4px 16px; background: #fff; border: 1px solid #003751; border-radius: 50px; font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: #162351; text-decoration: none; white-space: nowrap; cursor: pointer; flex-shrink: 0; align-self: flex-start; margin-top: 12px; }
-    .memo-row-center { justify-content: center; }
-    .memo-card-fixed { flex: 0 0 380px; max-width: 380px; }
-    .memo-row[data-hidden] { display: none; }
+    .memo-card[data-hidden] { display: none; }
     @keyframes memoFadeIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .memo-row-reveal { animation: memoFadeIn 0.5s ease forwards; }
+    .memo-card-reveal { animation: memoFadeIn 0.5s ease forwards; }
     .memo-view-more-wrap { display: flex; justify-content: center; margin-top: 48px; }
     .memo-view-more { display: flex; align-items: center; gap: 16px; background: #fff; border: none; border-radius: 50px; padding: 20px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.10); font-family: var(--font); font-size: 16px; font-weight: 600; color: var(--blue-main); cursor: pointer; transition: box-shadow 0.2s, transform 0.15s; }
     .memo-view-more:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.14); transform: translateY(-1px); }
@@ -241,7 +246,86 @@
       .footer-bottom { font-size: 12px; line-height: 16px; }
       .footer-legal { gap: 24px; }
     }
-  
+
+    /* ════════════════════════════════════════
+       TABLET HERO (≤800px)
+    ════════════════════════════════════════ */
+    @media (max-width: 800px) {
+      .hero { --gutter: 32px; min-height: 400px; }
+      .hero-bg-pattern { width: 601px; height: 400px; right: -89px; top: 0; border-radius: 40px; overflow: hidden; opacity: 0.5; }
+      .hero-bg-pattern img { width: 100%; height: 100%; object-fit: cover; }
+      .hero-content { padding-top: 160px; max-width: 642px; }
+      .hero-body { gap: 16px; }
+      .hero-label-line { width: 12px; }
+      .hero-title { font-size: 48px; font-weight: 700; line-height: 60px; letter-spacing: -2.4px; }
+    }
+
+    /* ════════════════════════════════════════
+       MOBILE HERO (≤440px)
+    ════════════════════════════════════════ */
+    @media (max-width: 440px) {
+      .hero { --gutter: 24px; min-height: 360px; }
+      .hero-bg-pattern { width: 541px; height: 360px; right: -189px; top: 0; }
+      .hero-content { padding-top: 130px; max-width: 392px; }
+      .hero-title { font-size: 32px; line-height: 40px; letter-spacing: 0; }
+    }
+
+    /* ════════════════════════════════════════
+       MEMO CARDS — 1200px: tighter horizontal gap
+    ════════════════════════════════════════ */
+    @media (max-width: 1200px) {
+      .memo-grid { gap: 32px 32px; }
+      .memo-card { flex: 0 0 calc((100% - 2 * 32px) / 3); }
+      .memo-card-thumb { height: 280px; }
+    }
+
+    /* ════════════════════════════════════════
+       MEMO CARDS — 1000px: tighter horizontal gap
+    ════════════════════════════════════════ */
+    @media (max-width: 1000px) {
+      .memo-grid { gap: 32px 24px; }
+      .memo-card { flex: 0 0 calc((100% - 2 * 24px) / 3); }
+      .memo-card-thumb { height: 220px; }
+    }
+
+    /* ════════════════════════════════════════
+       MEMO CARDS — TABLET (≤800px): 3 columns
+    ════════════════════════════════════════ */
+    @media (max-width: 800px) {
+      .memo-content { --gutter: 32px; }
+      .memo-grid { gap: 24px 16px; }
+      .memo-card { flex: 0 0 calc((100% - 2 * 16px) / 3); }
+      .memo-card-thumb { height: 160px; }
+      .memo-card-body { padding: 12px; min-height: 100px; }
+      .memo-card-title {
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+        overflow: hidden; text-overflow: ellipsis;
+      }
+      .memo-read-more { display: none; }
+      .memo-view-more-wrap { margin-top: 60px; }
+    }
+
+    /* ════════════════════════════════════════
+       MEMO CARDS — 600px: 2 columns
+    ════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .memo-content { --gutter: 24px; padding-top: 60px; }
+      .memo-card { flex: 0 0 calc((100% - 16px) / 2); }
+      .memo-card-thumb { height: 120px; }
+      .memo-card-body { min-height: 88px; }
+      .memo-card-title { font-size: 12px; font-weight: 700; line-height: 16px; }
+      .memo-view-more-wrap { margin-top: 40px; }
+    }
+
+    /* ════════════════════════════════════════
+       MEMO CARDS — MOBILE (≤350px): 1 column
+    ════════════════════════════════════════ */
+    @media (max-width: 350px) {
+      .memo-grid { gap: 16px; }
+      .memo-card { flex: 0 0 100%; }
+      .memo-card-body { min-height: 70px; }
+    }
+
     /* ════════════════════════════════════════
        MOBILE FOOTER (≤440px)
     ════════════════════════════════════════ */
@@ -298,8 +382,6 @@
 <section class="memo-content">
   <div class="memo-grid">
 
-    <!-- Row 1 -->
-    <div class="memo-row">
       <div class="memo-card">
         <a href="hr-knowledge-hub-memo-vietnam-payroll-tax-update.html" class="memo-card-overlay" aria-label="Vietnam Payroll &amp; Tax Update"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/vietnam-1.jpg" alt="Vietnam Payroll &amp; Tax Update" /></div>
@@ -333,10 +415,6 @@
           <a href="hr-knowledge-hub-memo-malaysia-lindung-update.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-    </div>
-
-    <!-- Row 2 -->
-    <div class="memo-row">
       <div class="memo-card">
         <a href="hr-knowledge-hub-memo-payroll-fraud.html" class="memo-card-overlay" aria-label="Payroll Fraud: A Global Threat"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-5.webp" alt="Payroll Fraud: A Global Threat" /></div>
@@ -370,10 +448,6 @@
           <a href="hr-knowledge-hub-memo-poland-employee-capital-plan.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-    </div>
-
-    <!-- Row 3 -->
-    <div class="memo-row">
       <div class="memo-card">
         <a href="hr-knowledge-hub-memo-italian-severance-payment-tfr.html" class="memo-card-overlay" aria-label="The Italian Severance Payment (TFR) Explained"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-7.jpg" alt="The Italian Severance Payment (TFR) Explained" /></div>
@@ -407,11 +481,9 @@
           <a href="hr-knowledge-hub-memo-scammers-go-back-to-basics.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-    </div>
 
-    <!-- Row 4 -->
-    <div class="memo-row" data-hidden>
-      <div class="memo-card">
+      <!-- Revealed via "View More" (6 at a time) -->
+      <div class="memo-card" data-hidden>
         <a href="hr-knowledge-hub-memo-peo.html" class="memo-card-overlay" aria-label="Professional Employer Organisations &amp; its Origin"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-1.jpg" alt="Professional Employer Organisations & its Origin" /></div>
         <div class="memo-card-body">
@@ -422,7 +494,7 @@
           <a href="hr-knowledge-hub-memo-peo.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-      <div class="memo-card">
+      <div class="memo-card" data-hidden>
         <a href="hr-knowledge-hub-memo-employment-without-entity-poland.html" class="memo-card-overlay" aria-label="Employment Without Entity in Poland"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-14.avif" alt="Employment Without Entity in Poland" /></div>
         <div class="memo-card-body">
@@ -433,7 +505,7 @@
           <a href="hr-knowledge-hub-memo-employment-without-entity-poland.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-      <div class="memo-card">
+      <div class="memo-card" data-hidden>
         <a href="hr-knowledge-hub-memo-ai-law.html" class="memo-card-overlay" aria-label="World's First AI Law is Right on HR's Doorstep"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-21.jpg" alt="World's First AI Law is Right on HR's Doorstep" /></div>
         <div class="memo-card-body">
@@ -444,11 +516,7 @@
           <a href="hr-knowledge-hub-memo-ai-law.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-    </div>
-
-    <!-- Row 5 -->
-    <div class="memo-row" data-hidden>
-      <div class="memo-card">
+      <div class="memo-card" data-hidden>
         <a href="hr-knowledge-hub-memo-rsu-vs-esop-taxation.html" class="memo-card-overlay" aria-label="RSU vs ESOP Taxation: What are the Differences and Which One is Better?"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-20.jpg" alt="RSU vs ESOP Taxation: What are the Differences and Which One is Better?" /></div>
         <div class="memo-card-body">
@@ -459,7 +527,7 @@
           <a href="hr-knowledge-hub-memo-rsu-vs-esop-taxation.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-      <div class="memo-card">
+      <div class="memo-card" data-hidden>
         <a href="hr-knowledge-hub-memo-gdpr.html" class="memo-card-overlay" aria-label="General Data Protection Regulation (GDPR)"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-18.jpg" alt="General Data Protection Regulation (GDPR)" /></div>
         <div class="memo-card-body">
@@ -470,7 +538,7 @@
           <a href="hr-knowledge-hub-memo-gdpr.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-      <div class="memo-card">
+      <div class="memo-card" data-hidden>
         <a href="hr-knowledge-hub-memo-at-will-employment-us.html" class="memo-card-overlay" aria-label="Are You Certain Your Staff Are Employed &quot;At-Will&quot; in the US?"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-15.jpg" alt="Are You Certain Your Staff Are Employed "At-Will" in the US?" /></div>
         <div class="memo-card-body">
@@ -481,11 +549,9 @@
           <a href="hr-knowledge-hub-memo-at-will-employment-us.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-    </div>
 
-    <!-- Row 6 -->
-    <div class="memo-row" data-hidden>
-      <div class="memo-card">
+      <!-- Revealed via "View More" (final batch) -->
+      <div class="memo-card" data-hidden>
         <a href="hr-knowledge-hub-memo-singapore-work-passes.html" class="memo-card-overlay" aria-label="Comparing Singapore's Employment Pass, S-Pass and Work Permits"></a>
         <div class="memo-card-thumb"><img src="assets/HR Knowledge Hub/Memo/images/stock-13.jpg" alt="Comparing Singapore's Employment Pass, S-Pass and Work Permits" /></div>
         <div class="memo-card-body">
@@ -496,7 +562,6 @@
           <a href="hr-knowledge-hub-memo-singapore-work-passes.html" class="memo-read-more"><span data-i18n="memo.readmore">Read more</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="#162351" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
-    </div>
 
   </div>
 
@@ -512,19 +577,61 @@
 </section>
 
 <script>
-  function memoViewMore() {
-    var hidden = document.querySelectorAll('.memo-row[data-hidden]');
-    var toShow = Array.prototype.slice.call(hidden, 0, 2);
-    toShow.forEach(function(row) {
-      row.removeAttribute('data-hidden');
-      row.classList.remove('memo-row-reveal');
-      void row.offsetWidth; // force reflow so animation restarts cleanly
-      row.classList.add('memo-row-reveal');
-    });
-    if (document.querySelectorAll('.memo-row[data-hidden]').length === 0) {
-      document.getElementById('memoViewMoreWrap').style.display = 'none';
+  // Card grid is 3/row on desktop, 2/row at <=600px, 1/row at <=350px (see
+  // .memo-card's flex-basis in each breakpoint). The static markup hides
+  // 7 of the 16 cards by default, leaving 9 visible — a clean 3 rows at
+  // the 3-per-row width. At 2-per-row that same 9 is a half-finished 5th
+  // row, so once the viewport drops into the 2-per-row bracket we reveal
+  // one more card to complete a full 5 rows (10 cards); the remaining 6
+  // (already a multiple of 2) then finish out an exact 8 rows on "View
+  // More", with no partial row at either step.
+  (function() {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.memo-card'));
+    var viewMoreWrap = document.getElementById('memoViewMoreWrap');
+    var revealedCount = cards.length - document.querySelectorAll('.memo-card[data-hidden]').length;
+
+    function getColumnsPerRow() {
+      var w = window.innerWidth;
+      if (w <= 350) return 1;
+      if (w <= 600) return 2;
+      return 3;
     }
-  }
+
+    function revealUpTo(count) {
+      count = Math.min(count, cards.length);
+      if (count <= revealedCount) return;
+      for (var i = revealedCount; i < count; i++) {
+        cards[i].removeAttribute('data-hidden');
+      }
+      revealedCount = count;
+      if (viewMoreWrap && revealedCount >= cards.length) {
+        viewMoreWrap.style.display = 'none';
+      }
+    }
+
+    function ensureFiveRowsAtTwoCols() {
+      if (getColumnsPerRow() === 2 && revealedCount < 10) {
+        revealUpTo(10);
+      }
+    }
+
+    ensureFiveRowsAtTwoCols();
+    window.addEventListener('resize', ensureFiveRowsAtTwoCols);
+
+    window.memoViewMore = function() {
+      var toReveal = cards.slice(revealedCount, Math.min(revealedCount + 6, cards.length));
+      toReveal.forEach(function(card) {
+        card.removeAttribute('data-hidden');
+        card.classList.remove('memo-card-reveal');
+        void card.offsetWidth; // force reflow so animation restarts cleanly
+        card.classList.add('memo-card-reveal');
+      });
+      revealedCount = Math.min(revealedCount + 6, cards.length);
+      if (viewMoreWrap && revealedCount >= cards.length) {
+        viewMoreWrap.style.display = 'none';
+      }
+    };
+  })();
 </script>
 
 <script src="footer.js"></script>

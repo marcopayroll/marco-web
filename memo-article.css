@@ -1,0 +1,435 @@
+/* ════════════════════════════════════════════════════════════════════
+   Shared styles for every Memo ARTICLE page's HERO, "More From Marco"
+   (Recommended Reads) section, and the article body's LAYOUT/RESPONSIVE
+   shell — identical across all 16 memo articles. This covers: the TOC
+   row/collapsible bar, the CTA button rail/row, and the article-content
+   wrapper's own flex/width/margin responsive behavior. It deliberately
+   does NOT include the article content's own typography (fonts, bullet
+   list styling, tables, footnotes) — that varies per article and stays
+   inline in each page's own <style> block.
+
+   Each page must still define its own :root variables (--blue-main,
+   --text-main, --text-secondary, --text-tertiary, --font, --gutter) and
+   .container, since those are shared with the rest of that page too —
+   this file only relies on them, it doesn't redefine them.
+════════════════════════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════
+   HERO
+   Responsive mechanism mirrors country-guide.css's .pg-hero:
+   .hero-container is a normal-flow flex column (not absolutely
+   positioned) whose padding-right reserves room for .hero-image;
+   .hero-image fills the section via top+bottom (desktop) so it
+   resizes with content, then becomes a fixed box at the tablet/
+   mobile breakpoints. .hero-meta uses a fixed margin-top so it sits
+   a constant distance below wherever the wrapped title/description
+   ends up, regardless of how long a given article's copy runs.
+════════════════════════════════════════ */
+.hero {
+  position: relative;
+  background: #DAF3FF;
+  overflow: hidden;
+}
+.hero-container {
+  width: calc(100% - 2 * var(--gutter));
+  max-width: 1224px;
+  margin-inline: auto;
+  min-height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 180px;
+  padding-bottom: 32px;
+  padding-right: calc(min(628px, 44vw) - var(--gutter) + 24px);
+}
+.hero-left {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hero-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.hero-back img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex-shrink: 0;
+}
+.hero-back span {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--blue-main);
+}
+.hero-back span { transition: text-decoration-color 0.15s ease; }
+.hero-back:hover span { text-decoration: underline; text-decoration-color: #019DE7; text-underline-offset: 2px; text-decoration-thickness: 1.6px; }
+.hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 60px;
+  letter-spacing: -0.05em;
+  color: var(--text-main);
+}
+.hero-desc {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-secondary);
+}
+.hero-meta {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 60px;
+}
+.hero-divider {
+  height: 1px;
+  background: #CDD5E0;
+  width: 100%;
+}
+.hero-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1D4783;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.hero-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hero-author-label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-tertiary);
+}
+.hero-author-name {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-main);
+}
+.hero-image {
+  position: absolute;
+  right: 0;
+  top: var(--nav-h, 98px);
+  bottom: 0;
+  width: min(628px, 44vw);
+  overflow: hidden;
+  z-index: 0;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ────────────── HERO — TABLET (≤900px, Figma 5952:12172) ─────────────
+   Same auto-expand mechanism as desktop: no fixed section height, the
+   image fills via top+bottom so it grows/shrinks with the section, and
+   hero-meta sits a fixed 32px below whatever height the wrapped text
+   ends up needing. ────────────── */
+@media (max-width: 900px) {
+  .hero { --gutter: 32px; }
+  .hero-image {
+    top: 80px; right: 0; bottom: 0; left: auto;
+    width: calc(50% - 8px); max-width: 442px;
+  }
+  .hero-container {
+    padding-top: 112px; padding-bottom: 32px;
+    padding-right: calc(50% + 8px);
+  }
+  .hero-left { max-width: 410px; gap: 12px; }
+  .hero-back span { text-decoration: underline; text-decoration-color: #019DE7; }
+  .hero-title { font-size: 40px; font-weight: 700; line-height: 48px; letter-spacing: -2px; }
+  .hero-desc { font-size: 14px; line-height: 18px; }
+  .hero-meta { max-width: 410px; margin-top: 32px; gap: 12px; }
+}
+
+/* ────────────── HERO — MOBILE (≤500px, Figma 5952:13056) ────────────── */
+@media (max-width: 500px) {
+  .hero { --gutter: 24px; }
+  .hero-image { display: none; }
+  .hero-container { padding-top: 112px; padding-bottom: 32px; padding-right: 0; }
+  .hero-left { max-width: none; }
+  .hero-meta { max-width: none; margin-top: 32px; gap: 12px; }
+  .hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+  .hero-desc { font-size: 16px; line-height: 20px; letter-spacing: -0.8px; }
+}
+
+/* ════════════════════════════════════════
+   MORE FROM MARCO
+════════════════════════════════════════ */
+.more-section { background: #DAF3FF; padding: 80px 0; overflow-x: clip; }
+.more-header { display: flex; flex-direction: column; gap: 16px; }
+.more-eyebrow { display: flex; align-items: center; gap: 8px; }
+.more-eyebrow-line { width: 16px; height: 2px; background: var(--text-main); flex-shrink: 0; }
+.more-eyebrow-label { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
+.more-title-row { display: flex; align-items: center; justify-content: space-between; }
+.more-title { font-family: var(--font); font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; color: var(--text-main); margin: 0; }
+.more-chevrons { display: flex; gap: 24px; align-items: center; flex-shrink: 0; }
+.more-chevron-btn { width: 50px; height: 50px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; transition: filter 0.2s ease; }
+.more-chevron-btn:not(:disabled):hover { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25)); }
+.more-chevron-btn:disabled { cursor: default; }
+.more-chevron-btn img { width: 50px; height: 50px; display: block; }
+.more-viewport { width: 100%; padding: 20px 0; margin-top: calc(60px - 20px); margin-bottom: -20px; }
+.more-track { display: flex; gap: 40px; padding-left: max(var(--gutter), calc((100% - 1224px) / 2)); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); touch-action: pan-y; cursor: grab; user-select: none; }
+/* Anchors and images are natively draggable in browsers by default —
+   that steals the pointer event stream into a native HTML5 drag
+   (firing pointercancel) the moment the finger/mouse moves, before
+   our own drag logic ever gets a chance to run. Disable it. */
+.more-track img, .more-track a { -webkit-user-drag: none; user-drag: none; }
+.more-track img { pointer-events: none; }
+.more-card { flex: 0 0 380px; width: 380px; display: flex; flex-direction: column; border-radius: 12px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px 0 rgba(0,0,0,0.10); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; text-decoration: none; position: relative; }
+.more-card-overlay { position: absolute; inset: 0; z-index: 0; cursor: pointer; }
+.more-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.14), 0 8px 12px rgba(0,0,0,0.12); }
+.more-card-thumb { height: 320px; flex-shrink: 0; overflow: hidden; }
+.more-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.more-card-body { background: #FFFFFF; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; height: 148px; flex-shrink: 0; box-sizing: border-box; }
+.more-card-meta { display: flex; flex-direction: column; gap: 8px; }
+.more-card-read-time { font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: #8F98B5; }
+.more-card-title { font-family: var(--font); font-size: 16px; font-weight: 700; line-height: 20px; color: var(--text-main); margin: 0; }
+.more-card-cta { display: inline-flex; align-items: center; gap: 4px; height: 32px; padding: 4px 16px; background: #fff; border: 1px solid #003751; border-radius: 50px; font-family: var(--font); font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-main); text-decoration: none; white-space: nowrap; flex-shrink: 0; align-self: flex-start; position: relative; z-index: 1; }
+.more-scroll-track { height: 6px; background: #CDD5E0; border-radius: 10px; margin-top: 60px; position: relative; overflow: hidden; }
+.more-scroll-thumb { height: 6px; background: #3D4148; border-radius: 10px; position: absolute; left: 0; top: 0; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* ────────────── MORE FROM MARCO — TABLET (≤900px, Figma 5952:12933) ──────────────
+   Card sizing/style matches the main memo listing page's ≤800px card
+   tier exactly: 160px thumb, 12px padding, 100px min-height body,
+   2-line clamped title, "Read more" hidden. ────────────── */
+@media (max-width: 900px) {
+  .more-section { --gutter: 32px; padding: 32px 0; }
+  .more-header { gap: 16px; }
+  .more-eyebrow-line { width: 12px; }
+  .more-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+  .more-chevrons { gap: 16px; }
+  /* Higher specificity needed: shared.css loads after this stylesheet
+     (linked later in <head>) and defines an unconditional 50px rule for
+     this same class, which otherwise wins the cascade tie regardless of
+     this media query matching. Note shared.css also draws the chevron
+     glyph via a ::before with its own separate ≤800px breakpoint for
+     background-size (50px → 32px) — different threshold than this
+     ≤900px one, so between 800–900px the button box was 32px but the
+     icon graphic was still sized for 50px. Overriding it here too so
+     the icon matches the button across the whole tier. */
+  .more-section .more-chevron-btn { width: 32px; height: 32px; }
+  .more-section .more-chevron-btn img { width: 32px; height: 32px; }
+  .more-section .more-chevron-btn::before { background-size: 32px 32px; }
+  .more-viewport { padding: 16px 0; margin-top: 16px; margin-bottom: -16px; }
+  .more-track { gap: 16px; padding-left: var(--gutter); }
+  .more-card { flex: 0 0 calc((736px - 2 * 16px) / 3); width: calc((736px - 2 * 16px) / 3); }
+  .more-card-thumb { height: 160px; }
+  .more-card-body { padding: 12px; height: auto; min-height: 100px; }
+  .more-card-title {
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .more-card-cta { display: none; }
+  .more-scroll-track { margin-top: 32px; }
+}
+
+/* ────────────── MORE FROM MARCO — MOBILE (≤500px, Figma 5952:13765) ──────────────
+   Card sizing is unchanged from the ≤900px tablet tier above — same
+   234.667px cards, same thumb/body/title styling, inherited as-is. Only
+   the header re-stacks: title moves to its own row, and the chevrons
+   drop to a second row below it, right-aligned. ────────────── */
+@media (max-width: 500px) {
+  .more-section { --gutter: 24px; }
+  .more-title-row { flex-direction: column; align-items: stretch; gap: 32px; }
+  .more-chevrons { width: 100%; justify-content: flex-end; gap: 12px; }
+}
+
+/* ════════════════════════════════════════
+   ARTICLE LAYOUT — TOC row, content wrapper, CTA buttons
+   Responsive layout only (widths, sticky positions, the TOC's collapse-
+   to-bar mechanism, the CTA rail↔row switch). The article content's own
+   typography (fonts, bullet points, tables, footnotes) is NOT part of
+   this file — it stays inline per page since it varies per article.
+════════════════════════════════════════ */
+.article-section { background: #fff; padding: 80px 0 120px; }
+.article-layout { display: flex; align-items: flex-start; }
+
+/* TOC */
+.article-toc { width: 240px; flex-shrink: 0; margin-right: 40px; position: sticky; top: 130px; }
+.toc-card { background: #fff; border-radius: 8px; padding: 16px 16px 32px 16px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.10); display: flex; flex-direction: column; gap: 40px; }
+.toc-title { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
+.toc-list { display: flex; flex-direction: column; gap: 24px; }
+.toc-item { display: flex; gap: 8px; align-items: flex-start; text-decoration: none; }
+.toc-dot-wrap { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.toc-dot { width: 8px; height: 8px; border-radius: 50%; background: #9199A6; flex-shrink: 0; transition: background 0.2s ease; }
+.toc-dot.toc-active { background: var(--blue-main); }
+.toc-text { flex: 1; font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); transition: color 0.2s ease, font-size 0.2s ease, font-weight 0.2s ease; }
+.toc-text.toc-active { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
+.toc-divider-line { height: 1px; background: #CDD5E0; width: 100%; }
+
+/* Content wrapper — layout only, no typography */
+.article-content { flex: 1; min-width: 0; max-width: 864px; margin-right: 40px; display: flex; flex-direction: column; gap: 40px; }
+
+/* CTA buttons */
+.article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 130px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
+.cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; }
+.cta-btn .cta-ring { transition: fill 0.2s ease, stroke 0.2s ease; }
+.cta-btn .cta-fill { transition: fill 0.2s ease; }
+.cta-btn .cta-stroke { transition: stroke 0.2s ease, stroke-width 0.2s ease; }
+.cta-btn:hover .cta-ring { fill: #3D4148; stroke: #3D4148; }
+.cta-btn:hover .cta-fill { fill: #fff; }
+.cta-btn:hover .cta-stroke { stroke: #fff; stroke-width: 1.5px; }
+.cta-btn.cta-copied .cta-ring { fill: var(--blue-main); stroke: var(--blue-main); }
+.cta-btn.cta-copied .cta-stroke { stroke: #fff; }
+.cta-back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+.cta-back-to-top.visible { opacity: 1; pointer-events: auto; }
+
+/* ────────────── ARTICLE LAYOUT — TABLET (≤900px, Figma 5952:12195) ──────────────
+   TOC row and CTA row both ported from country-guide.css's ≤900 rules:
+   TOC collapses into a full-bleed sticky bar with a click-to-expand
+   overlay dropdown; CTA icons drop from the right-side sticky rail into
+   a horizontal row centered below the content, with the same 64px
+   (content→CTA) / 60px (CTA→section bottom) spacing. ────────────── */
+@media (max-width: 900px) {
+  .article-section { --gutter: 32px; padding: 0 0 60px; }
+
+  .article-layout { flex-wrap: wrap; gap: 32px 40px; }
+
+  /* TOC: full-bleed collapsible top bar */
+  .article-toc {
+    flex: 0 0 auto;
+    width: calc(100% + 2 * var(--gutter));
+    margin-inline: calc(-1 * var(--gutter));
+    margin-right: 0;
+    position: sticky;
+    top: var(--nav-h, 80px);
+    z-index: 15;
+    overflow: visible;
+  }
+  .toc-card {
+    display: flex; flex-direction: column; width: 100%;
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid #CDD5E0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 12px 32px;
+    gap: 0;
+    position: relative;
+    overflow: visible;
+  }
+  .toc-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 16px; font-weight: 500; line-height: 20px;
+    color: #162351;
+    cursor: pointer;
+    margin: 0;
+  }
+  .toc-title::after {
+    content: '';
+    display: block;
+    width: 24px; height: 24px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23162351' stroke-width='2' stroke-linecap='round'><line x1='4' y1='7' x2='20' y2='7'/><line x1='4' y1='12' x2='20' y2='12'/><line x1='4' y1='17' x2='20' y2='17'/></svg>") no-repeat center / contain;
+    flex-shrink: 0;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+  }
+  .article-toc.is-expanded .toc-title::after { transform: rotate(90deg); }
+
+  /* Collapsed → expanded overlay animation */
+  .toc-list {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 32px;
+    background: #fff;
+    border-bottom: 1px solid #CDD5E0;
+    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+  }
+  .article-toc.is-expanded .toc-list {
+    max-height: 600px;
+    opacity: 1;
+    padding: 16px 32px;
+  }
+  .article-toc.is-expanded .toc-item { gap: 8px; }
+  .article-toc.is-expanded .toc-text { font-size: 12px; font-weight: 400; line-height: 16px; color: #8F98B5; }
+  .article-toc.is-expanded .toc-text.toc-active { font-size: 14px; font-weight: 500; line-height: 18px; color: #162351; }
+
+  /* Dim backdrop over the article-section only (hero stays untouched) */
+  .article-section { position: relative; }
+  .article-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: -1;
+  }
+  .article-section:has(.article-toc.is-expanded)::before {
+    opacity: 1;
+    z-index: 14; /* below sticky TOC (z-index 15), above content */
+  }
+
+  /* Content: force it onto its own full-width row (flex-basis:100%
+     pushes the CTA icons onto a third row below), so it fills the
+     gutter-to-gutter width with equal left/right padding. */
+  .article-content { flex: 1 0 100%; max-width: none; margin-right: 0; }
+
+  /* CTA row: becomes a horizontal row centered below the content
+     instead of a sticky right-side rail. Gap above = row-gap(32px,
+     from .article-layout) + margin-top(32px) = 64px; gap below = the
+     section's own 60px bottom padding. */
+  .article-cta {
+    flex: 1 0 100%;
+    position: static;
+    flex-direction: row;
+    width: 100%;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+  }
+}
+
+/* ────────────── ARTICLE LAYOUT — MOBILE (≤500px, Figma 5952:13078) ──────────────
+   Almost everything here is unchanged from the ≤900px tier above — the
+   TOC bar, its expand/collapse behavior, and the CTA row's layout/
+   spacing all match exactly. The only two real differences: the gutter
+   narrows to 24px, and the CTA icons shrink from 40px to 32px — which
+   also means their inner <svg> (hardcoded width="40" height="40" in the
+   markup) needs to be told to scale down with its button, or it would
+   just overflow the smaller circle. ────────────── */
+@media (max-width: 500px) {
+  .article-section { --gutter: 24px; }
+  .cta-btn { width: 32px; height: 32px; }
+  .cta-btn svg { width: 100%; height: 100%; display: block; }
+}

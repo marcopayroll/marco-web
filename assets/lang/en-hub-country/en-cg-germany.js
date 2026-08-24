@@ -1,49 +1,386 @@
+/* Country Guide - Germany page content (hr-knowledge-hub-country-guide-germany.html) */
+/* EN is the source language; reference only — never loaded at runtime. */
 window.MARCO_LANG_EN_CG_GERMANY = {
-  'cg.germany.kn1.label': 'Minimum Wage 2026',
-  'cg.germany.kn1.value': '€13.90 / hr',
-  'cg.germany.kn1.note': 'Approx. €2,405 / Month (Pre-tax)',
-  'cg.germany.kn2.label': 'All-Industry Median Salary',
-  'cg.germany.kn2.value': '€3,817 / Month',
-  'cg.germany.kn2.note': '€45,800 / Year',
-  'cg.germany.kn3.label': 'Inflation Rate',
-  'cg.germany.kn3.value': '2.2%',
-  'cg.germany.kn3.note': '2025 Year-end Data',
+  'cg.germany.kn1.label': `Minimum Wage 2026`,
 
-  'cg.germany.s1.h': 'Cost of Living',
-  'cg.germany.s1.title': 'City Consumption Level Berlin / München',
-  'cg.germany.s1.sub': 'The following is publicly verified data by Marco',
-  'cg.germany.s1.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:55%"><col style="width:45%"></colgroup><thead><tr><th>Consumption Item</th><th>Reference Price (EUR)</th></tr></thead><tbody><tr><td>Fast Food Meal Set</td><td>Approx. 10 &ndash; 12</td></tr><tr><td>Public Transit Monthly Pass (Berlin)</td><td>Approx. 86</td></tr><tr><td>City Center Two-Bedroom Rent / Month</td><td>Approx. 2,000 &ndash; 3,000 (München higher)</td></tr><tr><td>Suburban Two-Bedroom Rent / Month</td><td>Approx. 1,200 &ndash; 1,800</td></tr><tr><td>Single Person Minimum Monthly Expenses</td><td>Approx. 1,180</td></tr></tbody></table></div>',
+  'cg.germany.kn1.value': `€13.90`,
 
-  'cg.germany.s2.h': 'Salary Benchmark',
-  'cg.germany.s2.b1': '<p class="au-section-title">Minimum Wage</p><ul class="au-bullet-list"><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Statutory minimum wage: €13.90 / hour (Effective January 1, 2026)</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Equivalent to full-time monthly salary (40 hours/week): Approx. €2,405 / Month (Pre-tax)</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>2027 planned further increase to €14.60 / hour</span></li></ul>',
-  'cg.germany.s2.b2': '<p class="au-table-title">Median Salary &mdash; HR / Finance / Admin</p><div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup><thead><tr><th>Job Level</th><th>Monthly Salary (EUR, Pre-tax)</th><th>Annual Salary Reference</th></tr></thead><tbody><tr><td>University Graduate</td><td>3,000 &ndash; 3,800</td><td>36,000 &ndash; 45,600</td></tr><tr><td>Mid-Level</td><td>4,000 &ndash; 5,000</td><td>48,000 &ndash; 60,000</td></tr><tr><td>Senior / Mid-Management</td><td>5,500 &ndash; 7,000</td><td>66,000 &ndash; 84,000</td></tr><tr><td>Expert / Senior Management</td><td>7,500 &ndash; 10,000+</td><td>90,000+</td></tr></tbody></table></div><p class="cg-table-note">Salary annual growth rate: Approx. 3 - 5% (2025 - 2026)</p>',
+  'cg.germany.kn1.unit': `/ hr`,
 
-  'cg.germany.s3.h': 'Statutory Benefits',
-  'cg.germany.s3.sub': '2026 social insurance contribution rates and caps (Employer and employee each pay half)',
-  'cg.germany.s3.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:26%"><col style="width:14%"><col style="width:14%"><col style="width:14%"><col style="width:32%"></colgroup><thead><tr><th>Insurance Type</th><th>Total</th><th>Employer</th><th>Employee</th><th>Contribution Cap (Year)</th></tr></thead><tbody><tr><td>Pension Insurance</td><td>18.6%</td><td>9.3%</td><td>9.3%</td><td>€101,400</td></tr><tr><td>Health Insurance (Basic)</td><td>14.6%</td><td>7.3%</td><td>7.3%</td><td>€69,750</td></tr><tr><td>Health Insurance Supplementary (Average)</td><td>2.9%</td><td>1.45%</td><td>1.45%</td><td>€69,750</td></tr><tr><td>Long-term Care Insurance *</td><td>3.6%</td><td>1.8%</td><td>1.8%</td><td>€69,750</td></tr><tr><td>Unemployment Insurance</td><td>2.6%</td><td>1.3%</td><td>1.3%</td><td>€101,400</td></tr><tr><td>Work Injury Insurance</td><td>Approx. 1.2-3%</td><td>Full amount</td><td>&ndash;</td><td>No cap</td></tr><tr><td>Insolvency Protection Fee</td><td>0.15%</td><td>0.15%</td><td>&ndash;</td><td>€101,400</td></tr></tbody></table></div><p class="cg-table-note">* Childless employees&rsquo; contribution rate is 2.4%; employees with children reduced by number of children, minimum 0.8%</p>',
-  'cg.germany.s3.b2': '<p class="au-table-title">Employer Social Insurance Total Contribution Rate</p><p class="au-section-sub">With children employees: Approx. 20 - 21%, Childless employees: Approx. 20.5 - 21.5%</p>',
-  'cg.germany.s3.b3': '<p class="au-table-title">Common Additional Benefits</p><ul class="au-bullet-list"><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Christmas Bonus (Weihnachtsgeld): Approx. one month&rsquo;s salary, by contract / collective agreement</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Vacation Allowance (Urlaubsgeld): Some industry collective agreements stipulate additional vacation pay</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Meal Allowance: Approx. €3.10 / day (Tax-exempt within limit)</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Transport Allowance: Public transit subsidy or €0.30 / km private car commuting allowance</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Home Office Allowance: Maximum €6 / day, capped at 210 days / year (Maximum €1,260 / year)</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Supplementary Insurance: Dental, vision, or private supplementary health insurance</span></li></ul>',
+  'cg.germany.kn1.note': `Approx. €2,405 / Month (Pre-tax)`,
 
-  'cg.germany.s4.h': 'Personal Income Tax',
-  'cg.germany.s4.b1': '<ul class="au-bullet-list"><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>German tax residents must pay income tax on worldwide income</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Tax-free Basic Allowance (Grundfreibetrag): €12,348 (2026, Single); married joint filing doubled</span></li></ul>',
-  'cg.germany.s4.b2': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:35%"><col style="width:25%"><col style="width:40%"></colgroup><thead><tr><th>Taxable Income (EUR)</th><th>Marginal Tax Rate</th><th>Description</th></tr></thead><tbody><tr><td>0 - 12,348</td><td>0%</td><td>Tax-free zone</td></tr><tr><td>12,349 - 68,429</td><td>14 - 42%</td><td>Progressive zone</td></tr><tr><td>68,430 - 277,825</td><td>42%</td><td>High income zone</td></tr><tr><td>277,826+</td><td>45%</td><td>Wealth tax Reichensteuer</td></tr></tbody></table></div>',
-  'cg.germany.s4.b3': '<ul class="au-bullet-list"><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Solidarity Surcharge (Solidaritätszuschlag): Vast majority of taxpayers already exempt, still applicable to high earners</span></li><li class="au-bullet-item"><div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div><span>Church Tax (Kirchensteuer): Church members pay additional 8 - 9% (Varies by state)</span></li></ul>',
+  'cg.germany.kn2.label': `All-Industry Median Salary`,
 
-  'cg.germany.s5.h': 'Working Hours',
-  'cg.germany.s5.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:25%"><col style="width:40%"><col style="width:35%"></colgroup><thead><tr><th>Item</th><th>Statutory Regulation</th><th>Market Practice</th></tr></thead><tbody><tr><td>Daily Working Hours</td><td>&le; 8 hours (Can extend to 10 hours, 6-month average &le; 8h)</td><td>8 hours</td></tr><tr><td>Weekly Working Hours</td><td>&le; 48 hours</td><td>38 - 40 hours (5-day week)</td></tr><tr><td>Mandatory Rest</td><td>&ge; 11 consecutive hours rest</td><td>&ndash;</td></tr><tr><td>Sunday Work</td><td>Prohibited in principle, special industries exempt</td><td>Saturday some industries may work</td></tr></tbody></table></div>',
-  'cg.germany.s5.b2': '<p class="au-table-title">Overtime Pay</p><div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:35%"><col style="width:65%"></colgroup><thead><tr><th>Time Period</th><th>Overtime Standard</th></tr></thead><tbody><tr><td>Workday Overtime</td><td>&ge; 1.25&times; (By collective agreement or contract)</td></tr><tr><td>Night / Weekend</td><td>&ge; 1.25 - 1.5&times; (Significant variation by collective agreement)</td></tr><tr><td>Public Holidays</td><td>&ge; 1.5 - 2.0&times; or compensatory rest</td></tr></tbody></table></div>',
+  'cg.germany.kn2.value': `€3,817`,
 
-  'cg.germany.s6.h': 'Employment Contract',
-  'cg.germany.s6.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:25%"><col style="width:30%"><col style="width:15%"><col style="width:30%"></colgroup><thead><tr><th>Contract Type</th><th>Signing Format</th><th>Currency</th><th>Probation Period</th></tr></thead><tbody><tr><td>Indefinite Term Contract</td><td>Written contract (E-signature available from 2025)</td><td>EUR</td><td>Usually 3-6 months (Maximum 6 months)</td></tr><tr><td>Fixed Term Contract</td><td>Written contract (Must be hand-signed)</td><td>EUR</td><td>Total duration &le; 2 years, renewable &le; 3 times</td></tr></tbody></table></div>',
-  'cg.germany.s6.b2': '<p class="au-table-title">Statutory Notice Period</p><div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:25%"><col style="width:40%"><col style="width:35%"></colgroup><thead><tr><th>Service Length</th><th>Employer Notice Period</th><th>Employee Voluntary Resignation</th></tr></thead><tbody><tr><td>During Probation</td><td>2 Weeks</td><td>2 Weeks</td></tr><tr><td>&lt; 2 Years</td><td>4 Weeks (End of month / 15th of month)</td><td>4 Weeks (End of month / 15th of month)</td></tr><tr><td>&ge; 2 Years</td><td>1 Month</td><td>&ndash;</td></tr><tr><td>&ge; 5 Years</td><td>2 Months</td><td>&ndash;</td></tr><tr><td>&ge; 8 Years</td><td>3 Months</td><td>&ndash;</td></tr><tr><td>&ge; 10 Years</td><td>4 Months</td><td>&ndash;</td></tr><tr><td>&ge; 12 Years</td><td>5 Months</td><td>&ndash;</td></tr><tr><td>&ge; 15 Years</td><td>6 Months</td><td>&ndash;</td></tr><tr><td>&ge; 20 Years</td><td>7 Months (Maximum statutory notice period)</td><td>&ndash;</td></tr></tbody></table></div><p class="cg-table-note">* Economic layoffs must follow formal procedure; 100+ employee companies must report to employment agency; no statutory mandatory severance pay</p>',
+  'cg.germany.kn2.unit': `/ mo`,
 
-  'cg.germany.s7.h': 'Leave Entitlements',
-  'cg.germany.s7.b1': '<div class="au-table-wrap"><table class="au-table" style="table-layout:auto"><thead><tr><th style="width:20%">Leave Type</th><th style="width:50%">Regulation</th><th style="width:30%">Applicable Conditions</th></tr></thead><tbody><tr><td>Annual Leave</td><td>Statutory 20 working days</td><td>Service completing 6 months</td></tr><tr><td></td><td>Market practice 25-30 working days</td><td>Must be used before next year 3/31</td></tr><tr><td>Sick Leave</td><td>First 6 weeks: Employer full pay</td><td>Service completing 4 weeks</td></tr><tr><td></td><td>From week 7: Health insurance approx. 70% (Maximum 78 weeks)</td><td>Over 3 days requires doctor&rsquo;s certificate</td></tr><tr><td>Maternity Leave</td><td>Pre-birth 6 weeks + Post-birth 8 weeks = Total 14 weeks</td><td>Full pay</td></tr><tr><td></td><td>Multiple/Premature birth: Post-birth extended to 12 weeks</td><td>Legally protected, cannot be terminated</td></tr><tr><td>Parental Leave</td><td>Maximum 3 years per child</td><td>Both parents can apply</td></tr><tr><td></td><td>Parental Allowance: Pre-tax income 67%, capped at €1,800/month</td><td>Duration 12-14 months</td></tr><tr><td>Child Sick Leave</td><td>Maximum 15 days per parent per child per year</td><td>Children under 12</td></tr><tr><td></td><td>(Single parents doubled)</td><td>Health insurance covers approx. 70%</td></tr></tbody></table></div>',
+  'cg.germany.kn2.note': `€45,800 / Year`,
 
-  'cg.germany.s8.h': 'Public Holidays 2026',
-  'cg.germany.s8.sub': 'German public holidays are regulated by each state. The following 9 are nationally observed holidays; some states have additional regional holidays (Bavaria has the most at 13 days).',
-  'cg.germany.s8.b1': '<div class="au-table-wrap"><table class="au-table"><colgroup><col style="width:20%"><col style="width:55%"><col style="width:25%"></colgroup><thead><tr><th>Date</th><th>Holiday Name</th><th>Scope</th></tr></thead><tbody><tr><td>01/01</td><td>Neujahr (New Year)</td><td>National</td></tr><tr><td>04/03</td><td>Karfreitag (Good Friday)</td><td>National</td></tr><tr><td>04/06</td><td>Ostermontag (Easter Monday)</td><td>National</td></tr><tr><td>05/01</td><td>Tag der Arbeit (Labor Day)</td><td>National</td></tr><tr><td>05/14</td><td>Christi Himmelfahrt (Ascension Day)</td><td>National</td></tr><tr><td>05/25</td><td>Pfingstmontag (Whit Monday)</td><td>National</td></tr><tr><td>10/03</td><td>Tag der Deutschen Einheit (German Unity Day)</td><td>National</td></tr><tr><td>12/25</td><td>1. Weihnachtstag (Christmas Day One)</td><td>National</td></tr><tr><td>12/26</td><td>2. Weihnachtstag (Christmas Day Two)</td><td>National</td></tr></tbody></table></div><p class="cg-table-note">Bavaria additional holidays: Epiphany 01/06, Corpus Christi 06/04, Assumption 08/15, All Saints&rsquo; Day 11/01</p>',
+  'cg.germany.kn3.label': `Inflation Rate`,
 
-  'cg.germany.s9.h': 'Key Regulations',
-  'cg.germany.s9.b1': '<div class="cg-reg-item"><p class="cg-reg-title">Minimum Wage Record-Keeping Obligation</p><p class="cg-reg-body">Employers must record working hours of employees subject to minimum wage, and retain for at least 2 years.</p></div><div class="cg-reg-item"><p class="cg-reg-title">Equal Pay Act</p><p class="cg-reg-body">&bdquo;Entgelttransparenzgesetz&ldquo; grants employees the right to inquire about pay for equivalent positions (Applicable to &gt; 200 employee companies).</p></div><div class="cg-reg-item"><p class="cg-reg-title">Digital Reform</p><p class="cg-reg-body">&bdquo;Fourth Bureaucracy Reduction Act&ldquo; (2025): Indefinite term contracts may use e-signature; fixed term contracts still require hand signature.</p></div><div class="cg-reg-item"><p class="cg-reg-title">Mini-Job</p><p class="cg-reg-body">Monthly income &le; €556 marginal employment, social insurance fully borne by employer, suitable for part-time workers.</p></div><div class="cg-reg-item"><p class="cg-reg-title">Wage Payment</p><p class="cg-reg-body">Paid monthly, must be via bank transfer; must provide written payslip (Gehaltsabrechnung).</p></div>'
+  'cg.germany.kn3.value': `2.2%`,
+
+  'cg.germany.kn3.note': `2025 Year-end Data`,
+
+  'cg.germany.s1.h': `Cost of Living`,
+
+  'cg.germany.s1.title': `City Consumption Level Berlin / München`,
+
+  'cg.germany.s1.sub': `The following is publicly verified data by Marco`,
+
+  'cg.germany.s1.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:55%"><col style="width:45%"></colgroup>
+              <thead>
+                <tr><th>Consumption Item</th><th>Reference Price (EUR)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Fast Food Meal Set</td><td>Approx. 10 &ndash; 12</td></tr>
+                <tr><td>Public Transit Monthly Pass (Berlin)</td><td>Approx. 86</td></tr>
+                <tr><td>City Center Two-Bedroom Rent / Month</td><td>Approx. 2,000 &ndash; 3,000 (München higher)</td></tr>
+                <tr><td>Suburban Two-Bedroom Rent / Month</td><td>Approx. 1,200 &ndash; 1,800</td></tr>
+                <tr><td>Single Person Minimum Monthly Expenses</td><td>Approx. 1,180</td></tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.germany.s2.h': `Salary Benchmark`,
+
+  'cg.germany.s2.b1': `
+          <p class="au-section-title">Minimum Wage</p>
+          <ul class="au-bullet-list">
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Statutory minimum wage: €13.90 / hour (Effective January 1, 2026)</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Equivalent to full-time monthly salary (40 hours/week): Approx. €2,405 / Month (Pre-tax)</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>2027 planned further increase to €14.60 / hour</span>
+            </li>
+          </ul>
+`,
+
+  'cg.germany.s2.b2': `
+          <p class="au-table-title">Median Salary &mdash; HR / Finance / Admin</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:30%"><col style="width:35%"><col style="width:35%"></colgroup>
+              <thead>
+                <tr><th>Job Level</th><th>Monthly Salary (EUR, Pre-tax)</th><th>Annual Salary Reference</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>University Graduate</td><td>3,000 &ndash; 3,800</td><td>36,000 &ndash; 45,600</td></tr>
+                <tr><td>Mid-Level</td><td>4,000 &ndash; 5,000</td><td>48,000 &ndash; 60,000</td></tr>
+                <tr><td>Senior / Mid-Management</td><td>5,500 &ndash; 7,000</td><td>66,000 &ndash; 84,000</td></tr>
+                <tr><td>Expert / Senior Management</td><td>7,500 &ndash; 10,000+</td><td>90,000+</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cg-table-note">Salary annual growth rate: Approx. 3 - 5% (2025 - 2026)</p>
+`,
+
+  'cg.germany.s3.h': `Statutory Benefits`,
+
+  'cg.germany.s3.sub': `2026 social insurance contribution rates and caps (Employer and employee each pay half)`,
+
+  'cg.germany.s3.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:26%"><col style="width:14%"><col style="width:14%"><col style="width:14%"><col style="width:32%"></colgroup>
+              <thead>
+                <tr><th>Insurance Type</th><th>Total</th><th>Employer</th><th>Employee</th><th>Contribution Cap (Year)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Pension Insurance</td><td>18.6%</td><td>9.3%</td><td>9.3%</td><td>€101,400</td></tr>
+                <tr><td>Health Insurance (Basic)</td><td>14.6%</td><td>7.3%</td><td>7.3%</td><td>€69,750</td></tr>
+                <tr><td>Health Insurance Supplementary (Average)</td><td>2.9%</td><td>1.45%</td><td>1.45%</td><td>€69,750</td></tr>
+                <tr><td>Long-term Care Insurance *</td><td>3.6%</td><td>1.8%</td><td>1.8%</td><td>€69,750</td></tr>
+                <tr><td>Unemployment Insurance</td><td>2.6%</td><td>1.3%</td><td>1.3%</td><td>€101,400</td></tr>
+                <tr><td>Work Injury Insurance</td><td>Approx. 1.2-3%</td><td>Full amount</td><td>&ndash;</td><td>No cap</td></tr>
+                <tr><td>Insolvency Protection Fee</td><td>0.15%</td><td>0.15%</td><td>&ndash;</td><td>€101,400</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cg-table-note">* Childless employees&rsquo; contribution rate is 2.4%; employees with children reduced by number of children, minimum 0.8%</p>
+`,
+
+  'cg.germany.s3.b2': `
+          <p class="au-table-title">Employer Social Insurance Total Contribution Rate</p>
+          <p class="au-section-sub">With children employees: Approx. 20 - 21%, Childless employees: Approx. 20.5 - 21.5%</p>
+`,
+
+  'cg.germany.s3.b3': `
+          <p class="au-table-title">Common Additional Benefits</p>
+          <ul class="au-bullet-list">
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Christmas Bonus (Weihnachtsgeld): Approx. one month&rsquo;s salary, by contract / collective agreement</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Vacation Allowance (Urlaubsgeld): Some industry collective agreements stipulate additional vacation pay</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Meal Allowance: Approx. €3.10 / day (Tax-exempt within limit)</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Transport Allowance: Public transit subsidy or €0.30 / km private car commuting allowance</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Home Office Allowance: Maximum €6 / day, capped at 210 days / year (Maximum €1,260 / year)</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Supplementary Insurance: Dental, vision, or private supplementary health insurance</span>
+            </li>
+          </ul>
+`,
+
+  'cg.germany.s4.h': `Personal Income Tax`,
+
+  'cg.germany.s4.b1': `
+          <ul class="au-bullet-list">
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>German tax residents must pay income tax on worldwide income</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Tax-free Basic Allowance (Grundfreibetrag): €12,348 (2026, Single); married joint filing doubled</span>
+            </li>
+          </ul>
+`,
+
+  'cg.germany.s4.b2': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:25%"><col style="width:40%"></colgroup>
+              <thead>
+                <tr><th>Taxable Income (EUR)</th><th>Marginal Tax Rate</th><th>Description</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>0 - 12,348</td><td>0%</td><td>Tax-free zone</td></tr>
+                <tr><td>12,349 - 68,429</td><td>14 - 42%</td><td>Progressive zone</td></tr>
+                <tr><td>68,430 - 277,825</td><td>42%</td><td>High income zone</td></tr>
+                <tr><td>277,826+</td><td>45%</td><td>Wealth tax Reichensteuer</td></tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.germany.s4.b3': `
+          <ul class="au-bullet-list">
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Solidarity Surcharge (Solidaritätszuschlag): Vast majority of taxpayers already exempt, still applicable to high earners</span>
+            </li>
+            <li class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Church Tax (Kirchensteuer): Church members pay additional 8 - 9% (Varies by state)</span>
+            </li>
+          </ul>
+`,
+
+  'cg.germany.s5.h': `Working Hours`,
+
+  'cg.germany.s5.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:40%"><col style="width:35%"></colgroup>
+              <thead>
+                <tr><th>Item</th><th>Statutory Regulation</th><th>Market Practice</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Daily Working Hours</td><td>&le; 8 hours (Can extend to 10 hours, 6-month average &le; 8h)</td><td>8 hours</td></tr>
+                <tr><td>Weekly Working Hours</td><td>&le; 48 hours</td><td>38 - 40 hours (5-day week)</td></tr>
+                <tr><td>Mandatory Rest</td><td>&ge; 11 consecutive hours rest</td><td>&ndash;</td></tr>
+                <tr><td>Sunday Work</td><td>Prohibited in principle, special industries exempt</td><td>Saturday some industries may work</td></tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.germany.s5.b2': `
+          <p class="au-table-title">Overtime Pay</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:35%"><col style="width:65%"></colgroup>
+              <thead>
+                <tr><th>Time Period</th><th>Overtime Standard</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Workday Overtime</td><td>&ge; 1.25&times; (By collective agreement or contract)</td></tr>
+                <tr><td>Night / Weekend</td><td>&ge; 1.25 - 1.5&times; (Significant variation by collective agreement)</td></tr>
+                <tr><td>Public Holidays</td><td>&ge; 1.5 - 2.0&times; or compensatory rest</td></tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.germany.s6.h': `Employment Contract`,
+
+  'cg.germany.s6.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:30%"><col style="width:15%"><col style="width:30%"></colgroup>
+              <thead>
+                <tr><th>Contract Type</th><th>Signing Format</th><th>Currency</th><th>Probation Period</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Indefinite Term Contract</td><td>Written contract (E-signature available from 2025)</td><td>EUR</td><td>Usually 3-6 months (Maximum 6 months)</td></tr>
+                <tr><td>Fixed Term Contract</td><td>Written contract (Must be hand-signed)</td><td>EUR</td><td>Total duration &le; 2 years, renewable &le; 3 times</td></tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.germany.s6.b2': `
+          <p class="au-table-title">Statutory Notice Period</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:40%"><col style="width:35%"></colgroup>
+              <thead>
+                <tr><th>Service Length</th><th>Employer Notice Period</th><th>Employee Voluntary Resignation</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>During Probation</td><td>2 Weeks</td><td>2 Weeks</td></tr>
+                <tr><td>&lt; 2 Years</td><td>4 Weeks (End of month / 15th of month)</td><td>4 Weeks (End of month / 15th of month)</td></tr>
+                <tr><td>&ge; 2 Years</td><td>1 Month</td><td>&ndash;</td></tr>
+                <tr><td>&ge; 5 Years</td><td>2 Months</td><td>&ndash;</td></tr>
+                <tr><td>&ge; 8 Years</td><td>3 Months</td><td>&ndash;</td></tr>
+                <tr><td>&ge; 10 Years</td><td>4 Months</td><td>&ndash;</td></tr>
+                <tr><td>&ge; 12 Years</td><td>5 Months</td><td>&ndash;</td></tr>
+                <tr><td>&ge; 15 Years</td><td>6 Months</td><td>&ndash;</td></tr>
+                <tr><td>&ge; 20 Years</td><td>7 Months (Maximum statutory notice period)</td><td>&ndash;</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cg-table-note">* Economic layoffs must follow formal procedure; 100+ employee companies must report to employment agency; no statutory mandatory severance pay</p>
+`,
+
+  'cg.germany.s7.h': `Leave Entitlements`,
+
+  'cg.germany.s7.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table" style="table-layout:auto">
+              <thead>
+                <tr><th style="width:20%">Leave Type</th><th style="width:50%">Regulation</th><th style="width:30%">Applicable Conditions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Annual Leave</td>
+                  <td>Statutory 20 working days</td>
+                  <td>Service completing 6 months</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Market practice 25-30 working days</td>
+                  <td>Must be used before next year 3/31</td>
+                </tr>
+                <tr>
+                  <td>Sick Leave</td>
+                  <td>First 6 weeks: Employer full pay</td>
+                  <td>Service completing 4 weeks</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>From week 7: Health insurance approx. 70% (Maximum 78 weeks)</td>
+                  <td>Over 3 days requires doctor&rsquo;s certificate</td>
+                </tr>
+                <tr>
+                  <td>Maternity Leave</td>
+                  <td>Pre-birth 6 weeks + Post-birth 8 weeks = Total 14 weeks</td>
+                  <td>Full pay</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Multiple/Premature birth: Post-birth extended to 12 weeks</td>
+                  <td>Legally protected, cannot be terminated</td>
+                </tr>
+                <tr>
+                  <td>Parental Leave</td>
+                  <td>Maximum 3 years per child</td>
+                  <td>Both parents can apply</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Parental Allowance: Pre-tax income 67%, capped at €1,800/month</td>
+                  <td>Duration 12-14 months</td>
+                </tr>
+                <tr>
+                  <td>Child Sick Leave</td>
+                  <td>Maximum 15 days per parent per child per year</td>
+                  <td>Children under 12</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(Single parents doubled)</td>
+                  <td>Health insurance covers approx. 70%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+`,
+
+  'cg.germany.s8.h': `Public Holidays 2026`,
+
+  'cg.germany.s8.sub': `German public holidays are regulated by each state. The following 9 are nationally observed holidays; some states have additional regional holidays (Bavaria has the most at 13 days).`,
+
+  'cg.germany.s8.b1': `
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:20%"><col style="width:55%"><col style="width:25%"></colgroup>
+              <thead>
+                <tr><th>Date</th><th>Holiday Name</th><th>Scope</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>01/01</td><td>Neujahr (New Year)</td><td>National</td></tr>
+                <tr><td>04/03</td><td>Karfreitag (Good Friday)</td><td>National</td></tr>
+                <tr><td>04/06</td><td>Ostermontag (Easter Monday)</td><td>National</td></tr>
+                <tr><td>05/01</td><td>Tag der Arbeit (Labor Day)</td><td>National</td></tr>
+                <tr><td>05/14</td><td>Christi Himmelfahrt (Ascension Day)</td><td>National</td></tr>
+                <tr><td>05/25</td><td>Pfingstmontag (Whit Monday)</td><td>National</td></tr>
+                <tr><td>10/03</td><td>Tag der Deutschen Einheit (German Unity Day)</td><td>National</td></tr>
+                <tr><td>12/25</td><td>1. Weihnachtstag (Christmas Day One)</td><td>National</td></tr>
+                <tr><td>12/26</td><td>2. Weihnachtstag (Christmas Day Two)</td><td>National</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="cg-table-note">Bavaria additional holidays: Epiphany 01/06, Corpus Christi 06/04, Assumption 08/15, All Saints&rsquo; Day 11/01</p>
+`,
+
+  'cg.germany.s9.h': `Key Regulations`,
+
+  'cg.germany.s9.b1': `
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">Minimum Wage Record-Keeping Obligation</p>
+            <p class="cg-reg-body">Employers must record working hours of employees subject to minimum wage, and retain for at least 2 years.</p>
+          </div>
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">Equal Pay Act</p>
+            <p class="cg-reg-body">&bdquo;Entgelttransparenzgesetz&ldquo; grants employees the right to inquire about pay for equivalent positions (Applicable to &gt; 200 employee companies).</p>
+          </div>
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">Digital Reform</p>
+            <p class="cg-reg-body">&bdquo;Fourth Bureaucracy Reduction Act&ldquo; (2025): Indefinite term contracts may use e-signature; fixed term contracts still require hand signature.</p>
+          </div>
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">Mini-Job</p>
+            <p class="cg-reg-body">Monthly income &le; €556 marginal employment, social insurance fully borne by employer, suitable for part-time workers.</p>
+          </div>
+          <div class="cg-reg-item">
+            <p class="cg-reg-title">Wage Payment</p>
+            <p class="cg-reg-body">Paid monthly, must be via bank transfer; must provide written payslip (Gehaltsabrechnung).</p>
+          </div>
+`,
 };
