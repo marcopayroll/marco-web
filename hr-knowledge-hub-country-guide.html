@@ -1012,7 +1012,12 @@
     return (p && p[key] !== undefined && p[key] !== '') ? p[key] : fallback;
   }
   function countrySlug(name) {
-    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    // Strip accents first (e.g. accented "o" -> plain "o") so the slug
+    // matches the plain-ASCII keys used in the lang packs
+    // (cg.country.cote-d-ivoire) instead of collapsing the accented
+    // character into a dash and producing the wrong key.
+    var ascii = name.normalize('NFD').replace(/[̀-ͯ]/g, '');
+    return ascii.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   }
 
   function buildCard(c) {

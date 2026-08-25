@@ -11,7 +11,7 @@ window.MARCO_LANG_EN_CG_CAMBODIA = {
 
   'cg.cambodia.kn2.label': `Employer Additional Cost`,
 
-  'cg.cambodia.kn2.value': `~5 &ndash; 7%`,
+  'cg.cambodia.kn2.value': `~5 - 7%`,
 
   'cg.cambodia.kn2.note': `NSSF 5.3% + Quarterly Bonus + 13 Salary`,
 

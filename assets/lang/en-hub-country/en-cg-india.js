@@ -11,7 +11,7 @@ window.MARCO_LANG_EN_CG_INDIA = {
 
   'cg.india.kn2.label': `Employer Additional Cost`,
 
-  'cg.india.kn2.value': `~18 &ndash; 22%`,
+  'cg.india.kn2.value': `~18 - 22%`,
 
   'cg.india.kn2.note': `EPF 12% + ESI 3.25% + Gratuity 4.81%`,
 
