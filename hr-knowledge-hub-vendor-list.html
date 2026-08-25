@@ -24,7 +24,6 @@
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
       overflow-x: hidden;
     }
 
@@ -202,6 +201,32 @@
       width: 100%;
     }
 
+    /* ────────────── HERO — TABLET (≤800px, Figma 5897:37445) ──────────────
+       min-height (not height): the section stays a fixed 440px by default,
+       but if the title/subtitle wrap further and hit the 32px right gutter
+       needing more room, the section grows to hug the content instead of
+       clipping it — hero-content's own padding-bottom becomes the visible
+       32px gap once that happens. */
+    @media (max-width: 1100px) {
+      .hero { --gutter: 32px; height: auto; min-height: 440px; }
+      .hero-content { padding-top: 160px; padding-bottom: 32px; }
+      .hero-body { gap: 16px; }
+      .hero-label-line { width: 12px; }
+      .hero-label span { font-size: 12px; line-height: 16px; letter-spacing: 0; }
+      .hero-title { font-size: 48px; font-weight: 700; line-height: 60px; letter-spacing: -2.4px; }
+    }
+
+    /* ────────────── HERO — MOBILE (≤440px, Figma 5897:37609) ──────────────
+       Same min-height/hug mechanism as the tablet tier above, just with
+       mobile's own fixed floor, gutter, and type sizes. max-width is
+       dropped (was 704px) so the text column uses the full gutter-to-
+       gutter width instead of Figma's happenstance 342px canvas value. */
+    @media (max-width: 600px) {
+      .hero { --gutter: 24px; height: auto; min-height: 400px; }
+      .hero-content { padding-top: 130px; padding-bottom: 32px; max-width: none; }
+      .hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+    }
+
     /* ════════════════════════════════════════
        FOOTER
     ════════════════════════════════════════ */
@@ -319,6 +344,22 @@
     }
     .vd-search input::placeholder { color: #8f98b5; }
     .vd-divider { height: 1px; background: #e5e7eb; flex-shrink: 0; }
+    /* Mobile-only (≤440px) standalone search bar — same visual language
+       as .vd-search but its own bigger type size, per Figma. */
+    .vd-mobile-search {
+      display: none;
+      align-items: center; gap: 16px;
+      background: #fff; border: 1px solid #bcc9eb;
+      border-radius: 12px; padding: 12px;
+      width: 100%;
+    }
+    .vd-mobile-search img { width: 16px; height: 16px; flex-shrink: 0; }
+    .vd-mobile-search input {
+      border: none; background: transparent; outline: none;
+      font-family: var(--font); font-size: 16px; font-weight: 400;
+      line-height: 20px; color: var(--text-main); width: 100%;
+    }
+    .vd-mobile-search input::placeholder { color: #8f98b5; }
     .vd-filter-section { display: flex; flex-direction: column; gap: 8px; }
     .vd-filter-header {
       display: flex; align-items: center;
@@ -371,10 +412,25 @@
       font-size: 12px; font-weight: 400; line-height: 16px; color: #475072;
     }
     .vd-clear-btn {
+      font-family: var(--font);
       font-size: 12px; font-weight: 500; line-height: 16px; color: #019de7;
       background: none; border: none; cursor: pointer; padding: 0;
     }
     .vd-clear-btn:hover { text-decoration: underline; }
+    /* "Filter" title + close button — mobile-only (≤600px), see media
+       query below. Hidden everywhere else since desktop/tablet don't
+       have a full-page takeover to close. */
+    .vd-filter-mobile-header { display: none; }
+    .vd-filter-mobile-title {
+      font-family: var(--font);
+      font-size: 20px; font-weight: 600; line-height: 26px; color: #162351;
+    }
+    .vd-filter-close-btn {
+      width: 16px; height: 16px; flex-shrink: 0;
+      background: none; border: none; padding: 0; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .vd-filter-close-btn svg { width: 16px; height: 16px; }
     .vd-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
     .vd-toolbar { display: flex; align-items: center; justify-content: space-between; }
     .vd-title-group { display: flex; flex-direction: column; gap: 4px; }
@@ -421,6 +477,30 @@
     .vd-sort-btn:hover { background: #fff; border-color: #019de7; color: #019de7; }
     .vd-sort-btn img { width: 16px; height: 16px; flex-shrink: 0; transition: filter 0.15s; }
     .vd-sort-btn:hover img { filter: invert(46%) sepia(93%) saturate(491%) hue-rotate(168deg) brightness(97%) contrast(104%); }
+    /* Tablet-only toggle for the off-canvas filter drawer — hidden on
+       desktop, where the filter sidebar is always visible inline. */
+    .vd-filters-btn {
+      display: none;
+      align-items: center; justify-content: center; gap: 8px;
+      background: #ffffff; border: 1px solid #bcc9eb; border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer; font-family: var(--font);
+      font-size: 12px; font-weight: 500; color: #162351; line-height: 16px;
+      white-space: nowrap;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .vd-filters-btn:hover { border-color: #019de7; color: #019de7; }
+    .vd-filters-btn img { width: 16px; height: 16px; flex-shrink: 0; transform: rotate(90deg); }
+    /* Dims the page behind the filter drawer; toggled alongside .vd-filter.is-open */
+    .vd-filter-backdrop {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 240;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .vd-filter-backdrop.is-open { display: block; opacity: 1; }
     .vd-view-toggle { display: flex; }
     .vd-view-btn {
       background: #fff; border: 1px solid #bcc9eb;
@@ -439,7 +519,20 @@
       display: flex; flex-direction: column; gap: 16px;
       min-height: 320px;
     }
-    .vd-grid.list-view .vd-card { flex-direction: row; min-height: unset; }
+    /* List view: unwrap .vd-card-header (display:contents) so the logo and
+       title-group become direct grid items of .vd-card again, alongside
+       desc/services — recreating the original "image | stacked column"
+       layout via CSS grid without needing separate list-view markup. */
+    .vd-grid.list-view .vd-card {
+      display: grid; grid-template-columns: 80px 1fr;
+      column-gap: 16px; row-gap: 10px;
+      min-height: unset;
+    }
+    .vd-grid.list-view .vd-card-header { display: contents; }
+    .vd-grid.list-view .vd-card-logo { grid-column: 1; grid-row: 1 / 4; }
+    .vd-grid.list-view .vd-card-title-group,
+    .vd-grid.list-view .vd-card-desc,
+    .vd-grid.list-view .vd-card-services { grid-column: 2; }
     .vd-card-logo {
       width: 80px; height: 80px; flex-shrink: 0;
       border: 1px solid #bcc9eb; border-radius: 8px;
@@ -454,7 +547,8 @@
       font-size: 22px; font-weight: 700; color: #bcc9eb;
       font-family: var(--font);
     }
-    .vd-card-body { display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0; }
+    .vd-card-header { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+    .vd-card-title-group { display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0; }
     .vd-card-name { font-size: 18px; font-weight: 600; line-height: 24px; color: #475072; }
     .vd-card-tags { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
     .vd-card-desc {
@@ -492,7 +586,176 @@
       padding: 80px 0; font-size: 16px; color: #8f98b5;
     }
 
-  
+    /* ────────────── VENDOR DIRECTORY — TABLET (≤800px, Figma 5897:37941) ──────────────
+       Sidebar becomes an off-canvas drawer (fixed, slid off-screen, toggled
+       by the new "Filters" button) since there's no room for a persistent
+       289px rail next to a 2-column card grid. The toolbar reflows into two
+       stacked rows via flex order/wrap: [Filters | Sort + view toggle] on
+       row 1, the vendor count on its own full-width row 2 below — matching
+       Figma's layout exactly without changing the underlying DOM order. */
+    @media (max-width: 1100px) {
+      .vd-section { --gutter: 32px; padding: 60px 0; }
+      .vd-layout { position: relative; }
+      .vd-main { gap: 32px; }
+
+      /* Off-canvas filter drawer — starts below the fixed nav (which is
+         transparent at the top of the page), same top offset as this
+         page's own .nav-mobile-overlay, so the nav's logo/hamburger never
+         bleed through the drawer. */
+      .vd-filter {
+        position: fixed; top: 80px; left: 0; bottom: 0;
+        width: min(85vw, 320px);
+        max-height: none;
+        border-radius: 0;
+        z-index: 250;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+      .vd-filter.is-open { transform: translateX(0); }
+      .vd-filter-backdrop { top: 80px; }
+
+      /* Toolbar: reflow into [Filters | Sort+toggle] row + full-width count row */
+      .vd-toolbar { flex-wrap: wrap; row-gap: 32px; }
+      .vd-filters-btn { display: flex; order: 1; }
+      .vd-toolbar-right { order: 2; }
+      .vd-title-group { order: 3; flex-basis: 100%; }
+
+      /* View-toggle buttons: 5px -> 6px top/bottom padding to match Figma */
+      .vd-view-btn { padding: 6px 8px; }
+
+      /* Card grid — sizing/typography per Figma */
+      .vd-card { min-height: 360px; }
+      .vd-card-title-group { gap: 12px; }
+      .vd-card-name { font-size: 20px; line-height: 26px; }
+      .vd-card-desc { line-height: 16px; }
+    }
+
+    /* ────────────── VENDOR DIRECTORY — MOBILE (≤440px, Figma 5941:10530) ──────────────
+       "Standard view" only — the list/grid toggle disappears (hidden in
+       the Figma frame itself) and the grid is forced to one column. A
+       second, always-visible search bar appears above the toolbar (the
+       drawer keeps its own copy too, for when it's open); both stay in
+       sync via vdOnSearchSync(). Cards switch their header from a column
+       (image above name/tags, like tablet) to a row (image beside name/
+       tags), with description/services stacked full-width below. */
+    @media (max-width: 600px) {
+      .vd-section { --gutter: 24px; padding: 32px 0; }
+
+      .vd-mobile-search { display: flex; }
+      .vd-view-toggle { display: none; }
+      .vd-grid { grid-template-columns: 1fr; }
+
+      /* No list/grid distinction at this width — neutralize the list-view
+         card layout in case it was still active from a wider viewport. */
+      .vd-grid.list-view .vd-card { display: flex; flex-direction: column; }
+      .vd-grid.list-view .vd-card-header { display: flex; }
+      .vd-grid.list-view .vd-card-logo { grid-column: auto; grid-row: auto; }
+
+      /* min-width:0 is required here: .vd-card is a CSS Grid item, and
+         grid items default to min-width:auto — meaning once the tags
+         row below can no longer wrap (flex-wrap:nowrap), its unwrappable
+         content's min-content width silently forces the WHOLE CARD (and
+         its grid track) to grow past the 1fr column to fit it — a classic
+         grid "blowout" (verified: card measured 878px in a 342px-wide
+         grid before this fix). This override lets the card's own
+         overflow-x:auto (further below) do the clipping/scrolling instead. */
+      .vd-card { min-height: unset; min-width: 0; }
+      .vd-card-header { flex-direction: row; align-items: center; gap: 20px; }
+
+      /* Tags become a single horizontally-scrollable row instead of
+         wrapping to multiple lines — Figma 5941:10554. width:100% +
+         min-width:0 here too, for the same reason as .vd-card above —
+         every flex/grid ancestor along this chain needs it, or the
+         unwrappable content keeps bubbling the forced width up. */
+      .vd-card-tags {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        min-width: 0;
+        /* Hide the native scrollbar — the row still scrolls by touch/drag,
+           just without a visible track. */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .vd-card-tags::-webkit-scrollbar { display: none; width: 0; height: 0; }
+      .vd-card-tags .vd-tag,
+      .vd-card-tags .vd-cat-tag { flex-shrink: 0; }
+
+      /* Pagination — stacked and centered instead of a single
+         space-between row. Figma 5941:10718. */
+      .vd-pagination {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+      }
+      .vd-page-info { order: 2; }
+      .vd-page-nav { order: 1; }
+
+      /* Filter drawer — covers the full page instead of a partial 85vw
+         panel, and drops its own search bar entirely (search now lives
+         in the always-visible .vd-mobile-search bar above the toolbar).
+         Figma 5970:9092. */
+      .vd-filter { width: 100vw; max-width: none; }
+      .vd-filter-top { display: none; }
+
+      /* Sticky mobile header: "Filter" title + close button, stacked
+         directly above the sticky "N filter active / Clear all" bar
+         (which sticks at top:58px — this header's own rendered height —
+         so the two stack without gap or overlap). height:auto overrides
+         nothing here (no conflicting base rule), but is set for parity/
+         safety since the sibling below needs it for the same reason.
+         margin-bottom:16px is the same empirically-verified compensation
+         used below: a sticky element's own negative margin-top silently
+         eats an equal amount out of .vd-filter-body's 24px flex `gap`
+         (verified via getBoundingClientRect, not just assumed), so 0
+         alone would only net an 8px real gap to the bar beneath it. */
+      .vd-filter-mobile-header {
+        display: flex; align-items: center; justify-content: space-between;
+        position: sticky; top: 0; z-index: 6;
+        height: auto;
+        background: #fff;
+        margin: -16px -22px 16px -16px;
+        padding: 32px 16px 0;
+      }
+
+      /* "N filter active / Clear all" — sticky just below the header
+         above, with its own full-bleed divider. height:auto overrides
+         the fixed 20px base rule, which otherwise fights the 8px bottom
+         padding below and collapses the spacing. Unlike the header above,
+         this element's own margin-top is 0 (not negative) — it isn't the
+         first child bleeding past the container's top padding — so the
+         negative-margin/flex-gap quirk doesn't apply here and no bottom
+         compensation is needed; the natural 24px .vd-filter-body gap
+         becomes the divider→"Category" spacing untouched. */
+      .vd-active-bar {
+        position: sticky; top: 58px; z-index: 5;
+        height: auto;
+        background: #fff;
+        margin: 0 -22px 0 -16px;
+        padding: 0 16px 8px;
+      }
+      .vd-active-bar::after {
+        content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+        height: 1px; background: #e5e7eb;
+      }
+      .vd-active-label { font-size: 16px; line-height: 20px; }
+      .vd-clear-btn { font-size: 16px; line-height: 20px; }
+
+      /* Filter list rows — bigger touch targets to match Figma */
+      .vd-filter-body { padding: 16px 24px 32px 16px; }
+      .vd-filter-item { padding: 8px 16px; gap: 12px; }
+      .vd-checkbox { width: 20px; height: 20px; }
+      .vd-filter-count {
+        width: 24px; height: 24px; min-width: 24px; padding: 0;
+        font-size: 12px; line-height: 16px; border-radius: 8px;
+      }
+      .vd-custom-track { right: 6px; width: 8px; }
+      .vd-custom-thumb { width: 8px; }
+    }
+
+
     /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
@@ -556,6 +819,8 @@
       .nav-hamburger-icon-mobile { display: block; width: 20px; height: 20px; }
       .nav-mobile-overlay { top: 64px; height: calc(100vh - 64px); }
       .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
+      .vd-filter { top: 64px; }
+      .vd-filter-backdrop { top: 64px; }
     }
     @media (max-width: 800px) {
       .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
@@ -639,19 +904,31 @@
 <section class="vd-section">
   <div class="vd-layout">
 
+    <!-- Tablet-only: dims the page behind the filter drawer -->
+    <div class="vd-filter-backdrop" id="vd-filter-backdrop" onclick="vdToggleFilterPanel()"></div>
+
     <!-- Filter Panel -->
-    <aside class="vd-filter">
+    <aside class="vd-filter" id="vd-filter">
       <!-- Fixed: search bar + divider -->
       <div class="vd-filter-top">
         <div class="vd-search">
           <img class="vd-search-icon" src="assets/HR Knowledge Hub/search-icon.svg" alt="" />
-          <input type="text" id="vd-search" placeholder="Search vendors" data-i18n-placeholder="vl.filter.search" oninput="vdOnSearch(this.value)" />
+          <input type="text" id="vd-search" placeholder="Search vendors" data-i18n-placeholder="vl.filter.search" oninput="vdOnSearchSync(this.value)" />
         </div>
         <div class="vd-divider"></div>
       </div>
       <!-- Scrollable: active bar + category + region (native scrollbar hidden, custom thumb overlaid) -->
       <div class="vd-filter-scroll-wrap">
       <div class="vd-filter-body" id="vd-filter-scroll">
+      <!-- Mobile-only (≤600px): "Filter" title + close button, sticky
+           above the active-filter-bar (which is itself sticky just below
+           it — see the ≤600px CSS for the stacked top offsets). -->
+      <div class="vd-filter-mobile-header">
+        <span class="vd-filter-mobile-title" data-i18n="vl.filter.title">Filter</span>
+        <button class="vd-filter-close-btn" onclick="vdToggleFilterPanel()" aria-label="Close filters">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="#162351" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
       <div class="vd-active-bar" id="vd-active-bar">
         <span class="vd-active-label" id="vd-active-label">0 filter active</span>
         <button class="vd-clear-btn" data-i18n="vl.btn.clearAll" onclick="vdClearFilters()">Clear all</button>
@@ -700,7 +977,17 @@
 
     <!-- Main Content -->
     <main class="vd-main">
+      <!-- Mobile-only (≤440px): always-visible search bar, separate from
+           the one inside the filter drawer; both stay in sync via JS. -->
+      <div class="vd-mobile-search">
+        <img class="vd-search-icon" src="assets/HR Knowledge Hub/search-icon.svg" alt="" />
+        <input type="text" id="vd-search-mobile" placeholder="Search vendors" data-i18n-placeholder="vl.filter.search" oninput="vdOnSearchSync(this.value)" />
+      </div>
       <div class="vd-toolbar">
+        <button class="vd-filters-btn" id="vd-filters-btn" onclick="vdToggleFilterPanel()">
+          <img src="assets/HR Knowledge Hub/filter-icon.svg" alt="" />
+          <span data-i18n="vl.filter.filters">Filters</span>
+        </button>
         <div class="vd-title-group">
           <span class="vd-count" id="vd-count">213 Vendors</span>
           <span class="vd-showing" id="vd-showing">Showing 1–20 of 213</span>
@@ -932,13 +1219,16 @@
         return "<div class=\"vd-card-service\"><div class=\"vd-service-dot\"></div><span class=\"vd-service-text\">" + esc(vlStr(s)) + "</span></div>";
       }).join("");
     return "<div class=\"vd-card\">"
+      + "<div class=\"vd-card-header\">"
       + "<div class=\"vd-card-logo\">" + logoHtml + "</div>"
-      + "<div class=\"vd-card-body\">"
+      + "<div class=\"vd-card-title-group\">"
       + "<div class=\"vd-card-name\">" + esc(v.name) + "</div>"
       + "<div class=\"vd-card-tags\">" + regionTag + catTags + "</div>"
+      + "</div>"
+      + "</div>"
       + "<div class=\"vd-card-desc\">" + esc(vlStr(v.description)) + "</div>"
       + "<div class=\"vd-card-services\">" + svcLines + "</div>"
-      + "</div></div>";
+      + "</div>";
   }
 
   function vdRender() {
@@ -1048,6 +1338,16 @@
     clearTimeout(vdSearchTimer);
     vdSearchTimer = setTimeout(function() { vdState.search = val.trim(); vdState.page = 1; vdRender(); }, 200);
   };
+  /* Mobile has two search inputs (the always-visible bar + the one inside
+     the filter drawer) bound to the same vdState.search — keep both in
+     sync regardless of which one the user is typing in. */
+  window.vdOnSearchSync = function(val) {
+    vdOnSearch(val);
+    var a = document.getElementById("vd-search");
+    var b = document.getElementById("vd-search-mobile");
+    if (a && a.value !== val) a.value = val;
+    if (b && b.value !== val) b.value = val;
+  };
   window.vdToggleSort = function() {
     vdState.sort = vdState.sort === "asc" ? "desc" : "asc";
     vdState.page = 1;
@@ -1075,9 +1375,20 @@
   window.vdClearFilters = function() {
     vdState.cats.clear(); vdState.regs.clear(); vdState.search = ""; vdState.page = 1;
     var si = document.getElementById("vd-search"); if (si) si.value = "";
+    var sim = document.getElementById("vd-search-mobile"); if (sim) sim.value = "";
     document.querySelectorAll(".vd-filter-item.active").forEach(function(el) { el.classList.remove("active"); });
     var bar = document.getElementById("vd-active-bar"); if (bar) bar.classList.remove("visible");
     vdRender();
+  };
+
+  /* Tablet (<=800px): the sidebar becomes an off-canvas drawer toggled by
+     the "Filters" button in the toolbar. Desktop never adds this class. */
+  window.vdToggleFilterPanel = function() {
+    var panel = document.getElementById("vd-filter");
+    var backdrop = document.getElementById("vd-filter-backdrop");
+    var isOpen = panel.classList.toggle("is-open");
+    if (backdrop) backdrop.classList.toggle("is-open", isOpen);
+    document.body.style.overflow = isOpen ? "hidden" : "";
   };
 
 

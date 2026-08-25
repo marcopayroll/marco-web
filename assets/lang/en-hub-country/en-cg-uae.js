@@ -11,7 +11,7 @@ window.MARCO_LANG_EN_CG_UAE = {
 
   'cg.uae.kn2.label': `Employer Additional Cost`,
 
-  'cg.uae.kn2.value': `~10 &ndash; 17%`,
+  'cg.uae.kn2.value': `~10 - 17%`,
 
   'cg.uae.kn2.note': `Social Insurance (Local nationals only) + Health Insurance + Visa + Gratuity`,
 

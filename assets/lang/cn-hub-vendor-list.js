@@ -11,6 +11,8 @@ window.MARCO_LANG_CN_HUB_VENDOR_LIST = {
 
   /* ── Search & filters ── */
   "vl.filter.search":   "搜索供应商",
+  "vl.filter.filters":  "筛选",
+  "vl.filter.title":    "筛选",
   "vl.btn.clearAll":    "清除全部",
   "vl.filter.category": "类别",
   "vl.filter.region":   "地区",

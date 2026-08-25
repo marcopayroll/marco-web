@@ -11,6 +11,8 @@ window.MARCO_LANG_EN_HUB_VENDOR_LIST = {
 
   /* ── Search & filters ── */
   "vl.filter.search":   "Search vendors",
+  "vl.filter.filters":  "Filters",
+  "vl.filter.title":    "Filter",
   "vl.btn.clearAll":    "Clear all",
   "vl.filter.category": "Category",
   "vl.filter.region":   "Region",
