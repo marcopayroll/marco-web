@@ -27,7 +27,6 @@
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
     }
 
     .container {
@@ -173,8 +172,12 @@
     /* ════════════════════════════════════════
        HERO
     ════════════════════════════════════════ */
+    /* min-height (not height): the section stays a fixed 600px by default,
+       but if text ever needs more room at a narrow width it grows to hug
+       the content — .hero-bg already uses fluid 100%/100% sizing so it
+       automatically fills whatever height the section ends up being. */
     .hero {
-      position: relative; width: 100%; height: 600px; overflow: hidden;
+      position: relative; width: 100%; height: auto; min-height: 600px; overflow: hidden;
       background-image: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
     }
     .hero-bg {
@@ -183,7 +186,7 @@
       pointer-events: none; z-index: 0;
     }
     .hero-bg img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .hero > .container { position: relative; z-index: 1; padding-top: 180px; }
+    .hero > .container { position: relative; z-index: 1; padding-top: 180px; padding-bottom: 138px; }
     .hero-content { max-width: 808px; display: flex; flex-direction: column; gap: 12px; }
     .hero-content .section-label { color: var(--blue-main); }
     .hero-title { font-size: 64px; font-weight: 700; line-height: 80px; color: #fff; }
@@ -194,6 +197,23 @@
       margin-top: 12px;
     }
 
+    /* ────────────── HERO — TABLET (≤800px) — Figma node 5985:10646 ────────────── */
+    @media (max-width: 1000px) {
+      .hero { --gutter: 32px; min-height: 440px; }
+      .hero > .container { padding-top: 140px; padding-bottom: 76px; }
+      .hero-content { max-width: 642px; }
+      .hero-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+      .hero-body { max-width: none; margin-top: 4px; }
+    }
+
+    /* ────────────── HERO — MOBILE (≤440px) — Figma node 5985:10948 ────────────── */
+    @media (max-width: 600px) {
+      .hero { --gutter: 24px; min-height: 400px; }
+      .hero > .container { padding-top: 130px; padding-bottom: 46px; }
+      .hero-content { max-width: none; }
+      .hero-title { font-size: 32px; line-height: 40px; letter-spacing: 0; }
+    }
+
     /* ════════════════════════════════════════
        OUR POSITION
     ════════════════════════════════════════ */
@@ -202,18 +222,36 @@
       background: linear-gradient(to bottom, #f4f4ff 49.112%, #fff 110.41%);
       padding: 80px 0;
     }
-    .position > .container { display: flex; gap: 104px; align-items: flex-start; }
-    .position-left { flex: 0 0 520px; display: flex; flex-direction: column; gap: 12px; }
+    /* grid (not flex) so both columns shrink proportionally as the viewport
+       narrows, while the gap stays a fixed 24px — flexbox's shrink math skews
+       toward whichever side has more intrinsic text content. */
+    .position > .container { display: grid; grid-template-columns: 520fr 680fr; gap: 24px; align-items: start; }
+    .position-left { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
     .position-left .section-label { color: var(--text-main); }
     .position-title {
       font-size: 48px; font-weight: 600; line-height: 60px;
       color: var(--text-main); letter-spacing: -2.4px;
     }
     .position-title-accent { color: var(--blue-main); }
-    .position-right { flex: 1 1 auto; min-width: 0; padding-top: 30px; }
+    .position-right { min-width: 0; padding-top: 30px; }
     .position-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #475072; }
     .position-body p + p { margin-top: 20px; }
     .position-body strong { font-weight: 700; }
+
+    /* ────────────── OUR POSITION — TABLET (≤800px) — Figma node 5985:10850 ────────────── */
+    @media (max-width: 1000px) {
+      .position { --gutter: 32px; padding: 32px 0; }
+      .position > .container { display: flex; flex-direction: column; align-items: stretch; gap: 32px; }
+      .position-right { padding-top: 0; }
+    }
+
+    /* ────────────── OUR POSITION — MOBILE (≤440px) — Figma node 5985:11153 ────────────── */
+    @media (max-width: 600px) {
+      .position { --gutter: 24px; }
+      .position-title {
+        font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0;
+      }
+    }
 
     /* ════════════════════════════════════════
        THREE PILLARS
@@ -245,6 +283,25 @@
     }
     .pillar-card-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #475072; letter-spacing: -0.8px; }
 
+    /* ────────────── COMPLIANCE FOUNDATION — TABLET (≤800px) — Figma node 5985:10857 ────────────── */
+    @media (max-width: 1000px) {
+      .pillars { --gutter: 32px; padding: 32px 0; }
+      .pillars-intro { display: none; }
+      .pillars-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+      .pillars-title br { display: none; }
+      .pillars-row { flex-direction: column; margin-top: 20px; }
+      .pillar-card { min-height: 140px; padding: 16px; gap: 16px; }
+      .pillar-card-title { font-size: 20px; line-height: 26px; }
+    }
+
+    /* ────────────── COMPLIANCE FOUNDATION — MOBILE (≤440px) — Figma node 5985:11160 ────────────── */
+    @media (max-width: 600px) {
+      .pillars { --gutter: 24px; }
+      .pillars-title { font-size: 32px; line-height: 40px; letter-spacing: 0; }
+      .pillars-title br { display: inline; }
+      .pillar-card { min-height: 160px; }
+    }
+
     /* ════════════════════════════════════════
        INTERNAL CONTROLS
     ════════════════════════════════════════ */
@@ -264,15 +321,16 @@
       color: var(--text-tertiary);
       max-width: 728px; margin-top: 23px;
     }
-    .controls-grid { display: flex; flex-direction: column; margin-top: 48px; padding: 0 32px; }
-    .controls-row { display: flex; }
+    /* grid (not per-row flex divs) so the same 4 boxes reflow from a
+       2-column layout (desktop/tablet) to a single stacked column (mobile)
+       by just changing the column count — same pattern used elsewhere. */
+    .controls-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 48px; padding: 0 32px; }
     .controls-box {
-      flex: 1 0 0; min-width: 0; min-height: 280px;
+      min-width: 0; min-height: 280px;
       padding: 32px 24px; display: flex; gap: 16px; align-items: flex-start;
     }
-    .controls-row-top .controls-box { border-bottom: 1px solid #CDD5E0; }
-    .controls-row-top .controls-box:first-child { border-right: 1px solid #CDD5E0; }
-    .controls-row-bottom .controls-box:first-child { border-right: 1px solid #CDD5E0; }
+    .controls-box:not(:nth-child(2n)) { border-right: 1px solid #CDD5E0; }
+    .controls-box:nth-child(-n+2) { border-bottom: 1px solid #CDD5E0; }
     /* Inner wrapper — staggered opacity fade, borders stay on outer box */
     .controls-box-inner { display: flex; gap: 16px; align-items: flex-start; height: 100%; opacity: 0; transition: opacity 0.35s ease; }
     .controls-box-inner.is-visible { opacity: 1; }
@@ -292,6 +350,31 @@
       color: #fff; letter-spacing: -0.8px;
       padding-left: 20px; list-style: disc;
       display: flex; flex-direction: column; gap: 0;
+    }
+
+    /* ────────────── INTERNAL CONTROLS — TABLET (≤800px) — Figma node 5985:10896 ────────────── */
+    @media (max-width: 1000px) {
+      .controls { --gutter: 32px; padding: 32px 0 100px; }
+      .controls-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .controls-title br { display: none; }
+      .controls-intro { max-width: none; margin-top: 20px; }
+      .controls-grid { grid-template-columns: repeat(2, 1fr); margin-top: 20px; padding: 0; }
+      .controls-box { padding: 16px; }
+      .controls-content { gap: 16px; }
+      .controls-box:nth-child(-n+2) { min-height: 300px; }
+      .controls-box:nth-child(n+3) { min-height: 320px; }
+    }
+
+    /* ────────────── INTERNAL CONTROLS — MOBILE (≤440px) — Figma node 5985:11199 ────────────── */
+    @media (max-width: 600px) {
+      .controls { --gutter: 24px; padding-bottom: 32px; }
+      .controls-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+      .controls-grid { grid-template-columns: 1fr; }
+      .controls-box:not(:nth-child(2n)) { border-right: none; }
+      .controls-box:not(:last-child) { border-bottom: 1px solid #CDD5E0; }
+      .controls-box:last-child { border-bottom: none; }
+      .controls-box:nth-child(-n+2) { min-height: 280px; }
+      .controls-box:nth-child(n+3) { min-height: 300px; }
     }
 
     /* ════════════════════════════════════════
@@ -328,16 +411,61 @@
     .continue-image img {
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    @media (max-width: 767px) {
-      .position > .container { flex-direction: column; gap: 48px; }
-      .position-left { flex: 0 0 auto; }
-      .position-right { padding-top: 0; }
-      .pillars-row { flex-direction: column; }
-      .pillar-card { min-height: auto; }
-      .continue-row { flex-direction: column; }
-      .continue-inner { padding: 60px 0 40px; }
-      .continue-ctas { flex-wrap: wrap; }
-      .continue-image { flex: 0 0 auto; margin-left: 0; margin-right: 0; height: 280px; }
+
+    /* ────────────── CONTINUE — TABLET (≤1000px) — Figma node 5985:10936 ──────────────
+       Full-bleed background image with a dark overlay for the whole section — text
+       sits on top of it in white — instead of sitting beside the image in a
+       light-background column like desktop. */
+    @media (max-width: 1000px) {
+      .continue-section { --gutter: 32px; }
+      /* compound selector (not just .continue-row) to reliably out-specificity
+         the shared .container class's own width/margin-inline rule */
+      .continue-section .continue-row {
+        display: block;
+        position: relative;
+        min-height: 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+      }
+      .continue-inner { position: relative; z-index: 1; padding: 32px; }
+      .continue-image {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        margin: 0; flex: none; z-index: 0;
+      }
+      .continue-image::after {
+        content: ""; position: absolute; inset: 0;
+        background: rgba(0, 0, 0, 0.5); pointer-events: none;
+      }
+      .continue-header { gap: 21px; max-width: 642px; }
+      .continue-section .section-label { color: #fff; }
+      .continue-title { color: #fff; }
+      .continue-body { max-width: 642px; color: #fff; }
+      .continue-ctas { margin-top: 32px; }
+      .continue-ctas .cta-btn--primary { background: transparent; border: 1px solid #fff; color: #fff; }
+      /* "Small cta" size from Figma — shared.css only applies this at its own
+         ≤440px breakpoint, which no longer lines up with this section's ≤1000px
+         tablet layout, so scope it here explicitly. */
+      .continue-ctas .cta-btn--primary,
+      .continue-ctas .cta-btn--secondary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px;
+        letter-spacing: 0; gap: 4px;
+      }
+      .continue-ctas .btn-icon { width: 16px; height: 16px; }
+    }
+
+    /* ────────────── CONTINUE — MOBILE (≤600px) — Figma node 5985:11239 ──────────────
+       Same full-bleed mechanism as tablet above; only the deltas below differ:
+       a darker overlay, a tighter label-to-title gap, a bigger title, and a
+       smaller gutter (the CTA row wraps to 2 lines naturally at this width). */
+    @media (max-width: 600px) {
+      .continue-section { --gutter: 24px; }
+      .continue-inner { padding: 32px 24px; }
+      .continue-image::after { background: rgba(0, 0, 0, 0.7); }
+      .continue-header { gap: 12px; }
+      .continue-title { font-size: 40px; line-height: 48px; letter-spacing: -2px; }
+      .continue-title br { display: none; }
     }
   
     /* ════════════════════════════════════════
@@ -501,7 +629,7 @@
       <span data-i18n="og.found.label">COMPLIANCE FOUNDATION</span>
     </div>
     <div class="pillars-title-group fade-in">
-      <h2 class="pillars-title" data-i18n="og.found.title">Three pillars behind<br>every engagement</h2>
+      <h2 class="pillars-title" data-i18n="og.found.title">Three pillars behind <br>every engagement</h2>
       <p class="pillars-intro" data-i18n="og.found.intro">Marco's compliance framework is structured across three pillars that together cover legal, governance, and risk obligations in every market.</p>
     </div>
     <div class="pillars-row">
@@ -528,76 +656,70 @@
       <div class="line"></div>
       <span data-i18n="og.ctrl.label">INTERNAL CONTROLS</span>
     </div>
-    <h2 class="controls-title fade-in" data-i18n="og.ctrl.title">Audit, risk, and<br>policy controls</h2>
+    <h2 class="controls-title fade-in" data-i18n="og.ctrl.title">Audit, risk, and <br>policy controls</h2>
     <p class="controls-intro fade-in" data-i18n="og.ctrl.intro">The operational controls that govern how Marco manages risk, maintains policy, and keeps every process auditable.</p>
     <div class="controls-grid">
-      <!-- Row 1 -->
-      <div class="controls-row controls-row-top">
-        <div class="controls-box">
-          <div class="controls-box-inner">
-            <div class="controls-icon">
-              <img src="assets/Compliance/File-text.svg" alt="Policy Management" />
-            </div>
-            <div class="controls-content">
-              <p class="controls-box-title" data-i18n="og.ctrl.policy.title">Policy Management</p>
-              <p class="controls-box-body" data-i18n="og.ctrl.policy.body">Operational policies are documented, version-controlled, and reviewed on a defined cycle. Every service line operates under a written policy framework.</p>
-              <ul class="controls-box-list">
-                <li data-i18n="og.ctrl.policy.li1">Payroll processing procedures per entity</li>
-                <li data-i18n="og.ctrl.policy.li2">Client engagement and escalation policies</li>
-                <li data-i18n="og.ctrl.policy.li3">Data handling and retention policies</li>
-              </ul>
-            </div>
+      <div class="controls-box">
+        <div class="controls-box-inner">
+          <div class="controls-icon">
+            <img src="assets/Compliance/File-text.svg" alt="Policy Management" />
           </div>
-        </div>
-        <div class="controls-box">
-          <div class="controls-box-inner">
-            <div class="controls-icon">
-              <img src="assets/Compliance/Edit.svg" alt="Risk Register" />
-            </div>
-            <div class="controls-content">
-              <p class="controls-box-title" data-i18n="og.ctrl.risk.title">Risk Register</p>
-              <p class="controls-box-body" data-i18n="og.ctrl.risk.body">Compliance and operational risks are identified, assessed, and tracked. Risk management is an ongoing operational process, not a periodic review.</p>
-              <ul class="controls-box-list">
-                <li data-i18n="og.ctrl.risk.li1">Jurisdiction-level compliance risk monitoring</li>
-                <li data-i18n="og.ctrl.risk.li2">Vendor and third-party risk assessment</li>
-                <li data-i18n="og.ctrl.risk.li3">Operational risk escalation procedures</li>
-              </ul>
-            </div>
+          <div class="controls-content">
+            <p class="controls-box-title" data-i18n="og.ctrl.policy.title">Policy Management</p>
+            <p class="controls-box-body" data-i18n="og.ctrl.policy.body">Operational policies are documented, version-controlled, and reviewed on a defined cycle. Every service line operates under a written policy framework.</p>
+            <ul class="controls-box-list">
+              <li data-i18n="og.ctrl.policy.li1">Payroll processing procedures per entity</li>
+              <li data-i18n="og.ctrl.policy.li2">Client engagement and escalation policies</li>
+              <li data-i18n="og.ctrl.policy.li3">Data handling and retention policies</li>
+            </ul>
           </div>
         </div>
       </div>
-      <!-- Row 2 -->
-      <div class="controls-row controls-row-bottom">
-        <div class="controls-box">
-          <div class="controls-box-inner">
-            <div class="controls-icon">
-              <img src="assets/Compliance/Database.svg" alt="Incident Management" />
-            </div>
-            <div class="controls-content">
-              <p class="controls-box-title" data-i18n="og.ctrl.incident.title">Incident Management</p>
-              <p class="controls-box-body" data-i18n="og.ctrl.incident.body">Incidents are logged, classified, and tracked through to resolution. Each incident generates a documented record used to strengthen controls and prevent recurrence.</p>
-              <ul class="controls-box-list">
-                <li data-i18n="og.ctrl.incident.li1">Structured incident classification and logging</li>
-                <li data-i18n="og.ctrl.incident.li2">Root cause analysis on all material incidents</li>
-                <li data-i18n="og.ctrl.incident.li3">Client notification procedures where applicable</li>
-              </ul>
-            </div>
+      <div class="controls-box">
+        <div class="controls-box-inner">
+          <div class="controls-icon">
+            <img src="assets/Compliance/Edit.svg" alt="Risk Register" />
+          </div>
+          <div class="controls-content">
+            <p class="controls-box-title" data-i18n="og.ctrl.risk.title">Risk Register</p>
+            <p class="controls-box-body" data-i18n="og.ctrl.risk.body">Compliance and operational risks are identified, assessed, and tracked. Risk management is an ongoing operational process, not a periodic review.</p>
+            <ul class="controls-box-list">
+              <li data-i18n="og.ctrl.risk.li1">Jurisdiction-level compliance risk monitoring</li>
+              <li data-i18n="og.ctrl.risk.li2">Vendor and third-party risk assessment</li>
+              <li data-i18n="og.ctrl.risk.li3">Operational risk escalation procedures</li>
+            </ul>
           </div>
         </div>
-        <div class="controls-box">
-          <div class="controls-box-inner">
-            <div class="controls-icon">
-              <img src="assets/Compliance/Slash.svg" alt="Evidence &amp; Audit Trail" />
-            </div>
-            <div class="controls-content">
-              <p class="controls-box-title" data-i18n="og.ctrl.audit.title">Evidence &amp; Audit Trail</p>
-              <p class="controls-box-body" data-i18n="og.ctrl.audit.body">Every material action across payroll, compliance, and client service generates an auditable record. Evidence is maintained and accessible for internal review and external audit.</p>
-              <ul class="controls-box-list">
-                <li data-i18n="og.ctrl.audit.li1">Payroll approval and payment records</li>
-                <li data-i18n="og.ctrl.audit.li2">Access logs and change history</li>
-                <li data-i18n="og.ctrl.audit.li3">SOC 2 Type 2 and ISO 27001 audit evidence</li>
-              </ul>
-            </div>
+      </div>
+      <div class="controls-box">
+        <div class="controls-box-inner">
+          <div class="controls-icon">
+            <img src="assets/Compliance/Database.svg" alt="Incident Management" />
+          </div>
+          <div class="controls-content">
+            <p class="controls-box-title" data-i18n="og.ctrl.incident.title">Incident Management</p>
+            <p class="controls-box-body" data-i18n="og.ctrl.incident.body">Incidents are logged, classified, and tracked through to resolution. Each incident generates a documented record used to strengthen controls and prevent recurrence.</p>
+            <ul class="controls-box-list">
+              <li data-i18n="og.ctrl.incident.li1">Structured incident classification and logging</li>
+              <li data-i18n="og.ctrl.incident.li2">Root cause analysis on all material incidents</li>
+              <li data-i18n="og.ctrl.incident.li3">Client notification procedures where applicable</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="controls-box">
+        <div class="controls-box-inner">
+          <div class="controls-icon">
+            <img src="assets/Compliance/Slash.svg" alt="Evidence &amp; Audit Trail" />
+          </div>
+          <div class="controls-content">
+            <p class="controls-box-title" data-i18n="og.ctrl.audit.title">Evidence &amp; Audit Trail</p>
+            <p class="controls-box-body" data-i18n="og.ctrl.audit.body">Every material action across payroll, compliance, and client service generates an auditable record. Evidence is maintained and accessible for internal review and external audit.</p>
+            <ul class="controls-box-list">
+              <li data-i18n="og.ctrl.audit.li1">Payroll approval and payment records</li>
+              <li data-i18n="og.ctrl.audit.li2">Access logs and change history</li>
+              <li data-i18n="og.ctrl.audit.li3">SOC 2 Type 2 and ISO 27001 audit evidence</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -614,7 +736,7 @@
           <div class="line"></div>
           <span data-i18n="og.continue.label">CONTINUE</span>
         </div>
-        <h2 class="continue-title"><span data-i18n="og.continue.title.pre">Governance is one part<br>of the </span><span class="continue-title-accent" data-i18n="og.continue.title.accent">foundation</span></h2>
+        <h2 class="continue-title"><span data-i18n="og.continue.title.pre">Governance is one part <br>of the </span><span class="continue-title-accent" data-i18n="og.continue.title.accent">foundation</span></h2>
       </div>
       <p class="continue-body" data-i18n="og.continue.body">Marco's compliance framework spans data protection, operational governance, and regulatory licensing, each independently verified, each built to enterprise standard.</p>
       <div class="continue-ctas">

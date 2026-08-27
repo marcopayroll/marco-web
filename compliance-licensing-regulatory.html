@@ -27,7 +27,6 @@
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
     }
 
     .container {
@@ -173,8 +172,12 @@
     /* ════════════════════════════════════════
        HERO
     ════════════════════════════════════════ */
+    /* min-height (not height): the section stays a fixed 600px by default,
+       but if text ever needs more room at a narrow width it grows to hug
+       the content — .hero-bg-pattern already uses fluid height:100% sizing
+       so it automatically fills whatever height the section ends up being. */
     .hero {
-      position: relative; width: 100%; height: 600px; overflow: hidden;
+      position: relative; width: 100%; height: auto; min-height: 600px; overflow: hidden;
       background-image: linear-gradient(90.434deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
     }
     /* Decorative abstract line: always anchored to right edge of hero */
@@ -193,7 +196,7 @@
       object-fit: contain;
       object-position: right center;
     }
-    .hero > .container { position: relative; z-index: 1; padding-top: 180px; }
+    .hero > .container { position: relative; z-index: 1; padding-top: 180px; padding-bottom: 146px; }
     .hero-content { max-width: 867px; display: flex; flex-direction: column; gap: 12px; }
     .hero-content .section-label { color: var(--blue-main); }
     .hero-text-group { display: flex; flex-direction: column; gap: 24px; }
@@ -204,6 +207,24 @@
       color: #fff; max-width: 644px;
     }
 
+    /* ────────────── HERO — TABLET (≤1000px) — Figma node 5987:11576 ────────────── */
+    @media (max-width: 1000px) {
+      .hero { --gutter: 32px; min-height: 440px; }
+      .hero > .container { padding-top: 140px; padding-bottom: 76px; }
+      .hero-content { max-width: 642px; }
+      .hero-text-group { gap: 16px; }
+      .hero-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .hero-body { max-width: none; }
+    }
+
+    /* ────────────── HERO — MOBILE (≤600px) — Figma node 5987:11680 ────────────── */
+    @media (max-width: 600px) {
+      .hero { --gutter: 24px; min-height: 400px; }
+      .hero > .container { padding-top: 130px; padding-bottom: 46px; }
+      .hero-content { max-width: none; }
+      .hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+    }
+
     /* ════════════════════════════════════════
        OUR POSITION
     ════════════════════════════════════════ */
@@ -212,18 +233,40 @@
       background: linear-gradient(to bottom, #f4f4ff 49.112%, #fff 110.41%);
       padding: 80px 0;
     }
-    .position > .container { display: flex; gap: 104px; align-items: flex-start; }
-    .position-left { flex: 0 0 520px; display: flex; flex-direction: column; gap: 12px; }
+    /* grid (not flex) so both columns shrink proportionally as the viewport
+       narrows, while the gap stays a fixed 24px — flexbox's shrink math skews
+       toward whichever side has more intrinsic text content. */
+    .position > .container { display: grid; grid-template-columns: 520fr 680fr; gap: 24px; align-items: start; }
+    .position-left { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
     .position-left .section-label { color: var(--text-main); }
     .position-title {
       font-size: 48px; font-weight: 600; line-height: 60px;
       color: var(--text-main); letter-spacing: -2.4px;
     }
     .position-title-accent { color: var(--blue-main); }
-    .position-right { flex: 1 1 auto; min-width: 0; padding-top: 30px; }
+    .position-right { min-width: 0; padding-top: 30px; }
     .position-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #475072; }
     .position-body p + p { margin-top: 20px; }
     .position-body strong { font-weight: 700; }
+
+    /* ────────────── OUR POSITION — TABLET (≤1000px) — Figma node 5987:11612 ────────────── */
+    @media (max-width: 1000px) {
+      .position { --gutter: 32px; padding: 32px 0; }
+      .position > .container { display: flex; flex-direction: column; align-items: stretch; gap: 32px; }
+      .position-right { padding-top: 0; }
+      /* Desktop's narrow 520px column needs 2 forced breaks; Figma's wider
+         tablet/mobile column only wants the 2nd one (before "It is") — the
+         1st line flows naturally as "A license is not a formality." */
+      .position-title br:nth-of-type(1) { display: none; }
+    }
+
+    /* ────────────── OUR POSITION — MOBILE (≤600px) — Figma node 5987:11716 ────────────── */
+    @media (max-width: 600px) {
+      .position { --gutter: 24px; }
+      .position-title {
+        font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0;
+      }
+    }
 
     /* ════════════════════════════════════════
        WHY IT MATTERS
@@ -260,6 +303,30 @@
     }
     .why-box-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #fff; letter-spacing: -0.8px; }
 
+    /* ────────────── WHY IT MATTERS — TABLET (≤1000px) — Figma node 5987:11619 ────────────── */
+    @media (max-width: 1000px) {
+      .why { --gutter: 32px; padding: 32px 0; }
+      .why-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .why-intro { max-width: none; margin-top: 12px; }
+      .why-row { margin-top: 20px; }
+      .why-box { min-height: 320px; padding: 16px; }
+      /* Tablet uniquely stacks icon-above-text (unlike desktop's row and
+         mobile's row) — reset explicitly in the mobile block below. */
+      .why-box-inner { flex-direction: column; }
+      .why-content { gap: 16px; }
+    }
+
+    /* ────────────── WHY IT MATTERS — MOBILE (≤600px) — Figma node 5987:11723 ────────────── */
+    @media (max-width: 600px) {
+      .why { --gutter: 24px; }
+      .why-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+      .why-row { flex-direction: column; }
+      .why-box { min-height: 220px; }
+      .why-box-inner { flex-direction: row; gap: 8px; }
+      .why-box:not(:last-child) { border-bottom: 1px solid rgba(255, 255, 255, 0.15); border-right: none; }
+      .why-box:last-child { border-bottom: none; border-right: none; }
+    }
+
     /* ════════════════════════════════════════
        ACTIVE LICENSES
     ════════════════════════════════════════ */
@@ -277,16 +344,23 @@
       margin-top: 20px;
     }
     .licenses-row { display: flex; gap: 24px; margin-top: 48px; }
-    .license-card { flex: 1 0 0; min-width: 0; border-radius: 8px; overflow: hidden; }
+    /* display:flex + flex:1 0 0 on the body: when the row's default
+       align-items:stretch equalizes the two cards' heights (e.g. because one
+       card's header wrapped to more lines than the other's), the extra height
+       must be absorbed by the white body — otherwise it's an invisible gap
+       below the body, showing the dark section background and making the
+       white card look shorter even though the outer wrapper is equal height. */
+    .license-card { flex: 1 0 0; min-width: 0; min-height: 0; display: flex; flex-direction: column; border-radius: 8px; overflow: hidden; }
     .license-card-header {
       background: #001119; border-radius: 8px 8px 0 0;
-      padding: 20px 16px; display: flex; flex-direction: column; gap: 16px;
+      padding: 20px 16px; display: flex; flex-direction: column; gap: 16px; flex: 0 0 auto;
     }
     .license-reg-tag { font-size: 16px; font-weight: 700; line-height: 20px; color: #019de7; }
     .license-card-title { font-size: 32px; font-weight: 700; line-height: 40px; color: #fff; }
     .license-card-body {
       background: #FFFFFF; border-radius: 0 0 8px 8px;
       padding: 20px 16px; display: flex; flex-direction: column; gap: 24px;
+      flex: 1 1 auto; min-height: 0;
     }
     .license-subtitle { font-size: 16px; font-weight: 500; line-height: 20px; color: #162351; }
     .license-desc { font-size: 16px; font-weight: 400; line-height: 20px; color: #475072; letter-spacing: -0.8px; }
@@ -299,6 +373,29 @@
     .license-tag-pill {
       background: #E4EFFF; border: 1px solid #8DD3F4; border-radius: 50px;
       padding: 6px 8px; font-size: 12px; font-weight: 500; line-height: 16px; color: #0173A9;
+    }
+
+    /* ────────────── ACTIVE LICENSES — TABLET (≤1000px) — Figma node 5987:11635 ────────────── */
+    @media (max-width: 1000px) {
+      .licenses { --gutter: 32px; padding: 32px 0; }
+      .licenses-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .licenses-intro { max-width: none; margin-top: 12px; }
+      .licenses-row { gap: 16px; margin-top: 20px; }
+      .license-card-header { padding: 16px; }
+      /* AUTHORITY/ENTITY meta rows stack label above value now, instead of
+         sitting side by side — applies at both tablet and mobile. */
+      .license-meta-row { flex-direction: column; align-items: flex-start; justify-content: center; }
+    }
+
+    /* ────────────── ACTIVE LICENSES — MOBILE (≤600px) — Figma node 5987:11739 ────────────── */
+    @media (max-width: 600px) {
+      .licenses { --gutter: 24px; }
+      .licenses-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
+      .licenses-row { flex-direction: column; }
+      /* flex-basis:0 (from "flex:1 0 0") means width in a row but HEIGHT in
+         a column — with no explicit row height to grow into, that collapsed
+         both cards to 0px. Reset to content-based sizing. */
+      .license-card { flex: 0 0 auto; }
     }
 
     /* ════════════════════════════════════════
@@ -336,24 +433,68 @@
       position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
     }
 
+    /* ────────────── CONTINUE — TABLET (≤1000px) — Figma node 5987:11668 ──────────────
+       Full-bleed background image with a dark overlay for the whole section — text
+       sits on top of it in white — instead of sitting beside the image in a
+       light-background column like desktop. */
+    @media (max-width: 1000px) {
+      .continue-section { --gutter: 32px; }
+      /* compound selector (not just .continue-row) to reliably out-specificity
+         the shared .container class's own width/margin-inline rule */
+      .continue-section .continue-row {
+        display: block;
+        position: relative;
+        min-height: 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+      }
+      .continue-inner { position: relative; z-index: 1; padding: 32px; }
+      .continue-image {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        margin: 0; flex: none; z-index: 0;
+      }
+      .continue-image::after {
+        content: ""; position: absolute; inset: 0;
+        background: rgba(0, 0, 0, 0.5); pointer-events: none;
+      }
+      .continue-header { gap: 12px; max-width: 736px; }
+      .continue-section .section-label { color: #fff; }
+      .continue-title { color: #fff; }
+      .continue-body { max-width: 736px; color: #fff; margin-top: 12px; }
+      .continue-ctas { margin-top: 32px; }
+      .continue-ctas .cta-btn--primary { background: transparent; border: 1px solid #fff; color: #fff; }
+      /* "Small cta" size from Figma — shared.css only applies this at its own
+         ≤440px breakpoint, which no longer lines up with this section's ≤1000px
+         tablet layout, so scope it here explicitly. */
+      .continue-ctas .cta-btn--primary,
+      .continue-ctas .cta-btn--secondary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px;
+        letter-spacing: 0; gap: 4px;
+      }
+      .continue-ctas .btn-icon { width: 16px; height: 16px; }
+    }
+
+    /* ────────────── CONTINUE — MOBILE (≤600px) — Figma node 5987:11772 ──────────────
+       Same full-bleed mechanism as tablet above; only the deltas below differ:
+       a darker overlay, a tighter label-to-title gap, a bigger title, a stacked
+       CTA column, and a smaller gutter. Button styles now match tablet
+       (no flip) — "Data Protection & Privacy" stays outline, "Operational
+       Governance" stays filled white, both inherited from the tablet block. */
+    @media (max-width: 600px) {
+      .continue-section { --gutter: 24px; }
+      .continue-inner { padding: 32px 24px; }
+      .continue-image::after { background: rgba(0, 0, 0, 0.7); }
+      .continue-header { gap: 12px; }
+      .continue-title { font-size: 32px; line-height: 40px; letter-spacing: 0; }
+      .continue-ctas { flex-direction: column; align-items: flex-start; }
+    }
+
     /* ════════════════════════════════════════
        MOBILE RESPONSIVE
     ════════════════════════════════════════ */
-    @media (max-width: 767px) {
-      .position > .container { flex-direction: column; gap: 48px; }
-      .position-left { flex: 0 0 auto; }
-      .position-right { padding-top: 0; }
-      .why-row { flex-direction: column; }
-      .why-box { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.15); }
-      .why-box:last-child { border-bottom: none; }
-      .licenses-row { flex-direction: column; }
-      .license-card { flex: none; width: 100%; }
-      .continue-row { flex-direction: column; }
-      .continue-inner { padding: 60px 0 40px; }
-      .continue-ctas { flex-wrap: wrap; }
-      .continue-image { flex: 0 0 auto; margin-left: 0; margin-right: 0; height: 280px; }
-    }
-  
+
     /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
@@ -499,7 +640,7 @@
         <div class="line"></div>
         <span data-i18n="lic.pos.label">OUR POSITION</span>
       </div>
-      <h2 class="position-title"><span data-i18n="lic.pos.title.pre">A license is not<br>a formality.<br>It is </span><span class="position-title-accent" data-i18n="lic.pos.title.accent">legal standing.</span></h2>
+      <h2 class="position-title"><span data-i18n="lic.pos.title.pre">A license is not <br>a formality.<br>It is </span><span class="position-title-accent" data-i18n="lic.pos.title.accent">legal standing.</span></h2>
     </div>
     <div class="position-right fade-in">
       <div class="position-body">
