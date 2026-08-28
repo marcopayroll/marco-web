@@ -231,16 +231,16 @@
       color: #a2b1c1; letter-spacing: -0.8px; max-width: 644px;
     }
     .fullcycle-grid {
-      display: flex; flex-direction: column; margin-top: 68px;
+      display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 68px;
     }
-    .fullcycle-row { display: flex; }
     .fullcycle-box {
-      flex: 1 0 0; min-width: 0; height: 240px; padding: 24px;
+      min-width: 0; height: 240px; padding: 24px;
       display: flex; align-items: flex-start;
       position: relative; overflow: hidden;
     }
-    .fullcycle-row:not(:last-child) .fullcycle-box { border-bottom: 1px solid #e7e7e7; }
-    .fullcycle-row .fullcycle-box:not(:last-child) { border-right: 1px solid #e7e7e7; }
+    /* 3-column grid (9 boxes = 3 rows): border-bottom on rows 1–2, border-right on columns 1–2 */
+    .fullcycle-box:nth-child(-n+6) { border-bottom: 1px solid #e7e7e7; }
+    .fullcycle-box:not(:nth-child(3n)) { border-right: 1px solid #e7e7e7; }
     .fullcycle-box-inner {
       flex: 1 0 0; min-width: 0;
       display: flex; flex-direction: column; gap: 24px;
@@ -680,6 +680,117 @@
     }
 
     /* ════════════════════════════════════════
+       TABLET CONTENT (≤1000px) — Figma 5987:13277 (hero)
+    ════════════════════════════════════════ */
+    @media (max-width: 1000px) {
+      body { min-width: 0; }
+
+      .hero > .container,
+      .whatthis > .container,
+      .fullcycle > .container,
+      .cycle > .container,
+      .entity > .container,
+      .compdata > .container,
+      .implementation > .container,
+      .difference > .container,
+      .getstarted > .container {
+        width: calc(100% - 64px);
+        max-width: none;
+        margin-inline: auto;
+      }
+
+      /* Hero */
+      .hero { height: auto; padding-bottom: 32px; }
+      .hero-bg-pattern { opacity: 0.7; }
+      .hero > .container { padding-top: 140px; }
+      .hero-content { max-width: 642px; }
+      .hero-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+
+      /* What This Service Is */
+      .whatthis { min-height: 0; }
+      .whatthis > .container { flex-direction: column; gap: 40px; }
+      .whatthis-left { max-width: none; padding: 60px 0 0; gap: 20px; }
+      .whatthis-title { font-size: 32px; line-height: 40px; letter-spacing: -1.6px; }
+      .whatthis-right { flex: none; width: 100%; min-width: 0; padding: 0 0 60px; }
+
+      /* Full Cycle Coverage — Figma 5990:13907 (9 boxes, 2 columns: 4 full rows + 1 standalone) */
+      .fullcycle { padding: 32px 0 60px; }
+      .fullcycle-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+      .fullcycle-grid { grid-template-columns: 1fr 1fr; margin-top: 40px; }
+      .fullcycle-box { border: none; padding: 16px; height: 200px; }
+      .fullcycle-box-inner { gap: 16px; }
+      .fullcycle-box:nth-child(-n+8) { border-bottom: 1px solid #e7e7e7; }
+      .fullcycle-box:nth-child(8) { border-bottom-color: #cdd5e0; }
+      .fullcycle-box:nth-child(-n+9) { border-right: none; }
+      .fullcycle-box:nth-child(-n+8):nth-child(odd) { border-right: 1px solid #e7e7e7; }
+
+      /* Monthly Cycle — Figma 5990:14124: horizontal timeline overflows the frame, swipe/scroll to see steps 6–7 */
+      .cycle { padding: 32px 0 60px; }
+      .cycle-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+      .cycle-timeline-wrap {
+        margin-top: 40px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; -ms-overflow-style: none;
+      }
+      .cycle-timeline-wrap::-webkit-scrollbar { display: none; height: 0; }
+      .cycle-timeline { width: max-content; min-width: 100%; }
+      .cycle-step { flex: none; width: 160px; }
+
+      /* Own Entity Network */
+      .entity { padding: 60px 0; }
+      .entity-title { font-size: 36px; line-height: 44px; }
+      .entity-table { margin-top: 32px; }
+      .entity-row-left { gap: 32px; }
+      .entity-region { font-size: 22px; line-height: 30px; width: 90px; }
+      .entity-countries { font-size: 14px; line-height: 20px; }
+      .entity-count { font-size: 28px; line-height: 36px; }
+
+      /* Compliance & Data Protection */
+      .compdata { padding: 60px 0; }
+      .compdata-title { font-size: 36px; line-height: 44px; }
+      .compdata-grid { margin-top: 40px; }
+      .cert-card { padding: 24px; height: auto; min-height: 200px; }
+
+      /* Implementation Approach */
+      .implementation { padding: 60px 0; }
+      .implementation-title { font-size: 36px; line-height: 44px; }
+      .phases { flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+      .phase-card { flex: 1 1 calc(50% - 8px); min-width: 240px; }
+
+      /* The Marco Difference */
+      .difference { padding: 60px 0; }
+      .difference-title { font-size: 32px; line-height: 40px; }
+
+      /* Get Started — Figma 5987:13424: full-bleed photo bg, edge-to-edge (exact same technique
+         as .continue-section tablet view in compliance-data-protection.html) — image spans the
+         true viewport width via the compound `.getstarted > .container` selector out-specificity-ing
+         the shared gutter-reset rule; section collapses to content height (min-height: 0), matching
+         the reference implementation exactly. */
+      .getstarted { position: relative; overflow: hidden; background: none; }
+      .getstarted > .container {
+        width: 100%; max-width: none; margin-inline: 0;
+        position: relative; z-index: 1; display: block; min-height: 0; padding: 0;
+      }
+      .getstarted-inner { max-width: none; padding: 32px; position: relative; z-index: 1; }
+      .getstarted-image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; margin: 0; flex: none; }
+      .getstarted-image::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); pointer-events: none; }
+      .getstarted .section-label { color: #fff; }
+      .getstarted-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; margin-top: 12px; }
+      .getstarted-title .plain { color: #fff; }
+      .getstarted-body { color: #fff; max-width: none; margin-top: 24px; }
+      .getstarted-cta { margin-top: 32px; }
+      .getstarted-cta .cta-btn--primary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+        background: #fff; border: 1px solid #003751; color: #162351;
+      }
+      .getstarted-cta .cta-btn--primary:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
+      .getstarted-cta .btn-icon { width: 16px; height: 16px; }
+      /* chevron-right-dark.svg is actually white-stroked (misleading filename) — invisible on
+         this white pill button, so invert it dark to match the Figma "Small cta" component */
+      .getstarted-cta .btn-icon-img { filter: brightness(0); }
+      .getstarted-cta .cta-btn--primary:hover .btn-icon-img { filter: none; }
+    }
+
+    /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
     .nav-mobile-right { display: none; align-items: center; gap: 32px; }
@@ -757,6 +868,108 @@
       .footer-legal { gap: 24px; }
     }
   
+    /* ════════════════════════════════════════
+       MOBILE CONTENT (≤600px) — Figma 5987:13437 (hero)
+    ════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .hero > .container,
+      .whatthis > .container,
+      .fullcycle > .container,
+      .cycle > .container,
+      .entity > .container,
+      .compdata > .container,
+      .implementation > .container,
+      .difference > .container,
+      .getstarted > .container {
+        width: calc(100% - 48px);
+      }
+
+      /* Hero */
+      .hero { padding-bottom: 40px; }
+      .hero > .container { padding-top: 130px; }
+      .hero-content { max-width: none; }
+      .hero-title { font-size: 32px; line-height: 40px; letter-spacing: 0; }
+      .hero-body { font-size: 14px; line-height: 18px; }
+
+      /* What This Service Is */
+      .whatthis > .container { gap: 32px; }
+      .whatthis-left { padding: 48px 0 0; gap: 16px; }
+      .whatthis-title { font-size: 28px; line-height: 36px; letter-spacing: -1.4px; }
+      .whatthis-body { font-size: 14px; line-height: 18px; }
+      .whatthis-right { padding: 0 0 48px; gap: 12px; }
+      .feature-box { padding: 12px; gap: 12px; }
+
+      /* Full Cycle Coverage — Figma 5990:14005 */
+      .fullcycle { padding: 32px 0 48px; }
+      .fullcycle-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .fullcycle-body { font-size: 14px; line-height: 18px; }
+      .fullcycle-grid { margin-top: 32px; }
+      .fullcycle-box { padding: 8px; height: 240px; }
+      .fullcycle-box:nth-child(9) { height: 180px; }
+      .fullcycle-box-inner { gap: 8px; }
+      .fullcycle-box-title { font-size: 18px; line-height: 24px; }
+      .fullcycle-box-body { font-size: 14px; line-height: 18px; }
+
+      /* Monthly Cycle — Figma 5990:14262: vertical stack, dot+content per row, no step numbers */
+      .cycle { padding: 32px 0 48px; }
+      .cycle-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .cycle-body { font-size: 14px; line-height: 18px; }
+      .cycle-timeline-wrap { margin-top: 32px; overflow-x: visible; }
+      .cycle-timeline { display: flex; flex-direction: column; width: 100%; min-width: 0; gap: 24px; padding: 0; }
+      .cycle-track { left: 6px; right: auto; top: 0; bottom: 0; width: 4px; height: auto; transform: scaleY(0); transform-origin: top center; }
+      .cycle-track.is-visible { transform: scaleY(1); }
+      .cycle-step { flex: none; width: 100%; flex-direction: row; align-items: flex-start; gap: 26px; }
+      .cycle-num { display: none; }
+      .cycle-content { gap: 16px; }
+
+      /* Own Entity Network */
+      .entity { padding: 48px 0; }
+      .entity-title { font-size: 28px; line-height: 36px; }
+      .entity-body { font-size: 14px; line-height: 18px; }
+      .entity-table { margin-top: 24px; gap: 16px; }
+      .entity-row {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: "region . count" "countries countries countries";
+        column-gap: 12px; row-gap: 6px; align-items: baseline; padding: 0;
+      }
+      .entity-row-left { display: contents; }
+      .entity-region { grid-area: region; width: auto; font-size: 18px; line-height: 26px; }
+      .entity-countries { grid-area: countries; font-size: 12px; line-height: 18px; }
+      .entity-count { grid-area: count; font-size: 22px; line-height: 28px; }
+
+      /* Compliance & Data Protection */
+      .compdata { padding: 48px 0; }
+      .compdata-title { font-size: 28px; line-height: 36px; }
+      .compdata-body { font-size: 14px; line-height: 18px; }
+      .compdata-grid { margin-top: 32px; gap: 16px; }
+      .compdata-row { flex-direction: column; gap: 16px; }
+      .cert-card { padding: 20px; gap: 16px; }
+      .cert-title { font-size: 18px; line-height: 24px; }
+      .cert-body { font-size: 14px; line-height: 18px; }
+
+      /* Implementation Approach */
+      .implementation { padding: 48px 0; }
+      .implementation-title { font-size: 28px; line-height: 36px; }
+      .implementation-body { font-size: 14px; line-height: 18px; }
+      .phases { flex-direction: column; gap: 16px; margin-top: 32px; }
+      .phase-card { flex: none; min-width: 0; min-height: 0; }
+
+      /* The Marco Difference */
+      .difference { padding: 48px 0; }
+      .difference-title { font-size: 28px; line-height: 36px; }
+      .difference-body { font-size: 14px; line-height: 18px; }
+
+      /* Get Started — Figma 5990:14615 */
+      /* re-assert full-bleed width: the generic mobile gutter-reset list above (`.getstarted >
+         .container { width: calc(100% - 48px) }`) is later in source than the tablet block's
+         full-bleed override, so at ≤600px it was silently winning and re-adding the 48px inset. */
+      .getstarted > .container { width: 100%; max-width: none; margin-inline: 0; }
+      .getstarted-inner { padding: 32px 24px; }
+      .getstarted-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .getstarted-body { font-size: 14px; line-height: 18px; }
+    }
+
     /* ════════════════════════════════════════
        MOBILE FOOTER (≤440px)
     ════════════════════════════════════════ */
@@ -881,8 +1094,6 @@
       <p class="fullcycle-body" data-i18n="gp.fullcycle.body">From joiner-to-leaver flows through year-end statutory filing. No gaps, no workarounds, no local experts you have to coordinate yourself.</p>
     </div>
     <div class="fullcycle-grid">
-      <!-- Row 1 -->
-      <div class="fullcycle-row">
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">01</span>
@@ -901,9 +1112,6 @@
             <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box3.title">Joiner &amp; Leaver Processing</p>
             <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box3.body">New hires and leavers are processed in payroll, including required registrations and de-registrations.</p>
           </div>        </div>
-      </div>
-      <!-- Row 2 -->
-      <div class="fullcycle-row">
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">04</span>
@@ -922,9 +1130,6 @@
             <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box6.title">Payments and Payslips</p>
             <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box6.body">Bank files, salary disbursement support, statutory payments and employee payslips are delivered according to the agreed schedule.</p>
           </div>        </div>
-      </div>
-      <!-- Row 3 -->
-      <div class="fullcycle-row">
         <div class="fullcycle-box">
           <div class="fullcycle-box-inner">
             <span class="fullcycle-num">07</span>
@@ -943,7 +1148,6 @@
             <p class="fullcycle-box-title" data-i18n="gp.fullcycle.box9.title">Expat &amp; Shadow Payroll</p>
             <p class="fullcycle-box-body" data-i18n="gp.fullcycle.box9.body">Shadow, Host, and Split payroll structures for cross-border assignments. Tax-treaty positioning, bilateral reporting, and social-security treatment handled per assignment.</p>
           </div>        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -962,8 +1166,8 @@
       </div>
     </div>
     <div class="cycle-timeline-wrap">
-      <div class="cycle-track"></div>
       <div class="cycle-timeline">
+        <div class="cycle-track"></div>
         <div class="cycle-step">
           <div class="cycle-dot"></div>
           <div class="cycle-content">
