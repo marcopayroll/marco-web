@@ -144,9 +144,15 @@
       background: linear-gradient(to bottom, #f4f4ff 49.112%, #fff 110.41%);
       min-height: 560px;
     }
-    .whatthis > .container { display: flex; gap: 128px; align-items: flex-start; }
+    /* Both columns use flex:<base> 1 0 + min-width:0 + max-width:<base>px so they shrink
+       proportionally as the viewport narrows, instead of the fixed flex:0 0 Npx (flex-shrink:0)
+       that was forcing a hard 1224px minimum row width and cutting the right column off at
+       any viewport below ~1350px (well above the ≤1000px tablet breakpoint where the column
+       fully stacks) — see feedback-responsive-default memory. */
+    .whatthis > .container { display: flex; gap: clamp(32px, 6vw, 128px); align-items: flex-start; }
     .whatthis-left {
-      flex: 0 0 704px; display: flex; flex-direction: column; gap: 24px;
+      flex: 1 1 704px; min-width: 0; max-width: 704px;
+      display: flex; flex-direction: column; gap: 24px;
       padding: 80px 0;
     }
     .whatthis-left .section-label { color: var(--text-main); }
@@ -158,7 +164,8 @@
     .whatthis-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); letter-spacing: -0.8px; }
     .whatthis-body p + p { margin-top: 20px; }
     .whatthis-right {
-      flex: 0 0 392px; padding-top: 54px; padding-bottom: 80px;
+      flex: 1 1 392px; min-width: 280px; max-width: 392px;
+      padding-top: 54px; padding-bottom: 80px;
       display: flex; flex-direction: column; gap: 8px;
     }
     .usecase-box {
@@ -230,7 +237,11 @@
     .scope-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); letter-spacing: -0.8px; max-width: 644px; }
     .scope-grid { display: flex; flex-direction: column; max-width: 1000px; margin: 68px auto 0; }
     .scope-row { display: flex; }
-    .scope-box { flex: 0 0 500px; min-height: 360px; padding: 32px; display: flex; flex-direction: column; }
+    /* flex:1 1 0 (not 0 0 500px) so the two 500px columns can shrink together instead of
+       forcing a hard 1000px row minimum — same class of bug as .whatthis, fixed for the
+       same reason: the container can be narrower than 1000px well above the ≤1000px
+       breakpoint where .scope-box already becomes explicitly flexible. */
+    .scope-box { flex: 1 1 500px; min-width: 0; min-height: 360px; padding: 32px; display: flex; flex-direction: column; }
     .scope-row:not(:last-child) .scope-box { border-bottom: 1px solid #cdd5e0; }
     .scope-row .scope-box:not(:last-child) { border-right: 1px solid #cdd5e0; }
     .scope-box-inner { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; opacity: 0; transition: opacity 0.35s ease; }
@@ -295,8 +306,9 @@
     .model-team-title { font-size: 16px; font-weight: 500; line-height: 20px; color: var(--text-main); }
     .model-team-sub   { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-tertiary); }
     .model-resp       { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-tertiary); }
-    /* Responsive — card layout ≤ 767px */
-    @media (max-width: 767px) {
+    /* Responsive — card layout ≤ 1000px (aligned to this page's content breakpoint,
+       was 767px which didn't match the site's tablet convention) */
+    @media (max-width: 1000px) {
       .model-table-wrap { overflow: visible; }
       .model-table { min-width: 0; }
       /* Hide column headers — labels shown via ::before */
@@ -540,6 +552,119 @@
     .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
   
     /* ════════════════════════════════════════
+       TABLET CONTENT (≤1000px) — no Figma link given; built from established
+       site conventions (see other service pages' responsive work)
+    ════════════════════════════════════════ */
+    @media (max-width: 1000px) {
+      body { min-width: 0; }
+
+      .hero > .container,
+      .whatthis > .container,
+      .howitworks > .container,
+      .scope > .container,
+      .model > .container,
+      .onboarding > .container,
+      .paycycle > .container,
+      .offboarding > .container,
+      .difference > .container,
+      .getstarted > .container {
+        width: calc(100% - 64px);
+        max-width: none;
+        margin-inline: auto;
+      }
+
+      /* Hero */
+      .hero { height: auto; padding-bottom: 40px; }
+      .hero > .container { padding-top: 140px; }
+      .hero-content { max-width: 620px; }
+      .hero-title { font-size: 48px; }
+
+      /* What Is EOR */
+      .whatthis { min-height: 0; }
+      .whatthis > .container { flex-direction: column; gap: 40px; }
+      .whatthis-left { flex: none; width: 100%; max-width: none; padding: 60px 0 0; gap: 20px; }
+      .whatthis-title { font-size: 32px; line-height: 40px; letter-spacing: -1.6px; }
+      .whatthis-right { flex: none; width: 100%; max-width: none; min-width: 0; padding: 0 0 60px; }
+
+      /* How It Works — Figma 5990:15407: stays a horizontal 3-column row with the
+         connecting line intact at tablet (only mobile stacks it) — just a smaller
+         title, tighter inter-step gap, left-aligned step content (not centered),
+         and step-content's internal gap drops from 16px to 8px. */
+      .howitworks { padding: 60px 0; }
+      .howitworks-header { margin-bottom: 40px; }
+      .howitworks-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+      .steps-row { gap: 32px; }
+      .step { align-items: flex-start; }
+      .step-content { gap: 8px; }
+
+      /* Service Scope — stays 2 columns at tablet (fits comfortably), 1 at mobile */
+      .scope { padding: 60px 0; }
+      .scope-title { font-size: 36px; line-height: 44px; }
+      .scope-grid { max-width: none; margin-top: 40px; }
+      .scope-box { flex: 1 1 0; min-width: 0; min-height: 0; padding: 24px; }
+
+      /* Engagement Model */
+      .model { padding: 60px 0; }
+      .model-title { font-size: 36px; line-height: 44px; white-space: normal; }
+      .model-table-wrap { margin-top: 40px; }
+
+      /* Employee Onboarding — 4 cards, 2x2 at tablet */
+      .onboarding { padding: 60px 0; }
+      .onboarding-title { font-size: 36px; line-height: 44px; }
+      .onboarding-cards { flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+      .onboarding-card { flex: 1 1 calc(50% - 8px); min-width: 260px; min-height: 0; }
+
+      /* Monthly Payroll Cycle — 4 cards, 2x2 at tablet */
+      .paycycle { padding: 60px 0; }
+      .paycycle-title { font-size: 36px; line-height: 44px; }
+      .paycycle-cards { flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+      .paycycle-cards + .paycycle-cards { margin-top: 16px; }
+      .paycycle-card { flex: 1 1 calc(50% - 8px); min-width: 260px; min-height: 0; }
+
+      /* Employee Offboarding — stays side-by-side at tablet, stacks at mobile */
+      .offboarding { padding: 60px 0; }
+      .offboarding-title { font-size: 36px; line-height: 44px; }
+      .case-boxes { gap: 16px; margin-top: 40px; }
+      .case-box { flex: 1 1 0; min-width: 0; }
+
+      /* The Marco Difference — no prior degrade rule existed for this section at all */
+      .difference { padding: 60px 0; }
+      .difference > .container { flex-direction: column; gap: 24px; }
+      .difference-left { flex: none; max-width: none; }
+      .difference-right { padding-top: 0; }
+      .difference-title { font-size: 32px; line-height: 40px; }
+
+      /* Get Started — no Figma link given; applying the confirmed sitewide
+         convention for this section type (full-bleed photo + dark overlay +
+         white text + small pill CTA), matching compliance-data-protection.html's
+         Continue section and service-global-payroll.html's Get Started section,
+         both of which use this exact technique. */
+      .getstarted { position: relative; overflow: hidden; background: none; }
+      .getstarted > .container {
+        width: 100%; max-width: none; margin-inline: 0;
+        position: relative; z-index: 1; display: block; min-height: 0; padding: 0;
+      }
+      .getstarted-inner { max-width: none; padding: 32px; position: relative; z-index: 1; }
+      .getstarted-image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; margin: 0; flex: none; }
+      .getstarted-image::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); pointer-events: none; }
+      .getstarted .section-label { color: #fff; }
+      .getstarted-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; margin-top: 12px; }
+      .getstarted-title .plain { color: #fff; }
+      .getstarted-body { color: #fff; max-width: none; margin-top: 24px; }
+      .getstarted-cta { margin-top: 32px; }
+      .getstarted-cta .cta-btn--primary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+        background: #fff; border: 1px solid #003751; color: #162351;
+      }
+      .getstarted-cta .cta-btn--primary:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
+      .getstarted-cta .btn-icon { width: 16px; height: 16px; }
+      /* chevron-right-dark.svg is actually white-stroked (misleading filename) — invisible on
+         this white pill button, so invert it dark to match compliance/global-payroll's fix */
+      .getstarted-cta .btn-icon-img { filter: brightness(0); }
+      .getstarted-cta .cta-btn--primary:hover .btn-icon-img { filter: none; }
+    }
+
+    /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
     .nav-mobile-right { display: none; align-items: center; gap: 32px; }
@@ -617,6 +742,110 @@
       .footer-legal { gap: 24px; }
     }
   
+    /* ════════════════════════════════════════
+       MOBILE CONTENT (≤600px) — no Figma link given; built from established
+       site conventions
+    ════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .hero > .container,
+      .whatthis > .container,
+      .howitworks > .container,
+      .scope > .container,
+      .model > .container,
+      .onboarding > .container,
+      .paycycle > .container,
+      .offboarding > .container,
+      .difference > .container,
+      .getstarted > .container {
+        width: calc(100% - 48px);
+      }
+
+      /* Hero */
+      .hero > .container { padding-top: 120px; }
+      .hero-content { max-width: none; }
+      .hero-title { font-size: 32px; }
+      .hero-body { font-size: 14px; line-height: 18px; }
+
+      /* What Is EOR */
+      .whatthis-left { padding-top: 48px; gap: 16px; }
+      .whatthis-title { font-size: 28px; line-height: 36px; letter-spacing: -1.4px; }
+      .whatthis-body { font-size: 14px; line-height: 18px; }
+      .whatthis-right { padding-bottom: 48px; gap: 12px; }
+      .usecase-box { padding: 12px; gap: 12px; }
+
+      /* How It Works — Figma 5990:15442: stacks vertically, line removed, each
+         step becomes an icon-left/content-right row (not column like tablet/desktop).
+         Body text stays 16px per Figma (not reduced to 14px like other mobile bodies). */
+      .howitworks { padding: 48px 0; }
+      .howitworks-header { margin-bottom: 40px; }
+      .howitworks-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .steps-line { display: none; }
+      .steps-row { flex-direction: column; gap: 32px; }
+      .step { flex-direction: row; align-items: flex-start; gap: 16px; width: 100%; }
+      .step-icon { width: 56px; height: 56px; }
+      .step-title { font-size: 18px; line-height: 24px; }
+
+      /* Service Scope — 1 column at mobile */
+      .scope { padding: 48px 0; }
+      .scope-title { font-size: 28px; line-height: 36px; }
+      .scope-body { font-size: 14px; line-height: 18px; }
+      .scope-grid { margin-top: 32px; }
+      .scope-row { flex-direction: column; }
+      .scope-row .scope-box:not(:last-child) { border-right: none; }
+      /* flex-basis:0 from the tablet rule applies to WIDTH there (row direction) but would
+         apply to HEIGHT here (column direction) and collapse the box — reset to content-sized */
+      .scope-box { flex: none; padding: 20px; }
+      .scope-box-title { font-size: 18px; line-height: 24px; }
+      .scope-box-body, .scope-box-bullets { font-size: 14px; line-height: 18px; }
+
+      /* Engagement Model */
+      .model { padding: 48px 0; }
+      .model-title { font-size: 28px; line-height: 36px; }
+      .model-body { font-size: 14px; line-height: 18px; }
+      .model-table-wrap { margin-top: 32px; }
+
+      /* Employee Onboarding — 1 column at mobile */
+      .onboarding { padding: 48px 0; }
+      .onboarding-title { font-size: 28px; line-height: 36px; }
+      .onboarding-body { font-size: 14px; line-height: 18px; }
+      .onboarding-cards { flex-direction: column; gap: 16px; margin-top: 32px; }
+      .onboarding-card { flex: none; min-width: 0; }
+
+      /* Monthly Payroll Cycle — 1 column at mobile */
+      .paycycle { padding: 48px 0; }
+      .paycycle-title { font-size: 28px; line-height: 36px; }
+      .paycycle-body { font-size: 14px; line-height: 18px; }
+      .paycycle-cards { flex-direction: column; gap: 16px; margin-top: 32px; }
+      .paycycle-cards + .paycycle-cards { margin-top: 16px; }
+      .paycycle-card { flex: none; min-width: 0; padding: 16px; gap: 16px; }
+      .paycycle-card-num { font-size: 24px; line-height: 30px; }
+      .paycycle-card-title { font-size: 18px; line-height: 24px; }
+      .paycycle-card-body { font-size: 13px; line-height: 17px; }
+
+      /* Employee Offboarding — 1 column at mobile */
+      .offboarding { padding: 48px 0; }
+      .offboarding-title { font-size: 28px; line-height: 36px; }
+      .offboarding-body { font-size: 14px; line-height: 18px; }
+      .case-boxes { flex-direction: column; gap: 16px; margin-top: 32px; }
+      .case-box { flex: none; min-width: 0; }
+      .case-box-case-name { font-size: 24px; line-height: 30px; }
+      .case-box-duration-num { font-size: 24px; line-height: 30px; }
+
+      /* The Marco Difference */
+      .difference { padding: 48px 0; }
+      .difference-title { font-size: 28px; line-height: 36px; }
+      .difference-body { font-size: 14px; line-height: 18px; }
+
+      /* Get Started — re-assert full-bleed width: the generic mobile gutter-reset
+         list above is later in source than the tablet block's full-bleed override,
+         so at ≤600px it would otherwise silently win and re-add the 48px inset
+         (same bug found and fixed on service-global-payroll.html). */
+      .getstarted > .container { width: 100%; max-width: none; margin-inline: 0; }
+      .getstarted-inner { padding: 32px 24px; }
+      .getstarted-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .getstarted-body { font-size: 14px; line-height: 18px; }
+    }
+
     /* ════════════════════════════════════════
        MOBILE FOOTER (≤440px)
     ════════════════════════════════════════ */
