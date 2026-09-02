@@ -143,16 +143,26 @@
       padding: 53px 0 80px;
     }
     .problem > .container { display: flex; gap: 48px; align-items: flex-start; }
-    .problem-left { flex: 0 0 624px; padding-top: 27px; display: flex; flex-direction: column; gap: 24px; }
+    /* flex:1 1 624px + max-width (not flex:0 0 624px) so this column can shrink
+       together with .problem-cards as the viewport narrows below ~1300px, instead
+       of staying rigid while all the squeeze gets forced onto the cards column —
+       same fix already applied to .whatthis-left/.whatic-left on other pages. */
+    .problem-left { flex: 1 1 624px; max-width: 624px; min-width: 0; padding-top: 27px; display: flex; flex-direction: column; gap: 24px; }
     .problem-left .section-label { color: var(--text-main); }
     .problem-title {
       font-size: 48px; font-weight: 600; line-height: 60px;
       color: var(--text-main); letter-spacing: -2.4px;
     }
     .problem-title .accent { color: var(--blue-main); }
-    .problem-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); }
+    .problem-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); margin-top: 24px; }
     .problem-body p + p { margin-top: 20px; }
-    .problem-cards { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+    /* flex-basis:552px (the column's actual desktop width: 1224 container - 48 gap
+       - 624 left column), not 0 — an item with flex-basis:0 gets essentially none
+       of the proportional shrink/grow distribution (it's weighted by basis), which
+       is why .problem-left was grabbing its full width first and dumping the rest
+       of the squeeze onto this column alone. With both columns' real basis set,
+       they now shrink together proportionally. */
+    .problem-cards { flex: 1 1 552px; max-width: 552px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
     .problem-card {
       background: #e4efff; border: 1px solid #bcc9eb; border-radius: 8px;
       padding: 16px; display: flex; gap: 16px; align-items: flex-start;
@@ -180,7 +190,17 @@
     .howit-title { font-size: 64px; font-weight: 700; line-height: 80px; color: #fff; }
     .howit-title .accent { color: var(--blue-main); }
     .howit-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); max-width: 644px; }
-    .howit-timeline { position: relative; margin-top: 60px; padding: 0 92px; }
+    /* Per Figma node 5351:2109: this timeline is a fixed-size component (1224px
+       divider, 1040px row of six 160px boxes with 16px gaps) — not a
+       stretch-to-fit row. .howit-timeline-scroll is the flexible outer wrapper
+       (100% of the container); .howit-timeline is pinned to its true 1224px
+       size, so it only overflows and scrolls once the wrapper is narrower than
+       that — at normal desktop widths (container ≥1224px) nothing changes. */
+    /* Scrollbar hidden (scrolling itself still works via touch/trackpad/drag) —
+       scrollbar-width for Firefox, ::-webkit-scrollbar for Chrome/Safari/Edge. */
+    .howit-timeline-scroll { width: 100%; margin-top: 60px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+    .howit-timeline-scroll::-webkit-scrollbar { display: none; }
+    .howit-timeline { position: relative; width: 1224px; padding: 0 92px; }
     .howit-divider {
       position: absolute; left: 0; right: 0; top: 7px;
       height: 2px; background: #cdd5e0; border-radius: 10px;
@@ -189,8 +209,8 @@
       transition: transform 0.65s ease-out;
     }
     .howit-divider.is-visible { transform: scaleX(1); }
-    .howit-steps { display: flex; justify-content: space-between; position: relative; z-index: 1; }
-    .howit-step { width: 130px; display: flex; flex-direction: column; align-items: center; gap: 26px; opacity: 0; transition: opacity 0.8s ease; }
+    .howit-steps { display: flex; gap: 16px; position: relative; z-index: 1; }
+    .howit-step { width: 160px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 26px; opacity: 0; transition: opacity 0.8s ease; }
     .howit-step.is-visible { opacity: 1; }
     @media (prefers-reduced-motion: reduce) {
       .howit-divider { transform: none; transition: none; }
@@ -201,6 +221,7 @@
       background: #fff; border: 4px solid var(--blue-main); flex-shrink: 0;
     }
     .howit-step-content { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+    .howit-step-text { display: flex; flex-direction: column; gap: 16px; width: 100%; }
     .howit-step-num { font-size: 12px; font-weight: 400; line-height: 16px; color: #fff; }
     .howit-step-title {
       font-size: 16px; font-weight: 700; line-height: 20px;
@@ -389,7 +410,129 @@
     }
     .wechat-modal.active { opacity: 1; pointer-events: auto; }
     .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
-  
+
+    /* ════════════════════════════════════════
+       TABLET CONTENT (≤1000px) — no Figma link given; built from established
+       site conventions (see the EOR/IC/Global Mobility pages' responsive work).
+       Card/body copy sizes are left at their desktop values throughout — every
+       Figma-verified section on those pages confirmed content text stays full
+       size at every breakpoint, and only section headlines shrink.
+    ════════════════════════════════════════ */
+    @media (max-width: 1000px) {
+      body { min-width: 0; }
+
+      .hero > .container,
+      .problem > .container,
+      .howit > .container,
+      .fullscope > .container,
+      .whatwecov > .container,
+      .policydesign > .container,
+      .ep-difference > .container,
+      .ep-getstarted > .container {
+        width: calc(100% - 64px);
+        max-width: none;
+        margin-inline: auto;
+      }
+
+      /* Hero — per Figma node 6005:13534 (frame height 440px at nav 80px + content
+         top 140px + content height 244px, leaving 56px below the copy). Title also
+         switches to Semibold at this size (the H3-SB style used by this page's
+         other section headlines), not the desktop hero's Bold. */
+      .hero { height: auto; padding-bottom: 56px; }
+      .hero > .container { padding-top: 140px; }
+      .hero-content { max-width: 642px; }
+      .hero-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+
+      /* The Problem — per Figma node 6005:13570: the numbered problem-cards grid
+         is dropped entirely at this breakpoint (and mobile) — only the intro
+         copy remains, at much tighter section padding (32px, not the sitewide
+         ~60px norm) than every other section on this page. Title matches the
+         desktop 48/60 Semibold value exactly, so it's left unset here. */
+      .problem { padding: 32px 0; }
+      .problem-left { flex: none; width: 100%; padding-top: 0; gap: 12px; }
+      .problem-body { margin-top: 32px; }
+      .problem-cards { display: none; }
+
+      /* How It Works — per Figma node 6005:13614: tablet keeps the exact same
+         fixed-size horizontal timeline as desktop (the .howit-timeline-scroll/
+         .howit-timeline split above already handles the overflow+scroll once
+         the tablet container is narrower than 1224px) — only the title shrinks. */
+      .howit { padding: 60px 0; }
+      .howit-title { font-size: 48px; font-weight: 700; line-height: 60px; letter-spacing: -2.4px; }
+
+      /* Full Service Scope — per Figma node 6005:13645: switches to a 2-column,
+         3-row grid at tablet (not simply "shrink the 3-column row"), and each
+         cell's icon stacks above its title instead of sitting beside it.
+         min-height (not Figma's literal 240px) so cells hug content instead of
+         risking the overflow bug already fixed on .payroll-model-card elsewhere.
+         The 2-col visual grid doesn't line up with the underlying two
+         three-cell HTML rows, so border-right is fully reset and reapplied per
+         actual visual column, and row 2's first cell needs an extra
+         border-bottom the base (3-column) rule doesn't give it. */
+      .fullscope { padding: 60px 0; }
+      .fullscope-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .fullscope-grid { display: flex; flex-wrap: wrap; margin-top: 52px; }
+      .fullscope-row { display: contents; }
+      .fullscope-cell { flex: 1 1 50%; max-width: 50%; min-height: 240px; height: auto; padding: 16px; }
+      .fullscope-cell-inner { flex-direction: column; gap: 16px; }
+      .fullscope-cell-content { flex: none; width: 100%; gap: 16px; }
+      .fullscope-row:last-child .fullscope-cell:nth-child(1) { border-bottom: 1px solid #cdd5e0; }
+      .fullscope-grid .fullscope-row .fullscope-cell { border-right: none; }
+      .fullscope-row:first-child .fullscope-cell:nth-child(1),
+      .fullscope-row:first-child .fullscope-cell:nth-child(3),
+      .fullscope-row:last-child .fullscope-cell:nth-child(2) { border-right: 1px solid #cdd5e0; }
+
+      /* What We Cover — stack; cards drop full-width below the copy */
+      .whatwecov { padding: 60px 0; }
+      .whatwecov > .container { flex-direction: column; gap: 40px; }
+      .whatwecov-left { flex: none; width: 100%; padding-top: 0; gap: 20px; }
+      /* Tablet H3-SB titles: 48px/60px Semibold, -2.4px tracking — matches the
+         base .whatwecov-title/.ep-difference-title declarations exactly, so no
+         override needed for those two; .policydesign-title's base is the plain
+         64/80 H2 style and needs an explicit override to match. */
+      .whatwecov-cards { flex: none; width: 100%; }
+
+      /* Policy Design — stays 2x2 at tablet, 1 column at mobile */
+      .policydesign { padding: 60px 0; }
+      .policydesign-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .policydesign-grid { margin-top: 40px; }
+
+      /* The Marco Difference — both columns are hard-fixed widths (600px each)
+         at desktop, so this needs its own stack rule rather than reusing the
+         other pages' difference-section pattern verbatim. */
+      .ep-difference { padding: 60px 0; }
+      .ep-difference > .container { flex-direction: column; gap: 24px; }
+      .ep-difference-left { flex: none; max-width: none; }
+      .ep-difference-right { flex: none; max-width: none; padding-top: 0; }
+
+      /* Get Started — no Figma link given; applying the confirmed sitewide
+         convention for this section type (full-bleed photo + dark overlay +
+         white text + small pill CTA). */
+      .ep-getstarted { position: relative; overflow: hidden; background: none; }
+      .ep-getstarted > .container {
+        width: 100%; max-width: none; margin-inline: 0;
+        position: relative; z-index: 1; display: block; min-height: 0; padding: 0;
+      }
+      .ep-getstarted-inner { max-width: none; padding: 32px; position: relative; z-index: 1; }
+      .ep-getstarted-header { gap: 24px; margin-bottom: 24px; }
+      .ep-getstarted-image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; margin: 0; flex: none; }
+      .ep-getstarted-image::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); pointer-events: none; }
+      .ep-getstarted .section-label { color: #fff; }
+      .ep-getstarted-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+      .ep-getstarted-title .plain { color: #fff; }
+      .ep-getstarted-body { color: #fff; max-width: none; margin-bottom: 32px; }
+      .ep-getstarted-cta .cta-btn--primary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+        background: #fff; border: 1px solid #003751; color: #162351;
+      }
+      .ep-getstarted-cta .cta-btn--primary:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
+      .ep-getstarted-cta .btn-icon { width: 16px; height: 16px; }
+      /* chevron-right-dark.svg is actually white-stroked (misleading filename) — invisible on
+         this white pill button, so invert it dark to match the sitewide fix */
+      .ep-getstarted-cta .btn-icon-img { filter: brightness(0); }
+      .ep-getstarted-cta .cta-btn--primary:hover .btn-icon-img { filter: none; }
+    }
+
     /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
@@ -496,6 +639,97 @@
     .footer-mob-legal-links a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #b2b6c8; text-decoration: none; }
     .footer-mob-legal-links a:hover { color: #fff; }
     .footer-mob-copyright { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #b2b6c8; }
+
+    /* ════════════════════════════════════════
+       MOBILE CONTENT (≤600px) — no Figma link given; built from established
+       site conventions
+    ════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .hero > .container,
+      .problem > .container,
+      .howit > .container,
+      .fullscope > .container,
+      .whatwecov > .container,
+      .policydesign > .container,
+      .ep-difference > .container,
+      .ep-getstarted > .container {
+        width: calc(100% - 48px);
+      }
+
+      /* Hero — per Figma node 6005:13973 (frame height 420px at nav 70px + content
+         top 130px + content height 244px, leaving 46px below the copy). Title
+         reverts to Bold with no tracking here (the tablet rule above switches it
+         to Semibold -2.4px, matching that breakpoint's H3-SB style only). */
+      .hero { padding-bottom: 46px; }
+      .hero > .container { padding-top: 130px; }
+      .hero-content { max-width: none; }
+      .hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+
+      /* The Problem — per Figma node 6005:14009. Padding/gap stay the same as
+         tablet (32px section padding, 12px label-to-title gap, 32px title-to-body
+         gap — all inherited from the shared ≤1000px rule); only the title size
+         changes here, back to Bold with no tracking. */
+      .problem-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+
+      /* How It Works — per Figma node 6005:14016: mobile is the one breakpoint
+         that actually abandons the horizontal timeline for a vertical list —
+         no dot markers, no divider, and the step number sits as a plain text
+         column beside the title/body instead of above it. */
+      .howit { padding: 48px 0; }
+      .howit-title { font-size: 32px; line-height: 40px; }
+      .howit-timeline-scroll { overflow-x: visible; margin-top: 32px; }
+      .howit-timeline { width: 100%; padding: 0; }
+      .howit-divider { display: none; }
+      .howit-steps { flex-direction: column; align-items: stretch; gap: 24px; }
+      .howit-step { width: 100%; flex-direction: row; align-items: flex-start; }
+      .howit-dot { display: none; }
+      .howit-step-content { flex-direction: row; gap: 24px; align-items: flex-start; }
+      .howit-step-num { font-size: 16px; line-height: 20px; letter-spacing: -0.8px; }
+      .howit-step-text { flex: 1 1 0; min-width: 0; }
+
+      /* Full Service Scope — 1 column at mobile */
+      .fullscope { padding: 48px 0; }
+      .fullscope-title { font-size: 28px; line-height: 36px; letter-spacing: -1.4px; }
+      .fullscope-grid { margin-top: 32px; }
+      .fullscope-row { flex-direction: column; }
+      /* flex-basis:0 from the base rule applies to WIDTH there (row direction) but
+         would apply to HEIGHT here (column direction) and collapse the cell — same
+         bug class fixed elsewhere on the site (.scope-box, .visa-cell, etc). */
+      .fullscope-cell { flex: none; padding: 20px; }
+      /* Row-scoped borders (desktop/tablet) only cover first-row cells and
+         non-last-in-row cells, so stacking to one column misses dividers between
+         rows and leaves stray right-borders — override per-cell at matching
+         specificity and only strip the very last cell's bottom border. */
+      .fullscope-grid .fullscope-row .fullscope-cell { border-bottom: 1px solid #cdd5e0; border-right: none; }
+      .fullscope-row:last-child .fullscope-cell:last-child { border-bottom: none; }
+
+      /* What We Cover — 1 column at mobile */
+      .whatwecov { padding: 48px 0; }
+      .whatwecov > .container { gap: 32px; }
+      .whatwecov-left { gap: 16px; }
+      .whatwecov-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+
+      /* Policy Design — 1 column at mobile */
+      .policydesign { padding: 48px 0; }
+      .policydesign-title { font-size: 32px; font-weight: 700; line-height: 40px; }
+      .policydesign-grid { margin-top: 32px; gap: 16px; }
+      .policydesign-row { flex-direction: column; gap: 16px; }
+      /* Same flex-basis:0-in-column-direction bug as .fullscope-cell above. */
+      .policydesign-card { flex: none; }
+
+      /* The Marco Difference */
+      .ep-difference { padding: 48px 0; }
+      .ep-difference-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+
+      /* Get Started — re-assert full-bleed width: the generic mobile gutter-reset
+         list above is later in source than the tablet block's full-bleed override,
+         so at ≤600px it would otherwise silently win and re-add the 48px inset. */
+      .ep-getstarted > .container { width: 100%; max-width: none; margin-inline: 0; }
+      .ep-getstarted-inner { padding: 32px 24px; }
+      .ep-getstarted-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .ep-getstarted-body { font-size: 14px; line-height: 18px; margin-bottom: 24px; }
+    }
+
     @media (max-width: 440px) {
       .footer { display: none; }
       .footer-mobile { display: block; }
@@ -535,7 +769,7 @@
       </div>
       <div>
         <h2 class="problem-title"><span data-i18n="ep.problem.title.pre">Global expenses are </span><span class="accent" data-i18n="ep.problem.title.accent">messier</span><span data-i18n="ep.problem.title.post"> than they look.</span></h2>
-        <div class="problem-body" style="margin-top:24px;">
+        <div class="problem-body">
           <p data-i18n="ep.problem.body.p1">Employees in different countries submit expenses in different currencies, against different tax rules, with different documentation requirements. What counts as a valid receipt in Germany is not the same as in China or Brazil.</p>
           <p data-i18n="ep.problem.body.p2">Most companies handle this with spreadsheets, email chains, and a finance team that manually reconciles everything at month end. It is slow, error-prone, and creates real tax exposure when local compliance is missed.</p>
         </div>
@@ -595,6 +829,7 @@
         <p class="howit-subtitle" style="margin-top:24px;" data-i18n="ep.howit.subtitle">The same process runs in every country, adapted to local tax and compliance requirements.</p>
       </div>
     </div>
+    <div class="howit-timeline-scroll">
     <div class="howit-timeline">
       <div class="howit-divider"></div>
       <div class="howit-steps">
@@ -602,51 +837,64 @@
           <div class="howit-dot"></div>
           <div class="howit-step-content">
             <p class="howit-step-num">01</p>
-            <p class="howit-step-title" data-i18n="ep.howit.step1.title">Policy Setup</p>
-            <p class="howit-step-body" data-i18n="ep.howit.step1.body">Country-specific expense policies built to local tax rules and your company requirements</p>
+            <div class="howit-step-text">
+              <p class="howit-step-title" data-i18n="ep.howit.step1.title">Policy Setup</p>
+              <p class="howit-step-body" data-i18n="ep.howit.step1.body">Country-specific expense policies built to local tax rules and your company requirements</p>
+            </div>
           </div>
         </div>
         <div class="howit-step">
           <div class="howit-dot"></div>
           <div class="howit-step-content">
             <p class="howit-step-num">02</p>
-            <p class="howit-step-title" data-i18n="ep.howit.step2.title">Submission</p>
-            <p class="howit-step-body" data-i18n="ep.howit.step2.body">Employees submit expenses with receipts through Marco OS. Categories applied automatically</p>
+            <div class="howit-step-text">
+              <p class="howit-step-title" data-i18n="ep.howit.step2.title">Submission</p>
+              <p class="howit-step-body" data-i18n="ep.howit.step2.body">Employees submit expenses with receipts through Marco OS. Categories applied automatically</p>
+            </div>
           </div>
         </div>
         <div class="howit-step">
           <div class="howit-dot"></div>
           <div class="howit-step-content">
             <p class="howit-step-num">03</p>
-            <p class="howit-step-title" data-i18n="ep.howit.step3.title">Billing Review</p>
-            <p class="howit-step-body" data-i18n="ep.howit.step3.body">Local accounting teams review all receipts and invoices for completeness and compliance</p>
+            <div class="howit-step-text">
+              <p class="howit-step-title" data-i18n="ep.howit.step3.title">Billing Review</p>
+              <p class="howit-step-body" data-i18n="ep.howit.step3.body">Local accounting teams review all receipts and invoices for completeness and compliance</p>
+            </div>
           </div>
         </div>
         <div class="howit-step">
           <div class="howit-dot"></div>
           <div class="howit-step-content">
             <p class="howit-step-num">04</p>
-            <p class="howit-step-title" data-i18n="ep.howit.step4.title">Approval</p>
-            <p class="howit-step-body" data-i18n="ep.howit.step4.body">Reports routed to the right manager automatically. No manual chasing or email threads</p>
+            <div class="howit-step-text">
+              <p class="howit-step-title" data-i18n="ep.howit.step4.title">Approval</p>
+              <p class="howit-step-body" data-i18n="ep.howit.step4.body">Reports routed to the right manager automatically. No manual chasing or email threads</p>
+            </div>
           </div>
         </div>
         <div class="howit-step">
           <div class="howit-dot"></div>
           <div class="howit-step-content">
             <p class="howit-step-num">05</p>
-            <p class="howit-step-title" data-i18n="ep.howit.step5.title">Tax Processing</p>
-            <p class="howit-step-body" data-i18n="ep.howit.step5.body">Gross-up calculations, benefit-in-kind treatment, and withholding applied per local rules</p>
+            <div class="howit-step-text">
+              <p class="howit-step-title" data-i18n="ep.howit.step5.title">Tax Processing</p>
+              <p class="howit-step-body" data-i18n="ep.howit.step5.body">Gross-up calculations, benefit-in-kind treatment, and withholding applied per local rules</p>
+            </div>
           </div>
         </div>
         <div class="howit-step">
           <div class="howit-dot"></div>
           <div class="howit-step-content">
             <p class="howit-step-num">06</p>
-            <p class="howit-step-title" data-i18n="ep.howit.step6.title">Compliant Payment</p>
-            <p class="howit-step-body" data-i18n="ep.howit.step6.body">Reimbursement paid to employees in local currency, on time, with full documentation</p>
+            <div class="howit-step-text">
+              <p class="howit-step-title" data-i18n="ep.howit.step6.title">Compliant Payment</p>
+              <p class="howit-step-body" data-i18n="ep.howit.step6.body">Reimbursement paid to employees in local currency, on time, with full documentation</p>
+            </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </section>
