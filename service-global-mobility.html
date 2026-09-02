@@ -422,7 +422,121 @@
     }
     .wechat-modal.active { opacity: 1; pointer-events: auto; }
     .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
-  
+
+    /* ════════════════════════════════════════
+       TABLET CONTENT (≤1000px) — no Figma link given; built from established
+       site conventions (see service-employer-of-record.html and
+       service-independent-contractor.html's responsive work). Card/body copy
+       sizes are left at their desktop values throughout — every Figma-verified
+       section on those pages confirmed content text stays full size at every
+       breakpoint, and only section headlines shrink.
+    ════════════════════════════════════════ */
+    @media (max-width: 1000px) {
+      body { min-width: 0; }
+
+      .hero > .container,
+      .whatgm > .container,
+      .structure > .container,
+      .visa > .container,
+      .workstreams > .container,
+      .payroll-models > .container,
+      .onground > .container,
+      .difference > .container,
+      .getstarted > .container {
+        width: calc(100% - 64px);
+        max-width: none;
+        margin-inline: auto;
+      }
+
+      /* Hero — per Figma node 6001:11706 (frame height 440px at nav 80px + content
+         top 140px + content height 224px, leaving 76px below the copy — not the
+         40px used elsewhere on the site, this section runs taller). */
+      .hero { height: auto; padding-bottom: 76px; }
+      .hero > .container { padding-top: 140px; }
+      .hero-content { max-width: 642px; }
+      .hero-title { font-size: 48px; line-height: 60px; }
+
+      /* What Is Global Mobility — stack; numbered boxes drop full-width below the copy */
+      .whatgm > .container { flex-direction: column; gap: 40px; padding-top: 60px; padding-bottom: 60px; }
+      .whatgm-left { flex: none; width: 100%; gap: 20px; }
+      .whatgm-title { font-size: 32px; line-height: 40px; letter-spacing: -1.6px; }
+      .whatgm-boxes { flex: none; width: 100%; }
+
+      /* How We Structure Every Assignment — 2x2(+1) at tablet, 1 column at mobile */
+      .structure { padding: 60px 0; }
+      .structure-title { font-size: 36px; line-height: 44px; white-space: normal; }
+      .structure-cards { flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+      .structure-card { flex: 1 1 calc(50% - 8px); min-width: 260px; min-height: 0; }
+      .structure-card-num { font-size: 96px; line-height: 100px; }
+
+      /* Visa and Immigration — stays 3 columns at tablet, 1 at mobile */
+      .visa { padding: 60px 0; }
+      .visa-title { font-size: 36px; line-height: 44px; }
+      .visa-grid { margin-top: 40px; }
+      .visa-cell { padding: 20px; min-height: 0; }
+
+      /* Contract + Payroll Workstreams — stays side-by-side at tablet, stacks at mobile */
+      .workstreams { padding: 60px 0; }
+      .workstreams > .container { gap: 16px; }
+      .workstream-title { font-size: 32px; line-height: 40px; letter-spacing: -1.6px; }
+      .workstream-boxes { margin-top: 32px; }
+
+      /* Expat Payroll Structures — stays 3 columns at tablet, 1 at mobile.
+         Per Figma node 6005:13155: title follows the same 48/60 Semibold pattern
+         as other sections' tablet headlines (not the generic 36/44 H2 fallback).
+         Figma's 360px card height is a snapshot at one specific width — using it
+         as a hard height would overflow/clip once the viewport narrows further
+         within the tablet range and the body copy wraps onto more lines. Use it
+         as a min-height instead, so the card hugs and grows with its content;
+         "Best for" still pins to the bottom via justify-content:space-between
+         when there's slack; the added gap:16px is a floor so that spacing never
+         collapses below 16px once the card is hugging content exactly (or
+         growing past min-height) and there's no slack left to distribute. */
+      .payroll-models { padding: 60px 0; }
+      .payroll-models-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .payroll-model-cards { gap: 16px; margin-top: 32px; }
+      .payroll-model-card { min-height: 360px; height: auto; padding: 16px; gap: 16px; }
+
+      /* On The Ground Support — stays side-by-side at tablet, stacks at mobile */
+      .onground { padding: 60px 0; }
+      .onground-title { font-size: 36px; line-height: 44px; }
+      .onground-panels { gap: 16px; margin-top: 40px; }
+
+      /* The Marco Difference — no prior degrade rule existed for this section at all */
+      .difference { padding: 60px 0; }
+      .difference > .container { flex-direction: column; gap: 24px; }
+      .difference-left { flex: none; max-width: none; }
+      .difference-right { padding-top: 0; }
+      .difference-title { font-size: 32px; line-height: 40px; }
+
+      /* Get Started — no Figma link given; applying the confirmed sitewide
+         convention for this section type (full-bleed photo + dark overlay +
+         white text + small pill CTA). */
+      .getstarted { position: relative; overflow: hidden; background: none; }
+      .getstarted > .container {
+        width: 100%; max-width: none; margin-inline: 0;
+        position: relative; z-index: 1; display: block; min-height: 0; padding: 0;
+      }
+      .getstarted-inner { max-width: none; padding: 32px; position: relative; z-index: 1; }
+      .getstarted-image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; margin: 0; flex: none; }
+      .getstarted-image::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); pointer-events: none; }
+      .getstarted .section-label { color: #fff; }
+      .getstarted-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; margin-top: 12px; }
+      .getstarted-title .plain { color: #fff; }
+      .getstarted-body { color: #fff; max-width: none; margin-top: 24px; }
+      .getstarted-cta { margin-top: 32px; }
+      .getstarted-cta .cta-btn--primary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+        background: #fff; border: 1px solid #003751; color: #162351;
+      }
+      .getstarted-cta .cta-btn--primary:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
+      .getstarted-cta .btn-icon { width: 16px; height: 16px; }
+      /* chevron-right-dark.svg is actually white-stroked (misleading filename) — invisible on
+         this white pill button, so invert it dark to match the sitewide fix */
+      .getstarted-cta .btn-icon-img { filter: brightness(0); }
+      .getstarted-cta .cta-btn--primary:hover .btn-icon-img { filter: none; }
+    }
+
     /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
@@ -529,6 +643,112 @@
     .footer-mob-legal-links a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #b2b6c8; text-decoration: none; }
     .footer-mob-legal-links a:hover { color: #fff; }
     .footer-mob-copyright { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #b2b6c8; }
+
+    /* ════════════════════════════════════════
+       MOBILE CONTENT (≤600px) — no Figma link given; built from established
+       site conventions
+    ════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .hero > .container,
+      .whatgm > .container,
+      .structure > .container,
+      .visa > .container,
+      .workstreams > .container,
+      .payroll-models > .container,
+      .onground > .container,
+      .difference > .container,
+      .getstarted > .container {
+        width: calc(100% - 48px);
+      }
+
+      /* Hero — per Figma node 6001:12136 (frame height 420px at nav 70px + content
+         top 130px + content height 204px, leaving 86px below the copy). */
+      .hero { padding-bottom: 86px; }
+      .hero > .container { padding-top: 130px; }
+      .hero-content { max-width: none; }
+      .hero-title { font-size: 32px; line-height: 40px; }
+
+      /* What Is Global Mobility — 1 column at mobile */
+      .whatgm > .container { padding-top: 48px; padding-bottom: 48px; gap: 32px; }
+      .whatgm-left { gap: 16px; }
+      .whatgm-title { font-size: 28px; line-height: 36px; letter-spacing: -1.4px; }
+
+      /* How We Structure Every Assignment — 1 column at mobile */
+      .structure { padding: 48px 0; }
+      .structure-title { font-size: 28px; line-height: 36px; }
+      .structure-cards { flex-direction: column; gap: 16px; margin-top: 32px; }
+      .structure-card { flex: none; min-width: 0; min-height: 0; }
+      .structure-card-num { font-size: 80px; line-height: 84px; }
+
+      /* Visa and Immigration — 1 column at mobile */
+      .visa { padding: 48px 0; }
+      .visa-title { font-size: 28px; line-height: 36px; }
+      .visa-grid { margin-top: 32px; }
+      .visa-row { flex-direction: column; }
+      /* flex-basis:0 from the base rule applies to WIDTH there (row direction) but
+         would apply to HEIGHT here (column direction) and collapse the cell to
+         near-zero height (clipping its content via overflow:hidden) — same bug
+         class fixed on .scope-box elsewhere on this site. Reset to content-sized. */
+      .visa-cell { flex: none; padding: 20px; }
+      /* Row-based border-bottom (desktop/tablet) only spans complete rows, so it
+         misses the divider between cells once they stack into one column —
+         override per-cell (matching the same specificity as the row-scoped rule)
+         and only strip it from the actual last cell. */
+      .visa-grid .visa-row .visa-cell { border-bottom: 1px solid #cdd5e0; }
+      .visa-row:last-child .visa-cell:last-child { border-bottom: none; }
+      .visa-row .visa-cell:not(:last-child) { border-right: none; }
+
+      /* Contract + Payroll Workstreams — 1 column at mobile. .workstream-col carries
+         flex:1 1 0 from the base rule (same collapse-in-column-direction bug as
+         .visa-cell / .payroll-model-card above) — reset it here. */
+      .workstreams { padding: 48px 0; }
+      .workstreams > .container { flex-direction: column; gap: 40px; }
+      .workstream-col { flex: none; }
+      .workstream-title { font-size: 28px; line-height: 36px; letter-spacing: -1.4px; }
+      .workstream-boxes { margin-top: 24px; }
+
+      /* Expat Payroll Structures — 1 column at mobile, per Figma node 6005:13239.
+         Title is 32/40 Bold (not the generic 28/36 H2 fallback), and the
+         header-to-cards gap is genuinely larger here than the sitewide ~32px norm
+         (this section's title+body run longer, wrapping to more lines). Figma's
+         260px card height is a snapshot at one width — used as a hard height it
+         would clip/overflow once the viewport narrows further (e.g. small phones)
+         and the body copy wraps onto more lines, so it's a min-height instead,
+         letting the card hug and grow with its content. */
+      .payroll-models { padding: 48px 0; }
+      .payroll-models-title { font-size: 32px; line-height: 40px; }
+      /* .payroll-model-card carries flex:1 1 0 from the base rule, which would
+         collapse its height once the row becomes a column here (flex-basis:0
+         applies to width in the row direction but to height in column direction) —
+         same bug class as .visa-cell elsewhere on this page. Reset flex. */
+      .payroll-model-cards { flex-direction: column; gap: 16px; margin-top: 88px; }
+      /* gap:16px is a floor alongside justify-content:space-between (from the base
+         rule) — guarantees the divider-to-"Best for" spacing never collapses below
+         16px once the card is hugging content exactly or growing past min-height. */
+      .payroll-model-card { flex: none; min-height: 260px; height: auto; padding: 16px; gap: 16px; }
+
+      /* On The Ground Support — 1 column at mobile. .onground-panel carries flex:1 1 0
+         from the base rule (same collapse-in-column-direction bug as above) — reset
+         it here. This one already has overflow:hidden, so the symptom would have
+         been clipped-away content rather than visible overlap, but still broken. */
+      .onground { padding: 48px 0; }
+      .onground-title { font-size: 28px; line-height: 36px; }
+      .onground-panels { flex-direction: column; gap: 16px; margin-top: 32px; }
+      .onground-panel { flex: none; }
+
+      /* The Marco Difference */
+      .difference { padding: 48px 0; }
+      .difference-title { font-size: 28px; line-height: 36px; }
+
+      /* Get Started — re-assert full-bleed width: the generic mobile gutter-reset
+         list above is later in source than the tablet block's full-bleed override,
+         so at ≤600px it would otherwise silently win and re-add the 48px inset. */
+      .getstarted > .container { width: 100%; max-width: none; margin-inline: 0; }
+      .getstarted-inner { padding: 32px 24px; }
+      .getstarted-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .getstarted-body { font-size: 14px; line-height: 18px; }
+    }
+
     @media (max-width: 440px) {
       .footer { display: none; }
       .footer-mobile { display: block; }

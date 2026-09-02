@@ -247,6 +247,7 @@
     .scope-box-inner { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; opacity: 0; transition: opacity 0.35s ease; }
     .scope-box-inner.is-visible { opacity: 1; }
     @media (prefers-reduced-motion: reduce) { .scope-box-inner { opacity: 1; transition: none; } }
+    .scope-box-head { display: flex; flex-direction: column; gap: 24px; width: 100%; }
     .scope-icon {
       background: #1d4783; border-radius: 8px;
       width: 40px; height: 40px; flex-shrink: 0;
@@ -306,50 +307,25 @@
     .model-team-title { font-size: 16px; font-weight: 500; line-height: 20px; color: var(--text-main); }
     .model-team-sub   { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-tertiary); }
     .model-resp       { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-tertiary); }
-    /* Responsive — card layout ≤ 1000px (aligned to this page's content breakpoint,
-       was 767px which didn't match the site's tablet convention) */
+    /* Responsive — Figma nodes 5993:15657 (tablet) / 5993:15712 (mobile): the table
+       stays a real table at both breakpoints instead of collapsing into cards, just
+       with tighter column widths/padding than desktop. It's pinned at 736px, so once
+       the container is narrower than that .model-table-wrap's unconditional
+       overflow-x:auto takes over and it scrolls horizontally.
+       Cells use min-height (not a fixed height) so a longer "Primary Responsibilities"
+       string can wrap onto more lines without overflowing/overlapping the next row —
+       matching how desktop already hugs content instead of clipping to Figma's 80px. */
     @media (max-width: 1000px) {
-      .model-table-wrap { overflow: visible; }
-      .model-table { min-width: 0; }
-      /* Hide column headers — labels shown via ::before */
-      .model-header-row { display: none; }
-      /* Each data row becomes a stacked card */
-      .model-row.model-data-row {
-        flex-direction: column; height: auto;
-        border: 1px solid #cdd5e0; border-radius: 8px;
-        margin-bottom: 12px;
-      }
-      .model-row.model-data-row:last-child { margin-bottom: 0; }
-      /* All cells full-width, divided by a bottom border */
-      .model-data-row .model-cell {
-        height: auto !important; width: 100% !important;
-        flex: none !important; padding: 14px 20px;
-        border-bottom: 1px solid #cdd5e0;
-      }
-      .model-data-row .model-cell:last-child { border-bottom: none; }
-      /* YOUR TEAM and MARCO SERVICE TEAM: stack label + title + sub */
-      .model-cell-yourteam,
-      .model-cell-marcoteam {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 2px !important;
-      }
-      /* Inject column label above the name */
-      .model-cell-yourteam::before {
-        content: "YOUR TEAM";
-        font-size: 10px; font-weight: 500; line-height: 14px;
-        color: var(--text-tertiary); letter-spacing: 0.5px;
-        margin-bottom: 4px;
-      }
-      .model-cell-marcoteam::before {
-        content: "MARCO SERVICE TEAM";
-        font-size: 10px; font-weight: 500; line-height: 14px;
-        color: var(--text-tertiary); letter-spacing: 0.5px;
-        margin-bottom: 4px;
-      }
-      /* Allow text to wrap normally on small screens */
+      /* Fluid until the container itself hits 736px — then min-width takes over,
+         holding the table at 736px and handing off to .model-table-wrap's
+         horizontal scroll instead of shrinking the columns further. */
+      .model-table { width: 100%; min-width: 736px; }
+      .model-header-row .model-cell { padding: 4px 16px; }
+      .model-header-row .model-cell-tier { flex: 0 0 140px; }
+      .model-data-row .model-cell { min-height: 80px; height: auto; padding: 4px 16px; }
+      .model-cell-tier { flex: 0 0 140px; }
       .model-team-title,
-      .model-team-sub { white-space: normal; }
+      .model-team-sub { white-space: nowrap; }
     }
 
     /* ════════════════════════════════════════
@@ -433,17 +409,25 @@
       flex: 1 0 0; min-width: 0; border-radius: 8px; overflow: hidden;
       box-shadow: 0 4px 5px rgba(0,0,0,0.1), 0 4px 15px rgba(0,0,0,0.15);
     }
+    /* Grid (not flex+order) so tablet/mobile can move the case name onto its own
+       row without any flex-wrap sizing edge cases — an earlier flex-wrap/order/
+       display:contents version let "17 to 25" overflow past the card at mobile
+       widths instead of reliably staying put. */
     .case-box-header {
       background: #162351; padding: 20px;
-      display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+      display: grid; grid-template-columns: 1fr auto;
+      grid-template-areas: "label duration" "name duration";
+      column-gap: 16px; row-gap: 4px; align-items: start;
     }
-    .case-box-header-left { display: flex; flex-direction: column; gap: 4px; }
-    .case-box-case-label { font-size: 16px; font-weight: 700; line-height: 20px; color: var(--blue-main); }
-    .case-box-case-name { font-size: 32px; font-weight: 700; line-height: 40px; color: #fff; }
-    .case-box-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+    .case-box-case-label { grid-area: label; font-size: 16px; font-weight: 700; line-height: 20px; color: var(--blue-main); }
+    .case-box-case-name { grid-area: name; font-size: 32px; font-weight: 700; line-height: 40px; color: #fff; }
+    .case-box-header-right { grid-area: duration; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; justify-self: end; }
     .case-box-duration-num { font-size: 32px; font-weight: 700; line-height: 40px; color: #fff; }
     .case-box-duration-label { font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); }
-    .case-box-body { background: #0F1E46; padding: 20px 20px 32px; display: flex; flex-direction: column; gap: 16px; }
+    /* Was #0F1E46 (the page's own dark background) — with .case-step-actor's dark
+       navy text on top, actor names were nearly invisible at every breakpoint,
+       including desktop. Figma's body panel is white. */
+    .case-box-body { background: #fff; padding: 20px 20px 32px; display: flex; flex-direction: column; gap: 16px; }
     .case-step { display: flex; gap: 16px; align-items: flex-start; }
     .case-step-num {
       background: #e4efff; border-radius: 50px;
@@ -603,10 +587,11 @@
       .scope-grid { max-width: none; margin-top: 40px; }
       .scope-box { flex: 1 1 0; min-width: 0; min-height: 0; padding: 24px; }
 
-      /* Engagement Model */
+      /* Engagement Model — title sizing per Figma node 5993:15657 (table rules
+         for this breakpoint live in the Engagement Model responsive block below) */
       .model { padding: 60px 0; }
-      .model-title { font-size: 36px; line-height: 44px; white-space: normal; }
-      .model-table-wrap { margin-top: 40px; }
+      .model-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; white-space: normal; }
+      .model-table-wrap { margin-top: 32px; }
 
       /* Employee Onboarding — 4 cards, 2x2 at tablet */
       .onboarding { padding: 60px 0; }
@@ -614,18 +599,35 @@
       .onboarding-cards { flex-wrap: wrap; gap: 16px; margin-top: 40px; }
       .onboarding-card { flex: 1 1 calc(50% - 8px); min-width: 260px; min-height: 0; }
 
-      /* Monthly Payroll Cycle — 4 cards, 2x2 at tablet */
+      /* Monthly Payroll Cycle — per Figma node 5993:15899: single column at tablet
+         (not the previous 2x2 grid), cards hug their content instead of a fixed
+         min-height, and copy sizes/gaps match the desktop values exactly. */
       .paycycle { padding: 60px 0; }
-      .paycycle-title { font-size: 36px; line-height: 44px; }
-      .paycycle-cards { flex-wrap: wrap; gap: 16px; margin-top: 40px; }
-      .paycycle-cards + .paycycle-cards { margin-top: 16px; }
-      .paycycle-card { flex: 1 1 calc(50% - 8px); min-width: 260px; min-height: 0; }
+      .paycycle-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .paycycle-cards { flex-direction: column; gap: 16px; margin-top: 32px; }
+      .paycycle-card { flex: none; min-height: 0; padding: 16px; }
+      .paycycle-card-content { gap: 16px; }
+      .paycycle-card-tags { margin-top: 0; }
 
-      /* Employee Offboarding — stays side-by-side at tablet, stacks at mobile */
+      /* Employee Offboarding — stays side-by-side at tablet, stacks at mobile.
+         Per Figma nodes 5993:16049 (tablet) / 5993:16164 (mobile), both breakpoints
+         restructure each case box's header: CASE label + duration share a row, and
+         the case name drops to its own full-width line below — unlike desktop's
+         [label+name] left column vs [duration] right column split. The grid-area
+         reassignment below moves the case name into the same row as the duration
+         (spanning both columns), which pushes it onto its own line. */
       .offboarding { padding: 60px 0; }
-      .offboarding-title { font-size: 36px; line-height: 44px; }
-      .case-boxes { gap: 16px; margin-top: 40px; }
+      .offboarding-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .case-boxes { gap: 16px; margin-top: 32px; }
       .case-box { flex: 1 1 0; min-width: 0; }
+      .case-box-header {
+        padding: 16px; row-gap: 16px;
+        grid-template-areas: "label duration" "name name";
+      }
+      .case-box-case-name { font-size: 20px; font-weight: 600; line-height: 26px; }
+      .case-box-duration-num { font-size: 20px; font-weight: 600; line-height: 26px; }
+      .case-box-body { padding: 16px; gap: 16px; }
+      .case-step-content { gap: 8px; padding-top: 0; }
 
       /* The Marco Difference — no prior degrade rule existed for this section at all */
       .difference { padding: 60px 0; }
@@ -785,24 +787,39 @@
       .step-icon { width: 56px; height: 56px; }
       .step-title { font-size: 18px; line-height: 24px; }
 
-      /* Service Scope — 1 column at mobile */
+      /* Service Scope — 1 column at mobile, per Figma node 5993:15610.
+         Card copy (title 20px, body/bullets 16px) stays the same size as desktop —
+         only the section title shrinks and the icon+title pair becomes a row. */
       .scope { padding: 48px 0; }
-      .scope-title { font-size: 28px; line-height: 36px; }
-      .scope-body { font-size: 14px; line-height: 18px; }
-      .scope-grid { margin-top: 32px; }
+      .scope-title { font-size: 32px; line-height: 40px; }
+      .scope-grid { margin-top: 48px; }
       .scope-row { flex-direction: column; }
       .scope-row .scope-box:not(:last-child) { border-right: none; }
       /* flex-basis:0 from the tablet rule applies to WIDTH there (row direction) but would
          apply to HEIGHT here (column direction) and collapse the box — reset to content-sized */
-      .scope-box { flex: none; padding: 20px; }
-      .scope-box-title { font-size: 18px; line-height: 24px; }
-      .scope-box-body, .scope-box-bullets { font-size: 14px; line-height: 18px; }
+      .scope-box { flex: none; padding: 16px; border-bottom: 1px solid #cdd5e0; }
+      /* Row-based border-bottom (desktop/tablet) only spans complete rows, so it misses
+         the divider after box 3 once boxes stack into one column — override per-box and
+         only strip it from the actual last card. */
+      .scope-row:last-child .scope-box:last-child { border-bottom: none; }
+      .scope-box-inner { gap: 16px; }
+      .scope-box-head { flex-direction: row; align-items: center; gap: 16px; }
 
-      /* Engagement Model */
+      /* Engagement Model — per Figma node 5993:15712. Table structure (736px width,
+         140px tier column, cell padding) is already handled by the shared ≤1000px
+         rule above; mobile only needs its own title size and header-to-table gap.
+         The scroll wrap itself breaks out of .container's 24px gutter to bleed full
+         viewport width — giving the horizontal scroll its own edge-to-edge track —
+         then re-applies that 24px as inner padding on both sides, so the first
+         column still lines up with the rest of the page and there's a matching
+         breathing-room gap after the last column once scrolled all the way. */
       .model { padding: 48px 0; }
-      .model-title { font-size: 28px; line-height: 36px; }
-      .model-body { font-size: 14px; line-height: 18px; }
-      .model-table-wrap { margin-top: 32px; }
+      .model-title { font-size: 32px; line-height: 40px; }
+      .model-table-wrap {
+        width: 100vw; margin-top: 32px;
+        margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);
+        padding: 0 24px; box-sizing: border-box;
+      }
 
       /* Employee Onboarding — 1 column at mobile */
       .onboarding { padding: 48px 0; }
@@ -811,25 +828,24 @@
       .onboarding-cards { flex-direction: column; gap: 16px; margin-top: 32px; }
       .onboarding-card { flex: none; min-width: 0; }
 
-      /* Monthly Payroll Cycle — 1 column at mobile */
+      /* Monthly Payroll Cycle — per Figma node 5993:15974: 1 column at mobile, copy
+         sizes match desktop (only the section title shrinks), and the tag pills
+         are dropped entirely — Figma's mobile cards only show number/title/body. */
       .paycycle { padding: 48px 0; }
-      .paycycle-title { font-size: 28px; line-height: 36px; }
-      .paycycle-body { font-size: 14px; line-height: 18px; }
+      .paycycle-title { font-size: 32px; line-height: 40px; }
       .paycycle-cards { flex-direction: column; gap: 16px; margin-top: 32px; }
-      .paycycle-cards + .paycycle-cards { margin-top: 16px; }
-      .paycycle-card { flex: none; min-width: 0; padding: 16px; gap: 16px; }
-      .paycycle-card-num { font-size: 24px; line-height: 30px; }
-      .paycycle-card-title { font-size: 18px; line-height: 24px; }
-      .paycycle-card-body { font-size: 13px; line-height: 17px; }
+      .paycycle-card { flex: none; min-height: 0; padding: 16px; }
+      .paycycle-card-content { gap: 16px; }
+      .paycycle-card-tags { display: none; }
 
-      /* Employee Offboarding — 1 column at mobile */
+      /* Employee Offboarding — 1 column at mobile. Per Figma node 5993:16164, body
+         copy stays the same size as desktop/tablet (only the section title shrinks);
+         header restructure/name+duration sizing is handled by the shared ≤1000px
+         rule above. */
       .offboarding { padding: 48px 0; }
-      .offboarding-title { font-size: 28px; line-height: 36px; }
-      .offboarding-body { font-size: 14px; line-height: 18px; }
+      .offboarding-title { font-size: 32px; line-height: 40px; }
       .case-boxes { flex-direction: column; gap: 16px; margin-top: 32px; }
       .case-box { flex: none; min-width: 0; }
-      .case-box-case-name { font-size: 24px; line-height: 30px; }
-      .case-box-duration-num { font-size: 24px; line-height: 30px; }
 
       /* The Marco Difference */
       .difference { padding: 48px 0; }
@@ -1022,8 +1038,10 @@
       <div class="scope-row">
         <div class="scope-box">
           <div class="scope-box-inner">
-            <div class="scope-icon"><img src="assets/Services/EOR page/File text.svg" alt="" /></div>
-            <p class="scope-box-title" data-i18n="eor.scope.box1.title">Licensed Legal Employer</p>
+            <div class="scope-box-head">
+              <div class="scope-icon"><img src="assets/Services/EOR page/File text.svg" alt="" /></div>
+              <p class="scope-box-title" data-i18n="eor.scope.box1.title">Licensed Legal Employer</p>
+            </div>
             <p class="scope-box-body" data-i18n="eor.scope.box1.body">Marco's owned local entities serve as the legal employer of record in each country. No partner networks, no third-party agencies.</p>
             <ul class="scope-box-bullets">
               <li data-i18n="eor.scope.box1.li1">Fully compliant employment contracts</li>
@@ -1035,8 +1053,10 @@
         </div>
         <div class="scope-box">
           <div class="scope-box-inner">
-            <div class="scope-icon"><img src="assets/Services/EOR page/User plus.svg" alt="" /></div>
-            <p class="scope-box-title" data-i18n="eor.scope.box2.title">Seamless Onboarding</p>
+            <div class="scope-box-head">
+              <div class="scope-icon"><img src="assets/Services/EOR page/User plus.svg" alt="" /></div>
+              <p class="scope-box-title" data-i18n="eor.scope.box2.title">Seamless Onboarding</p>
+            </div>
             <p class="scope-box-body" data-i18n="eor.scope.box2.body">Country-specific onboarding procedures built to local requirements, from information collection through social-benefit registration and system setup.</p>
             <ul class="scope-box-bullets">
               <li data-i18n="eor.scope.box2.li1">Tailored procedures per country</li>
@@ -1050,8 +1070,10 @@
       <div class="scope-row">
         <div class="scope-box">
           <div class="scope-box-inner">
-            <div class="scope-icon"><img src="assets/Services/EOR page/Dollar sign.svg" alt="" /></div>
-            <p class="scope-box-title" data-i18n="eor.scope.box3.title">Payroll and Benefits</p>
+            <div class="scope-box-head">
+              <div class="scope-icon"><img src="assets/Services/EOR page/Dollar sign.svg" alt="" /></div>
+              <p class="scope-box-title" data-i18n="eor.scope.box3.title">Payroll and Benefits</p>
+            </div>
             <p class="scope-box-body" data-i18n="eor.scope.box3.body">Accurate, on-time payroll processing with full statutory compliance. Benefits configuration built to local market norms and your internal policy.</p>
             <ul class="scope-box-bullets">
               <li data-i18n="eor.scope.box3.li1">Monthly payroll calculation and disbursement</li>
@@ -1063,8 +1085,10 @@
         </div>
         <div class="scope-box">
           <div class="scope-box-inner">
-            <div class="scope-icon"><img src="assets/Services/EOR page/Monitor.svg" alt="" /></div>
-            <p class="scope-box-title" data-i18n="eor.scope.box4.title">People Management</p>
+            <div class="scope-box-head">
+              <div class="scope-icon"><img src="assets/Services/EOR page/Monitor.svg" alt="" /></div>
+              <p class="scope-box-title" data-i18n="eor.scope.box4.title">People Management</p>
+            </div>
             <p class="scope-box-body" data-i18n="eor.scope.box4.body">Unified HR operations across all EOR employees, managed through Marco OS with full visibility for your HR and finance teams.</p>
             <ul class="scope-box-bullets">
               <li data-i18n="eor.scope.box4.li1">Centralized employee data on Marco Platform</li>
@@ -1309,14 +1333,12 @@
       <!-- CASE 01 -->
       <div class="case-box">
         <div class="case-box-header">
-          <div class="case-box-header-left">
-            <span class="case-box-case-label" data-i18n="eor.offboard.case1.label">CASE 01</span>
-            <span class="case-box-case-name" data-i18n="eor.offboard.case1.name">Voluntary Resignation</span>
-          </div>
+          <span class="case-box-case-label" data-i18n="eor.offboard.case1.label">CASE 01</span>
           <div class="case-box-header-right">
             <span class="case-box-duration-num" data-i18n="eor.offboard.case1.dur">10 to 17</span>
             <span class="case-box-duration-label" data-i18n="eor.offboard.case1.dur.label">WORKING DAYS</span>
           </div>
+          <span class="case-box-case-name" data-i18n="eor.offboard.case1.name">Voluntary Resignation</span>
         </div>
         <div class="case-box-body">
           <div class="case-step">
@@ -1359,14 +1381,12 @@
       <!-- CASE 02 -->
       <div class="case-box">
         <div class="case-box-header">
-          <div class="case-box-header-left">
-            <span class="case-box-case-label" data-i18n="eor.offboard.case2.label">CASE 02</span>
-            <span class="case-box-case-name" data-i18n="eor.offboard.case2.name">Mutual Termination</span>
-          </div>
+          <span class="case-box-case-label" data-i18n="eor.offboard.case2.label">CASE 02</span>
           <div class="case-box-header-right">
             <span class="case-box-duration-num" data-i18n="eor.offboard.case2.dur">17 to 25</span>
             <span class="case-box-duration-label" data-i18n="eor.offboard.case2.dur.label">WORKING DAYS</span>
           </div>
+          <span class="case-box-case-name" data-i18n="eor.offboard.case2.name">Mutual Termination</span>
         </div>
         <div class="case-box-body">
           <div class="case-step">
