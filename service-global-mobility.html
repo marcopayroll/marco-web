@@ -144,7 +144,12 @@
       background: linear-gradient(to bottom, #f4f4ff 49.112%, #fff 110.41%);
     }
     .whatgm > .container { display: flex; gap: 48px; align-items: flex-start; padding-top: 80px; padding-bottom: 80px; }
-    .whatgm-left { flex: 0 0 624px; display: flex; flex-direction: column; gap: 24px; }
+    /* flex:1 1 624px + max-width (not flex:0 0 624px) so this column can shrink
+       together with .whatgm-boxes as the viewport narrows below ~1300px, instead
+       of staying rigid while all the squeeze gets forced onto the boxes column —
+       same fix already applied to .problem-left/.ep-difference-left on the
+       Expense Processing page. */
+    .whatgm-left { flex: 1 1 624px; max-width: 624px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
     .whatgm-left .section-label { color: var(--text-main); }
     .whatgm-title {
       font-size: 48px; font-weight: 600; line-height: 60px;
@@ -153,7 +158,11 @@
     .whatgm-title .accent { color: var(--blue-main); }
     .whatgm-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); }
     .whatgm-body p + p { margin-top: 20px; }
-    .whatgm-boxes { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 0; }
+    /* flex-basis:552px (the column's real desktop width: 1224 container - 48 gap
+       - 624 left column), not 0 — a flex-basis:0 item gets essentially none of
+       the proportional shrink/grow distribution, which is why .whatgm-left was
+       grabbing its full width first and dumping the rest of the squeeze here. */
+    .whatgm-boxes { flex: 1 1 552px; max-width: 552px; min-width: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 0; }
     .whatgm-box {
       background: #e4efff; border: 1px solid #bcc9eb; border-radius: 8px;
       padding: 16px; display: flex; gap: 16px; align-items: flex-start;
@@ -454,31 +463,37 @@
       .hero { height: auto; padding-bottom: 76px; }
       .hero > .container { padding-top: 140px; }
       .hero-content { max-width: 642px; }
-      .hero-title { font-size: 48px; line-height: 60px; }
+      /* Tablet section titles: 48px/60px Semibold, -2.4px tracking, throughout
+         this page. .whatgm-title, .workstream-title, .payroll-models-title, and
+         .difference-title already match this exactly at the base level, so no
+         override is needed (or, where one previously existed with mobile-sized
+         values, it's been removed rather than left to fight the base rule). */
+      .hero-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
 
-      /* What Is Global Mobility — stack; numbered boxes drop full-width below the copy */
+      /* What Is Global Mobility — stack; numbered boxes drop full-width below the copy.
+         max-width:none resets the web-view fix's 624px/552px caps (from the base
+         rule), which otherwise stay in effect here and leave a large empty gap
+         next to each stacked, capped-width column. */
       .whatgm > .container { flex-direction: column; gap: 40px; padding-top: 60px; padding-bottom: 60px; }
-      .whatgm-left { flex: none; width: 100%; gap: 20px; }
-      .whatgm-title { font-size: 32px; line-height: 40px; letter-spacing: -1.6px; }
-      .whatgm-boxes { flex: none; width: 100%; }
+      .whatgm-left { flex: none; width: 100%; max-width: none; gap: 20px; }
+      .whatgm-boxes { flex: none; width: 100%; max-width: none; }
 
       /* How We Structure Every Assignment — 2x2(+1) at tablet, 1 column at mobile */
       .structure { padding: 60px 0; }
-      .structure-title { font-size: 36px; line-height: 44px; white-space: normal; }
+      .structure-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; white-space: normal; }
       .structure-cards { flex-wrap: wrap; gap: 16px; margin-top: 40px; }
       .structure-card { flex: 1 1 calc(50% - 8px); min-width: 260px; min-height: 0; }
       .structure-card-num { font-size: 96px; line-height: 100px; }
 
       /* Visa and Immigration — stays 3 columns at tablet, 1 at mobile */
       .visa { padding: 60px 0; }
-      .visa-title { font-size: 36px; line-height: 44px; }
+      .visa-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
       .visa-grid { margin-top: 40px; }
       .visa-cell { padding: 20px; min-height: 0; }
 
       /* Contract + Payroll Workstreams — stays side-by-side at tablet, stacks at mobile */
       .workstreams { padding: 60px 0; }
       .workstreams > .container { gap: 16px; }
-      .workstream-title { font-size: 32px; line-height: 40px; letter-spacing: -1.6px; }
       .workstream-boxes { margin-top: 32px; }
 
       /* Expat Payroll Structures — stays 3 columns at tablet, 1 at mobile.
@@ -499,15 +514,16 @@
 
       /* On The Ground Support — stays side-by-side at tablet, stacks at mobile */
       .onground { padding: 60px 0; }
-      .onground-title { font-size: 36px; line-height: 44px; }
+      .onground-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
       .onground-panels { gap: 16px; margin-top: 40px; }
 
-      /* The Marco Difference — no prior degrade rule existed for this section at all */
+      /* The Marco Difference — no prior degrade rule existed for this section at all.
+         .difference-title already matches the 48/60/600/-2.4 base exactly, so no
+         override needed (a stray mobile-sized override was removed from here). */
       .difference { padding: 60px 0; }
       .difference > .container { flex-direction: column; gap: 24px; }
       .difference-left { flex: none; max-width: none; }
       .difference-right { padding-top: 0; }
-      .difference-title { font-size: 32px; line-height: 40px; }
 
       /* Get Started — no Figma link given; applying the confirmed sitewide
          convention for this section type (full-bleed photo + dark overlay +
@@ -666,23 +682,28 @@
       .hero { padding-bottom: 86px; }
       .hero > .container { padding-top: 130px; }
       .hero-content { max-width: none; }
-      .hero-title { font-size: 32px; line-height: 40px; }
+      /* Mobile section titles: 32px/40px Bold, no tracking, throughout this page.
+         Several base rules use a weight/letter-spacing other than 700/normal
+         (and the tablet rule above now explicitly sets 600 on some of them), so
+         each override here sets weight and letter-spacing explicitly rather than
+         relying on inheritance from a rule that no longer matches at this width. */
+      .hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
 
       /* What Is Global Mobility — 1 column at mobile */
       .whatgm > .container { padding-top: 48px; padding-bottom: 48px; gap: 32px; }
       .whatgm-left { gap: 16px; }
-      .whatgm-title { font-size: 28px; line-height: 36px; letter-spacing: -1.4px; }
+      .whatgm-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
 
       /* How We Structure Every Assignment — 1 column at mobile */
       .structure { padding: 48px 0; }
-      .structure-title { font-size: 28px; line-height: 36px; }
+      .structure-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
       .structure-cards { flex-direction: column; gap: 16px; margin-top: 32px; }
       .structure-card { flex: none; min-width: 0; min-height: 0; }
       .structure-card-num { font-size: 80px; line-height: 84px; }
 
       /* Visa and Immigration — 1 column at mobile */
       .visa { padding: 48px 0; }
-      .visa-title { font-size: 28px; line-height: 36px; }
+      .visa-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
       .visa-grid { margin-top: 32px; }
       .visa-row { flex-direction: column; }
       /* flex-basis:0 from the base rule applies to WIDTH there (row direction) but
@@ -704,7 +725,7 @@
       .workstreams { padding: 48px 0; }
       .workstreams > .container { flex-direction: column; gap: 40px; }
       .workstream-col { flex: none; }
-      .workstream-title { font-size: 28px; line-height: 36px; letter-spacing: -1.4px; }
+      .workstream-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
       .workstream-boxes { margin-top: 24px; }
 
       /* Expat Payroll Structures — 1 column at mobile, per Figma node 6005:13239.
@@ -716,7 +737,7 @@
          and the body copy wraps onto more lines, so it's a min-height instead,
          letting the card hug and grow with its content. */
       .payroll-models { padding: 48px 0; }
-      .payroll-models-title { font-size: 32px; line-height: 40px; }
+      .payroll-models-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
       /* .payroll-model-card carries flex:1 1 0 from the base rule, which would
          collapse its height once the row becomes a column here (flex-basis:0
          applies to width in the row direction but to height in column direction) —
@@ -732,13 +753,13 @@
          it here. This one already has overflow:hidden, so the symptom would have
          been clipped-away content rather than visible overlap, but still broken. */
       .onground { padding: 48px 0; }
-      .onground-title { font-size: 28px; line-height: 36px; }
+      .onground-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
       .onground-panels { flex-direction: column; gap: 16px; margin-top: 32px; }
       .onground-panel { flex: none; }
 
       /* The Marco Difference */
       .difference { padding: 48px 0; }
-      .difference-title { font-size: 28px; line-height: 36px; }
+      .difference-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
 
       /* Get Started — re-assert full-bleed width: the generic mobile gutter-reset
          list above is later in source than the tablet block's full-bleed override,

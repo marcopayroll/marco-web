@@ -198,8 +198,18 @@
        that — at normal desktop widths (container ≥1224px) nothing changes. */
     /* Scrollbar hidden (scrolling itself still works via touch/trackpad/drag) —
        scrollbar-width for Firefox, ::-webkit-scrollbar for Chrome/Safari/Edge. */
-    .howit-timeline-scroll { width: 100%; margin-top: 60px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
+    .howit-timeline-wrap { position: relative; margin-top: 60px; }
+    .howit-timeline-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; }
     .howit-timeline-scroll::-webkit-scrollbar { display: none; }
+    /* Scroll affordance: a soft fade over the right edge signals there's more
+       content to scroll to. JS toggles it off once scrolled to the end (or if
+       the content never overflowed in the first place). */
+    .howit-timeline-fade {
+      position: absolute; top: 0; right: 0; bottom: 0; width: 64px;
+      background: linear-gradient(to right, rgba(8,21,87,0), rgba(8,21,87,0.95));
+      pointer-events: none; opacity: 0; transition: opacity 0.2s ease;
+    }
+    .howit-timeline-fade.is-visible { opacity: 1; }
     .howit-timeline { position: relative; width: 1224px; padding: 0 92px; }
     .howit-divider {
       position: absolute; left: 0; right: 0; top: 7px;
@@ -335,10 +345,14 @@
     }
     .ep-difference > .container { display: flex; gap: 24px; align-items: flex-start; }
     .ep-difference .section-label { color: var(--blue-main); }
-    .ep-difference-left { flex: 0 0 600px; display: flex; flex-direction: column; gap: 12px; }
+    /* flex:1 1 600px + max-width (not flex:0 0 600px) on BOTH columns so they
+       shrink together as the viewport narrows below ~1250px, instead of neither
+       side being able to compress at all — same fix already applied to
+       .problem-left/.problem-cards on this page. */
+    .ep-difference-left { flex: 1 1 600px; max-width: 600px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
     .ep-difference-title { font-size: 48px; font-weight: 600; line-height: 60px; color: #fff; letter-spacing: -2.4px; }
     .ep-difference-title .accent { color: var(--blue-main); }
-    .ep-difference-right { flex: 0 0 600px; padding-top: 30px; }
+    .ep-difference-right { flex: 1 1 600px; max-width: 600px; min-width: 0; padding-top: 30px; }
     .ep-difference-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); }
     .ep-difference-body p + p { margin-top: 20px; }
 
@@ -449,7 +463,7 @@
          ~60px norm) than every other section on this page. Title matches the
          desktop 48/60 Semibold value exactly, so it's left unset here. */
       .problem { padding: 32px 0; }
-      .problem-left { flex: none; width: 100%; padding-top: 0; gap: 12px; }
+      .problem-left { flex: none; width: 100%; max-width: none; padding-top: 0; gap: 12px; }
       .problem-body { margin-top: 32px; }
       .problem-cards { display: none; }
 
@@ -677,9 +691,11 @@
          column beside the title/body instead of above it. */
       .howit { padding: 48px 0; }
       .howit-title { font-size: 32px; line-height: 40px; }
-      .howit-timeline-scroll { overflow-x: visible; margin-top: 32px; }
+      .howit-timeline-wrap { margin-top: 32px; }
+      .howit-timeline-scroll { overflow-x: visible; }
       .howit-timeline { width: 100%; padding: 0; }
       .howit-divider { display: none; }
+      .howit-timeline-fade { display: none; }
       .howit-steps { flex-direction: column; align-items: stretch; gap: 24px; }
       .howit-step { width: 100%; flex-direction: row; align-items: flex-start; }
       .howit-dot { display: none; }
@@ -829,6 +845,7 @@
         <p class="howit-subtitle" style="margin-top:24px;" data-i18n="ep.howit.subtitle">The same process runs in every country, adapted to local tax and compliance requirements.</p>
       </div>
     </div>
+    <div class="howit-timeline-wrap">
     <div class="howit-timeline-scroll">
     <div class="howit-timeline">
       <div class="howit-divider"></div>
@@ -895,6 +912,8 @@
         </div>
       </div>
     </div>
+    </div>
+    <div class="howit-timeline-fade" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -1176,6 +1195,21 @@
       });
     }, { threshold: 0.25 });
     howitObserver.observe(howitTimeline);
+  }
+
+  // How It Works — right-edge fade shows only while there's more to scroll to
+  const howitScroll = document.querySelector('.howit-timeline-scroll');
+  const howitFade = document.querySelector('.howit-timeline-fade');
+  if (howitScroll && howitFade) {
+    const updateHowitFade = () => {
+      const maxScroll = howitScroll.scrollWidth - howitScroll.clientWidth;
+      const hasOverflow = maxScroll > 2;
+      const atEnd = howitScroll.scrollLeft >= maxScroll - 2;
+      howitFade.classList.toggle('is-visible', hasOverflow && !atEnd);
+    };
+    updateHowitFade();
+    howitScroll.addEventListener('scroll', updateHowitFade, { passive: true });
+    window.addEventListener('resize', updateHowitFade);
   }
 
   // Fade-in on scroll

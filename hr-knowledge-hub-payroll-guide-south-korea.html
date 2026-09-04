@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="assets/marco-favicon.png">
@@ -8,766 +8,11 @@
   <!-- PDF libraries: html2canvas captures live DOM, jsPDF creates the PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="payroll-guide.css">
   <style>
-    @import url('assets/fonts/euclid-circular-b.css');
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { overflow-anchor: none; }
-
     :root {
-      --blue-main:     #019DE7;
-      --blue-dark:     #003751;
-      --blue-darkest:  #162351;
-      --blue-lighter:  #8DD3F4;
-      --text-main:     #162351;
-      --text-secondary:#475072;
-      --text-tertiary: #8F98B5;
-      --font: 'Euclid Circular B', 'Inter', sans-serif;
-      --gutter:        clamp(64px, 7.5vw, 108px);
-      --nav-gutter:    clamp(32px, 4.44vw, 64px);
-      --footer-gutter: clamp(40px, 5.56vw, 80px);
-    }
-
-    body {
-      font-family: var(--font);
-      background: #0F1E46;
-      color: var(--text-main);
-      min-width: 960px;
-      overflow-x: hidden;
-    }
-
-    .container {
-      width: calc(100% - 2 * var(--gutter));
-      max-width: 1224px;
-      margin-inline: auto;
-    }
-
-    /* ════════════════════════════════════════
-       NAV
-    ════════════════════════════════════════ */
-    .nav {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      z-index: 100;
-      background-image: linear-gradient(92.709deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    }
-    .nav-container {
-      width: min(100% - 128px, 1440px);
-      margin-inline: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 24px 0;
-    }
-    .nav-tabbar {
-      display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      flex-shrink: 0;
-    }
-    .nav-logo {
-      width: 152px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-      text-decoration: none;
-    }
-    .nav-logo-inner {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 684 / 108;
-    }
-    .nav-logo-inner img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .nav-menu {
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-      flex-shrink: 0;
-    }
-    .nav-tab {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding-top: 16px;
-      align-items: flex-start;
-      flex-shrink: 0;
-      position: relative;
-    }
-    .nav-tab:hover::after {
-      content: '';
-      position: absolute;
-      bottom: -16px;
-      left: 4px;
-      right: 4px;
-      height: 2px;
-      background: #fff;
-      pointer-events: none;
-    }
-    .nav-tab-inner {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 0 4px;
-      flex-shrink: 0;
-    }
-    .nav-tab-inner span {
-      font-size: 12px;
-      font-weight: 500;
-      color: #e5e7eb;
-      white-space: nowrap;
-      line-height: 20px;
-    }
-    .nav-chevron { display: flex; align-items: center; flex-shrink: 0; }
-    .nav-chevron svg { display: block; width: 16px; height: 16px; transition: transform 0.2s ease; }
-    .nav-tab:hover .nav-chevron svg { transform: scaleY(-1); }
-    .nav-right {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      flex-shrink: 0;
-    }
-    .nav-lang {
-      display: flex;
-      flex-direction: column;
-      padding-top: 16px;
-      padding-bottom: 14px;
-      align-items: flex-start;
-      flex-shrink: 0;
-      position: relative;
-      cursor: pointer;
-    }
-    .nav-lang-flag {
-      position: relative;
-      width: 20px;
-      height: 20px;
-      border-radius: 50px;
-      border: 1px solid #e5e7eb;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .nav-lang-flag img {
-      position: absolute;
-      top: 0;
-      left: -20.01%;
-      width: 175.44%;
-      height: 100%;
-      max-width: none;
-    }
-    .nav-lang-inner span {
-      font-size: 12px;
-      font-weight: 600;
-      color: #fff;
-      line-height: 20px;
-    }
-    .nav-signin {
-      background: var(--blue-main);
-      color: #fff;
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 50px;
-      padding: 14px 24px;
-      height: 40px;
-      width: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
-      cursor: pointer;
-      border: none;
-      flex-shrink: 0;
-      text-decoration: none;
-      transition: background 0.18s ease;
-    }
-    .nav-signin:hover { background: #0185C4; }
-
-    /* ════════════════════════════════════════
-       HERO — Australia Payroll Guide
-    ════════════════════════════════════════ */
-    .pg-hero {
-      background: #FFEFCE;
-      position: relative;
-      overflow: hidden;
-      min-height: 540px;
-    }
-
-    .pg-hero-inner {
-      padding-top: 180px;
-      padding-bottom: 60px;
-      padding-right: calc(min(628px, 44vw) - var(--gutter) + 24px);
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pg-hero-text {
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .pg-hero-text-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .pg-breadcrumb {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: #019de7;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 18px;
-      width: fit-content;
-      padding: 4px 0;
-    }
-    .pg-breadcrumb span { text-decoration: none; transition: text-decoration-color 0.15s ease; }
-    .pg-breadcrumb:hover span { text-decoration: underline; text-decoration-color: #019DE7; text-underline-offset: 2px; text-decoration-thickness: 1.6px; }
-    .pg-breadcrumb svg { flex-shrink: 0; }
-
-    .pg-hero-title {
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 60px;
-      letter-spacing: -2.4px;
-      color: #162351;
-    }
-
-    .pg-hero-desc {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: #475072;
-    }
-
-    .pg-hero-meta {
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      margin-top: 70px;
-    }
-
-    .pg-hero-divider {
-      height: 1px;
-      background: #cdd5e0;
-      width: 100%;
-      flex-shrink: 0;
-    }
-
-    .pg-hero-last-updated {
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      color: #475072;
-    }
-
-    .pg-hero-img {
-      position: absolute;
-      right: 0;
-      top: var(--nav-h, 98px);
-      bottom: 0;
-      width: min(628px, 44vw);
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .pg-hero-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* ────────────── HERO — TABLET ────────────── */
-    @media (max-width: 800px) {
-      .pg-hero { --gutter: 32px; min-height: 440px; }
-      .pg-hero-img {
-        top: 80px; right: 0; bottom: 0; left: auto;
-        width: calc(50% - 8px); max-width: 376px;
-      }
-      .pg-hero-inner {
-        padding-top: 112px; padding-bottom: 32px;
-        padding-right: calc(50% + 8px);
-        min-height: 440px;
-        gap: 32px;
-      }
-      .pg-hero-text { width: 100%; max-width: 344px; gap: 12px; }
-      .pg-hero-text-inner { gap: 12px; }
-      .pg-hero-title { font-size: 40px; font-weight: 700; line-height: 48px; letter-spacing: -2px; }
-      .pg-hero-desc { font-size: 14px; line-height: 18px; }
-      .pg-hero-last-updated { font-size: 14px; line-height: 18px; }
-      .pg-hero-meta {
-        width: 100%; max-width: 344px; margin-top: auto; gap: 12px;
-      }
-    }
-
-    /* ────────────── HERO — MOBILE ────────────── */
-    @media (max-width: 440px) {
-      .pg-hero { --gutter: 24px; min-height: 400px; }
-      .pg-hero-img { display: none; }
-      .pg-hero-inner {
-        padding-top: 112px; padding-bottom: 32px; padding-right: 0;
-        min-height: 400px;
-        gap: 32px;
-      }
-      .pg-hero-text { max-width: none; }
-      .pg-hero-meta { max-width: none; margin-top: auto; }
-      .pg-hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: 0; }
-      .pg-hero-desc { font-size: 16px; line-height: 20px; letter-spacing: -0.8px; }
-    }
-
-    /* ════════════════════════════════════════
-       FOOTER
-    ════════════════════════════════════════ */
-    .footer {
-      width: 100%;
-      overflow: hidden;
-      background-image: linear-gradient(90.352deg, rgb(15, 30, 70) 20.094%, rgb(8, 21, 87) 99.843%);
-      padding: 60px 0 58px;
-    }
-    .footer > .container { display: flex; flex-direction: column; }
-    .footer-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 56px;
-    }
-    .footer-logo {
-      width: 199.5px;
-      flex-shrink: 0;
-      text-decoration: none;
-    }
-    .footer-logo img { width: 100%; height: auto; display: block; }
-    .footer-social {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 80px;
-      flex-shrink: 0;
-    }
-    .footer-social-icon {
-      width: 24px;
-      height: 24px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .footer-social-icon img { width: 100%; height: 100%; object-fit: contain; }
-    .footer-nav {
-      display: flex;
-      gap: 24px;
-      justify-content: space-between;
-      margin-bottom: 40px;
-    }
-    .footer-col {
-      flex: 1 1 0;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .footer-col-header {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: normal;
-      color: var(--text-tertiary);
-    }
-    .footer-col-links {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .footer-col-links a,
-    .footer-col-links span {
-      font-size: 14px;
-      font-weight: 500;
-      line-height: normal;
-      color: #fff;
-      text-decoration: none;
-      display: block;
-    }
-    .footer-col-links a:hover { text-decoration: underline; }
-    .footer-divider {
-      height: 1px;
-      background: rgba(205,213,224,0.25);
-      margin-bottom: 32px;
-    }
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-tertiary);
-      white-space: nowrap;
-    }
-    .footer-legal {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-    .footer-legal a { color: var(--text-tertiary); text-decoration: none; }
-    .footer-legal a:hover { text-decoration: underline; }
-
-    /* ── WECHAT MODAL ── */
-    .wechat-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-    }
-    .wechat-modal.active { opacity: 1; pointer-events: auto; }
-    .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
-
-    /* ── FADE-IN ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      will-change: opacity, transform;
-    }
-    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) {
-      .fade-in { opacity: 1; transform: none; transition: none; }
-    }
-
-    /* ════════════════════════════════════════
-       TABLET NAV (≤800px)
-    ════════════════════════════════════════ */
-    .nav-mobile-right { display: none; align-items: center; gap: 32px; }
-    .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; padding-top: 10px; padding-bottom: 10px; }
-    .nav-mobile-lang.is-open::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
-    .nav-mobile-lang .nav-lang-flag { width: 16px; height: 16px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; position: relative; }
-    .nav-mobile-lang .nav-lang-flag img { position: absolute; top: 0; left: -20.01%; width: 175.44%; height: 100%; max-width: none; }
-    .nav-mobile-lang span { font-family: var(--font); font-size: 12px; font-weight: 600; color: #fff; line-height: 20px; }
-    .nav-hamburger { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; cursor: pointer; background: none; border: none; padding: 0; flex-shrink: 0; }
-    .nav-hamburger-icon-tablet { display: block; width: 24px; height: 24px; }
-    .nav-hamburger-icon-mobile { display: none; }
-    .nav-hamburger img { transition: transform 0.3s ease; }
-    .nav-hamburger.is-open img { transform: rotate(90deg); }
-    .nav-mobile-overlay { position: fixed; top: 80px; left: 0; width: 100vw; height: calc(100vh - 80px); background: rgba(0,0,0,0.6); z-index: 190; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
-    .nav-mobile-overlay.is-open { opacity: 1; pointer-events: auto; }
-    .nav-mobile-panel {
-      position: fixed; top: 80px; left: calc(100vw - min(100vw, 390px)); width: min(100vw, 390px); height: calc(100vh - 80px);
-      background: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%);
-      z-index: 200; overflow-y: auto; box-sizing: border-box;
-      transform: translateX(100%); transition: transform 0.3s ease;
-      display: flex; flex-direction: column; padding: 24px; justify-content: space-between;
-    }
-    .nav-mobile-panel.is-open { transform: translateX(0); }
-    .nav-mob-acc { display: flex; flex-direction: column; gap: 16px; }
-    .nav-mob-row { }
-    .nav-mob-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; cursor: pointer; user-select: none; gap: 8px; }
-    .nav-mob-header-label { font-family: var(--font); font-size: 16px; font-weight: 500; color: #fff; line-height: 20px; }
-    .nav-mob-chevron { display: flex; align-items: center; flex-shrink: 0; }
-    .nav-mob-chevron svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
-    .nav-mob-row.is-open .nav-mob-chevron svg { transform: rotate(180deg); }
-    .nav-mob-body { display: flex; flex-direction: column; gap: 16px; padding: 0 20px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.35s ease, opacity 0.25s ease, padding-top 0.35s ease; }
-    .nav-mob-row.is-open .nav-mob-body { max-height: 700px; opacity: 1; padding-top: 16px; }
-    .nav-mob-sub-item { display: flex; gap: 8px; align-items: center; text-decoration: none; }
-    .nav-mob-sub-icon { width: 20px; height: 20px; flex-shrink: 0; }
-    .nav-mob-sub-icon img { width: 100%; height: 100%; display: block; }
-    .nav-mob-sub-title { font-family: var(--font); font-size: 14px; font-weight: 500; color: #fff; display: block; line-height: 18px; transition: color 0.12s ease; }
-    .nav-mob-sub-desc { display: none; }
-    .nav-mob-sub-desc-noicon { display: none; }
-    .nav-mob-sub-item:hover .nav-mob-sub-title { color: #019DE7; }
-    .nav-mob-sub-item-noicon { display: block; padding: 0; text-decoration: none; }
-    .nav-mob-sub-title-noicon { font-family: var(--font); font-size: 14px; font-weight: 500; color: #fff; display: block; line-height: 18px; transition: color 0.12s ease; }
-    .nav-mob-sub-item-noicon:hover .nav-mob-sub-title-noicon { color: #019DE7; }
-    .nav-mob-signin-wrap { flex-shrink: 0; }
-    .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
-    .nav-mob-signin:hover { background: #0185C4; }
-    @media (max-width: 800px) {
-      .nav { z-index: 300; width: 100vw; }
-      .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }
-      .nav-menu { display: none; }
-      .nav-right { display: none; }
-      .nav-mobile-right { display: flex; }
-      .nav-lang-dropdown { top: calc(100% + 16px); }
-    }
-    @media (max-width: 440px) {
-      .nav-container { padding: 16px 24px; }
-      .nav-logo { width: 101px; height: 32px; }
-      .nav-hamburger { width: 20px; height: 20px; }
-      .nav-hamburger-icon-tablet { display: none; }
-      .nav-hamburger-icon-mobile { display: block; width: 20px; height: 20px; }
-      .nav-mobile-overlay { top: 64px; height: calc(100vh - 64px); }
-      .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
-    }
-    @media (max-width: 800px) {
-      .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
-      .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
-      .footer-top { margin-bottom: 60px; }
-      .footer-logo { width: 171px; }
-      .footer-nav { flex-wrap: wrap; column-gap: 24px; row-gap: 60px; margin-bottom: 60px; }
-      .footer-col { flex: 1 1 calc(33.333% - 16px); max-width: calc(33.333% - 16px); }
-      .footer-col-header { font-size: 12px; line-height: 16px; }
-      .footer-col-links a, .footer-col-links span { font-size: 12px; line-height: 16px; }
-      .footer-divider { margin-bottom: 32px; }
-      .footer-bottom { font-size: 12px; line-height: 16px; }
-      .footer-legal { gap: 24px; }
-    }
-
-    /* ════════════════════════════════════════
-       MOBILE FOOTER (≤440px)
-    ════════════════════════════════════════ */
-    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100vw; box-sizing: border-box; }
-    .footer-mob-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px 24px 0; }
-    .footer-mob-logo { display: block; width: 142px; height: 40px; flex-shrink: 0; text-decoration: none; }
-    .footer-mob-logo img { width: 142px; height: 40px; display: block; object-fit: contain; }
-    .footer-mob-social { display: flex; align-items: center; gap: 26px; padding-top: 8px; flex-shrink: 0; }
-    .footer-mob-social-link { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; }
-    .footer-mob-social-link img { width: 24px; height: 24px; display: block; }
-    .footer-mob-social-wechat { width: 24px; height: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .footer-mob-social-wechat img { width: 24px; height: 24px; display: block; }
-    .footer-mob-acc { display: flex; flex-direction: column; padding: 32px 24px 0; }
-    .footer-mob-row { border-bottom: 1px solid #8f98b5; }
-    .footer-mob-row-header { display: flex; gap: 16px; align-items: center; padding: 24px 0; cursor: pointer; user-select: none; }
-    .footer-mob-row-label { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; flex: 1; }
-    .footer-mob-row-chevron { display: flex; align-items: center; flex-shrink: 0; }
-    .footer-mob-row-chevron svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
-    .footer-mob-row.is-open .footer-mob-row-chevron svg { transform: rotate(180deg); }
-    .footer-mob-row-body { max-height: 0; overflow: hidden; opacity: 0; display: flex; flex-direction: column; gap: 24px; padding: 0; transition: max-height 0.35s ease, opacity 0.25s ease, padding-bottom 0.35s ease; }
-    .footer-mob-row.is-open .footer-mob-row-body { max-height: 800px; opacity: 1; padding-bottom: 24px; }
-    .footer-mob-row-body a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #fff; text-decoration: none; display: block; }
-    .footer-mob-row-body a:hover { color: #019DE7; }
-    .footer-mob-legal { display: flex; flex-direction: column; gap: 32px; padding: 60px 24px 32px; }
-    .footer-mob-legal-links { display: flex; flex-direction: column; gap: 16px; }
-    .footer-mob-legal-links a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #b2b6c8; text-decoration: none; }
-    .footer-mob-legal-links a:hover { color: #fff; }
-    .footer-mob-copyright { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #b2b6c8; }
-    @media (max-width: 440px) {
-      .footer { display: none; }
-      .footer-mobile { display: block; }
-    }
-
-    .nav-lang { position: relative; cursor: pointer; }
-    .nav-lang-dropdown {
-      position: absolute; top: calc(100% + 25px); left: 50%;
-      width: 90px; background: #fff; border-radius: 8px;
-      box-shadow: 0 4px 5px rgba(0,0,0,0.1), 0 4px 15px rgba(0,0,0,0.15);
-      padding: 8px; display: flex; flex-direction: column; gap: 8px;
-      z-index: 200;
-      opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-4px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-    .nav-lang-dropdown.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang::before { content: ""; position: absolute; left: 0; width: 100%; top: 100%; height: 25px; }
-    .nav-lang:hover .nav-lang-dropdown,
-    .nav-lang-dropdown:hover { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
-    .nav-lang:hover::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #fff; border-radius: 9999px; pointer-events: none; }
-    .nav-lang-inner { display: flex; align-items: center; gap: 4px; padding: 0 4px; }
-    .nav-signin-wrapper { display: flex; align-items: center; height: 50px; flex-shrink: 0; }
-    .nav-lang-dd-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 4px 8px; border-radius: 4px; cursor: pointer;
-      border: 1px solid transparent; transition: background 0.12s ease, border-color 0.12s ease;
-    }
-    .nav-lang-dd-row.is-active { background: #ECF2FB; border-color: #BCC9EB; }
-    .nav-lang-dd-row:hover { background: #ECF2FB; border-color: #BCC9EB; }
-    .nav-lang-dd-flag { position: relative; width: 20px; height: 20px; border-radius: 50%; border: 1px solid #E5E7EB; overflow: hidden; flex-shrink: 0; }
-    .nav-lang-dd-flag img { position: absolute; top: 0; height: 100%; max-width: none; }
-    .nav-lang-dd-flag.flag-en img { left: -20.01%; width: 175.44%; }
-    .nav-lang-dd-flag.flag-cn img { left: 1.79%; width: 150%; }
-    .nav-lang-dropdown .nav-lang-dd-label { font-family: var(--font); font-size: 12px; font-weight: 600; line-height: 20px; color: #162351; }
-
-    /* ════════════════════════════════════════
-       EXPLORE MORE
-    ════════════════════════════════════════ */
-    .explore-section { background: #FFEFCE; padding: 80px 0 60px; overflow-x: clip; }
-    .explore-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
-    .explore-eyebrow { display: flex; align-items: center; gap: 8px; }
-    .explore-eyebrow-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
-    .explore-eyebrow-label { font-size: 14px; font-weight: 500; line-height: 18px; color: #162351; }
-    .explore-title-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .explore-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; color: #162351; white-space: nowrap; flex-shrink: 0; margin: 0; }
-    .explore-controls { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
-    .explore-search { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid #bcc9eb; border-radius: 12px; padding: 12px; width: 320px; height: 50px; flex-shrink: 0; box-sizing: border-box; }
-    .explore-search-icon { width: 16px; height: 16px; flex-shrink: 0; }
-    .explore-search-icon img { width: 100%; height: 100%; display: block; }
-    .explore-search-input { flex: 1; min-width: 0; border: none; outline: none; font-family: var(--font); font-size: 16px; font-weight: 400; line-height: 20px; color: #162351; background: transparent; }
-    .explore-search-input::placeholder { color: #8f98b5; }
-    .explore-search-clear { width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; background: none; border: none; padding: 0; display: none; }
-    .explore-search-clear.visible { display: block; }
-    .explore-search-clear img { width: 100%; height: 100%; display: block; }
-    .explore-chevrons { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
-    .explore-chev-btn { width: 50px; height: 50px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; transition: filter 0.2s ease; }
-    .explore-chev-btn:not(:disabled):hover { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25)); }
-    .explore-chev-btn:disabled { cursor: default; }
-    .explore-chev-btn img { width: 50px; height: 50px; display: block; }
-    .explore-viewport { width: 100%; padding: 20px 0; overflow: visible; }
-    .explore-track { display: flex; gap: 40px; padding-left: max(var(--gutter), calc((100% - 1224px) / 2)); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
-    .explore-card { flex: 0 0 340px; width: 340px; background: #fff; border-radius: 6px; box-shadow: 0 16px 16px rgba(12,12,13,0.1), 0 4px 2px rgba(12,12,13,0.05); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
-    .explore-card:hover { transform: translateY(-4px); box-shadow: 0 20px 24px rgba(12,12,13,0.14), 0 8px 10px rgba(12,12,13,0.08); }
-    .explore-card[data-locked="true"] { filter: grayscale(100%); opacity: 0.6; pointer-events: none; cursor: default; }
-    .explore-card[data-locked="true"]:hover { transform: none; box-shadow: 0 16px 16px rgba(12,12,13,0.1), 0 4px 2px rgba(12,12,13,0.05); }
-    .explore-card-thumb { width: 100%; height: 200px; flex-shrink: 0; overflow: hidden; background: #d4ccf5; }
-    .explore-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .explore-card-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; height: 100px; flex-shrink: 0; box-sizing: border-box; }
-    .explore-card-title-row { display: flex; align-items: center; gap: 16px; }
-    .explore-card-name { font-size: 16px; font-weight: 700; line-height: 20px; color: #162351; white-space: nowrap; }
-    .explore-card-currency { background: #ecf2fb; padding: 4px 6px; border-radius: 4px; font-size: 12px; font-weight: 700; line-height: 16px; color: #475072; white-space: nowrap; }
-    .explore-card-date { font-size: 14px; font-weight: 400; line-height: 18px; color: #8f98b5; }
-    .explore-empty { padding: 40px 0 0; font-family: var(--font); font-size: 16px; color: #8f98b5; display: none; }
-    .explore-scroll-track { height: 6px; background: #cdd5e0; border-radius: 10px; margin-top: 40px; position: relative; overflow: hidden; }
-    .explore-scroll-thumb { height: 6px; background: #3d4148; border-radius: 10px; position: absolute; left: 0; top: 0; transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-
-    /* ════════════════ ARTICLE SECTION ════════════════ */
-    .article-section { background: #fff; padding: 60px 0 120px; }
-    .article-layout { display: flex; align-items: flex-start; }
-    .article-toc { width: 280px; flex-shrink: 0; margin-right: 32px; position: sticky; top: 130px; }
-    .toc-card { background: #fff; border-radius: 8px; padding: 16px 16px 32px 16px; box-shadow: 0 4px 30px 10px rgba(0,0,0,0.15), 0 4px 10px rgba(0,0,0,0.10); display: flex; flex-direction: column; gap: 40px; }
-    .toc-title { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
-    .toc-list { display: flex; flex-direction: column; gap: 24px; }
-    .toc-item { display: flex; gap: 8px; align-items: center; text-decoration: none; }
-    .toc-dot-wrap { width: 20px; height: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .toc-dot { width: 8px; height: 8px; border-radius: 50%; background: #9199A6; flex-shrink: 0; transition: background 0.2s ease; }
-    .toc-dot.toc-active { background: var(--blue-main); }
-    .toc-text { flex: 1; font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-tertiary); transition: color 0.2s ease, font-size 0.2s ease, font-weight 0.2s ease; }
-    .toc-text.toc-active { font-size: 14px; font-weight: 500; line-height: 18px; color: var(--text-main); }
-    .toc-divider-line { height: 1px; background: #CDD5E0; width: 100%; }
-    .article-content { flex: 1; min-width: 0; max-width: 832px; margin-right: 40px; display: flex; flex-direction: column; gap: 40px; }
-    .article-block { display: flex; flex-direction: column; gap: 24px; }
-    .article-h2 { font-size: 20px; font-weight: 600; line-height: 26px; color: var(--text-main); margin: 0; }
-    .article-p { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
-    .article-cta { width: 40px; flex-shrink: 0; position: sticky; top: 130px; display: flex; flex-direction: column; gap: 32px; align-items: center; }
-    .cta-btn { width: 40px; height: 40px; background: none; border: none; padding: 0; cursor: pointer; display: block; flex-shrink: 0; text-decoration: none; }
-    .cta-btn .cta-ring { transition: fill 0.2s ease, stroke 0.2s ease; }
-    .cta-btn .cta-fill { transition: fill 0.2s ease; }
-    .cta-btn .cta-stroke { transition: stroke 0.2s ease, stroke-width 0.2s ease; }
-    .cta-btn:hover .cta-ring { fill: #3D4148; stroke: #3D4148; }
-    .cta-btn:hover .cta-fill { fill: #fff; }
-    .cta-btn:hover .cta-stroke { stroke: #fff; stroke-width: 1.5px; }
-    .cta-btn.cta-copied .cta-ring { fill: var(--blue-main); stroke: var(--blue-main); }
-    .cta-btn.cta-copied .cta-stroke { stroke: #fff; }
-    .cta-back-to-top { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .cta-back-to-top.visible { opacity: 1; pointer-events: auto; }
-    /* ── AU Article specific ── */
-    .au-section-header { display: flex; flex-direction: column; gap: 8px; }
-    .au-section-header .article-h2 { font-size: 32px; font-weight: 700; line-height: 40px; color: #1D4783; }
-    .au-section-sub { font-size: 14px; font-weight: 400; line-height: 24px; color: var(--text-secondary); margin: 0; }
-    .au-section-sep { font-size: 14px; font-weight: 400; line-height: 24px; color: var(--text-secondary); margin: 0; }
-    .au-bullet-list { display: flex; flex-direction: column; gap: 16px; }
-    .au-bullet-item { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); }
-    .au-bullet-dot-wrap { width: 22px; flex-shrink: 0; padding-top: 7px; }
-    .au-bullet-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-main); }
-    .au-data-cards-wrap { border-left: 6px solid var(--blue-main); background: #E4EFFF; padding: 16px 32px 24px; }
-    .au-data-cards-label { font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0 0 32px; }
-    .au-data-cards-grid { display: flex; flex-direction: column; gap: 32px; }
-    .au-data-cards-row { display: flex; gap: 24px; }
-    .au-data-card { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
-    .au-dc-name { font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-main); }
-    .au-dc-value { font-size: 24px; font-weight: 600; line-height: 32px; color: var(--blue-main); }
-    .au-dc-note { font-size: 12px; font-weight: 400; line-height: 16px; color: var(--text-secondary); }
-    .au-marco-insight { background: #E4EFFF; border-left: 6px solid var(--blue-main); padding: 16px 32px 24px; display: flex; flex-direction: column; gap: 16px; }
-    .au-mi-label { font-size: 16px; font-weight: 600; line-height: 24px; color: var(--blue-main); margin: 0; }
-    .au-mi-text { font-size: 14px; font-weight: 400; line-height: 22px; color: var(--text-main); margin: 0; }
-    .au-table-group { display: flex; flex-direction: column; gap: 16px; }
-    .au-table-title { display: flex; gap: 8px; align-items: flex-start; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--text-main); margin: 0; }
-    .au-table-num { color: var(--blue-main); width: 24px; flex-shrink: 0; text-align: center; }
-    .au-table-wrap { overflow-x: auto; }
-    .au-table { border-collapse: collapse; width: 100%; table-layout: auto; min-width: 480px; font-family: var(--font); }
-    .au-table th { background: #162351; color: #fff; font-size: 14px; font-weight: 500; line-height: 20px; text-align: left; padding: 10px 12px; vertical-align: middle; }
-    .au-table td { font-size: 14px; font-weight: 400; line-height: 18px; color: var(--text-main); padding: 8px 12px; vertical-align: top; overflow-wrap: break-word; word-break: break-word; border-bottom: 1px solid #CDD5E0; }
-    .au-table tbody tr:nth-child(even) td { background: #F7F9FF; }
-    .au-table tbody tr:last-child td { border-bottom: none; }
-
-    /* ════════════════ GET STARTED ════════════════ */
-    .gs-cta {
-      overflow: hidden;
-      background: linear-gradient(to bottom, #FFFAEF 49.1%, #ffffff 110.4%);
-    }
-    .gs-cta-inner {
-      display: flex;
-      align-items: stretch;
-      gap: 24px;
-      padding-left: max(var(--gutter), calc((100% - 1224px) / 2));
-    }
-    .gs-cta-left {
-      flex: 1 1 0;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-      padding: 80px 0;
-    }
-    .gs-cta-text {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-    .gs-cta-title-block {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .gs-cta-label { display: flex; align-items: center; gap: 8px; }
-    .gs-cta-label-line { width: 16px; height: 2px; background: #162351; flex-shrink: 0; }
-    .gs-cta-label span { font-family: var(--font); font-size: 14px; font-weight: 500; color: #162351; line-height: 18px; }
-    .gs-cta-title {
-      font-family: var(--font);
-      font-size: clamp(40px, calc(0.8vw + 36.48px), 48px);
-      font-weight: 600; line-height: 1.25;
-      color: #162351; letter-spacing: -2.4px; margin: 0;
-    }
-    .gs-cta-title .accent { color: #019de7; }
-    .gs-cta-subtitle {
-      font-family: var(--font);
-      font-size: clamp(12px, calc(0.4vw + 10.24px), 16px);
-      font-weight: 400;
-      color: #162351; line-height: 20px; margin: 0;
-    }
-    .gs-cta-btn {
-      align-self: flex-start;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      height: 48px; padding: 4px 24px; border-radius: 50px;
-      font-family: var(--font); font-size: 16px; font-weight: 400;
-      line-height: normal; letter-spacing: -0.8px; color: #fff;
-      background: #162351; border: none; cursor: pointer; text-decoration: none;
-      white-space: nowrap; flex-shrink: 0; transition: background 0.18s ease;
-    }
-    .gs-cta-btn:hover { background: #0185c4; }
-    .gs-cta-btn-icon { position: relative; overflow: hidden; flex-shrink: 0; width: 20px; height: 20px; }
-    .gs-cta-btn-icon-inner { position: absolute; top: 25%; bottom: 25%; left: 37.5%; right: 37.5%; }
-    .gs-cta-btn-icon-img { position: absolute; top: -10%; bottom: -10%; left: -20%; right: -20%; width: 140%; height: 120%; display: block; max-width: none; }
-    .gs-cta-thumb {
-      flex: 1 1 0;
-      min-width: 0;
-      overflow: hidden;
-      position: relative;
-    }
-    .gs-cta-thumb img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      display: block;
-    }
-    @media (max-width: 800px) {
-      .gs-cta-inner { padding-right: max(var(--gutter), calc((100% - 1224px) / 2)); }
-      .gs-cta-left { flex-basis: 100%; }
-      .gs-cta-thumb { display: none; }
+      --hero-bg: #FFE4C8;
+      --cta-bg: linear-gradient(to bottom, #FFF6EE 49.1%, #ffffff 110.4%);
     }
   </style>
   <link rel="stylesheet" href="shared.css">
@@ -787,12 +32,12 @@
       </a>
       <div class="pg-hero-text-inner">
         <h1 class="pg-hero-title" data-i18n="pg.country.south-korea">South Korea</h1>
-        <p class="pg-hero-desc">Description to be added</p>
+        <p class="pg-hero-desc" data-i18n="pg.south-korea.desc">This framework explains: how companies complete Payroll Set-up in South Korea (NTS tax registration, 4 Major Insurance registration, Resident Registration Number / Alien Registration Number employee identification), monthly payroll calculation (PIT withholding + 4 Major Insurance contributions), monthly filing, Year-End Tax Adjustment (Yeonmal Jeongsan), and Severance Pay (Toejikgeum) settlement.</p>
       </div>
     </div>
     <div class="pg-hero-meta fade-in">
       <div class="pg-hero-divider"></div>
-      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.south-korea">1 January 2026</span></p>
+      <p class="pg-hero-last-updated"><span data-i18n="pg.page.updated">Last Update by,</span> <span data-i18n="pg.date.south-korea">3 September 2026</span></p>
     </div>
   </div>
   <div class="pg-hero-img">
@@ -803,8 +48,392 @@
 
 <!-- ══════════════════ ARTICLE CONTENT ══════════════════ -->
 <section class="article-section">
-  <div class="container" style="padding: 60px 0;">
-    <p style="color: #475072; font-size: 18px;"><span data-i18n="pg.country.south-korea">South Korea</span> <span data-i18n="pg.page.comingsoon">Payroll Guide content coming soon</span></p>
+  <div class="container article-layout">
+
+    <!-- Table of Contents -->
+    <aside class="article-toc">
+      <div class="toc-card">
+        <p class="toc-title">Table of Contents</p>
+        <div class="toc-list">
+          <a href="#section-scope" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-scope"></div></div>
+            <span class="toc-text" id="toc-text-scope" data-i18n="pg.south-korea.s1.h">Scope &amp; Application</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-setup" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-setup"></div></div>
+            <span class="toc-text" id="toc-text-setup" data-i18n="pg.south-korea.s2.h">Payroll Set-up</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-calculation" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-calculation"></div></div>
+            <span class="toc-text" id="toc-text-calculation" data-i18n="pg.south-korea.s3.h">Payroll Calculation</span>
+          </a>
+          <div class="toc-divider-line"></div>
+          <a href="#section-processing" class="toc-item">
+            <div class="toc-dot-wrap"><div class="toc-dot" id="toc-dot-processing"></div></div>
+            <span class="toc-text" id="toc-text-processing" data-i18n="pg.south-korea.s4.h">Payroll Processing &amp; Compliance</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article Content -->
+    <div class="article-content">
+
+      <!-- ── Section 1: Scope & Application ── -->
+      <div class="article-block" id="section-scope">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.south-korea.s1.h">Scope &amp; Application</h2>
+          <p class="au-section-sub" data-i18n="pg.south-korea.s1.sub">Applicable Scope and Legal Basis / Labor Standards Act &middot; 4 Major Insurances Act &middot; Income Tax Act</p>
+        </div>
+        <div data-i18n-html="pg.south-korea.s1.b1">
+          <p class="article-p">This document applies to:</p>
+          <div class="au-bullet-list" style="margin-top:16px;">
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Companies that have established a local legal entity in South Korea (&#51452;&#49885;&#54924;&#49324; Chusik Hoesa / &#50976;&#54620;&#54924;&#49324; Yuhan Hoesa), with commercial registration completed at the district court</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Employees directly employed by the local entity, subject to the Labor Standards Act (Geunro Gijunbeop)</span>
+            </div>
+            <div class="au-bullet-item">
+              <div class="au-bullet-dot-wrap"><div class="au-bullet-dot"></div></div>
+              <span>Payroll compliance based on the Income Tax Act, the 4 Major Insurances Acts, and regulations from the National Tax Service (NTS) / National Pension Service / National Health Insurance Service</span>
+            </div>
+          </div>
+        </div>
+        <p class="article-p" data-i18n-html="pg.south-korea.s1.b2">This framework explains: how companies complete Payroll Set-up in South Korea (NTS tax registration, 4 Major Insurance registration, Resident Registration Number / Alien Registration Number employee identification), monthly payroll calculation (PIT withholding + 4 Major Insurance contributions), monthly filing, Year-End Tax Adjustment (Yeonmal Jeongsan), and Severance Pay (Toejikgeum) settlement.</p>
+        <div class="au-data-cards-wrap" data-i18n-html="pg.south-korea.s1.b3">
+          <p class="au-data-cards-label">2026 KEY NUMBERS</p>
+          <div class="au-data-cards-grid">
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">Minimum Hourly Wage</span>
+                <span class="au-dc-value">KRW 10,320</span>
+                <span class="au-dc-note">+1.7% vs 2025</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Minimum Monthly Salary (209h)</span>
+                <span class="au-dc-value">KRW 2,156,880</span>
+                <span class="au-dc-note">inclusive of weekly rest allowance (jugeuyangguk)</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">PIT Tax Brackets</span>
+                <span class="au-dc-value">6% - 45%</span>
+                <span class="au-dc-note">8 brackets + 10% local income tax surcharge</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">National Pension (NP)</span>
+                <span class="au-dc-value">9% (4.5 + 4.5)</span>
+                <span class="au-dc-note">monthly contribution cap KRW 303K</span>
+              </div>
+            </div>
+            <div class="au-data-cards-row">
+              <div class="au-data-card">
+                <span class="au-dc-name">National Health Insurance (NHI)</span>
+                <span class="au-dc-value">7.09%</span>
+                <span class="au-dc-note">+ Long-term Care Insurance 12.95% &times; NHI</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Employment Insurance (EI)</span>
+                <span class="au-dc-value">1.95%</span>
+                <span class="au-dc-note">employee 0.9% + employer 1.05%+</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Workers&rsquo; Compensation (WC)</span>
+                <span class="au-dc-value">0.56% - 18.56%</span>
+                <span class="au-dc-note">employer-only, by industry</span>
+              </div>
+              <div class="au-data-card">
+                <span class="au-dc-name">Severance Pay (Toejikgeum)</span>
+                <span class="au-dc-value">1 month&rsquo;s salary/year</span>
+                <span class="au-dc-note">for service &ge; 1 year; paid within 14 days</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="au-marco-insight" data-i18n-html="pg.south-korea.s1.b4">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">South Korea&rsquo;s Payroll is centred on the 4 Major Social Insurances (4 Daeboheom): National Pension (NP) + National Health Insurance (NHI) + Employment Insurance (EI) + Workers&rsquo; Compensation (WC), shared between employer and employee. The Year-End Tax Adjustment (Yeonmal Jeongsan) is a uniquely Korean tax event: employers must perform a full-year PIT reconciliation for each employee in February of the following year, with refunds or additional collections. This process is operationally intensive.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 2: Payroll Set-up ── -->
+      <div class="article-block" id="section-setup">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.south-korea.s2.h">Payroll Set-up</h2>
+          <p class="au-section-sub" data-i18n="pg.south-korea.s2.sub">How to establish legal payroll capability in South Korea / Entity &middot; NTS &middot; 4 Insurances</p>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s2.b1">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Entity, Tax &amp; 4-Insurance Registration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:28.4%"><col style="width:28.4%"><col style="width:14.9%"><col style="width:28.4%"></colgroup>
+              <thead><tr><th>Item</th><th>Account Holder</th><th>Mandatory</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Commercial Registration (Beopindeungrok)</td><td>Korean local entity</td><td>Yes</td><td>Register with the district court; &#51452;&#49885;&#54924;&#49324; minimum capital KRW 100</td></tr>
+                <tr><td>Business Registration Certificate (NTS)</td><td>Korean local entity</td><td>Yes</td><td>Apply to the National Tax Service (NTS) to obtain &#49324;&#50629;&#51088;&#46321;&#47197;&#51613;</td></tr>
+                <tr><td>4 Major Insurance Employer Registration</td><td>Korean local entity</td><td>Yes</td><td>Register separately with the National Pension Service + National Health Insurance Service + Korea Workers&rsquo; Compensation &amp; Welfare Service (EI/WC)</td></tr>
+                <tr><td>Employee Identification Number</td><td>Employee</td><td>Yes</td><td>Resident Registration Number (RRN) / Alien Registration Number (ARC, 13 digits) for foreign employees</td></tr>
+                <tr><td>Employment Contract (Geunrogeyeyak)</td><td>Employer + Employee</td><td>Yes</td><td>Written contract required, must be signed before onboarding; Labor Standards Act specifies mandatory terms</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s2.b2">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> 4 Major Insurances &amp; Severance</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:33.3%"><col style="width:33.3%"><col style="width:33.4%"></colgroup>
+              <thead><tr><th>Insurance / System</th><th>Mandatory / Voluntary</th><th>Notes (2026)</th></tr></thead>
+              <tbody>
+                <tr><td>National Pension (Gungmin Yeongeum / NP)</td><td>Mandatory</td><td>Employee 4.5% + Employer 4.5%; monthly contribution base cap KRW 6,370,000</td></tr>
+                <tr><td>National Health Insurance (Geongang Boheom / NHI)</td><td>Mandatory</td><td>Total 7.09% (employee/employer split equally) + Long-term Care Insurance 12.95% &times; NHI</td></tr>
+                <tr><td>Employment Insurance (Goyong Boheom / EI)</td><td>Mandatory</td><td>Employee 0.9% + Employer 1.05-1.65% (varies by company size)</td></tr>
+                <tr><td>Workers&rsquo; Compensation Insurance (Sanjae Boheom / WC)</td><td>Mandatory (employer-only)</td><td>0.56-18.56%, rated by industry risk by the Korea Workers&rsquo; Compensation &amp; Welfare Service</td></tr>
+                <tr><td>Severance Pay (Toejikgeum) / Retirement Pension</td><td>Mandatory (&ge;1 year of service)</td><td>1 month&rsquo;s average salary &times; years of service; employer may opt for DC/DB retirement pension (&#53748;&#51649;&#50672;&#44552;)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s2.b3">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Bank Account, Payslip &amp; Records</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:33.3%"><col style="width:33.3%"><col style="width:33.4%"></colgroup>
+              <thead><tr><th>Item</th><th>Requirement</th><th>Operational Notes</th></tr></thead>
+              <tbody>
+                <tr><td>KRW Local Bank Account</td><td>Mandatory</td><td>Salary paid via electronic transfer in Korean won; typically paid on the 25th or end of month</td></tr>
+                <tr><td>Pay Slip (Geupyeo Myeongse)</td><td>Mandatory per pay run</td><td>Required under Labor Standards Act &sect;48; must itemize gross salary, PIT, 4 Major Insurances, and net pay</td></tr>
+                <tr><td>Payroll + Personnel File Retention</td><td>Mandatory, 3 years</td><td>Labor Standards Act &sect;42; NTS tax audit retention is 5 years</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Section 3: Payroll Calculation ── -->
+      <div class="article-block" id="section-calculation">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.south-korea.s3.h">Payroll Calculation</h2>
+          <p class="au-section-sub" data-i18n="pg.south-korea.s3.sub">How salary, tax, and employee entitlements are calculated / Salary &middot; Leave</p>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s3.b1">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Salary, Minimum Wage &amp; Proration</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:29.7%"><col style="width:70.3%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule / 2026 Value</th></tr></thead>
+              <tbody>
+                <tr><td>Pay Cycle</td><td>Monthly salary (most common), typically paid on the 25th or end of month</td></tr>
+                <tr><td>Minimum Hourly Wage</td><td>KRW 10,320/hour (effective 1 January 2026, +1.7% vs 2025)</td></tr>
+                <tr><td>Minimum Monthly Salary (209 hours)</td><td>KRW 2,156,880/month (40 hours/week + weekly rest allowance jugeuyangguk)</td></tr>
+                <tr><td>Proration Method</td><td>Typically monthly salary &divide; 209 hours &times; actual hours worked; overtime at +50%</td></tr>
+                <tr><td>Bonus / 13th Month</td><td>Not statutory; traditional bonuses typically paid at Seollal (Lunar New Year) + Chuseok (Mid-Autumn Festival)</td></tr>
+                <tr><td>Overtime (Yajeon / Hyuil Work)</td><td>+50% (weekday overtime) / +100% (public holidays / night hours 22:00-06:00)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s3.b2">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Statutory Leave Entitlements</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:33.3%"><col style="width:33.3%"><col style="width:33.4%"></colgroup>
+              <thead><tr><th>Item</th><th>Days / Duration</th><th>Wage Rate / Source</th></tr></thead>
+              <tbody>
+                <tr><td>Annual Leave (Yeoncha, 1+ year of service)</td><td>15 days (attendance rate &ge; 80%)</td><td>100% / Employer</td></tr>
+                <tr><td>Annual Leave Increment</td><td>+1 day after 3 years, then +1 every 2 years, cap 25 days</td><td>100% / Employer</td></tr>
+                <tr><td>Annual Leave Advance (&lt;1 year)</td><td>1 day per full month of attendance, up to 11 days</td><td>100% / Employer</td></tr>
+                <tr><td>Public Holidays</td><td>Approx. 15 days (including 3-day consecutive holidays for Seollal / Chuseok)</td><td>100% / Employer</td></tr>
+                <tr><td>Sick Leave</td><td>No statutory paid sick leave; except for work injuries, determined by company policy</td><td>Employer or 0 / Work injury 100% (WC)</td></tr>
+                <tr><td>Maternity Leave (Chulsan Hyuga)</td><td>90 days (120 days for multiple births); 45 days prenatal + 45 days postnatal</td><td>100% (Employer pays 60 days) + remaining 30 days by EI</td></tr>
+                <tr><td>Paternity Leave (Baeuja Chulsan)</td><td>20 days (from February 2026, previously 10 days)</td><td>100% / EI (Employment Insurance)</td></tr>
+                <tr><td>Childcare Leave (Yugye Hyujik)</td><td>Up to 1 year per child (child under age 8)</td><td>Paid by EI, up to KRW 1.5M/month</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s3.b3">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Personal Income Tax (PIT) - Progressive Scale</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:40%"><col style="width:60%"></colgroup>
+              <thead><tr><th>Annual Taxable Bracket (KRW)</th><th>Rate + Local Income Tax</th></tr></thead>
+              <tbody>
+                <tr><td>&le; 14,000,000</td><td>6% &times; 1.1 = effective 6.6%</td></tr>
+                <tr><td>14M - 50M</td><td>15% &times; 1.1 = 16.5%</td></tr>
+                <tr><td>50M - 88M</td><td>24% &times; 1.1 = 26.4%</td></tr>
+                <tr><td>88M - 150M</td><td>35% &times; 1.1 = 38.5%</td></tr>
+                <tr><td>150M - 300M</td><td>38% &times; 1.1 = 41.8%</td></tr>
+                <tr><td>300M - 500M</td><td>40% &times; 1.1 = 44.0%</td></tr>
+                <tr><td>500M - 1,000M / &gt;1,000M</td><td>42% / 45% &times; 1.1 = 46.2% / 49.5%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s3.b4">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> 4 Major Insurances - Detailed Breakdown</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup>
+              <thead><tr><th>Insurance</th><th>Employee Share</th><th>Employer Share</th><th>Contribution Base Cap</th></tr></thead>
+              <tbody>
+                <tr><td>National Pension NP (Pension)</td><td>4.50%</td><td>4.50%</td><td>Monthly salary KRW 6,370,000</td></tr>
+                <tr><td>National Health Insurance NHI</td><td>3.545%</td><td>3.545%</td><td>Monthly contribution KRW 10,390,220</td></tr>
+                <tr><td>Long-term Care Insurance (LTC)</td><td>0.4591%</td><td>0.4591%</td><td>= NHI &times; 12.95%</td></tr>
+                <tr><td>Employment Insurance EI</td><td>0.90%</td><td>1.05-1.65%</td><td>No cap</td></tr>
+                <tr><td>Workers&rsquo; Compensation WC</td><td>&ndash;</td><td>0.56-18.56%</td><td>No cap</td></tr>
+                <tr><td>Total (Typical Office Industry)</td><td>Approx. 9.4%</td><td>Approx. 9.9-10.2%</td><td>&ndash;</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight" data-i18n-html="pg.south-korea.s3.b5">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three commonly underestimated details in South Korea&rsquo;s Payroll: (1) Severance Pay (Toejikgeum) is a statutory additional cost: for employees with 1+ year of service, employers must pay 1 month&rsquo;s average salary &times; years of service, settled within 14 days. It is recommended to pre-provision or participate in a retirement pension (DC/DB) scheme (&#53748;&#51649;&#50672;&#44552;) to manage this liability. (2) National Pension monthly contribution base is capped at KRW 6,370,000; contributions stop increasing once the cap is reached. However, health insurance is calculated independently with a cap of KRW 10,390,220. (3) Year-End Tax Adjustment (Yeonmal Jeongsan) is performed every February for all employees&rsquo; PIT reconciliation, factoring in deductions for credit card spending, medical expenses, education, insurance, etc., with refunds or additional collections applied.</p>
+        </div>
+      </div>
+
+      <!-- ── Section 4: Payroll Processing & Compliance ── -->
+      <div class="article-block" id="section-processing">
+        <div class="au-section-header">
+          <h2 class="article-h2" data-i18n="pg.south-korea.s4.h">Payroll Processing &amp; Compliance</h2>
+          <p class="au-section-sub" data-i18n="pg.south-korea.s4.sub">Monthly execution, filing and payment, and accounting treatment / Monthly Filings &amp; Journal</p>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s4.b1">
+          <p class="au-table-title"><span class="au-table-num">i.</span> Payroll Payment Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:24.8%"><col style="width:24.8%"><col style="width:50.4%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Payment Frequency</td><td>Once per month</td><td>Typically the 25th or end of month; Labor Standards Act &sect;43 requires at least monthly payment</td></tr>
+                <tr><td>Payment Method + Currency</td><td>Electronic transfer &middot; KRW</td><td>Settled in Korean won; cash payment requires employee&rsquo;s written consent</td></tr>
+                <tr><td>Pay Slip + Deductions</td><td>Mandatory (Labor Standards Act &sect;48)</td><td>May be in electronic form; late salary payment incurs 20% annual interest (effective from October 2025)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s4.b2">
+          <p class="au-table-title"><span class="au-table-num">ii.</span> Monthly Tax &amp; Insurance Reporting</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:18.6%"><col style="width:18.6%"><col style="width:18.6%"><col style="width:18.6%"><col style="width:25.6%"></colgroup>
+              <thead><tr><th>Filing Item</th><th>Responsible Party</th><th>Frequency</th><th>Deadline</th><th>Filing Authority</th></tr></thead>
+              <tbody>
+                <tr><td>Withholding Tax (PIT Withholding)</td><td>Employer</td><td>Monthly</td><td>10th of the following month</td><td>National Tax Service NTS / Hometax</td></tr>
+                <tr><td>Local Income Tax</td><td>Employer</td><td>Monthly</td><td>10th of the following month</td><td>Local government</td></tr>
+                <tr><td>National Pension NP</td><td>Employer</td><td>Monthly</td><td>10th of the following month</td><td>National Pension Service</td></tr>
+                <tr><td>National Health Insurance NHI + LTC</td><td>Employer</td><td>Monthly</td><td>10th of the following month</td><td>National Health Insurance Service</td></tr>
+                <tr><td>Employment Insurance EI + Workers&rsquo; Compensation WC</td><td>Employer</td><td>Monthly</td><td>15th of the following month</td><td>Korea Workers&rsquo; Compensation &amp; Welfare Service</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s4.b3">
+          <p class="au-table-title"><span class="au-table-num">iii.</span> Payroll Journal Mapping Rules</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:50%"><col style="width:50%"></colgroup>
+              <thead><tr><th>Item</th><th>Account</th></tr></thead>
+              <tbody>
+                <tr><td>Gross Salary + Bonuses + Allowances</td><td>Payroll Expense</td></tr>
+                <tr><td>Employer 4 Insurances (&asymp;9.9%)</td><td>Payroll Expense &ndash; Social Charges</td></tr>
+                <tr><td>Severance Pay Reserve (&asymp;8.33%/month)</td><td>Severance Pay Reserve (Accrual)</td></tr>
+                <tr><td>PIT + Local Tax withheld</td><td>Payroll Liability &ndash; NTS</td></tr>
+                <tr><td>Employee 4 Insurances withheld</td><td>Payroll Liability &ndash; Pension/NHI/EI</td></tr>
+                <tr><td>Net Pay</td><td>Cash / Bank &ndash; KRW</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s4.b4">
+          <p class="au-table-title"><span class="au-table-num">iv.</span> Year-End Tax Adjustment &amp; Annual Filings</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup>
+              <thead><tr><th>Item</th><th>Responsible Party</th><th>Deadline</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Year-End Tax Adjustment (Yeonmal Jeongsan)</td><td>Employer</td><td>January payroll of the following year</td><td>Employees submit deduction certificates &rarr; Employer reconciles full-year PIT with refunds or additional collections</td></tr>
+                <tr><td>Withholding Tax Employee Detail Filing</td><td>Employer</td><td>10 March of the following year</td><td>Full-year employee PIT withholding details (&#51648;&#44553;&#47749;&#49464;&#49436;)</td></tr>
+                <tr><td>Employee Annual Comprehensive Income Filing</td><td>Employee</td><td>31 May</td><td>Required for self-filing of side income and other comprehensive income</td></tr>
+                <tr><td>4 Major Insurance Annual Adjustment</td><td>Employer</td><td>March-April of the following year</td><td>Insurance premium base adjusted based on prior year&rsquo;s actual wages</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-table-group" data-i18n-html="pg.south-korea.s4.b5">
+          <p class="au-table-title"><span class="au-table-num">v.</span> Termination &amp; Foreign Workers</p>
+          <div class="au-table-wrap">
+            <table class="au-table">
+              <colgroup><col style="width:33.3%"><col style="width:33.3%"><col style="width:33.4%"></colgroup>
+              <thead><tr><th>Item</th><th>Rule</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>Notice Period (Haego Yego)</td><td>At least 30 days</td><td>Employer must provide 30 days&rsquo; advance notice for unilateral termination, or pay 30 days&rsquo; wages in lieu</td></tr>
+                <tr><td>Severance Pay (Toejikgeum)</td><td>1 month&rsquo;s average salary per year</td><td>For service &ge; 1 year; calculated based on the average salary of the last 3 months</td></tr>
+                <tr><td>Severance Pay within 14 Days</td><td>Mandatory</td><td>Labor Standards Act &sect;36; late payment incurs 20% annual interest (from October 2025, applies to current employees as well)</td></tr>
+                <tr><td>Unused Annual Leave Cash-out</td><td>Mandatory</td><td>Converted at the current month&rsquo;s average daily wage</td></tr>
+                <tr><td>Foreign Employee Tax Benefit</td><td>19% Flat Tax / 5 Years</td><td>Foreign technical personnel may opt for a 19% flat tax rate (in lieu of progressive rates), for up to 5 years</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="au-marco-insight" data-i18n-html="pg.south-korea.s4.b6">
+          <p class="au-mi-label">MARCO INSIGHT</p>
+          <p class="au-mi-text">Three key changes for South Korea Payroll in 2026: (1) Minimum hourly wage increased by 1.7% to KRW 10,320, with a monthly salary threshold of KRW 2,156,880. (2) Paternity leave extended from 10 days to 20 days (from February 2026), fully paid by Employment Insurance. (3) From October 2025, the 20% annual interest penalty for late salary payment has been expanded from &ldquo;former employees only&rdquo; to include &ldquo;current employees&rdquo;. HR must strictly ensure payroll is processed on time.</p>
+        </div>
+      </div>
+
+    </div><!-- /.article-content -->
+
+    <!-- CTA Buttons -->
+    <div class="article-cta">
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/company/marcopayroll/" target="_blank" rel="noopener noreferrer" class="cta-btn" aria-label="Follow on LinkedIn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" fill-rule="evenodd" clip-rule="evenodd" d="M26 26H23.6V21.8006C23.6 20.6486 23.0918 20.0059 22.1804 20.0059C21.1886 20.0059 20.6 20.6756 20.6 21.8006V26H18.2V18.2H20.6V19.0771C20.6 19.0771 21.353 17.7559 23.0498 17.7559C24.7472 17.7559 26 18.7917 26 20.9349V26ZM15.4652 16.9525C14.6558 16.9525 14 16.2914 14 15.476C14 14.6612 14.6558 14 15.4652 14C16.274 14 16.9298 14.6612 16.9298 15.476C16.9304 16.2914 16.274 16.9525 15.4652 16.9525ZM14 26H17V18.2H14V26Z" fill="#3D4148"/>
+        </svg>
+      </a>
+      <!-- WeChat -->
+      <button class="cta-btn" onclick="document.getElementById('wechat-modal').classList.add('active')" aria-label="WeChat">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-fill" d="M22.7121 17.9463C21.4202 18.0138 20.2968 18.4054 19.3848 19.2902C18.4633 20.1842 18.0426 21.2796 18.1576 22.6375C17.6526 22.575 17.1927 22.5061 16.7302 22.4672C16.5704 22.4537 16.3809 22.4728 16.2455 22.5492C15.7964 22.8026 15.3658 23.0888 14.8555 23.4078C14.9491 22.9843 15.0097 22.6134 15.117 22.2566C15.1959 21.9945 15.1594 21.8485 14.9178 21.6778C13.367 20.5828 12.7133 18.9442 13.2025 17.2572C13.6551 15.6965 14.7666 14.75 16.2769 14.2566C18.3383 13.5832 20.655 14.2701 21.9084 15.9068C22.3612 16.498 22.6388 17.1615 22.7121 17.9463ZM16.7663 17.4206C16.7782 17.112 16.5109 16.8341 16.1933 16.8248C15.8682 16.8152 15.6007 17.0637 15.5912 17.3841C15.5816 17.7088 15.83 17.9691 16.1575 17.9774C16.4822 17.9856 16.7543 17.7368 16.7663 17.4206ZM19.8685 16.8246C19.5497 16.8304 19.2804 17.1019 19.2861 17.4117C19.2919 17.7328 19.5561 17.984 19.8839 17.9801C20.2125 17.9761 20.4617 17.7222 20.4586 17.3944C20.4559 17.0725 20.1928 16.8186 19.8685 16.8246Z" fill="#3D4148"/>
+        </svg>
+      </button>
+      <!-- Download -->
+      <button class="cta-btn" id="payrollDownloadBtn" aria-label="Download" onclick="downloadPayrollGuidePDF(event)">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 21.5V23.5C24.5 23.7652 24.3946 24.0196 24.2071 24.2071C24.0196 24.3946 23.7652 24.5 23.5 24.5H16.5C16.2348 24.5 15.9804 24.3946 15.7929 24.2071C15.6054 24.0196 15.5 23.7652 15.5 23.5V21.5M22.5 19L20 21.5L17.5 19M20 21.5V15.5" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <!-- Copy Link -->
+      <button class="cta-btn" id="copyLinkBtn" aria-label="Copy link">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <g clip-path="url(#clip-link-cta)">
+            <path class="cta-stroke" d="M21.5985 15.6773C22.4351 14.8374 23.7238 14.7693 24.4768 15.5252C25.2298 16.2811 25.1619 17.5748 24.3253 18.4147L23.1134 19.6313M19.0232 21C18.2702 20.2441 18.338 18.9504 19.1747 18.1105L20.25 17.0311" stroke="#3D4148" stroke-linecap="round"/>
+            <path class="cta-stroke" d="M20.9768 19C21.7298 19.7559 21.662 21.0496 20.8253 21.8895L19.6134 23.106L18.4015 24.3227C17.5648 25.1626 16.2762 25.2306 15.5232 24.4747C14.7702 23.7188 14.838 22.4252 15.6747 21.5853L16.8866 20.3686" stroke="#3D4148" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip-link-cta"><rect width="12" height="12" fill="white" transform="translate(14 14)"/></clipPath>
+          </defs>
+        </svg>
+      </button>
+      <!-- Back to Top -->
+      <button class="cta-btn cta-back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="cta-ring" x="0.5" y="0.5" width="39" height="39" rx="19.5" stroke="#646D79"/>
+          <path class="cta-stroke" d="M24.5 15.5H15.5M20 24.5V17.5M23.5 21L20 17.5L16.5 21" stroke="#3D4148" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
   </div>
 </section>
 
@@ -960,7 +589,7 @@
       heroEl.style.cssText = 'padding:0 0 32px;margin-bottom:40px;border-bottom:1px solid #CDD5E0;';
 
       var titleEl = document.createElement('h1');
-      titleEl.textContent = (document.querySelector('.pg-hero-title') || {}).textContent || 'Payroll Guide - Australia';
+      titleEl.textContent = (document.querySelector('.pg-hero-title') || {}).textContent || 'Payroll Guide - South Korea';
       titleEl.style.cssText = 'font-size:32px;font-weight:700;line-height:40px;color:#162351;margin:0 0 12px;font-family:inherit;';
 
       var descEl = document.createElement('p');

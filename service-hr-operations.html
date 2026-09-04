@@ -143,12 +143,12 @@
       padding: 63px 0 80px;
     }
     .whatis > .container { display: flex; gap: 48px; align-items: flex-start; }
-    .whatis-left { flex: 0 0 624px; padding-top: 17px; display: flex; flex-direction: column; gap: 24px; }
+    .whatis-left { flex: 1 1 624px; max-width: 624px; min-width: 0; padding-top: 17px; display: flex; flex-direction: column; gap: 24px; }
     .whatis-left .section-label { color: var(--text-main); }
     .whatis-title { font-size: 48px; font-weight: 600; line-height: 60px; color: var(--text-main); letter-spacing: -2.4px; }
     .whatis-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); }
     .whatis-body p + p { margin-top: 20px; }
-    .whatis-cards { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+    .whatis-cards { flex: 1 1 552px; max-width: 552px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
     .whatis-card {
       background: #e4efff; border: 1px solid #bcc9eb; border-radius: 8px;
       padding: 16px; display: flex; gap: 16px; align-items: flex-start;
@@ -291,15 +291,21 @@
       padding: 80px 0;
       min-height: 560px;
     }
-    .marcoos > .container { display: flex; align-items: flex-start; gap: 24px; min-height: 400px; }
-    .marcoos-left { flex: 0 0 600px; display: flex; flex-direction: column; gap: 24px; }
+    .marcoos > .container {
+      display: grid; grid-template-columns: minmax(0, 600px) minmax(0, 600px);
+      grid-template-areas: "left right" "ctas right";
+      column-gap: 24px; row-gap: 24px; align-items: start; min-height: 400px;
+    }
+    .marcoos-left { grid-area: left; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
     .marcoos .section-label { color: var(--blue-main); }
     .marcoos-title { font-size: 48px; font-weight: 600; line-height: 60px; color: #fff; letter-spacing: -2.4px; }
     .marcoos-title .accent { color: var(--blue-main); }
     .marcoos-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); }
     .marcoos-body p + p { margin-top: 20px; }
-    .marcoos-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-    .marcoos-right { flex: 1 1 0; min-width: 0; position: relative; align-self: stretch; }
+    .marcoos-ctas { grid-area: ctas; display: flex; gap: 16px; flex-wrap: wrap; }
+    .marcoos-ctas .btn-icon-img { filter: brightness(0); }
+    .marcoos-ctas .cta-btn--secondary:hover .btn-icon-img { filter: none; }
+    .marcoos-right { grid-area: right; min-width: 0; position: relative; align-self: stretch; }
     .marcoos-image-wrap {
       position: absolute; top: -44px; left: 0; right: 0; bottom: -80px;
       overflow: hidden;
@@ -316,10 +322,10 @@
     }
     .hro-difference > .container { display: flex; gap: 24px; align-items: flex-start; }
     .hro-difference .section-label { color: var(--blue-main); }
-    .hro-difference-left { flex: 0 0 600px; display: flex; flex-direction: column; gap: 12px; }
+    .hro-difference-left { flex: 1 1 600px; max-width: 600px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
     .hro-difference-title { font-size: 48px; font-weight: 600; line-height: 60px; color: #fff; letter-spacing: -2.4px; }
     .hro-difference-title .accent { color: var(--blue-main); }
-    .hro-difference-right { flex: 0 0 600px; padding-top: 30px; }
+    .hro-difference-right { flex: 1 1 600px; max-width: 600px; min-width: 0; padding-top: 30px; }
     .hro-difference-body { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); }
     .hro-difference-body p + p { margin-top: 20px; }
 
@@ -389,7 +395,211 @@
     }
     .wechat-modal.active { opacity: 1; pointer-events: auto; }
     .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
-  
+
+    /* ════════════════════════════════════════
+       TABLET CONTENT (≤1000px) — no Figma link given; built from established
+       Service-page conventions. Section titles standardized to
+       font-size:48px / line-height:60px / weight:600 / letter-spacing:-2.4px
+       (whatis/marcoos/hro-difference already use this at desktop base, so no
+       override is needed for those three — noted inline).
+    ════════════════════════════════════════ */
+    @media (max-width: 1000px) {
+      body { min-width: 0; }
+
+      .hero > .container,
+      .whatis > .container,
+      .hro-fullscope > .container,
+      .endtoend > .container,
+      .localcomp > .container,
+      .marcoos > .container,
+      .hro-difference > .container,
+      .hro-getstarted > .container {
+        width: calc(100% - 64px);
+        max-width: none;
+        margin-inline: auto;
+      }
+
+      /* Hero */
+      .hero { height: auto; padding-bottom: 56px; }
+      .hero > .container { padding-top: 140px; }
+      .hero-content { max-width: 642px; }
+      .hero-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+
+      /* What Is HRO — stack; title already matches the 48/60/600/-2.4 tablet spec at base */
+      .whatis { padding: 60px 0 60px; }
+      .whatis > .container { flex-direction: column; gap: 40px; }
+      .whatis-left { flex: none; width: 100%; max-width: none; padding-top: 0; gap: 20px; }
+      .whatis-cards { flex: none; width: 100%; max-width: none; }
+
+      /* Full Service Scope — reflow 3-col/3-row grid to 2-col/5-row (last row
+         has a single lone cell). The visual 2-col grid doesn't line up with the
+         underlying three 3-cell HTML rows, so borders are fully reset and
+         reapplied per actual visual position. */
+      .hro-fullscope { padding: 60px 0; }
+      .hro-fullscope-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .hro-fullscope-grid { margin-top: 40px; display: flex; flex-wrap: wrap; }
+      .hro-fullscope-row { display: contents; }
+      .hro-fullscope-cell { flex: 1 1 50%; max-width: 50%; min-height: 240px; height: auto; padding: 16px; }
+      .hro-fullscope-cell-inner { flex-direction: column; gap: 16px; }
+      .hro-fullscope-cell-content { flex: none; width: 100%; gap: 16px; }
+      .hro-fullscope-grid .hro-fullscope-row .hro-fullscope-cell { border-right: none; border-bottom: none; }
+      .hro-fullscope-row:nth-child(1) .hro-fullscope-cell,
+      .hro-fullscope-row:nth-child(2) .hro-fullscope-cell,
+      .hro-fullscope-row:nth-child(3) .hro-fullscope-cell:nth-child(1),
+      .hro-fullscope-row:nth-child(3) .hro-fullscope-cell:nth-child(2) {
+        border-bottom: 1px solid #cdd5e0;
+      }
+      .hro-fullscope-row:nth-child(1) .hro-fullscope-cell:nth-child(1),
+      .hro-fullscope-row:nth-child(1) .hro-fullscope-cell:nth-child(3),
+      .hro-fullscope-row:nth-child(2) .hro-fullscope-cell:nth-child(2),
+      .hro-fullscope-row:nth-child(3) .hro-fullscope-cell:nth-child(1) {
+        border-right: 1px solid #cdd5e0;
+      }
+
+      /* End-to-End Coverage — 4 cards reflow to a 2x2 grid; fixed height
+         swapped for min-height + auto so cards hug wrapped content. */
+      .endtoend { padding: 60px 0; }
+      .endtoend-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .endtoend-cards { margin-top: 40px; flex-wrap: wrap; gap: 12px; }
+      .endtoend-card { flex: 1 1 calc(50% - 6px); max-width: calc(50% - 6px); height: auto; min-height: 260px; }
+
+      /* Local Compliance — stays 2x2 at tablet */
+      .localcomp { padding: 60px 0; }
+      .localcomp-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .localcomp-grid { margin-top: 40px; gap: 20px; }
+      .localcomp-row { gap: 20px; }
+      .localcomp-card { min-height: 0; }
+      .localcomp-card-body { flex: none; }
+      .localcomp-card-tags { display: none; }
+
+      /* Powered by Marco OS — Figma tablet spec (node 6008:15304): stays a
+         2-column row (text left, screens bled off the viewport edge on the
+         right); title already matches the tablet spec at base. */
+      .marcoos { padding: 32px 0; min-height: 0; }
+      .marcoos > .container {
+        grid-template-columns: minmax(0, 1.33fr) minmax(0, 1fr);
+        column-gap: 16px; row-gap: 32px; min-height: 0;
+      }
+      .marcoos-left { gap: 12px; }
+      .marcoos-body { margin-top: 12px; }
+      .marcoos-right {
+        align-self: start; margin-right: -32px; margin-top: 33px;
+        aspect-ratio: 342 / 278; overflow: hidden;
+      }
+      .marcoos-image-wrap { top: 0; left: 0; right: 0; bottom: 0; }
+      .marcoos-ctas .cta-btn--secondary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px;
+        letter-spacing: 0; gap: 4px;
+      }
+      .marcoos-ctas .btn-icon { width: 16px; height: 16px; }
+
+      /* The Marco Difference — stack; title already matches the tablet spec at base */
+      .hro-difference { padding: 60px 0; }
+      .hro-difference > .container { flex-direction: column; gap: 24px; }
+      .hro-difference-left { flex: none; width: 100%; max-width: none; }
+      .hro-difference-right { flex: none; width: 100%; max-width: none; padding-top: 0; }
+
+      /* Get Started — sitewide full-bleed convention (photo + dark overlay + white text) */
+      .hro-getstarted { position: relative; overflow: hidden; background: none; }
+      .hro-getstarted > .container {
+        width: 100%; max-width: none; margin-inline: 0;
+        position: relative; z-index: 1; display: block; min-height: 0; padding: 0;
+      }
+      .hro-getstarted-inner { max-width: none; padding: 32px; position: relative; z-index: 1; }
+      .hro-getstarted-header { gap: 24px; margin-bottom: 24px; }
+      .hro-getstarted-title { color: #fff; }
+      .hro-getstarted-body { color: #fff; max-width: none; margin-bottom: 32px; }
+      .hro-getstarted-image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; margin: 0; flex: none; }
+      .hro-getstarted-image::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); pointer-events: none; }
+      .hro-getstarted .section-label { color: #fff; }
+      .hro-getstarted .cta-btn--primary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+        background: #fff; border: 1px solid #003751; color: #162351;
+      }
+      .hro-getstarted .cta-btn--primary:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
+      .hro-getstarted .btn-icon { width: 16px; height: 16px; }
+      .hro-getstarted .btn-icon-img { filter: brightness(0); }
+      .hro-getstarted .cta-btn--primary:hover .btn-icon-img { filter: none; }
+    }
+
+    /* ════════════════════════════════════════
+       MOBILE CONTENT (≤600px) — no Figma link given; built from established
+       site conventions. All section titles standardized to
+       font-size:32px / line-height:40px / weight:700 / letter-spacing:normal.
+    ════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .hero > .container,
+      .whatis > .container,
+      .hro-fullscope > .container,
+      .endtoend > .container,
+      .localcomp > .container,
+      .marcoos > .container,
+      .hro-difference > .container,
+      .hro-getstarted > .container {
+        width: calc(100% - 48px);
+      }
+
+      /* Hero */
+      .hero { padding-bottom: 46px; }
+      .hero > .container { padding-top: 130px; }
+      .hero-content { max-width: none; }
+      .hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+
+      /* What Is HRO */
+      .whatis { padding: 48px 0; }
+      .whatis > .container { gap: 32px; }
+      .whatis-left { gap: 16px; }
+      .whatis-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+
+      /* Full Service Scope — 1 column */
+      .hro-fullscope { padding: 48px 0; }
+      .hro-fullscope-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .hro-fullscope-grid { margin-top: 32px; }
+      .hro-fullscope-cell { flex: none; padding: 20px; }
+      .hro-fullscope-grid .hro-fullscope-row .hro-fullscope-cell { border-bottom: 1px solid #cdd5e0; border-right: none; }
+      .hro-fullscope-row:last-child .hro-fullscope-cell:last-child { border-bottom: none; }
+
+      /* End-to-End Coverage — 1 column */
+      .endtoend { padding: 48px 0; }
+      .endtoend-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .endtoend-cards { margin-top: 32px; flex-direction: column; gap: 12px; }
+      .endtoend-card { flex: none; max-width: none; height: auto; min-height: 0; }
+
+      /* Local Compliance — 1 column */
+      .localcomp { padding: 48px 0; }
+      .localcomp-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .localcomp-grid { margin-top: 32px; gap: 16px; }
+      .localcomp-row { flex-direction: column; gap: 16px; }
+      .localcomp-card { flex: none; min-height: 0; }
+      .localcomp-card-body { flex: none; }
+      .localcomp-card-tags { display: none; }
+
+      /* Powered by Marco OS — Figma mobile spec (node 6008:15632): single
+         column, image reflows between the body copy and the CTAs (not bled
+         off-edge like tablet/desktop). */
+      .marcoos { padding: 32px 0; }
+      .marcoos > .container {
+        grid-template-columns: 1fr;
+        grid-template-areas: "left" "right" "ctas";
+        row-gap: 32px;
+      }
+      .marcoos-left { gap: 12px; }
+      .marcoos-body { margin-top: 12px; }
+      .marcoos-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .marcoos-right { margin-right: 0; height: 318px; }
+      .marcoos-image-wrap { top: 0; left: 0; right: 0; bottom: 0; }
+
+      /* The Marco Difference */
+      .hro-difference { padding: 48px 0; }
+      .hro-difference-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+
+      /* Get Started */
+      .hro-getstarted > .container { width: 100%; max-width: none; margin-inline: 0; }
+      .hro-getstarted-inner { padding: 32px 24px; }
+      .hro-getstarted-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .hro-getstarted-body { font-size: 14px; line-height: 18px; margin-bottom: 24px; }
+    }
+
     /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
@@ -874,21 +1084,21 @@
         <p data-i18n="hro.os.body1">Marco OS gives your central HR and finance teams a single view of every employee across every country where Marco manages your HR operations. No country silos. No separate logins. No spreadsheet consolidation.</p>
         <p data-i18n="hro.os.body2">Employee records, leave balances, payroll history, expense records, and compliance documentation all centralized and accessible in real time.</p>
       </div>
-      <div class="marcoos-ctas">
-        <a href="#" class="cta-btn cta-btn--secondary">
-          <span data-i18n="hro.os.cta1">Explore Marco OS</span>
-          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
-        </a>
-        <a href="company-contact-us.html" class="cta-btn cta-btn--secondary">
-          <span data-i18n="hro.os.cta2">Contact Us</span>
-          <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-light.svg" alt="" /></div></div>
-        </a>
-      </div>
     </div>
     <div class="marcoos-right">
       <div class="marcoos-image-wrap">
         <img src="assets/Services/HRO/marco-os-screens-png.png" alt="Marco OS" />
       </div>
+    </div>
+    <div class="marcoos-ctas">
+      <a href="#" class="cta-btn cta-btn--secondary">
+        <span data-i18n="hro.os.cta1">Explore Marco OS</span>
+        <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
+      </a>
+      <a href="company-contact-us.html" class="cta-btn cta-btn--secondary">
+        <span data-i18n="hro.os.cta2">Contact Us</span>
+        <div class="btn-icon"><div class="btn-icon-inner"><img class="btn-icon-img" src="assets/chevron-right-dark.svg" alt="" /></div></div>
+      </a>
     </div>
   </div>
 </section>

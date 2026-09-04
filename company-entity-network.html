@@ -28,7 +28,7 @@
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
+      min-width: 800px;
     }
 
     .container {
@@ -160,7 +160,11 @@
     .hero-deco {
       position: absolute;
       top: 0;
-      right: max(var(--gutter), calc((100% - 1224px) / 2));
+      /* Purely decorative, so it's fine for it to bleed closer to (or past)
+         the edge as the screen narrows — floor is a flat 24px instead of
+         the sitewide --gutter (64–108px), which read as an ever-widening
+         empty gap next to the sphere since the sphere itself never shrinks. */
+      right: max(-24px, calc((100% - 1224px) / 2));
       width: 560px;
       height: 560px;
       pointer-events: none;
@@ -174,6 +178,30 @@
     .hero-title em { color: var(--blue-main); font-style: normal; }
     .hero-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #fff; margin-top: 12px; }
 
+    /* ── Hero — responsive (800/440, matches nav/footer) ──
+       Figma nodes 5840:8695 (tablet) / 6019:20878 (mobile): 400px-tall
+       reference frame, but height:auto + min-height (not fixed) so wrapped
+       text grows the section instead of being clipped. Decorative "abstract
+       line 3" asset shrinks from the desktop 560×560/right-anchored
+       treatment to an exact 400×400 box, left-positioned at 50% (tablet) /
+       25% (mobile) — matching Figma's own left-1/2 / left-1/4 placement.
+       Title drops to the standard tablet/mobile scale; the title→body gap
+       is 24px (tablet) / 16px (mobile), not desktop's 12px. */
+    @media (max-width: 800px) {
+      body { min-width: 0; }
+      .hero { height: auto; min-height: 400px; padding-bottom: 32px; }
+      .hero-deco { top: 0; left: 50%; right: auto; width: 400px; height: 400px; }
+      .hero > .container { width: calc(100% - 64px); max-width: none; padding-top: 112px; }
+      .hero-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .hero-body { margin-top: 24px; }
+    }
+    @media (max-width: 440px) {
+      .hero-deco { left: 25%; }
+      .hero > .container { width: calc(100% - 48px); padding-top: 130px; }
+      .hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .hero-body { margin-top: 16px; }
+    }
+
     /* ════════════════════════════════════════
        SERVICE CENTERS
     ════════════════════════════════════════ */
@@ -184,16 +212,21 @@
       padding: 60px 0 123px;
     }
     .service-centers .section-label { margin-bottom: 17px; }
+    /* Flex (not grid) so the map and the cards column both actually shrink
+       together as the viewport narrows — the old grid + fixed padding-left:67px
+       left the map looking permanently offset/gapped from the "MARCO SERVICE
+       CENTER" label above it once the container got tighter than the map's
+       711px + gap's 158px + cards' 199px combined width. Gap now shrinks
+       continuously from 158px down to a 60px floor instead of staying fixed. */
     .service-centers-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 711px) 199px;
-      column-gap: 158px;
+      display: flex;
       align-items: center;
-      padding-left: 67px;
+      gap: clamp(60px, calc(23vw - 125px), 158px);
     }
     .service-centers-map-wrap {
       width: 100%;
       min-width: 0;
+      flex: 0 1 711px;
     }
     .world-map {
       position: relative;
@@ -224,7 +257,10 @@
 
     .map-pin img {
       display: block;
-      height: 44px;
+      /* Shrinks gently alongside the map on desktop too: 44px down to the
+         38px the ≤800px tablet block picks up, floored/capped so it never
+         goes past that range at other widths. */
+      height: clamp(38px, calc(30.5px + 0.9375vw), 44px);
       width: auto;
     }
 
@@ -252,7 +288,8 @@
       display: flex;
       flex-direction: column;
       gap: 32px;
-      width: 199px;
+      flex: 0 1 199px;
+      min-width: 0;
     }
     .data-card {
       display: flex;
@@ -273,20 +310,62 @@
       letter-spacing: 0;
       color: var(--blue-main);
     }
-    @media (max-width: 1024px) {
-      .service-centers-inner { column-gap: 48px; }
-    }
-    @media (max-width: 768px) {
+    /* ── Service Centers — responsive (800/440, matches nav/footer) ──
+       Figma nodes 5840:8996 (tablet) / 6019:20917 (mobile).
+       Tablet: STAYS side-by-side (map | cards), same shape as desktop, just
+       tighter — cards column narrows to 164px, gap to 64px, and the cards
+       keep stacking vertically (not the old ad-hoc 768px behavior that wrapped
+       them into a horizontal row below the map).
+       Mobile: cards flip to a 3-up horizontal row ABOVE the map (order:-1),
+       and the map drops to a full-width block below. Map-pin positions don't
+       need any changes — they're already percentage-based against the image,
+       so they track its size at every breakpoint automatically. */
+    @media (max-width: 800px) {
+      .service-centers { padding: 32px 0; }
+      .service-centers > .container { width: calc(100% - 64px); max-width: none; }
+      .service-centers .section-label { margin-bottom: 48px; }
       .service-centers-inner {
-        grid-template-columns: 1fr;
-        row-gap: 48px;
+        /* Shrinks continuously from 64px (at 800px) down to a 32px floor
+           (reached at 600px, where the mobile layout takes over) instead of
+           staying pinned at a fixed 64px the whole way down. */
+        gap: clamp(32px, calc(16vw - 64px), 64px);
       }
+      .service-centers-map-wrap { flex: 1 1 0; }
+      .service-centers-data { flex: 0 0 164px; width: 164px; gap: 16px; }
+      .data-card { gap: 8px; }
+      .data-card-number { font-size: 32px; line-height: 40px; letter-spacing: -0.96px; }
+      /* Pins shrink slightly alongside the map — not proportionally as much,
+         since they're already small and still need to read clearly. Scales
+         continuously from 38px (800px) to 34px (600px), matching the value
+         the ≤600px block picks up at that boundary. */
+      .map-pin img { height: calc(22px + 2vw); }
+    }
+    @media (max-width: 600px) {
+      .service-centers > .container { width: calc(100% - 64px); }
+      .service-centers .section-label { margin-bottom: 32px; }
+      .service-centers-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+      }
+      /* Reset the desktop/tablet flex-basis values — in a column flex
+         container they'd otherwise be read as a HEIGHT constraint. */
+      .service-centers-map-wrap { flex: none; }
       .service-centers-data {
-        justify-self: start;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 32px;
+        order: -1;
+        flex: none;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        gap: 16px;
       }
+      .data-card-number { font-size: 24px; line-height: 26px; }
+      /* Continues scaling from 34px (600px) to 30px (440px). */
+      .map-pin img { height: calc(19px + 2.5vw); }
+    }
+    @media (max-width: 440px) {
+      .service-centers > .container { width: calc(100% - 48px); }
+      .map-pin img { height: 30px; }
     }
 
     /* ════════════════════════════════════════
@@ -301,15 +380,19 @@
     .entities-header { margin-bottom: 56px; }
     .entities-header .section-label .line { background: var(--text-main); }
     .entities-header .section-label span { color: var(--text-main); }
+    /* Flex (not grid) so the 208px name column and the entities grid both
+       actually shrink together as the viewport narrows, instead of one
+       staying rigid while the other overflows — same fix as Service Centers/
+       Team & Culture. Gap shrinks continuously instead of staying fixed. */
     .entities-region {
-      display: grid;
-      grid-template-columns: 208px 1fr;
-      column-gap: 104px;
-      align-items: start;
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(48px, 8vw, 104px);
       padding: 60px 0;
       border-top: 1px solid rgba(22,35,81,0.1);
     }
     .entities-header + .entities-region { border-top: none; }
+    .entities-region-label { flex: 0 1 208px; min-width: 0; }
     .entities-region-name {
       font-size: 72px;
       font-weight: 700;
@@ -325,8 +408,10 @@
       border-radius: 1px;
     }
     .entities-grid {
+      flex: 1 1 0;
+      min-width: 0;
       display: grid;
-      grid-template-columns: repeat(3, 288px);
+      grid-template-columns: repeat(3, minmax(0, 288px));
       column-gap: 24px;
       row-gap: 60px;
     }
@@ -359,18 +444,60 @@
       line-height: 20px;
       color: var(--text-main);
     }
-    @media (max-width: 1024px) {
-      .entities-region { grid-template-columns: 160px 1fr; column-gap: 48px; }
-      .entities-region-name { font-size: 54px; }
-      .entities-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 20px; }
+    /* ── Marco Entities — responsive (1100 tablet / 600 mobile — this
+       section's own breakpoints, intentionally not the site's 800/440) ──
+       Figma nodes 5840:8731 (tablet) / 6019:20783 (mobile): the region name
+       moves from sitting beside the entities grid to stacking ABOVE it —
+       same "heading above content" pattern as How We Are Built / Team &
+       Culture. Cards shrink from desktop's 288px to 220px (tablet, 3-up) to
+       188px (mobile, 2-up); the region name drops from 72px to a uniform
+       32/700/40/normal at both tablet and mobile. Flag size grows slightly
+       (20×14 → 31×20) and entity-name tightens to 12px/-0.8px tracking,
+       per Figma — both apply at tablet and mobile identically. */
+    @media (max-width: 1100px) {
+      /* Side padding stays the same as desktop (the shared .container
+         gutter clamp) all the way down to 800px — only the structure
+         (name-above-grid, sizes) changes here. */
+      .entities-section { padding: 32px 0; }
+      .entities-header { margin-bottom: 32px; }
+      .entities-region {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+        padding: 32px 0;
+      }
+      .entities-region-label { flex: none; }
+      .entities-region-name { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .entities-region-bar { width: 40px; margin-top: 16px; }
+      .entities-grid {
+        flex: none;
+        width: 100%;
+        /* 1fr (not a 220px cap) so the 3 columns stretch to fill the full
+           row width evenly instead of staying cramped to the left with
+           unused space on the right. */
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: 32px;
+        row-gap: 32px;
+      }
+      .entity-flag { width: 31px; height: 20px; }
+      .entity-name { font-size: 12px; line-height: 16px; letter-spacing: -0.8px; }
     }
-    @media (max-width: 768px) {
-      .entities-region { grid-template-columns: 1fr; gap: 28px; padding: 40px 0; }
-      .entities-grid { grid-template-columns: repeat(2, 1fr); column-gap: 20px; row-gap: 28px; }
-      .entities-region-name { font-size: 48px; }
+    @media (max-width: 800px) {
+      /* Below 800px the section switches to a fixed 32px side padding
+         instead of the desktop gutter clamp. */
+      .entities-section > .container { width: calc(100% - 64px); max-width: none; }
     }
-    @media (max-width: 480px) {
-      .entities-grid { grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
+      .entities-grid {
+        /* 1fr (not a 188px cap) so the 2 columns stretch to fill the row
+           width evenly instead of leaving a gap on the right. */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 16px;
+        row-gap: 32px;
+      }
+    }
+    @media (max-width: 440px) {
+      .entities-section > .container { width: calc(100% - 48px); }
     }
 
     /* ════════════════════════════════════════
@@ -382,9 +509,17 @@
       background: linear-gradient(90.59deg, #0F1E46 20.09%, #081557 99.84%);
       padding: 80px 0;
     }
+    /* Label column track is a % of the row (421/1224 at the desktop
+       reference width), not a fixed 421px — a fixed px (or minmax(0,421px))
+       track is non-flexible, so the grid sizing algorithm hands ALL slack
+       to the 1fr body column and leaves the label column frozen at 421px
+       all the way down to the 800px tablet breakpoint. A % track recomputes
+       against the row's own width on every reflow, so it shrinks smoothly
+       and continuously right along with the row instead of stepping only
+       at breakpoints. */
     .why-matters-row {
       display: grid;
-      grid-template-columns: 421px 1fr;
+      grid-template-columns: minmax(0, 34.4%) minmax(0, 1fr);
       column-gap: 92px;
       align-items: start;
     }
@@ -392,6 +527,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+      min-width: 0;
     }
     .why-matters-left .section-label .line { background: var(--blue-main); }
     .why-matters-left .section-label span { color: var(--blue-main); }
@@ -403,6 +539,7 @@
       color: #fff;
     }
     .why-matters-right {
+      min-width: 0;
       padding-top: 25px;
     }
     .why-matters-body {
@@ -414,6 +551,28 @@
       text-align: justify;
     }
     .why-matters-body p + p { margin-top: 24px; }
+
+    /* ── Why It Matters — responsive (800/440, matches nav/footer) ──
+       Row drops from the fixed 421px label column beside justified body
+       copy to a single stacked column — same "heading above content"
+       pattern as Marco Entities/Service Centers. Heading and body scale
+       down through tablet then mobile; body switches to left-align on
+       mobile since justify reads badly in a narrow column. */
+    @media (max-width: 800px) {
+      .why-matters { padding: 60px 0; }
+      .why-matters > .container { width: calc(100% - 64px); max-width: none; }
+      .why-matters-row { grid-template-columns: 1fr; row-gap: 24px; }
+      .why-matters-heading { font-size: 36px; line-height: 44px; letter-spacing: -1.8px; }
+      .why-matters-right { padding-top: 0; }
+      .why-matters-body { font-size: 15px; line-height: 22px; }
+    }
+    @media (max-width: 440px) {
+      .why-matters { padding: 48px 0; }
+      .why-matters > .container { width: calc(100% - 48px); }
+      .why-matters-heading { font-size: 28px; line-height: 36px; letter-spacing: normal; }
+      .why-matters-body { font-size: 14px; line-height: 20px; text-align: left; }
+      .why-matters-body p + p { margin-top: 16px; }
+    }
 
     /* ════════════════════════════════════════
        CONTINUE / CTA
@@ -428,8 +587,13 @@
       align-items: stretch;
       min-height: 512px;
     }
+    /* Text column is fully fluid (flex:1), not a fixed/capped basis — same
+       technique as .work-with-text on company-organization.html. Body copy
+       keeps a 520px reading-width cap instead of the whole column being
+       capped, so it doesn't stretch full-width on ultra-wide desktops. */
     .continue-text {
-      flex: 0 0 600px;
+      flex: 1;
+      min-width: 0;
       padding: 80px 0;
       display: flex;
       flex-direction: column;
@@ -449,16 +613,24 @@
       font-weight: 400;
       line-height: 20px;
       color: var(--text-main);
+      max-width: 520px;
     }
     .continue-cta {
       display: flex;
+      flex-wrap: wrap;
       gap: 23px;
       align-items: center;
       margin-top: 8px;
     }
-    /* Image bleeds right to viewport edge */
+    /* Image bleeds right to viewport edge. flex-basis is a vw fraction
+       (708px at the 1440px reference width — same 49.167vw the image
+       rendered to under the old 600px-text + flex:1-image layout) instead
+       of flex:1, so it shrinks smoothly and continuously with the viewport
+       rather than only reacting to what the text column leaves behind —
+       same technique as .work-with-image on company-organization.html. */
     .continue-image {
-      flex: 1;
+      flex: 0 0 49.167vw;
+      min-width: 0;
       margin-left: 24px;
       margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
       position: relative;
@@ -476,6 +648,52 @@
     }
 
     .btn-arrow { flex-shrink: 0; display: block; }
+
+    /* ── Continue / CTA — TABLET (≤800px) / MOBILE (≤440px) ──
+       Same full-bleed-background technique as .work-with-row on
+       company-organization.html: the image becomes an absolutely
+       positioned full-bleed background for the whole section (dark
+       overlay, 50% tablet / 70% mobile) with the text on top in white,
+       instead of duplicating the section's markup. */
+    @media (max-width: 800px) {
+      /* compound selector (not just .continue-row) to reliably
+         out-specificity the shared .container class's own width/margin-inline rule */
+      .continue-section .continue-row {
+        display: block;
+        position: relative;
+        min-height: 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+      }
+      .continue-text { position: relative; z-index: 1; flex: none; max-width: none; padding: 32px; gap: 21px; }
+      .continue-image {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        margin: 0; flex: none; z-index: 0; min-height: 0;
+      }
+      .continue-image::after {
+        content: ""; position: absolute; inset: 0;
+        background: rgba(0, 0, 0, 0.5); pointer-events: none;
+      }
+      .continue-text .section-label .line { background: #fff; }
+      .continue-text .section-label span { color: #fff; }
+      .continue-heading { color: #fff; }
+      .continue-body { color: #fff; max-width: 642px; }
+      .continue-cta { margin-top: 32px; }
+      .continue-cta .cta-btn--primary { background: transparent; border: 1px solid #fff; color: #fff; }
+      .continue-cta .cta-btn--primary,
+      .continue-cta .cta-btn--secondary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px;
+        letter-spacing: 0; gap: 4px;
+      }
+      .continue-cta .btn-arrow { width: 16px; height: 16px; }
+    }
+    @media (max-width: 440px) {
+      .continue-text { padding: 32px 24px; gap: 12px; }
+      .continue-image::after { background: rgba(0, 0, 0, 0.7); }
+      .continue-heading { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+    }
 
     /* ════════════════════════════════════════
        FOOTER
@@ -602,7 +820,7 @@
       .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
     }
     @media (max-width: 800px) {
-      .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
+      .footer { padding: 60px 32px 32px; width: 100%; max-width: 100%; box-sizing: border-box; }
       .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
       .footer-top { margin-bottom: 60px; }
       .footer-logo { width: 171px; }
@@ -618,7 +836,7 @@
     /* ════════════════════════════════════════
        MOBILE FOOTER (≤440px)
     ════════════════════════════════════════ */
-    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100vw; box-sizing: border-box; }
+    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100%; box-sizing: border-box; }
     .footer-mob-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px 24px 0; }
     .footer-mob-logo { display: block; width: 142px; height: 40px; flex-shrink: 0; text-decoration: none; }
     .footer-mob-logo img { width: 142px; height: 40px; display: block; object-fit: contain; }
@@ -666,7 +884,7 @@
       </div>
       <div>
         <p class="hero-title"><span data-i18n="entity.hero.title.pre">Local presence</span><br><em data-i18n="entity.hero.title.em">Global scale</em></p>
-        <p class="hero-body" data-i18n="entity.hero.body">21 owned legal entities. 4 service centers. AMER, EMEA, and APAC. Marco's infrastructure is not a partner directory — it is a network we built and operate ourselves.</p>
+        <p class="hero-body" data-i18n="entity.hero.body">11 owned legal entities. 3 service centers. AMER, EMEA, and APAC. Marco's infrastructure is not a partner directory — it is a network we built and operate ourselves.</p>
       </div>
     </div>
   </div>
@@ -690,12 +908,6 @@
               <img src="assets/Company/entity-network-city-of-industry-pinpoint.svg" alt="City of Industry"/>
             </div>
           </div>
-          <!-- Bucharest spike tip: x=390/710.64=54.88%, y=154/400=38.50% -->
-          <div class="map-pin" style="left:54.88%;top:38.50%">
-            <div class="map-pin-float">
-              <img src="assets/Company/entity-network-bucharest-pinpoint.svg" alt="Bucharest"/>
-            </div>
-          </div>
           <!-- Kuala Lumpur spike tip: x=549.5/710.64=77.32%, y=249/400=62.25% -->
           <div class="map-pin" style="left:77.32%;top:62.25%">
             <div class="map-pin-float">
@@ -713,11 +925,11 @@
       <!-- Stats -->
       <div class="service-centers-data">
         <div class="data-card">
-          <p class="data-card-number" data-count="21">0</p>
+          <p class="data-card-number" data-count="11">0</p>
           <p class="data-card-label" data-i18n="entity.stats.stat1.label">OWNED ENTITIES</p>
         </div>
         <div class="data-card">
-          <p class="data-card-number" data-count="4">0</p>
+          <p class="data-card-number" data-count="3">0</p>
           <p class="data-card-label" data-i18n="entity.stats.stat2.label">SERVICE CENTERS</p>
         </div>
         <div class="data-card">
@@ -760,13 +972,6 @@
           </div>
           <p class="entity-name">Marco Global Payroll (Canada) Ltd.</p>
         </div>
-        <div class="entity-card">
-          <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/br.svg" alt="Brazil"/>
-            <span class="entity-city">São Paulo, Brazil</span>
-          </div>
-          <p class="entity-name">Marco Global Payroll Brazil LTDA</p>
-        </div>
       </div>
     </div>
 
@@ -779,13 +984,6 @@
       <div class="entities-grid">
         <div class="entity-card">
           <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/ro.svg" alt="Romania"/>
-            <span class="entity-city">Bucharest, Romania</span>
-          </div>
-          <p class="entity-name">Marco Global Payroll S.R.L.</p>
-        </div>
-        <div class="entity-card">
-          <div class="entity-location">
             <img class="entity-flag" src="assets/Flags/gb.svg" alt="United Kingdom"/>
             <span class="entity-city">London, United Kingdom</span>
           </div>
@@ -793,38 +991,10 @@
         </div>
         <div class="entity-card">
           <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/fr.svg" alt="France"/>
-            <span class="entity-city">Paris, France</span>
-          </div>
-          <p class="entity-name">Marco Global Payroll SARL</p>
-        </div>
-        <div class="entity-card">
-          <div class="entity-location">
             <img class="entity-flag" src="assets/Flags/ie.svg" alt="Ireland"/>
             <span class="entity-city">Dublin, Ireland</span>
           </div>
           <p class="entity-name">Marco Global Payroll (Ireland) Limited</p>
-        </div>
-        <div class="entity-card">
-          <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/es.svg" alt="Spain"/>
-            <span class="entity-city">Madrid, Spain</span>
-          </div>
-          <p class="entity-name">Marco Global Payroll Sociedad Limitada</p>
-        </div>
-        <div class="entity-card">
-          <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/nl.svg" alt="Netherlands"/>
-            <span class="entity-city">Amsterdam, Netherlands</span>
-          </div>
-          <p class="entity-name">Marco Global Payroll Netherlands B.V.</p>
-        </div>
-        <div class="entity-card">
-          <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/ae.svg" alt="UAE"/>
-            <span class="entity-city">Dubai, United Arab Emirates</span>
-          </div>
-          <p class="entity-name">Marco Global Payroll Middle East Payment Services Provider LLC</p>
         </div>
       </div>
     </div>
@@ -852,13 +1022,6 @@
         </div>
         <div class="entity-card">
           <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/kr.svg" alt="South Korea"/>
-            <span class="entity-city">Seoul, South Korea</span>
-          </div>
-          <p class="entity-name">Marco Global Payroll Korea Co., Ltd.</p>
-        </div>
-        <div class="entity-card">
-          <div class="entity-location">
             <img class="entity-flag" src="assets/Flags/my.svg" alt="Malaysia"/>
             <span class="entity-city">Kuala Lumpur, Malaysia</span>
           </div>
@@ -866,31 +1029,10 @@
         </div>
         <div class="entity-card">
           <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/id.svg" alt="Indonesia"/>
-            <span class="entity-city">Jakarta, Indonesia</span>
-          </div>
-          <p class="entity-name">PT Marco Global Payroll</p>
-        </div>
-        <div class="entity-card">
-          <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/jp.svg" alt="Japan"/>
-            <span class="entity-city">Tokyo, Japan</span>
-          </div>
-          <p class="entity-name">Marco Global Payroll (Japan) GK LLC</p>
-        </div>
-        <div class="entity-card">
-          <div class="entity-location">
             <img class="entity-flag" src="assets/Flags/vn.svg" alt="Vietnam"/>
             <span class="entity-city">Ho Chi Minh, Vietnam</span>
           </div>
           <p class="entity-name">Marco Global Payroll (Vietnam) Company Limited</p>
-        </div>
-        <div class="entity-card">
-          <div class="entity-location">
-            <img class="entity-flag" src="assets/Flags/ph.svg" alt="Philippines"/>
-            <span class="entity-city">Manila, Philippines</span>
-          </div>
-          <p class="entity-name">Marco Global Payroll (Philippines) Services Corp.</p>
         </div>
         <div class="entity-card">
           <div class="entity-location">

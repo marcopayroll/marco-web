@@ -174,6 +174,8 @@
     .sdm-whosinvolved-title { font-size: 64px; font-weight: 700; line-height: 80px; color: #fff; }
     .sdm-whosinvolved-title .accent { color: var(--blue-main); }
     .sdm-whosinvolved-subtitle { font-size: 16px; font-weight: 400; line-height: 20px; color: var(--text-tertiary); max-width: 700px; margin-top: 12px; }
+    /* Inert at desktop/mobile — only becomes a positioned scroll wrapper at tablet */
+    .sdm-whosinvolved-cards-wrap { display: contents; }
     .sdm-whosinvolved-cards { display: flex; gap: 4px; }
     .sdm-whosinvolved-card {
       flex: 1 1 0; min-width: 0;
@@ -469,7 +471,212 @@
     }
     .wechat-modal.active { opacity: 1; pointer-events: auto; }
     .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
-  
+
+    /* ════════════════════════════════════════
+       TABLET CONTENT (≤1000px) — no Figma link given; built from the
+       established sitewide convention (service-employer-of-record.html,
+       service-hr-operations.html): 64/80/700 titles standardize to
+       48/60/600/-2.4px, 48/60/600/-2.4 titles need no override, and every
+       "fixed column + flexible column" 2-col section (Why It Matters,
+       Local Delivery) stacks with BOTH columns switched to full-width —
+       not just the flexible one — so neither is left orphaned at a stale
+       fixed size.
+    ════════════════════════════════════════ */
+    @media (max-width: 1000px) {
+      body { min-width: 0; }
+
+      .hero > .container,
+      .sdm-whyit > .container,
+      .sdm-whosinvolved > .container,
+      .sdm-eorscope > .container,
+      .sdm-localdelivery > .container,
+      .sdm-modelclarity > .container,
+      .sdm-deliverymodel > .container,
+      .sdm-relatedmodels > .container,
+      .sdm-beforedelivery > .container,
+      .sdm-getstarted > .container {
+        width: calc(100% - 64px);
+        max-width: none;
+        margin-inline: auto;
+      }
+
+      /* Hero */
+      .hero { height: auto; padding-bottom: 56px; }
+      .hero > .container { padding-top: 140px; }
+      .hero-content { max-width: 620px; }
+      .hero-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+
+      /* Why It Matters — fixes the fixed-600px-left / flexible-right bug:
+         both columns now go full-width when stacked. */
+      .sdm-whyit { padding: 60px 0 60px; }
+      .sdm-whyit > .container { flex-direction: column; gap: 40px; }
+      .sdm-whyit-left { flex: none; width: 100%; max-width: none; padding-top: 0; gap: 20px; }
+      .sdm-whyit-cards { flex: none; width: 100%; max-width: none; }
+
+      /* Who Is Involved — Figma node 6045:25336: 2x2 grid, 4px gap both axes,
+         fixed 220px card height, tighter 16px internal gap. */
+      .sdm-whosinvolved { padding: 60px 0; }
+      .sdm-whosinvolved-header { margin-bottom: 40px; }
+      .sdm-whosinvolved-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .sdm-whosinvolved-cards-wrap { display: contents; }
+      .sdm-whosinvolved-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; align-items: stretch; }
+      .sdm-whosinvolved-card { height: auto; min-height: 220px; gap: 16px; }
+
+      /* EOR Scope — 5 cards reflow to a 2-col wrap (2/2/1) */
+      .sdm-eorscope { padding: 60px 0; }
+      .sdm-eorscope-header { margin-bottom: 40px; }
+      .sdm-eorscope-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .sdm-eorscope-cards { flex-wrap: wrap; gap: 16px; }
+      .sdm-eorscope-card { flex: 1 1 calc(50% - 8px); max-width: calc(50% - 8px); min-height: 0; }
+
+      /* Local Delivery — fixes the fixed-520px-left / flexible-right bug:
+         both columns now go full-width when stacked; title already matches
+         the tablet spec at base (48/60/600/-2.4). */
+      .sdm-localdelivery { padding: 60px 0; }
+      .sdm-localdelivery > .container { flex-direction: column; gap: 40px; }
+      .sdm-localdelivery-left { flex: none; width: 100%; max-width: none; }
+      .sdm-localdelivery-right { flex: none; width: 100%; max-width: none; }
+      .sdm-alert-banner { display: none; }
+
+      /* Model Clarity — stays 2 columns at tablet (fits comfortably) */
+      .sdm-modelclarity { padding: 60px 0; }
+      .sdm-modelclarity-header { margin-bottom: 40px; }
+      .sdm-modelclarity-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .sdm-compare-card { min-height: 0; }
+
+      /* Delivery Model — same comparison-card pattern as Model Clarity */
+      .sdm-deliverymodel { padding: 60px 0; }
+      .sdm-deliverymodel-header { margin-bottom: 40px; }
+      .sdm-deliverymodel-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+
+      /* Related Models — 4 cards reflow to a 2x2 grid */
+      .sdm-relatedmodels { padding: 60px 0; }
+      .sdm-relatedmodels-header { margin-bottom: 40px; }
+      .sdm-relatedmodels-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .sdm-relatedmodels-cards { flex-wrap: wrap; gap: 16px; }
+      .sdm-relatedmodels-card { flex: 1 1 calc(50% - 8px); max-width: calc(50% - 8px); min-height: 0; }
+
+      /* Before Delivery — stays 2 columns at tablet (fits comfortably) */
+      .sdm-beforedelivery { padding: 60px 0; }
+      .sdm-beforedelivery-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .sdm-beforedelivery-checklist { margin-top: 32px; gap: 16px; }
+      .sdm-beforedelivery-item-text { flex: 1 1 0; min-width: 0; }
+
+      /* Get Started — sitewide full-bleed convention (photo + dark overlay + white text) */
+      .sdm-getstarted { position: relative; overflow: hidden; background: none; }
+      .sdm-getstarted > .container {
+        width: 100%; max-width: none; margin-inline: 0;
+        position: relative; z-index: 1; display: block; min-height: 0; padding: 0;
+      }
+      .sdm-getstarted-inner { max-width: none; padding: 32px; position: relative; z-index: 1; }
+      .sdm-getstarted-header { gap: 24px; margin-bottom: 24px; }
+      .sdm-getstarted-title { color: #fff; }
+      .sdm-getstarted-body { color: #fff; max-width: none; margin-bottom: 32px; }
+      .sdm-getstarted-image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; margin: 0; flex: none; }
+      .sdm-getstarted-image::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); pointer-events: none; }
+      .sdm-getstarted .section-label { color: #fff; }
+      .sdm-getstarted .cta-btn--primary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+        background: #fff; border: 1px solid #003751; color: #162351;
+      }
+      .sdm-getstarted .cta-btn--primary:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
+      .sdm-getstarted .btn-icon { width: 16px; height: 16px; }
+      /* chevron-right-dark.svg is actually white-stroked (misleading filename) —
+         invisible on this white pill button, so invert it dark to match */
+      .sdm-getstarted .btn-icon-img { filter: brightness(0); }
+      .sdm-getstarted .cta-btn--primary:hover .btn-icon-img { filter: none; }
+    }
+
+    /* ════════════════════════════════════════
+       MOBILE CONTENT (≤600px) — no Figma link given; built from established
+       site conventions. All section titles standardized to
+       font-size:32px / line-height:40px / weight:700 / letter-spacing:normal.
+    ════════════════════════════════════════ */
+    @media (max-width: 600px) {
+      .hero > .container,
+      .sdm-whyit > .container,
+      .sdm-whosinvolved > .container,
+      .sdm-eorscope > .container,
+      .sdm-localdelivery > .container,
+      .sdm-modelclarity > .container,
+      .sdm-deliverymodel > .container,
+      .sdm-relatedmodels > .container,
+      .sdm-beforedelivery > .container,
+      .sdm-getstarted > .container {
+        width: calc(100% - 48px);
+      }
+
+      /* Hero */
+      .hero { padding-bottom: 46px; }
+      .hero > .container { padding-top: 130px; }
+      .hero-content { max-width: none; }
+      .hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .hero-body { font-size: 14px; line-height: 18px; }
+
+      /* Why It Matters */
+      .sdm-whyit { padding: 48px 0; }
+      .sdm-whyit > .container { gap: 32px; }
+      .sdm-whyit-left { gap: 16px; }
+      .sdm-whyit-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+
+      /* Who Is Involved — Figma node 6008:16709: 1 column, 4px gap, cards
+         keep the full-size 128px watermark (clipped by card overflow). */
+      .sdm-whosinvolved { padding: 48px 0; }
+      .sdm-whosinvolved-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .sdm-whosinvolved-cards-wrap { display: contents; }
+      .sdm-whosinvolved-cards { display: flex; flex-direction: column; overflow-x: visible; scroll-snap-type: none; gap: 4px; }
+      .sdm-whosinvolved-card { flex: none; max-width: none; width: auto; height: auto; min-height: 0; scroll-snap-align: none; }
+
+      /* EOR Scope — 1 column */
+      .sdm-eorscope { padding: 48px 0; }
+      .sdm-eorscope-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .sdm-eorscope-cards { flex-direction: column; gap: 16px; }
+      .sdm-eorscope-card { flex: none; max-width: none; min-height: 0; }
+
+      /* Local Delivery */
+      .sdm-localdelivery { padding: 48px 0; }
+      .sdm-localdelivery > .container { gap: 32px; }
+      .sdm-localdelivery-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+
+      /* Model Clarity — 1 column */
+      .sdm-modelclarity { padding: 48px 0; }
+      .sdm-modelclarity-header { margin-bottom: 32px; }
+      .sdm-modelclarity-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .sdm-modelclarity-cards { flex-direction: column; gap: 16px; }
+      /* flex-basis:0 from the base rule sizes WIDTH in the desktop/tablet row
+         layout, but would size HEIGHT once this switches to a column and collapse
+         the card, causing it to overlap the next one — reset to content-sized. */
+      .sdm-compare-card { flex: none; }
+      .sdm-info-banner { margin-top: 16px; }
+
+      /* Delivery Model — 1 column */
+      .sdm-deliverymodel { padding: 48px 0; }
+      .sdm-deliverymodel-header { margin-bottom: 32px; }
+      .sdm-deliverymodel-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .sdm-deliverymodel-cards { flex-direction: column; gap: 16px; }
+      .sdm-deliverynote { margin-top: 16px; }
+
+      /* Related Models — 1 column */
+      .sdm-relatedmodels { padding: 48px 0; }
+      .sdm-relatedmodels-header { margin-bottom: 32px; }
+      .sdm-relatedmodels-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .sdm-relatedmodels-cards { flex-direction: column; gap: 16px; }
+      .sdm-relatedmodels-card { flex: none; max-width: none; min-height: 0; }
+      .sdm-relatedmodels-footnote { margin-top: 24px; }
+
+      /* Before Delivery — 1 column */
+      .sdm-beforedelivery { padding: 48px 0; }
+      .sdm-beforedelivery-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .sdm-beforedelivery-checklist { flex-direction: column; margin-top: 24px; gap: 8px; }
+      .sdm-beforedelivery-col { gap: 8px; }
+
+      /* Get Started */
+      .sdm-getstarted > .container { width: 100%; max-width: none; margin-inline: 0; }
+      .sdm-getstarted-inner { padding: 32px 24px; }
+      .sdm-getstarted-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+      .sdm-getstarted-body { font-size: 14px; line-height: 18px; margin-bottom: 24px; }
+    }
+
     /* ════════════════════════════════════════
        TABLET NAV (≤800px)
     ════════════════════════════════════════ */
@@ -673,6 +880,7 @@
       <h2 class="sdm-whosinvolved-title"><span data-i18n="sdm.who.title.main">Every EOR setup has </span><span class="accent" data-i18n="sdm.who.title.accent">clear parties.</span></h2>
       <p class="sdm-whosinvolved-subtitle" data-i18n="sdm.who.subtitle">An EOR arrangement connects multiple parties. Each one has a defined role. Clarity on who does what is the foundation of compliant delivery.</p>
     </div>
+    <div class="sdm-whosinvolved-cards-wrap">
     <div class="sdm-whosinvolved-cards">
       <div class="sdm-whosinvolved-card">
         <div class="sdm-whosinvolved-card-box">
@@ -714,6 +922,7 @@
         </div>
         <span class="sdm-whosinvolved-card-watermark">4</span>
       </div>
+    </div>
     </div>
   </div>
 </section>

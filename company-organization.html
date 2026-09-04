@@ -28,7 +28,7 @@
       font-family: var(--font);
       background: #0F1E46;
       color: var(--text-main);
-      min-width: 960px;
+      min-width: 800px;
     }
 
     .container {
@@ -184,6 +184,29 @@
     .hero-title em { color: var(--blue-main); font-style: normal; }
     .hero-body { font-size: 16px; font-weight: 400; line-height: 20px; color: #fff; margin-top: 12px; }
 
+    /* ── Hero — responsive (800/440, matches nav/footer) ── */
+    @media (max-width: 800px) {
+      body { min-width: 0; }
+
+      /* Figma node 6019:23802: 440px-tall reference frame, but height:auto +
+         min-height (not fixed) so wrapped text grows the section instead of
+         being clipped. Background asset is an exact 661×440 box anchored via
+         `right` (matches Figma) rather than the desktop's -24px/901px pair;
+         title drops to the standard tablet scale (48/600/60/-2.4px). */
+      .hero { height: auto; min-height: 440px; padding-bottom: 32px; }
+      .hero-bg { right: -49px; width: 661px; height: 440px; }
+      .hero > .container { width: calc(100% - 64px); max-width: none; padding-top: 140px; }
+      .hero-title { font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+    }
+    @media (max-width: 440px) {
+      /* Figma node 6019:24007: same auto-height/440px-min frame and 661×440
+         asset box, now right-offset -221px. Title drops to the standard
+         mobile scale (32/700/40/normal); body stays 16/400/20. */
+      .hero-bg { right: -221px; }
+      .hero > .container { width: calc(100% - 48px); padding-top: 130px; }
+      .hero-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+    }
+
     /* ════════════════════════════════════════
        HOW WE ARE BUILT
     ════════════════════════════════════════ */
@@ -227,8 +250,8 @@
       font-weight: 700;
       line-height: 40px;
       color: var(--blue-main);
-      width: 496px;
-      flex-shrink: 0;
+      flex: 0 1 496px;
+      min-width: 0;
     }
     .how-row-body {
       font-size: 16px;
@@ -237,8 +260,31 @@
       letter-spacing: -0.8px;
       color: var(--text-tertiary);
       text-align: justify;
-      width: 600px;
-      flex-shrink: 0;
+      flex: 0 1 600px;
+      min-width: 0;
+    }
+
+    /* ── How We Are Built — responsive (800/440, matches nav/footer) ──
+       Figma nodes 6019:11505 (tablet) / 6019:14752 (mobile): heading stacks
+       ABOVE the body copy (not side-by-side like desktop's 496px/600px
+       columns), both full width, 24px gap. Divider spacing tightens to a
+       32px/32px straddle (down from desktop's 60px/60px). Mobile also
+       tightens the section label's bottom margin to 32px (from 60px).
+       `flex: none` resets desktop's flex-basis (496px/600px), which would
+       otherwise be read as a fixed HEIGHT once flex-direction flips to
+       column here. */
+    @media (max-width: 800px) {
+      .how-built { padding: 32px 0; }
+      .how-built > .container { width: calc(100% - 64px); max-width: none; }
+      .how-row-content { flex-direction: column; gap: 24px; }
+      .how-row-heading { flex: none; width: 100%; }
+      .how-row-body { flex: none; width: 100%; }
+      .how-row { padding-bottom: 32px; }
+      .how-row + .how-row { padding-top: 32px; }
+    }
+    @media (max-width: 440px) {
+      .how-built-label { margin-bottom: 32px; }
+      .how-built > .container { width: calc(100% - 48px); }
     }
 
     /* ════════════════════════════════════════
@@ -255,7 +301,7 @@
       flex-direction: column;
       gap: 12px;
     }
-    .structure-header .line { background: var(--blue-main); }
+    .structure-header .section-label .line { background: var(--blue-main); }
     .structure-header span { color: var(--blue-main); }
     .structure-heading {
       font-size: 64px;
@@ -273,6 +319,26 @@
       display: block;
     }
 
+    /* ── Structure — responsive (800/440, matches nav/footer) ──
+       Figma nodes 6019:14448 (tablet) / 6019:14798 (mobile): heading is a
+       SINGLE line ("How Marco is organized") at both breakpoints, not the
+       desktop's manual two-line break — the <br> is hidden here. Section
+       padding drops from desktop's 60px/120px to a uniform 32px/32px, and
+       the gap before the chart tightens from 69px to 60px. Tablet keeps the
+       heading at Bold 700 (only the size/line-height/tracking change);
+       mobile drops to the standard 32/700/40/normal mobile title scale. */
+    @media (max-width: 800px) {
+      .structure { padding: 32px 0; }
+      .structure > .container { width: calc(100% - 64px); max-width: none; }
+      .structure-heading br { display: none; }
+      .structure-heading { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; }
+      .structure-chart { margin-top: 60px; }
+    }
+    @media (max-width: 440px) {
+      .structure > .container { width: calc(100% - 48px); }
+      .structure-heading { font-size: 32px; line-height: 40px; letter-spacing: normal; }
+    }
+
     /* ════════════════════════════════════════
        TEAM & CULTURE
     ════════════════════════════════════════ */
@@ -283,15 +349,16 @@
       padding: 80px 0;
     }
     .team-culture-inner {
-      display: grid;
-      grid-template-columns: 421px 1fr;
-      column-gap: 99px;
-      align-items: start;
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(32px, 6vw, 99px);
     }
     .team-culture-left {
       display: flex;
       flex-direction: column;
       gap: 32px;
+      flex: 0 1 421px;
+      min-width: 0;
     }
     .team-culture-left .section-label .line { background: #fff; }
     .team-culture-left .section-label span { color: #fff; }
@@ -306,6 +373,8 @@
     .team-culture-stats em { color: var(--text-main); font-style: normal; }
     .team-culture-right {
       padding-top: 50px;
+      flex: 0 1 704px;
+      min-width: 0;
     }
     .team-culture-body {
       font-size: 16px;
@@ -316,6 +385,30 @@
       text-align: justify;
     }
     .team-culture-body p + p { margin-top: 20px; }
+
+    /* ── Team & Culture — responsive (800/440, matches nav/footer) ──
+       Desktop: flex (not grid) so both the "fixed" 421px stats column and
+       the 704px-basis body column actually shrink together as the viewport
+       narrows — flex-shrink on both, weighted by their basis — instead of
+       one column staying rigid while the other absorbs all the narrowing.
+       Gap shrinks from 99px down to a 32px floor via clamp().
+       Figma nodes 6019:24256 (tablet) / 6019:24271 (mobile): below 800px the
+       columns stack into a single column (stats block above the body copy)
+       with a 32px gap; section padding drops from desktop's 80px to a
+       uniform 32px. Mobile also drops the stats from the tablet's unchanged
+       48/600/60/-2.4px scale to the standard mobile title scale
+       (32/700/40/normal). Body copy stays 16/400/20/-0.8 at every size. */
+    @media (max-width: 800px) {
+      .team-culture { padding: 32px 0; }
+      .team-culture > .container { width: calc(100% - 64px); max-width: none; }
+      .team-culture-inner { flex-direction: column; gap: 32px; }
+      .team-culture-left { flex: none; }
+      .team-culture-right { flex: none; padding-top: 0; }
+    }
+    @media (max-width: 440px) {
+      .team-culture > .container { width: calc(100% - 48px); }
+      .team-culture-stats { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+    }
 
     /* ════════════════════════════════════════
        WORK WITH MARCO
@@ -328,10 +421,15 @@
     .work-with-row {
       display: flex;
       align-items: stretch;
-      min-height: 590px;
+      min-height: 530px;
     }
+    /* Text column is fully fluid (flex:1), not a fixed/capped basis — same
+       technique as .continue-inner on compliance-data-protection.html. Body
+       copy keeps a 520px reading-width cap (matching the original desktop
+       target width) instead of the whole column being capped. */
     .work-with-text {
-      flex: 0 0 520px;
+      flex: 1;
+      min-width: 0;
       padding: 80px 0;
       display: flex;
       flex-direction: column;
@@ -351,20 +449,32 @@
       font-weight: 400;
       line-height: 20px;
       color: var(--text-main);
+      max-width: 520px;
     }
     .work-with-cta {
       display: flex;
-      gap: 23px;
+      gap: 16px;
       align-items: center;
-      margin-top: auto;
+      /* Figma 5194:7460: body→CTA gap is 60px, 28px more than the 32px
+         .work-with-text gap already provides between every other pair of
+         children — gap and margin stack, so this tops it up to 60px total
+         without disturbing the label→heading / heading→body spacing. */
+      margin-top: 28px;
     }
+    /* Image bleeds to the right viewport edge — same technique as
+       .continue-image. flex-basis is a vw fraction (708px at the 1440px
+       reference width the section was designed at, per Figma: 708/1440 =
+       49.167vw) instead of flex:1, so it shrinks smoothly and continuously
+       with the viewport rather than only reacting to what the text column
+       leaves behind. */
     .work-with-image {
-      flex: 1;
+      flex: 0 0 49.167vw;
+      min-width: 0;
       margin-left: 104px;
       margin-right: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
       position: relative;
       overflow: hidden;
-      min-height: 590px;
+      min-height: 530px;
     }
     .work-with-image img {
       position: absolute;
@@ -377,6 +487,53 @@
     }
 
     .btn-arrow { flex-shrink: 0; display: block; }
+
+    /* ── Work With Marco — TABLET (≤800px) / MOBILE (≤440px) ──
+       Same full-bleed-background technique as .continue-row/.continue-image
+       on compliance-data-protection.html: the image becomes an absolutely
+       positioned full-bleed background for the whole section (dark overlay,
+       50% tablet / 70% mobile) with the text on top in white, instead of
+       duplicating the section's markup. Figma nodes 6019:14455 (tablet) /
+       6019:14838 (mobile). */
+    @media (max-width: 800px) {
+      /* compound selector (not just .work-with-row) to reliably out-specificity
+         the shared .container class's own width/margin-inline rule */
+      .work-with .work-with-row {
+        display: block;
+        position: relative;
+        min-height: 0;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+      }
+      .work-with-text { position: relative; z-index: 1; padding: 32px; gap: 21px; }
+      .work-with-image {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        margin: 0; flex: none; z-index: 0;
+      }
+      .work-with-image::after {
+        content: ""; position: absolute; inset: 0;
+        background: rgba(0, 0, 0, 0.5); pointer-events: none;
+      }
+      .work-with-text .section-label .line { background: #fff; }
+      .work-with-text .section-label span { color: #fff; }
+      .work-with-heading { color: #fff; }
+      .work-with-body { color: #fff; max-width: 642px; }
+      .work-with-cta { margin-top: 32px; }
+      .work-with-cta .cta-btn--primary { background: transparent; border: 1px solid #fff; color: #fff; }
+      .work-with-cta .cta-btn--primary,
+      .work-with-cta .cta-btn--secondary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px;
+        letter-spacing: 0; gap: 4px;
+      }
+      .work-with-cta .btn-arrow { width: 16px; height: 16px; }
+    }
+    @media (max-width: 440px) {
+      .work-with-text { padding: 32px 24px; gap: 12px; }
+      .work-with-image::after { background: rgba(0, 0, 0, 0.7); }
+      .work-with-heading { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
+    }
 
     /* ════════════════════════════════════════
        FOOTER
@@ -503,7 +660,7 @@
       .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
     }
     @media (max-width: 800px) {
-      .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
+      .footer { padding: 60px 32px 32px; width: 100%; max-width: 100%; box-sizing: border-box; }
       .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
       .footer-top { margin-bottom: 60px; }
       .footer-logo { width: 171px; }
@@ -519,7 +676,7 @@
     /* ════════════════════════════════════════
        MOBILE FOOTER (≤440px)
     ════════════════════════════════════════ */
-    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100vw; box-sizing: border-box; }
+    .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100%; box-sizing: border-box; }
     .footer-mob-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px 24px 0; }
     .footer-mob-logo { display: block; width: 142px; height: 40px; flex-shrink: 0; text-decoration: none; }
     .footer-mob-logo img { width: 142px; height: 40px; display: block; object-fit: contain; }
@@ -570,7 +727,7 @@
         <span data-i18n="org.hero.label">ORGANIZATION</span>
       </div>
       <div>
-        <p class="hero-title"><span data-i18n="org.hero.title.pre">The </span><br><em data-i18n="org.hero.title.em">people</em><br><span data-i18n="org.hero.title.post">behind the platform</span></p>
+        <p class="hero-title"><span data-i18n="org.hero.title.pre">The </span><em data-i18n="org.hero.title.em">people</em><br><span data-i18n="org.hero.title.post">behind the platform</span></p>
         <p class="hero-body" data-i18n="org.hero.body">Marco is built by a team of 70+ people across 18 countries. What holds them together is not geography. It is a shared belief that global work can be done better and that the people who serve global workforces deserve to work for an organization that takes that mission seriously.</p>
       </div>
     </div>
@@ -619,7 +776,7 @@
         <div class="line"></div>
         <span data-i18n="org.struct.label">STRUCTURE</span>
       </div>
-      <p class="structure-heading" data-i18n="org.struct.title">How Marco is<br>organized</p>
+      <p class="structure-heading" data-i18n="org.struct.title">How Marco is <br>organized</p>
     </div>
     <div class="structure-chart">
       <img src="assets/Compliance/marco-web-company-organization.svg" alt="Marco organization structure" />
@@ -661,7 +818,7 @@
         <div class="line"></div>
         <span data-i18n="org.cta.label">WORK WITH MARCO</span>
       </div>
-      <p class="work-with-heading"><span data-i18n="org.cta.title.pre">Join the team that is redefining global</span><br><span data-i18n="org.cta.title.em">work</span></p>
+      <p class="work-with-heading"><span data-i18n="org.cta.title.pre">Join the team that is redefining global</span> <span data-i18n="org.cta.title.em">work</span></p>
       <p class="work-with-body" data-i18n="org.cta.body">We are always looking for people who bring genuine expertise, a global mindset, and the character to operate at the intersection of complex problems and real human impact.</p>
       <div class="work-with-cta">
         <button class="cta-btn cta-btn--primary">
