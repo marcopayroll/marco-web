@@ -807,18 +807,35 @@
       .values-row-subtitle { font-size: 14px; line-height: 18px; }
       .values-row-body { font-size: 16px; line-height: 20px; }
       .values-row-quote p { font-size: 14px; line-height: 20px; }
-      /* ── COMMITMENT ── */
-      .commitment { --gutter: 32px; height: auto; padding-bottom: 32px; }
-      .commitment .commitment-row { flex-direction: row; align-items: stretch; min-height: unset; }
-      .commitment-text { flex: 1; min-width: 0; padding: 32px 16px 0 0; gap: 24px; position: static; width: auto; }
-      .commitment-text .section-label .line { width: 12px; }
-      .commitment-text .section-label span { font-size: 12px; line-height: 16px; }
-      .commitment-heading { font-size: 20px; font-weight: 600; line-height: 26px; letter-spacing: 0; }
-      .commitment-body { font-size: 14px; line-height: 18px; max-width: none; }
-      .commitment-cta { flex-wrap: wrap; }
-      .commitment .cta-btn--primary,
-      .commitment .cta-btn--secondary { font-size: 12px; line-height: 16px; height: 32px; padding: 4px 16px; }
-      .commitment-image { flex: none; width: 49%; margin-left: 0; margin-right: calc(-1 * var(--gutter)); align-self: stretch; position: relative; height: auto; }
+      /* ── COMMITMENT — full-bleed bg, matches Work With Marco
+         (company-organization.html) tablet treatment: image becomes an
+         absolutely positioned full-bleed background for the whole
+         section (50% dark overlay), text sits on top in white, instead
+         of the old side-by-side 49%-width image column. ── */
+      .commitment .commitment-row {
+        display: block; position: relative; min-height: 0;
+        width: 100%; max-width: none; margin: 0;
+      }
+      .commitment-text { position: relative; z-index: 1; flex: none; padding: 32px; gap: 24px; }
+      .commitment-image {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        margin: 0; flex: none; z-index: 0;
+      }
+      .commitment-image::after {
+        content: ""; position: absolute; inset: 0;
+        background: rgba(0, 0, 0, 0.5); pointer-events: none;
+      }
+      .commitment-text .section-label .line { background: #fff; width: 12px; }
+      .commitment-text .section-label span { color: #fff; font-size: 12px; line-height: 16px; }
+      .commitment-heading { color: #fff; font-size: 48px; font-weight: 600; line-height: 60px; letter-spacing: -2.4px; }
+      .commitment-heading-keyword { color: var(--blue-lighter); }
+      .commitment-body { color: #fff; font-size: 14px; line-height: 18px; max-width: none; }
+      .commitment-cta { margin-top: 8px; flex-wrap: wrap; }
+      .commitment-cta .cta-btn--primary { background: transparent; border: 1px solid #fff; color: #fff; }
+      .commitment-cta .cta-btn--primary,
+      .commitment-cta .cta-btn--secondary { height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px; }
+      .commitment-cta .btn-icon { width: 16px; height: 16px; }
       /* ── HERO ── */
       .hero {
         min-height: 440px;
@@ -916,17 +933,9 @@
       .values-row-quote .quote-line { width: 12px; }
       .values-row-quote p { font-size: 14px; line-height: 20px; }
       /* ── COMMITMENT ── */
-      .commitment { padding-bottom: 0; }
-      .commitment .commitment-row { display: block; position: relative; min-height: 360px; height: auto; width: 100%; max-width: none; margin-inline: 0; }
-      .commitment-image { position: absolute; inset: 0; height: auto; left: 0; right: 0; width: 100%; }
-      .commitment-image::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.7); z-index: 1; }
-      .commitment-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-      .commitment-text { position: relative; z-index: 2; left: auto; right: auto; top: auto; width: 100%; padding: 32px 24px 32px; box-sizing: border-box; flex: none; gap: 32px; }
-      .commitment-text .section-label .line { background: #fff; }
-      .commitment-text .section-label span { color: #fff; }
-      .commitment-heading { font-size: 20px; line-height: 26px; color: #fff; }
-      .commitment-heading-keyword { color: var(--blue-main); }
-      .commitment-body { font-size: 16px; line-height: 20px; letter-spacing: -0.8px; color: #fff; }
+      .commitment-text { padding: 32px 24px; gap: 12px; }
+      .commitment-image::after { background: rgba(0, 0, 0, 0.7); }
+      .commitment-heading { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
       /* ── OUR VISION ── */
       .vision { overflow: hidden; }
       .vision .vision-row {

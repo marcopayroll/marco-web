@@ -851,8 +851,8 @@
       .problems-tile-nosvc.is-closing:hover .problems-tile-nosvc-inner       { height: 160px; }
     }
 
-    /* ≤ 440px — Mobile single-column stack (Figma node 5435-7031) */
-    @media (max-width: 440px) {
+    /* ≤ 600px — Mobile single-column stack (Figma node 5435-7031) */
+    @media (max-width: 600px) {
       .problems {
         background: #fff;
         overflow: visible;
@@ -953,7 +953,7 @@
       }
       .problems-tile-onboarding:hover,
       .problems-tile-onboarding.is-expanded {
-        height: auto;
+        height: var(--exp-h, 440px);
       }
       .problems-tile-onboarding:hover .problems-tile-inner,
       .problems-tile-onboarding.is-expanded .problems-tile-inner {
@@ -963,7 +963,6 @@
       .problems-tile-onboarding .problems-bullet-list {
         font-size: 16px;
         line-height: 20px;
-        margin-top: 16px;
         padding-left: 24px;
         opacity: 0;
         transition: opacity 0.2s ease 0s;
@@ -973,7 +972,6 @@
         transition: opacity 0.25s ease 0.22s;
       }
       .problems-tile-onboarding .problems-solution-card {
-        margin-top: 16px;
         padding: 8px;
         gap: 10px;
         border-radius: 6px;
@@ -1011,14 +1009,13 @@
       }
       .problems-tile-payroll:hover,
       .problems-tile-payroll.is-expanded {
-        height: auto;
+        height: var(--exp-h, 448px);
       }
       .problems-tile-payroll:hover .problems-tile-payroll-inner,
       .problems-tile-payroll.is-expanded .problems-tile-payroll-inner { height: auto; position: static; }
       .problems-tile-payroll .problems-bullet-list {
         font-size: 16px;
         line-height: 20px;
-        margin-top: 16px;
         padding-left: 24px;
         opacity: 0;
         transition: opacity 0.2s ease 0s;
@@ -1029,7 +1026,6 @@
         transition: opacity 0.25s ease 0.22s;
       }
       .problems-tile-payroll .problems-solution-card--payroll {
-        margin-top: 16px;
         padding: 12px;
         gap: 10px;
         border-radius: 6px;
@@ -1069,14 +1065,13 @@
       }
       .problems-tile-timeoff:hover,
       .problems-tile-timeoff.is-expanded {
-        height: auto;
+        height: var(--exp-h, 454px);
       }
       .problems-tile-timeoff:hover .problems-tile-timeoff-inner,
       .problems-tile-timeoff.is-expanded .problems-tile-timeoff-inner { height: auto; position: static; }
       .problems-tile-timeoff .problems-bullet-list {
         font-size: 16px;
         line-height: 20px;
-        margin-top: 16px;
         padding-left: 24px;
         opacity: 0;
         transition: opacity 0.2s ease 0s;
@@ -1087,7 +1082,6 @@
         transition: opacity 0.25s ease 0.22s;
       }
       .problems-tile-timeoff .problems-solution-card--timeoff {
-        margin-top: 16px;
         padding: 12px;
         gap: 10px;
         border-radius: 6px;
@@ -1119,13 +1113,13 @@
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .problems-tile-expense .problems-tile-expense-inner { top: 0; bottom: 0; height: auto; transition: none; }
-      .problems-tile-expense:hover, .problems-tile-expense.is-expanded { height: auto; }
+      .problems-tile-expense:hover, .problems-tile-expense.is-expanded { height: var(--exp-h, 474px); }
       .problems-tile-expense:hover .problems-tile-expense-inner,
       .problems-tile-expense.is-expanded .problems-tile-expense-inner { height: auto; position: static; }
-      .problems-tile-expense .problems-bullet-list { font-size: 16px; line-height: 20px; margin-top: 16px; padding-left: 24px; opacity: 0; transition: opacity 0.2s ease 0s; }
+      .problems-tile-expense .problems-bullet-list { font-size: 16px; line-height: 20px; padding-left: 24px; opacity: 0; transition: opacity 0.2s ease 0s; }
       .problems-tile-expense:hover .problems-bullet-list,
       .problems-tile-expense.is-expanded .problems-bullet-list { opacity: 1; transition: opacity 0.25s ease 0.22s; }
-      .problems-tile-expense .problems-solution-card--expense { margin-top: 16px; padding: 12px; gap: 10px; border-radius: 6px; opacity: 0; transition: opacity 0.2s ease 0s; }
+      .problems-tile-expense .problems-solution-card--expense { padding: 12px; gap: 10px; border-radius: 6px; opacity: 0; transition: opacity 0.2s ease 0s; }
       .problems-tile-expense:hover .problems-solution-card--expense,
       .problems-tile-expense.is-expanded .problems-solution-card--expense { opacity: 1; transition: opacity 0.25s ease 0.28s; }
       .problems-tile-expense .problems-solution-card-label { font-size: 16px; font-weight: 700; line-height: 20px; }
@@ -1139,13 +1133,13 @@
         transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .problems-tile-nosvc .problems-tile-nosvc-inner { bottom: 0; height: auto; transition: none; }
-      .problems-tile-nosvc:hover, .problems-tile-nosvc.is-expanded { height: auto; }
+      .problems-tile-nosvc:hover, .problems-tile-nosvc.is-expanded { height: var(--exp-h, 508px); }
       .problems-tile-nosvc:hover .problems-tile-nosvc-inner,
       .problems-tile-nosvc.is-expanded .problems-tile-nosvc-inner { height: auto; position: static; }
-      .problems-tile-nosvc .problems-bullet-list { font-size: 16px; line-height: 20px; margin-top: 16px; padding-left: 24px; opacity: 0; transition: opacity 0.2s ease 0s; }
+      .problems-tile-nosvc .problems-bullet-list { font-size: 16px; line-height: 20px; padding-left: 24px; opacity: 0; transition: opacity 0.2s ease 0s; }
       .problems-tile-nosvc:hover .problems-bullet-list,
       .problems-tile-nosvc.is-expanded .problems-bullet-list { opacity: 1; transition: opacity 0.25s ease 0.22s; }
-      .problems-tile-nosvc .problems-solution-card--nosvc { margin-top: 16px; padding: 12px; gap: 10px; border-radius: 6px; background: #5abfef; opacity: 0; transition: opacity 0.2s ease 0s; }
+      .problems-tile-nosvc .problems-solution-card--nosvc { padding: 12px; gap: 10px; border-radius: 6px; background: #5abfef; opacity: 0; transition: opacity 0.2s ease 0s; }
       .problems-tile-nosvc:hover .problems-solution-card--nosvc,
       .problems-tile-nosvc.is-expanded .problems-solution-card--nosvc { opacity: 1; transition: opacity 0.25s ease 0.28s; }
       .problems-tile-nosvc .problems-solution-card-label { font-size: 16px; font-weight: 700; line-height: 20px; }
@@ -1285,34 +1279,51 @@
     @media (max-width: 1100px) {
       .services { padding: 32px 0; }
       .services .container { width: calc(100% - 64px); max-width: none; }
-      .services-header { max-width: 506px; gap: 12px; margin-bottom: 60px; }
-      .services .section-label span { font-size: 8px; line-height: 12px; }
-      .services-title { font-size: 32px; line-height: 40px; }
-      .services-subtitle { font-size: 12px; line-height: 16px; letter-spacing: 0; max-width: 100%; }
+      .services-header { max-width: none; gap: 12px; margin-bottom: 60px; }
+      .services .section-label .line { width: 12px; }
+      .services .section-label span { font-size: 12px; font-weight: 500; line-height: 16px; }
+      .services-title { font-size: 48px; line-height: 60px; font-weight: 600; letter-spacing: -2.4px; max-width: none; }
+      .services-subtitle { font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px; max-width: 100%; }
       .services-grid { row-gap: 16px; }
-      .services-card { padding: 16px; min-height: 220px; height: 220px; }
+      .services-card {
+        padding: 16px;
+        height: auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 32px;
+      }
       .services-card-top { gap: 16px; }
-      .services-card-icon { width: 24px; height: 24px; }
-      .services-card-title { font-size: 16px; line-height: 20px; }
-      .services-card-desc { font-size: 10px; line-height: 14px; letter-spacing: 0; }
+      .services-card-icon { width: 32px; height: 32px; }
+      .services-card-title { font-size: 20px; line-height: 26px; font-weight: 600; }
+      .services-card-desc { font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px; }
       .services-card-link { margin-top: 0; }
-      .services-card-link-text { font-size: 10px; line-height: 14px; }
+      .services-card-link-text { font-size: 14px; line-height: 18px; font-weight: 700; }
     }
 
-    /* ── Services — Mobile (≤440px, Figma 5436-7338) ── */
-    @media (max-width: 440px) {
+    /* ── Services — Mobile (≤600px, Figma 5436-7338) ── */
+    @media (max-width: 600px) {
       .services .container { width: calc(100% - 48px); }
       .services-header { margin-bottom: 32px; }
       .services .section-label span { font-size: 12px; line-height: 16px; }
       .services-heading { gap: 16px; }
       .services-title { font-size: 40px; line-height: 48px; letter-spacing: -2px; font-weight: 600; }
       .services-subtitle { font-size: 16px; line-height: 20px; letter-spacing: 0; }
-      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-      .services-card { padding: 8px 0; height: 240px; min-height: 240px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); column-gap: 16px; row-gap: 24px; }
+      .services-card {
+        padding: 8px;
+        height: auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 32px;
+      }
       .services-card-top { gap: 12px; }
       .services-card-icon { width: 32px; height: 32px; }
-      .services-card-title { font-size: 14px; line-height: 18px; font-weight: 700; }
-      .services-card-desc { font-size: 12px; line-height: 16px; letter-spacing: 0; }
+      .services-card-title { font-size: 16px; line-height: 20px; font-weight: 700; }
+      .services-card-desc { font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px; }
       .services-card-link { margin-top: 0; }
       .services-card-link-text { font-size: 12px; font-weight: 700; line-height: 16px; }
       .services-card-dash { width: 8px; }
@@ -1514,70 +1525,70 @@
       .tech-accordion-desc { font-size: 14px; line-height: 18px; }
     }
     /* ── Tablet: thumbnail moves inside accordion, right panel hidden ── */
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .technology { padding: 32px 0; --gutter: 32px; }
       .tech-header { gap: 12px; margin-bottom: 32px; }
+      .technology .section-label .line { width: 12px; }
+      .technology .section-label span { font-size: 12px; font-weight: 500; line-height: 16px; }
       .tech-heading { gap: 24px; }
-      .tech-title { font-size: 32px; line-height: 40px; }
-      .tech-subtitle { font-size: 12px; line-height: 20px; }
+      .tech-title { font-size: 48px; line-height: 60px; font-weight: 600; letter-spacing: -2.4px; }
+      .tech-subtitle { font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px; }
       .tech-body { flex-direction: column; gap: 12px; }
       .tech-left { width: 100%; gap: 12px; }
       .tech-right { display: none; }
       .tech-accordion-item { padding: 12px 12px 16px; }
-      .tech-accordion-item.active .tech-accordion-title { font-size: 16px; line-height: 20px; font-weight: 700; color: var(--blue-main); }
-      .tech-accordion-title { font-size: 16px; line-height: 20px; }
-      .tech-accordion-desc { font-size: 12px; line-height: 16px; margin-top: 8px; }
+      .tech-accordion-item.active .tech-accordion-title { font-size: 20px; line-height: 26px; font-weight: 600; color: var(--blue-main); }
+      .tech-accordion-title { font-size: 20px; line-height: 26px; font-weight: 600; }
+      .tech-accordion-desc { font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px; margin-top: 8px; }
       .tech-accordion-body-inner {
         display: grid;
         grid-template-columns: 1fr 45%;
-        grid-template-rows: auto 1fr;
-        gap: 0 16px;
+        column-gap: 16px;
       }
       .tech-accordion-desc {
-        grid-column: 1 / -1;
+        grid-column: 1;
         grid-row: 1;
       }
       .tech-feature-list {
         grid-column: 1;
         grid-row: 2;
-        align-self: center;
       }
       .tech-visual-card {
         display: block;
         grid-column: 2;
-        grid-row: 2;
+        grid-row: 1 / span 2;
         width: 100%;
         aspect-ratio: 320 / 220;
         object-fit: cover;
         border-radius: 4px;
         margin: 0;
-        align-self: end;
+        align-self: start;
       }
-      .tech-feature-text { font-size: 10px; line-height: 14px; font-weight: 500; }
+      .tech-feature-text { font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px; }
       .tech-feature-list { gap: 15px; margin-top: 8px; }
+      .tech-feature-row { align-items: flex-start; }
     }
 
     /* ── Mobile: single column stack ── */
-    @media (max-width: 440px) {
+    @media (max-width: 600px) {
       .technology { --gutter: 24px; }
       .tech-header { gap: 12px; margin-bottom: 32px; }
       .tech-heading { gap: 16px; }
-      .tech-title { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -2px; }
-      .tech-title .accent { display: block; }
+      .tech-title { font-size: clamp(26px, 8.9vw, 40px); line-height: 1.2; font-weight: 600; letter-spacing: -2px; white-space: nowrap; }
       .tech-subtitle { font-size: 16px; line-height: 20px; font-weight: 400; }
       .tech-body { flex-direction: column; margin-right: 0; gap: 12px; }
       .tech-left { width: 100%; gap: 12px; }
       .tech-right { display: none; }
       .tech-accordion-item { padding: 16px; border-radius: 8px; }
-      .tech-accordion-item.active .tech-accordion-title { font-size: 20px; line-height: 26px; font-weight: 600; color: var(--blue-main); }
-      .tech-accordion-title { font-size: 16px; line-height: 20px; font-weight: 500; }
+      .tech-accordion-item.active .tech-accordion-title { color: var(--blue-main); }
+      .tech-accordion-title { font-size: 20px; line-height: 26px; font-weight: 600; }
       .tech-accordion-body-inner {
         display: flex;
         flex-direction: column;
         gap: 16px;
       }
       .tech-accordion-desc {
-        font-size: 16px; line-height: 20px; font-weight: 400;
+        font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px;
         grid-column: unset; grid-row: unset;
       }
       .tech-visual-card {
@@ -1596,8 +1607,8 @@
         align-self: unset;
         margin-top: 0;
       }
-      .tech-feature-row { gap: 16px; }
-      .tech-feature-text { font-size: 14px; line-height: 18px; font-weight: 400; }
+      .tech-feature-row { gap: 16px; align-items: flex-start; }
+      .tech-feature-text { font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px; }
     }
 
     /* ════════════════════════════════════════
@@ -1686,43 +1697,16 @@
       .datacloud-title { font-size: 24px; line-height: 32px; }
       .datacloud-right { padding: 60px 0; }
     }
-    /* ── Tablet: two-column layout per Figma (768px frame) ── */
-    @media (max-width: 1100px) {
-      .datacloud { --gutter: 32px; }
-      .datacloud-body {
-        flex-direction: row;
-        align-items: stretch;
-        min-height: 308px;
-        gap: 16px;
-      }
-      .datacloud-left {
-        flex: none;
-        width: 49%;
-        margin-left: calc(-1 * var(--gutter));
-        margin-right: 0;
-        align-self: stretch;
-      }
-      .datacloud-right {
-        flex: 1;
-        padding: 32px 0;
-        gap: 30px;
-      }
-      .datacloud-header { gap: 12px; }
-      .datacloud .section-label .line { width: 16px; }
-      .datacloud .section-label span { font-size: 10px; font-weight: 500; line-height: 14px; }
-      .datacloud-title { font-size: 20px; line-height: 26px; font-weight: 600; letter-spacing: 0; }
-      .datacloud-desc { font-size: 10px; line-height: 14px; font-weight: 400; letter-spacing: 0; color: #8F98B5; text-align: justify; }
-      .datacloud-desc-list { padding-left: 15px; gap: 20px; }
-    }
-
-    /* ── Mobile: image background with text overlay ── */
-    @media (max-width: 440px) {
-      .datacloud { position: relative; background-image: none; --gutter: 24px; }
-      .datacloud-body {
-        flex-direction: column;
-        min-height: unset;
-        gap: 0;
-      }
+    /* ── Data Cloud tablet+mobile: image bleeds full-bleed as the
+       section's own background (anchored to .datacloud, which is
+       position:relative — skipping past the narrower .container/
+       .datacloud-body, both left position:static — instead of the old
+       side-by-side 49%-width image column), dark overlay, text on top.
+       Mobile below only overrides the overlay darkness and type scale
+       on top of this. ── */
+    @media (max-width: 800px) {
+      .datacloud { --gutter: 32px; position: relative; background-image: none; }
+      .datacloud-body { flex-direction: column; min-height: unset; gap: 0; }
       .datacloud-left {
         position: absolute;
         inset: 0;
@@ -1737,21 +1721,32 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.5);
       }
       .datacloud-right {
         position: relative;
         z-index: 1;
         padding: 32px 0;
-        gap: 10px;
+        gap: 20px;
       }
       .datacloud-header { gap: 12px; }
       .datacloud .section-label .line { width: 12px; }
-      .datacloud .section-label span { font-size: 12px; line-height: 16px; font-weight: 500; }
-      .datacloud-title { font-size: 20px; line-height: 26px; font-weight: 600; color: #fff; letter-spacing: 0; }
+      .datacloud .section-label span { font-size: 12px; font-weight: 500; line-height: 16px; }
+      .datacloud-title { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -2px; }
+      .datacloud-desc { font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px; color: #fff; text-align: justify; }
+      .datacloud-desc-list { padding-left: 15px; gap: 20px; }
+    }
+
+    /* ── Data Cloud mobile: darker overlay + tighter spacing/type scale
+       on top of the tablet full-bleed base above ── */
+    @media (max-width: 440px) {
+      .datacloud { --gutter: 24px; }
+      .datacloud-left::after { background: rgba(0, 0, 0, 0.7); }
+      .datacloud-right { gap: 32px; }
+      .datacloud-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
       .datacloud-desc {
-        font-size: 12px; line-height: 16px; font-weight: 400;
-        color: #fff; letter-spacing: 0; text-align: left;
+        font-size: 16px; line-height: 20px; font-weight: 400;
+        color: #fff; letter-spacing: -0.8px; text-align: left;
       }
       .datacloud-desc-list { padding-left: 18px; gap: 8px; }
     }
@@ -1811,11 +1806,11 @@
     }
 
     /* ── Stats tablet ── */
-    @media (max-width: 1100px) {
+    @media (max-width: 800px) {
       .stats { padding: 30px 0; }
       .stats-card { gap: 8px; }
-      .stats-number { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
-      .stats-label { font-size: 8px; line-height: 12px; font-weight: 500; letter-spacing: 0; }
+      .stats-number { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -2px; }
+      .stats-label { font-size: 14px; line-height: 18px; font-weight: 400; letter-spacing: 0; }
     }
 
     /* ── Stats mobile ── */
@@ -1902,42 +1897,14 @@
       .cta-title { font-size: 32px; line-height: 42px; }
       .cta-left { padding: 60px 0; }
     }
-    @media (max-width: 1100px) {
-      .cta-section { --gutter: 32px; }
-      .cta-body {
-        flex-direction: row;
-        align-items: stretch;
-        min-height: unset;
-      }
-      .cta-left {
-        flex: 1;
-        min-width: 0;
-        padding: 32px 0;
-        gap: 24px;
-        padding-right: 16px;
-      }
-      .cta-heading-block { gap: 12px; }
-      .cta-section .section-label .line { width: 16px; height: 1px; }
-      .cta-section .section-label span { font-size: 8px; line-height: 12px; font-weight: 500; }
-      .cta-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
-      .cta-desc { font-size: 10px; line-height: 14px; }
-      .cta-buttons { gap: 16px; flex-wrap: wrap; }
-      .cta-section .cta-btn--primary,
-      .cta-section .cta-btn--secondary {
-        font-size: 12px; line-height: 16px; height: 32px; padding: 4px 16px;
-      }
-      .cta-right {
-        flex: none;
-        width: 49%;
-        margin-left: 0;
-        margin-right: calc(-1 * var(--gutter));
-        align-self: stretch;
-      }
-    }
-
-    /* ── CTA mobile: image background with text overlay ── */
-    @media (max-width: 440px) {
-      .cta-section { --gutter: 24px; position: relative; background: none; overflow: hidden; }
+    /* ── CTA tablet+mobile: image bleeds full-bleed as the section's own
+       background (anchored to .cta-section, which is position:relative —
+       skipping past the narrower .container/.cta-body, both left
+       position:static — instead of the old side-by-side 49%-width image
+       column), dark overlay, white text on top. Mobile below only
+       overrides the overlay darkness and type scale on top of this. ── */
+    @media (max-width: 800px) {
+      .cta-section { --gutter: 32px; position: relative; background: none; overflow: hidden; }
       .cta-body { flex-direction: column; min-height: unset; }
       .cta-right {
         position: absolute;
@@ -1953,7 +1920,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.5);
       }
       .cta-left {
         position: relative;
@@ -1963,15 +1930,12 @@
       }
       .cta-heading-block { gap: 12px; }
       .cta-section .section-label { color: #fff !important; }
-      .cta-section .section-label .line { background: #fff !important; width: 12px; }
+      .cta-section .section-label .line { background: #fff !important; width: 12px; height: 1px; }
       .cta-section .section-label span { font-size: 12px; line-height: 16px; font-weight: 500; }
-      .cta-title {
-        font-size: 40px; line-height: 48px; font-weight: 600;
-        letter-spacing: -2px; color: #fff;
-      }
+      .cta-title { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -2px; color: #fff; }
       .cta-title .accent { color: var(--blue-main); }
-      .cta-desc { font-size: 16px; line-height: 20px; color: #fff; }
-      .cta-buttons { gap: 16px; }
+      .cta-desc { font-size: 16px; line-height: 20px; letter-spacing: -0.8px; color: #fff; }
+      .cta-buttons { gap: 16px; flex-wrap: wrap; }
       .cta-section .cta-btn--primary {
         background: transparent; border: 1px solid #fff; color: #fff;
       }
@@ -1981,6 +1945,17 @@
       .cta-section .cta-btn--secondary {
         background: #fff; border: 1px solid #003751; color: #162351;
       }
+      .cta-section .cta-btn--primary,
+      .cta-section .cta-btn--secondary {
+        font-size: 12px; line-height: 16px; height: 32px; padding: 4px 16px;
+      }
+    }
+
+    /* ── CTA mobile: darker overlay + larger type on top of the tablet
+       full-bleed base above ── */
+    @media (max-width: 440px) {
+      .cta-section { --gutter: 24px; }
+      .cta-right::after { background: rgba(0, 0, 0, 0.7); }
     }
 
     /* ════════════════════════════════════════
@@ -2774,6 +2749,10 @@
   /* ── Mobile + Tablet problems tile tap-to-expand / click-to-collapse ── */
   (function() {
     var tiles = document.querySelectorAll('.problems-grid > .problems-tile');
+    function setExpandedHeight(tile) {
+      var inner = tile.firstElementChild;
+      if (inner) tile.style.setProperty('--exp-h', inner.scrollHeight + 'px');
+    }
     tiles.forEach(function(tile) {
       tile.addEventListener('click', function() {
         if (window.innerWidth > 1100) return;
@@ -2783,6 +2762,7 @@
           t.classList.remove('is-closing');
         });
         if (!isExpanded) {
+          setExpandedHeight(tile);
           tile.classList.add('is-expanded');
         } else {
           tile.classList.add('is-closing');
@@ -2791,6 +2771,10 @@
       tile.addEventListener('mouseleave', function() {
         tile.classList.remove('is-closing');
       });
+    });
+    window.addEventListener('resize', function() {
+      var expandedTile = document.querySelector('.problems-grid > .problems-tile.is-expanded');
+      if (expandedTile && window.innerWidth <= 1100) setExpandedHeight(expandedTile);
     });
   })();
 </script>
