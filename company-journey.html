@@ -779,7 +779,39 @@
       color: #fff;
       text-align: right;
     }
-    .whatnext-cta { display: flex; gap: 16px; align-items: center; justify-content: flex-end; }
+    .whatnext-cta { display: flex; gap: 16px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+
+    /* ── What Comes Next — responsive (800/440, matches nav/footer) ──
+       Row drops from the fixed 58.1%/rest two-column split (fine on
+       desktop since it's percentage-based, but the right column's
+       right-aligned body + CTA reads badly once it's the full stacked
+       width) to a single left-aligned column. CTA row already wraps
+       (added above) so the two buttons don't overflow past the
+       section once the column narrows below both buttons' combined width. */
+    @media (max-width: 800px) {
+      .whatnext { padding: 60px 0; }
+      .whatnext > .container {
+        width: 100%; max-width: none; margin-inline: 0;
+        padding-left: 32px; padding-right: 32px; box-sizing: border-box;
+      }
+      .whatnext-row { flex-direction: column; gap: 32px; }
+      .whatnext-left { flex: none; }
+      .whatnext-heading { font-size: 36px; line-height: 44px; letter-spacing: -1.8px; }
+      .whatnext-right { flex: none; margin-top: 0; gap: 24px; }
+      .whatnext-body { text-align: left; font-size: 14px; line-height: 20px; }
+      .whatnext-cta { justify-content: flex-start; }
+      .whatnext-cta .cta-btn--primary,
+      .whatnext-cta .cta-btn--secondary {
+        height: 32px; padding: 4px 16px;
+        font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+      }
+      .whatnext-cta .btn-icon { width: 16px; height: 16px; }
+    }
+    @media (max-width: 440px) {
+      .whatnext { padding: 48px 0; }
+      .whatnext > .container { padding-left: 24px; padding-right: 24px; }
+      .whatnext-heading { font-size: 28px; line-height: 36px; letter-spacing: normal; }
+    }
 
     /* ════════════════════════════════════════
        CTA BUTTONS
