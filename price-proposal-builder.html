@@ -374,11 +374,15 @@
       gap: 20px;
     }
     .pb-field-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 16px;
       font-weight: 500;
       color: #162351;
       margin: 0;
     }
+    .pb-field-required { color: #e0393e; }
 
     /* Dropdown */
     .pb-dropdown-wrap {
@@ -958,6 +962,9 @@
       margin-top: auto;
     }
     .pb-emp-input-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 12px;
       font-weight: 400;
       line-height: 16px;
@@ -987,6 +994,9 @@
       gap: 16px;
     }
     .pb-emp-type-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 12px;
       font-weight: 400;
       line-height: 16px;
@@ -1839,6 +1849,11 @@
     /* Desktop-only floor removed so smaller viewports can render */
     body { min-width: 320px; }
 
+    /* Required-field validation highlight */
+    .pb-field-invalid { border-color: #e0393e !important; }
+    .pb-emp-type-selector.pb-field-invalid .pb-emp-type-radio { border-color: #e0393e; }
+    .pb-emp-type-selector.pb-field-invalid .pb-emp-type-radio-dot { background: #e0393e; }
+
     @media (max-width: 1000px) {
       .nav-logo { width: 127px; height: 20px; }
       /* Hero — same treatment as Contact Us: auto height + min-height so
@@ -2148,7 +2163,7 @@
 
         <!-- 1. Country -->
         <div class="pb-field">
-          <label class="pb-field-label" data-i18n="pb.field.country">Where would you like to hire?</label>
+          <label class="pb-field-label"><span data-i18n="pb.field.country">Where would you like to hire?</span><span class="pb-field-required">*</span></label>
           <div class="pb-dropdown-wrap">
             <div class="pb-dropdown-trigger" id="pb-country-trigger" tabindex="0">
               <div class="pb-trigger-left">
@@ -3627,6 +3642,7 @@
           var iso = COUNTRY_ISO[c] || '';
           if (iso) { countryFlagImg.src = 'assets/Flags/' + iso + '.svg'; }
           countryTrigger.classList.add('has-value');
+          countryTrigger.classList.remove('pb-field-invalid');
           countryMenu.classList.remove('open');
           // Auto-set default currency (user can override via currency selector)
           var curr = getCurrencyForCountry(c);
@@ -3793,7 +3809,7 @@
         inputs.className = 'pb-emp-row-inputs';
         inputs.innerHTML =
           '<div class="pb-emp-input-group">' +
-            '<div class="pb-emp-input-label">' + salLabel + ' (' + cur + ')</div>' +
+            '<div class="pb-emp-input-label">' + salLabel + ' (' + cur + ')<span class="pb-field-required">*</span></div>' +
             '<input class="pb-emp-input" data-emp-idx="' + i + '" data-field="salary" type="text" inputmode="numeric" placeholder="0" value="' + (emp.salary || '') + '">' +
           '</div>' +
           '<div class="pb-emp-input-group">' +
@@ -3815,9 +3831,10 @@
         ];
         var typeSelector = document.createElement('div');
         typeSelector.className = 'pb-emp-type-selector';
+        typeSelector.dataset.empIdx = i;
         var typeLabelEl = document.createElement('div');
         typeLabelEl.className = 'pb-emp-type-label';
-        typeLabelEl.textContent = 'EMPLOYMENT TYPE';
+        typeLabelEl.innerHTML = 'EMPLOYMENT TYPE<span class="pb-field-required">*</span>';
         typeSelector.appendChild(typeLabelEl);
         var row1 = document.createElement('div');
         row1.className = 'pb-emp-type-row';
@@ -3850,6 +3867,7 @@
           var idx = parseInt(this.dataset.empIdx, 10);
           var field = this.dataset.field;
           pbState.employees[idx][field] = this.value;
+          if (field === 'salary' && this.value) this.classList.remove('pb-field-invalid');
           updateEmployeeGross(idx);
           updateSummary();
         });
@@ -3871,6 +3889,8 @@
           } else {
             pbState.employees[idx].empType = null;
           }
+          var typeSel = container.querySelector('.pb-emp-type-selector[data-emp-idx="' + idx + '"]');
+          if (typeSel && pbState.employees[idx].empType) typeSel.classList.remove('pb-field-invalid');
           updateSummary();
         });
       });
@@ -4012,8 +4032,47 @@
       return dd + ' ' + monthNames[mm] + ' ' + yyyy;
     }
 
+    /* ── Required-field validation ── */
+    function validateRequiredFields() {
+      document.querySelectorAll('.pb-field-invalid').forEach(function(el) {
+        el.classList.remove('pb-field-invalid');
+      });
+      var missing = [];
+      var invalidEls = [];
+      if (!pbState.country) {
+        missing.push('Where would you like to hire?');
+        var countryTrigger = document.getElementById('pb-country-trigger');
+        if (countryTrigger) { countryTrigger.classList.add('pb-field-invalid'); invalidEls.push(countryTrigger); }
+      }
+      for (var i = 0; i < pbState.headcount; i++) {
+        var emp = pbState.employees[i] || {};
+        var sal = parseFloat(emp.salary);
+        if (!emp.salary || isNaN(sal) || sal <= 0) {
+          missing.push('Monthly Salary (Employee ' + (i + 1) + ')');
+          var salInput = document.querySelector('.pb-emp-input[data-emp-idx="' + i + '"][data-field="salary"]');
+          if (salInput) { salInput.classList.add('pb-field-invalid'); invalidEls.push(salInput); }
+        }
+        if (!emp.empType) {
+          missing.push('Employment Type (Employee ' + (i + 1) + ')');
+          var typeSel = document.querySelector('.pb-emp-type-selector[data-emp-idx="' + i + '"]');
+          if (typeSel) { typeSel.classList.add('pb-field-invalid'); invalidEls.push(typeSel); }
+        }
+      }
+      // Scroll to whichever invalid field appears highest on the page
+      var target = null;
+      invalidEls.forEach(function(el) {
+        if (!target || el.getBoundingClientRect().top < target.getBoundingClientRect().top) target = el;
+      });
+      return { missing: missing, target: target };
+    }
+
     /* ── Generate Proposal buttons ── */
     function handleGenerate() {
+      var validation = validateRequiredFields();
+      if (validation.missing.length) {
+        if (validation.target) validation.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
       var monthly = getMonthlyGross();
       if (!monthly) {
         alert('Please enter a salary for at least one employee before generating the proposal.');

@@ -901,6 +901,9 @@
       align-items: stretch;
       min-height: 400px;
     }
+    /* Left — image bleeds to left viewport edge.
+       Uses vw units so width scales against viewport, not container.
+       Bleed = max(gutter, auto-margin) → image always reaches left edge. */
     .datacloud-left {
       flex: 0 0 41.94vw;
       margin-left: calc(-1 * max(var(--gutter), (100vw - 1224px) / 2));
@@ -917,6 +920,7 @@
       object-position: center;
       display: block;
     }
+    /* Right — text content */
     .datacloud-right {
       flex: 1;
       min-width: 0;
@@ -937,7 +941,9 @@
       color: #fff;
       max-width: 704px;
     }
-    .datacloud-title .accent { color: var(--blue-main); }
+    .datacloud-title .accent {
+      color: var(--blue-main);
+    }
     .datacloud-desc-list {
       display: flex;
       flex-direction: column;
@@ -957,44 +963,28 @@
       text-align: justify;
       word-break: break-word;
     }
-    @media (max-width: 1280px) { .datacloud-title { font-size: 28px; line-height: 36px; } }
-    @media (max-width: 800px) { .datacloud-title { font-size: 26px; line-height: 34px; } }
-    @media (max-width: 1024px) { .datacloud-title { font-size: 24px; line-height: 32px; } .datacloud-right { padding: 60px 0; } }
-    @media (max-width: 800px) {
-      .datacloud { --gutter: 32px; }
-      .datacloud-body {
-        flex-direction: row;
-        align-items: stretch;
-        min-height: 308px;
-        gap: 16px;
-      }
-      .datacloud-left {
-        flex: none;
-        width: 49%;
-        margin-left: calc(-1 * var(--gutter));
-        margin-right: 0;
-        align-self: stretch;
-      }
-      .datacloud-right {
-        flex: 1;
-        padding: 32px 0;
-        gap: 30px;
-      }
-      .datacloud-header { gap: 12px; }
-      .datacloud .section-label .line { width: 16px; }
-      .datacloud .section-label span { font-size: 10px; font-weight: 500; line-height: 14px; }
-      .datacloud-title { font-size: 20px; line-height: 26px; font-weight: 600; letter-spacing: 0; }
-      .datacloud-desc { font-size: 10px; line-height: 14px; font-weight: 400; letter-spacing: 0; color: #8F98B5; text-align: justify; }
-      .datacloud-desc-list { padding-left: 15px; gap: 20px; }
-    }
 
-    @media (max-width: 440px) {
-      .datacloud { position: relative; background-image: none; --gutter: 24px; }
-      .datacloud-body {
-        flex-direction: column;
-        min-height: unset;
-        gap: 0;
-      }
+    /* Responsive */
+    @media (max-width: 1280px) {
+      .datacloud-title { font-size: 28px; line-height: 36px; }
+    }
+    @media (max-width: 1100px) {
+      .datacloud-title { font-size: 26px; line-height: 34px; }
+    }
+    @media (max-width: 1024px) {
+      .datacloud-title { font-size: 24px; line-height: 32px; }
+      .datacloud-right { padding: 60px 0; }
+    }
+    /* ── Data Cloud tablet+mobile: image bleeds full-bleed as the
+       section's own background (anchored to .datacloud, which is
+       position:relative — skipping past the narrower .container/
+       .datacloud-body, both left position:static — instead of the old
+       side-by-side 49%-width image column), dark overlay, text on top.
+       Mobile below only overrides the overlay darkness and type scale
+       on top of this. ── */
+    @media (max-width: 800px) {
+      .datacloud { --gutter: 32px; position: relative; background-image: none; }
+      .datacloud-body { flex-direction: column; min-height: unset; gap: 0; }
       .datacloud-left {
         position: absolute;
         inset: 0;
@@ -1009,21 +999,32 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.5);
       }
       .datacloud-right {
         position: relative;
         z-index: 1;
         padding: 32px 0;
-        gap: 10px;
+        gap: 20px;
       }
       .datacloud-header { gap: 12px; }
       .datacloud .section-label .line { width: 12px; }
-      .datacloud .section-label span { font-size: 12px; line-height: 16px; font-weight: 500; }
-      .datacloud-title { font-size: 20px; line-height: 26px; font-weight: 600; color: #fff; letter-spacing: 0; }
+      .datacloud .section-label span { font-size: 12px; font-weight: 500; line-height: 16px; }
+      .datacloud-title { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -2px; }
+      .datacloud-desc { font-size: 16px; line-height: 20px; font-weight: 400; letter-spacing: -0.8px; color: #fff; text-align: justify; }
+      .datacloud-desc-list { padding-left: 15px; gap: 20px; }
+    }
+
+    /* ── Data Cloud mobile: darker overlay + tighter spacing/type scale
+       on top of the tablet full-bleed base above ── */
+    @media (max-width: 440px) {
+      .datacloud { --gutter: 24px; }
+      .datacloud-left::after { background: rgba(0, 0, 0, 0.7); }
+      .datacloud-right { gap: 32px; }
+      .datacloud-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
       .datacloud-desc {
-        font-size: 12px; line-height: 16px; font-weight: 400;
-        color: #fff; letter-spacing: 0; text-align: left;
+        font-size: 16px; line-height: 20px; font-weight: 400;
+        color: #fff; letter-spacing: -0.8px; text-align: left;
       }
       .datacloud-desc-list { padding-left: 18px; gap: 8px; }
     }
