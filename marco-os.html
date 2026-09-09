@@ -416,7 +416,7 @@
     .wechat-modal img { max-width: 360px; width: 90%; height: auto; display: block; }
 
     /* ════════════════════════════════════════
-       TABLET NAV (≤800px)
+       TABLET NAV (≤1000px)
     ════════════════════════════════════════ */
     .nav-mobile-right { display: none; align-items: center; gap: 32px; }
     .nav-mobile-lang { display: flex; align-items: center; gap: 6px; position: relative; cursor: pointer; padding-top: 10px; padding-bottom: 10px; }
@@ -460,7 +460,7 @@
     .nav-mob-signin-wrap { flex-shrink: 0; }
     .nav-mob-signin { display: block; width: 100%; text-align: center; background: #019DE7; color: #fff; font-family: var(--font); font-size: 16px; font-weight: 500; border-radius: 50px; padding: 14px 24px; text-decoration: none; transition: background 0.18s ease; box-sizing: border-box; line-height: 20px; }
     .nav-mob-signin:hover { background: #0185C4; }
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
       .nav { z-index: 300; width: 100vw; }
       .nav.nav-panel-open { background-image: linear-gradient(91.735deg, rgb(15,30,70) 20.094%, rgb(8,21,87) 99.843%); }
       .nav-container { width: 100vw; padding: 16px 32px; margin-inline: 0; box-sizing: border-box; }
@@ -469,7 +469,7 @@
       .nav-mobile-right { display: flex; }
       .nav-lang-dropdown { top: calc(100% + 16px); }
     }
-    @media (max-width: 440px) {
+    @media (max-width: 600px) {
       .nav-container { padding: 16px 24px; }
       .nav-logo { width: 101px; height: 32px; }
       .nav-hamburger { width: 20px; height: 20px; }
@@ -478,7 +478,7 @@
       .nav-mobile-overlay { top: 64px; height: calc(100vh - 64px); }
       .nav-mobile-panel { top: 0; left: 0; width: 100vw; height: 100vh; padding: 88px 24px 60px; transform: translateY(-100%); }
     }
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
       .footer { padding: 60px 32px 32px; width: 100vw; max-width: 100vw; box-sizing: border-box; }
       .footer > .container { width: 100%; max-width: none; margin-inline: 0; }
       .footer-top { margin-bottom: 60px; }
@@ -493,7 +493,7 @@
     }
 
     /* ════════════════════════════════════════
-       MOBILE FOOTER (≤440px)
+       MOBILE FOOTER (≤600px)
     ════════════════════════════════════════ */
     .footer-mobile { display: none; background-image: linear-gradient(90.2deg, rgb(15,30,70) 6.921%, rgba(8,21,87,0.87) 124.35%); width: 100vw; box-sizing: border-box; }
     .footer-mob-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 40px 24px 0; }
@@ -520,7 +520,7 @@
     .footer-mob-legal-links a { font-family: var(--font); font-size: 14px; font-weight: 500; line-height: 18px; color: #b2b6c8; text-decoration: none; }
     .footer-mob-legal-links a:hover { color: #fff; }
     .footer-mob-copyright { font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 18px; color: #b2b6c8; }
-    @media (max-width: 440px) {
+    @media (max-width: 600px) {
       .footer { display: none; }
       .footer-mobile { display: block; }
     }
@@ -528,13 +528,13 @@
       body { min-width: unset; }
     }
     /* ── Tablet hero ── */
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
       .os-hero { min-height: 700px; padding-top: 140px; padding-bottom: 80px; max-width: 100vw; }
-      .os-hero-text { width: 644px; max-width: calc(100% - 64px); gap: 12px; }
+      .os-hero-text { width: 736px; max-width: calc(100% - 64px); gap: 12px; }
       .os-hero-label span { font-size: 12px; line-height: 16px; }
       .os-hero-copy { gap: 24px; }
       .os-hero-title { font-size: 48px; line-height: 60px; font-weight: 600; letter-spacing: -2.4px; }
-      .os-hero-desc { font-size: 12px; line-height: 16px; }
+      .os-hero-desc { font-size: 16px; line-height: 20px; }
       .os-hero-visual { width: 330px; max-width: none; margin-top: 40px; }
       .os-blob-left {
         width: 140px; height: 140px;
@@ -547,14 +547,18 @@
     }
 
     /* ── Mobile hero ── */
-    @media (max-width: 440px) {
-      .os-hero { min-height: unset; padding-top: 102px; padding-bottom: 48px; max-width: 100vw; }
-      .os-hero-text { width: 342px; max-width: calc(100% - 48px); gap: 12px; }
+    @media (max-width: 600px) {
+      /* padding-bottom 32 (was 48) and the visual's margin-top 32 (was 24)
+         match Figma's exact 440×580 frame: content ends at y354, visual starts
+         at y386 (32px gap), visual ends at y548, frame ends at y580 (32px
+         bottom) — the section's total height now lands on 580px naturally. */
+      .os-hero { min-height: unset; padding-top: 102px; padding-bottom: 32px; max-width: 100vw; }
+      .os-hero-text { width: 392px; max-width: calc(100% - 48px); gap: 12px; }
       .os-hero-label span { font-size: 12px; line-height: 16px; }
       .os-hero-copy { gap: 24px; }
       .os-hero-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
-      .os-hero-desc { font-size: 12px; line-height: 16px; }
-      .os-hero-visual { width: 240px; max-width: none; margin-top: 24px; }
+      .os-hero-desc { font-size: 16px; line-height: 20px; }
+      .os-hero-visual { width: 240px; max-width: none; margin-top: 32px; }
       .os-blob-left {
         width: 100px; height: 100px;
         left: -12%; right: auto; top: 43%;
@@ -627,6 +631,15 @@
       padding: 80px 0 80px;
       min-height: 550px;
     }
+    /* Text, then visual cluster — on desktop/wide-tablet .os-payroll-visual is
+       display:contents so this has no effect (single real flex item = same as before). */
+    .os-payroll > .container {
+      display: flex;
+      flex-direction: column;
+    }
+    /* Transparent by default: dashed/screens stay direct, absolutely-positioned
+       descendants of .os-payroll (matches Figma exactly). Overridden below 721px. */
+    .os-payroll-visual { display: contents; }
 
     /* Dashed decoration */
     .os-payroll-dashed {
@@ -724,6 +737,23 @@
       flex: 1;
     }
 
+    /* Card cluster wrapper (desktop only — display:contents at ≤1000px, tablet/mobile
+       position each card individually as before). Scaling this ONE box shrinks card
+       size AND their spacing together, so they stay just as close together the whole
+       time instead of drifting apart as they shrink. Bounding box matches the 3 cards'
+       original desktop footprint exactly (570x408, offset 27px/58px from center/top). */
+    .os-payroll-cards {
+      position: absolute;
+      left: calc(50% + 27px);
+      top: 58px;
+      width: 570px;
+      height: 408px;
+      transform-origin: center;
+      /* 1 at ≥1440px (full size), shrinking to land exactly on the tablet
+         card size (228/320 = 0.7125) right at 1000px. */
+      transform: scale(clamp(0.7125, calc((100vw - 1000px) / 440 * 0.2875 + 0.7125), 1));
+    }
+
     /* Screen cards */
     .os-screen {
       position: absolute;
@@ -731,6 +761,8 @@
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.10), 0 4px 30px 10px rgba(0,0,0,0.15);
       overflow: hidden;
+      width: 320px;
+      height: 182px;
     }
     .os-screen img {
       width: 100%;
@@ -738,71 +770,72 @@
       object-fit: cover;
       display: block;
     }
-    /* Card 1: payroll — top-right, back */
+    /* Card 1: payroll — top-right, back (positions below are relative to .os-payroll-cards) */
     .os-screen-1 {
-      left: calc(50% + 277px);
-      top: 58px;
-      width: 320px;
-      height: 182px;
+      left: 250px;
+      top: 0;
       z-index: 1;
       animation: screen-float 5s ease-in-out infinite;
     }
     /* Card 2: payroll-processing — middle-left, mid */
     .os-screen-2 {
-      left: calc(50% + 27px);
-      top: 170px;
-      width: 320px;
+      left: 0;
+      top: 112px;
       height: 183px;
       z-index: 2;
       animation: screen-float 6s ease-in-out infinite 0.5s;
     }
     /* Card 3: people-details — bottom-right, front */
     .os-screen-3 {
-      left: calc(50% + 231px);
-      top: 283px;
-      width: 320px;
+      left: 204px;
+      top: 225px;
       height: 183px;
       z-index: 3;
       animation: screen-float 5.5s ease-in-out infinite 1s;
     }
 
-    /* ── Tablet payroll ── */
-    @media (max-width: 800px) {
+    /* ── Tablet payroll — shared setup for the whole 601–1000px range ── */
+    @media (max-width: 1000px) {
       .os-payroll {
-        padding: 60px 0 80px;
-        min-height: 500px;
+        padding: 32px 0 0;
+        min-height: 440px;
         --gutter: 32px;
       }
+      /* Neutralize the desktop scale-group — tablet/mobile position each
+         card individually against .os-payroll-visual instead. */
+      .os-payroll-cards {
+        display: contents;
+      }
       .os-payroll-text {
-        max-width: min(434px, calc(62.5vw + 21px - var(--gutter) - 16px));
         padding-top: 0;
         gap: 12px;
       }
       .os-payroll-text .section-label span {
-        font-size: 10px;
-        line-height: 14px;
+        font-size: 12px;
+        line-height: 16px;
         font-weight: 500;
       }
       .os-payroll-text .section-label .line {
-        width: 16px;
-      }
-      .os-payroll-title {
-        font-size: 32px;
-        line-height: 40px;
-        font-weight: 700;
-        letter-spacing: 0;
+        width: 12px;
       }
       .os-payroll-bullets {
+        width: 100%;
         margin-top: 12px;
       }
-      .os-payroll-bullet p {
-        font-size: 12px;
-        line-height: 16px;
-        font-weight: 400;
+    }
+
+    /* ── 1000–800px: exact Figma side-by-side, but the text column shrinks to
+       keep a constant 16px gap from the nearest card (card 2) instead of
+       staying a fixed 454px — so it wraps down rather than closing in on the
+       cards as the screen narrows. 454px cap keeps it pixel-exact at 1000px;
+       the calc() only starts biting once that would leave less than 16px. ── */
+    @media (max-width: 1000px) and (min-width: 800px) {
+      .os-payroll-text {
+        max-width: min(454px, calc(50vw - 25px));
       }
       .os-payroll-dashed {
-        left: calc(25% + 39px);
-        top: 262px;
+        left: calc(37.5% - 1px);
+        top: 190px;
         width: 626px;
         height: 281px;
       }
@@ -811,35 +844,70 @@
         height: 130px;
       }
       .os-screen-1 {
-        left: calc(62.5% + 21px);
-        top: 169px;
+        left: 75%;
+        top: 97px;
       }
       .os-screen-2 {
-        left: calc(37.5% + 44px);
-        top: 280px;
+        left: calc(50% + 23px);
+        top: 208px;
       }
       .os-screen-3 {
-        left: calc(62.5% - 4px);
-        top: 349px;
+        left: calc(62.5% + 100px);
+        top: 277px;
+      }
+    }
+
+    /* ── 799–601px: exact Figma 800×580 "smaller tablet" frame — text on top at
+       full column width (fits on one line at this width), cards positioned
+       below it directly against the section (same calc(%+px) technique as the
+       800–1000px range above), not a self-contained box. ── */
+    @media (max-width: 799px) and (min-width: 601px) {
+      .os-payroll {
+        padding: 32px 0 0;
+        min-height: 580px;
+      }
+      .os-payroll-dashed {
+        left: calc(12.5% + 74px);
+        top: 330px;
+        width: 626px;
+        height: 281px;
+      }
+      .os-screen {
+        width: 228px;
+        height: 130px;
+      }
+      .os-screen-1 {
+        left: calc(62.5% + 50px);
+        top: 237px;
+      }
+      .os-screen-2 {
+        left: calc(37.5% + 23px);
+        top: 348px;
+      }
+      .os-screen-3 {
+        left: calc(62.5% + 25px);
+        top: 417px;
       }
     }
 
     /* ── Mobile payroll ── */
-    @media (max-width: 440px) {
+    @media (max-width: 600px) {
       .os-payroll {
-        padding: 32px 0 60px;
-        min-height: auto;
+        padding: 32px 0 32px;
+        min-height: 0;
         --gutter: 24px;
       }
+      /* No max-width — fills the full container width. .container already
+         insets by --gutter on both sides, so this respects the right padding
+         automatically instead of needing a separate right-edge calc. */
       .os-payroll-text {
-        max-width: 342px;
+        max-width: none;
         padding-top: 0;
         gap: 12px;
-        margin-bottom: 200px;
       }
       .os-payroll-text .section-label span {
-        font-size: 10px;
-        line-height: 14px;
+        font-size: 12px;
+        line-height: 16px;
         font-weight: 500;
       }
       .os-payroll-text .section-label .line {
@@ -854,39 +922,34 @@
       .os-payroll-bullets {
         margin-top: 12px;
       }
-      .os-payroll-bullet p {
-        font-size: 12px;
-        line-height: 16px;
-        font-weight: 400;
+      .os-payroll-bullet {
+        align-items: flex-start;
+      }
+      /* Box sized to the 3 screens only (not the dashed line), same approach as tablet.
+         Width scale (398) unchanged from the original mobile design — only height
+         (201, was 250) is trimmed. Self-contained here (not relying on the tablet
+         block above, which is now pure side-by-side and doesn't set this up). */
+      .os-payroll-visual {
+        display: block;
+        position: relative;
+        width: calc(100% + 2 * var(--gutter));
+        margin: 32px calc(-1 * var(--gutter)) 0;
+        aspect-ratio: 398 / 201;
+        overflow: visible;
       }
       .os-payroll-dashed {
-        left: 62px;
-        top: auto;
-        bottom: -23px;
-        width: 398px;
-        height: 178px;
+        left: 0;
+        top: 35.82%;
+        width: 100%;
+        height: 88.56%;
       }
       .os-screen {
-        width: 147px;
-        height: 84px;
+        width: 36.93%;
+        height: 41.79%;
       }
-      .os-screen-1 {
-        left: calc(50% + 24px);
-        top: auto;
-        bottom: 143px;
-      }
-      .os-screen-2 {
-        left: calc(25% + 11.5px);
-        top: auto;
-        bottom: 71px;
-      }
-      .os-screen-3 {
-        left: calc(50% + 7px);
-        top: auto;
-        bottom: 26px;
-        width: 148px;
-        height: 85px;
-      }
+      .os-screen-1 { left: 45.73%; top: 0; }
+      .os-screen-2 { left: 14.82%; top: 35.82%; }
+      .os-screen-3 { left: 41.46%; top: 57.71%; width: 37.19%; height: 42.29%; }
     }
 
     /* ════════════════════════════════════════
@@ -982,7 +1045,7 @@
        side-by-side 49%-width image column), dark overlay, text on top.
        Mobile below only overrides the overlay darkness and type scale
        on top of this. ── */
-    @media (max-width: 800px) {
+    @media (max-width: 1000px) {
       .datacloud { --gutter: 32px; position: relative; background-image: none; }
       .datacloud-body { flex-direction: column; min-height: unset; gap: 0; }
       .datacloud-left {
@@ -1017,7 +1080,7 @@
 
     /* ── Data Cloud mobile: darker overlay + tighter spacing/type scale
        on top of the tablet full-bleed base above ── */
-    @media (max-width: 440px) {
+    @media (max-width: 600px) {
       .datacloud { --gutter: 24px; }
       .datacloud-left::after { background: rgba(0, 0, 0, 0.7); }
       .datacloud-right { gap: 32px; }
@@ -1060,6 +1123,12 @@
       left: 50%;
       transform: translateX(-50%);
     }
+
+    /* Section 1's visual cluster (dashed + cards + logos): transparent by default —
+       children stay direct, absolutely-positioned descendants of .os-hl-inner exactly
+       as before. Given a real box only on mobile (see media query) so it can follow
+       the text as one flexible unit with a guaranteed gap. */
+    .os-hl-s1-visual { display: contents; }
 
     /* Text block */
     .os-hl-text {
@@ -1119,6 +1188,515 @@
     /* Dashed circle decorations */
     .os-hl-dashed { position: absolute; pointer-events: none; z-index: 0; }
     .os-hl-dashed img { width: 100%; height: 100%; display: block; }
+
+    /* Section 1 (API Integrations) — desktop responsiveness, built from TWO real
+       Figma frames (1200px and the original 1800px canvas) instead of a single
+       fixed canvas + scale hack. Below 1200px, every element uses Figma's own
+       1200px formulas verbatim (already %+px, so they scale naturally on their
+       own down to the 1000px tablet handoff). Between 1200–1800px, every
+       property is linearly interpolated between the two real frames — matching
+       Figma exactly at both ends and blending smoothly in between. Above
+       1800px, values clamp to the original flat numbers (unchanged). Text size
+       (label/title/bullets) is identical in both frames, so it was never an
+       issue — only position/width needed this treatment. */
+    .os-hl-s1 .os-hl-inner { position: static; width: 100%; height: auto; left: auto; transform: none; }
+
+    /* ≤1200px: Figma's own 1200px frame, verbatim */
+    .os-hl-s1-text { left: 80px; top: 60px; width: 863px; }
+    .os-hl-s1-dashed-1 { left: calc(41.67% + 40px); top: 478px; width: 276px; height: 276px; }
+    .os-hl-s1-dashed-2 { left: calc(33.33% + 25px); top: 452px; width: 207px; height: 207px; }
+    .os-hl-s1-dashed-3 { left: calc(66.67% + 51px); top: 428px; width: 413px; height: 413px; }
+    .os-hl-s1-dashed-4 { left: calc(83.33% - 20px); top: 342px; width: 276px; height: 275px; }
+    .os-hl-s1-card-1-desktop { left: calc(75% - 1px); top: 395px; width: 220px; height: 126px; }
+    .os-hl-s1-card-1-tablet { display: none; }
+    .os-hl-s1-card-2 { left: calc(58.33% - 22px); top: 465px; width: 303px; height: 173px; }
+    .os-hl-s1-card-3 { left: calc(41.67% + 5px); top: 586px; width: 220px; height: 126px; }
+    .os-hl-s1-logo-1 { left: calc(25% + 32px); top: 478px; width: 138px; height: 92px; animation-delay: 0s; }
+    .os-hl-s1-logo-2 { left: calc(91.67% - 15px); top: 569px; width: 69px; height: 69px; animation-delay: -0.7s; }
+    .os-hl-s1-logo-3 { left: calc(41.67% + 30px); top: 497px; width: 69px; height: 54px; animation-delay: -1.4s; }
+    .os-hl-s1-logo-4 { left: calc(25% + 93px); top: 586px; width: 69px; height: 52px; animation-delay: -2.1s; }
+    .os-hl-s1-logo-5 { left: calc(66.67% - 26px); top: 688px; width: 207px; height: 25px; animation-delay: -2.8s; }
+    .os-hl-s1-logo-6 { left: 84.08%; top: 378.68px; width: 68px; height: 65.68px; animation-delay: -3.5s; }
+
+    /* 1200–1800px: linear blend between the 1200px frame and the original
+       1800px canvas — each formula is calc(A + Bvw) tuned so it lands exactly
+       on the 1200 numbers above at 1200px and exactly on the 1800 numbers
+       below at 1800px. */
+    @media (min-width: 1201px) {
+      .os-hl-s1-text { left: calc(34.667vw - 336px); top: 60px; width: calc(1181px - 26.5vw); }
+      .os-hl-s1-dashed-1 { left: calc(19.833vw + 302px); top: calc(594px - 9.667vw); width: calc(20.667vw + 28px); height: calc(20.667vw + 28px); }
+      .os-hl-s1-dashed-2 { left: calc(11.167vw + 291px); top: calc(592px - 11.667vw); width: calc(15.5vw + 21px); height: calc(15.5vw + 21px); }
+      .os-hl-s1-dashed-3 { left: calc(43.167vw + 333px); top: calc(590px - 13.5vw); width: calc(31.167vw + 39px); height: calc(31.167vw + 39px); }
+      .os-hl-s1-dashed-4 { left: calc(53vw + 344px); top: calc(582px - 20vw); width: calc(20.667vw + 28px); height: calc(20.833vw + 25px); }
+      .os-hl-s1-card-1-desktop { left: calc(46.833vw + 337px); top: calc(585px - 15.833vw); width: calc(16.667vw + 20px); height: calc(9.333vw + 14px); }
+      .os-hl-s1-card-2 { left: calc(30.167vw + 316px); top: calc(593px - 10.667vw); width: calc(22.833vw + 29px); height: calc(13vw + 17px); }
+      .os-hl-s1-card-3 { left: calc(17.167vw + 299px); top: calc(604px - 1.5vw); width: calc(16.667vw + 20px); height: calc(9.5vw + 12px); }
+      .os-hl-s1-logo-1 { left: calc(4.167vw + 282px); top: calc(594px - 9.667vw); width: calc(10.333vw + 14px); height: calc(6.833vw + 10px); }
+      .os-hl-s1-logo-2 { left: calc(60.833vw + 355px); top: calc(603px - 2.833vw); width: calc(5.167vw + 7px); height: calc(5.167vw + 7px); }
+      .os-hl-s1-logo-3 { left: calc(19vw + 302px); top: calc(597px - 8.333vw); width: calc(5.167vw + 7px); height: calc(4.167vw + 4px); }
+      .os-hl-s1-logo-4 { left: calc(8.667vw + 289px); top: calc(604px - 1.5vw); width: calc(5.167vw + 7px); height: calc(3.833vw + 6px); }
+      .os-hl-s1-logo-5 { left: calc(37.5vw + 324px); top: calc(6.167vw + 614px); width: calc(15.5vw + 21px); height: calc(1.833vw + 3px); }
+      .os-hl-s1-logo-6 { left: calc(56.167vw + 335px); top: calc(818.04px - 36.613vw); width: calc(5.5vw + 2px); height: calc(5.22vw + 3.04px); }
+    }
+
+    /* ≥1800px: clamp to the original flat canvas values (unchanged from before) */
+    @media (min-width: 1801px) {
+      .os-hl-s1-text { left: 288px; top: 60px; width: 704px; }
+      .os-hl-s1-dashed-1 { left: 659px; top: 420px; width: 400px; height: 400px; }
+      .os-hl-s1-dashed-2 { left: 492px; top: 382px; width: 300px; height: 300px; }
+      .os-hl-s1-dashed-3 { left: 1110px; top: 347px; width: 600px; height: 600px; }
+      .os-hl-s1-dashed-4 { left: 1298px; top: 222px; width: 400px; height: 400px; }
+      .os-hl-s1-card-1-desktop { left: 1180px; top: 300px; width: 320px; height: 182px; }
+      .os-hl-s1-card-2 { left: 859px; top: 401px; width: 440px; height: 251px; }
+      .os-hl-s1-card-3 { left: 608px; top: 577px; width: 320px; height: 183px; }
+      .os-hl-s1-logo-1 { left: 357px; top: 420px; width: 200px; height: 133px; }
+      .os-hl-s1-logo-2 { left: 1450px; top: 552px; width: 100px; height: 100px; }
+      .os-hl-s1-logo-3 { left: 644px; top: 447px; width: 100px; height: 79px; }
+      .os-hl-s1-logo-4 { left: 445px; top: 577px; width: 100px; height: 75px; }
+      .os-hl-s1-logo-5 { left: 999px; top: 725px; width: 300px; height: 36px; }
+      .os-hl-s1-logo-6 { left: 1346px; top: 159px; width: 101px; height: 97px; }
+    }
+
+    /* ── Tablet API Integrations (section 1) — exact Figma side-by-side, unchanged
+       down to 701px (bullets stay capped at their Figma width until the column
+       itself has to shrink). Below 700px, see the stacked layout further down. ── */
+    @media (max-width: 1000px) {
+      .os-hl-s1 { height: auto; min-height: 500px; }
+      .os-hl-s1 .os-hl-inner { width: 100%; left: 0; transform: none; }
+      /* right:32px instead of a fixed width — so the box always shrinks to fit,
+         keeping a real 32px gutter on both sides on any viewport narrower than
+         the 800px reference (fixed widths here would overflow past the edge). */
+      .os-hl-s1-text { left: 32px; top: 32px; right: 32px; width: auto; max-width: 642px; }
+      .os-hl-s1 .section-label span { font-size: 12px; line-height: 16px; font-weight: 500; }
+      .os-hl-s1 .section-label .line { width: 12px; }
+      .os-hl-s1 .os-hl-title { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -2px; }
+      /* 548/642 = 85.36% — keeps bullets narrower than the title column (Figma's
+         own clearance from the cards), scaling fluidly instead of a fixed px width. */
+      .os-hl-s1 .os-hl-bullet { width: 85.36%; }
+      .os-hl-s1-dashed-1 { left: calc(37.5% + 75px); top: 325px; width: 167px; height: 167px; }
+      .os-hl-s1-dashed-2 { left: calc(37.5% + 5px); top: 309px; width: 126px; height: 126px; }
+      .os-hl-s1-dashed-3 { left: calc(62.5% + 71px); top: 295px; width: 251px; height: 250px; }
+      .os-hl-s1-dashed-4 { left: calc(75% + 54px); top: 242px; width: 167px; height: 167px; }
+      .os-hl-s1-card-1-desktop { display: none; }
+      .os-hl-s1-card-1-tablet { display: block; left: calc(75% + 5px); top: 275px; width: 133px; height: 76px; }
+      .os-hl-s1-card-2 { left: calc(50% + 63px); top: 317px; width: 183px; height: 105px; }
+      .os-hl-s1-card-3 { left: calc(37.5% + 54px); top: 391px; width: 133px; height: 76px; }
+      .os-hl-s1-logo-1 { left: calc(25% + 45px); top: 325px; width: 83px; height: 56px; }
+      .os-hl-s1-logo-2 { left: calc(87.5% + 21px); top: 380px; width: 42px; height: 42px; }
+      .os-hl-s1-logo-3 { left: calc(37.5% + 69px); top: 336px; width: 42px; height: 33px; }
+      .os-hl-s1-logo-4 { left: calc(25% + 82px); top: 391px; width: 42px; height: 31px; }
+      .os-hl-s1-logo-5 { left: calc(62.5% + 25px); top: 453px; width: 126px; height: 15px; }
+      .os-hl-s1-logo-6 { left: calc(87.5% - 21.8px); top: 216px; width: 41.992px; height: 40.561px; }
+    }
+
+    /* ── Narrow tablet API Integrations (cards would touch the text below ~700px) ──
+       Same pattern as the payroll section: the visual cluster (dashed + cards + logos)
+       drops below the text instead of sitting beside it, as one flexible full-bleed
+       unit with a guaranteed 32px gap — so it moves down whenever it's about to touch,
+       rather than trying to precisely predict how much the text will grow. Box is
+       sized to the cards+logos only (dashed ignored, same principle as elsewhere). */
+    @media (max-width: 700px) {
+      .os-hl-s1 { min-height: 0; }
+      .os-hl-s1 .os-hl-inner {
+        position: static;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 32px 32px 32px;
+      }
+      .os-hl-s1-text {
+        position: static;
+        width: auto;
+        max-width: none;
+      }
+      .os-hl-s1 .os-hl-bullet { width: 100%; }
+      .os-hl-s1-visual {
+        display: block;
+        position: relative;
+        width: calc(100% + 64px);
+        margin: 32px -32px 0;
+        aspect-ratio: 518 / 252;
+        overflow: visible;
+      }
+      .os-hl-s1-dashed-1 { left: 25.10%; top: 43.25%; width: 32.24%; height: 66.27%; }
+      .os-hl-s1-dashed-2 { left: 11.58%; top: 36.90%; width: 24.32%; height: 50%; }
+      .os-hl-s1-dashed-3 { left: 62.93%; top: 31.35%; width: 48.46%; height: 99.21%; }
+      .os-hl-s1-dashed-4 { left: 78.96%; top: 10.32%; width: 32.24%; height: 66.27%; }
+      .os-hl-s1-card-1-tablet { left: 69.50%; top: 23.41%; width: 25.68%; height: 30.16%; }
+      .os-hl-s1-card-2 { left: 42.08%; top: 40.08%; width: 35.33%; height: 41.67%; }
+      .os-hl-s1-card-3 { left: 21.04%; top: 69.44%; width: 25.68%; height: 30.16%; }
+      .os-hl-s1-logo-1 { left: 0%; top: 43.25%; width: 16.02%; height: 22.22%; }
+      .os-hl-s1-logo-2 { left: 91.89%; top: 65.08%; width: 8.11%; height: 16.67%; }
+      .os-hl-s1-logo-3 { left: 23.94%; top: 47.62%; width: 8.11%; height: 13.10%; }
+      .os-hl-s1-logo-4 { left: 7.14%; top: 69.44%; width: 8.11%; height: 12.30%; }
+      .os-hl-s1-logo-5 { left: 54.05%; top: 94.05%; width: 24.32%; height: 5.95%; }
+      .os-hl-s1-logo-6 { left: 83.63%; top: 0%; width: 8.11%; height: 16.10%; }
+    }
+
+    /* ── Mobile API Integrations (section 1) ──
+       Text flows normally (no absolute positioning), then the visual cluster
+       flows right after it with a fixed 32px margin — so however tall the text
+       wraps to, the cluster always sits exactly 32px below it. Never overlaps. */
+    @media (max-width: 600px) {
+      .os-hl-s1 { min-height: 600px; }
+      .os-hl-s1 .os-hl-inner {
+        position: static;
+        width: 100%;
+        height: auto;
+        left: auto;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        padding: 32px 24px 32px;
+      }
+      .os-hl-s1-text {
+        position: static;
+        width: auto;
+        max-width: none;
+      }
+      .os-hl-s1 .os-hl-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .os-hl-s1 .os-hl-bullet { width: 100%; }
+
+      /* The cluster itself: a self-contained box (sized to the cards+logos only,
+         not the dashed lines — same principle as the payroll section) that always
+         sits 32px below the text and scales as one unit. */
+      .os-hl-s1-visual {
+        display: block;
+        position: relative;
+        width: 100%;
+        aspect-ratio: 344 / 174;
+        margin: 32px 0 0;
+        overflow: visible;
+      }
+      .os-hl-s1-dashed-1 { left: 25.29%; top: 43.68%; width: 33.43%; height: 65.52%; }
+      .os-hl-s1-dashed-2 { left: 11.34%; top: 36.78%; width: 25.29%; height: 50%; }
+      .os-hl-s1-dashed-3 { left: 63.08%; top: 31.03%; width: 50.29%; height: 99.43%; }
+      .os-hl-s1-dashed-4 { left: 78.78%; top: 10.34%; width: 33.43%; height: 66.67%; }
+      .os-hl-s1-card-1-tablet { left: 69.19%; top: 23.56%; width: 26.45%; height: 29.89%; }
+      .os-hl-s1-card-2 { left: 42.15%; top: 40.23%; width: 36.63%; height: 41.38%; }
+      .os-hl-s1-card-3 { left: 20.93%; top: 68.97%; width: 26.74%; height: 30.46%; }
+      .os-hl-s1-logo-1 { left: 0%; top: 43.68%; width: 16.57%; height: 21.84%; }
+      .os-hl-s1-logo-2 { left: 91.28%; top: 64.94%; width: 8.72%; height: 17.24%; }
+      .os-hl-s1-logo-3 { left: 24.13%; top: 47.70%; width: 8.09%; height: 12.64%; }
+      .os-hl-s1-logo-4 { left: 7.27%; top: 68.97%; width: 8.43%; height: 12.64%; }
+      .os-hl-s1-logo-5 { left: 53.78%; top: 94.25%; width: 25%; height: 5.75%; }
+      .os-hl-s1-logo-6 { left: 82.93%; top: 0%; width: 8.42%; height: 16.08%; }
+    }
+
+    /* Section 2 (Business Insights) — desktop responsiveness, same three-zone
+       system as section 1: ≤1200px uses Figma's own 1200px frame verbatim,
+       1200–1800px linearly interpolates every property between the 1200px
+       frame and the original 1800px canvas, ≥1800px clamps to the original
+       flat values. Label/title text is identical in both frames — only
+       position/size needed this treatment. Also detaches .os-hl-inner from the
+       old 1800px canvas entirely (same as section 1) — without this, the new
+       vw-based formulas below would resolve against the shifted/centered
+       1800px box instead of the real viewport, which is what was causing the
+       cropping and misalignment. */
+    .os-hl-s2 .os-hl-inner { position: static; width: 100%; height: auto; left: auto; transform: none; }
+    .os-hl-s2-visual { display: contents; }
+
+    /* ≤1200px: Figma's own 1200px frame, verbatim — except the text column,
+       which needs to react (component stays exactly as designed). The nearest
+       component element in the text's vertical band is card-1 (BI-blank), whose
+       right edge is a FIXED 390px (left 98 + width 292, neither uses %). The
+       text's left, however, scales with the viewport — so below ~1161px it
+       marched left into the card. max(…, 422px) floors the text's left at
+       390 + 32 = 422px, holding a 32px gap from the component from there down.
+       Right gutter tapers 80px → 32px over 1200 → 1000px, so the column keeps
+       enough width for the title to stay on 3 lines instead of wrapping into a
+       4th and dropping onto the home-blank card below it. */
+    .os-hl-s2-text {
+      left: max(calc(33.33% + 35px), 422px);
+      right: calc(24vw - 208px);
+      top: 32px;
+      width: auto;
+    }
+    .os-hl-s2-card-1 { left: 98px; top: 152px; width: 292px; height: 167px; }
+    .os-hl-s2-card-2 { left: calc(16.67% + 107px); top: 412px; width: 277px; height: 180px; }
+    .os-hl-s2-card-3 { left: calc(16.67% + 93px); top: 515px; width: 111px; height: 92px; }
+    .os-hl-s2-card-4 { left: calc(33.33% + 16px); top: 533px; width: 111px; height: 91px; }
+    .os-hl-s2-widget-1 { left: calc(16.67% + 102px); top: 292px; width: 65.646px; height: 49px; }
+    .os-hl-s2-widget-2 { left: 80px; top: 265px; width: 82px; height: 49px; }
+    .os-hl-s2-widget-3 { left: calc(8.33% + 78px); top: 289px; width: 56px; height: 49px; }
+    .os-hl-s2-widget-4 { left: calc(16.67% + 52px); top: 223px; width: 75.358px; height: 56px; }
+    .os-hl-s2-widget-5 { left: calc(16.67% + 44px); top: 300px; width: 49px; height: 49px; }
+    .os-hl-s2-widget-6 { left: 121px; top: 208px; width: 116px; height: 55px; }
+
+    /* 1200–1800px: linear blend between the 1200px frame and the original 1800px canvas */
+    @media (min-width: 1201px) {
+      /* right:auto so the ≤1200px rule's `right` can't over-constrain this
+         zone's own left+width pair. Above 1200 the text moves right faster
+         than the component grows, so the gap only ever widens (53px at 1800). */
+      .os-hl-s2-text { left: calc(62.167vw - 311px); top: 32px; right: auto; width: calc(3.167vw + 647px); }
+      .os-hl-s2-card-1 { left: calc(36.167vw - 336px); top: calc(8.167vw + 54px); width: calc(24.667vw - 4px); height: calc(14vw - 1px); }
+      .os-hl-s2-card-2 { left: calc(79.5vw - 647px); top: calc(524px - 9.333vw); width: calc(20.5vw + 31px); height: calc(13.333vw + 20px); }
+      .os-hl-s2-card-3 { left: calc(78.333vw - 647px); top: calc(535px - 1.667vw); width: calc(8.167vw + 13px); height: calc(6.667vw + 12px); }
+      .os-hl-s2-card-4 { left: calc(87.5vw - 634px); top: calc(537px - 0.333vw); width: calc(8.167vw + 13px); height: calc(6.833vw + 9px); }
+      .os-hl-s2-widget-1 { left: calc(53.333vw - 338px); top: calc(20vw + 52px); width: calc(5.392vw + 0.938px); height: calc(4vw + 1px); }
+      .os-hl-s2-widget-2 { left: calc(34.667vw - 336px); top: calc(17.667vw + 53px); width: calc(7vw - 2px); height: calc(4.167vw - 1px); }
+      .os-hl-s2-widget-3 { left: calc(42.833vw - 336px); top: calc(19.833vw + 51px); width: calc(4.833vw - 2px); height: calc(4vw + 1px); }
+      .os-hl-s2-widget-4 { left: calc(49vw - 336px); top: calc(14.167vw + 53px); width: calc(6.107vw + 2.074px); height: calc(4.667vw + 0px); }
+      .os-hl-s2-widget-5 { left: calc(48.5vw - 338px); top: calc(20.833vw + 50px); width: calc(4.167vw - 1px); height: calc(4vw + 1px); }
+      .os-hl-s2-widget-6 { left: calc(38.167vw - 337px); top: calc(12.833vw + 54px); width: calc(10vw - 4px); height: calc(4.667vw - 1px); }
+    }
+
+    /* ≥1800px: clamp to the original flat canvas values (unchanged from before) */
+    @media (min-width: 1801px) {
+      .os-hl-s2-text { left: 808px; top: 32px; right: auto; width: 704px; }
+      .os-hl-s2-card-1 { left: 315px; top: 201px; width: 440px; height: 251px; }
+      .os-hl-s2-card-2 { left: 784px; top: 356px; width: 400px; height: 260px; }
+      .os-hl-s2-card-3 { left: 763px; top: 505px; width: 160px; height: 132px; }
+      .os-hl-s2-card-4 { left: 941px; top: 531px; width: 160px; height: 132px; }
+      .os-hl-s2-widget-1 { left: 622px; top: 412px; width: 98px; height: 73px; }
+      .os-hl-s2-widget-2 { left: 288px; top: 371px; width: 124px; height: 74px; }
+      .os-hl-s2-widget-3 { left: 435px; top: 408px; width: 85px; height: 73px; }
+      .os-hl-s2-widget-4 { left: 546px; top: 308px; width: 112px; height: 84px; }
+      .os-hl-s2-widget-5 { left: 535px; top: 425px; width: 74px; height: 73px; }
+      .os-hl-s2-widget-6 { left: 350px; top: 285px; width: 176px; height: 83px; }
+    }
+    /* Scoped (.os-hl-s2 prefix) to outrank .os-hl-s2 .os-hl-widget/.os-hl-card-float's
+       animation shorthand above, which would otherwise silently reset these to 0s. */
+    .os-hl-s2 .os-hl-s2-card-3 { animation-delay: 0s; }
+    .os-hl-s2 .os-hl-s2-card-4 { animation-delay: -0.5s; }
+    .os-hl-s2 .os-hl-s2-widget-1 { animation-delay: -1.0s; }
+    .os-hl-s2 .os-hl-s2-widget-2 { animation-delay: -1.5s; }
+    .os-hl-s2 .os-hl-s2-widget-3 { animation-delay: -2.0s; }
+    .os-hl-s2 .os-hl-s2-widget-4 { animation-delay: -2.5s; }
+    .os-hl-s2 .os-hl-s2-widget-5 { animation-delay: -3.0s; }
+    .os-hl-s2 .os-hl-s2-widget-6 { animation-delay: -3.5s; }
+
+    /* ── Tablet Business Insights (section 2) — exact Figma side-by-side (text on
+       the right this time), unchanged down to 800px. Gap to the nearest card is
+       razor-thin even at 800px itself (Home Blank's right edge exactly meets the
+       text column), so unlike other sections there's effectively no safe zone
+       below 800px — the stacked layout below takes over immediately. ── */
+    @media (max-width: 1000px) {
+      .os-hl-s2 { height: auto; min-height: 500px; }
+      .os-hl-s2 .os-hl-inner { width: 100%; left: 0; transform: none; }
+      /* right:52px instead of a fixed width — 52px is the exact gap Figma leaves
+         at 800px (314 + 434 + 52 = 800), so this matches Figma pixel-for-pixel
+         there while letting the column grow to fill the space as the viewport
+         widens toward 1000px, instead of leaving a fixed-width gap on the right. */
+      .os-hl-s2-text { left: calc(37.5% + 14px); top: 32px; right: 52px; width: auto; }
+      .os-hl-s2 .section-label span { font-size: 12px; line-height: 16px; font-weight: 500; }
+      .os-hl-s2 .section-label .line { width: 12px; }
+      .os-hl-s2 .os-hl-title { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -2px; }
+      .os-hl-s2 .os-hl-bullet { width: 100%; }
+      .os-hl-s2-card-1 { left: 47px; top: 68px; width: 238px; height: 136px; }
+      .os-hl-s2-card-2 { left: 60px; top: 265px; width: 254px; height: 165px; }
+      .os-hl-s2-card-3 { left: 47px; top: 359px; width: 102px; height: 84px; }
+      .os-hl-s2-card-4 { left: calc(12.5% + 64px); top: 377px; width: 102px; height: 83px; }
+      .os-hl-s2-widget-1 { left: calc(25% + 21px); top: 182px; width: 54px; height: 40px; }
+      .os-hl-s2-widget-2 { left: 32px; top: 160px; width: 68px; height: 40px; }
+      .os-hl-s2-widget-3 { left: calc(12.5% + 15px); top: 179px; width: 46px; height: 40px; }
+      .os-hl-s2-widget-4 { left: calc(12.5% + 76px); top: 126px; width: 61px; height: 45px; }
+      .os-hl-s2-widget-5 { left: calc(12.5% + 70px); top: 189px; width: 40px; height: 40px; }
+      .os-hl-s2-widget-6 { left: 65px; top: 114px; width: 96px; height: 45px; }
+    }
+
+    /* ── Narrow tablet Business Insights (stacked below ~800px) ──
+       No Figma spec exists for this in-between range, so the cluster reuses the
+       mobile design's own proportions (342/195 — a wide, compact composition)
+       scaled up, rather than the tablet composition's own boxes (which are tall/
+       narrow and looked oversized when stretched full-bleed). Text goes full
+       width, cluster drops below as one full-bleed unit. ── */
+    @media (max-width: 800px) and (min-width: 601px) {
+      .os-hl-s2 { min-height: 0; }
+      .os-hl-s2 .os-hl-inner {
+        position: static;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 32px 32px 32px;
+      }
+      .os-hl-s2-text {
+        position: static;
+        width: auto;
+      }
+      .os-hl-s2 .os-hl-bullet { width: 100%; }
+      /* Contained within .os-hl-inner's own 32px padding (not full-bleed like
+         payroll's dashed decoration) — these are real UI screenshots, not a
+         bleeding background element, so they shouldn't touch the screen edges. */
+      .os-hl-s2-visual {
+        display: block;
+        position: relative;
+        width: 100%;
+        margin: 32px 0 0;
+        aspect-ratio: 342 / 195;
+        overflow: visible;
+      }
+      .os-hl-s2-card-1 { left: 2.92%; top: 0; width: 45.61%; height: 45.64%; }
+      .os-hl-s2-card-2 { left: 51.75%; top: 34.87%; width: 48.25%; height: 55.38%; }
+      .os-hl-s2-card-3 { left: 49.71%; top: 66.67%; width: 19.01%; height: 27.69%; }
+      .os-hl-s2-card-4 { left: 70.76%; top: 71.79%; width: 19.59%; height: 28.21%; }
+      .os-hl-s2-widget-1 { left: 34.80%; top: 37.95%; width: 10.23%; height: 13.33%; }
+      .os-hl-s2-widget-2 { left: 0; top: 30.77%; width: 13.30%; height: 13.85%; }
+      .os-hl-s2-widget-3 { left: 15.50%; top: 37.44%; width: 8.48%; height: 13.33%; }
+      .os-hl-s2-widget-4 { left: 26.61%; top: 20%; width: 11.40%; height: 14.87%; }
+      .os-hl-s2-widget-5 { left: 25.44%; top: 40.51%; width: 7.89%; height: 13.33%; }
+      .os-hl-s2-widget-6 { left: 6.43%; top: 15.38%; width: 18.13%; height: 14.87%; }
+    }
+
+    /* ── Mobile Business Insights (section 2) — exact Figma 440×620 frame.
+       Text flows normally, then the cluster flows right after with a fixed
+       32px margin, so it can never overlap the text however tall it wraps. ── */
+    @media (max-width: 600px) {
+      .os-hl-s2 { min-height: 620px; }
+      .os-hl-s2 .os-hl-inner {
+        position: static;
+        width: 100%;
+        height: auto;
+        left: auto;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        padding: 32px 24px 32px;
+      }
+      .os-hl-s2-text {
+        position: static;
+        width: auto;
+      }
+      .os-hl-s2 .os-hl-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      .os-hl-s2 .os-hl-bullet { width: 100%; }
+      .os-hl-s2-visual {
+        display: block;
+        position: relative;
+        width: 100%;
+        aspect-ratio: 342 / 195;
+        margin: 32px 0 0;
+        overflow: visible;
+      }
+      .os-hl-s2-card-1 { left: 2.92%; top: 0; width: 45.61%; height: 45.64%; }
+      .os-hl-s2-card-2 { left: 51.75%; top: 34.87%; width: 48.25%; height: 55.38%; }
+      .os-hl-s2-card-3 { left: 49.71%; top: 66.67%; width: 19.01%; height: 27.69%; }
+      .os-hl-s2-card-4 { left: 70.76%; top: 71.79%; width: 19.59%; height: 28.21%; }
+      .os-hl-s2-widget-1 { left: 34.80%; top: 37.95%; width: 10.23%; height: 13.33%; }
+      .os-hl-s2-widget-2 { left: 0; top: 30.77%; width: 13.30%; height: 13.85%; }
+      .os-hl-s2-widget-3 { left: 15.50%; top: 37.44%; width: 8.48%; height: 13.33%; }
+      .os-hl-s2-widget-4 { left: 26.61%; top: 20%; width: 11.40%; height: 14.87%; }
+      .os-hl-s2-widget-5 { left: 25.44%; top: 40.51%; width: 7.89%; height: 13.33%; }
+      .os-hl-s2-widget-6 { left: 6.43%; top: 15.38%; width: 18.13%; height: 14.87%; }
+    }
+
+    /* Section 3 (Borderless Mobility) — desktop responsiveness, same three-zone
+       system as sections 1 and 2: ≤1200px uses Figma's own 1200px frame
+       verbatim, 1200–1800px linearly interpolates every property between the
+       1200px frame and the original 1800px canvas, ≥1800px clamps to the
+       original flat values. Also detaches .os-hl-inner from the old fixed
+       1800px canvas so the vw-based formulas resolve against the real viewport
+       rather than a shifted, centered box. Label/title/bullet type is identical
+       in both frames, so only position/size needed this treatment. Text sits
+       entirely above the cards in this section (nothing but the faint dashed-4
+       arc shares its band, and that renders behind at z-index 0), so no
+       clearance formula is needed here. */
+    .os-hl-s3 .os-hl-inner { position: static; width: 100%; height: auto; left: auto; transform: none; }
+    .os-hl-s3-visual { display: contents; }
+
+    /* ≤1200px: Figma's own 1200px frame, verbatim */
+    .os-hl-s3 { height: 600px; }
+    .os-hl-s3-text { left: 80px; top: 60px; width: 863px; }
+    .os-hl-s3-dashed-1 { left: 83px; top: 368px; width: 305px; height: 305px; }
+    .os-hl-s3-dashed-2 { left: -44px; top: 339px; width: 229px; height: 229px; }
+    .os-hl-s3-dashed-3 { left: calc(50% + 66px); top: 332px; width: 458px; height: 458px; }
+    .os-hl-s3-dashed-4 { left: calc(66.67% + 47px); top: 208px; width: 306px; height: 306px; }
+    .os-hl-s3-card-1 { left: calc(8.33% + 68px); top: 362px; width: 337px; height: 192px; }
+    .os-hl-s3-card-2 { left: calc(50% - 9px); top: 293px; width: 319px; height: 192px; }
+    .os-hl-s3-widget-1 { left: 128px; top: 462px; width: 434px; height: 18px; animation: os-logo-float 4s ease-in-out infinite; animation-delay: -1.2s; }
+
+    /* 1200–1800px: linear blend between the 1200px frame and the original 1800px canvas */
+    @media (min-width: 1201px) {
+      .os-hl-s3 { height: calc(16.5vw + 402px); }
+      .os-hl-s3-text { left: calc(34.667vw - 336px); top: 60px; width: calc(1181px - 26.5vw); }
+      .os-hl-s3-dashed-1 { left: calc(40.833vw - 407px); top: calc(1.167vw + 354px); width: calc(15.833vw + 115px); height: calc(15.833vw + 115px); }
+      .os-hl-s3-dashed-2 { left: calc(34.167vw - 454px); top: calc(343px - 0.333vw); width: calc(11.833vw + 87px); height: calc(11.833vw + 87px); }
+      .os-hl-s3-dashed-3 { left: calc(70.833vw - 184px); top: calc(340px - 0.667vw); width: calc(23.667vw + 174px); height: calc(23.667vw + 174px); }
+      .os-hl-s3-dashed-4 { left: calc(80.167vw - 115px); top: calc(294px - 7.167vw); width: calc(15.667vw + 118px); height: calc(15.667vw + 118px); }
+      .os-hl-s3-card-1 { left: calc(45.167vw - 374px); top: calc(1vw + 350px); width: calc(17.167vw + 131px); height: calc(9.833vw + 74px); }
+      .os-hl-s3-card-2 { left: calc(66.833vw - 211px); top: calc(323px - 2.5vw); width: calc(16.5vw + 121px); height: calc(9.833vw + 74px); }
+      .os-hl-s3-widget-1 { left: calc(43vw - 388px); top: calc(6vw + 390px); width: calc(25vw + 134px); height: calc(1vw + 6px); }
+    }
+
+    /* ≥1800px: clamp to the original flat canvas values (unchanged from before) */
+    @media (min-width: 1801px) {
+      .os-hl-s3 { height: 699px; }
+      .os-hl-s3-text { left: 288px; top: 60px; width: 704px; }
+      .os-hl-s3-dashed-1 { left: 328px; top: 375px; width: 400px; height: 400px; }
+      .os-hl-s3-dashed-2 { left: 161px; top: 337px; width: 300px; height: 300px; }
+      .os-hl-s3-dashed-3 { left: 1091px; top: 328px; width: 600px; height: 600px; }
+      .os-hl-s3-dashed-4 { left: 1328px; top: 165px; width: 400px; height: 400px; }
+      .os-hl-s3-card-1 { left: 439px; top: 368px; width: 440px; height: 251px; }
+      .os-hl-s3-card-2 { left: 992px; top: 278px; width: 418px; height: 251px; }
+      .os-hl-s3-widget-1 { left: 386px; top: 498px; width: 584px; height: 24px; }
+    }
+
+    /* ── Tablet Borderless Mobility (section 3) — exact Figma 800×460 frame.
+       Text is already full-width and on top of the cards in this design (unlike
+       sections 1/2), so tablet and mobile both use the same flow-based pattern:
+       text flows normally, then the visual cluster follows with a guaranteed
+       32px gap — sized to the 2 cards + list bar only (dashed circles ignored
+       and allowed to bleed past, same principle as elsewhere in this page). ── */
+    @media (max-width: 1000px) {
+      .os-hl-s3 { height: auto; min-height: 460px; }
+      .os-hl-s3 .os-hl-inner {
+        position: static;
+        width: 100%;
+        height: auto;
+        left: auto;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        padding: 32px 32px 32px;
+      }
+      .os-hl-s3-text {
+        position: static;
+        width: auto;
+      }
+      .os-hl-s3 .section-label span { font-size: 12px; line-height: 16px; font-weight: 500; }
+      .os-hl-s3 .section-label .line { width: 12px; }
+      .os-hl-s3 .os-hl-title { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -2px; }
+      .os-hl-s3 .os-hl-bullet { width: 100%; }
+      /* 82.34% is the exact ratio Figma uses at 800px (606 / 736 available) —
+         a percentage instead of a fixed px cap, so it scales fluidly with the
+         viewport across the whole tablet range instead of freezing at 606px. */
+      .os-hl-s3-visual {
+        display: block;
+        position: relative;
+        width: 82.34%;
+        margin: 32px auto 0;
+        aspect-ratio: 606 / 197;
+        overflow: visible;
+      }
+      .os-hl-s3-dashed-1 { left: -5.45%; top: 28.93%; width: 37.95%; height: 116.75%; }
+      .os-hl-s3-dashed-2 { left: -21.45%; top: 17.26%; width: 28.55%; height: 87.82%; }
+      .os-hl-s3-dashed-3 { left: 70.46%; top: 14.72%; width: 56.93%; height: 175.63%; }
+      .os-hl-s3-dashed-4 { left: 93.56%; top: -33.00%; width: 38.12%; height: 117.26%; }
+      .os-hl-s3-card-1 { left: 4.95%; top: 26.40%; width: 41.75%; height: 73.60%; }
+      .os-hl-s3-card-2 { left: 60.23%; top: 0; width: 39.77%; height: 73.60%; }
+      .os-hl-s3-widget-1 { left: 0; top: 64.47%; width: 55.12%; height: 7.11%; }
+    }
+
+    /* ── Mobile Borderless Mobility (section 3) — exact Figma 440×460 frame. ── */
+    @media (max-width: 600px) {
+      .os-hl-s3 { min-height: 460px; }
+      .os-hl-s3 .os-hl-inner { padding: 32px 24px 32px; }
+      .os-hl-s3 .os-hl-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; }
+      /* 82.26% is the exact ratio Figma uses at 440px (322.447 / 392 available) —
+         a percentage instead of a fixed px cap so it keeps scaling with the
+         viewport across the whole mobile range, not just at exactly 440px. */
+      .os-hl-s3-visual {
+        width: 82.26%;
+        margin: 32px auto 0;
+        aspect-ratio: 322.447 / 108;
+      }
+      .os-hl-s3-dashed-1 { left: -5.89%; top: 28.70%; width: 39.38%; height: 117.59%; }
+      .os-hl-s3-dashed-2 { left: -22.33%; top: 16.67%; width: 29.46%; height: 88.89%; }
+      .os-hl-s3-dashed-3 { left: 69.16%; top: 14.81%; width: 58.92%; height: 175.93%; }
+      .os-hl-s3-dashed-4 { left: 92.42%; top: -33.33%; width: 39.38%; height: 117.59%; }
+      .os-hl-s3-card-1 { left: 4.96%; top: 25.93%; width: 43.11%; height: 74.07%; }
+      .os-hl-s3-card-2 { left: 59.24%; top: 0; width: 40.76%; height: 73.15%; }
+      .os-hl-s3-widget-1 { left: 0; top: 64.81%; width: 52.85%; height: 6.48%; }
+    }
 
     /* ════════════════ SIMPLE · GLOBAL · SECURE ════════════════ */
     .sgs-section {
@@ -1196,6 +1774,64 @@
       display: flex;
       justify-content: center;
     }
+
+    /* Icon+title pairing: transparent by default (desktop/tablet keep icon
+       above title, as plain siblings in the card's column) — only mobile
+       turns this into a real row (icon beside title). */
+    .sgs-card-head { display: contents; }
+
+    /* ── Tablet Simple·Global·Secure — exact Figma 800×616 frame (updated:
+       now a 2×2 grid instead of a single row of 4, at the same type scale as
+       desktop — only the layout and gaps change). ── */
+    @media (max-width: 1000px) {
+      .sgs-section { padding: 60px 0 60px; }
+      .sgs-inner { max-width: none; padding: 0 32px; }
+      .sgs-title { font-size: 48px; line-height: 60px; letter-spacing: -2.4px; margin-bottom: 60px; }
+      .sgs-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 16px;
+        row-gap: 32px;
+      }
+      .sgs-card { gap: 12px; }
+      .sgs-card-desc { letter-spacing: -0.8px; }
+      /* CTA stays the full desktop-size button at tablet (48px height, 16px
+         font, per Figma) — no override needed here, it just inherits from
+         shared.css. Only mobile shrinks to the "Small cta" variant below. */
+    }
+
+    /* ── Mobile Simple·Global·Secure — exact Figma 440×608 frame (updated:
+       now a single stacked column instead of a 2×2 grid, with the icon sitting
+       beside the title instead of above it — desc still spans full width below). ── */
+    @media (max-width: 600px) {
+      .sgs-section { padding: 32px 0 32px; }
+      .sgs-inner { padding: 0 24px; }
+      .sgs-title { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: 0; margin-bottom: 32px; }
+      .sgs-title .sgs-global { font-weight: 700; }
+      .sgs-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .sgs-card { gap: 12px; }
+      .sgs-card-head { display: flex; align-items: center; gap: 12px; }
+      .sgs-icon, .sgs-icon-box { width: 32px; height: 32px; }
+      .sgs-card-desc { letter-spacing: -0.8px; }
+      /* CTA matches tablet — the full desktop-size button. shared.css shrinks
+         .cta-btn--primary on its own at ≤440px (a different breakpoint than
+         this page uses), so it needs an explicit override here to stay
+         full-size through the whole mobile range instead of shrinking again
+         below 440px. */
+      .sgs-cta-wrap .cta-btn--primary {
+        height: 48px;
+        padding: 4px 24px;
+        font-size: 16px;
+        line-height: normal;
+        letter-spacing: -0.8px;
+        gap: 8px;
+      }
+      .sgs-cta-wrap .cta-btn--primary svg { width: 16px; height: 16px; }
+    }
   </style>
   <link rel="stylesheet" href="shared.css">
 </head>
@@ -1226,22 +1862,6 @@
 <!-- ════════════════ PAYROLL & PEOPLE SECTION ════════════════ -->
 <section class="os-payroll">
 
-  <!-- Dashed curve decoration -->
-  <div class="os-payroll-dashed" aria-hidden="true">
-    <img src="assets/Resources/curvy-dash.png" alt="" />
-  </div>
-
-  <!-- Screen cards (absolutely positioned, behind text z-index) -->
-  <div class="os-screen os-screen-1">
-    <img src="assets/Resources/payroll.png" alt="Payroll screen" />
-  </div>
-  <div class="os-screen os-screen-2">
-    <img src="assets/Resources/payroll-processing.png" alt="Payroll processing screen" />
-  </div>
-  <div class="os-screen os-screen-3">
-    <img src="assets/Resources/people-details.png" alt="People details screen" />
-  </div>
-
   <!-- Text content -->
   <div class="container">
     <div class="os-payroll-text">
@@ -1264,6 +1884,31 @@
           <p data-i18n="marcos.payroll.bullet3">Effortless onboarding, time off, and expense management</p>
         </li>
       </ul>
+    </div>
+
+    <!-- Visual cluster (dashed + 3 screens). display:contents on desktop and wide tablet
+         (≥721px) — children stay direct, absolutely-positioned descendants of .os-payroll,
+         exactly matching the Figma side-by-side layout. Below 721px it becomes a real,
+         full-bleed block that drops beneath the text (see @media (max-width: 720px)). -->
+    <div class="os-payroll-visual">
+      <!-- Dashed curve decoration -->
+      <div class="os-payroll-dashed" aria-hidden="true">
+        <img src="assets/Resources/curvy-dash.png" alt="" />
+      </div>
+
+      <!-- Screen cards, grouped so desktop can scale size+spacing together as one unit
+           (display:contents at ≤1000px — tablet/mobile position each card individually). -->
+      <div class="os-payroll-cards">
+        <div class="os-screen os-screen-1">
+          <img src="assets/Resources/payroll.png" alt="Payroll screen" />
+        </div>
+        <div class="os-screen os-screen-2">
+          <img src="assets/Resources/payroll-processing.png" alt="Payroll processing screen" />
+        </div>
+        <div class="os-screen os-screen-3">
+          <img src="assets/Resources/people-details.png" alt="People details screen" />
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1306,14 +1951,8 @@
   <div class="os-hl-sub os-hl-s1">
     <div class="os-hl-inner">
 
-      <!-- Dashed decorations (direct Figma 1800px pixel positions) -->
-      <div class="os-hl-dashed" style="left:659px;top:420px;width:400px;height:400px;"><img src="assets/Resources/dashed 1.png" alt=""/></div>
-      <div class="os-hl-dashed" style="left:492px;top:382px;width:300px;height:300px;"><img src="assets/Resources/dashed 2.png" alt=""/></div>
-      <div class="os-hl-dashed" style="left:1110px;top:347px;width:600px;height:600px;"><img src="assets/Resources/dashed 3.png" alt=""/></div>
-      <div class="os-hl-dashed" style="left:1298px;top:222px;width:400px;height:400px;"><img src="assets/Resources/dashed 4.png" alt=""/></div>
-
       <!-- Text -->
-      <div class="os-hl-text" style="left:288px;top:60px;">
+      <div class="os-hl-text os-hl-s1-text">
         <div class="section-label fade-in" style="color:var(--text-main);">
           <span class="line"></span>
           <span data-i18n="marcos.api.label">API Integrations</span>
@@ -1337,18 +1976,32 @@
         </div>
       </div>
 
-      <!-- Screen cards -->
-      <div class="os-hl-card" style="left:1180px;top:300px;width:320px;height:182px;"><img src="assets/Resources/people-list.png" alt="People List"/></div>
-      <div class="os-hl-card" style="left:859px;top:401px;width:440px;height:251px;"><img src="assets/Resources/payroll-processing.png" alt="Payroll Processing"/></div>
-      <div class="os-hl-card" style="left:608px;top:577px;width:320px;height:183px;"><img src="assets/Resources/people-details.png" alt="People Details"/></div>
+      <!-- Visual cluster: dashed decorations, screen cards, partner logos — grouped so
+           they move as one flexible unit. display:contents on desktop/tablet (children
+           stay direct, absolutely-positioned descendants of .os-hl-inner, unchanged).
+           On mobile it becomes a real box that always sits a fixed 32px below the text,
+           however tall the text wraps — so they can never overlap. -->
+      <div class="os-hl-s1-visual">
+        <!-- Dashed decorations (direct Figma 1800px pixel positions; tablet positions in @media) -->
+        <div class="os-hl-dashed os-hl-s1-dashed-1"><img src="assets/Resources/dashed 1.png" alt=""/></div>
+        <div class="os-hl-dashed os-hl-s1-dashed-2"><img src="assets/Resources/dashed 2.png" alt=""/></div>
+        <div class="os-hl-dashed os-hl-s1-dashed-3"><img src="assets/Resources/dashed 3.png" alt=""/></div>
+        <div class="os-hl-dashed os-hl-s1-dashed-4"><img src="assets/Resources/dashed 4.png" alt=""/></div>
 
-      <!-- Partner logos -->
-      <div class="os-hl-logo" style="left:357px;top:420px;width:200px;height:133px;animation-delay:0s;"><img src="assets/Resources/people-soft-logo.png" alt="PeopleSoft"/></div>
-      <div class="os-hl-logo" style="left:1450px;top:552px;width:100px;height:100px;animation-delay:-0.7s;"><img src="assets/Resources/rydoo-logo.png" alt="Rydoo"/></div>
-      <div class="os-hl-logo" style="left:644px;top:447px;width:100px;height:79px;animation-delay:-1.4s;"><img src="assets/Resources/workday-logo.png" alt="Workday"/></div>
-      <div class="os-hl-logo" style="left:445px;top:577px;width:100px;height:75px;animation-delay:-2.1s;"><img src="assets/Resources/Kronos.png" alt="Kronos"/></div>
-      <div class="os-hl-logo" style="left:999px;top:725px;width:300px;height:36px;animation-delay:-2.8s;"><img src="assets/Resources/SAP-SuccessFactors-logo.png" alt="SAP SuccessFactors"/></div>
-      <div class="os-hl-logo" style="left:1346px;top:159px;width:101px;height:97px;animation-delay:-3.5s;"><img src="assets/Resources/xero-logo.png" alt="Xero"/></div>
+        <!-- Screen cards (card 1 swaps image at tablet/mobile: people-list → payroll, per Figma) -->
+        <div class="os-hl-card os-hl-s1-card-1-desktop"><img src="assets/Resources/people-list.png" alt="People List"/></div>
+        <div class="os-hl-card os-hl-s1-card-1-tablet"><img src="assets/Resources/payroll.png" alt="Payroll"/></div>
+        <div class="os-hl-card os-hl-s1-card-2"><img src="assets/Resources/payroll-processing.png" alt="Payroll Processing"/></div>
+        <div class="os-hl-card os-hl-s1-card-3"><img src="assets/Resources/people-details.png" alt="People Details"/></div>
+
+        <!-- Partner logos -->
+        <div class="os-hl-logo os-hl-s1-logo-1"><img src="assets/Resources/people-soft-logo.png" alt="PeopleSoft"/></div>
+        <div class="os-hl-logo os-hl-s1-logo-2"><img src="assets/Resources/rydoo-logo.png" alt="Rydoo"/></div>
+        <div class="os-hl-logo os-hl-s1-logo-3"><img src="assets/Resources/workday-logo.png" alt="Workday"/></div>
+        <div class="os-hl-logo os-hl-s1-logo-4"><img src="assets/Resources/Kronos.png" alt="Kronos"/></div>
+        <div class="os-hl-logo os-hl-s1-logo-5"><img src="assets/Resources/SAP-SuccessFactors-logo.png" alt="SAP SuccessFactors"/></div>
+        <div class="os-hl-logo os-hl-s1-logo-6"><img src="assets/Resources/xero-logo.png" alt="Xero"/></div>
+      </div>
 
     </div>
   </div>
@@ -1358,7 +2011,7 @@
     <div class="os-hl-inner">
 
       <!-- Text -->
-      <div class="os-hl-text" style="left:808px;top:32px;">
+      <div class="os-hl-text os-hl-s2-text">
         <div class="section-label fade-in" style="color:var(--text-main);">
           <span class="line"></span>
           <span data-i18n="marcos.bi.label">Business Insights</span>
@@ -1382,19 +2035,24 @@
         </div>
       </div>
 
-      <!-- Screen cards -->
-      <div class="os-hl-card" style="left:315px;top:201px;width:440px;height:251px;"><img src="assets/Resources/BI-blank.png" alt="Business Intelligence"/></div>
-      <div class="os-hl-card" style="left:784px;top:356px;width:400px;height:260px;"><img src="assets/Resources/home-blank.png" alt="Home Dashboard"/></div>
-      <div class="os-hl-card os-hl-card-float" style="left:763px;top:505px;width:160px;height:132px;border-radius:4px;animation-delay:0s;"><img src="assets/Resources/home-active-team.png" alt="Active Team"/></div>
-      <div class="os-hl-card os-hl-card-float" style="left:941px;top:531px;width:160px;height:132px;border-radius:4px;animation-delay:-0.5s;"><img src="assets/Resources/home-team-status.png" alt="Team Status"/></div>
+      <!-- Visual cluster: screen cards + floating data widgets, grouped so tablet/mobile
+           can move them as one flexible unit. display:contents on desktop (children stay
+           direct, absolutely-positioned descendants of .os-hl-inner, unchanged). -->
+      <div class="os-hl-s2-visual">
+        <!-- Screen cards -->
+        <div class="os-hl-card os-hl-s2-card-1"><img src="assets/Resources/BI-blank.png" alt="Business Intelligence"/></div>
+        <div class="os-hl-card os-hl-s2-card-2"><img src="assets/Resources/home-blank.png" alt="Home Dashboard"/></div>
+        <div class="os-hl-card os-hl-card-float os-hl-s2-card-3" style="border-radius:4px;"><img src="assets/Resources/home-active-team.png" alt="Active Team"/></div>
+        <div class="os-hl-card os-hl-card-float os-hl-s2-card-4" style="border-radius:4px;"><img src="assets/Resources/home-team-status.png" alt="Team Status"/></div>
 
-      <!-- Floating data widgets -->
-      <div class="os-hl-widget" style="left:622px;top:412px;width:98px;height:73px;animation-delay:-1.0s;"><img src="assets/Resources/data-timeoff.png" alt="Time Off"/></div>
-      <div class="os-hl-widget" style="left:288px;top:371px;width:124px;height:74px;animation-delay:-1.5s;"><img src="assets/Resources/data-service type.png" alt="Service Type"/></div>
-      <div class="os-hl-widget" style="left:435px;top:408px;width:85px;height:73px;animation-delay:-2.0s;"><img src="assets/Resources/data-mobility.png" alt="Mobility"/></div>
-      <div class="os-hl-widget" style="left:546px;top:308px;width:112px;height:84px;animation-delay:-2.5s;"><img src="assets/Resources/data-hiring type.png" alt="Hiring Type"/></div>
-      <div class="os-hl-widget" style="left:535px;top:425px;width:74px;height:73px;animation-delay:-3.0s;"><img src="assets/Resources/data-expense.png" alt="Expense"/></div>
-      <div class="os-hl-widget" style="left:350px;top:285px;width:176px;height:83px;animation-delay:-3.5s;"><img src="assets/Resources/data-country data.png" alt="Country Data"/></div>
+        <!-- Floating data widgets -->
+        <div class="os-hl-widget os-hl-s2-widget-1"><img src="assets/Resources/data-timeoff.png" alt="Time Off"/></div>
+        <div class="os-hl-widget os-hl-s2-widget-2"><img src="assets/Resources/data-service type.png" alt="Service Type"/></div>
+        <div class="os-hl-widget os-hl-s2-widget-3"><img src="assets/Resources/data-mobility.png" alt="Mobility"/></div>
+        <div class="os-hl-widget os-hl-s2-widget-4"><img src="assets/Resources/data-hiring type.png" alt="Hiring Type"/></div>
+        <div class="os-hl-widget os-hl-s2-widget-5"><img src="assets/Resources/data-expense.png" alt="Expense"/></div>
+        <div class="os-hl-widget os-hl-s2-widget-6"><img src="assets/Resources/data-country data.png" alt="Country Data"/></div>
+      </div>
 
     </div>
   </div>
@@ -1403,14 +2061,8 @@
   <div class="os-hl-sub os-hl-s3">
     <div class="os-hl-inner">
 
-      <!-- Dashed decorations -->
-      <div class="os-hl-dashed" style="left:328px;top:375px;width:400px;height:400px;"><img src="assets/Resources/dashed 1.png" alt=""/></div>
-      <div class="os-hl-dashed" style="left:161px;top:337px;width:300px;height:300px;"><img src="assets/Resources/dashed 2.png" alt=""/></div>
-      <div class="os-hl-dashed" style="left:1091px;top:328px;width:600px;height:600px;"><img src="assets/Resources/dashed 3.png" alt=""/></div>
-      <div class="os-hl-dashed" style="left:1328px;top:165px;width:400px;height:400px;"><img src="assets/Resources/dashed 4.png" alt=""/></div>
-
       <!-- Text -->
-      <div class="os-hl-text" style="left:288px;top:60px;">
+      <div class="os-hl-text os-hl-s3-text">
         <div class="section-label fade-in" style="color:var(--text-main);">
           <span class="line"></span>
           <span data-i18n="marcos.mobility.label">Borderless Mobility</span>
@@ -1434,10 +2086,20 @@
         </div>
       </div>
 
-      <!-- Screen cards -->
-      <div class="os-hl-card" style="left:439px;top:368px;width:440px;height:251px;"><img src="assets/Resources/global-mobility-blank.png" alt="Global Mobility"/></div>
-      <div class="os-hl-card" style="left:992px;top:278px;width:418px;height:251px;"><img src="assets/Resources/people-global-mobility.png" alt="People Global Mobility"/></div>
-      <div class="os-hl-widget" style="left:386px;top:498px;width:584px;height:24px;animation:os-logo-float 4s ease-in-out infinite;animation-delay:-1.2s;"><img src="assets/Resources/global-mobility-list.png" alt="Global Mobility List"/></div>
+      <!-- Visual cluster: dashed decorations + screen cards + list bar, grouped so
+           tablet/mobile can move them as one flexible unit below the text.
+           display:contents on desktop (children stay direct, absolutely-positioned
+           descendants of .os-hl-inner, unchanged). -->
+      <div class="os-hl-s3-visual">
+        <div class="os-hl-dashed os-hl-s3-dashed-1"><img src="assets/Resources/dashed 1.png" alt=""/></div>
+        <div class="os-hl-dashed os-hl-s3-dashed-2"><img src="assets/Resources/dashed 2.png" alt=""/></div>
+        <div class="os-hl-dashed os-hl-s3-dashed-3"><img src="assets/Resources/dashed 3.png" alt=""/></div>
+        <div class="os-hl-dashed os-hl-s3-dashed-4"><img src="assets/Resources/dashed 4.png" alt=""/></div>
+
+        <div class="os-hl-card os-hl-s3-card-1"><img src="assets/Resources/global-mobility-blank.png" alt="Global Mobility"/></div>
+        <div class="os-hl-card os-hl-s3-card-2"><img src="assets/Resources/people-global-mobility.png" alt="People Global Mobility"/></div>
+        <div class="os-hl-widget os-hl-s3-widget-1"><img src="assets/Resources/global-mobility-list.png" alt="Global Mobility List"/></div>
+      </div>
 
     </div>
   </div>
@@ -1452,29 +2114,37 @@
 
       <!-- Integrations -->
       <div class="sgs-card fade-in">
-        <div class="sgs-icon"><img src="assets/Resources/integration-icon.svg" alt=""/></div>
-        <h3 class="sgs-card-title" data-i18n="marcos.sgs.card1.title">Integrations</h3>
+        <div class="sgs-card-head">
+          <div class="sgs-icon"><img src="assets/Resources/integration-icon.svg" alt=""/></div>
+          <h3 class="sgs-card-title" data-i18n="marcos.sgs.card1.title">Integrations</h3>
+        </div>
         <p class="sgs-card-desc" data-i18n="marcos.sgs.card1.desc">Connect Marco Platform with your own HCM, ERP, payroll, or expense systems.</p>
       </div>
 
       <!-- Coverage -->
       <div class="sgs-card fade-in">
-        <div class="sgs-icon"><img src="assets/Resources/coverage-icon.svg" alt=""/></div>
-        <h3 class="sgs-card-title" data-i18n="marcos.sgs.card2.title">Coverage</h3>
+        <div class="sgs-card-head">
+          <div class="sgs-icon"><img src="assets/Resources/coverage-icon.svg" alt=""/></div>
+          <h3 class="sgs-card-title" data-i18n="marcos.sgs.card2.title">Coverage</h3>
+        </div>
         <p class="sgs-card-desc" data-i18n="marcos.sgs.card2.desc">Marco Platform covers 80+ countries with multilingual support and localized databases.</p>
       </div>
 
       <!-- In-built Compliance -->
       <div class="sgs-card fade-in">
-        <div class="sgs-icon"><img src="assets/Resources/compliance-icon.svg" alt=""/></div>
-        <h3 class="sgs-card-title" data-i18n="marcos.sgs.card3.title">In-built Compliance</h3>
+        <div class="sgs-card-head">
+          <div class="sgs-icon"><img src="assets/Resources/compliance-icon.svg" alt=""/></div>
+          <h3 class="sgs-card-title" data-i18n="marcos.sgs.card3.title">In-built Compliance</h3>
+        </div>
         <p class="sgs-card-desc" data-i18n="marcos.sgs.card3.desc">Keep compliant with Marco's country-specific databases that adapt to ever-changing regulations.</p>
       </div>
 
       <!-- Data Privacy & Security -->
       <div class="sgs-card fade-in">
-        <div class="sgs-icon"><img src="assets/Resources/privacy-icon.svg" alt=""/></div>
-        <h3 class="sgs-card-title" data-i18n="marcos.sgs.card4.title">Data Privacy &amp; Security</h3>
+        <div class="sgs-card-head">
+          <div class="sgs-icon"><img src="assets/Resources/privacy-icon.svg" alt=""/></div>
+          <h3 class="sgs-card-title" data-i18n="marcos.sgs.card4.title">Data Privacy &amp; Security</h3>
+        </div>
         <p class="sgs-card-desc" data-i18n="marcos.sgs.card4.desc">Marco Platform is secured with enterprise-level protocols and standards.</p>
       </div>
 
