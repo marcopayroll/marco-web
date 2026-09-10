@@ -1558,7 +1558,10 @@
     /* ── Submission — FormSubmit.co (no backend of our own; free relay that
        emails whoever the URL names). AJAX endpoint keeps the page from
        reloading so the existing custom validation/UX still applies. ── */
-    var FORM_ENDPOINT = 'https://formsubmit.co/ajax/marketing@marcopayroll.com';
+    /* Hashed token (not the raw address) so marketing@marcopayroll.com isn't
+       exposed in the page source — issued by FormSubmit for this exact
+       origin (https://marcopayroll.github.io/) when the form was activated. */
+    var FORM_ENDPOINT = 'https://formsubmit.co/ajax/7881bde620c65c63a098ecc75963ddb6';
     var submitBtn    = form.querySelector('.contact-submit-btn');
     var statusEl     = document.getElementById('contact-form-status');
     var fPhoneFull   = document.getElementById('field-phone-full');
