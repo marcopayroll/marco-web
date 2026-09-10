@@ -626,6 +626,17 @@
       transition: background 0.18s ease;
     }
     .contact-submit-btn:hover { background: #0185C4; }
+    .contact-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .contact-form-status {
+      width: 100%;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      text-align: right;
+    }
+    .contact-form-status.is-success { color: #1a9e5c; }
+    .contact-form-status.is-error { color: #e34a4a; }
 
     /* ════════════════════════════════════════
        FOOTER
@@ -936,7 +947,7 @@
             <span class="form-label-text" data-i18n="contact.form.fname.label">FIRST NAME</span>
             <span class="form-label-required">*</span>
           </div>
-          <input type="text" class="form-input" id="field-first-name" placeholder="John" data-i18n-placeholder="contact.form.fname.placeholder" autocomplete="given-name" />
+          <input type="text" class="form-input" id="field-first-name" name="First Name" placeholder="John" data-i18n-placeholder="contact.form.fname.placeholder" autocomplete="given-name" />
           <p class="field-error" aria-live="polite"></p>
         </div>
         <div class="form-field">
@@ -944,7 +955,7 @@
             <span class="form-label-text" data-i18n="contact.form.lname.label">LAST NAME</span>
             <span class="form-label-required">*</span>
           </div>
-          <input type="text" class="form-input" id="field-last-name" placeholder="Doe" data-i18n-placeholder="contact.form.lname.placeholder" autocomplete="family-name" />
+          <input type="text" class="form-input" id="field-last-name" name="Last Name" placeholder="Doe" data-i18n-placeholder="contact.form.lname.placeholder" autocomplete="family-name" />
           <p class="field-error" aria-live="polite"></p>
         </div>
       </div>
@@ -971,6 +982,8 @@
             </button>
             <!-- Phone number input -->
             <input type="tel" class="form-phone-input" id="field-phone" placeholder="(415) 555-0123" data-i18n-placeholder="contact.form.phone.placeholder" autocomplete="tel-national" />
+            <!-- Populated with "<code> <number>" right before submit; this is the one FormSubmit actually reads -->
+            <input type="hidden" name="Contact Number" id="field-phone-full" />
             <!-- Country code dropdown -->
             <div class="phone-code-dropdown" id="phone-code-dropdown" hidden>
               <input type="text" class="phone-code-search" id="phone-code-search"
@@ -989,7 +1002,7 @@
             <span class="form-label-text" data-i18n="contact.form.email.label">EMAIL ADDRESS</span>
             <span class="form-label-required">*</span>
           </div>
-          <input type="email" class="form-input" id="field-email" placeholder="johndoe@email.com" data-i18n-placeholder="contact.form.email.placeholder" autocomplete="email" />
+          <input type="email" class="form-input" id="field-email" name="Email Address" placeholder="johndoe@email.com" data-i18n-placeholder="contact.form.email.placeholder" autocomplete="email" />
           <p class="field-error" aria-live="polite"></p>
         </div>
       </div>
@@ -1001,7 +1014,7 @@
           <span class="form-label-required">*</span>
         </div>
         <div class="form-textarea-wrap">
-          <textarea class="form-textarea" id="field-message" placeholder="What do you have in mind?" data-i18n-placeholder="contact.form.msg.placeholder" rows="8"></textarea>
+          <textarea class="form-textarea" id="field-message" name="Message" placeholder="What do you have in mind?" data-i18n-placeholder="contact.form.msg.placeholder" rows="8"></textarea>
           <div class="textarea-resize-handle" id="textarea-resize-handle" aria-hidden="true">
             <img src="assets/Company/expand icon.svg" width="24" height="24" draggable="false" />
           </div>
@@ -1010,6 +1023,13 @@
       </div>
 
     </div><!-- /contact-form-inner -->
+
+    <!-- FormSubmit.co config (https://formsubmit.co/marketing@marcopayroll.com) -->
+    <input type="hidden" name="_subject" value="New contact form submission — marcopayroll.com" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_captcha" value="false" />
+
+    <p class="contact-form-status" id="contact-form-status" aria-live="polite"></p>
 
     <!-- Submit — right-aligned via parent align-items: flex-end -->
     <button type="submit" class="contact-submit-btn" data-i18n="contact.form.submit">Submit</button>
@@ -1535,6 +1555,21 @@
       });
     });
 
+    /* ── Submission — FormSubmit.co (no backend of our own; free relay that
+       emails whoever the URL names). AJAX endpoint keeps the page from
+       reloading so the existing custom validation/UX still applies. ── */
+    var FORM_ENDPOINT = 'https://formsubmit.co/ajax/jiajiesaw@gmail.com'; // TEMP: testing — switch back to marketing@marcopayroll.com once confirmed
+    var submitBtn    = form.querySelector('.contact-submit-btn');
+    var statusEl     = document.getElementById('contact-form-status');
+    var fPhoneFull   = document.getElementById('field-phone-full');
+
+    function setStatus(msg, type) {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.classList.remove('is-success', 'is-error');
+      if (type) statusEl.classList.add(type);
+    }
+
     /* ── Submit handler ── */
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -1552,7 +1587,35 @@
         if (firstInvalid) firstInvalid.focus();
         return;
       }
-      /* All valid — handle submission here */
+
+      /* All valid — send it */
+      var codeDisplay = document.getElementById('phone-code-display');
+      if (fPhoneFull) {
+        fPhoneFull.value = (codeDisplay ? codeDisplay.textContent.trim() + ' ' : '') + fPhone.value.trim();
+      }
+
+      setStatus('Sending…', null);
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Request failed');
+          return res.json();
+        })
+        .then(function () {
+          setStatus('Thanks — your message has been sent. We will be in touch shortly.', 'is-success');
+          form.reset();
+        })
+        .catch(function () {
+          setStatus('Something went wrong sending your message. Please try again, or email us directly.', 'is-error');
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   })();
 

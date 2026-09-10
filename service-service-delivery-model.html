@@ -575,12 +575,15 @@
       .sdm-getstarted-image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; margin: 0; flex: none; }
       .sdm-getstarted-image::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); pointer-events: none; }
       .sdm-getstarted .section-label { color: #fff; }
+      /* CTA — Figma tablet spec (node 6008:16379): stays the full desktop
+         size (48px height, 24px/4px padding, 16px font, -0.8px tracking,
+         8px gap); only the color scheme changes to white/dark-border so it
+         reads against the full-bleed photo overlay. */
       .sdm-getstarted .cta-btn--primary {
-        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+        height: 48px; padding: 4px 24px; font-size: 16px; line-height: normal; letter-spacing: -0.8px; gap: 8px;
         background: #fff; border: 1px solid #003751; color: #162351;
       }
       .sdm-getstarted .cta-btn--primary:hover { background: #76CAF2; border-color: #76CAF2; color: #fff; }
-      .sdm-getstarted .btn-icon { width: 16px; height: 16px; }
       /* chevron-right-dark.svg is actually white-stroked (misleading filename) —
          invisible on this white pill button, so invert it dark to match */
       .sdm-getstarted .btn-icon-img { filter: brightness(0); }
@@ -675,6 +678,13 @@
       .sdm-getstarted-inner { padding: 32px 24px; }
       .sdm-getstarted-title { font-size: 32px; font-weight: 700; line-height: 40px; letter-spacing: normal; }
       .sdm-getstarted-body { font-size: 14px; line-height: 18px; margin-bottom: 24px; }
+      /* CTA — "Small cta" variant (32px height, 16px/4px padding, 12px font,
+         no tracking, 4px gap, 16px icon), matching the sitewide mobile
+         Get Started convention (no Figma link given for this breakpoint). */
+      .sdm-getstarted .cta-btn--primary {
+        height: 32px; padding: 4px 16px; font-size: 12px; line-height: 16px; letter-spacing: 0; gap: 4px;
+      }
+      .sdm-getstarted .btn-icon { width: 16px; height: 16px; }
     }
 
     /* ════════════════════════════════════════
