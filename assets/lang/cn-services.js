@@ -205,7 +205,7 @@ window.MARCO_LANG_CN_SERVICES = {
 	'eor.diff.title.accent':  '雇主实体',
 	'eor.diff.title.suffix':  '。',
 	'eor.diff.body1':         '许多 EOR 服务商在本地市场依赖合作代理或名义安排。这意味着您的员工实际上受雇于当地第三方，而不是服务商本身。服务质量、责任归属和合规标准往往不一致，甚至差异很大。',
-	'eor.diff.body2':         'Marco 拥有 21 个自有实体，您的 EOR 员工将直接受雇于 Marco 实体。同一套标准，同一个平台，同样的服务团队结构。无论员工在新加坡、罗马尼亚，还是巴西，体验都保持一致。',
+	'eor.diff.body2':         'Marco 拥有 11 个自有实体，您的 EOR 员工将直接受雇于 Marco 实体。同一套标准，同一个平台，同样的服务团队结构。无论员工在新加坡、罗马尼亚，还是巴西，体验都保持一致。',
 
 	'eor.gs.label':       '开始使用',
 	'eor.gs.title.plain': '准备进入一个',
@@ -284,6 +284,9 @@ window.MARCO_LANG_CN_SERVICES = {
 	'gp.entity.title.accent':     '而是我们的自有实体',
 	'gp.entity.body.p1':          '许多全球薪资服务商依赖无关联的本地供应商。Marco 通过自有法律实体在核心市场直接运营。',
 	'gp.entity.body.p2':          '这使客户获得更清晰的责任归属、更一致的服务标准，以及对薪资项目更强的运营管控。',
+	'gp.entity.amer.countries':   '美国 · 加拿大',
+	'gp.entity.emea.countries':   '英国 · 爱尔兰',
+	'gp.entity.apac.countries':   '中国（北京） · 中国（大连） · 马来西亚 · 越南 · 澳大利亚 · 中国香港 · 新加坡',
 	'gp.entity.layer1.label':     '第 1 层 · 客户数据',
 	'gp.entity.layer1.title':     'HRIS、HR 共享服务中心 / HRBP、财务系统',
 	'gp.entity.layer1.desc':      '您的现有系统可通过明确的数据映射和集成接入 Marco，无需推倒重建。',
@@ -598,7 +601,7 @@ window.MARCO_LANG_CN_SERVICES = {
 	'gm.diff.title.pre':          '当签证、合同和薪资交给',
 	'gm.diff.title.accent':       '不同供应商',
 	'gm.diff.body1':              '分别处理时，员工派遣最容易在交接环节出问题。签证准备好了，合同却还没签；薪资设置完成了，税务申报时间却不对。Marco 统一负责五个工作流，因此每一步顺序都能正确衔接。',
-	'gm.diff.body2':              'Marco 在 50 个国家提供工作签证支持，在 21 个市场拥有自有实体，并配备专属全球流动团队。我们拥有让员工顺利跨境流动的基础设施，也能避免管理多个服务商带来的协调风险。',
+	'gm.diff.body2':              'Marco 在 50 个国家提供工作签证支持，在 11 个市场拥有自有实体，并配备专属全球流动团队。我们拥有让员工顺利跨境流动的基础设施，也能避免管理多个服务商带来的协调风险。',
 
 	/* Get Started */
 	'gm.gs.label':                '开始使用',

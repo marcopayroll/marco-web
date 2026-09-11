@@ -57,7 +57,7 @@ window.MARCO_LANG_EN_COMPANY = {
   'journey.impact.label':       'WHERE WE STAND TODAY',
   'journey.impact.title.pre':   'From the first EOR onboarding to a ',
   'journey.impact.title.em':    'Global Workforce Infrastructure',
-  'journey.impact.body1':       'Since 2020, Marco onboarded over 5,000 staff across 21 owned entities, opened 4 service centers across three continents, and processed over USD 150M in workforce payments, without compromising on the values that started it all.',
+  'journey.impact.body1':       'Since 2020, Marco onboarded over 5,000 staff across 11 owned entities, opened 3 service centers across three continents, and processed over USD 150M in workforce payments, without compromising on the values that started it all.',
   'journey.impact.stat1.label': 'Owned Entities',
   'journey.impact.stat2.label': 'Annual Cash Flow',
   'journey.impact.stat3.label': 'Service Center Globally',
@@ -112,7 +112,7 @@ window.MARCO_LANG_EN_COMPANY = {
 
   'journey.tl.y2025.phase':     'RENEW',
   'journey.tl.y2025.b1':        '70+ active clients reached',
-  'journey.tl.y2025.b2':        '21 owned entities across AMER, EMEA, APAC',
+  'journey.tl.y2025.b2':        '11 owned entities across AMER, EMEA, APAC',
   'journey.tl.y2025.b3':        'Los Angeles service centre opened',
   'journey.tl.y2025.b4':        'Marco MasterCard launched',
 
@@ -159,7 +159,7 @@ window.MARCO_LANG_EN_COMPANY = {
   'entity.hero.label':          'GLOBAL INFRASTRUCTURE',
   'entity.hero.title.pre':      'Local presence',
   'entity.hero.title.em':       'Global scale',
-  'entity.hero.body':           '21 owned legal entities. 4 service centers. AMER, EMEA, and APAC. Marco\'s infrastructure is not a partner directory — it is a network we built and operate ourselves.',
+  'entity.hero.body':           '11 owned legal entities. 3 service centers. AMER, EMEA, and APAC. Marco\'s infrastructure is not a partner directory — it is a network we built and operate ourselves.',
 
   'entity.stats.label':         'MARCO SERVICE CENTERS',
   'entity.stats.stat1.label':   'OWNED ENTITIES',

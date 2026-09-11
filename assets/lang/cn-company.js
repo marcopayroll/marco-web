@@ -57,7 +57,7 @@ window.MARCO_LANG_CN_COMPANY = {
 	'journey.impact.label':       '我们今天走到哪里',
 	'journey.impact.title.pre':   '从第一位 EOR 员工入职，到打造',
 	'journey.impact.title.em':    '全球用工基础设施',
-	'journey.impact.body1':       '自 2020 年以来，Marco 已通过 21 个自有实体帮助超过 5,000 名员工完成入职，在三大洲设立 4 个服务中心，并处理超过 1.5 亿美元的用工付款，同时始终没有偏离最初建立这一切的价值观。',
+	'journey.impact.body1':       '自 2020 年以来，Marco 已通过 11 个自有实体帮助超过 5,000 名员工完成入职，在三大洲设立 3 个服务中心，并处理超过 1.5 亿美元的用工付款，同时始终没有偏离最初建立这一切的价值观。',
 	'journey.impact.stat1.label': '自有实体',
 	'journey.impact.stat2.label': '年度现金流',
 	'journey.impact.stat3.label': '全球服务中心',
@@ -112,7 +112,7 @@ window.MARCO_LANG_CN_COMPANY = {
 
 	'journey.tl.y2025.phase':     '焕新',
 	'journey.tl.y2025.b1':        '活跃客户突破 70+',
-	'journey.tl.y2025.b2':        '21 个自有实体覆盖 AMER、EMEA、APAC',
+	'journey.tl.y2025.b2':        '11 个自有实体覆盖 AMER、EMEA、APAC',
 	'journey.tl.y2025.b3':        '洛杉矶服务中心正式启用',
 	'journey.tl.y2025.b4':        'Marco MasterCard 正式推出',
 
@@ -159,7 +159,7 @@ window.MARCO_LANG_CN_COMPANY = {
 	'entity.hero.label':          '全球基础设施',
 	'entity.hero.title.pre':      '本地存在',
 	'entity.hero.title.em':       '全球规模',
-	'entity.hero.body':           '21 个自有法律实体，4 个服务中心，覆盖 AMER、EMEA 和 APAC。Marco 的基础设施不是一份合作伙伴名录，而是我们亲自建立并运营的网络。',
+	'entity.hero.body':           '11 个自有法律实体，3 个服务中心，覆盖 AMER、EMEA 和 APAC。Marco 的基础设施不是一份合作伙伴名录，而是我们亲自建立并运营的网络。',
 
 	'entity.stats.label':         'MARCO 服务中心',
 	'entity.stats.stat1.label':   '自有实体',

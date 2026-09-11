@@ -201,7 +201,7 @@ window.MARCO_LANG_EN_SERVICES = {
   'eor.diff.title.accent':  'behind',
   'eor.diff.title.suffix':  ' the contract.',
   'eor.diff.body1':         'Most EOR providers use partner agencies or nominee arrangements in local markets. That means your employees are actually employed by a local third party that Marco or any other aggregator has contracted with. The quality, accountability, and compliance standards vary, often significantly.',
-  'eor.diff.body2':         "Marco's 21 owned entities mean your EOR employees are employed by a Marco entity directly. Same standards. Same platform. Same service team structure. Whether your hire is in Singapore, Romania, or Brazil.",
+  'eor.diff.body2':         "Marco's 11 owned entities mean your EOR employees are employed by a Marco entity directly. Same standards. Same platform. Same service team structure. Whether your hire is in Singapore, Romania, or Brazil.",
 
   'eor.gs.label':       'GET STARTED',
   'eor.gs.title.plain': 'Ready to hire in a ',
@@ -280,6 +280,9 @@ window.MARCO_LANG_EN_SERVICES = {
   'gp.entity.title.accent':     'Our own entities',
   'gp.entity.body.p1':          'Many global payroll providers depend on unrelated local vendors. Marco operates through its own legal entities across key markets.',
   'gp.entity.body.p2':          'This gives clients clearer accountability, more consistent service standards and stronger operational control across their payroll program.',
+  'gp.entity.amer.countries':   'USA · Canada',
+  'gp.entity.emea.countries':   'UK · Ireland',
+  'gp.entity.apac.countries':   'China (Beijing) · China (Dalian) · Malaysia · Vietnam · Australia · Hong Kong · Singapore',
   'gp.entity.layer1.label':     'Layer 1 · Customer Data',
   'gp.entity.layer1.title':     'HRIS, HR SSC / HRBP, Finance System',
   'gp.entity.layer1.desc':      'Your existing systems feed into Marco through defined data mapping and integration. No rip-and-replace required.',
@@ -594,7 +597,7 @@ window.MARCO_LANG_EN_SERVICES = {
   'gm.diff.title.pre':          'Mobility fails when visa, contract, and payroll are handled by ',
   'gm.diff.title.accent':       'different vendors.',
   'gm.diff.body1':              'When immigration, contracts, and payroll are split across different vendors, assignments fall apart at the handoffs. The visa is ready but the contract is not signed. The payroll is set up but the tax filing timeline is wrong. Marco owns all five workstreams, so the sequencing is always correct.',
-  'gm.diff.body2':              'With work-visa support across 50 countries, owned entities in 21 markets, and a dedicated mobility team, Marco has the infrastructure to move your people without the coordination risk that comes with managing multiple providers.',
+  'gm.diff.body2':              'With work-visa support across 50 countries, owned entities in 11 markets, and a dedicated mobility team, Marco has the infrastructure to move your people without the coordination risk that comes with managing multiple providers.',
 
   /* Get Started */
   'gm.gs.label':                'GET STARTED',
